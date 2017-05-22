@@ -1,3 +1,3 @@
 printing
 getIconForResult: aTest
-	^OBMorphicIcons iconNamed: (self iconNameFor: aTest)
+	^ UITheme current questionIcon

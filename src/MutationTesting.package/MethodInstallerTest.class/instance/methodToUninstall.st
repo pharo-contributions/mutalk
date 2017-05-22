@@ -1,3 +1,2 @@
 test resources
-methodToUninstall
-	^ self
+methodToUninstall ^self

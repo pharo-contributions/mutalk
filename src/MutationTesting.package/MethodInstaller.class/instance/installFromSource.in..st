@@ -6,10 +6,8 @@ installFromSource: aSourceCode in: aClass
 	[methodAndNode  := aClass
 		compile: aSourceCode 
 		classified: nil
-		notifying: nil
-		trailer: aClass defaultMethodTrailer
-		ifFail: [MethodInstallerException signal]] 
+		notifying: nil] 
 		on: Error
 		do: [ :error | MethodInstallerException signal ].
 	
-	self install: methodAndNode method for: methodAndNode selector in: aClass.
+	"self install: methodAndNode method for: methodAndNode selector in: aClass."

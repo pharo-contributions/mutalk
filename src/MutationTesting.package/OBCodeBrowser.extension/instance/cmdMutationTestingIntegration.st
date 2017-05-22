@@ -1,3 +1,0 @@
-*mutationtesting-Extensions
-cmdMutationTestingIntegration
-	^ {OBCmdMutationTestPackage. OBCmdMutationTestClass. OBCmdMutationTestMethod. OBCmdMutationTestProtocol}

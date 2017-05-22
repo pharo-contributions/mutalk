@@ -5,5 +5,5 @@ methodReferences
 		into: [:methodReferences :aClass | 
 			methodReferences
 				addAll: (aClass selectors
-						collect: [:aSelector | MethodReference class: aClass selector: aSelector]).
+						collect: [:aSelector | RGMethodDefinition class: aClass selector: aSelector]).
 			methodReferences]

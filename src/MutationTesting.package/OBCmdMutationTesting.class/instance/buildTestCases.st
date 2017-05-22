@@ -1,3 +1,0 @@
-private
-buildTestCases
-	self subclassResponsibility 

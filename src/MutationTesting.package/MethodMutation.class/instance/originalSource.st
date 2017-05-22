@@ -1,3 +1,3 @@
 accessing
 originalSource
-	^ originalMethod getSource asString
+	^ originalMethod sourceCode asString

@@ -1,4 +1,4 @@
 printing
 icon
 
-	^OBMorphicIcons iconNamed: #testRed
+	^ UITheme current questionIcon

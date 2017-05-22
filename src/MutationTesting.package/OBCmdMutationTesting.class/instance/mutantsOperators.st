@@ -1,3 +1,0 @@
-execution
-mutantsOperators
-	^ MutantOperator contents

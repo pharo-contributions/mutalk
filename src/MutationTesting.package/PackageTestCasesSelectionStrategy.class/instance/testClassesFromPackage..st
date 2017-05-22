@@ -1,3 +1,3 @@
 selecting
 testClassesFromPackage: aPackageName 
-	^ (PackageInfo named: aPackageName) classes select: [ :class | self isClassTest: class ]
+	^ (aPackageName asPackage) classes select: [ :class | self isClassTest: class ]
