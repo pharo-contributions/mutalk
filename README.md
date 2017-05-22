@@ -3,6 +3,13 @@ Mutation Testing in Smalltalk
 
 Following text is copy from https://code.google.com/archive/p/mutalk/
 
+## How to load
+```
+Metacello new
+  baseline: 'MuTalk';
+  repository: 'github://pavel-krivanek/mutalk/src';
+  load.
+```
 ---
 
 ## Mutation testing
