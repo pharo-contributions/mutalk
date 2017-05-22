@@ -1,0 +1,3 @@
+testing
+survived
+	self subclassResponsibility

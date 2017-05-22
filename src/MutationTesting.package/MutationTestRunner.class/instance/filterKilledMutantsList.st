@@ -1,0 +1,3 @@
+filtering
+filterKilledMutantsList
+	^self filter: result killedOrTerminatedMutants with: killedMutantClassFilter and: killedMutantOperatorFilter

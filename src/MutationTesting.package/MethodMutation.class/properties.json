@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "MutationTesting-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"originalMethod",
+		"modifiedSource",
+		"operator",
+		"originalClass",
+		"mutatedNode",
+		"nodeToMutate"
+	],
+	"name" : "MethodMutation",
+	"type" : "normal"
+}

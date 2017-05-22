@@ -1,0 +1,5 @@
+testing
+testNumberMutantsGenerated
+	self assert: self assertNumberMutantsGeneratedForNonSenderMethod.
+	self assert: self assertNumberMutantsGeneratedForOneSenderMethod.
+	self assert: self assertNumberMutantsGeneratedForTwoSendersMethod

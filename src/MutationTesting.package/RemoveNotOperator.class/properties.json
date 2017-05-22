@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MutantOperator",
+	"category" : "MutationTesting-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "RemoveNotOperator",
+	"type" : "normal"
+}

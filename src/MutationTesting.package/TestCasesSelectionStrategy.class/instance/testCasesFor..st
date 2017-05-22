@@ -1,0 +1,3 @@
+selecting
+testCasesFor: aTestCollection 
+	self subclassResponsibility

@@ -1,0 +1,3 @@
+applying
+newExpression 
+	^'``@aBlock value'

@@ -1,0 +1,3 @@
+accessing
+testResults
+	^ mutantEvaluationResult resultString

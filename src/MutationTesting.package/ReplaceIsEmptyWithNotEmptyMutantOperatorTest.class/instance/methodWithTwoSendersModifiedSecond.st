@@ -1,0 +1,4 @@
+accessing
+methodWithTwoSendersModifiedSecond
+	OrderedCollection new isEmpty.
+	OrderedCollection new notEmpty

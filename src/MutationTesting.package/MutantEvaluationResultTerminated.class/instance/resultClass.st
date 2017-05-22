@@ -1,0 +1,4 @@
+browsing
+resultClass
+	
+	^mutant originalClass

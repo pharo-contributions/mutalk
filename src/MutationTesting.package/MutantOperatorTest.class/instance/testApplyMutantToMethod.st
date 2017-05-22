@@ -1,0 +1,6 @@
+testing
+testApplyMutantToMethod
+	self assert: self assertApplyingMutantToNonSenderMethod.
+	self assert: self assertApplyingMutantToFirstSenderInOneSenderMethod.
+	self assert: self assertApplyingMutantToFirstSenderInTwoSendersMethod.
+	self assert: self assertApplyingMutantToSecondSenderInTwoSendersMethod

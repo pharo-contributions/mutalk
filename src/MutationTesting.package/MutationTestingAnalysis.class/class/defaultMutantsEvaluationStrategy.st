@@ -1,0 +1,3 @@
+defaults
+defaultMutantsEvaluationStrategy
+	^ AllTestsMethodsRunningMutantEvaluationStrategy new

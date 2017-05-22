@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "ReplaceOrReceiverOperator",
+	"category" : "MutationTesting-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "ReplaceOrReceiverWithFalseOperator",
+	"type" : "normal"
+}

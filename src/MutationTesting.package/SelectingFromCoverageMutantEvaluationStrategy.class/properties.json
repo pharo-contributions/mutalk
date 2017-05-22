@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MutantEvaluationStrategy",
+	"category" : "MutationTesting-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SelectingFromCoverageMutantEvaluationStrategy",
+	"type" : "normal"
+}

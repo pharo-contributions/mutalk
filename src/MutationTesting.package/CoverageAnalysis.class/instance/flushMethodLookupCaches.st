@@ -1,0 +1,4 @@
+private
+flushMethodLookupCaches
+	Behavior flushCache.
+	

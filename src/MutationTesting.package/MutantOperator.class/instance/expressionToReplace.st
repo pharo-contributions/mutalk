@@ -1,0 +1,3 @@
+applying
+expressionToReplace
+	self subclassResponsibility

@@ -1,0 +1,3 @@
+accessing
+operator
+	^ ReplaceOrReceiverWithFalseOperator new

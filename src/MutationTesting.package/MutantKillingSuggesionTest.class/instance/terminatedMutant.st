@@ -1,0 +1,4 @@
+accessing
+terminatedMutant
+
+	^resource evaluationResultForTerminatedMutant

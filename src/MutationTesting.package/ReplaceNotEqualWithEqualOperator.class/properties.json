@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SelectorReplacementMutantOperator",
+	"category" : "MutationTesting-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "ReplaceNotEqualWithEqualOperator",
+	"type" : "normal"
+}

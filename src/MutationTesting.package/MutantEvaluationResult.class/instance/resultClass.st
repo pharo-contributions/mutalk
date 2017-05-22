@@ -1,0 +1,3 @@
+browsing
+resultClass
+	self subclassResponsibility

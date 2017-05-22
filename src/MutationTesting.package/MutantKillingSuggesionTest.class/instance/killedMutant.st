@@ -1,0 +1,4 @@
+accessing
+killedMutant
+
+	^resource evaluationResultForKilledMutantByError

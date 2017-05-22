@@ -1,0 +1,3 @@
+accessing
+methodWithOneSenderModified
+	^OrderedCollection new notEmpty

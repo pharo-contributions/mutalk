@@ -1,0 +1,4 @@
+accessing
+defaultBackgroundColor
+
+	^ Color blue.

@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCasesSelectionStrategy",
+	"category" : "MutationTesting-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "NoneTestCasesSelectionStrategy",
+	"type" : "normal"
+}

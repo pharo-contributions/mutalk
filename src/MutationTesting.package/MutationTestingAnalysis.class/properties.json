@@ -1,0 +1,22 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "MutationTesting-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"modelClasses",
+		"operators",
+		"particularResults",
+		"elapsedTime",
+		"mutationsGenerationStrategy",
+		"mutantsEvaluationStrategy",
+		"mutations",
+		"testCases",
+		"coverageAnalysisResult",
+		"logger"
+	],
+	"name" : "MutationTestingAnalysis",
+	"type" : "normal"
+}

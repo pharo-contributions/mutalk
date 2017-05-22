@@ -1,0 +1,2 @@
+logging
+logAnalysisStartFor: aMutationTestingAnalysis 

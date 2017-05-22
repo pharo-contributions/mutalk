@@ -1,0 +1,3 @@
+accessing
+operator
+	^ ReplaceRejectWithSelectMutantOperator new

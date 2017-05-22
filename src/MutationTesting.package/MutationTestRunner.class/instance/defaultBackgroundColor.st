@@ -1,0 +1,4 @@
+private
+defaultBackgroundColor
+	
+	^ Color blue.

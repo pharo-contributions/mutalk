@@ -1,0 +1,4 @@
+filtering
+removeFiltersFromParticularResults
+	particularResultsClassFilter := nil.
+	self updateParticularResultsList

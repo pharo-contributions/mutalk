@@ -1,0 +1,3 @@
+accessing-particularResults
+particularResultsSelected
+	^particularResultsList indexOf: particularResultsSelected

@@ -1,0 +1,3 @@
+testing
+operatorDescription
+	self subclassResponsibility 

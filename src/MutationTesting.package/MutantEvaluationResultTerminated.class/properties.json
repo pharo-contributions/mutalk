@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "MutantEvaluationResult",
+	"category" : "MutationTesting-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"mutant",
+		"mutantEvaluation"
+	],
+	"name" : "MutantEvaluationResultTerminated",
+	"type" : "normal"
+}

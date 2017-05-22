@@ -1,0 +1,5 @@
+testing
+testTimesToApplyMutantToMethod
+	self assert: self assertTimesToApplyOperatorToNonSenderMethod.
+	self assert: self assertTimesToApplyOperatorToOneSenderMethod.
+	self assert: self assertTimesToApplyOperatorInTwoSendersMethod

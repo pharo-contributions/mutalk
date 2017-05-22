@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "MutationTesting-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"particularResults",
+		"elapsedTime"
+	],
+	"name" : "MutationTestingGeneralResult",
+	"type" : "normal"
+}

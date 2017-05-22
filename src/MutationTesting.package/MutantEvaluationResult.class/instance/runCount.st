@@ -1,0 +1,3 @@
+testing
+runCount
+	self subclassResponsibility

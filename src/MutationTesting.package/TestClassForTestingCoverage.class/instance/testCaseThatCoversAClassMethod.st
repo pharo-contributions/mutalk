@@ -1,0 +1,3 @@
+testing
+testCaseThatCoversAClassMethod
+	self assert: ClassForTestingCoverage aClassCoveredMethod.

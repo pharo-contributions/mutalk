@@ -1,0 +1,3 @@
+applying
+selector
+	^#and:

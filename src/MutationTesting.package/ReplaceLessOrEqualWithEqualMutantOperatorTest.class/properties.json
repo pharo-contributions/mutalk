@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MutantOperatorTest",
+	"category" : "MutationTesting-Test",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "ReplaceLessOrEqualWithEqualMutantOperatorTest",
+	"type" : "normal"
+}

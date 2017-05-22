@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MutationsGenerationStrategy",
+	"category" : "MutationTesting-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "AllMutationsGenerationStrategy",
+	"type" : "normal"
+}

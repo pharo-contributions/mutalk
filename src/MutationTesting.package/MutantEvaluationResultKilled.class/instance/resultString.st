@@ -1,0 +1,4 @@
+testing
+resultString
+	
+	^result printString 

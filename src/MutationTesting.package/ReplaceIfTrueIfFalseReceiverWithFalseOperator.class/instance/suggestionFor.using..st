@@ -1,0 +1,3 @@
+suggestions
+suggestionFor: aMutation using: aMutantKillingSuggestionGenerator
+	^aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceIfTrueIfFalseReceiverWithFalseOperator: aMutation.

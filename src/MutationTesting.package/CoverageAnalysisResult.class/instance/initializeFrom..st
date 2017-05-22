@@ -1,0 +1,3 @@
+initialize-release
+initializeFrom: aDictionaryOfMethodToTestCasesRelations 
+	methodToTestDictionary := aDictionaryOfMethodToTestCasesRelations

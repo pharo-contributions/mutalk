@@ -1,0 +1,3 @@
+testing
+killed
+	self subclassResponsibility

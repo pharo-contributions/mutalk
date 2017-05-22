@@ -1,0 +1,3 @@
+opening
+openResultBrowser
+	mutantEvaluationResult openResultBrowser

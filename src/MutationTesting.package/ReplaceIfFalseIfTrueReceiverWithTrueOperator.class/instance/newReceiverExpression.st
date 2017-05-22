@@ -1,0 +1,3 @@
+applying
+newReceiverExpression 
+	^'true'

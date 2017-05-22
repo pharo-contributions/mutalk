@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCoverage",
+	"category" : "MutationTesting-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"tests",
+		"coverageAnalysis"
+	],
+	"name" : "MethodWrapperForCoverage",
+	"type" : "normal"
+}

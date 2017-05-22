@@ -1,0 +1,4 @@
+accesing
+coverageAnalysisResult
+	
+	^coverageAnalysisResult

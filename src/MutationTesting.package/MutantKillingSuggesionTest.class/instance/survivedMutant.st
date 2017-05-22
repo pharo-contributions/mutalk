@@ -1,0 +1,4 @@
+accessing
+survivedMutant
+
+	^resource evaluationResultForAliveMutant

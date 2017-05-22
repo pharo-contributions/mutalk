@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "TestResource",
+	"category" : "MutationTesting-Test",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"testResource"
+	],
+	"name" : "MutationTestingResource",
+	"type" : "normal"
+}

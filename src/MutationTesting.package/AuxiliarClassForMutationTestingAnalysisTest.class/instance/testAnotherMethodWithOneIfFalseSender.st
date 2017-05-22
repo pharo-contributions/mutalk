@@ -1,0 +1,3 @@
+testing
+testAnotherMethodWithOneIfFalseSender
+	self assert: AuxiliarClassForMutationTestingAnalysis new anotherMethodWithOneIfFalseSender = 1

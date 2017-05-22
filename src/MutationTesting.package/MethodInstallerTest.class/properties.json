@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"category" : "MutationTesting-Test",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"anonymousClass",
+		"anonymousClassWithMethod"
+	],
+	"name" : "MethodInstallerTest",
+	"type" : "normal"
+}

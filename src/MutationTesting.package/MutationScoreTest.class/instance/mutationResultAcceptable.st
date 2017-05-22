@@ -1,0 +1,3 @@
+accessing
+mutationResultAcceptable
+	^MutationTestingGeneralResult for: (OrderedCollection with: resource evaluationResultForKilledMutantByError)

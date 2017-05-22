@@ -1,0 +1,3 @@
+testing
+testMethodWithOnePlusSender
+	self assert: AuxiliarClassForMutationTestingAnalysis new methodWithOnePlusSender = 3

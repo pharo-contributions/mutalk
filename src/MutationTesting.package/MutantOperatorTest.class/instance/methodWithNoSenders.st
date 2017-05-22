@@ -1,0 +1,3 @@
+accessing
+methodWithNoSenders
+	self subclassResponsibility

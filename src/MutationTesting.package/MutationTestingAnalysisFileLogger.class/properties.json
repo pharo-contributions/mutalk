@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "MutationTestingAnalysisLogger",
+	"category" : "MutationTesting-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"fileStream"
+	],
+	"name" : "MutationTestingAnalysisFileLogger",
+	"type" : "normal"
+}

@@ -1,0 +1,3 @@
+testing
+isNonAcceptableScore
+	^false

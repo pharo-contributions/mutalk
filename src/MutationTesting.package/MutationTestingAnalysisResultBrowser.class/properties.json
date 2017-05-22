@@ -1,0 +1,22 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "MutationTesting-View",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"result",
+		"aliveMutantSelected",
+		"killedMutantSelected",
+		"analysis",
+		"aliveMutantClassFilter",
+		"aliveMutantOperatorFilter",
+		"killedMutantClassFilter",
+		"killedMutantOperatorFilter",
+		"aliveMutantList",
+		"killedMutantList"
+	],
+	"name" : "MutationTestingAnalysisResultBrowser",
+	"type" : "normal"
+}

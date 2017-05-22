@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "OBCmdMutationTesting",
+	"category" : "MutationTesting-Extensions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "OBCmdMutationTestClass",
+	"type" : "normal"
+}

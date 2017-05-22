@@ -1,0 +1,3 @@
+actions
+runCoveredMutantAndCoveredTests
+	self reset; runSuite: self suiteCoveredMutantAndCoveredTests.
