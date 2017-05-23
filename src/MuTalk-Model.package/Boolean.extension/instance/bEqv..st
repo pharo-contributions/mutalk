@@ -1,4 +1,4 @@
-*MutationTesting-Model
+*MuTalk-Model
 bEqv: aBlock
 
 	^self eqv: aBlock value

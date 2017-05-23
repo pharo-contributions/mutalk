@@ -1,3 +1,3 @@
-*MutationTesting-Model
+*MuTalk-Model
 errorsSize
     ^ errors size

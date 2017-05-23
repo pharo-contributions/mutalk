@@ -1,4 +1,4 @@
-*MutationTesting-Model
+*MuTalk-Model
 runStoppingOnFirstFailOrError: aResult
     self tests do: [:each |
         self changed: each.

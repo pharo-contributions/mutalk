@@ -1,4 +1,4 @@
-*MutationTesting-Model
+*MuTalk-Model
 runStoppingOnFirstFailOrError
     | result |
      result := TestResult new.
