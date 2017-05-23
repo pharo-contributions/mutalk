@@ -25,6 +25,9 @@ mutationTestingAnalysis := MutationTestingAnalysis
 mutationTestingAnalysis run.
 ```
 ---
+
+ESUG presentation: https://www.slideshare.net/esug/mutation-testing
+
 > Following text is copy from https://code.google.com/archive/p/mutalk/
 
 ## Mutation testing
