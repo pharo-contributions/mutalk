@@ -4,9 +4,7 @@ installFromSource: aSourceCode in: aClass
 	not posible."
 	| methodAndNode |
 	[methodAndNode  := aClass
-		compile: aSourceCode 
-		classified: nil
-		notifying: nil] 
+		compile: aSourceCode ] 
 		on: Error
 		do: [ :error | MethodInstallerException signal ].
 	
