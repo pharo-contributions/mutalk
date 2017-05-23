@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "MutationTestingAnalysisLogger",
-	"category" : "MuTalk-Model",
+	"category" : "MuTalk-Model-Logging",
 	"classinstvars" : [
 		"instance"
 	],

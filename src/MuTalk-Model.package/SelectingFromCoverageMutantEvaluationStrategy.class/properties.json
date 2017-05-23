@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "MutantEvaluationStrategy",
-	"category" : "MuTalk-Model",
+	"category" : "MuTalk-Model-Mutant evaluation strategies",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

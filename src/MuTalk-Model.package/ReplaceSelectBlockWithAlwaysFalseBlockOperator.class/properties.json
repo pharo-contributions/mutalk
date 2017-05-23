@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "MutantOperator",
-	"category" : "MuTalk-Model",
+	"category" : "MuTalk-Model-Operators",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
