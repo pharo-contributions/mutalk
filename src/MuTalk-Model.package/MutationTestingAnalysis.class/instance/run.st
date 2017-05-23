@@ -13,5 +13,5 @@ run
 					true]
 						on: TestsWithErrorsException
 						do: [:ex | 
-							OBInformRequest message: 'Your tests have Errors or Failures. Please correct them.'.
+							self inform: 'Your tests have Errors or Failures. Please correct them.'.
 							ex return: false]

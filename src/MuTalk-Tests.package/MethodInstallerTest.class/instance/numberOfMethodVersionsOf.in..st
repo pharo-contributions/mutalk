@@ -1,4 +1,11 @@
 accessing
 numberOfMethodVersionsOf: aSelector in: aClass 
-	[ ^ (OBMethodNode on: aSelector inClass: aClass) versions size ] on: Error
-		do: [ :signal | ^ 0 ]
+	
+	| aMethod |
+	
+	aMethod := aClass>>aSelector.
+	
+	^ (SourceFiles
+		changeRecordsFrom: aMethod sourcePointer
+		className: aMethod origin
+		isMeta: aMethod origin isClassSide) size

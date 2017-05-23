@@ -6,6 +6,6 @@ baseline: spec
 		spec 
 			package: 'MuTalk-Model';
 			package: 'MuTalk-TestResources';
-			package: 'MuTalk-Tests';
-			package: 'MuTalk-UI'.
+			package: 'MuTalk-Tests'.
+			"package: 'MuTalk-UI'."
 	].		

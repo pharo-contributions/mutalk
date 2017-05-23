@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "ReplaceIfFalseIfTrueReceiverOperator",
-	"category" : "MuTalk-Model",
+	"category" : "MuTalk-Model-Operators",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

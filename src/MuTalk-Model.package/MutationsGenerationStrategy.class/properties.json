@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "Object",
-	"category" : "MuTalk-Model",
+	"category" : "MuTalk-Model-Mutations generation strategies",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
