@@ -23,6 +23,7 @@ mutationTestingAnalysis := MutationTestingAnalysis
 		with: AllTestsMethodsRunningMutantEvaluationStrategy new.
 		
 mutationTestingAnalysis run.
+mutationTestingAnalysis generalResult aliveMutants.
 ```
 ---
 
