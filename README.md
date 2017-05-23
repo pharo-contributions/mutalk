@@ -1,8 +1,6 @@
 # mutalk
 Mutation Testing in Smalltalk
 
-Following text is copy from https://code.google.com/archive/p/mutalk/
-
 ## How to load
 ```
 Metacello new
@@ -11,6 +9,7 @@ Metacello new
   load.
 ```
 ---
+> Following text is copy from https://code.google.com/archive/p/mutalk/
 
 ## Mutation testing
 
