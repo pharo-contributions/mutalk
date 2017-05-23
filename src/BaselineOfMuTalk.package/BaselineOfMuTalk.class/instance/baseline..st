@@ -4,5 +4,8 @@ baseline: spec
 
 	spec for: #common do: [
 		spec 
-			package: 'MutationTesting'.
+			package: 'MuTalk-Model';
+			package: 'MuTalk-TestResources';
+			package: 'MuTalk-Tests';
+			package: 'MuTalk-UI'.
 	].		
