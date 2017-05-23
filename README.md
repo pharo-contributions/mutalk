@@ -3,6 +3,12 @@ Mutation Testing in Smalltalk
 
 This project was originally developed at the University of Buenos Aires (Argentina) by Nicolás Chillo, Gabriel Brunstein and others. It was created in times of Pharo 1.1 and the last versions on which MuTalk can run is Pharo 1.3. This is resurection of this project.
 
+### Current status 
+
+- all tests are green
+- mutation analysis works
+- UI still not converted
+
 ## How to load
 ```
 Metacello new
