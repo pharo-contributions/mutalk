@@ -1,5 +1,7 @@
-# mutalk
+# MuTalk (µ-talk)
 Mutation Testing in Smalltalk
+
+This project was originally developed at the University of Buenos Aires (Argentina) by Nicolás Chillo, Gabriel Brunstein and others. It was created in times of Pharo 1.1 and the last versions on which MuTalk can run is Pharo 1.3. This is resurection of this project.
 
 ## How to load
 ```
@@ -7,6 +9,20 @@ Metacello new
   baseline: 'MuTalk';
   repository: 'github://pavel-krivanek/mutalk/src';
   load.
+```
+
+## Analysis
+
+On latest Pharo no UI can be opened but model starts to work.
+```
+| mutationTestingAnalysis |
+mutationTestingAnalysis := MutationTestingAnalysis
+		testCasesFrom: {UUIDPrimitivesTest}
+		mutating: {UUID. UUIDGenerator}
+		using: MutantOperator contents
+		with: AllTestsMethodsRunningMutantEvaluationStrategy new.
+		
+mutationTestingAnalysis run.
 ```
 ---
 > Following text is copy from https://code.google.com/archive/p/mutalk/
