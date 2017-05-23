@@ -5,7 +5,7 @@ installFromSource: aSourceCode in: aClass
 	| selector |
 	[selector := aClass
 		compile: aSourceCode ] 
-		on: Error
+		on: Error, SyntaxErrorNotification 
 		do: [ :error | MethodInstallerException signal ].
 	
 	self install: (aClass>>selector) for: selector in: aClass.
