@@ -21,15 +21,14 @@ Metacello new
 
 On latest Pharo no UI can be opened but model starts to work.
 ```
-| mutationTestingAnalysis |
-mutationTestingAnalysis := MutationTestingAnalysis
-		testCasesFrom: {UUIDPrimitivesTest}
-		mutating: {UUID. UUIDGenerator}
-		using: MutantOperator contents
-		with: AllTestsMethodsRunningMutantEvaluationStrategy new.
-		
-mutationTestingAnalysis run.
-mutationTestingAnalysis generalResult aliveMutants.
+| analysis |
+analysis := MutationTestingAnalysis
+    testCasesFrom: {UUIDPrimitivesTest}
+    mutating: {UUID. UUIDGenerator}
+    using: MutantOperator contents
+    with: AllTestsMethodsRunningMutantEvaluationStrategy new.
+analysis run.
+analysis generalResult aliveMutants.
 ```
 ---
 
