@@ -7,7 +7,7 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"mutationGeneralResult",
-		"logName",
+		"fileReference",
 		"packagesNames"
 	],
 	"name" : "MutationTestingGeneralResultReporter",

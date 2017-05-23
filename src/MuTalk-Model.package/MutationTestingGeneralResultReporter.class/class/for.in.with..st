@@ -1,5 +1,5 @@
 instance creation
-for: aMutationGeneralResut in: aLogName with: aPackagesNames
+for: aMutationGeneralResut in: aFileReference with: aPackagesNames
 	^self new 
-		initializeFor: aMutationGeneralResut in: aLogName with: aPackagesNames;
+		initializeFor: aMutationGeneralResut in: aFileReference asFileReference with: aPackagesNames;
 		yourself

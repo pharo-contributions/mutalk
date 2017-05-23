@@ -6,8 +6,9 @@ testInstallerShouldNotAddSourceVersions
 	
 	selector := #methodInstalled.
 	previousCompiledMethod := self class methodDictionary at: selector.
-	previousNumberOfVersions := self numberOfMethodVersionsOf: selector
+	previousNumberOfVersions := self numberOfMethodVersionsOf: selector 
 		in: self class.
+		
 	aSourceCode := selector asString , '  ^3+4'.
 	[MethodInstaller new installFromSource: aSourceCode in: self class.] 
 			ensure:[MethodInstaller new install: previousCompiledMethod for: selector in: self class ].

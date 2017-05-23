@@ -1,6 +1,6 @@
 initialize-release
-initializeFor: aMutationGeneralResut in: aLogName with: aPackagesNames
+initializeFor: aMutationGeneralResut in: aFileReference with: aPackagesNames
 
 	mutationGeneralResult := aMutationGeneralResut.
-	logName := aLogName.
+	fileReference := aFileReference.
 	packagesNames := aPackagesNames
