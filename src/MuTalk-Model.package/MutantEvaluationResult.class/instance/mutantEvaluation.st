@@ -1,3 +1,3 @@
 accessing
-mutantEvaluation
-	self subclassResponsibility
+mutantEvaluation 
+	^mutantEvaluation

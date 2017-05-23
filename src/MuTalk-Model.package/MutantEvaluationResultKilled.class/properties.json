@@ -6,9 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"mutant",
-		"result",
-		"mutantEvaluation"
+		"result"
 	],
 	"name" : "MutantEvaluationResultKilled",
 	"type" : "normal"

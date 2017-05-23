@@ -5,7 +5,9 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"generalResult"
+	],
 	"name" : "MutationScoreBehavior",
 	"type" : "normal"
 }

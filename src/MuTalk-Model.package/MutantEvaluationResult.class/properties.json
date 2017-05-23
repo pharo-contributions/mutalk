@@ -5,7 +5,10 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"mutant",
+		"mutantEvaluation"
+	],
 	"name" : "MutantEvaluationResult",
 	"type" : "normal"
 }

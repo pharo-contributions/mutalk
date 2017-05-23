@@ -1,3 +1,3 @@
-initializating
+initialization
 initializeFor: aMutationGeneralResult
 	generalResult := aMutationGeneralResult.

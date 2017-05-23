@@ -1,0 +1,4 @@
+logging
+nullLogger
+
+	^ NullMutationTestingAnalysisLogger new.

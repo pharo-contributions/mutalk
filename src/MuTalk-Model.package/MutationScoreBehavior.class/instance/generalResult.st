@@ -1,0 +1,4 @@
+accessing
+generalResult
+
+	^ generalResult

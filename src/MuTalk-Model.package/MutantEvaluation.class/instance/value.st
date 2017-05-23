@@ -2,10 +2,10 @@ evaluation
 value
 	| testResults |
 	self initializeCoverageResultIfNil.
-	[ mutation install.
-	testResults := self	testResults ] 
+	testResults := [ mutation install.
+	self testResults ]
 		ensure: [ mutation uninstall ].
-	^ MutantEvaluationResult 
+	^ MutantEvaluationResult
 		for: mutation
 		results: testResults
 		producedBy: self

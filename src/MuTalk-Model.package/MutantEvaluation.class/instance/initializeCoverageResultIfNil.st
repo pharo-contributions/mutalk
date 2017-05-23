@@ -1,5 +1,5 @@
 initialize-release
-initializeCoverageResultIfNil.
+initializeCoverageResultIfNil
 	coverageAnalysisResult 
 		ifNil:[ |coverageAnalysis|
 				coverageAnalysis := CoverageAnalysis for: (OrderedCollection with: mutation originalClass)
