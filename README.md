@@ -19,7 +19,6 @@ Metacello new
 
 ## Analysis
 
-On latest Pharo no UI can be opened but model starts to work.
 ```
 | analysis |
 analysis := MutationTestingAnalysis
