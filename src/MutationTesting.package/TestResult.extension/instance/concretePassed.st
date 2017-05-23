@@ -1,3 +1,0 @@
-*MutationTesting-Model
-concretePassed
-    ^ passed

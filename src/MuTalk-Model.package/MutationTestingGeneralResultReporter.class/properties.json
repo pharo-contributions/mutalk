@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "MuTalk-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"mutationGeneralResult",
+		"logName",
+		"packagesNames"
+	],
+	"name" : "MutationTestingGeneralResultReporter",
+	"type" : "normal"
+}

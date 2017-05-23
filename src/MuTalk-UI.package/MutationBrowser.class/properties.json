@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "MuTalk-UI",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"particularResultsList",
+		"particularResultsSelected",
+		"particularResultsClassFilter",
+		"mutantEvaluationResult"
+	],
+	"name" : "MutationBrowser",
+	"type" : "normal"
+}

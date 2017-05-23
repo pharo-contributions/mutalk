@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "MuTalk-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"mutantEvaluationResult"
+	],
+	"name" : "MutantReporter",
+	"type" : "normal"
+}

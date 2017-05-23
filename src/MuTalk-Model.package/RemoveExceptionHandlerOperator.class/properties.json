@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "MutantOperator",
+	"category" : "MuTalk-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"selector"
+	],
+	"name" : "RemoveExceptionHandlerOperator",
+	"type" : "normal"
+}

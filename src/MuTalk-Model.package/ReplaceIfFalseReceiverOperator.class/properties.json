@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "ReplaceReceiverOperator",
+	"category" : "MuTalk-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "ReplaceIfFalseReceiverOperator",
+	"type" : "normal"
+}

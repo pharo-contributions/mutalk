@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SelectorReplacementMutantOperator",
+	"category" : "MuTalk-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "ReplaceMaxWithMinMutantOperator",
+	"type" : "normal"
+}

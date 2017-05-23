@@ -1,3 +1,0 @@
-*MutationTesting-Model
-concreteFailures
-    ^ failures

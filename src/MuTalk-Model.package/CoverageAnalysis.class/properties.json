@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "MuTalk-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"classes",
+		"result",
+		"classesAndMetaclasses",
+		"testCases",
+		"currentTest",
+		"testRunningElapsedTime"
+	],
+	"name" : "CoverageAnalysis",
+	"type" : "normal"
+}

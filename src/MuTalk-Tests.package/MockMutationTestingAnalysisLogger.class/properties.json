@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "MutationTestingAnalysisLogger",
+	"category" : "MuTalk-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"loggedStartAnalysis",
+		"loggedStartBuildingMutations",
+		"loggedEvaluationMutations"
+	],
+	"name" : "MockMutationTestingAnalysisLogger",
+	"type" : "normal"
+}

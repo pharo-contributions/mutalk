@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MutationsGenerationStrategy",
+	"category" : "MuTalk-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "AllMutationsGenerationStrategy",
+	"type" : "normal"
+}

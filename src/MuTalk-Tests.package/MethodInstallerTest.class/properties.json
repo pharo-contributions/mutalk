@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"category" : "MuTalk-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"anonymousClass",
+		"anonymousClassWithMethod"
+	],
+	"name" : "MethodInstallerTest",
+	"type" : "normal"
+}

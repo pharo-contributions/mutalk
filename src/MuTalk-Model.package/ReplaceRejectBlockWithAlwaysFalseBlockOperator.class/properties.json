@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MutantOperator",
+	"category" : "MuTalk-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "ReplaceRejectBlockWithAlwaysFalseBlockOperator",
+	"type" : "normal"
+}

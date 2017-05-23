@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"category" : "MuTalk-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"resource"
+	],
+	"name" : "MutantGenerationStrategyTest",
+	"type" : "normal"
+}

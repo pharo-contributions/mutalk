@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MutantOperatorTest",
+	"category" : "MuTalk-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "RemoveAtIfAbsentMutantOperatorTest",
+	"type" : "normal"
+}
