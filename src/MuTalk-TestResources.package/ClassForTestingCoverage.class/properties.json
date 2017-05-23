@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "TestCase",
-	"category" : "MutationTesting-TestResources",
+	"super" : "Object",
+	"category" : "MuTalk-TestResources",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "AuxiliarTestClassForTestingStrategies",
+	"name" : "ClassForTestingCoverage",
 	"type" : "normal"
 }
