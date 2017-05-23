@@ -32,6 +32,8 @@ analysis generalResult aliveMutants.
 ```
 ---
 
+Original repository: http://www.squeaksource.com/MutationTesting
+
 ESUG presentation: https://www.slideshare.net/esug/mutation-testing
 
 > Following text is copy from https://code.google.com/archive/p/mutalk/
@@ -46,12 +48,6 @@ This Smalltalk-based tool was developed at the University of Buenos Aires (Argen
 
 ## FAQ
 
-### How can I install MuTalk in my Pharo/Squeak image?
-
-You can get it with Monticello connecting to: MCHttpRepository location: 
-```
-'http://www.squeaksource.com/MutationTesting' user: '' password: ''
-```
 > How can I run a mutation testing analysis on my packages?
 
 There are several ways: * open the Mutation Testing Runner, to do that you can go to Tools->More...->Mutation Testing Runner, or you can simply evaluate: MutationTestRunner open * within the Class Browser, go to your tests package. You can right click on the package, a class or a test method and then click on run mutations (shortcut: ALT + u)
