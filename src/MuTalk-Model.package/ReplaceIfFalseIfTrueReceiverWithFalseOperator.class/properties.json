@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "ReplaceIfFalseIfTrueReceiverOperator",
-	"category" : "MutationTesting-Model",
+	"category" : "MuTalk-Model",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

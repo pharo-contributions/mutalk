@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "MutantOperatorTest",
-	"category" : "MutationTesting-Test",
+	"category" : "MuTalk-Tests",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

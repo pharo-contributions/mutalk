@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "MutationsGenerationStrategy",
-	"category" : "MutationTesting-Model",
+	"category" : "MuTalk-Model",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "MutationScoreBehavior",
-	"category" : "MutationTesting-Model",
+	"category" : "MuTalk-Model",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
