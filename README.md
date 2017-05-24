@@ -20,14 +20,24 @@ Metacello new
 ## Analysis
 
 ```
-| analysis |
+| analysis alive browser |
 analysis := MutationTestingAnalysis
     testCasesFrom: {UUIDPrimitivesTest}
     mutating: {UUID. UUIDGenerator}
     using: MutantOperator contents
     with: AllTestsMethodsRunningMutantEvaluationStrategy new.
 analysis run.
-analysis generalResult aliveMutants.
+alive := analysis generalResult aliveMutants.
+
+"Display result in Glamorous Browser"
+browser := GLMTabulator new.
+browser 
+	row: #results;
+	row: #diff.
+browser transmit to: #results.
+browser transmit to: #diff; from: #results; andShow: [ :a | 
+	a diff display: [ :mutant | {mutant mutant originalSource . mutant mutant modifiedSource}] ].
+browser openOn: alive.
 ```
 ---
 
