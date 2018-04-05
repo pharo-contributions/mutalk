@@ -36,8 +36,9 @@ browser
 	row: #diff.
 browser transmit to: #results.
 browser transmit to: #diff; from: #results; andShow: [ :a | 
-	a diff display: [ :mutant | {mutant mutant originalSource . mutant mutant modifiedSource}] ].
+	a diff display: [ :mutant | {((RBParser parseMethod: (mutant mutant originalSource)) formattedCode) . ((RBParser parseMethod: (mutant mutant modifiedSource)) formattedCode)}] ].
 browser openOn: alive.
+
 ```
 ---
 
