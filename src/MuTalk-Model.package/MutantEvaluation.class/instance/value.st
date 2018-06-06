@@ -1,6 +1,9 @@
 evaluation
 value
 	| testResults |
+
+	Stdio stdout nextPutAll: mutation originalMethod name asString; lf; flush.
+
 	self initializeCoverageResultIfNil.
 	testResults := [ mutation install.
 	self testResults ]
