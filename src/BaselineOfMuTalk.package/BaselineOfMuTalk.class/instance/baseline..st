@@ -11,11 +11,12 @@ baseline: spec
 			spec group: 'testCoverage' with: #('TestCoverage').].
 
 		spec 
-			package: 'MuTalk-Model';
+			package: 'MuTalk-Model' with: [
+				spec requires: #('testCoverage')];
 			package: 'MuTalk-TestResources';
 			package: 'MuTalk-Tests'.
 			"package: 'MuTalk-UI'."
 			
-			spec group: 'default' with: #('MuTalk-Model' 'MuTalk-TestResources' 'MuTalk-Tests' 'testCoverage').
+			spec group: 'default' with: #('MuTalk-Model' 'MuTalk-TestResources' 'MuTalk-Tests').
 
 	].		
