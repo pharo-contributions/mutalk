@@ -10,7 +10,7 @@ This project was originally developed at the University of Buenos Aires (Argenti
 - UI still not converted
 
 ## How to load
-```
+```smalltalk
 Metacello new
   baseline: 'MuTalk';
   repository: 'github://pavel-krivanek/mutalk/src';
@@ -19,7 +19,7 @@ Metacello new
 
 ## Analysis
 
-```
+```smalltalk
 | analysis alive browser |
 analysis := MutationTestingAnalysis
     testCasesFrom: {UUIDPrimitivesTest}
