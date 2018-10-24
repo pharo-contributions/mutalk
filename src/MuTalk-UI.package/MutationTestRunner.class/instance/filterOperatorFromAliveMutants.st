@@ -1,4 +1,0 @@
-filtering
-filterOperatorFromAliveMutants
-	aliveMutantOperatorFilter := self filterOperatorFrom: self aliveMutantsOperatorsList.
-	self updateAliveMutantList

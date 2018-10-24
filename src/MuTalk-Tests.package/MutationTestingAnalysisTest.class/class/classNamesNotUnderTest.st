@@ -1,3 +1,0 @@
-accessing
-classNamesNotUnderTest
-	^ #('MutationBrowser' 'MutationTestRunner' )

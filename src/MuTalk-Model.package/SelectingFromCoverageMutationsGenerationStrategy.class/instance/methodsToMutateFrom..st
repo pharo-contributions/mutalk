@@ -1,3 +1,0 @@
-generating
-methodsToMutateFrom: aMutationTestingAnalysis
-	^aMutationTestingAnalysis coverageAnalysisResult coveredMethods.

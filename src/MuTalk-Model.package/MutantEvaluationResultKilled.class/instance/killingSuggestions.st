@@ -1,4 +1,0 @@
-accessing
-killingSuggestions 
-	
-	^'MUTANT KILLED'

@@ -1,3 +1,0 @@
-testing
-testClassMethodThatSendsSelect
-	self assert: AuxiliarClassForMutationTestingAnalysis classMethodThatSendsSelect notEmpty

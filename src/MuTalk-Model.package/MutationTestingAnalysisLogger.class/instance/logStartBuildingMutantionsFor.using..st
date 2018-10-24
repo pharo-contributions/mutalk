@@ -1,3 +1,0 @@
-logging
-logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator
-	self subclassResponsibility 

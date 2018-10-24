@@ -1,4 +1,0 @@
-accessing
-killingSuggestions 
-	
-	self subclassResponsibility 

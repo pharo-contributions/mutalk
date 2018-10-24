@@ -1,4 +1,0 @@
-accessing-particularResults
-particularResultsList
-
- 	^particularResultsList

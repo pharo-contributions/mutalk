@@ -1,3 +1,0 @@
-instance creation
-from: aDictionaryOfMethodToTestCasesRelations elapsedTime: aTimeToRunTests
-	^self new initializeFrom: aDictionaryOfMethodToTestCasesRelations elapsedTime: aTimeToRunTests.

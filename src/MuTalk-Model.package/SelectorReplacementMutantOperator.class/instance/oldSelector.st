@@ -1,3 +1,0 @@
-accessing
-oldSelector
-	self subclassResponsibility

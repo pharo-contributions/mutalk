@@ -1,3 +1,0 @@
-applying
-newReceiverExpression
-	self subclassResponsibility

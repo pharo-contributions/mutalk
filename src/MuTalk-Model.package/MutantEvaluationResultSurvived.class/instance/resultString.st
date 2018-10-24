@@ -1,4 +1,0 @@
-testing
-resultString
-	
-	^result printString

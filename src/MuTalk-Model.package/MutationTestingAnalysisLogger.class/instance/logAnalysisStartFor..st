@@ -1,3 +1,0 @@
-logging
-logAnalysisStartFor: aMutationTestingAnalysis 
-	self subclassResponsibility 

@@ -1,4 +1,0 @@
-testing
-survived
-	
-	^false

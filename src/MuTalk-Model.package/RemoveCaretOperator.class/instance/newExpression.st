@@ -1,3 +1,0 @@
-applying
-newExpression 
-	^'``@object'

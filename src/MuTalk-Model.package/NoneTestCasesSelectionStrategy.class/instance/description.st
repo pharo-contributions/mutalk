@@ -1,3 +1,0 @@
-printing
-description
-	^'Same Tests'

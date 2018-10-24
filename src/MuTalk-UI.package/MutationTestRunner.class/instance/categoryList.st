@@ -1,3 +1,0 @@
-accesing-category
-categoryList
-	^ categories

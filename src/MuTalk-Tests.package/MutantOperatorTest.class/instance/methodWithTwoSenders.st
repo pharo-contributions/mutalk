@@ -1,3 +1,0 @@
-accessing
-methodWithTwoSenders
-	self subclassResponsibility

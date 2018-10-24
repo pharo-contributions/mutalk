@@ -1,3 +1,0 @@
-updating
-findMutationOperators
-	^ MutantOperator contents

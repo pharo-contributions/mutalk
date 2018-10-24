@@ -1,4 +1,0 @@
-accessing
-methodWithOneSenderModified
-
-	self subclassResponsibility

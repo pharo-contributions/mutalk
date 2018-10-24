@@ -1,3 +1,0 @@
-evaluating
-timeoutForTestsOf: aMutantEvaluation
-	^aMutantEvaluation coverageAnalysisResult timeToRunTests * 3

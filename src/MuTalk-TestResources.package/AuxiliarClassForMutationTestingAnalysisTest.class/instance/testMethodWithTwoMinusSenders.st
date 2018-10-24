@@ -1,3 +1,0 @@
-testing
-testMethodWithTwoMinusSenders
-	self assert: AuxiliarClassForMutationTestingAnalysis new methodWithTwoMinusSenders = -4

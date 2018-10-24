@@ -1,3 +1,0 @@
-accessing
-resultString 
-	self subclassResponsibility 

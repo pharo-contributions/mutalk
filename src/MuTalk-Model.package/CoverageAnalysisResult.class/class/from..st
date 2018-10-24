@@ -1,3 +1,0 @@
-instance creation
-from: aDictionaryOfMethodToTestCasesRelations 
-	^self new initializeFrom: aDictionaryOfMethodToTestCasesRelations.

@@ -1,4 +1,0 @@
-accessing
-methodWithTwoSendersModifiedFirst
-
-	self subclassResponsibility

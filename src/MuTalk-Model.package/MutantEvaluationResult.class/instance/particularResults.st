@@ -1,4 +1,0 @@
-accessing
-particularResults 
-	
-	self subclassResponsibility 

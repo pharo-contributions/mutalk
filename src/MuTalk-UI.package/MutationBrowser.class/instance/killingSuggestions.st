@@ -1,3 +1,0 @@
-accessing
-killingSuggestions
-	^ mutantEvaluationResult killingSuggestions

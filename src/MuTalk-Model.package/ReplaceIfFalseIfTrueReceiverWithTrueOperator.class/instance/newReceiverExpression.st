@@ -1,3 +1,0 @@
-applying
-newReceiverExpression 
-	^'true'

@@ -1,3 +1,0 @@
-browsing
-resultClass
-	self subclassResponsibility

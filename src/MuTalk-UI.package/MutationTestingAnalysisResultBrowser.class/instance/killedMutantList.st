@@ -1,3 +1,0 @@
-accessing
-killedMutantList
-	^killedMutantList

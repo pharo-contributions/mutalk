@@ -1,3 +1,0 @@
-evaluating
-testCasesToEvaluate: aMutation for: aMutantEvaluation
-	self subclassResponsibility

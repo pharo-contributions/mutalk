@@ -1,3 +1,0 @@
-*MuTalk-Model
-concreteFailures
-    ^ failures

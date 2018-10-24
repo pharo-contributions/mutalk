@@ -1,4 +1,0 @@
-testing
-runCount
-
-	^result runCount

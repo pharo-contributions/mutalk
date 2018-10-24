@@ -1,4 +1,0 @@
-accessing
-defaultBackgroundColor
-
-	^ Color blue.

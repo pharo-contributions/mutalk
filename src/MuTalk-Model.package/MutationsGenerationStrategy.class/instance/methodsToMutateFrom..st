@@ -1,3 +1,0 @@
-generating
-methodsToMutateFrom:aMutationTestingAnalysis
-	self subclassResponsibility.

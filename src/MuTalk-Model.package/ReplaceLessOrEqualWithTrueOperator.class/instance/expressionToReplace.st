@@ -1,3 +1,0 @@
-applying
-expressionToReplace 
-	^'``@object <= ``@aBlock'

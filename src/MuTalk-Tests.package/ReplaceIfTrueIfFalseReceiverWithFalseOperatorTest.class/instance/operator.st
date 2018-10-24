@@ -1,3 +1,0 @@
-accessing
-operator
-	^ ReplaceIfTrueIfFalseReceiverWithFalseOperator new

@@ -1,3 +1,0 @@
-defaults
-defaultLogger
-	^NullMutationTestingAnalysisLogger new.

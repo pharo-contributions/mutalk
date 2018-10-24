@@ -1,3 +1,0 @@
-defaults
-defaultMutationsGenerationStrategy
-	^ AllMutationsGenerationStrategy new.

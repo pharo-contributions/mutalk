@@ -1,4 +1,0 @@
-filtering
-filterOperatorFromKilledMutants
-	killedMutantOperatorFilter := self filterOperatorFrom: self killedMutantsOperatorsList.
-	self updateKilledMutantList

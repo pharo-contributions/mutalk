@@ -1,3 +1,0 @@
-accessing
-methodWithOneSender
-	self subclassResponsibility

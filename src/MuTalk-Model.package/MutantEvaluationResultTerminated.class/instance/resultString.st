@@ -1,3 +1,0 @@
-testing
-resultString
-	^'Mutation TERMINATED'

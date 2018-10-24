@@ -1,4 +1,0 @@
-testing-class
-testClassTestCaseSelectionStrategyForEmptyTestSet
-
-	self assert: (ClassTestCasesSelectionStrategy new testCasesFor: OrderedCollection new) isEmpty

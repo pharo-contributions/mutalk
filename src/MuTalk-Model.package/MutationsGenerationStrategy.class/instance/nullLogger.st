@@ -1,4 +1,0 @@
-logging
-nullLogger
-
-	^ NullMutationTestingAnalysisLogger new.

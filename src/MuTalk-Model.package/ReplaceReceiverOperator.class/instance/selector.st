@@ -1,3 +1,0 @@
-applying
-selector
-	self subclassResponsibility

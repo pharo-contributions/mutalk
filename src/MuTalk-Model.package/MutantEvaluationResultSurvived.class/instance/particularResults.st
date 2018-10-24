@@ -1,3 +1,0 @@
-testing
-particularResults
-	^result tests

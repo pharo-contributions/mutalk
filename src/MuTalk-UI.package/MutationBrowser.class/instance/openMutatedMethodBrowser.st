@@ -1,3 +1,0 @@
-opening
-openMutatedMethodBrowser
-	mutantEvaluationResult openMutatedMethodBrowser

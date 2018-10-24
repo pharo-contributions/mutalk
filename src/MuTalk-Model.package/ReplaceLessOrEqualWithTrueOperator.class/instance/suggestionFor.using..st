@@ -1,3 +1,0 @@
-applying
-suggestionFor: aMutation using: aMutantKillingSuggestionGenerator
-	^aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceLessOrEqualWithTrueOperator: aMutation.

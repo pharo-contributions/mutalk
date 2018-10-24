@@ -1,4 +1,0 @@
-private
-defaultBackgroundColor
-	
-	^ Color blue.

@@ -1,4 +1,0 @@
-browsing
-resultClass
-	
-	^mutant originalClass
