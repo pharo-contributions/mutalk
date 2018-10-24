@@ -104,7 +104,7 @@ MutantOperator >> mutationsFor: aCompiledMethod [
 { #category : #'mutant generation' }
 MutantOperator >> mutationsFor: aCompiledMethod with: aParseTree [ 
 	| numberOfMutations |
-	numberOfMutations := (aCompiledMethod hasPragmaNamed: #ignoreForMutations)
+	numberOfMutations := ((aCompiledMethod hasPragmaNamed: #ignoreForMutations) or: [ aCompiledMethod hasPragmaNamed: #ignoreForCoverage ])
 		ifTrue: [ ^ Array new ]
 		ifFalse: [ self timesToApplyIn: aCompiledMethod with: aParseTree ].
 	^ (1 to: numberOfMutations)
