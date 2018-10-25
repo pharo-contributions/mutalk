@@ -39,9 +39,9 @@ MutationsGenerationStrategy >> mutationsFor: aMethod usingAll: aCollectionOfMuta
 		inject: OrderedCollection new
 		into: [:mutations :anOperator | 
 			aLogger logStartBuildingMutantionsFor: aMethod using: anOperator.
-			mutations
-				addAll: (anOperator mutationsFor: aMethod with: parseTree);
-				 yourself]
+			(aMethod ignoredMutationOperators includes: anOperator class) 
+				ifFalse: [ mutations addAll: (anOperator mutationsFor: aMethod with: parseTree) ].
+			mutations ]
 ]
 
 { #category : #logging }

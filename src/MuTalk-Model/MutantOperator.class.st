@@ -97,6 +97,9 @@ MutantOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumberO
 
 { #category : #'mutant generation' }
 MutantOperator >> mutationsFor: aCompiledMethod [ 
+
+	(aCompiledMethod ignoredMutationOperators includes: self class) ifTrue: [ ^ Array new ].
+
 	^self mutationsFor: aCompiledMethod with: aCompiledMethod parseTree.
 	
 ]
