@@ -1,7 +1,11 @@
 Class {
 	#name : #MutantOperator,
 	#superclass : #Object,
-	#category : 'MuTalk-Model-Operators'
+	#instVars : [
+		'newNode',
+		'oldNode'
+	],
+	#category : #'MuTalk-Model-Operators'
 }
 
 { #category : #accessing }
@@ -69,13 +73,18 @@ MutantOperator >> modifiedSourceFor: aCompiledMethod number: aNumber [
 
 { #category : #private }
 MutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber [ 
-	| rewriter parser number |
+	| rewriter parser number nNode |
 	rewriter := RBParseTreeRewriter new.
 	number := aNumber.
 	parser := aParseTree copy.
 	rewriter 
 		replace: self expressionToReplace
-		with: self newExpression
+		withValueFrom: [ :oNode | 
+			nNode := RBParser parseRewriteExpression: self newExpression.
+			nNode := nNode copyInContext: rewriter context.
+			oldNode := oNode.
+			newNode := nNode.
+			newNode ]
 		when: 
 			[ :node | number := number - 1.
 						number = 0 ].
@@ -85,14 +94,18 @@ MutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aN
 
 { #category : #private }
 MutantOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumberOfSelector [ 
-	^ MethodMutation 
+	^ (MethodMutation
 		for: aCompiledMethod
 		using: self
-		result: (self 
+		result:
+		(self
 				modifiedSourceFor: aCompiledMethod
 				with: aParseTree
 				number: aNumberOfSelector)
-		ofClass: aCompiledMethod methodClass
+		ofClass: aCompiledMethod methodClass)
+		nodeToMutate: oldNode;
+		mutatedNode: newNode;
+		yourself
 ]
 
 { #category : #'mutant generation' }

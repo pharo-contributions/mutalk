@@ -1,7 +1,7 @@
 Class {
 	#name : #MethodMutationTest,
 	#superclass : #TestCase,
-	#category : 'MuTalk-Tests'
+	#category : #'MuTalk-Tests'
 }
 
 { #category : #'testing accessing' }
@@ -41,4 +41,14 @@ MethodMutationTest >> testAccessingToNodes [
 	self assert: methodMutation nodeToMutate formattedCode = '1 + 2'.
 	self assert: methodMutation mutatedNode formattedCode = '1 - 2'.
 
+]
+
+{ #category : #tests }
+MethodMutationTest >> testMutatedNodeBugFix [
+	| method m |
+	method := ClassForTestingCoverage class>>#new:.
+
+	m := (ReplaceIdentityWithNegationOfIdentity new mutationsFor: method) first.
+	self shouldnt: [ m mutatedNode ] raise:  SubscriptOutOfBounds 
+	
 ]
