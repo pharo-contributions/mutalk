@@ -5,7 +5,7 @@ Class {
 		'newNode',
 		'oldNode'
 	],
-	#category : #'MuTalk-Model-Operators'
+	#category : 'MuTalk-Model-Operators'
 }
 
 { #category : #accessing }
