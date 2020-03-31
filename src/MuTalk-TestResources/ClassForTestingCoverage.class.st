@@ -1,7 +1,7 @@
 Class {
 	#name : #ClassForTestingCoverage,
 	#superclass : #Object,
-	#category : #'MuTalk-TestResources'
+	#category : 'MuTalk-TestResources'
 }
 
 { #category : #'as yet unclassified' }
