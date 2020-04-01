@@ -42,3 +42,13 @@ MethodMutationTest >> testAccessingToNodes [
 	self assert: methodMutation mutatedNode formattedCode = '1 - 2'.
 
 ]
+
+{ #category : #tests }
+MethodMutationTest >> testMutatedNodeBugFix [
+	| method m |
+	method := ClassForTestingCoverage class>>#new:.
+
+	m := (ReplaceIdentityWithNegationOfIdentity new mutationsFor: method) first.
+	self shouldnt: [ m mutatedNode ] raise:  SubscriptOutOfBounds 
+	
+]

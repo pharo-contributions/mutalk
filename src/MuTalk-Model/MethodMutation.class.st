@@ -81,9 +81,19 @@ MethodMutation >> mutatedNode [
 ]
 
 { #category : #accessing }
+MethodMutation >> mutatedNode: aNode [
+	mutatedNode := aNode
+]
+
+{ #category : #accessing }
 MethodMutation >> nodeToMutate [
 	nodeToMutate ifNil: [ self lookupForNodes ].
 	^ nodeToMutate
+]
+
+{ #category : #accessing }
+MethodMutation >> nodeToMutate: aNode [
+	nodeToMutate := aNode
 ]
 
 { #category : #accessing }
