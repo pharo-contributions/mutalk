@@ -21,6 +21,12 @@ MutantOperator class >> contents [
 ]
 
 { #category : #accessing }
+MutantOperator class >> extremeTransformation [
+
+	^ {ExtremeTransformationOperator new}
+]
+
+{ #category : #accessing }
 MutantOperator class >> isAbstract [
 	^self subclasses isNotEmpty
 ]
