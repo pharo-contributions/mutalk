@@ -9,7 +9,7 @@ Class {
 		'currentTest',
 		'testRunningElapsedTime'
 	],
-	#category : 'MuTalk-Model'
+	#category : #'MuTalk-Model'
 }
 
 { #category : #'instance creation' }
@@ -94,11 +94,15 @@ CoverageAnalysis >> result [
 
 { #category : #evaluating }
 CoverageAnalysis >> run [
+
 	| wrappers methodReferences |
 	methodReferences := self methodReferences.
 	wrappers := self methodWrappersFor: methodReferences.
 	self runTestsInstalling: wrappers.
-	result := CoverageAnalysisResult from: (self methodToTestDictionaryFrom: wrappers) elapsedTime: testRunningElapsedTime
+	result := CoverageAnalysisResult
+		          from: (self methodToTestDictionaryFrom: wrappers)
+		          elapsedTime: testRunningElapsedTime.
+	result methodReferences: (self classesAndMetaclasses flatCollect: [:cls | cls methods])
 ]
 
 { #category : #private }

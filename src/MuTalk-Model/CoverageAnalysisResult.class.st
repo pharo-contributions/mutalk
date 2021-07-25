@@ -3,9 +3,10 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'methodToTestDictionary',
-		'timeToRunTests'
+		'timeToRunTests',
+		'methodReferences'
 	],
-	#category : 'MuTalk-Model'
+	#category : #'MuTalk-Model'
 }
 
 { #category : #'instance creation' }
@@ -35,6 +36,18 @@ CoverageAnalysisResult >> initializeFrom: aDictionaryOfMethodToTestCasesRelation
 ]
 
 { #category : #accessing }
+CoverageAnalysisResult >> methodReferences [
+
+	^ methodReferences
+]
+
+{ #category : #accessing }
+CoverageAnalysisResult >> methodReferences: anObject [
+
+	methodReferences := anObject
+]
+
+{ #category : #accessing }
 CoverageAnalysisResult >> testCasesThatCovers: aCompiledMethod [ 
 	^methodToTestDictionary at:aCompiledMethod ifAbsent:[OrderedCollection new.].
 ]
@@ -42,4 +55,10 @@ CoverageAnalysisResult >> testCasesThatCovers: aCompiledMethod [
 { #category : #accessing }
 CoverageAnalysisResult >> timeToRunTests [
 	^timeToRunTests
+]
+
+{ #category : #accessing }
+CoverageAnalysisResult >> uncoveredMethods [
+
+	^ self methodReferences asSet difference: self coveredMethods
 ]

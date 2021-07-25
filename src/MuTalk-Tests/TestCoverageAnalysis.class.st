@@ -1,7 +1,7 @@
 Class {
 	#name : #TestCoverageAnalysis,
 	#superclass : #TestCase,
-	#category : 'MuTalk-Tests'
+	#category : #'MuTalk-Tests'
 }
 
 { #category : #testing }
@@ -21,14 +21,21 @@ TestCoverageAnalysis >> testBugWhenHavingATestResourceSendingToOther [
 
 { #category : #testing }
 TestCoverageAnalysis >> testCoveredMethods [
+
 	| analysis |
-	analysis := CoverageAnalysis 
-		for: (Array with: ClassForTestingCoverage)
-		running: TestClassForTestingCoverage suite tests.
+	analysis := CoverageAnalysis
+		            for: (Array with: ClassForTestingCoverage)
+		            running: TestClassForTestingCoverage suite tests.
 	analysis run.
-	
-	self assert: (analysis result coveredMethods includes: ClassForTestingCoverage >> #aCoveredMethod).
-	self deny: (analysis result coveredMethods includes: ClassForTestingCoverage >> #anUncoveredMethod)
+
+	self assert: (analysis result coveredMethods includes:
+			 ClassForTestingCoverage >> #aCoveredMethod).
+	self deny: (analysis result coveredMethods includes:
+			 ClassForTestingCoverage >> #anUncoveredMethod).
+	self assert: (analysis result uncoveredMethods includes:
+			 ClassForTestingCoverage >> #anUncoveredMethod).
+	self deny: (analysis result uncoveredMethods includes:
+			 ClassForTestingCoverage >> #aCoveredMethod)
 ]
 
 { #category : #testing }
