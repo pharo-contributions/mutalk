@@ -60,5 +60,5 @@ CoverageAnalysisResult >> timeToRunTests [
 { #category : #accessing }
 CoverageAnalysisResult >> uncoveredMethods [
 
-	^ self methodReferences asSet difference: self coveredMethods
+	^ (self methodReferences reject: #isSubclassResponsibility) asSet difference: self coveredMethods
 ]

@@ -35,7 +35,9 @@ TestCoverageAnalysis >> testCoveredMethods [
 	self assert: (analysis result uncoveredMethods includes:
 			 ClassForTestingCoverage >> #anUncoveredMethod).
 	self deny: (analysis result uncoveredMethods includes:
-			 ClassForTestingCoverage >> #aCoveredMethod)
+			 ClassForTestingCoverage >> #aCoveredMethod).
+	self deny: (analysis result uncoveredMethods includes:
+			 ClassForTestingCoverage >> #anUncoveredMethodSubClassResponsibility)		
 ]
 
 { #category : #testing }
