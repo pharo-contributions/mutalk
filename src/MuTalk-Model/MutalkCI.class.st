@@ -197,6 +197,17 @@ MutalkCI >> project: anObject [
 	project := anObject
 ]
 
+{ #category : #'as yet unclassified' }
+MutalkCI >> recentCommit [
+
+	| repo |
+	repo := IceRepository registry detect: [ :x | x name = project ].
+
+	commit := repo head commit ancestors
+		          ifNotEmpty: #first
+		          ifEmpty: [ IceNoCommit new ]
+]
+
 { #category : #private }
 MutalkCI >> uncoveredMethodsFrom: analysis [
 

@@ -25,8 +25,10 @@ MutalkCommandLineHandler >> activate [
 	| noquit saveit |
 	self activateHelp ifTrue: [ ^ self ].
 	(self hasOption: 'project') ifTrue: [ 
-		(self hasOption: 'commit') ifTrue: [ self icebergProjectCommit ] ifFalse: [self icebergProject].
-		 ].
+		(self hasOption: 'diff') ifTrue: [ self icebergProjectDiff ] ifFalse: 
+		[(self hasOption: 'commit')
+			ifTrue: [ self icebergProjectCommit ]
+			ifFalse: [ self icebergProject ]] ].
 	noquit := self commandLine hasOption: 'noquit'.
 	saveit := self commandLine hasOption: 'save'.
 	Smalltalk snapshot: saveit andQuit: noquit not
@@ -59,4 +61,18 @@ MutalkCommandLineHandler >> icebergProjectCommit [
 				commit: commit;
 				mutateDiff
 	 
+]
+
+{ #category : #private }
+MutalkCommandLineHandler >> icebergProjectDiff [
+
+	| cmd |
+	cmd := '--project='.
+	self arguments
+		detect: [ :arg | arg beginsWith: cmd ]
+		ifFound: [ :arg | 
+			MutalkCI new
+				project: (arg allButFirst: cmd size);
+				recentCommit;
+				mutateDiff ]
 ]
