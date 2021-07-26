@@ -25,28 +25,23 @@ MutalkCI >> alivesFrom: analysis [
 
 { #category : #'as yet unclassified' }
 MutalkCI >> allChangesForRepo [
-	^ self allChangesForRepo: project fromCommitNamed: commit 
-]
-
-{ #category : #'as yet unclassified' }
-MutalkCI >> allChangesForRepo: project fromCommitNamed: commitName [
-	| repo commit diff leafs targets |
-	repo := IceRepository registry detect: [ :x | x name = project ].
-	commit := repo commitishNamed: commitName.
-	diff := commit diffFromHead.
+	| repo cmt diff leafs targets |
+	repo := self getRepo.
+	cmt := repo commitishNamed: commit.
+	diff := cmt diffFromHead.
 	leafs := OrderedCollection new.
-	diff tree
-		allChildrenDo: [ :node | node children ifEmpty: [ leafs add: node ] ].
+	diff tree allChildrenDo: [ :node | 
+		node children ifEmpty: [ leafs add: node ] ].
 	leafs := leafs reject: [ :n | n value isRemoval ].
 	leafs := leafs select: [ :n | n value definition isMethodDefinition ].
-	leafs := leafs
-		reject: [ :n | 
-			n value definition contextClass isNil
-				or: [ n value definition contextClass isTestCase
-						or: [ (n value definition contextClass
-								includesSelector: n value definition name) not ] ] ].
-	targets := leafs
-		collect: [ :n | n value definition contextClass >> n value definition name ].
+	leafs := leafs reject: [ :n | 
+		         n value definition contextClass isNil or: [ 
+			         n value definition contextClass isTestCase or: [ 
+				         (n value definition contextClass includesSelector:
+					          n value definition name) not ] ] ].
+	targets := leafs collect: [ :n | 
+		           n value definition contextClass
+		           >> n value definition name ].
 	^ targets
 ]
 
@@ -110,11 +105,13 @@ MutalkCI >> exportFileName [
 { #category : #private }
 MutalkCI >> exportResult [
 
-	| json file |
+	| json file |	
 	json := STONJSON toStringPretty: result.
 	file := FileLocator imageDirectory / self exportFileName.
 	file exists ifTrue: [ file delete ].
-	file writeStream writeStream nextPutAll: json; close
+	file writeStream writeStream
+		nextPutAll: json;
+		close
 ]
 
 { #category : #private }
@@ -138,11 +135,16 @@ MutalkCI >> extremeTransformationTargets: targets tests: tests generationStrateg
 ]
 
 { #category : #'as yet unclassified' }
+MutalkCI >> getRepo [
+	^ IceRepository registry detect: [ :x | x name = project ].
+]
+
+{ #category : #'as yet unclassified' }
 MutalkCI >> mutateAll [
 
 	| classes tests targets xtremeAnalysis |
 	classes := self allClassesForRepo.
-	result := Dictionary new.
+	self prepareResult.
 	tests := classes select: #isTestCase.
 	targets := classes reject: #isTestCase.
 
@@ -156,8 +158,8 @@ MutalkCI >> mutateAll [
 		deepMutationTestingTargets: targets
 		tests: tests
 		generationStrategy:
-		(SelectingFromAlivesMutationsGenerationStrategy new
-		analysis: xtremeAnalysis).
+			(SelectingFromAlivesMutationsGenerationStrategy new analysis:
+				 xtremeAnalysis).
 	self exportResult
 ]
 
@@ -167,15 +169,17 @@ MutalkCI >> mutateDiff [
 	| targets targetMethods tests classes xtremeAnalysis |
 	classes := self allClassesForRepo.
 	targetMethods := self allChangesForRepo.
-	result := Dictionary new.
+	self prepareResult.
+
 	tests := classes select: #isTestCase.
 	targets := (targetMethods collect: #methodClass) asSet.
-
+	targets ifEmpty: [ ^ self exportResult ].
 	xtremeAnalysis := self
 		                  extremeTransformationTargets: targets
 		                  tests: tests
 		                  generationStrategy:
-		                  (ManualMutationsGenerationStrategy new targetMethods: targetMethods ).
+		                  (ManualMutationsGenerationStrategy new 
+			                   targetMethods: targetMethods).
 	self
 		deepMutationTestingTargets: targets
 		tests: tests
@@ -183,6 +187,17 @@ MutalkCI >> mutateDiff [
 			(SelectingFromAlivesMutationsGenerationStrategy new analysis:
 				 xtremeAnalysis).
 	self exportResult
+]
+
+{ #category : #'as yet unclassified' }
+MutalkCI >> prepareResult [
+
+	result := Dictionary new.
+	result
+		at: 'commitFrom'
+		put: commit .
+	result at: 'commitTo' put: self getRepo head commit id.
+	result at: 'timestamp' put: DateAndTime now asUnixTime
 ]
 
 { #category : #accessing }
@@ -201,7 +216,7 @@ MutalkCI >> project: anObject [
 MutalkCI >> recentCommit [
 
 	| repo |
-	repo := IceRepository registry detect: [ :x | x name = project ].
+	repo := self getRepo.
 
 	commit := repo head commit ancestors
 		          ifNotEmpty: #first
