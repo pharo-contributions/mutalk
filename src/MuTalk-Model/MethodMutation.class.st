@@ -7,7 +7,8 @@ Class {
 		'operator',
 		'originalClass',
 		'mutatedNode',
-		'nodeToMutate'
+		'nodeToMutate',
+		'testSuite'
 	],
 	#category : 'MuTalk-Model'
 }
@@ -123,6 +124,32 @@ MethodMutation >> printOn: aStream [
 		 nextPutAll: originalClass printString;
 		nextPutAll: '>>';
 		nextPutAll: originalMethod  selector printString.
+]
+
+{ #category : #private }
+MethodMutation >> run [
+	^ [ testSuite runStoppingOnFirstFailOrError ] 
+		on: Error
+		do: [ :ex | nil ]
+]
+
+{ #category : #running }
+MethodMutation >> runMutant [
+
+	^ [ 
+		self install.
+		self run 
+	] ensure: [ self uninstall ]
+]
+
+{ #category : #printing }
+MethodMutation >> testSuite [
+	^ testSuite
+]
+
+{ #category : #printing }
+MethodMutation >> testSuite: aTestSuite [
+	testSuite := aTestSuite
 ]
 
 { #category : #installing }
