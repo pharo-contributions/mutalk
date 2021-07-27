@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'resource'
 	],
-	#category : 'MuTalk-Tests'
+	#category : #'MuTalk-Tests'
 }
 
 { #category : #'as yet unclassified' }
@@ -20,15 +20,15 @@ TestCasesSelectionStrategyTest >> allTestsFromPackage [
 ]
 
 { #category : #'as yet unclassified' }
-TestCasesSelectionStrategyTest >> allTestsIn: aCollection areIncludedIn: anotherCollection [ 
-	^ ((aCollection
-			collect: [:testCase | testCase selector])
-			includesAllOf: (anotherCollection
-					collect: [:testCase | testCase selector]))
-		and: [(anotherCollection
-				collect: [:testCase | testCase selector])
-				includesAllOf: (aCollection
-						collect: [:testCase | testCase selector])]
+TestCasesSelectionStrategyTest >> allTestsIn: aCollection areIncludedIn: anotherCollection [
+
+	^ ((aCollection collect: [ :testCase | testCase selector ]) 
+		   includesAll:
+		   (anotherCollection collect: [ :testCase | testCase selector ])) 
+		  and: [ 
+			  (anotherCollection collect: [ :testCase | testCase selector ]) 
+				  includesAll:
+				  (aCollection collect: [ :testCase | testCase selector ]) ]
 ]
 
 { #category : #'as yet unclassified' }
