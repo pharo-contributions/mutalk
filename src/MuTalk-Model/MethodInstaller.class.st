@@ -1,7 +1,7 @@
 Class {
 	#name : #MethodInstaller,
 	#superclass : #Object,
-	#category : 'MuTalk-Model'
+	#category : #'MuTalk-Model'
 }
 
 { #category : #installing }
@@ -26,7 +26,7 @@ MethodInstaller >> installFromSource: aSourceCode in: aClass [
 MethodInstaller >> uninstall: aSelector from: aClass [ 
 	"Uninstall a method referenced by aSelector in aClass. Raise exception in
 	case de uninstall is	not posible."
-	[aClass basicRemoveSelector: aSelector]
+	[aClass removeSelector: aSelector]
 		on: Error
 		do: [:error | MethodInstallerException signal]
 ]
