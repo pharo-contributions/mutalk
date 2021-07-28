@@ -52,3 +52,23 @@ MethodMutationTest >> testMutatedNodeBugFix [
 	self shouldnt: [ m mutatedNode ] raise:  SubscriptOutOfBounds 
 	
 ]
+
+{ #category : #tests }
+MethodMutationTest >> testMutationRun [
+	| compiledMethod operator modifiedSource methodMutation res |
+	compiledMethod := AuxiliarClassForMutationTestingAnalysis
+		>> #methodWithOnePlusSender.
+	operator := ReplacePlusWithMinusMutantOperator new.
+	modifiedSource := operator
+		modifiedSourceFor: compiledMethod
+		number: 1.
+	methodMutation := MethodMutation
+		for: compiledMethod
+		using: operator
+		result: modifiedSource
+		ofClass: AuxiliarClassForMutationTestingAnalysis.
+	methodMutation testCaseReferences: { TestCaseReference for: #simpleTestCaseRessource in: self class }.
+	res := methodMutation runMutant.
+
+	self assert: res runCount equals: 1.
+]

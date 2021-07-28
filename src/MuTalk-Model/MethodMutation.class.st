@@ -7,7 +7,8 @@ Class {
 		'operator',
 		'originalClass',
 		'mutatedNode',
-		'nodeToMutate'
+		'nodeToMutate',
+		'testCaseReferences'
 	],
 	#category : 'MuTalk-Model'
 }
