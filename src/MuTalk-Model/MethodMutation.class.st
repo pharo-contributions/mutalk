@@ -126,20 +126,20 @@ MethodMutation >> printOn: aStream [
 		nextPutAll: originalMethod  selector printString.
 ]
 
-{ #category : #private }
-MethodMutation >> run [
-	^ [ testSuite runStoppingOnFirstFailOrError ] 
-		on: Error
-		do: [ :ex | nil ]
-]
-
 { #category : #running }
 MethodMutation >> runMutant [
 
 	^ [ 
 		self install.
-		self run 
+		self runTests
 	] ensure: [ self uninstall ]
+]
+
+{ #category : #private }
+MethodMutation >> runTests [
+	^ [ testSuite runStoppingOnFirstFailOrError ] 
+		on: Error
+		do: [ :ex | nil ]
 ]
 
 { #category : #printing }
