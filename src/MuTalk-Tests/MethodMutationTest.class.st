@@ -72,7 +72,7 @@ MethodMutationTest >> testMutationRun [
 		using: operator
 		result: modifiedSource
 		ofClass: AuxiliarClassForMutationTestingAnalysis.
-	methodMutation testSuite: ((TestSuite named: 'test') addTests: { self class selector: #simpleTestCaseRessource}).
+	methodMutation testCaseReferences: { TestCaseReference for: #simpleTestCaseRessource in: self class }.
 	res := methodMutation runMutant.
 
 	self assert: res runCount equals: 1.

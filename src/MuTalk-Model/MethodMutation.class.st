@@ -8,7 +8,7 @@ Class {
 		'originalClass',
 		'mutatedNode',
 		'nodeToMutate',
-		'testSuite'
+		'testCaseReferences'
 	],
 	#category : 'MuTalk-Model'
 }
@@ -142,14 +142,14 @@ MethodMutation >> runTests [
 		do: [ :ex | nil ]
 ]
 
-{ #category : #printing }
-MethodMutation >> testSuite [
-	^ testSuite
+{ #category : #private }
+MethodMutation >> testCaseReferences [
+	^ testCaseReferences
 ]
 
-{ #category : #printing }
-MethodMutation >> testSuite: aTestSuite [
-	testSuite := aTestSuite
+{ #category : #private }
+MethodMutation >> testCaseReferences: aCollectionOfTestCaseReferences [
+	testCaseReferences := aCollectionOfTestCaseReferences
 ]
 
 { #category : #installing }

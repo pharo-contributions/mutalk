@@ -27,16 +27,6 @@ MutantEvaluation class >> for: aMutation using:aCollectionOftestCases following:
 	^self new initializeFor: aMutation using:aCollectionOftestCases following: aMutantEvaluationStrategy andConsidering: aCoverageAnalysisResult
 ]
 
-{ #category : #private }
-MutantEvaluation >> calculateTestSuite [
-	"Collect all suite test and execute them."
-	| suite |
-	suite := TestSuite named: 'MutationEvaluation'.
-	suite addTests: ((strategy	testCasesToEvaluate: mutation
-									for: self) collect: [ :each | each testCase ]).
-	^ suite
-]
-
 { #category : #accessing }
 MutantEvaluation >> coverageAnalysisResult [
 
@@ -91,14 +81,12 @@ MutantEvaluation >> testResults [
 { #category : #evaluation }
 MutantEvaluation >> value [
 	| testResults |
-
 	Stdio stdout nextPutAll: mutation originalMethod name asString; lf; flush.
 
 	self initializeCoverageResultIfNil.
-
-	mutation testSuite: self calculateTestSuite.
+	mutation testCaseReferences: (strategy testCasesToEvaluate: mutation for: self).
 	testResults := mutation runMutant.
-
+	
 	^ MutantEvaluationResult
 		for: mutation
 		results: testResults
