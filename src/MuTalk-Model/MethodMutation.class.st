@@ -137,9 +137,10 @@ MethodMutation >> runMutant [
 
 { #category : #private }
 MethodMutation >> runTests [
-	^ [ testSuite runStoppingOnFirstFailOrError ] 
-		on: Error
-		do: [ :ex | nil ]
+	| results |
+	results := TestResultCollected new.
+	testCaseReferences collect: [ :tcr | results addAllResults: tcr runUnchecked ].
+	^ results
 ]
 
 { #category : #private }
