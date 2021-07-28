@@ -30,6 +30,14 @@ TestCaseReference >> resources [
 ]
 
 { #category : #evaluating }
+TestCaseReference >> run [
+	"kept for retrocompatibility"
+	
+	self deprecated: 'Use #runChecked instead.' transformWith: '`@receiver run' -> '`@receiver runChecked'.
+	^ self runChecked
+]
+
+{ #category : #evaluating }
 TestCaseReference >> run: aTestResult [
 	^self testCase run: aTestResult
 ]
