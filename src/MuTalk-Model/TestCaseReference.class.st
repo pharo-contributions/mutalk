@@ -32,15 +32,22 @@ TestCaseReference >> resources [
 { #category : #evaluating }
 TestCaseReference >> run [
 	| result |
+	"kept for retrocompatibility"
+	^ self runChecked
+]
+
+{ #category : #evaluating }
+TestCaseReference >> runChecked [
+	| result |
 	result := self testCase run.
-	(result failuresSize > 0 or: [ result errorsSize > 0])
-		ifTrue: [TestsWithErrorsException signal].
+	(result failuresSize > 0 or: [ result errorsSize > 0 ])
+		ifTrue: [ TestsWithErrorsException signalFor: self ].
 	^ result
 ]
 
 { #category : #evaluating }
-TestCaseReference >> run: aTestResult [
-	^self testCase run: aTestResult
+TestCaseReference >> runUnchecked [
+	^ self testCase run
 ]
 
 { #category : #evaluating }

@@ -125,6 +125,33 @@ MethodMutation >> printOn: aStream [
 		nextPutAll: originalMethod  selector printString.
 ]
 
+{ #category : #running }
+MethodMutation >> runMutant [
+
+	^ [ 
+		self install.
+		self runTests
+	] ensure: [ self uninstall ]
+]
+
+{ #category : #private }
+MethodMutation >> runTests [
+	| results |
+	results := TestResultCollected new.
+	testCaseReferences collect: [ :tcr | results addAllResults: tcr runUnchecked ].
+	^ results
+]
+
+{ #category : #private }
+MethodMutation >> testCaseReferences [
+	^ testCaseReferences
+]
+
+{ #category : #private }
+MethodMutation >> testCaseReferences: aCollectionOfTestCaseReferences [
+	testCaseReferences := aCollectionOfTestCaseReferences
+]
+
 { #category : #installing }
 MethodMutation >> uninstall [
 	"UnInstall the mutant recompiling the original method into the class."

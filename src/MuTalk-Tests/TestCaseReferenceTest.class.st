@@ -1,7 +1,7 @@
 Class {
 	#name : #TestCaseReferenceTest,
 	#superclass : #TestCase,
-	#category : 'MuTalk-Tests'
+	#category : #'MuTalk-Tests'
 }
 
 { #category : #resources }
@@ -13,7 +13,7 @@ TestCaseReferenceTest >> test1 [
 TestCaseReferenceTest >> testATestReferenceResult [
 	| testReference |
 	testReference := self testReferenceForTest1.
-	self assert: testReference run errors isEmpty.
+	self assert: testReference runUnchecked errors isEmpty.
 	
 ]
 
