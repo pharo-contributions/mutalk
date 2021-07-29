@@ -86,7 +86,6 @@ MutantEvaluation >> value [
 	self initializeCoverageResultIfNil.
 	mutation testCaseReferences: (strategy testCasesToEvaluate: mutation for: self).
 	testResults := mutation runMutant.
-
 	^ MutantEvaluationResult
 		for: mutation
 		results: testResults
