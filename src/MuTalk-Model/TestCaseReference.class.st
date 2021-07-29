@@ -5,7 +5,7 @@ Class {
 		'class',
 		'selector'
 	],
-	#category : 'MuTalk-Model'
+	#category : #'MuTalk-Model'
 }
 
 { #category : #'instance creation' }
@@ -44,14 +44,7 @@ TestCaseReference >> run: aTestResult [
 
 { #category : #evaluating }
 TestCaseReference >> runChecked [
-	| result |
-	"kept for retrocompatibility"
-	^ self runChecked
-]
-
-{ #category : #evaluating }
-TestCaseReference >> runChecked [
-	| result |
+	| result |	
 	result := self testCase run.
 	(result failuresSize > 0 or: [ result errorsSize > 0 ])
 		ifTrue: [ TestsWithErrorsException signalFor: self ].
