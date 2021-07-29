@@ -10,7 +10,7 @@ Class {
 		'nodeToMutate',
 		'testCaseReferences'
 	],
-	#category : 'MuTalk-Model'
+	#category : #'MuTalk-Model'
 }
 
 { #category : #'instance creation' }
@@ -138,7 +138,7 @@ MethodMutation >> runMutant [
 { #category : #private }
 MethodMutation >> runTests [
 	| results |
-	results := TestResultCollected new.
+	results := TestAsserter classForTestResult new.
 	testCaseReferences collect: [ :tcr | results addAllResults: tcr runUnchecked ].
 	^ results
 ]
