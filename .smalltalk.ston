@@ -1,0 +1,12 @@
+SmalltalkCISpec {
+    #loading : [
+        SCIMetacelloLoadSpec {
+            #baseline : 'MuTalk',
+            #directory : 'src',
+            #platforms : [ #pharo ]
+        }
+    ],
+  #testing : {
+        #categories: [ 'MuTalk-Tests' ]
+  }
+}

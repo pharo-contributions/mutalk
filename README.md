@@ -1,5 +1,7 @@
 # MuTalk (µ-talk)
 Mutation Testing in Smalltalk
+[![Build Status](https://travis-ci.com/hogoww/MuTalk.svg?branch=master)](https://travis-ci.com/hogoww/MuTalk)
+[![Pharo version](https://img.shields.io/badge/Pharo-9.0-%23aac9ff.svg)](https://pharo.org/download)
 
 This project was originally developed at the University of Buenos Aires (Argentina) by Nicolás Chillo, Gabriel Brunstein and others. It was created in times of Pharo 1.1 and the last versions on which MuTalk can run is Pharo 1.3. This is resurection of this project.
 
