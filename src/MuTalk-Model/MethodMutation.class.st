@@ -7,9 +7,10 @@ Class {
 		'operator',
 		'originalClass',
 		'mutatedNode',
-		'nodeToMutate'
+		'nodeToMutate',
+		'testCaseReferences'
 	],
-	#category : 'MuTalk-Model'
+	#category : #'MuTalk-Model'
 }
 
 { #category : #'instance creation' }
@@ -123,6 +124,33 @@ MethodMutation >> printOn: aStream [
 		 nextPutAll: originalClass printString;
 		nextPutAll: '>>';
 		nextPutAll: originalMethod  selector printString.
+]
+
+{ #category : #running }
+MethodMutation >> runMutant [
+
+	^ [ 
+		self install.
+		self runTests
+	] ensure: [ self uninstall ]
+]
+
+{ #category : #private }
+MethodMutation >> runTests [
+	| results |
+	results := TestAsserter classForTestResult new.
+	testCaseReferences collect: [ :tcr | results addAllResults: tcr runUnchecked ].
+	^ results
+]
+
+{ #category : #private }
+MethodMutation >> testCaseReferences [
+	^ testCaseReferences
+]
+
+{ #category : #private }
+MethodMutation >> testCaseReferences: aCollectionOfTestCaseReferences [
+	testCaseReferences := aCollectionOfTestCaseReferences
 ]
 
 { #category : #installing }

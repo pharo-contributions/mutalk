@@ -5,7 +5,7 @@ Class {
 		'class',
 		'selector'
 	],
-	#category : 'MuTalk-Model'
+	#category : #'MuTalk-Model'
 }
 
 { #category : #'instance creation' }
@@ -31,16 +31,29 @@ TestCaseReference >> resources [
 
 { #category : #evaluating }
 TestCaseReference >> run [
-	| result |
-	result := self testCase run.
-	(result failuresSize > 0 or: [ result errorsSize > 0])
-		ifTrue: [TestsWithErrorsException signal].
-	^ result
+	"kept for retrocompatibility"
+	
+	self deprecated: 'Use #runChecked instead.' transformWith: '`@receiver run' -> '`@receiver runChecked'.
+	^ self runChecked
 ]
 
 { #category : #evaluating }
 TestCaseReference >> run: aTestResult [
 	^self testCase run: aTestResult
+]
+
+{ #category : #evaluating }
+TestCaseReference >> runChecked [
+	| result |	
+	result := self testCase run.
+	(result failuresSize > 0 or: [ result errorsSize > 0 ])
+		ifTrue: [ TestsWithErrorsException signalFor: self ].
+	^ result
+]
+
+{ #category : #evaluating }
+TestCaseReference >> runUnchecked [
+	^ self testCase run
 ]
 
 { #category : #evaluating }

@@ -81,13 +81,11 @@ MutantEvaluation >> testResults [
 { #category : #evaluation }
 MutantEvaluation >> value [
 	| testResults |
-
 	Stdio stdout nextPutAll: mutation originalMethod name asString; lf; flush.
 
 	self initializeCoverageResultIfNil.
-	testResults := [ mutation install.
-	self testResults ]
-		ensure: [ mutation uninstall ].
+	mutation testCaseReferences: (strategy testCasesToEvaluate: mutation for: self).
+	testResults := mutation runMutant.
 	^ MutantEvaluationResult
 		for: mutation
 		results: testResults

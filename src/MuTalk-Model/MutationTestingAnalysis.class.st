@@ -260,7 +260,7 @@ MutationTestingAnalysis >> run [
 	methods of
 	those classes) and execute all mutants in the set of testClases.
 	We obtain a result for each mutant generated"
-	^[testCases do: [ :aTestCase | aTestCase run ].
+	^[testCases do: [ :aTestCase | aTestCase runChecked ].
 	logger logAnalysisStartFor:self.
 	elapsedTime := Time millisecondsToRun: [
 					self generateCoverageAnalysis.

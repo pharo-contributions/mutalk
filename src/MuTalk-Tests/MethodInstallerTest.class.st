@@ -5,7 +5,7 @@ Class {
 		'anonymousClass',
 		'anonymousClassWithMethod'
 	],
-	#category : 'MuTalk-Tests'
+	#category : #'MuTalk-Tests'
 }
 
 { #category : #accessing }
@@ -20,7 +20,7 @@ MethodInstallerTest >> methodInstalled [
 
 ]
 
-{ #category : #'test resources' }
+{ #category : #'as yet unclassified' }
 MethodInstallerTest >> methodToUninstall [ ^self
 ]
 
