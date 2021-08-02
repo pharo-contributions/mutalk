@@ -34,8 +34,7 @@ ExtremeTransformationOperatorTest >> operatorDescription [
 { #category : #tests }
 ExtremeTransformationOperatorTest >> testApplyMutantToMethod [
 
-	self assert: self assertApplyingMutantToFirstSenderInOneSenderMethod.
-	
+	self assert: self assertApplyingMutantToFirstSenderInOneSenderMethod
 ]
 
 { #category : #tests }

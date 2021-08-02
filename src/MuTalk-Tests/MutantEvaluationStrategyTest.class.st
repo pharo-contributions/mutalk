@@ -2,10 +2,21 @@ Class {
 	#name : #MutantEvaluationStrategyTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'resource'
+		'resource',
+		'classes',
+		'operator',
+		'evaluationStrategy',
+		'mutationTestingAnalysis',
+		'testCases',
+		'testCasesUsed'
 	],
-	#category : 'MuTalk-Tests'
+	#category : #'MuTalk-Tests'
 }
+
+{ #category : #testing }
+MutantEvaluationStrategyTest class >> isAbstract [
+	^ true
+]
 
 { #category : #accessing }
 MutantEvaluationStrategyTest class >> packageNamesUnderTest [
@@ -17,29 +28,70 @@ MutantEvaluationStrategyTest class >> resources [
 	^ {MutationTestingResource}
 ]
 
-{ #category : #building }
-MutantEvaluationStrategyTest >> setUp [
-	resource := MutationTestingResource current
+{ #category : #asserting }
+MutantEvaluationStrategyTest >> assertMutantInCoverageOfTestCase [
+	self subclassResponsibility
 ]
 
-{ #category : #testing }
-MutantEvaluationStrategyTest >> testSelectingFromCoverageEvaluationStrategyShouldOnlyEvaluateSpecificTestCases [
-	"tests that the message #testCasesToEvaluateFrom: returns only the test cases that cover the mutated code"
-	| classes mutationTestingAnalysis testCases mutation operator evaluationStrategy |
+{ #category : #asserting }
+MutantEvaluationStrategyTest >> assertMutantNotInCoverage [
+	self subclassResponsibility
+]
+
+{ #category : #asserting }
+MutantEvaluationStrategyTest >> assertMutantNotInCoverageOfTest [
+	self subclassResponsibility
+]
+
+{ #category : #running }
+MutantEvaluationStrategyTest >> getTestsCasesToEvaluateForMutant: aMethodSelector [
+	| mutation |
+	mutation := (operator mutationsFor: AuxiliarClassForTestingStrategies >> aMethodSelector) asOrderedCollection first.
+	^ evaluationStrategy 
+		testCasesToEvaluate: mutation
+		for: mutationTestingAnalysis.
+
+]
+
+{ #category : #configuring }
+MutantEvaluationStrategyTest >> selectionStrategy [
+	^ self subclassResponsibility
+]
+
+{ #category : #running }
+MutantEvaluationStrategyTest >> setUp [
+	resource := MutationTestingResource current.
+	
 	classes := OrderedCollection with: AuxiliarClassForTestingStrategies.
 	operator := ReplaceIfTrueWithIfFalseMutantOperator new.
-	evaluationStrategy := SelectingFromCoverageMutantEvaluationStrategy new.
+	evaluationStrategy := self selectionStrategy new.
+	testCasesUsed := AuxiliarTestClassForTestingStrategies suite tests.
 	mutationTestingAnalysis := MutationTestingAnalysis 
-		for: AuxiliarTestClassForTestingStrategies suite tests
+		for: testCasesUsed
 		mutating: classes
 		using: (Set with: operator)
 		with: evaluationStrategy
 		with: AllMutationsGenerationStrategy new.
 	mutationTestingAnalysis generateCoverageAnalysis.
-	mutation := (operator mutationsFor: AuxiliarClassForTestingStrategies >> #method1) asOrderedCollection first.
-	testCases := evaluationStrategy 
-		testCasesToEvaluate: mutation
-		for: mutationTestingAnalysis.
-	self assert: ((testCases collect: [ :each | each selector ]) includes: #testMethodThatCoverMethod1).
-	self deny: ((testCases collect: [ :each | each selector ]) includes: #testMethodThatCoverMethod2)
+]
+
+{ #category : #test }
+MutantEvaluationStrategyTest >> testMutantInCoverageOfTestCase [
+
+	testCases := self getTestsCasesToEvaluateForMutant: #method1.
+	^ self assertMutantInCoverageOfTestCase
+]
+
+{ #category : #test }
+MutantEvaluationStrategyTest >> testMutantNotInCoverage [
+
+	testCases := self getTestsCasesToEvaluateForMutant: #aNotCoveredMethod.
+	^ self assertMutantNotInCoverage
+]
+
+{ #category : #test }
+MutantEvaluationStrategyTest >> testMutantNotInCoverageOfTest [
+
+	testCases := self getTestsCasesToEvaluateForMutant: #method1.
+	^ self assertMutantNotInCoverageOfTest
 ]
