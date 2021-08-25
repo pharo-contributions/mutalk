@@ -48,23 +48,13 @@ MutalkCI >> allChangesForRepo [
 { #category : #private }
 MutalkCI >> allClassesForRepo [
 
-	Smalltalk at: #IceRepository ifPresent: [ :clsIceRepository | 
-		clsIceRepository registry
-			detect: [ :r | r name = project ]
-			ifFound: [ :r | 
-				^ (r workingCopy packages select: [ :p | p isLoaded ]) 
+	|repo|
+	repo := self getRepo.
+	^ (repo workingCopy packages select: [ :p | p isLoaded ]) 
 					  flatCollect: [ :p | 
-					  p package asPackage definedClasses asOrderedCollection ] ] ].
-	Smalltalk
-		at: #MetacelloProjectRegistration
-		ifPresent: [ :clsMetacelloProjectRegistration | 
-			| reg |
-			reg := clsMetacelloProjectRegistration
-				       registrationForClassNamed: project
-				       ifAbsent: [ nil ].
-			reg ifNotNil: [ 
-				^ reg currentlyLoadedClassesInProject asOrderedCollection ] ].
-	self error: 'repo not installed. ' , project
+					  repo package asPackage definedClasses asOrderedCollection]
+	
+
 ]
 
 { #category : #accessing }
@@ -103,15 +93,23 @@ MutalkCI >> exportFileName [
 ]
 
 { #category : #private }
-MutalkCI >> exportResult [
+MutalkCI >> exportResultJson [
 
-	| json file |	
+	| json file |
 	json := STONJSON toStringPretty: result.
 	file := FileLocator imageDirectory / self exportFileName.
 	file exists ifTrue: [ file delete ].
 	file writeStream writeStream
 		nextPutAll: json;
 		close
+]
+
+{ #category : #private }
+MutalkCI >> exportResultMarkdown [
+
+	| mdString |
+	mdString := String new writeStreamDo: [ :str | 
+		            self markdownTitle: str ]
 ]
 
 { #category : #private }
@@ -136,7 +134,68 @@ MutalkCI >> extremeTransformationTargets: targets tests: tests generationStrateg
 
 { #category : #'as yet unclassified' }
 MutalkCI >> getRepo [
-	^ IceRepository registry detect: [ :x | x name = project ].
+
+	Smalltalk at: #IceRepository ifPresent: [ :clsIceRepository | 
+		clsIceRepository registry
+			detect: [ :r | r name = project ]
+			ifFound: [ :r | ^ r ]
+			ifNone: [  ] ].
+	
+	self error: 'repo not installed. ' , project
+]
+
+{ #category : #private }
+MutalkCI >> markdownAliveMutants: str [
+
+	str << '## Alive mutants'.
+	(result at: #aliveMutants) do: [ :item | 
+		str
+			<< '* ';
+			<< (item at: #class);
+			<< ' << #';
+			<< (item at: #method);
+			<< String lf ]
+]
+
+{ #category : #private }
+MutalkCI >> markdownTitle: str [
+	str
+			            << '#Mutalk output';
+			            << String lf;
+			            << 'Project: ';
+			            << project;
+			            << String lf;
+			            << 'From: ';
+			            << commit;
+			            << String lf;
+			            << 'To: ';
+			            << self getRepo head commit id
+]
+
+{ #category : #private }
+MutalkCI >> markdownUncovered: str [
+
+	str << '## Uncovered methods'.
+	(result at: #uncoveredMethods) do: [ :item | 
+		str
+			<< '* ';
+			<< (item at: #class);
+			<< ' << #';
+			<< (item at: #method);
+			<< String lf ]
+]
+
+{ #category : #private }
+MutalkCI >> markdownUndetectedXtremes: str [
+
+	str << '## Undetected extreme transformations'.
+	(result at: #aliveExtremeTransformations) do: [ :item | 
+		str
+			<< '* ';
+			<< (item at: #class);
+			<< ' << #';
+			<< (item at: #method);
+			<< String lf ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -160,7 +219,7 @@ MutalkCI >> mutateAll [
 		generationStrategy:
 			(SelectingFromAlivesMutationsGenerationStrategy new analysis:
 				 xtremeAnalysis).
-	self exportResult
+	self exportResultJson
 ]
 
 { #category : #'as yet unclassified' }
@@ -173,7 +232,7 @@ MutalkCI >> mutateDiff [
 
 	tests := classes select: #isTestCase.
 	targets := (targetMethods collect: #methodClass) asSet.
-	targets ifEmpty: [ ^ self exportResult ].
+	targets ifEmpty: [ ^ self exportResultJson ].
 	xtremeAnalysis := self
 		                  extremeTransformationTargets: targets
 		                  tests: tests
@@ -186,7 +245,7 @@ MutalkCI >> mutateDiff [
 		generationStrategy:
 			(SelectingFromAlivesMutationsGenerationStrategy new analysis:
 				 xtremeAnalysis).
-	self exportResult
+	self exportResultJson
 ]
 
 { #category : #'as yet unclassified' }
@@ -215,10 +274,7 @@ MutalkCI >> project: anObject [
 { #category : #'as yet unclassified' }
 MutalkCI >> recentCommit [
 
-	| repo |
-	repo := self getRepo.
-
-	commit := repo head commit ancestors
+	commit := self getRepo head commit ancestors
 		          ifNotEmpty: #first
 		          ifEmpty: [ IceNoCommit new ]
 ]
