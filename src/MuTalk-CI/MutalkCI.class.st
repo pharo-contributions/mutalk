@@ -72,7 +72,7 @@ MutalkCI >> exportResultJson: analysis [
 		        export.
 	file := FileLocator imageDirectory / self exportFileName.
 	file exists ifTrue: [ file delete ].
-	file writeStream writeStream
+	file writeStream
 		nextPutAll: json;
 		close
 ]
