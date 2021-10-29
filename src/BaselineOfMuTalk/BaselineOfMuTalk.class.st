@@ -31,6 +31,7 @@ BaselineOfMuTalk >> baseline: spec [
 
 		spec
 			group: 'default'
-			with: #( 'MuTalk-Model' 'MuTalk-TestResources'
-			   'MuTalk-Tests' 'MuTalk-CI' 'MuTalk-CI-Tests' ) ]
+			with:
+				#( 'MuTalk-Model' 'MuTalk-TestResources' 'MuTalk-Tests'
+				   'MuTalk-CI' ) ]
 ]
