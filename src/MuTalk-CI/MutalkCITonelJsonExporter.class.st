@@ -79,9 +79,11 @@ MutalkCITonelJsonExporter >> export [
 	test_cases := self exportTestCases.
 	obj := { 
 		       (#pull_request_id -> pull_request_id).
-		       (#commit -> commit).
+		       (#git_commit_sha -> commit).
+		       (#service_name -> '?').
+		       (#service_job_id -> '?').
 		       (#test_cases -> test_cases asArray).
-		       (#source_files -> source_files asArray) } asDictionary.
+		       (#files -> source_files asArray) } asDictionary.
 	json := STONJSON toStringPretty: obj.
 	^ json
 ]
@@ -142,7 +144,7 @@ MutalkCITonelJsonExporter >> exportMutationEvaluation: mutationEvaluation filePa
 		  (#descrption -> descrption).
 		  (#start_line -> (offset + start_line - 1)).
 		  (#end_line -> (offset + end_line - 1)).
-		  (#mutated_source -> mutated_source).
+		  (#mutated_source_code -> mutated_source).
 		  (#result -> result) } asDictionary
 ]
 
