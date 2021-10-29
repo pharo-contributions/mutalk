@@ -25,6 +25,10 @@ BaselineOfMuTalk >> baseline: spec [
 			with: [ spec requires: #( 'testCoverage' ) ];
 			package: 'MuTalk-TestResources'
 			with: [ spec requires: #( 'MuTalk-Model' ) ];
+			package: 'MuTalk-CI' 
+			with: [ spec requires: #( 'MuTalk-Model' ) ];
+			package: 'MuTalk-CI-Tests'
+			with: [ spec requires: #( 'MuTalk-Model' 'MuTalk-CI' ) ];
 			package: 'MuTalk-Tests'
 			with: [ spec requires: #( 'MuTalk-Model' 'MuTalk-TestResources' ) ].
 		"package: 'MuTalk-UI'."
@@ -33,5 +37,5 @@ BaselineOfMuTalk >> baseline: spec [
 			group: 'default'
 			with:
 				#( 'MuTalk-Model' 'MuTalk-TestResources' 'MuTalk-Tests'
-				   'MuTalk-CI' ) ]
+				   'MuTalk-CI' 'MuTalk-CI-Tests' ) ]
 ]
