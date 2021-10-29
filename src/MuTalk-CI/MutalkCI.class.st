@@ -82,24 +82,29 @@ MutalkCI >> exportResultJson: analysis [
 { #category : #'as yet unclassified' }
 MutalkCI >> getRepo [
 
-	Smalltalk at: #IceRepository ifPresent: [ :clsIceRepository | 
-		clsIceRepository registry
-			detect: [ :r | r name = project ]
-			ifFound: [ :r | ^ r ]
-			ifNone: [ | gitClone |
-				gitClone := Smalltalk os environment asDictionary at: #GITHUB_WORKSPACE ifAbsent: [ 'GITHUB_WORKSPACE missing' traceCr. Smalltalk exitFailure ].
+	IceRepository registry
+		detect: [ :r | r name = project ]
+		ifNone: [ 
+			| gitClone |
+			gitClone := Smalltalk os environment asDictionary
+				            at: #GITHUB_WORKSPACE
+				            ifAbsent: [ 
+					            'GITHUB_WORKSPACE missing' traceCr.
+					            Smalltalk exitFailure ].
 
-				IceRepository registry
-					detect: [ :r | r name = project ]
-					ifNone: [ |r tmp|
-		   					r := IceRepositoryCreator new
-									repository: nil;
-									location: gitClone asFileReference.
-   	           			r := r createRepository.
-		   					r register.
-		   ]. 
-	] ].
-
+			IceRepository registry
+				detect: [ :r | r name = project ]
+				ifNone: [ 
+					| r tmp |
+					r := IceRepositoryCreator new
+						     repository: nil;
+						     location: gitClone asFileReference.
+					r := r createRepository.
+					r register ] ].
+	IceRepository registry
+		detect: [ :r | r name = project ]
+	ifFound: [ :r | ^ r ].
+		
 	self error: 'repo not installed. ' , project
 ]
 
