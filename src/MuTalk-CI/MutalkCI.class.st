@@ -86,8 +86,20 @@ MutalkCI >> getRepo [
 		clsIceRepository registry
 			detect: [ :r | r name = project ]
 			ifFound: [ :r | ^ r ]
-			ifNone: [  ] ].
-	
+			ifNone: [ | gitClone |
+				gitClone := Smalltalk os environment asDictionary at: #GITHUB_WORKSPACE ifAbsent: [ 'GITHUB_WORKSPACE missing' traceCr. Smalltalk exitFailure ].
+
+				IceRepository registry
+					detect: [ :r | r name = project ]
+					ifNone: [ |r tmp|
+		   					r := IceRepositoryCreator new
+									repository: nil;
+									location: gitClone asFileReference.
+   	           			r := r createRepository.
+		   					r register.
+		   ]. 
+	] ].
+
 	self error: 'repo not installed. ' , project
 ]
 
