@@ -136,9 +136,9 @@ MutalkCITonelJsonExporter >> exportMutationEvaluation: mutationEvaluation filePa
 	end_line := (originalSource copyFrom: 1 to: nodeToMutate stop) lines
 		            size.
 	mutated_source := mutatedNode formattedCode.
-	mutationEvaluation killed ifTrue: [ result := 'KILLED' ].
-	mutationEvaluation survived ifTrue: [ result := 'SURVIVED' ].
-	mutationEvaluation terminated ifTrue: [ result := 'TERMINATED' ].
+	mutationEvaluation killed ifTrue: [ result := 'K' ].
+	mutationEvaluation survived ifTrue: [ result := 'S' ].
+	mutationEvaluation terminated ifTrue: [ result := 'T' ].
 	^ { 
 		  (#sequence_number -> sequence_number).
 		  (#descrption -> descrption).
