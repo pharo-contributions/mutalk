@@ -3,8 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'project',
-		'commit',
-		'result'
+		'commit'
 	],
 	#category : #'MuTalk-CI'
 }
@@ -115,7 +114,7 @@ MutalkCI >> mutateAll [
 
 	| classes tests targets |
 	classes := self allClassesForRepo.
-	self prepareResult.
+	
 	tests := classes select: #isTestCase.
 	targets := classes reject: #isTestCase.
 
@@ -123,8 +122,7 @@ MutalkCI >> mutateAll [
 		runMutalkTargets: targets
 		tests: tests
 		generationStrategy:
-		SelectingFromCoverageMutationsGenerationStrategy new.
-	
+		SelectingFromCoverageMutationsGenerationStrategy new
 ]
 
 { #category : #'as yet unclassified' }
@@ -133,7 +131,7 @@ MutalkCI >> mutateDiff [
 	| targets targetMethods tests classes |
 	classes := self allClassesForRepo.
 	targetMethods := self allChangesForRepo.
-	self prepareResult.
+	
 
 	tests := classes select: #isTestCase.
 	targets := (targetMethods collect: #methodClass) asSet.
