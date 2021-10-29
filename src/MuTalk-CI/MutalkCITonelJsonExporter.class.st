@@ -141,7 +141,7 @@ MutalkCITonelJsonExporter >> exportMutationEvaluation: mutationEvaluation filePa
 	mutationEvaluation terminated ifTrue: [ result := 'T' ].
 	^ { 
 		  (#sequence_number -> sequence_number).
-		  (#descrption -> descrption).
+		  (#description -> descrption).
 		  (#start_line -> (offset + start_line - 1)).
 		  (#end_line -> (offset + end_line - 1)).
 		  (#mutated_source_code -> mutated_source).
