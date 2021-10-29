@@ -67,7 +67,7 @@ MutalkCI >> exportResultJson: analysis [
 		        mtResult: analysis;
 		        commit: commit;
 		        pull_request_id: '???';
-		        root: repo entity project sourceDirectory;
+		        root: repo subdirectory;
 		        cloneLocation: repo location fullName;
 		        export.
 	file := FileLocator imageDirectory / self exportFileName.
