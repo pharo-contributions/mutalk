@@ -34,13 +34,11 @@ MutalkCI >> allChangesForRepo [
 { #category : #private }
 MutalkCI >> allClassesForRepo [
 
-	|repo|
+	| repo |
 	repo := self getRepo.
 	^ (repo workingCopy packages select: [ :p | p isLoaded ]) 
-					  flatCollect: [ :p | 
-					  repo package asPackage definedClasses asOrderedCollection]
-	
-
+		  flatCollect: [ :p | 
+		  p package asPackage definedClasses asOrderedCollection ]
 ]
 
 { #category : #accessing }
