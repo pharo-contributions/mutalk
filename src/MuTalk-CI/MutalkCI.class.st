@@ -61,11 +61,15 @@ MutalkCI >> exportFileName [
 { #category : #private }
 MutalkCI >> exportResultJson: analysis [
 
-	| json file repo |
+	| json file repo commitFrom commitTo timestamp |
 	repo := self getRepo.
+	commitFrom := commit.
+	commitTo := repo head commit id.
+	timestamp := DateAndTime now asUnixTime.
+
 	json := MutalkCITonelJsonExporter new
 		        mtResult: analysis;
-		        commit: commit;
+		        commit: commitTo;
 		        pull_request_id: '???';
 		        root: repo subdirectory;
 		        cloneLocation: repo location fullName;
@@ -139,17 +143,6 @@ MutalkCI >> mutateDiff [
 		tests: tests
 		generationStrategy:
 		SelectingFromAlivesMutationsGenerationStrategy new
-]
-
-{ #category : #'as yet unclassified' }
-MutalkCI >> prepareResult [
-
-	result := Dictionary new.
-	result
-		at: 'commitFrom'
-		put: commit .
-	result at: 'commitTo' put: self getRepo head commit id.
-	result at: 'timestamp' put: DateAndTime now asUnixTime
 ]
 
 { #category : #accessing }
