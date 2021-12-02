@@ -65,7 +65,6 @@ MutalkCITonelJsonExporter >> export [
 		                self exportClassMutations: class ].
 	test_cases := self exportTestCases.
 	obj := { 
-		       (#pull_request_id -> pull_request_id).
 		       (#git_commit_sha -> commit).
 		       (#service_name -> 'mutalkCI').
 		       (#service_job_id -> '1').
