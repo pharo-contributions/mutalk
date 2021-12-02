@@ -69,7 +69,6 @@ MutalkCI >> exportResultJson: analysis [
 	json := MutalkCITonelJsonExporter new
 		        mtResult: analysis;
 		        commit: commitTo;
-		        pull_request_id: '???';
 		        root: repo subdirectory;
 		        cloneLocation: repo location fullName;
 		        export.

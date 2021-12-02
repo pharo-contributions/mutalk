@@ -67,8 +67,8 @@ MutalkCITonelJsonExporter >> export [
 	obj := { 
 		       (#pull_request_id -> pull_request_id).
 		       (#git_commit_sha -> commit).
-		       (#service_name -> '?').
-		       (#service_job_id -> '?').
+		       (#service_name -> 'mutalkCI').
+		       (#service_job_id -> '1').
 		       (#test_cases -> test_cases asArray).
 		       (#files -> source_files asArray) } asDictionary.
 	json := STONJSON toStringPretty: obj.
