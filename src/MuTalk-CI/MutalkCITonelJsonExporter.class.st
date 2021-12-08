@@ -6,7 +6,8 @@ Class {
 		'pull_request_id',
 		'commit',
 		'cloneLocation',
-		'root'
+		'root',
+		'coverageInfo'
 	],
 	#category : #'MuTalk-CI'
 }
@@ -55,6 +56,18 @@ MutalkCITonelJsonExporter >> commit [
 MutalkCITonelJsonExporter >> commit: anObject [
 
 	commit := anObject
+]
+
+{ #category : #accessing }
+MutalkCITonelJsonExporter >> coverageInfo [
+
+	^ coverageInfo
+]
+
+{ #category : #accessing }
+MutalkCITonelJsonExporter >> coverageInfo: anObject [
+
+	coverageInfo := anObject
 ]
 
 { #category : #'as yet unclassified' }

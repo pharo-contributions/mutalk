@@ -79,6 +79,29 @@ MutalkCI >> exportResultJson: analysis [
 		close
 ]
 
+{ #category : #private }
+MutalkCI >> exportResultJson: analysis coverageInfo: coverageInfo [
+
+	| json file repo commitFrom commitTo timestamp |
+	repo := self getRepo.
+	commitFrom := commit.
+	commitTo := repo head commit id.
+	timestamp := DateAndTime now asUnixTime.
+
+	json := MutalkCITonelJsonExporter new
+		        mtResult: analysis;
+		        commit: commitTo;
+		coverageInfo: coverageInfo;
+		        root: repo subdirectory;
+		        cloneLocation: repo location fullName;
+		        export.
+	file := FileLocator imageDirectory / self exportFileName.
+	file exists ifTrue: [ file delete ].
+	file writeStream
+		nextPutAll: json;
+		close
+]
+
 { #category : #'as yet unclassified' }
 MutalkCI >> getRepo [
 
@@ -142,6 +165,14 @@ MutalkCI >> mutateDiff [
 		SelectingFromAlivesMutationsGenerationStrategy new
 ]
 
+{ #category : #'as yet unclassified' }
+MutalkCI >> prepareCoverageInfo: anAnalyse [
+
+	^ CoveragePropagationPreparation new
+		mtResult: anAnalyse;
+		prepare
+]
+
 { #category : #accessing }
 MutalkCI >> project [
 
@@ -165,7 +196,7 @@ MutalkCI >> recentCommit [
 { #category : #private }
 MutalkCI >> runMutalkTargets: targets tests: tests generationStrategy: generationStrategy [
 
-	| analysis |
+	| analysis coverageInfo |
 	analysis := MutationTestingAnalysis
 		            testCasesFrom: tests
 		            mutating: targets
@@ -173,5 +204,6 @@ MutalkCI >> runMutalkTargets: targets tests: tests generationStrategy: generatio
 		            with: SelectingFromCoverageMutantEvaluationStrategy new
 		            with: generationStrategy.
 	analysis run.
-	self exportResultJson: analysis
+	coverageInfo := self prepareCoverageInfo: analysis.
+	self exportResultJson: analysis coverageInfo: coverageInfo
 ]
