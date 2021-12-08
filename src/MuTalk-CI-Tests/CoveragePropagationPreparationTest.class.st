@@ -27,5 +27,5 @@ CoveragePropagationPreparationTest >> testWorking [
 		          = ReplacePlusWithMinusMutantOperator ].
 	self assert: (mutant at: #coveredBy) isNotEmpty.
 	self assert: (mutant at: #testStateChangedIn) isNotEmpty.
-	mutant inspect
+	
 ]

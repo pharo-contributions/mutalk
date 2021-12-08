@@ -55,8 +55,8 @@ CoveragePropagationPreparation >> detectAllStateChangesState1: state1 State2: st
 	state1 isDictionary ifFalse: [ ^ state1 = state2 ].
 	state1 keysAndValuesDo: [ :k :v | 
 		(self
-			 removeAllStateChangesState1: (state1 at: k)
-			 State2: (state2 at: k)) ifFalse: [ 
+			 detectAllStateChangesState1: (state1 at: k)
+			 State2: (state2 at: k) andDo: aBlock) ifFalse: [ 
 			aBlock value: state1 value: state2 value: k ] ].
 	^ true
 ]
@@ -145,7 +145,6 @@ CoveragePropagationPreparation >> isChangesPropagatedTo: covered for: aMutationE
 	self runTestCase: covered ] ensure: [ 
 		self uninstallMutant: aMutationEvaluation.
 		self uninstallMetalinks ].
-	self halt.
 	^ propagationDetected
 ]
 
@@ -167,17 +166,6 @@ CoveragePropagationPreparation >> prepare [
 	result addAll:
 		(allSurvived collect: [ :survived | self generateItemFor: survived ]).
 	^ result 
-]
-
-{ #category : #'as yet unclassified' }
-CoveragePropagationPreparation >> removeAllStateChangesState1: state1 State2: state2 [
-
-	state1 isDictionary ifFalse: [ ^ state1 = state2 ].
-	state1 keysAndValuesDo: [ :k :v | 
-		(self
-			 removeAllStateChangesState1: (state1 at: k)
-			 State2: (state2 at: k)) ifFalse: [ state1 removeKey: k ] ].
-	^ true
 ]
 
 { #category : #controlling }
