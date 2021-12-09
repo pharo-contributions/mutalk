@@ -205,21 +205,22 @@ MutalkCITonelJsonExporter >> extractMutatedLine: mutatedNode nodeToMutate: nodeT
 MutalkCITonelJsonExporter >> generateCoveredByFor: coverageInfoItem mutationCoverage: mutationCoverage [
 
 	| class file result level testMethodName line path |
-	
-	level := 1. 
-	((mutationCoverage at: #testStateChangedIn) anySatisfy: [ :item |
-		item = coverageInfoItem
-		 ]) ifTrue: [ level := 4 ].
+	level := 1.
+	((mutationCoverage at: #testStateChangedIn) anySatisfy: [ :item | 
+		 item = coverageInfoItem ]) ifTrue: [ level := 4 ].
 	testMethodName := coverageInfoItem testCase selector asString.
 	path := self getPathOfClass: coverageInfoItem testCase class.
 	file := self getFileOfClass: coverageInfoItem testCase class.
-	line := self lineNumberOffsetClass: coverageInfoItem testCase class method: testMethodName in: file.
+	line := self
+		        lineNumberOffsetClass: coverageInfoItem testCase class
+		        method: testMethodName
+		        in: file.
 	result := Dictionary new.
-	result at: #testmethod put: testMethodName.
+	result at: #test_method_name put: testMethodName.
 	result at: #file put: path.
 	result at: #line put: line.
 	result at: #level put: level.
-	^ result 
+	^ result
 ]
 
 { #category : #'as yet unclassified' }
