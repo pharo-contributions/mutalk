@@ -111,7 +111,7 @@ MutalkCITonelJsonExporter >> exportClassMutations: class [
 { #category : #'as yet unclassified' }
 MutalkCITonelJsonExporter >> exportMutationEvaluation: mutationEvaluation filePath: filePath [
 
-	| sequence_number descrption start_line end_line mutated_source result modifiedSource originalSource mutatedNode nodeToMutate offset classToCover selector mutated_lines |
+	| sequence_number descrption start_line end_line mutated_source result modifiedSource originalSource mutatedNode nodeToMutate offset classToCover selector mutated_lines coveredBy dictionary mutationCoverage |
 	seqNum := seqNum + 1.
 	sequence_number := seqNum.
 	descrption := mutationEvaluation mutant asString.
@@ -121,7 +121,14 @@ MutalkCITonelJsonExporter >> exportMutationEvaluation: mutationEvaluation filePa
 	nodeToMutate := mutationEvaluation mutant nodeToMutate.
 	classToCover := mutationEvaluation mutant originalClass.
 	selector := mutationEvaluation mutant originalMethod selector.
-
+	mutationEvaluation survived ifTrue: [ 
+		mutationCoverage := coverageInfo detect: [ :item | 
+			                    (item at: #mutationEvaluation)
+			                    = mutationEvaluation ].
+		coveredBy := (mutationCoverage at: #coveredBy) collect: [ :item | 
+			             self
+				             generateCoveredByFor: item
+				             mutationCoverage: mutationCoverage ] ].
 	offset := self
 		          lineNumberOffsetClass: classToCover
 		          method: selector
@@ -137,19 +144,21 @@ MutalkCITonelJsonExporter >> exportMutationEvaluation: mutationEvaluation filePa
 	"mutated_source := mutatedNode formattedCode."
 	mutated_lines := self
 		                 extractMutatedLine: mutatedNode
-							nodeToMutate: nodeToMutate
+		                 nodeToMutate: nodeToMutate
 		                 originalSource: originalSource
 		                 modifiedSource: modifiedSource.
 	mutationEvaluation killed ifTrue: [ result := 'K' ].
 	mutationEvaluation survived ifTrue: [ result := 'S' ].
 	mutationEvaluation terminated ifTrue: [ result := 'T' ].
-	^ { 
-		  (#sequence_number -> sequence_number).
-		  (#description -> descrption).
-		  (#start_line -> (offset + start_line - 1)).
-		  (#end_line -> (offset + end_line - 1)).
-		  (#mutated_source_code -> mutated_lines).
-		  (#result -> result) } asDictionary
+	dictionary := { 
+		              (#sequence_number -> sequence_number).
+		              (#description -> descrption).
+		              (#start_line -> (offset + start_line - 1)).
+		              (#end_line -> (offset + end_line - 1)).
+		              (#mutated_source_code -> mutated_lines).
+		              (#result -> result) } asDictionary.
+	coveredBy ifNotNil: [ dictionary at: #covered_by put: coveredBy asArray ].
+	^ dictionary
 ]
 
 { #category : #'as yet unclassified' }
@@ -190,6 +199,27 @@ MutalkCITonelJsonExporter >> extractMutatedLine: mutatedNode nodeToMutate: nodeT
 			                 to: start_of_changes + mSource_2 lines size - 1).
 	
 	^ changedLines
+]
+
+{ #category : #'as yet unclassified' }
+MutalkCITonelJsonExporter >> generateCoveredByFor: coverageInfoItem mutationCoverage: mutationCoverage [
+
+	| class file result level testMethodName line path |
+	
+	level := 1. 
+	((mutationCoverage at: #testStateChangedIn) anySatisfy: [ :item |
+		item = coverageInfoItem
+		 ]) ifTrue: [ level := 4 ].
+	testMethodName := coverageInfoItem testCase selector asString.
+	path := self getPathOfClass: coverageInfoItem testCase class.
+	file := self getFileOfClass: coverageInfoItem testCase class.
+	line := self lineNumberOffsetClass: coverageInfoItem testCase class method: testMethodName in: file.
+	result := Dictionary new.
+	result at: #testmethod put: testMethodName.
+	result at: #file put: path.
+	result at: #line put: line.
+	result at: #level put: level.
+	^ result 
 ]
 
 { #category : #'as yet unclassified' }
