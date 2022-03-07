@@ -14,6 +14,7 @@ BaselineOfMuTalk >> baseline: spec [
 			spec package: 'MuTalk-Model' with: [ spec includes: #('MuTalk-SpecUI') ].
 			spec package: 'MuTalk-SpecUI' with: [ spec requires: #('MuTalk-Model') ] ].
 		spec for: #'pharo9.x' do: [
+			spec package: 'MuTalk-Model' with: [ spec includes: #('MuTalk-SpecUI') ].
 			spec package: 'MuTalk-SpecUI' with: [ spec requires: #('MuTalk-Model') ] ].
 		
 		spec
