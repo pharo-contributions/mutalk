@@ -12,18 +12,6 @@ BaselineOfMuTalk >> baseline: spec [
 
 		spec for: #'pharo6.x' do: [
 			spec group: 'testCoverage' with: #().].
-		spec for: #'pharo7.x' do: [
-			spec package: 'TestCoverage'.
-			spec group: 'testCoverage' with: #('TestCoverage').].
-		spec for: #'pharo8.x' do: [
-			spec package: 'TestCoverage'.
-			spec group: 'testCoverage' with: #('TestCoverage').].
-		spec for: #'pharo9.x' do: [
-			spec package: 'TestCoverage'.
-			spec group: 'testCoverage' with: #('TestCoverage').].
-		spec for: #'pharo10.x' do: [
-			spec package: 'TestCoverage'.
-			spec group: 'testCoverage' with: #('TestCoverage').].
 
 		spec
 			package: 'TestCoverage';
