@@ -13,7 +13,7 @@ This project was originally developed at the University of Buenos Aires (Argenti
 
 - all tests are green
 - mutation analysis works
-- UI is under working. There is a custom inspector tab to better visualise the results
+- UI is under working. There is already a custom inspector tab to better visualise the results
 
 ## How to load
 ```smalltalk
@@ -26,15 +26,21 @@ Metacello new
 ## Analysis
 
 ```smalltalk
-| analysis alive browser |
+| analysis alive testCases classesToMutate |
+testCases :=  { UUIDPrimitivesTest }.
+classesToMutate := { UUID . UUIDGenerator }
+
 analysis := MutationTestingAnalysis
-    testCasesFrom: {UUIDPrimitivesTest}
-    mutating: {UUID. UUIDGenerator}
+    testCasesFrom: testCases
+    mutating: classesToMutate
     using: MutantOperator contents
     with: AllTestsMethodsRunningMutantEvaluationStrategy new.
+
 analysis run.
+
 "To retrieve the alive mutations"
 alive := analysis generalResult aliveMutants.
+
 "To inspect the results"
 analysis generalResult inspect.
 ```
