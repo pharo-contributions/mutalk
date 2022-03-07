@@ -1,7 +1,11 @@
 # MuTalk (µ-talk)
 Mutation Testing in Smalltalk
-[![Build Status](https://travis-ci.com/hogoww/MuTalk.svg?branch=master)](https://travis-ci.com/hogoww/MuTalk)
+
+[![Build status](https://github.com/pavel-krivanek/mutalk/workflows/CI/badge.svg)](https://github.com/pavel-krivanek/mutalk/actions/workflows/test.yml)
+[![Coverage Status](https://coveralls.io/repos/github/pavel-krivanek/mutalk/badge.svg?branch=master)](https://coveralls.io/github/pavel-krivanek/mutalk?branch=master)
 [![Pharo version](https://img.shields.io/badge/Pharo-9.0-%23aac9ff.svg)](https://pharo.org/download)
+[![Pharo version](https://img.shields.io/badge/Pharo-10-%23aac9ff.svg)](https://pharo.org/download)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/pavel-krivanek/mutalk/master/LICENSE)
 
 This project was originally developed at the University of Buenos Aires (Argentina) by Nicolás Chillo, Gabriel Brunstein and others. It was created in times of Pharo 1.1 and the last versions on which MuTalk can run is Pharo 1.3. This is resurection of this project.
 
@@ -9,7 +13,7 @@ This project was originally developed at the University of Buenos Aires (Argenti
 
 - all tests are green
 - mutation analysis works
-- UI still not converted
+- UI is under working. There is already a custom inspector tab to better visualise the results
 
 ## How to load
 ```smalltalk
@@ -22,15 +26,23 @@ Metacello new
 ## Analysis
 
 ```smalltalk
-| analysis alive browser |
+| analysis alive testCases classesToMutate |
+testCases :=  { UUIDPrimitivesTest }.
+classesToMutate := { UUID . UUIDGenerator }
+
 analysis := MutationTestingAnalysis
-    testCasesFrom: {UUIDPrimitivesTest}
-    mutating: {UUID. UUIDGenerator}
+    testCasesFrom: testCases
+    mutating: classesToMutate
     using: MutantOperator contents
     with: AllTestsMethodsRunningMutantEvaluationStrategy new.
+
 analysis run.
+
+"To retrieve the alive mutations"
 alive := analysis generalResult aliveMutants.
 
+"To inspect the results"
+analysis generalResult inspect.
 ```
 ---
 
