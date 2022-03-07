@@ -31,16 +31,6 @@ analysis := MutationTestingAnalysis
 analysis run.
 alive := analysis generalResult aliveMutants.
 
-"Display result in Glamorous Browser"
-browser := GLMTabulator new.
-browser 
-	row: #results;
-	row: #diff.
-browser transmit to: #results.
-browser transmit to: #diff; from: #results; andShow: [ :a | 
-	a diff display: [ :mutant | {((RBParser parseMethod: (mutant mutant originalSource)) formattedCode) . ((RBParser parseMethod: (mutant mutant modifiedSource)) formattedCode)}] ].
-browser openOn: alive.
-
 ```
 ---
 
