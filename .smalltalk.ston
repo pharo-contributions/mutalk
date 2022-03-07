@@ -6,7 +6,9 @@ SmalltalkCISpec {
             #platforms : [ #pharo ]
         }
     ],
-  #testing : {
-        #categories: [ 'MuTalk-Tests' ]
-  }
+    #testing : {
+        #coverage : {
+            #packages : [ 'MuTalk*' ]
+        }
+    }
 }
