@@ -1,7 +1,7 @@
 Class {
 	#name : #BaselineOfMuTalk,
 	#superclass : #BaselineOf,
-	#category : 'BaselineOfMuTalk'
+	#category : #BaselineOfMuTalk
 }
 
 { #category : #baselines }
@@ -22,9 +22,10 @@ BaselineOfMuTalk >> baseline: spec [
 			spec package: 'TestCoverage'.
 			spec group: 'testCoverage' with: #('TestCoverage').].
 
-		spec 
+		spec
+			package: 'TestCoverage';
 			package: 'MuTalk-Model' with: [
-				spec requires: #('testCoverage')];
+				spec requires: #('TestCoverage')];
 			package: 'MuTalk-TestResources' with: [
 				spec requires: #('MuTalk-Model')];
 			package: 'MuTalk-Tests' with: [
