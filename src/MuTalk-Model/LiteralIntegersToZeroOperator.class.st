@@ -15,7 +15,7 @@ LiteralIntegersToZeroOperator >> expressionToReplace [
 
 	^ [ :aNode | 
 	  aNode isLiteralNode & aNode isLiteralArray not and: [ 
-		  aNode value isInteger & aNode value isZero not ] ]
+		  aNode value isInteger and: [aNode value isZero not] ] ]
 ]
 
 { #category : #applying }
