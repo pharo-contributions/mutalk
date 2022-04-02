@@ -5,6 +5,11 @@ Class {
 }
 
 { #category : #testing }
+BlockBasedMutantOperator class >> isOriginalOperator [
+	^ false
+]
+
+{ #category : #testing }
 BlockBasedMutantOperator >> isAPosibleMutatedNode: aRBMethodNode [
 
 	| nodeThatMatches |

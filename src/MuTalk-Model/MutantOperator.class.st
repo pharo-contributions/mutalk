@@ -10,7 +10,8 @@ Class {
 
 { #category : #accessing }
 MutantOperator class >> allConcreteSubclasses [
-	^ self allSubclasses reject: [:ea | ea isAbstract]
+
+	^ self allSubclasses reject: [ :ea | ea isAbstract | ea isOriginalOperator ]
 ]
 
 { #category : #accessing }
@@ -21,8 +22,22 @@ MutantOperator class >> contents [
 ]
 
 { #category : #accessing }
+MutantOperator class >> contentsAll [
+
+	^ ((self allSubclasses reject: [ :ea | 
+		  ea isAbstract  ]) collect: [ :class | class new ]) 
+		  asSortedCollection: [ :elem1 :elem2 | 
+		  elem1 description <= elem2 description ]
+]
+
+{ #category : #accessing }
 MutantOperator class >> isAbstract [
 	^self subclasses isNotEmpty
+]
+
+{ #category : #testing }
+MutantOperator class >> isOriginalOperator [
+	^ true
 ]
 
 { #category : #printing }
