@@ -11,7 +11,8 @@ Class {
 { #category : #accessing }
 MutantOperator class >> allConcreteSubclasses [
 
-	^ self allSubclasses reject: [ :ea | ea isAbstract | ea isOriginalOperator ]
+	^ self allSubclasses reject: [ :ea | 
+		  ea isAbstract | ea isOriginalOperator not ]
 ]
 
 { #category : #accessing }
