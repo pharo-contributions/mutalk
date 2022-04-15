@@ -19,16 +19,34 @@ MutantOperator class >> allConcreteSubclasses [
 { #category : #accessing }
 MutantOperator class >> contents [
 
-	^(self allConcreteSubclasses collect: [:class |class new]) 
-		asSortedCollection: [:elem1 :elem2 | elem1 description <= elem2 description]
+	"This returns only the traditional operators "
+
+
+	^ (self allConcreteSubclasses collect: [ :class | class new ]) 
+		  asSortedCollection: [ :elem1 :elem2 | 
+		  elem1 description <= elem2 description ]
 ]
 
 { #category : #accessing }
 MutantOperator class >> contentsAll [
 
-	^ ((self allSubclasses reject: [ :ea | 
-		  ea isAbstract  ]) collect: [ :class | class new ]) 
-		  asSortedCollection: [ :elem1 :elem2 | 
+	"This returns all operators (block based and traditional) "
+
+	^ ((self allSubclasses reject: [ :ea | ea isAbstract ]) collect: [ 
+		   :class | class new ]) asSortedCollection: [ :elem1 :elem2 | 
+		  elem1 description <= elem2 description ]
+]
+
+{ #category : #accessing }
+MutantOperator class >> contentsAllStopRecursions [
+
+	"This returns all operators (block based and traditional) and enables recustion stopping"
+
+	^ ((self allSubclasses reject: [ :ea | ea isAbstract ]) collect: [ 
+		   :class | 
+		   class new
+			   modifyForRecursionDetection: true;
+			   yourself ]) asSortedCollection: [ :elem1 :elem2 | 
 		  elem1 description <= elem2 description ]
 ]
 
