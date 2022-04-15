@@ -59,6 +59,29 @@ MethodMutationTest >> testMutatedNodeBugFix [
 ]
 
 { #category : #tests }
+MethodMutationTest >> testMutationInfiniteRecursion [
+
+	| compiledMethod operator modifiedSource methodMutation res |
+	compiledMethod := FakeInfiniteRecursion >> #factorial:.
+	operator := ReplaceIfTrueReceiverWithFalseOperator new.
+	operator modifyForRecursionDetection: true.
+	modifiedSource := operator
+		                  modifiedSourceFor: compiledMethod
+		                  number: 1.
+	methodMutation := MethodMutation
+		                  for: compiledMethod
+		                  using: operator
+		                  result: modifiedSource
+		                  ofClass: FakeInfiniteRecursion.
+	methodMutation testCaseReferences: { (TestCaseReference
+			 for: #testFactorial
+			 in: FakeInfiniteRecursionTest) }.
+	res := methodMutation runMutant.
+
+	self assert: res runCount equals: 1
+]
+
+{ #category : #tests }
 MethodMutationTest >> testMutationRun [
 	| compiledMethod operator modifiedSource methodMutation res |
 	compiledMethod := AuxiliarClassForMutationTestingAnalysis

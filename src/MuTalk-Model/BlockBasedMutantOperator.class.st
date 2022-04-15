@@ -40,6 +40,7 @@ BlockBasedMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree 
 		oldNode := allNodes at: aNumber.
 		newNode := self newExpression value: oldNode.
 		oldNode replaceWith: newNode ].
+	parser := self modificationsForRecursionDetection: parser.
 	^ parser formattedCode
 ]
 
