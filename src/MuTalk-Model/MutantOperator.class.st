@@ -72,7 +72,7 @@ MutantOperator class >> recursionsDetectionThreshold [
 
 	"We need a big enough number"
 
-	^ 10000
+	^ 1024
 ]
 
 { #category : #printing }
