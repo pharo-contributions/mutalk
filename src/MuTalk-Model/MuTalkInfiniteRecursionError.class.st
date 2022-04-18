@@ -6,9 +6,11 @@ Class {
 
 { #category : #halting }
 MuTalkInfiniteRecursionError class >> onCount: anInteger [
+
 	"Based on Halt"
+
 	^ self onCountWithBehavior: [ :node | 
-		  (node propertyAt: #haltCount) = anInteger ]
+		  (node propertyAt: #haltCount) > anInteger ]
 ]
 
 { #category : #halting }
