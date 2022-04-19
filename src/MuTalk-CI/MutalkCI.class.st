@@ -200,7 +200,7 @@ MutalkCI >> runMutalkTargets: targets tests: tests generationStrategy: generatio
 	analysis := MutationTestingAnalysis
 		            testCasesFrom: tests
 		            mutating: targets
-		            using: MutantOperator contents
+		            using: MutantOperator contentsAllStopRecursions
 		            with: SelectingFromCoverageMutantEvaluationStrategy new
 		            with: generationStrategy.
 	analysis run.
