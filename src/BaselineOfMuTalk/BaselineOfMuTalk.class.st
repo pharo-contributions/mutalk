@@ -8,34 +8,6 @@ Class {
 BaselineOfMuTalk >> baseline: spec [
 	<baseline>
 
-	spec for: #common do: [
-	
-		spec for: #'pharo10.x' do: [
-			spec package: 'MuTalk-Model' with: [ spec includes: #('MuTalk-SpecUI') ].
-			spec package: 'MuTalk-SpecUI' with: [ spec requires: #('MuTalk-Model') ] ].
-		spec for: #'pharo9.x' do: [
-			spec package: 'MuTalk-Model' with: [ spec includes: #('MuTalk-SpecUI') ].
-			spec package: 'MuTalk-SpecUI' with: [ spec requires: #('MuTalk-Model') ] ].
-		
-		spec
-			package: 'TestCoverage';
-			package: 'MuTalk-Model' with: [
-				spec requires: #('TestCoverage')];
-			package: 'MuTalk-TestResources' with: [
-				spec requires: #('MuTalk-Model')];
-			package: 'MuTalk-Tests' with: [
-				spec requires: #('MuTalk-Model' 'MuTalk-TestResources')].
-			"package: 'MuTalk-UI'."
-			
-		spec group: 'default' with: #('MuTalk-Model' 'MuTalk-TestResources' 'MuTalk-Tests').
-
-	].		
-]
-
-{ #category : #baselines }
-BaselineOfMuTalk >> baselineOld: spec [
-	<baseline>
-
 	spec for: #common do: [ 
 		spec for: #'pharo6.x' do: [ spec group: 'testCoverage' with: #(  ) ].
 		spec for: #'pharo7.x' do: [ 
@@ -46,10 +18,12 @@ BaselineOfMuTalk >> baselineOld: spec [
 			spec group: 'testCoverage' with: #( 'TestCoverage' ) ].
 		spec for: #'pharo9.x' do: [ 
 			spec package: 'TestCoverage'.
-			spec group: 'testCoverage' with: #( 'TestCoverage' ) ].
+			spec group: 'testCoverage' with: #( 'TestCoverage' ).
+			spec package: 'MuTalk-SpecUI' with: [ spec requires: #('MuTalk-Model') ] ].
 		spec for: #'pharo10.x' do: [
 			spec package: 'TestCoverage'.
-			spec group: 'testCoverage' with: #('TestCoverage').].	
+			spec group: 'testCoverage' with: #('TestCoverage').
+			spec package: 'MuTalk-SpecUI' with: [ spec requires: #('MuTalk-Model') ] ].	
 
 		spec
 			package: 'MuTalk-Model'
