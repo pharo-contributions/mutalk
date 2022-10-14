@@ -10,7 +10,12 @@ Class {
 { #category : #tests }
 MutalkCITonelJsonExporterTest >> testWorking [
 
+	"requires https://github.com/mabdi/smalltalk-SmallBank"
+
 	| analysis json moreInfo |
+	
+	self skip. 
+	
 	analysis := MutationTestingAnalysis
 		            testCasesFrom: { SmallBankTest }
 		            mutating: { SmallBank }
