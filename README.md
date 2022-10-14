@@ -28,7 +28,7 @@ Metacello new
 ```smalltalk
 | analysis alive testCases classesToMutate |
 testCases :=  { UUIDPrimitivesTest }.
-classesToMutate := { UUID . UUIDGenerator }
+classesToMutate := { UUID . UUIDGenerator }.
 
 analysis := MutationTestingAnalysis
     testCasesFrom: testCases

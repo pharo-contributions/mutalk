@@ -1,7 +1,7 @@
 Class {
 	#name : #MutantOperatorTest,
 	#superclass : #TestCase,
-	#category : 'MuTalk-Tests'
+	#category : #'MuTalk-Tests'
 }
 
 { #category : #testing }
@@ -175,6 +175,24 @@ MutantOperatorTest >> testNumberMutantsGenerated [
 { #category : #testing }
 MutantOperatorTest >> testPrintingAccessors [
 	self assert: self operator description = self operatorDescription.
+]
+
+{ #category : #tests }
+MutantOperatorTest >> testRecursionsDetectionStatement [
+
+	| op src2 ast |
+	op := self operator.
+	op modifyForRecursionDetection: true.
+	src2 := op
+		        modifiedSourceFor: self class >> #methodWithOneSender
+		        number: 1.
+	ast := RBParser parseMethod: src2.
+	self
+		assert: ast selector
+		equals: (self class >> #methodWithOneSender) selector.
+	self
+		assert: ast statements first
+		equals: op class recursionsDetectionStatement
 ]
 
 { #category : #testing }
