@@ -40,7 +40,7 @@ MethodMutationTest >> testAccessingToNodes [
 	methodMutation := MethodMutation 
 		for: compiledMethod 
 		using: operator 
-		result: modifiedSource 
+		nodeNumber: 1
 		ofClass: AuxiliarClassForMutationTestingAnalysis.
 		
 	self assert: methodMutation nodeToMutate formattedCode = '1 + 2'.

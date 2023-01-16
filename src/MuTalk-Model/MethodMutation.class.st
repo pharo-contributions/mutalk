@@ -2,16 +2,25 @@ Class {
 	#name : #MethodMutation,
 	#superclass : #Object,
 	#instVars : [
+		'nodeNumber',
 		'originalMethod',
 		'modifiedSource',
 		'operator',
 		'originalClass',
-		'mutatedNode',
-		'nodeToMutate',
 		'testCaseReferences'
 	],
 	#category : #'MuTalk-Model'
 }
+
+{ #category : #'instance creation' }
+MethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
+	^ self new
+		initializeFor: aMethod
+		using: anOperatorApplied
+		nodeNumber: aNodeNumber
+		ofClass: aClass;
+		 yourself
+]
 
 { #category : #'instance creation' }
 MethodMutation class >> for: aMethod using: anOperatorApplied result: aModifiedSource ofClass: aClass [
@@ -21,6 +30,14 @@ MethodMutation class >> for: aMethod using: anOperatorApplied result: aModifiedS
 		result: aModifiedSource
 		ofClass: aClass;
 		 yourself
+]
+
+{ #category : #'initialize-release' }
+MethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
+	originalMethod := aMethod.
+	operator := anOperatorApplied.
+	nodeNumber := aNodeNumber.
+	originalClass := aClass
 ]
 
 { #category : #'initialize-release' }
@@ -37,39 +54,6 @@ MethodMutation >> install [
 	MethodInstaller new installFromSource: modifiedSource in: originalClass
 ]
 
-{ #category : #private }
-MethodMutation >> lookUpForNodesFromChildrenOfMutated: aPossibleMutatedRBMethodNode comparingWithChildrenOfOriginal: anOriginalRBMethodNode [ 
-	| childrenOfMutatedMethod childrenOfOriginalMethod |
-	childrenOfMutatedMethod := aPossibleMutatedRBMethodNode children.
-	childrenOfOriginalMethod := anOriginalRBMethodNode children.
-	1 to: childrenOfMutatedMethod size do: 
-		[ :childNumber | 
-			self lookUpForNodesFromMutated:  (childrenOfMutatedMethod at: childNumber)
-				  comparingWithOriginal: (childrenOfOriginalMethod at: childNumber).
-			mutatedNode ifNotNil: [^self]]
-
-	
-]
-
-{ #category : #private }
-MethodMutation >> lookUpForNodesFromMutated: aPossibleMutatedRBMethodNode comparingWithOriginal: anOriginalRBMethodNode [ 
-	(self operator 
-		isNodeOfMutation: aPossibleMutatedRBMethodNode
-		comparingWith: anOriginalRBMethodNode) ifTrue: 
-		[ nodeToMutate := anOriginalRBMethodNode.
-		mutatedNode := aPossibleMutatedRBMethodNode ].
-	aPossibleMutatedRBMethodNode children isEmpty ifTrue: [ ^ nil ].
-	^ self 
-		lookUpForNodesFromChildrenOfMutated: aPossibleMutatedRBMethodNode
-		comparingWithChildrenOfOriginal: anOriginalRBMethodNode
-]
-
-{ #category : #private }
-MethodMutation >> lookupForNodes [
-	self lookUpForNodesFromMutated: (RBParser parseMethod: self modifiedSource)
-		  comparingWithOriginal: (RBParser parseMethod: self originalSource ).
-]
-
 { #category : #accessing }
 MethodMutation >> modifiedSource [
 	^ modifiedSource
@@ -77,24 +61,28 @@ MethodMutation >> modifiedSource [
 
 { #category : #accessing }
 MethodMutation >> mutatedNode [
-	mutatedNode ifNil:[self lookupForNodes ].
-	^mutatedNode. 
+
+	^ operator applyTo: self nodeToMutate
 ]
 
 { #category : #accessing }
-MethodMutation >> mutatedNode: aNode [
-	mutatedNode := aNode
+MethodMutation >> nodeNumber: anInteger [ 
+	nodeNumber := anInteger
 ]
 
 { #category : #accessing }
 MethodMutation >> nodeToMutate [
-	nodeToMutate ifNil: [ self lookupForNodes ].
-	^ nodeToMutate
-]
 
-{ #category : #accessing }
-MethodMutation >> nodeToMutate: aNode [
-	nodeToMutate := aNode
+	| n searcher |
+	n := 1.
+	searcher := RBParseTreeSearcher new
+		            matches: operator expressionToReplace
+		            do: [ :node :answer | 
+			            n = nodeNumber ifTrue: [ ^ node ].
+			            n := n + 1 ];
+		            yourself.
+	searcher executeTree: originalMethod ast.
+	self error: 'Not found'
 ]
 
 { #category : #accessing }
