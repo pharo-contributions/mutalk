@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'nodeNumber',
 		'originalMethod',
-		'modifiedSource',
 		'operator',
 		'originalClass',
 		'testCaseReferences'
@@ -22,16 +21,6 @@ MethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeN
 		 yourself
 ]
 
-{ #category : #'instance creation' }
-MethodMutation class >> for: aMethod using: anOperatorApplied result: aModifiedSource ofClass: aClass [
-	^ self new
-		initializeFor: aMethod
-		using: anOperatorApplied
-		result: aModifiedSource
-		ofClass: aClass;
-		 yourself
-]
-
 { #category : #'initialize-release' }
 MethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
 	originalMethod := aMethod.
@@ -40,23 +29,16 @@ MethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aN
 	originalClass := aClass
 ]
 
-{ #category : #'initialize-release' }
-MethodMutation >> initializeFor: aMethod using: anOperatorApplied result: aModifiedSource ofClass: aClass [
-	originalMethod := aMethod.
-	operator := anOperatorApplied.
-	modifiedSource := aModifiedSource.
-	originalClass := aClass
-]
-
 { #category : #installing }
 MethodMutation >> install [
 	"Install the mutant compiling the modified source into the class."
-	MethodInstaller new installFromSource: modifiedSource in: originalClass
+	MethodInstaller new installFromSource: self modifiedSource in: originalClass
 ]
 
 { #category : #accessing }
 MethodMutation >> modifiedSource [
-	^ modifiedSource
+
+	^ operator modifiedSourceFor: originalMethod number: nodeNumber
 ]
 
 { #category : #accessing }

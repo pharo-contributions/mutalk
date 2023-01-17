@@ -11,23 +11,26 @@ MethodMutationTest >> simpleTestCaseRessource [
 
 { #category : #'testing accessing' }
 MethodMutationTest >> testAccessing [
+
 	| compiledMethod operator modifiedSource methodMutation |
 	compiledMethod := AuxiliarClassForMutationTestingAnalysis
-		>> #methodWithOnePlusSender.
+	                  >> #methodWithOnePlusSender.
 	operator := ReplacePlusWithMinusMutantOperator new.
 	modifiedSource := operator
-		modifiedSourceFor: compiledMethod
-		number: 1.
+		                  modifiedSourceFor: compiledMethod
+		                  number: 1.
 	methodMutation := MethodMutation
-		for: compiledMethod
-		using: operator
-		result: modifiedSource
-		ofClass: AuxiliarClassForMutationTestingAnalysis.
+		                  for: compiledMethod
+		                  using: operator
+		                  nodeNumber: 1
+		                  ofClass: AuxiliarClassForMutationTestingAnalysis.
 	self
-		assert: methodMutation originalSource = compiledMethod sourceCode asString.
-	self
-		assert: methodMutation originalClass = AuxiliarClassForMutationTestingAnalysis.
-	self assert: methodMutation modifiedSource = modifiedSource
+		assert: methodMutation originalSource
+		equals: compiledMethod sourceCode asString.
+	self assert:
+		methodMutation originalClass
+		= AuxiliarClassForMutationTestingAnalysis.
+	self assert: methodMutation modifiedSource equals: modifiedSource
 ]
 
 { #category : #'testing accessing' }
@@ -71,7 +74,7 @@ MethodMutationTest >> testMutationInfiniteRecursion [
 	methodMutation := MethodMutation
 		                  for: compiledMethod
 		                  using: operator
-		                  result: modifiedSource
+		                  nodeNumber: 1
 		                  ofClass: FakeInfiniteRecursion.
 	methodMutation testCaseReferences: { (TestCaseReference
 			 for: #testFactorial
@@ -93,10 +96,10 @@ MethodMutationTest >> testMutationRun [
 	methodMutation := MethodMutation
 		for: compiledMethod
 		using: operator
-		result: modifiedSource
+		nodeNumber: 1
 		ofClass: AuxiliarClassForMutationTestingAnalysis.
 	methodMutation testCaseReferences: { TestCaseReference for: #simpleTestCaseRessource in: self class }.
 	res := methodMutation runMutant.
 
-	self assert: res runCount equals: 1.
+	self assert: res runCount equals: 1
 ]

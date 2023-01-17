@@ -78,15 +78,15 @@ MutantOperator class >> recursionsDetectionThreshold [
 { #category : #applying }
 MutantOperator >> applyTo: anOldNode [
 
-	| rewriter aNewNode |
+	| rewriter |
 	rewriter := RBParseTreeRewriter new.
 	rewriter
-		replace: self expressionToReplace 
-		withValueFrom: [ :oNode |
+		replace: self expressionToReplace
+		withValueFrom: [ :oNode | | aNewNode |
 			aNewNode := RBParser parseRewriteExpression: self newExpression.
-			aNewNode := aNewNode copyInContext: rewriter context ].
+			aNewNode copyInContext: rewriter context ].
 	rewriter executeTree: anOldNode copy.
-	^ aNewNode
+	^ rewriter tree
 ]
 
 { #category : #printing }
@@ -183,16 +183,11 @@ MutantOperator >> modifyForRecursionDetection: aBoolean [
 { #category : #private }
 MutantOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumberOfSelector [
 
-	^ (MethodMutation
-		   for: aCompiledMethod
-		   using: self
-		   result: (self
-				    modifiedSourceFor: aCompiledMethod
-				    with: aParseTree
-				    number: aNumberOfSelector)
-		   ofClass: aCompiledMethod methodClass)
-		  nodeNumber: aNumberOfSelector;
-		  yourself
+	^ MethodMutation
+		  for: aCompiledMethod
+		  using: self
+		  nodeNumber: aNumberOfSelector
+		  ofClass: aCompiledMethod methodClass
 ]
 
 { #category : #'mutant generation' }
