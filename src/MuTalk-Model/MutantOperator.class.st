@@ -2,8 +2,6 @@ Class {
 	#name : #MutantOperator,
 	#superclass : #Object,
 	#instVars : [
-		'newNode',
-		'oldNode',
 		'modifyForRecursionDetection'
 	],
 	#category : #'MuTalk-Model-Operators'
