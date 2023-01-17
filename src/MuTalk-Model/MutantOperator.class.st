@@ -158,13 +158,13 @@ MutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aN
 	parser := aParseTree copy.
 	rewriter
 		replace: self expressionToReplace
-		withValueFrom: [ :oNode | 
+		withValueFrom: [ :oNode | | oldNode newNode |
 			nNode := RBParser parseRewriteExpression: self newExpression.
 			nNode := nNode copyInContext: rewriter context.
 			oldNode := oNode.
 			newNode := nNode.
 			newNode ]
-		when: [ :node | 
+		when: [ :node |
 			number := number - 1.
 			number = 0 ].
 	rewriter executeTree: parser.
