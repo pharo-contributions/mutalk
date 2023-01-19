@@ -13,7 +13,7 @@ Class {
 		'coverageAnalysisResult',
 		'logger'
 	],
-	#category : 'MuTalk-Model'
+	#category : #'MuTalk-Model'
 }
 
 { #category : #defaults }
@@ -215,7 +215,8 @@ MutationTestingAnalysis >> generateResults [
 					using: testCases
 					following: mutantsEvaluationStrategy
 					andConsidering: self coverageAnalysisResult) value]
-		displayingProgress: 'Evaluating mutants'.
+		displayingProgress:[ :aClass | 
+			'Evaluating Mutants: ', particularResults size asString , '/', mutations size asString ].
 	^ particularResults
 ]
 
