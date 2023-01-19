@@ -50,6 +50,8 @@ Original repository: http://www.squeaksource.com/MutationTesting
 
 ESUG presentation: https://www.slideshare.net/esug/mutation-testing
 
+Master thesis (in spanish): http://gestion.dc.uba.ar/media/academic/grade/thesis/brunstein.pdf
+
 > Following text is copy from https://code.google.com/archive/p/mutalk/
 
 ## Mutation testing
