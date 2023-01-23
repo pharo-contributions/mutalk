@@ -107,10 +107,10 @@ MethodMutation >> runMutant [
 
 { #category : #private }
 MethodMutation >> runTests [
-	| results |
-	results := TestAsserter classForTestResult new.
-	testCaseReferences collect: [ :tcr | results addAllResults: tcr runUnchecked ].
-	^ results
+
+	^ (TestSuite named: 'Tests cases for: ' , self printString)
+		  addTests: testCaseReferences;
+		  run
 ]
 
 { #category : #private }

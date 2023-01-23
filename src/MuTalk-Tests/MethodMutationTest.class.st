@@ -62,12 +62,17 @@ MethodMutationTest >> testMutatedNodeBugFix [
 ]
 
 { #category : #tests }
-MethodMutationTest >> testMutationInfiniteRecursion [
+MethodMutationTest >> testMutationInfiniteLoop [
 
 	| compiledMethod operator modifiedSource methodMutation res |
-	compiledMethod := FakeInfiniteRecursion >> #factorial:.
-	operator := ReplaceIfTrueReceiverWithFalseOperator new.
-	operator modifyForRecursionDetection: true.
+	
+	"This test will execute another test that will time out.
+	So this test will need a higher time limit"
+	self timeLimit: self defaultTimeLimit * 2.
+	
+	compiledMethod := FakeInfiniteLoopForTest >> #iterativeFactorial:.
+	operator := ReplaceLessOrEqualWithTrueOperator new.
+	
 	modifiedSource := operator
 		                  modifiedSourceFor: compiledMethod
 		                  number: 1.
@@ -75,13 +80,45 @@ MethodMutationTest >> testMutationInfiniteRecursion [
 		                  for: compiledMethod
 		                  using: operator
 		                  nodeNumber: 1
-		                  ofClass: FakeInfiniteRecursion.
+		                  ofClass: FakeInfiniteLoopForTest.
+
 	methodMutation testCaseReferences: { (TestCaseReference
-			 for: #testFactorial
-			 in: FakeInfiniteRecursionTest) }.
+			 for: #testIterativeFactorial
+			 in: FakeInfiniteLoopsTest) }.
+
 	res := methodMutation runMutant.
 
-	self assert: res runCount equals: 1
+	self assert: res errors size equals: 1
+]
+
+{ #category : #tests }
+MethodMutationTest >> testMutationInfiniteRecursion [
+
+	| compiledMethod operator modifiedSource methodMutation res |
+	
+	"This test will execute another test that will time out.
+	So this test will need a higher time limit"
+	self timeLimit: self defaultTimeLimit * 2.
+	
+	compiledMethod := FakeInfiniteLoopForTest >> #recursiveFactorial:.
+	operator := ReplaceIfTrueReceiverWithFalseOperator new.
+	
+	modifiedSource := operator
+		                  modifiedSourceFor: compiledMethod
+		                  number: 1.
+	methodMutation := MethodMutation
+		                  for: compiledMethod
+		                  using: operator
+		                  nodeNumber: 1
+		                  ofClass: FakeInfiniteLoopForTest.
+
+	methodMutation testCaseReferences: { (TestCaseReference
+			 for: #testRecursiveFactorial
+			 in: FakeInfiniteLoopsTest) }.
+
+	res := methodMutation runMutant.
+
+	self assert: res errors size equals: 1
 ]
 
 { #category : #tests }
