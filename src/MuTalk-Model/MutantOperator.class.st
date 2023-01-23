@@ -1,9 +1,6 @@
 Class {
 	#name : #MutantOperator,
 	#superclass : #Object,
-	#instVars : [
-		'modifyForRecursionDetection'
-	],
 	#category : #'MuTalk-Model-Operators'
 }
 
@@ -32,19 +29,6 @@ MutantOperator class >> contentsAll [
 
 	^ ((self allSubclasses reject: [ :ea | ea isAbstract ]) collect: [ 
 		   :class | class new ]) asSortedCollection: [ :elem1 :elem2 | 
-		  elem1 description <= elem2 description ]
-]
-
-{ #category : #accessing }
-MutantOperator class >> contentsAllStopRecursions [
-
-	"This returns all operators (block based and traditional) and enables recustion stopping"
-
-	^ ((self allSubclasses reject: [ :ea | ea isAbstract ]) collect: [ 
-		   :class | 
-		   class new
-			   modifyForRecursionDetection: true;
-			   yourself ]) asSortedCollection: [ :elem1 :elem2 | 
 		  elem1 description <= elem2 description ]
 ]
 
@@ -97,11 +81,6 @@ MutantOperator >> expressionToReplace [
 	self subclassResponsibility
 ]
 
-{ #category : #initialization }
-MutantOperator >> initialize [ 
-	modifyForRecursionDetection := false
-]
-
 { #category : #private }
 MutantOperator >> is: originalRBMethodNode equalTo: nodeThatMatches [ 
 	^ nodeThatMatches formattedCode = originalRBMethodNode formattedCode
@@ -132,17 +111,6 @@ MutantOperator >> isNodeOfMutation: posibleMutatedRBMethodNode comparingWith: or
 		and: [ self isAPosibleMutatedNode: posibleMutatedRBMethodNode ]
 ]
 
-{ #category : #'as yet unclassified' }
-MutantOperator >> modificationsForRecursionDetection: parser [
-
-	| statements |
-	modifyForRecursionDetection ifFalse: [ ^ parser ].
-	statements := parser statements asOrderedCollection.
-	statements addFirst: self class recursionsDetectionStatement.
-	parser statements: statements.
-	^ parser
-]
-
 { #category : #private }
 MutantOperator >> modifiedSourceFor: aCompiledMethod number: aNumber [ 
 	"this method must be removed, it is only added because some tests send this message - Gabo"
@@ -158,24 +126,19 @@ MutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aN
 	parser := aParseTree copy.
 	rewriter
 		replace: self expressionToReplace
-		withValueFrom: [ :oNode | | oldNode newNode |
+		withValueFrom: [ :oNode | 
+			| oldNode newNode |
 			nNode := RBParser parseRewriteExpression: self newExpression.
 			nNode := nNode copyInContext: rewriter context.
 			oldNode := oNode.
 			newNode := nNode.
 			newNode ]
-		when: [ :node |
+		when: [ :node | 
 			number := number - 1.
 			number = 0 ].
 	rewriter executeTree: parser.
 	parser := rewriter tree.
-	parser := self modificationsForRecursionDetection: parser.
 	^ parser formattedCode
-]
-
-{ #category : #accessing }
-MutantOperator >> modifyForRecursionDetection: aBoolean [
-	modifyForRecursionDetection := aBoolean 
 ]
 
 { #category : #private }

@@ -36,11 +36,11 @@ BlockBasedMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree 
 	| parser allNodes |
 	parser := aParseTree copy.
 	allNodes := parser allChildren select: self expressionToReplace.
-	allNodes size >= aNumber ifTrue: [ | oldNode newNode |
+	allNodes size >= aNumber ifTrue: [ 
+		| oldNode newNode |
 		oldNode := allNodes at: aNumber.
 		newNode := self newExpression value: oldNode.
 		oldNode replaceWith: newNode ].
-	parser := self modificationsForRecursionDetection: parser.
 	^ parser formattedCode
 ]
 
