@@ -6,7 +6,8 @@ Class {
 		'originalMethod',
 		'operator',
 		'originalClass',
-		'testCaseReferences'
+		'testCaseReferences',
+		'originalProtocol'
 	],
 	#category : #'MuTalk-Model'
 }
@@ -24,6 +25,7 @@ MethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeN
 { #category : #'initialize-release' }
 MethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
 	originalMethod := aMethod.
+	originalProtocol := aMethod protocol.
 	operator := anOperatorApplied.
 	nodeNumber := aNodeNumber.
 	originalClass := aClass
@@ -34,7 +36,7 @@ MethodMutation >> install [
 	"Install the mutant compiling the modified source into the class."
 
 	MethodInstaller new
-		installFromSource: self modifiedSource
+		installFromSourceSilently: self modifiedSource
 		in: originalClass
 ]
 
@@ -134,4 +136,5 @@ MethodMutation >> uninstall [
 		install: originalMethod
 		for: originalMethod selector
 		in: originalClass
+		withProtocol: originalProtocol
 ]
