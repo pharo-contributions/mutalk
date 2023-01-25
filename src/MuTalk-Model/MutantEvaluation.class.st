@@ -7,7 +7,7 @@ Class {
 		'testCases',
 		'coverageAnalysisResult'
 	],
-	#category : 'MuTalk-Model'
+	#category : #'MuTalk-Model'
 }
 
 { #category : #'instance creation' }
@@ -52,14 +52,8 @@ MutantEvaluation >> initializeFor: aMutation using:aCollectionOftestCases follow
 
 { #category : #private }
 MutantEvaluation >> runTests [
-	"Collect all suite test and execute them."
-	| suite |
-	suite := TestSuite named: 'MutationEvaluation'.
-	suite addTests: ((strategy	testCasesToEvaluate: mutation
-									for: self) collect: [ :each | each testCase ]).
-	^ [ suite runStoppingOnFirstFailOrError ] 
-		on: Error
-		do: [ :ex | nil ]
+
+	^ mutation runMutant
 ]
 
 { #category : #accessing }
@@ -81,9 +75,8 @@ MutantEvaluation >> testResults [
 { #category : #evaluation }
 MutantEvaluation >> value [
 	| testResults |
-	Stdio stdout nextPutAll: mutation originalMethod name asString; lf; flush.
-
 	self initializeCoverageResultIfNil.
+
 	mutation testCaseReferences: (strategy testCasesToEvaluate: mutation for: self).
 	testResults := mutation runMutant.
 	^ MutantEvaluationResult

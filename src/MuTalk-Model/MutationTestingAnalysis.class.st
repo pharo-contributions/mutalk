@@ -13,7 +13,7 @@ Class {
 		'coverageAnalysisResult',
 		'logger'
 	],
-	#category : 'MuTalk-Model'
+	#category : #'MuTalk-Model'
 }
 
 { #category : #defaults }
@@ -186,6 +186,12 @@ MutationTestingAnalysis >> coverageAnalysisResult [
 	^coverageAnalysisResult
 ]
 
+{ #category : #accessing }
+MutationTestingAnalysis >> coverageAnalysisResult: anObject [
+
+	coverageAnalysisResult := anObject
+]
+
 { #category : #results }
 MutationTestingAnalysis >> generalResult [
 	^ MutationTestingGeneralResult
@@ -215,8 +221,17 @@ MutationTestingAnalysis >> generateResults [
 					using: testCases
 					following: mutantsEvaluationStrategy
 					andConsidering: self coverageAnalysisResult) value]
-		displayingProgress: 'Evaluating mutants'.
+		displayingProgress:[ :aClass | 
+			'Evaluating Mutants: ', particularResults size asString , '/', mutations size asString ].
 	^ particularResults
+]
+
+{ #category : #running }
+MutationTestingAnalysis >> initialTestRun [
+
+	"Do an initial run of the tests to check that they are all green.
+	Only green tests count for the mutation testing analysis"
+	testCases do: [ :aTestCase | aTestCase runChecked ]
 ]
 
 { #category : #'initialize-release' }
@@ -239,9 +254,39 @@ MutationTestingAnalysis >> modelClasses [
 				anySatisfy: [:classToFilter | class includesBehavior: classToFilter]]
 ]
 
+{ #category : #accessing }
+MutationTestingAnalysis >> mutantsEvaluationStrategy [
+
+	^ mutantsEvaluationStrategy
+]
+
+{ #category : #accessing }
+MutationTestingAnalysis >> mutantsEvaluationStrategy: anObject [
+
+	mutantsEvaluationStrategy := anObject
+]
+
 { #category : #accesing }
 MutationTestingAnalysis >> mutations [
 	^mutations
+]
+
+{ #category : #accessing }
+MutationTestingAnalysis >> mutations: anObject [
+
+	mutations := anObject
+]
+
+{ #category : #accessing }
+MutationTestingAnalysis >> mutationsGenerationStrategy [
+
+	^ mutationsGenerationStrategy
+]
+
+{ #category : #accessing }
+MutationTestingAnalysis >> mutationsGenerationStrategy: anObject [
+
+	mutationsGenerationStrategy := anObject
 ]
 
 { #category : #accesing }
@@ -260,7 +305,7 @@ MutationTestingAnalysis >> run [
 	methods of
 	those classes) and execute all mutants in the set of testClases.
 	We obtain a result for each mutant generated"
-	^[testCases do: [ :aTestCase | aTestCase runChecked ].
+	^[self initialTestRun.
 	logger logAnalysisStartFor:self.
 	elapsedTime := Time millisecondsToRun: [
 					self generateCoverageAnalysis.
@@ -283,4 +328,10 @@ MutationTestingAnalysis >> testBaseClasses [
 MutationTestingAnalysis >> testCases [
 	^testCases
 
+]
+
+{ #category : #accessing }
+MutationTestingAnalysis >> testCases: anObject [
+
+	testCases := anObject
 ]

@@ -32,7 +32,10 @@ MethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aN
 { #category : #installing }
 MethodMutation >> install [
 	"Install the mutant compiling the modified source into the class."
-	MethodInstaller new installFromSource: self modifiedSource in: originalClass
+
+	MethodInstaller new
+		installFromSource: self modifiedSource
+		in: originalClass
 ]
 
 { #category : #accessing }
@@ -110,7 +113,7 @@ MethodMutation >> runTests [
 
 	^ (TestSuite named: 'Tests cases for: ' , self printString)
 		  addTests: testCaseReferences;
-		  run
+		  runStoppingOnFirstFailOrError
 ]
 
 { #category : #private }
@@ -126,5 +129,9 @@ MethodMutation >> testCaseReferences: aCollectionOfTestCaseReferences [
 { #category : #installing }
 MethodMutation >> uninstall [
 	"UnInstall the mutant recompiling the original method into the class."
-	MethodInstaller new install:originalMethod for: originalMethod selector in: originalClass 
+
+	MethodInstaller new
+		install: originalMethod
+		for: originalMethod selector
+		in: originalClass
 ]

@@ -10,16 +10,13 @@ MethodInstaller >> install: aMethod for: selector in: aClass [
 ]
 
 { #category : #installing }
-MethodInstaller >> installFromSource: aSourceCode in: aClass [ 
+MethodInstaller >> installFromSource: aSourceCode in: aClass [
 	"Install a SourceCode in aClass. Raise exception in case de installation is
 	not posible."
-	| selector |
-	[selector := aClass
-		compile: aSourceCode ] 
-		on: Error, SyntaxErrorNotification 
-		do: [ :error | MethodInstallerException signal ].
-	
-	self install: (aClass>>selector) for: selector in: aClass.
+
+	[ aClass compileSilently: aSourceCode ]
+		on: Error , SyntaxErrorNotification
+		do: [ :error | MethodInstallerException signal ]
 ]
 
 { #category : #installing }
