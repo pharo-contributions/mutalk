@@ -11,7 +11,7 @@ BaselineOfMuTalk >> baseline: spec [
 	spec for: #common do: [
 		spec
 		   package: 'TestCoverage';
-			package: 'MuTalk-Model' with: [ spec requires: #( 'testCoverage' ) ];
+			package: 'MuTalk-Model' with: [ spec requires: #( 'TestCoverage' ) ];
 			package: 'MuTalk-TestResources' with: [ spec requires: #( 'MuTalk-Model' ) ];
 			package: 'MuTalk-CI' with: [ spec requires: #( 'MuTalk-Model' ) ];
 			package: 'MuTalk-CI-Tests' with: [ spec requires: #( 'MuTalk-Model' 'MuTalk-CI' ) ];
