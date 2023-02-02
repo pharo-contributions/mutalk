@@ -15,7 +15,7 @@ BaselineOfMuTalk >> baseline: spec [
 			package: 'MuTalk-TestResources' with: [ spec requires: #( 'MuTalk-Model' ) ];
 			package: 'MuTalk-CI' with: [ spec requires: #( 'MuTalk-Model' ) ];
 			package: 'MuTalk-CI-Tests' with: [ spec requires: #( 'MuTalk-Model' 'MuTalk-CI' ) ];
-			package: 'MuTalk-Tests' with: [ spec requires: #( 'MuTalk-Model' 'MuTalk-TestResources' '' ) ];
+			package: 'MuTalk-Tests' with: [ spec requires: #( 'MuTalk-Model' 'MuTalk-TestResources' ) ];
 			package: 'MuTalk-SpecUI' with: [ spec requires: #('MuTalk-Model') ].
 
 		spec
