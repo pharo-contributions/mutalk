@@ -3,19 +3,25 @@ name: CI
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the development branch
 on:
+  # Run on push and pull requests on any branch, but ignore if change doesn't affect code.
   push:
-    branches:
-      - master
+    paths-ignore:
+    - 'README.md'
+    - 'docs/**'
+  pull_request:
+    paths-ignore:
+    - 'README.md'
+    - 'docs/**'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        smalltalk: [ Pharo64-9.0, Pharo64-10 ]
+        smalltalk: [ Pharo64-9.0, Pharo64-10, Pharo64-11 ]
     name: ${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v2
