@@ -3,7 +3,7 @@ name: CI
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-#on:
+on:
   # Run on push and pull requests on any branch, but ignore if change doesn't affect code.
   push:
     paths-ignore:
