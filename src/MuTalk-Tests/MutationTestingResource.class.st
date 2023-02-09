@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'testResource'
 	],
-	#category : 'MuTalk-Tests'
+	#category : #'MuTalk-Tests'
 }
 
 { #category : #building }
@@ -71,10 +71,10 @@ MutationTestingResource >> mutation [
 	"Build Mock Object that simulates a Mutant"
 	| method |
 	method := self class >> #methodForBuildingMutant.
-	^ MethodMutation 
+	^ MethodMutation
 		for: method
 		using: ReplacePlusWithMinusMutantOperator new
-		result: 'methodForBuildingMutant  ^ 1 - 2'
+		nodeNumber: 1
 		ofClass: self class
 ]
 

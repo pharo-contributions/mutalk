@@ -1,7 +1,7 @@
 Class {
 	#name : #MutationTestingAnalysisTest,
 	#superclass : #TestCase,
-	#category : 'MuTalk-Tests'
+	#category : #'MuTalk-Tests'
 }
 
 { #category : #accessing }
@@ -56,6 +56,48 @@ MutationTestingAnalysisTest >> selectForRejectReplacementMutation [
 	| operator |
 	operator := ReplaceSelectWithRejectMutantOperator new.
 	^ OrderedCollection with: operator
+]
+
+{ #category : #testing }
+MutationTestingAnalysisTest >> testExecutingInfiniteLoopAnalysis [
+
+	| analysis results mutationResult |
+	"This test will execute another test that will time out.
+	So this test will need a higher time limit"
+	self timeLimit: self defaultTimeLimit * 2.
+
+	analysis := MutationTestingAnalysis
+		            testCasesFrom: { FakeInfiniteLoopsTest }
+		            mutating: { FakeInfiniteLoopForTest }
+		            using: { ReplaceLessOrEqualWithTrueOperator new }.
+
+	analysis run.
+
+	results := analysis particularResults.
+	self assert: results size equals: 1.
+	mutationResult := results first.
+	self assert: mutationResult killed
+]
+
+{ #category : #testing }
+MutationTestingAnalysisTest >> testExecutingInfiniteRecursionAnalysis [
+
+	| analysis results mutationResult |
+	"This test will execute another test that will time out.
+	So this test will need a higher time limit"
+	self timeLimit: self defaultTimeLimit * 2.
+
+	analysis := MutationTestingAnalysis
+		            testCasesFrom: { FakeInfiniteLoopsTest }
+		            mutating: { FakeInfiniteLoopForTest }
+		            using: { ReplaceIfTrueReceiverWithFalseOperator new }.
+
+	analysis run.
+
+	results := analysis particularResults.
+	self assert: results size equals: 1.
+	mutationResult := results first.
+	self assert: mutationResult killed
 ]
 
 { #category : #testing }

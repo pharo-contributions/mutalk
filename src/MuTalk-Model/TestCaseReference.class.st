@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'class',
-		'selector'
+		'selector',
+		'lastTimeToRun'
 	],
 	#category : #'MuTalk-Model'
 }
@@ -22,6 +23,11 @@ TestCaseReference class >> forTestCase: aTestCase [
 TestCaseReference >> initializeFor: aSelector in: aClass [
 	class := aClass.
 	selector := aSelector.
+]
+
+{ #category : #accessing }
+TestCaseReference >> lastTimeToRun [
+	^ lastTimeToRun
 ]
 
 { #category : #evaluating }
@@ -45,15 +51,18 @@ TestCaseReference >> run: aTestResult [
 { #category : #evaluating }
 TestCaseReference >> runChecked [
 	| result |	
-	result := self testCase run.
-	(result failuresSize > 0 or: [ result errorsSize > 0 ])
+	result := self runUnchecked.
+	(result unexpectedFailureCount > 0 or: [ result unexpectedErrorCount > 0 ])
 		ifTrue: [ TestsWithErrorsException signal ].
 	^ result
 ]
 
 { #category : #evaluating }
 TestCaseReference >> runUnchecked [
-	^ self testCase run
+
+	| result |
+	lastTimeToRun := [ result := self testCase run ] timeToRun.
+	^ result
 ]
 
 { #category : #evaluating }

@@ -4,10 +4,10 @@ Class {
 	#instVars : [
 		'nodeNumber',
 		'originalMethod',
-		'modifiedSource',
 		'operator',
 		'originalClass',
-		'testCaseReferences'
+		'testCaseReferences',
+		'originalProtocol'
 	],
 	#category : #'MuTalk-Model'
 }
@@ -22,41 +22,28 @@ MethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeN
 		 yourself
 ]
 
-{ #category : #'instance creation' }
-MethodMutation class >> for: aMethod using: anOperatorApplied result: aModifiedSource ofClass: aClass [
-	^ self new
-		initializeFor: aMethod
-		using: anOperatorApplied
-		result: aModifiedSource
-		ofClass: aClass;
-		 yourself
-]
-
 { #category : #'initialize-release' }
 MethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
 	originalMethod := aMethod.
+	originalProtocol := aMethod protocol.
 	operator := anOperatorApplied.
 	nodeNumber := aNodeNumber.
-	originalClass := aClass
-]
-
-{ #category : #'initialize-release' }
-MethodMutation >> initializeFor: aMethod using: anOperatorApplied result: aModifiedSource ofClass: aClass [
-	originalMethod := aMethod.
-	operator := anOperatorApplied.
-	modifiedSource := aModifiedSource.
 	originalClass := aClass
 ]
 
 { #category : #installing }
 MethodMutation >> install [
 	"Install the mutant compiling the modified source into the class."
-	MethodInstaller new installFromSource: modifiedSource in: originalClass
+
+	MethodInstaller new
+		installFromSourceSilently: self modifiedSource
+		in: originalClass
 ]
 
 { #category : #accessing }
 MethodMutation >> modifiedSource [
-	^ modifiedSource
+
+	^ operator modifiedSourceFor: originalMethod number: nodeNumber
 ]
 
 { #category : #accessing }
@@ -125,10 +112,10 @@ MethodMutation >> runMutant [
 
 { #category : #private }
 MethodMutation >> runTests [
-	| results |
-	results := TestAsserter classForTestResult new.
-	testCaseReferences collect: [ :tcr | results addAllResults: tcr runUnchecked ].
-	^ results
+
+	^ (TestSuite named: 'Tests cases for: ' , self printString)
+		  addTests: testCaseReferences;
+		  runStoppingOnFirstFailOrError
 ]
 
 { #category : #private }
@@ -144,5 +131,10 @@ MethodMutation >> testCaseReferences: aCollectionOfTestCaseReferences [
 { #category : #installing }
 MethodMutation >> uninstall [
 	"UnInstall the mutant recompiling the original method into the class."
-	MethodInstaller new install:originalMethod for: originalMethod selector in: originalClass 
+
+	MethodInstaller new
+		install: originalMethod
+		for: originalMethod selector
+		in: originalClass
+		withProtocol: originalProtocol
 ]

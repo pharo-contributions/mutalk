@@ -5,21 +5,32 @@ Class {
 }
 
 { #category : #installing }
-MethodInstaller >> install: aMethod for: selector in: aClass [ 
-	aClass addSelectorSilently: selector withMethod: aMethod
+MethodInstaller >> install: aMethod for: selector in: aClass withProtocol: methodProtocol [
+
+	aClass
+		addAndClassifySelector: selector
+		withMethod: aMethod
+		inProtocol: methodProtocol
 ]
 
 { #category : #installing }
-MethodInstaller >> installFromSource: aSourceCode in: aClass [ 
+MethodInstaller >> installFromSource: aSourceCode in: aClass [
 	"Install a SourceCode in aClass. Raise exception in case de installation is
 	not posible."
-	| selector |
-	[selector := aClass
-		compile: aSourceCode ] 
-		on: Error, SyntaxErrorNotification 
-		do: [ :error | MethodInstallerException signal ].
-	
-	self install: (aClass>>selector) for: selector in: aClass.
+
+	[ aClass compile: aSourceCode ]
+		on: Error , SyntaxErrorNotification
+		do: [ :error | MethodInstallerException signal ]
+]
+
+{ #category : #installing }
+MethodInstaller >> installFromSourceSilently: aSourceCode in: aClass [
+	"Install a SourceCode in aClass. Raise exception in case de installation is
+	not posible."
+
+	[ aClass compileSilently: aSourceCode ]
+		on: Error , SyntaxErrorNotification
+		do: [ :error | MethodInstallerException signal ]
 ]
 
 { #category : #installing }
