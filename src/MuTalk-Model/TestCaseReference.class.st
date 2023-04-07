@@ -30,6 +30,12 @@ TestCaseReference >> lastTimeToRun [
 	^ lastTimeToRun
 ]
 
+{ #category : #accessing }
+TestCaseReference >> method [
+	
+	^ class >> selector
+]
+
 { #category : #evaluating }
 TestCaseReference >> resources [
 	^self testCase resources

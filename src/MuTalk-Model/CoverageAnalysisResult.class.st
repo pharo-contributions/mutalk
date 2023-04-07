@@ -19,6 +19,22 @@ CoverageAnalysisResult class >> from: aDictionaryOfMethodToTestCasesRelations el
 	^self new initializeFrom: aDictionaryOfMethodToTestCasesRelations elapsedTime: aTimeToRunTests.
 ]
 
+{ #category : #api }
+CoverageAnalysisResult >> coveragePerTest: aMutationTestingAnalysis [
+	
+	| coveragePerTest |
+	coveragePerTest := Dictionary new.
+	aMutationTestingAnalysis testCases do: [ :testcase | | coveredMethods |
+		coveredMethods := methodToTestDictionary associations
+			select: [ :association | association value includes: testcase ]
+			thenCollect: #key.
+		coveragePerTest
+			at: testcase
+			put: coveredMethods
+	].
+	^ coveragePerTest
+]
+
 { #category : #accessing }
 CoverageAnalysisResult >> coveredMethods [
 	^methodToTestDictionary keys asIdentitySet. "select:[:each | (methodToTestDictionary at:each) notEmpty]."
