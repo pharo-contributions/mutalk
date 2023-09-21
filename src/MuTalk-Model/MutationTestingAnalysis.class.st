@@ -11,7 +11,8 @@ Class {
 		'mutations',
 		'testCases',
 		'coverageAnalysisResult',
-		'logger'
+		'logger',
+		'beStrictMode'
 	],
 	#category : #'MuTalk-Model'
 }
@@ -180,6 +181,12 @@ MutationTestingAnalysis class >> testCasesReferencesFrom: testClass [
 			in: testClass ]
 ]
 
+{ #category : #accessing }
+MutationTestingAnalysis >> beStrictMode: aBoolean [
+
+	beStrictMode := aBoolean
+]
+
 { #category : #accesing }
 MutationTestingAnalysis >> coverageAnalysisResult [
 	
@@ -231,7 +238,30 @@ MutationTestingAnalysis >> initialTestRun [
 
 	"Do an initial run of the tests to check that they are all green.
 	Only green tests count for the mutation testing analysis"
-	testCases do: [ :aTestCase | aTestCase runChecked ]
+	[ testCases do: [ :aTestCase | aTestCase runChecked ] ]
+		on: TestsWithErrorsException
+		do: [ :ex |
+			beStrictMode
+				ifTrue: [ ^ ex pass ]
+				ifFalse: [self initialTestRunNonStricMode ].
+			ex return: true ]
+]
+
+{ #category : #running }
+MutationTestingAnalysis >> initialTestRunNonStricMode [
+	"In case that beStricMode is false, it will filter the passed tests"
+
+	| initialTestCases countFailingTests |
+	initialTestCases := testCases size.
+
+	self testCases: (testCases select: [ :aTestCase |
+			 aTestCase testCase run runCount
+			 = aTestCase testCase run passedCount ]).
+
+	countFailingTests := initialTestCases - testCases size.
+	countFailingTests > 0 ifTrue: [
+		self inform: 'Your have ' , countFailingTests printString ,
+			' test(s) that have Errors or Failures. But in Non-Strict-Mode I will filter them' ]
 ]
 
 { #category : #'initialize-release' }
@@ -243,7 +273,8 @@ MutationTestingAnalysis >> initializeFor: someTestCasesReferences mutating: some
 	mutantsEvaluationStrategy := aMutantsEvaluationStrategy.
 	particularResults := OrderedCollection new.
 	elapsedTime := 0.
-	logger := aLogger
+	logger := aLogger.
+	beStrictMode := true.
 ]
 
 { #category : #accesing }
