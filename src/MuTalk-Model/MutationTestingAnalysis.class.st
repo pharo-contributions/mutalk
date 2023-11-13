@@ -278,13 +278,13 @@ MutationTestingAnalysis >> mutations: anObject [
 ]
 
 { #category : #accessing }
-MutationTestingAnalysis >> mutationsGenerationStrategy [
+MutationTestingAnalysis >> mutationsEvaluationStrategy [
 
 	^ mutationsGenerationStrategy
 ]
 
 { #category : #accessing }
-MutationTestingAnalysis >> mutationsGenerationStrategy: anObject [
+MutationTestingAnalysis >> mutationsEvaluationStrategy: anObject [
 
 	mutationsGenerationStrategy := anObject
 ]
