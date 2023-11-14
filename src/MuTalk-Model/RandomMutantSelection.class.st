@@ -27,6 +27,12 @@ RandomMutantSelection >> initialize [
 ]
 
 { #category : #generating }
+RandomMutantSelection >> methodsToMutateFrom: aMutationTestingAnalysis [
+
+	^ mutationsGenerationStrategy methodsToMutateFrom: aMutationTestingAnalysis
+]
+
+{ #category : #generating }
 RandomMutantSelection >> mutationsFor: aMutationTestingAnalysis [
 
 	^ self
@@ -41,6 +47,15 @@ RandomMutantSelection >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogg
 	mutations := mutationsGenerationStrategy mutationsFor:
 		             aMutationTestingAnalysis loggingIn: aLogger.
 	^ self selectMutantsFrom: mutations
+]
+
+{ #category : #generating }
+RandomMutantSelection >> mutationsFor: aMethod usingAll: aCollectionOfMutantOperators logginIn: aLogger [
+
+	^ mutationsGenerationStrategy
+		  mutationsFor: aMethod
+		  usingAll: aCollectionOfMutantOperators
+		  logginIn: aLogger
 ]
 
 { #category : #accessing }
