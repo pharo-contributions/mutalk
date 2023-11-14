@@ -1,43 +1,43 @@
 Class {
-	#name : #FixedRandomMutantsSelectionTest,
-	#superclass : #RandomMutantsEvaluationStrategyTest,
+	#name : #FixedRandomMutantSelectionTest,
+	#superclass : #RandomMutantSelectionTest,
 	#category : #'MuTalk-Tests'
 }
 
 { #category : #tests }
-FixedRandomMutantsSelectionTest >> testSelectMutantsFrom [
+FixedRandomMutantSelectionTest >> testSelectMutantsFrom [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := FixedRandomMutantsSelection new numberOfMutants: 5.
+	select := FixedRandomMutantSelection new numberOfMutants: 5.
 	self assert: (select selectMutantsFrom: coll) size equals: 5
 ]
 
 { #category : #tests }
-FixedRandomMutantsSelectionTest >> testSelectMutantsFrom2 [
+FixedRandomMutantSelectionTest >> testSelectMutantsFrom2 [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := FixedRandomMutantsSelection new numberOfMutants: 0.
+	select := FixedRandomMutantSelection new numberOfMutants: 0.
 	self
 		assert: (select selectMutantsFrom: coll)
 		equals: {  } asOrderedCollection
 ]
 
 { #category : #tests }
-FixedRandomMutantsSelectionTest >> testSelectMutantsFrom3 [
+FixedRandomMutantSelectionTest >> testSelectMutantsFrom3 [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := FixedRandomMutantsSelection new numberOfMutants: 10.
+	select := FixedRandomMutantSelection new numberOfMutants: 10.
 	self assert: (select selectMutantsFrom: coll) equals: coll
 ]
 
 { #category : #tests }
-FixedRandomMutantsSelectionTest >> testSelectMutantsFrom4 [
+FixedRandomMutantSelectionTest >> testSelectMutantsFrom4 [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := FixedRandomMutantsSelection new numberOfMutants: 20.
+	select := FixedRandomMutantSelection new numberOfMutants: 20.
 	self assert: (select selectMutantsFrom: coll) equals: coll
 ]

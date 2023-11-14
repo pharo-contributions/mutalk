@@ -1,6 +1,6 @@
 Class {
-	#name : #FixedRandomMutantsSelection,
-	#superclass : #RandomMutantsEvaluationStrategy,
+	#name : #FixedRandomMutantSelection,
+	#superclass : #RandomMutantSelection,
 	#instVars : [
 		'numberOfMutants'
 	],
@@ -8,19 +8,19 @@ Class {
 }
 
 { #category : #accessing }
-FixedRandomMutantsSelection >> numberOfMutants [
+FixedRandomMutantSelection >> numberOfMutants [
 
 	^ numberOfMutants
 ]
 
 { #category : #accessing }
-FixedRandomMutantsSelection >> numberOfMutants: aNumber [
+FixedRandomMutantSelection >> numberOfMutants: aNumber [
 
 	numberOfMutants := aNumber
 ]
 
 { #category : #accessing }
-FixedRandomMutantsSelection >> selectMutantsFrom: aCollection [
+FixedRandomMutantSelection >> selectMutantsFrom: aCollection [
 
 	| size index newColl random |
 	size := aCollection size.

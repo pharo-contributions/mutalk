@@ -1,52 +1,52 @@
 Class {
-	#name : #PercentRandomMutantsSelectionTest,
-	#superclass : #RandomMutantsEvaluationStrategyTest,
+	#name : #PercentRandomMutantSelectionTest,
+	#superclass : #RandomMutantSelectionTest,
 	#category : #'MuTalk-Tests'
 }
 
 { #category : #tests }
-PercentRandomMutantsSelectionTest >> testSelectMutantsFrom [
+PercentRandomMutantSelectionTest >> testSelectMutantsFrom [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := PercentRandomMutantsSelection new percentageOfMutants: 50.
+	select := PercentRandomMutantSelection new percentageOfMutants: 50.
 	self assert: (select selectMutantsFrom: coll) size equals: 5
 ]
 
 { #category : #tests }
-PercentRandomMutantsSelectionTest >> testSelectMutantsFrom2 [
+PercentRandomMutantSelectionTest >> testSelectMutantsFrom2 [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := PercentRandomMutantsSelection new percentageOfMutants: 0.
+	select := PercentRandomMutantSelection new percentageOfMutants: 0.
 	self
 		assert: (select selectMutantsFrom: coll)
 		equals: {  } asOrderedCollection
 ]
 
 { #category : #tests }
-PercentRandomMutantsSelectionTest >> testSelectMutantsFrom3 [
+PercentRandomMutantSelectionTest >> testSelectMutantsFrom3 [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := PercentRandomMutantsSelection new percentageOfMutants: 100.
+	select := PercentRandomMutantSelection new percentageOfMutants: 100.
 	self assert: (select selectMutantsFrom: coll) equals: coll
 ]
 
 { #category : #tests }
-PercentRandomMutantsSelectionTest >> testSelectMutantsFrom4 [
+PercentRandomMutantSelectionTest >> testSelectMutantsFrom4 [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := PercentRandomMutantsSelection new.
+	select := PercentRandomMutantSelection new.
 	self should: [ select percentageOfMutants: -50 ] raise: Error
 ]
 
 { #category : #tests }
-PercentRandomMutantsSelectionTest >> testSelectMutantsFrom5 [
+PercentRandomMutantSelectionTest >> testSelectMutantsFrom5 [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := PercentRandomMutantsSelection new.
+	select := PercentRandomMutantSelection new.
 	self should: [ select percentageOfMutants: 150 ] raise: Error
 ]

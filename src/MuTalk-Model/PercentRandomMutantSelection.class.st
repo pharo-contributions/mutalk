@@ -1,6 +1,6 @@
 Class {
-	#name : #PercentRandomMutantsSelection,
-	#superclass : #RandomMutantsEvaluationStrategy,
+	#name : #PercentRandomMutantSelection,
+	#superclass : #RandomMutantSelection,
 	#instVars : [
 		'percentageOfMutants'
 	],
@@ -8,13 +8,13 @@ Class {
 }
 
 { #category : #accessing }
-PercentRandomMutantsSelection >> percentageOfMutants [
+PercentRandomMutantSelection >> percentageOfMutants [
 
 	^ percentageOfMutants
 ]
 
 { #category : #accessing }
-PercentRandomMutantsSelection >> percentageOfMutants: aPercentage [
+PercentRandomMutantSelection >> percentageOfMutants: aPercentage [
 
 	(aPercentage < 0 or: [ aPercentage > 100 ]) ifTrue: [
 		Error signal: 'Percantage should be between 0 and 100' ].
@@ -22,7 +22,7 @@ PercentRandomMutantsSelection >> percentageOfMutants: aPercentage [
 ]
 
 { #category : #accessing }
-PercentRandomMutantsSelection >> selectMutantsFrom: aCollection [
+PercentRandomMutantSelection >> selectMutantsFrom: aCollection [
 
 	| size index newColl random numberOfMutants |
 	size := aCollection size.
