@@ -50,3 +50,15 @@ PercentRandomMutantSelectionTest >> testSelectMutantsFrom5 [
 	select := PercentRandomMutantSelection new.
 	self should: [ select percentageOfMutants: 150 ] raise: Error
 ]
+
+{ #category : #tests }
+PercentRandomMutantSelectionTest >> testSelectMutantsFromDistinctElements [
+
+	| select coll newColl |
+	coll := (1 to: 10) asOrderedCollection.
+	select := PercentRandomMutantSelection new percentageOfMutants: 90.
+	newColl := select selectMutantsFrom: coll.
+	self
+		assert: newColl copyWithoutDuplicates asBag
+		equals: newColl asBag
+]

@@ -41,3 +41,15 @@ FixedRandomMutantSelectionTest >> testSelectMutantsFrom4 [
 	select := FixedRandomMutantSelection new numberOfMutants: 20.
 	self assert: (select selectMutantsFrom: coll) equals: coll
 ]
+
+{ #category : #tests }
+FixedRandomMutantSelectionTest >> testSelectMutantsFromDistinctElements [
+
+	| select coll newColl |
+	coll := (1 to: 10) asOrderedCollection.
+	select := FixedRandomMutantSelection new numberOfMutants: 9.
+	newColl := select selectMutantsFrom: coll.
+	self
+		assert: newColl copyWithoutDuplicates asBag
+		equals: newColl asBag
+]

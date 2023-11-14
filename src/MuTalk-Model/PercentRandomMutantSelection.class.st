@@ -35,6 +35,8 @@ PercentRandomMutantSelection >> selectMutantsFrom: aCollection [
 
 	1 to: numberOfMutants do: [ :i |
 		index := random nextIntegerBetween: 1 and: size.
+		[ newColl includes: (aCollection at: index) ] whileTrue: [
+			index := random nextIntegerBetween: 1 and: size ].
 		newColl add: (aCollection at: index) ].
 	^ newColl
 ]
