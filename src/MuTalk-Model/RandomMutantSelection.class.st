@@ -13,20 +13,20 @@ RandomMutantSelection class >> using: aMutationsGenerationStrategy [
 	^ self new mutationsGenerationStrategy: aMutationsGenerationStrategy
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing-defaults' }
 RandomMutantSelection >> defaultMutationGenerationStrategy [
 
 	^ AllMutationsGenerationStrategy new
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 RandomMutantSelection >> initialize [
 
 	super initialize.
 	mutationsGenerationStrategy := self defaultMutationGenerationStrategy
 ]
 
-{ #category : #accessing }
+{ #category : #generating }
 RandomMutantSelection >> mutationsFor: aMutationTestingAnalysis [
 
 	^ self
@@ -34,7 +34,7 @@ RandomMutantSelection >> mutationsFor: aMutationTestingAnalysis [
 		  loggingIn: self nullLogger
 ]
 
-{ #category : #accessing }
+{ #category : #generating }
 RandomMutantSelection >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
 	| mutations |
@@ -55,7 +55,7 @@ RandomMutantSelection >> mutationsGenerationStrategy: aMutationsGenerationStrate
 	mutationsGenerationStrategy := aMutationsGenerationStrategy
 ]
 
-{ #category : #accessing }
+{ #category : #logging }
 RandomMutantSelection >> nullLogger [
 
 	^ mutationsGenerationStrategy nullLogger
