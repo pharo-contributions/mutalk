@@ -19,11 +19,23 @@ RandomMutantSelection >> defaultMutationGenerationStrategy [
 	^ AllMutationsGenerationStrategy new
 ]
 
+{ #category : #accessing }
+RandomMutantSelection >> highLimitCondition: aSize [
+
+	^ self subclassResponsibility
+]
+
 { #category : #initialization }
 RandomMutantSelection >> initialize [
 
 	super initialize.
 	mutationsGenerationStrategy := self defaultMutationGenerationStrategy
+]
+
+{ #category : #accessing }
+RandomMutantSelection >> lowLimitCondition [
+
+	^ self subclassResponsibility
 ]
 
 { #category : #generating }
@@ -77,7 +89,26 @@ RandomMutantSelection >> nullLogger [
 ]
 
 { #category : #accessing }
-RandomMutantSelection >> selectMutantsFrom: aCollection [
+RandomMutantSelection >> numberOfMutants: aSize [
 
 	^ self subclassResponsibility
+]
+
+{ #category : #generating }
+RandomMutantSelection >> selectMutantsFrom: aCollection [
+
+	| size index newColl random |
+	size := aCollection size.
+	newColl := aCollection copyEmpty.
+	random := Random new.
+
+	self lowLimitCondition ifTrue: [ ^ newColl ].
+	(self highLimitCondition: aCollection size) ifTrue: [ ^ aCollection ].
+
+	1 to: (self numberOfMutants: aCollection size) do: [ :i |
+		index := random nextIntegerBetween: 1 and: size.
+		[ newColl includes: (aCollection at: index) ] whileTrue: [
+			index := random nextIntegerBetween: 1 and: size ].
+		newColl add: (aCollection at: index) ].
+	^ newColl
 ]

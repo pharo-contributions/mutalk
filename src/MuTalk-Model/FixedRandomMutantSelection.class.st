@@ -8,32 +8,25 @@ Class {
 }
 
 { #category : #accessing }
+FixedRandomMutantSelection >> highLimitCondition: aSize [
+
+	^ aSize <= self numberOfMutants
+]
+
+{ #category : #accessing }
+FixedRandomMutantSelection >> lowLimitCondition [
+
+	^ self numberOfMutants = 0
+]
+
+{ #category : #accessing }
 FixedRandomMutantSelection >> numberOfMutants [
 
 	^ numberOfMutants
 ]
 
 { #category : #accessing }
-FixedRandomMutantSelection >> numberOfMutants: aNumber [
+FixedRandomMutantSelection >> numberOfMutants: aSize [
 
-	numberOfMutants := aNumber
-]
-
-{ #category : #accessing }
-FixedRandomMutantSelection >> selectMutantsFrom: aCollection [
-
-	| size index newColl random |
-	size := aCollection size.
-	newColl := aCollection copyEmpty.
-	random := Random new.
-
-	numberOfMutants = 0 ifTrue: [ ^ newColl ].
-	aCollection size <= numberOfMutants ifTrue: [ ^ aCollection ].
-
-	1 to: numberOfMutants do: [ :i |
-		index := random nextIntegerBetween: 1 and: size.
-		[ newColl includes: (aCollection at: index) ] whileTrue: [
-			index := random nextIntegerBetween: 1 and: size ].
-		newColl add: (aCollection at: index) ].
-	^ newColl
+	^ numberOfMutants
 ]
