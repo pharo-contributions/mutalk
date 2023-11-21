@@ -13,6 +13,19 @@ RandomMutantSelection class >> using: aMutationsGenerationStrategy [
 	^ self new mutationsGenerationStrategy: aMutationsGenerationStrategy
 ]
 
+{ #category : #adding }
+RandomMutantSelection >> addMutantIn: newColl from: oldColl using: random and: aNumber [
+
+	| index |
+	index := random nextIntegerBetween: 1 and: aNumber.
+
+	"If the selected mutant has already been added, another one is chosen"
+	[ newColl includes: (oldColl at: index) ] whileTrue: [
+		index := random nextIntegerBetween: 1 and: aNumber ].
+
+	newColl add: (oldColl at: index)
+]
+
 { #category : #'accessing-defaults' }
 RandomMutantSelection >> defaultMutationGenerationStrategy [
 
@@ -91,7 +104,7 @@ RandomMutantSelection >> nullLogger [
 { #category : #generating }
 RandomMutantSelection >> selectMutantsFrom: aCollection [
 
-	| size index newColl random |
+	| size newColl random |
 	size := aCollection size.
 	newColl := aCollection copyEmpty.
 	random := Random new.
@@ -100,10 +113,11 @@ RandomMutantSelection >> selectMutantsFrom: aCollection [
 	(self highLimitCondition: aCollection size) ifTrue: [ ^ aCollection ].
 
 	1 to: (self totalNumberOfMutants: aCollection size) do: [ :i |
-		index := random nextIntegerBetween: 1 and: size.
-		[ newColl includes: (aCollection at: index) ] whileTrue: [
-			index := random nextIntegerBetween: 1 and: size ].
-		newColl add: (aCollection at: index) ].
+		self
+			addMutantIn: newColl
+			from: aCollection
+			using: random
+			and: size ].
 	^ newColl
 ]
 

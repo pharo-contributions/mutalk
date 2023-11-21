@@ -21,6 +21,12 @@ RandomOperatorMutantSelection class >> percent: aPercentage [
 		  (PercentRandomMutantSelection new percentageOfMutants: aPercentage)
 ]
 
+{ #category : #adding }
+RandomOperatorMutantSelection >> addMutantIn: newColl from: oldColl using: random and: aNumber [
+
+	randomMutantSelection addMutantIn: newColl from: oldColl using: random and: aNumber
+]
+
 { #category : #'accessing-defaults' }
 RandomOperatorMutantSelection >> defaultMutationGenerationStrategy [
 
@@ -108,7 +114,7 @@ RandomOperatorMutantSelection >> randomMutantSelection: anObject [
 { #category : #generating }
 RandomOperatorMutantSelection >> selectMutantsFrom: aCollection [
 
-	| size index newColl random dict operators operator |
+	| size newColl random dict operators operator |
 	newColl := aCollection copyEmpty.
 	random := Random new.
 
@@ -128,10 +134,11 @@ RandomOperatorMutantSelection >> selectMutantsFrom: aCollection [
 					            (random nextIntegerBetween: 1 and: operators size) ].
 
 		size := (dict at: operator) size.
-		index := random nextIntegerBetween: 1 and: size.
-		[ newColl includes: ((dict at: operator) at: index) ] whileTrue: [
-			index := random nextIntegerBetween: 1 and: size ].
-		newColl add: ((dict at: operator) at: index) ].
+		self
+			addMutantIn: newColl
+			from: (dict at: operator)
+			using: random
+			and: size ].
 	^ newColl
 ]
 
