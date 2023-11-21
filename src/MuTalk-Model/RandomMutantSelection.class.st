@@ -88,12 +88,6 @@ RandomMutantSelection >> nullLogger [
 	^ mutationsGenerationStrategy nullLogger
 ]
 
-{ #category : #accessing }
-RandomMutantSelection >> numberOfMutants: aSize [
-
-	^ self subclassResponsibility
-]
-
 { #category : #generating }
 RandomMutantSelection >> selectMutantsFrom: aCollection [
 
@@ -105,10 +99,16 @@ RandomMutantSelection >> selectMutantsFrom: aCollection [
 	self lowLimitCondition ifTrue: [ ^ newColl ].
 	(self highLimitCondition: aCollection size) ifTrue: [ ^ aCollection ].
 
-	1 to: (self numberOfMutants: aCollection size) do: [ :i |
+	1 to: (self totalNumberOfMutants: aCollection size) do: [ :i |
 		index := random nextIntegerBetween: 1 and: size.
 		[ newColl includes: (aCollection at: index) ] whileTrue: [
 			index := random nextIntegerBetween: 1 and: size ].
 		newColl add: (aCollection at: index) ].
 	^ newColl
+]
+
+{ #category : #accessing }
+RandomMutantSelection >> totalNumberOfMutants: aSize [
+
+	^ self subclassResponsibility
 ]

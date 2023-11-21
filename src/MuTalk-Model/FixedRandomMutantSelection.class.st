@@ -26,7 +26,13 @@ FixedRandomMutantSelection >> numberOfMutants [
 ]
 
 { #category : #accessing }
-FixedRandomMutantSelection >> numberOfMutants: aSize [
+FixedRandomMutantSelection >> numberOfMutants: aNumber [
 
-	^ numberOfMutants
+	numberOfMutants := aNumber
+]
+
+{ #category : #accessing }
+FixedRandomMutantSelection >> totalNumberOfMutants: aSize [
+
+	^ self numberOfMutants
 ]

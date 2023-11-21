@@ -94,12 +94,6 @@ RandomOperatorMutantSelection >> nullLogger [
 ]
 
 { #category : #accessing }
-RandomOperatorMutantSelection >> numberOfMutants: aSize [
-
-	^ randomMutantSelection numberOfMutants: aSize
-]
-
-{ #category : #accessing }
 RandomOperatorMutantSelection >> randomMutantSelection [
 
 	^ randomMutantSelection
@@ -123,7 +117,7 @@ RandomOperatorMutantSelection >> selectMutantsFrom: aCollection [
 
 	dict := aCollection groupedBy: [ :e | e operator ].
 	operators := dict keys.
-	1 to: (self numberOfMutants: aCollection size) do: [ :i |
+	1 to: (self totalNumberOfMutants: aCollection size) do: [ :i |
 		operator := operators at:
 			            (random nextIntegerBetween: 1 and: operators size).
 
@@ -139,4 +133,10 @@ RandomOperatorMutantSelection >> selectMutantsFrom: aCollection [
 			index := random nextIntegerBetween: 1 and: size ].
 		newColl add: ((dict at: operator) at: index) ].
 	^ newColl
+]
+
+{ #category : #accessing }
+RandomOperatorMutantSelection >> totalNumberOfMutants: aSize [
+
+	^ randomMutantSelection totalNumberOfMutants: aSize
 ]
