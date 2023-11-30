@@ -53,7 +53,7 @@ RandomOperatorMutantSelectionTest >> setUp [
 RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom [
 
 	| select newColl |
-	select := RandomOperatorMutantSelection fixed: 3.
+	select := RandomOperatorMutantSelectionStrategy fixed: 3.
 	newColl := select selectMutantsFrom: coll.
 	self assert: newColl size equals: 3
 ]
@@ -62,7 +62,7 @@ RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom [
 RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom2 [
 
 	| select newColl |
-	select := RandomOperatorMutantSelection fixed: 0.
+	select := RandomOperatorMutantSelectionStrategy fixed: 0.
 	newColl := select selectMutantsFrom: coll.
 	self assert: newColl equals: {  } asOrderedCollection
 ]
@@ -71,7 +71,7 @@ RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom2 [
 RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom3 [
 
 	| select newColl |
-	select := RandomOperatorMutantSelection fixed: 6.
+	select := RandomOperatorMutantSelectionStrategy fixed: 6.
 	newColl := select selectMutantsFrom: coll.
 	self assert: newColl equals: coll
 ]
@@ -80,7 +80,7 @@ RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom3 [
 RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom4 [
 
 	| select newColl |
-	select := RandomOperatorMutantSelection fixed: 10.
+	select := RandomOperatorMutantSelectionStrategy fixed: 10.
 	newColl := select selectMutantsFrom: coll.
 	self assert: newColl equals: coll
 ]
@@ -89,7 +89,7 @@ RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom4 [
 RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFromDistinctElements [
 
 	| select newColl |
-	select := RandomOperatorMutantSelection fixed: 5.
+	select := RandomOperatorMutantSelectionStrategy fixed: 5.
 	newColl := select selectMutantsFrom: coll.
 	self
 		assert: newColl copyWithoutDuplicates asBag
@@ -100,7 +100,7 @@ RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFromDistinctElements 
 RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom [
 
 	| select newColl |
-	select := RandomOperatorMutantSelection percent: 50.
+	select := RandomOperatorMutantSelectionStrategy percent: 50.
 	newColl := select selectMutantsFrom: coll.
 	self assert: newColl size equals: 3
 ]
@@ -109,7 +109,7 @@ RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom [
 RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom2 [
 
 	| select newColl |
-	select := RandomOperatorMutantSelection percent: 0.
+	select := RandomOperatorMutantSelectionStrategy percent: 0.
 	newColl := select selectMutantsFrom: coll.
 	self assert: newColl equals: {  } asOrderedCollection
 ]
@@ -118,7 +118,7 @@ RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom2 [
 RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom3 [
 
 	| select newColl |
-	select := RandomOperatorMutantSelection percent: 100.
+	select := RandomOperatorMutantSelectionStrategy percent: 100.
 	newColl := select selectMutantsFrom: coll.
 	self assert: newColl equals: coll
 ]
@@ -127,7 +127,7 @@ RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom3 [
 RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom4 [
 
 	self
-		should: [ RandomOperatorMutantSelection percent: -50 ]
+		should: [ RandomOperatorMutantSelectionStrategy percent: -50 ]
 		raise: Error
 ]
 
@@ -135,7 +135,7 @@ RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom4 [
 RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom5 [
 
 	self
-		should: [ RandomOperatorMutantSelection percent: 150 ]
+		should: [ RandomOperatorMutantSelectionStrategy percent: 150 ]
 		raise: Error
 ]
 
@@ -143,7 +143,7 @@ RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom5 [
 RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFromDistinctElements [
 
 	| select newColl |
-	select := RandomOperatorMutantSelection percent: 90.
+	select := RandomOperatorMutantSelectionStrategy percent: 90.
 	newColl := select selectMutantsFrom: coll.
 	self
 		assert: newColl copyWithoutDuplicates asBag

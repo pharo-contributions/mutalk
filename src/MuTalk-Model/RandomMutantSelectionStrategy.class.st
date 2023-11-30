@@ -1,5 +1,5 @@
 Class {
-	#name : #RandomMutantSelection,
+	#name : #RandomMutantSelectionStrategy,
 	#superclass : #Object,
 	#instVars : [
 		'mutationsGenerationStrategy'
@@ -8,13 +8,13 @@ Class {
 }
 
 { #category : #'instance creation' }
-RandomMutantSelection class >> using: aMutationsGenerationStrategy [
+RandomMutantSelectionStrategy class >> using: aMutationsGenerationStrategy [
 
 	^ self new mutationsGenerationStrategy: aMutationsGenerationStrategy
 ]
 
 { #category : #adding }
-RandomMutantSelection >> addMutantIn: newColl from: oldColl using: random and: aNumber [
+RandomMutantSelectionStrategy >> addMutantIn: newColl from: oldColl using: random and: aNumber [
 
 	| index |
 	index := random nextIntegerBetween: 1 and: aNumber.
@@ -27,38 +27,38 @@ RandomMutantSelection >> addMutantIn: newColl from: oldColl using: random and: a
 ]
 
 { #category : #'accessing-defaults' }
-RandomMutantSelection >> defaultMutationGenerationStrategy [
+RandomMutantSelectionStrategy >> defaultMutationGenerationStrategy [
 
 	^ AllMutantSelectionStrategy new
 ]
 
 { #category : #accessing }
-RandomMutantSelection >> highLimitCondition: aSize [
+RandomMutantSelectionStrategy >> highLimitCondition: aSize [
 
 	^ self subclassResponsibility
 ]
 
 { #category : #initialization }
-RandomMutantSelection >> initialize [
+RandomMutantSelectionStrategy >> initialize [
 
 	super initialize.
 	mutationsGenerationStrategy := self defaultMutationGenerationStrategy
 ]
 
 { #category : #accessing }
-RandomMutantSelection >> lowLimitCondition [
+RandomMutantSelectionStrategy >> lowLimitCondition [
 
 	^ self subclassResponsibility
 ]
 
 { #category : #generating }
-RandomMutantSelection >> methodsToMutateFrom: aMutationTestingAnalysis [
+RandomMutantSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
 
 	^ mutationsGenerationStrategy methodsToMutateFrom: aMutationTestingAnalysis
 ]
 
 { #category : #generating }
-RandomMutantSelection >> mutationsFor: aMutationTestingAnalysis [
+RandomMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis [
 
 	^ self
 		  mutationsFor: aMutationTestingAnalysis
@@ -66,7 +66,7 @@ RandomMutantSelection >> mutationsFor: aMutationTestingAnalysis [
 ]
 
 { #category : #generating }
-RandomMutantSelection >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
+RandomMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
 	| mutations |
 	mutations := mutationsGenerationStrategy mutationsFor:
@@ -75,7 +75,7 @@ RandomMutantSelection >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogg
 ]
 
 { #category : #generating }
-RandomMutantSelection >> mutationsFor: aMethod usingAll: aCollectionOfMutantOperators logginIn: aLogger [
+RandomMutantSelectionStrategy >> mutationsFor: aMethod usingAll: aCollectionOfMutantOperators logginIn: aLogger [
 
 	^ mutationsGenerationStrategy
 		  mutationsFor: aMethod
@@ -84,25 +84,25 @@ RandomMutantSelection >> mutationsFor: aMethod usingAll: aCollectionOfMutantOper
 ]
 
 { #category : #accessing }
-RandomMutantSelection >> mutationsGenerationStrategy [
+RandomMutantSelectionStrategy >> mutationsGenerationStrategy [
 
 	^ mutationsGenerationStrategy
 ]
 
 { #category : #accessing }
-RandomMutantSelection >> mutationsGenerationStrategy: aMutationsGenerationStrategy [
+RandomMutantSelectionStrategy >> mutationsGenerationStrategy: aMutationsGenerationStrategy [
 
 	mutationsGenerationStrategy := aMutationsGenerationStrategy
 ]
 
 { #category : #logging }
-RandomMutantSelection >> nullLogger [
+RandomMutantSelectionStrategy >> nullLogger [
 
 	^ mutationsGenerationStrategy nullLogger
 ]
 
 { #category : #generating }
-RandomMutantSelection >> selectMutantsFrom: aCollection [
+RandomMutantSelectionStrategy >> selectMutantsFrom: aCollection [
 
 	| size newColl random |
 	size := aCollection size.
@@ -122,7 +122,7 @@ RandomMutantSelection >> selectMutantsFrom: aCollection [
 ]
 
 { #category : #accessing }
-RandomMutantSelection >> totalNumberOfMutants: aSize [
+RandomMutantSelectionStrategy >> totalNumberOfMutants: aSize [
 
 	^ self subclassResponsibility
 ]
