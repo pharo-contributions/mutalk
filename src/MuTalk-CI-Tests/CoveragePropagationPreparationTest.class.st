@@ -15,7 +15,7 @@ CoveragePropagationPreparationTest >> testWorking [
 		            testCasesFrom: { MutalkCIHelperTest }
 		            mutating: { MutalkCIHelper }
 		            using: MutantOperator contents
-		            with: AllTestsMethodsRunningMutantEvaluationStrategy new.
+		            with: AllTestsMethodsRunningTestSelectionStrategy new.
 	analysis run.
 
 	moreInfo := CoveragePropagationPreparation new

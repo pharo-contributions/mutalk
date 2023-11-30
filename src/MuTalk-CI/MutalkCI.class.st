@@ -144,7 +144,7 @@ MutalkCI >> mutateAll [
 		runMutalkTargets: targets
 		tests: tests
 		generationStrategy:
-		SelectingFromCoverageMutationsGenerationStrategy new
+		SelectingFromCoverageMutantSelectionStrategy new
 ]
 
 { #category : #'as yet unclassified' }
@@ -201,7 +201,7 @@ MutalkCI >> runMutalkTargets: targets tests: tests generationStrategy: generatio
 		            testCasesFrom: tests
 		            mutating: targets
 		            using: MutantOperator contents
-		            with: SelectingFromCoverageMutantEvaluationStrategy new
+		            with: SelectingFromCoverageTestSelectionStrategy new
 		            with: generationStrategy.
 	analysis run.
 	coverageInfo := self prepareCoverageInfo: analysis.

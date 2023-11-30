@@ -1,6 +1,6 @@
 Class {
 	#name : #SelectingFromAlivesMutationsGenerationStrategy,
-	#superclass : #MutationsGenerationStrategy,
+	#superclass : #MutantSelectionStrategy,
 	#instVars : [
 		'analysis'
 	],

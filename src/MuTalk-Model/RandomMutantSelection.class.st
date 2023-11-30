@@ -29,7 +29,7 @@ RandomMutantSelection >> addMutantIn: newColl from: oldColl using: random and: a
 { #category : #'accessing-defaults' }
 RandomMutantSelection >> defaultMutationGenerationStrategy [
 
-	^ AllMutationsGenerationStrategy new
+	^ AllMutantSelectionStrategy new
 ]
 
 { #category : #accessing }

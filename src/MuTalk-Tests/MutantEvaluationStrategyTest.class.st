@@ -71,7 +71,7 @@ MutantEvaluationStrategyTest >> setUp [
 		mutating: classes
 		using: (Set with: operator)
 		with: evaluationStrategy
-		with: AllMutationsGenerationStrategy new.
+		with: AllMutantSelectionStrategy new.
 	mutationTestingAnalysis generateCoverageAnalysis.
 ]
 

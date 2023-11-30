@@ -9,5 +9,5 @@ RandomMutantSelectionTest >> testDefaultMutationsGenerationStrategy [
 
 	self
 		assert: RandomMutantSelection new mutationsGenerationStrategy species
-		equals: AllMutationsGenerationStrategy new species
+		equals: AllMutantSelectionStrategy new species
 ]

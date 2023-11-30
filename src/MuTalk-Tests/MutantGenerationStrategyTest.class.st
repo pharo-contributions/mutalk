@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'resource'
 	],
-	#category : 'MuTalk-Tests'
+	#category : #'MuTalk-Tests'
 }
 
 { #category : #testing }
@@ -16,8 +16,8 @@ MutantGenerationStrategyTest >> testSelectingFromCoverageMutationsGenerationShou
 		for: (MutationTestingAnalysis testCasesReferencesFrom: AuxiliarTestClassForTestingStrategies)
 		mutating: classes
 		using: (Set with: operator)
-		with: AllTestsMethodsRunningMutantEvaluationStrategy new
-		with: SelectingFromCoverageMutationsGenerationStrategy new.
+		with: AllTestsMethodsRunningTestSelectionStrategy new
+		with: SelectingFromCoverageMutantSelectionStrategy new.
 	mutationTestingAnalysis run.
 	self assert: ((mutationTestingAnalysis mutations collect: [ :each | each originalMethod selector ]) includes: #method1).
 	self deny: ((mutationTestingAnalysis mutations collect: [ :each | each originalMethod selector ]) includes: #aNotCoveredMethod)
