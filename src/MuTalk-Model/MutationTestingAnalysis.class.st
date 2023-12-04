@@ -11,7 +11,8 @@ Class {
 		'mutations',
 		'testCases',
 		'coverageAnalysisResult',
-		'logger'
+		'logger',
+		'budget'
 	],
 	#category : #'MuTalk-Model'
 }
@@ -24,6 +25,12 @@ MutationTestingAnalysis class >> defaultLogger [
 { #category : #defaults }
 MutationTestingAnalysis class >> defaultMutantsEvaluationStrategy [
 	^ AllTestsMethodsRunningTestSelectionStrategy new
+]
+
+{ #category : #defaults }
+MutationTestingAnalysis class >> defaultMutationTestingBudget [
+
+	^ MutationTestingFreeBudget new
 ]
 
 { #category : #defaults }
@@ -87,14 +94,41 @@ MutationTestingAnalysis class >> for: testCases mutating: classes using: operato
 ]
 
 { #category : #'instance creation' }
-MutationTestingAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantsEvaluationStrategy with: aMutationsGenerationStrategy loggingIn: aLogger [ 
+MutationTestingAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantsEvaluationStrategy with: aMutationsGenerationStrategy budget: aBudget [
+
+	^ self
+		  for: testCases
+		  mutating: classes
+		  using: operatorCollection
+		  with: aMutantsEvaluationStrategy
+		  with: aMutationsGenerationStrategy
+		  loggingIn: self defaultLogger
+		  budget: aBudget
+]
+
+{ #category : #'instance creation' }
+MutationTestingAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantsEvaluationStrategy with: aMutationsGenerationStrategy loggingIn: aLogger [
+
+	^ self
+		  for: testCases
+		  mutating: classes
+		  using: operatorCollection
+		  with: aMutantsEvaluationStrategy
+		  with: aMutationsGenerationStrategy
+		  loggingIn: aLogger
+		  budget: self defaultMutationTestingBudget
+]
+
+{ #category : #'instance creation' }
+MutationTestingAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantsEvaluationStrategy with: aMutationsGenerationStrategy loggingIn: aLogger budget: aBudget [
 	^ self new
 		initializeFor: testCases
 			mutating: classes
 			using: operatorCollection
 			with: aMutantsEvaluationStrategy
 			with: aMutationsGenerationStrategy
-			loggingIn: aLogger;
+			loggingIn: aLogger
+			budget: aBudget;
 		yourself
 ]
 
@@ -161,6 +195,18 @@ MutationTestingAnalysis class >> testCasesFrom: testClasses mutating: classes us
 ]
 
 { #category : #'instance creation' }
+MutationTestingAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection with: anEvaluationStrategy with: aGenerationStrategy budget: aBudget [
+
+	^ self
+		  for: (self testCasesFrom: testClasses)
+		  mutating: classes
+		  using: operatorCollection
+		  with: anEvaluationStrategy
+		  with: aGenerationStrategy
+		  budget: aBudget
+]
+
+{ #category : #'instance creation' }
 MutationTestingAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection with: anEvaluationStrategy with: aGenerationStrategy loggingIn: aLogger [ 
 	^ self 
 		for: (self testCasesFrom: testClasses)
@@ -213,16 +259,21 @@ MutationTestingAnalysis >> generateMutations [
 
 { #category : #running }
 MutationTestingAnalysis >> generateResults [
+
 	particularResults := OrderedCollection new.
+	budget start.
 	mutations
-		do: [:aMutation | logger logStartEvaluating: aMutation. 
+		do: [ :aMutation |
+			logger logStartEvaluating: aMutation.
 			particularResults add: (MutantEvaluation
-					for: aMutation
-					using: testCases
-					following: mutantsEvaluationStrategy
-					andConsidering: self coverageAnalysisResult) value]
-		displayingProgress:[ :aClass | 
-			'Evaluating Mutants: ', particularResults size asString , '/', mutations size asString ].
+					 for: aMutation
+					 using: testCases
+					 following: mutantsEvaluationStrategy
+					 andConsidering: self coverageAnalysisResult) value.
+			(budget check: particularResults) ifTrue: [ ^ particularResults ] ]
+		displayingProgress: [ :aClass |
+			'Evaluating Mutants: ' , particularResults size asString , '/'
+			, mutations size asString ].
 	^ particularResults
 ]
 
@@ -235,7 +286,8 @@ MutationTestingAnalysis >> initialTestRun [
 ]
 
 { #category : #'initialize-release' }
-MutationTestingAnalysis >> initializeFor: someTestCasesReferences mutating: someModelClasses using: operatorCollection with: aMutantsEvaluationStrategy with: aMutationsGenerationStrategy loggingIn: aLogger [ 
+MutationTestingAnalysis >> initializeFor: someTestCasesReferences mutating: someModelClasses using: operatorCollection with: aMutantsEvaluationStrategy with: aMutationsGenerationStrategy loggingIn: aLogger budget: aBudget [
+
 	modelClasses := someModelClasses.
 	testCases := someTestCasesReferences.
 	operators := operatorCollection.
@@ -243,7 +295,8 @@ MutationTestingAnalysis >> initializeFor: someTestCasesReferences mutating: some
 	mutantsEvaluationStrategy := aMutantsEvaluationStrategy.
 	particularResults := OrderedCollection new.
 	elapsedTime := 0.
-	logger := aLogger
+	logger := aLogger.
+	budget := aBudget
 ]
 
 { #category : #accesing }
