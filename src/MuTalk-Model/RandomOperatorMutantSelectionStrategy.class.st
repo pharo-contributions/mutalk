@@ -1,5 +1,5 @@
 Class {
-	#name : #RandomOperatorMutantSelection,
+	#name : #RandomOperatorMutantSelectionStrategy,
 	#superclass : #Object,
 	#instVars : [
 		'randomMutantSelection'
@@ -8,63 +8,63 @@ Class {
 }
 
 { #category : #intialization }
-RandomOperatorMutantSelection class >> fixed: aNumber [
+RandomOperatorMutantSelectionStrategy class >> fixed: aNumber [
 
 	^ self new randomMutantSelection:
-		  (FixedRandomMutantSelection new numberOfMutants: aNumber)
+		  (FixedRandomMutantSelectionStrategy new numberOfMutants: aNumber)
 ]
 
 { #category : #intialization }
-RandomOperatorMutantSelection class >> percent: aPercentage [
+RandomOperatorMutantSelectionStrategy class >> percent: aPercentage [
 
 	^ self new randomMutantSelection:
-		  (PercentRandomMutantSelection new percentageOfMutants: aPercentage)
+		  (PercentRandomMutantSelectionStrategy new percentageOfMutants: aPercentage)
 ]
 
 { #category : #adding }
-RandomOperatorMutantSelection >> addMutantIn: newColl from: oldColl using: random and: aNumber [
+RandomOperatorMutantSelectionStrategy >> addMutantIn: newColl from: oldColl using: random and: aNumber [
 
 	randomMutantSelection addMutantIn: newColl from: oldColl using: random and: aNumber
 ]
 
 { #category : #'accessing-defaults' }
-RandomOperatorMutantSelection >> defaultMutationGenerationStrategy [
+RandomOperatorMutantSelectionStrategy >> defaultMutationGenerationStrategy [
 
 	^ randomMutantSelection defaultMutationGenerationStrategy
 ]
 
 { #category : #accessing }
-RandomOperatorMutantSelection >> highLimitCondition: aSize [
+RandomOperatorMutantSelectionStrategy >> highLimitCondition: aSize [
 
 	^ randomMutantSelection highLimitCondition: aSize
 ]
 
 { #category : #initialization }
-RandomOperatorMutantSelection >> initialize [
+RandomOperatorMutantSelectionStrategy >> initialize [
 
 	randomMutantSelection initialize
 ]
 
 { #category : #accessing }
-RandomOperatorMutantSelection >> lowLimitCondition [
+RandomOperatorMutantSelectionStrategy >> lowLimitCondition [
 
 	^ randomMutantSelection lowLimitCondition
 ]
 
 { #category : #generating }
-RandomOperatorMutantSelection >> methodsToMutateFrom: aMutationTestingAnalysis [
+RandomOperatorMutantSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
 
 	^ randomMutantSelection methodsToMutateFrom: aMutationTestingAnalysis
 ]
 
 { #category : #generating }
-RandomOperatorMutantSelection >> mutationsFor: aMutationTestingAnalysis [
+RandomOperatorMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis [
 
 	^ randomMutantSelection mutationsFor: aMutationTestingAnalysis
 ]
 
 { #category : #generating }
-RandomOperatorMutantSelection >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
+RandomOperatorMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
 	^ randomMutantSelection
 		  mutationsFor: aMutationTestingAnalysis
@@ -72,7 +72,7 @@ RandomOperatorMutantSelection >> mutationsFor: aMutationTestingAnalysis loggingI
 ]
 
 { #category : #generating }
-RandomOperatorMutantSelection >> mutationsFor: aMethod usingAll: aCollectionOfMutantOperators logginIn: aLogger [
+RandomOperatorMutantSelectionStrategy >> mutationsFor: aMethod usingAll: aCollectionOfMutantOperators logginIn: aLogger [
 
 	^ randomMutantSelection
 		  mutationsFor: aMethod
@@ -81,38 +81,38 @@ RandomOperatorMutantSelection >> mutationsFor: aMethod usingAll: aCollectionOfMu
 ]
 
 { #category : #accessing }
-RandomOperatorMutantSelection >> mutationsGenerationStrategy [
+RandomOperatorMutantSelectionStrategy >> mutationsGenerationStrategy [
 
-	^ randomMutantSelection mutationGenerationStrategy
+	^ randomMutantSelection mutationsGenerationStrategy
 ]
 
 { #category : #accessing }
-RandomOperatorMutantSelection >> mutationsGenerationStrategy: aMutationsGenerationStrategy [
+RandomOperatorMutantSelectionStrategy >> mutationsGenerationStrategy: aMutationsGenerationStrategy [
 
 	^ randomMutantSelection mutationsGenerationStrategy:
 		  aMutationsGenerationStrategy
 ]
 
 { #category : #logging }
-RandomOperatorMutantSelection >> nullLogger [
+RandomOperatorMutantSelectionStrategy >> nullLogger [
 
 	^ randomMutantSelection nullLogger
 ]
 
 { #category : #accessing }
-RandomOperatorMutantSelection >> randomMutantSelection [
+RandomOperatorMutantSelectionStrategy >> randomMutantSelection [
 
 	^ randomMutantSelection
 ]
 
 { #category : #accessing }
-RandomOperatorMutantSelection >> randomMutantSelection: anObject [
+RandomOperatorMutantSelectionStrategy >> randomMutantSelection: anObject [
 
 	randomMutantSelection := anObject
 ]
 
 { #category : #generating }
-RandomOperatorMutantSelection >> selectMutantsFrom: aCollection [
+RandomOperatorMutantSelectionStrategy >> selectMutantsFrom: aCollection [
 
 	| size newColl random dict operators operator |
 	newColl := aCollection copyEmpty.
@@ -143,7 +143,7 @@ RandomOperatorMutantSelection >> selectMutantsFrom: aCollection [
 ]
 
 { #category : #accessing }
-RandomOperatorMutantSelection >> totalNumberOfMutants: aSize [
+RandomOperatorMutantSelectionStrategy >> totalNumberOfMutants: aSize [
 
 	^ randomMutantSelection totalNumberOfMutants: aSize
 ]

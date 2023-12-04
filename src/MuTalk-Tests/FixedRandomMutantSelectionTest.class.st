@@ -9,7 +9,7 @@ FixedRandomMutantSelectionTest >> testSelectMutantsFrom [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := FixedRandomMutantSelection new numberOfMutants: 5.
+	select := FixedRandomMutantSelectionStrategy new numberOfMutants: 5.
 	self assert: (select selectMutantsFrom: coll) size equals: 5
 ]
 
@@ -18,7 +18,7 @@ FixedRandomMutantSelectionTest >> testSelectMutantsFrom2 [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := FixedRandomMutantSelection new numberOfMutants: 0.
+	select := FixedRandomMutantSelectionStrategy new numberOfMutants: 0.
 	self
 		assert: (select selectMutantsFrom: coll)
 		equals: {  } asOrderedCollection
@@ -29,7 +29,7 @@ FixedRandomMutantSelectionTest >> testSelectMutantsFrom3 [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := FixedRandomMutantSelection new numberOfMutants: 10.
+	select := FixedRandomMutantSelectionStrategy new numberOfMutants: 10.
 	self assert: (select selectMutantsFrom: coll) equals: coll
 ]
 
@@ -38,7 +38,7 @@ FixedRandomMutantSelectionTest >> testSelectMutantsFrom4 [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := FixedRandomMutantSelection new numberOfMutants: 20.
+	select := FixedRandomMutantSelectionStrategy new numberOfMutants: 20.
 	self assert: (select selectMutantsFrom: coll) equals: coll
 ]
 
@@ -47,7 +47,7 @@ FixedRandomMutantSelectionTest >> testSelectMutantsFromDistinctElements [
 
 	| select coll newColl |
 	coll := (1 to: 10) asOrderedCollection.
-	select := FixedRandomMutantSelection new numberOfMutants: 9.
+	select := FixedRandomMutantSelectionStrategy new numberOfMutants: 9.
 	newColl := select selectMutantsFrom: coll.
 	self
 		assert: newColl copyWithoutDuplicates asBag

@@ -1,6 +1,6 @@
 Class {
-	#name : #PercentRandomMutantSelection,
-	#superclass : #RandomMutantSelection,
+	#name : #PercentRandomMutantSelectionStrategy,
+	#superclass : #RandomMutantSelectionStrategy,
 	#instVars : [
 		'percentageOfMutants'
 	],
@@ -8,25 +8,25 @@ Class {
 }
 
 { #category : #accessing }
-PercentRandomMutantSelection >> highLimitCondition: size [
+PercentRandomMutantSelectionStrategy >> highLimitCondition: size [
 
 	^ percentageOfMutants = 100
 ]
 
 { #category : #accessing }
-PercentRandomMutantSelection >> lowLimitCondition [
+PercentRandomMutantSelectionStrategy >> lowLimitCondition [
 
 	^ percentageOfMutants = 0
 ]
 
 { #category : #accessing }
-PercentRandomMutantSelection >> percentageOfMutants [
+PercentRandomMutantSelectionStrategy >> percentageOfMutants [
 
 	^ percentageOfMutants
 ]
 
 { #category : #accessing }
-PercentRandomMutantSelection >> percentageOfMutants: aPercentage [
+PercentRandomMutantSelectionStrategy >> percentageOfMutants: aPercentage [
 
 	(aPercentage < 0 or: [ aPercentage > 100 ]) ifTrue: [
 		Error signal: 'Percantage should be between 0 and 100' ].
@@ -34,7 +34,7 @@ PercentRandomMutantSelection >> percentageOfMutants: aPercentage [
 ]
 
 { #category : #accessing }
-PercentRandomMutantSelection >> totalNumberOfMutants: aSize [
+PercentRandomMutantSelectionStrategy >> totalNumberOfMutants: aSize [
 
 	^ percentageOfMutants * aSize / 100
 ]

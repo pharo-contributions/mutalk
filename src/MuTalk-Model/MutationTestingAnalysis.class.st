@@ -23,12 +23,12 @@ MutationTestingAnalysis class >> defaultLogger [
 
 { #category : #defaults }
 MutationTestingAnalysis class >> defaultMutantsEvaluationStrategy [
-	^ AllTestsMethodsRunningMutantEvaluationStrategy new
+	^ AllTestsMethodsRunningTestSelectionStrategy new
 ]
 
 { #category : #defaults }
 MutationTestingAnalysis class >> defaultMutationsGenerationStrategy [
-	^ AllMutationsGenerationStrategy new.
+	^ AllMutantSelectionStrategy new.
 ]
 
 { #category : #'instance creation' }

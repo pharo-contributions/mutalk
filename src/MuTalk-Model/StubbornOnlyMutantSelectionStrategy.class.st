@@ -1,11 +1,11 @@
 Class {
-	#name : #StubbornOnlyMutationsGenerationStrategy,
-	#superclass : #SelectingFromCoverageMutationsGenerationStrategy,
+	#name : #StubbornOnlyMutantSelectionStrategy,
+	#superclass : #SelectingFromCoverageMutantSelectionStrategy,
 	#category : #'MuTalk-Model-Mutations generation strategies'
 }
 
 { #category : #generating }
-StubbornOnlyMutationsGenerationStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
+StubbornOnlyMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
 	| mutations subSuite trivialAnalysis |
 	mutations := super mutationsFor: aMutationTestingAnalysis loggingIn: aLogger.
@@ -20,7 +20,7 @@ StubbornOnlyMutationsGenerationStrategy >> mutationsFor: aMutationTestingAnalysi
 	trivialAnalysis
 		testCases: subSuite;
 		mutations: mutations;
-		mutantsEvaluationStrategy: AllTestsMethodsRunningMutantEvaluationStrategy new.
+		mutantsEvaluationStrategy: AllTestsMethodsRunningTestSelectionStrategy new.
 	trivialAnalysis generateResults.
 	1halt.
 	

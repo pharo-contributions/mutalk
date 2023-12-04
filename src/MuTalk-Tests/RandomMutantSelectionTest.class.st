@@ -8,6 +8,6 @@ Class {
 RandomMutantSelectionTest >> testDefaultMutationsGenerationStrategy [
 
 	self
-		assert: RandomMutantSelection new mutationsGenerationStrategy species
-		equals: AllMutationsGenerationStrategy new species
+		assert: RandomMutantSelectionStrategy new mutationsGenerationStrategy species
+		equals: AllMutantSelectionStrategy new species
 ]

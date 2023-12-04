@@ -24,7 +24,7 @@ SelectingFromCoverageMutantEvaluationStrategyTest >> assertMutantNotInCoverageOf
 	self deny: ((testCases collect: [ :each | each selector ]) includes: #testMethodThatCoverMethod2)
 ]
 
-{ #category : #building }
+{ #category : #configuring }
 SelectingFromCoverageMutantEvaluationStrategyTest >> selectionStrategy [
-	^ SelectingFromCoverageMutantEvaluationStrategy
+	^ SelectingFromCoverageTestSelectionStrategy
 ]

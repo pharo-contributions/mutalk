@@ -9,7 +9,7 @@ PercentRandomMutantSelectionTest >> testSelectMutantsFrom [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := PercentRandomMutantSelection new percentageOfMutants: 50.
+	select := PercentRandomMutantSelectionStrategy new percentageOfMutants: 50.
 	self assert: (select selectMutantsFrom: coll) size equals: 5
 ]
 
@@ -18,7 +18,7 @@ PercentRandomMutantSelectionTest >> testSelectMutantsFrom2 [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := PercentRandomMutantSelection new percentageOfMutants: 0.
+	select := PercentRandomMutantSelectionStrategy new percentageOfMutants: 0.
 	self
 		assert: (select selectMutantsFrom: coll)
 		equals: {  } asOrderedCollection
@@ -29,7 +29,7 @@ PercentRandomMutantSelectionTest >> testSelectMutantsFrom3 [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := PercentRandomMutantSelection new percentageOfMutants: 100.
+	select := PercentRandomMutantSelectionStrategy new percentageOfMutants: 100.
 	self assert: (select selectMutantsFrom: coll) equals: coll
 ]
 
@@ -38,7 +38,7 @@ PercentRandomMutantSelectionTest >> testSelectMutantsFrom4 [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := PercentRandomMutantSelection new.
+	select := PercentRandomMutantSelectionStrategy new.
 	self should: [ select percentageOfMutants: -50 ] raise: Error
 ]
 
@@ -47,7 +47,7 @@ PercentRandomMutantSelectionTest >> testSelectMutantsFrom5 [
 
 	| select coll |
 	coll := (1 to: 10) asOrderedCollection.
-	select := PercentRandomMutantSelection new.
+	select := PercentRandomMutantSelectionStrategy new.
 	self should: [ select percentageOfMutants: 150 ] raise: Error
 ]
 
@@ -56,7 +56,7 @@ PercentRandomMutantSelectionTest >> testSelectMutantsFromDistinctElements [
 
 	| select coll newColl |
 	coll := (1 to: 10) asOrderedCollection.
-	select := PercentRandomMutantSelection new percentageOfMutants: 90.
+	select := PercentRandomMutantSelectionStrategy new percentageOfMutants: 90.
 	newColl := select selectMutantsFrom: coll.
 	self
 		assert: newColl copyWithoutDuplicates asBag

@@ -31,5 +31,5 @@ AllTestsMethodsRunningMutantEvaluationStrategyTest >> assertMutantNotInCoverageO
 
 { #category : #configuring }
 AllTestsMethodsRunningMutantEvaluationStrategyTest >> selectionStrategy [
-	^ AllTestsMethodsRunningMutantEvaluationStrategy
+	^ AllTestsMethodsRunningTestSelectionStrategy
 ]

@@ -20,7 +20,7 @@ MutalkCITonelJsonExporterTest >> testWorking [
 		            testCasesFrom: { SmallBankTest }
 		            mutating: { SmallBank }
 		            using: MutantOperator contents
-		            with: AllTestsMethodsRunningMutantEvaluationStrategy new.
+		            with: AllTestsMethodsRunningTestSelectionStrategy new.
 	analysis run.
 	moreInfo := CoveragePropagationPreparation new
 		            mtResult: analysis;
