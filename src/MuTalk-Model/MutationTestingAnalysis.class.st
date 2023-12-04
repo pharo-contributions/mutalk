@@ -261,7 +261,6 @@ MutationTestingAnalysis >> generateMutations [
 MutationTestingAnalysis >> generateResults [
 
 	particularResults := OrderedCollection new.
-	budget start.
 	mutations
 		do: [ :aMutation |
 			logger logStartEvaluating: aMutation.
@@ -358,7 +357,8 @@ MutationTestingAnalysis >> run [
 	methods of
 	those classes) and execute all mutants in the set of testClases.
 	We obtain a result for each mutant generated"
-	^[self initialTestRun.
+	^[budget start.
+	self initialTestRun.
 	logger logAnalysisStartFor:self.
 	elapsedTime := Time millisecondsToRun: [
 					self generateCoverageAnalysis.
