@@ -4,6 +4,12 @@ Class {
 	#category : #'MuTalk-Model'
 }
 
+{ #category : #validation }
+MutationTestingFreeBudget >> check: aCollection [
+
+	^ false
+]
+
 { #category : #accessing }
 MutationTestingFreeBudget >> start [
 
