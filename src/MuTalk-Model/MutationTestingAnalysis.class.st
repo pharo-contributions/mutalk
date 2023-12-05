@@ -49,6 +49,18 @@ MutationTestingAnalysis class >> for: testCases mutating: classes using: operato
 ]
 
 { #category : #'instance creation' }
+MutationTestingAnalysis class >> for: testCases mutating: classes using: operatorCollection budget: aBudget [
+
+	^ self
+		  for: testCases
+		  mutating: classes
+		  using: operatorCollection
+		  with: self defaultMutantsEvaluationStrategy
+		  with: self defaultMutationsGenerationStrategy
+		  budget: aBudget
+]
+
+{ #category : #'instance creation' }
 MutationTestingAnalysis class >> for: testCases mutating: classes using: operatorCollection loggingIn: aLogger [ 
 	^ self 
 		for: testCases
@@ -57,6 +69,19 @@ MutationTestingAnalysis class >> for: testCases mutating: classes using: operato
 		with: self defaultMutantsEvaluationStrategy
 		with: self defaultMutationsGenerationStrategy
 		loggingIn: aLogger
+]
+
+{ #category : #'instance creation' }
+MutationTestingAnalysis class >> for: testCases mutating: classes using: operatorCollection loggingIn: aLogger budget: aBudget [
+
+	^ self
+		  for: testCases
+		  mutating: classes
+		  using: operatorCollection
+		  with: self defaultMutantsEvaluationStrategy
+		  with: self defaultMutationsGenerationStrategy
+		  loggingIn: aLogger
+		  budget: aBudget
 ]
 
 { #category : #'instance creation' }
@@ -71,6 +96,18 @@ MutationTestingAnalysis class >> for: testCases mutating: classes using: operato
 ]
 
 { #category : #'instance creation' }
+MutationTestingAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantEvaluationStrategy budget: aBudget [
+
+	^ self
+		  for: testCases
+		  mutating: classes
+		  using: operatorCollection
+		  with: aMutantEvaluationStrategy
+		  with: self defaultMutationsGenerationStrategy
+		  budget: aBudget
+]
+
+{ #category : #'instance creation' }
 MutationTestingAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantEvaluationStrategy loggingIn: aLogger [
 	
 	^ self 
@@ -80,6 +117,19 @@ MutationTestingAnalysis class >> for: testCases mutating: classes using: operato
 		with: aMutantEvaluationStrategy
 		with: self defaultMutationsGenerationStrategy
 		loggingIn: aLogger
+]
+
+{ #category : #'instance creation' }
+MutationTestingAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantEvaluationStrategy loggingIn: aLogger budget: aBudget [
+
+	^ self
+		  for: testCases
+		  mutating: classes
+		  using: operatorCollection
+		  with: aMutantEvaluationStrategy
+		  with: self defaultMutationsGenerationStrategy
+		  loggingIn: aLogger
+		  budget: aBudget
 ]
 
 { #category : #'instance creation' }
@@ -154,12 +204,33 @@ MutationTestingAnalysis class >> testCasesFrom: testClasses mutating: classes us
 ]
 
 { #category : #'instance creation' }
+MutationTestingAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection budget: aBudget [
+
+	^ self
+		  for: (self testCasesFrom: testClasses)
+		  mutating: classes
+		  using: operatorCollection
+		  budget: aBudget
+]
+
+{ #category : #'instance creation' }
 MutationTestingAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection logginIn: aLogger [ 
 	^ self 
 		for: (self testCasesFrom: testClasses)
 		mutating: classes
 		using: operatorCollection
 		loggingIn: aLogger
+]
+
+{ #category : #'instance creation' }
+MutationTestingAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection logginIn: aLogger budget: aBudget [
+
+	^ self
+		  for: (self testCasesFrom: testClasses)
+		  mutating: classes
+		  using: operatorCollection
+		  loggingIn: aLogger
+		  budget: aBudget
 ]
 
 { #category : #'instance creation' }
@@ -173,6 +244,17 @@ MutationTestingAnalysis class >> testCasesFrom: testClasses mutating: classes us
 ]
 
 { #category : #'instance creation' }
+MutationTestingAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection with: anEvaluationStrategy budget: aBudget [
+
+	^ self
+		  for: (self testCasesFrom: testClasses)
+		  mutating: classes
+		  using: operatorCollection
+		  with: anEvaluationStrategy
+		  budget: aBudget
+]
+
+{ #category : #'instance creation' }
 MutationTestingAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection with: anEvaluationStrategy loggingIn: aLogger [
 	
 	^ self 
@@ -181,6 +263,18 @@ MutationTestingAnalysis class >> testCasesFrom: testClasses mutating: classes us
 		using: operatorCollection
 		with: anEvaluationStrategy 
 		loggingIn: aLogger.
+]
+
+{ #category : #'instance creation' }
+MutationTestingAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection with: anEvaluationStrategy loggingIn: aLogger budget: aBudget [
+
+	^ self
+		  for: (self testCasesFrom: testClasses)
+		  mutating: classes
+		  using: operatorCollection
+		  with: anEvaluationStrategy
+		  loggingIn: aLogger
+		  budget: aBudget
 ]
 
 { #category : #'instance creation' }
@@ -215,6 +309,19 @@ MutationTestingAnalysis class >> testCasesFrom: testClasses mutating: classes us
 		with: anEvaluationStrategy
 		with: aGenerationStrategy
 		loggingIn: aLogger
+]
+
+{ #category : #'instance creation' }
+MutationTestingAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection with: anEvaluationStrategy with: aGenerationStrategy loggingIn: aLogger budget: aBudget [
+
+	^ self
+		  for: (self testCasesFrom: testClasses)
+		  mutating: classes
+		  using: operatorCollection
+		  with: anEvaluationStrategy
+		  with: aGenerationStrategy
+		  loggingIn: aLogger
+		  budget: aBudget
 ]
 
 { #category : #'instance creation' }
