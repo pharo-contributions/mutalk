@@ -12,7 +12,7 @@ AuxiliarTestClassForMutationTestingBudget >> setUp [
 	super setUp.
 
 	object := AuxiliarClassForMutationTestingBudget new.
-	(Duration seconds: 2) wait
+	(Duration seconds: 1.9) wait
 ]
 
 { #category : #tests }
