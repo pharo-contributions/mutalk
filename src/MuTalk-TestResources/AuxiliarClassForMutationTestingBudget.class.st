@@ -5,13 +5,7 @@ Class {
 }
 
 { #category : #arithmetic }
-AuxiliarClassForMutationTestingBudget >> decrement: aNumber [
+AuxiliarClassForMutationTestingBudget >> nil [
 
-	^ aNumber - 1
-]
-
-{ #category : #arithmetic }
-AuxiliarClassForMutationTestingBudget >> increment: aNumber [
-
-	^ aNumber + 1
+	^ nil
 ]

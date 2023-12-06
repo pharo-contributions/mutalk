@@ -11,7 +11,7 @@ Class {
 { #category : #running }
 MutationTestingTimeBudgetTest >> setUp [
 
-	| testCases classesToMutate |
+	| testCases classesToMutate mutations mutStream |
 	super setUp.
 
 	testCases := { AuxiliarTestClassForMutationTestingBudget }.
@@ -24,36 +24,39 @@ MutationTestingTimeBudgetTest >> setUp [
 		            mutating: classesToMutate
 		            using: MutantOperator contents
 		            with: AllTestsMethodsRunningTestSelectionStrategy new
+		            with: AllMutantSelectionStrategy new.
+	analysis run.
+	mutations := analysis mutations.
+
+	mutStream := InfiniteReadStream on: mutations.
+	analysis mutations: mutStream.
+
+	analysis := MutationTestingAnalysis
+		            testCasesFrom: testCases
+		            mutating: classesToMutate
+		            using: MutantOperator contents
+		            with: AllTestsMethodsRunningTestSelectionStrategy new
 		            with: AllMutantSelectionStrategy new
-		            budget: budget
+		            budget: budget.
+	analysis mutations: mutStream
 ]
 
 { #category : #tests }
-MutationTestingTimeBudgetTest >> test12SecShouldEvaluate2Mutants [
+MutationTestingTimeBudgetTest >> test2Seconds [
 
-	budget constraint: (Duration seconds: 12).
-	analysis run.
-	self
-		assert: analysis generalResult numberOfEvaluatedMutants
-		equals: 2
+	| duration |
+	duration := Duration seconds: 2.
+	budget constraint: duration.
+	self assert:
+		[ analysis run ] timeToRun - duration <= (Duration seconds: 0.1)
 ]
 
 { #category : #tests }
-MutationTestingTimeBudgetTest >> test13SecShouldEvaluate3Mutants [
+MutationTestingTimeBudgetTest >> testPoint5Seconds [
 
-	budget constraint: (Duration seconds: 13).
-	analysis run.
-	self
-		assert: analysis generalResult numberOfEvaluatedMutants
-		equals: 3
-]
-
-{ #category : #tests }
-MutationTestingTimeBudgetTest >> test30SecShouldEvaluate4Mutants [
-
-	budget constraint: (Duration seconds: 30).
-	analysis run.
-	self
-		assert: analysis generalResult numberOfEvaluatedMutants
-		equals: 4
+	| duration |
+	duration := Duration seconds: 0.5.
+	budget constraint: duration.
+	self assert:
+		[ analysis run ] timeToRun - duration <= (Duration seconds: 0.1)
 ]

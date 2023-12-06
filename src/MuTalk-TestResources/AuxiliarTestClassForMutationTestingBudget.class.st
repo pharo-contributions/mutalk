@@ -7,22 +7,8 @@ Class {
 	#category : #'MuTalk-TestResources'
 }
 
-{ #category : #running }
-AuxiliarTestClassForMutationTestingBudget >> setUp [
-	super setUp.
-
-	object := AuxiliarClassForMutationTestingBudget new.
-	(Duration seconds: 1.9) wait
-]
-
 { #category : #tests }
-AuxiliarTestClassForMutationTestingBudget >> testDecrement [
+AuxiliarTestClassForMutationTestingBudget >> testNil [
 
-	self assert: (object decrement: 2) equals: 1
-]
-
-{ #category : #tests }
-AuxiliarTestClassForMutationTestingBudget >> testIncrement [
-
-	self assert: (object increment: 1) equals: 2
+	
 ]
