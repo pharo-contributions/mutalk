@@ -21,34 +21,16 @@ RandomOperatorMutantSelectionStrategy class >> percent: aPercentage [
 		  (PercentRandomMutantSelectionStrategy new percentageOfMutants: aPercentage)
 ]
 
-{ #category : #adding }
-RandomOperatorMutantSelectionStrategy >> addMutantIn: newColl from: oldColl using: random and: aNumber [
-
-	randomMutantSelection addMutantIn: newColl from: oldColl using: random and: aNumber
-]
-
 { #category : #'accessing-defaults' }
 RandomOperatorMutantSelectionStrategy >> defaultMutationGenerationStrategy [
 
 	^ randomMutantSelection defaultMutationGenerationStrategy
 ]
 
-{ #category : #accessing }
-RandomOperatorMutantSelectionStrategy >> highLimitCondition: aSize [
-
-	^ randomMutantSelection highLimitCondition: aSize
-]
-
 { #category : #initialization }
 RandomOperatorMutantSelectionStrategy >> initialize [
 
 	randomMutantSelection initialize
-]
-
-{ #category : #accessing }
-RandomOperatorMutantSelectionStrategy >> lowLimitCondition [
-
-	^ randomMutantSelection lowLimitCondition
 ]
 
 { #category : #generating }
@@ -109,41 +91,4 @@ RandomOperatorMutantSelectionStrategy >> randomMutantSelection [
 RandomOperatorMutantSelectionStrategy >> randomMutantSelection: anObject [
 
 	randomMutantSelection := anObject
-]
-
-{ #category : #generating }
-RandomOperatorMutantSelectionStrategy >> selectMutantsFrom: aCollection [
-
-	| size newColl random dict operators operator |
-	newColl := aCollection copyEmpty.
-	random := Random new.
-
-	self lowLimitCondition ifTrue: [ ^ newColl ].
-	(self highLimitCondition: aCollection size) ifTrue: [ ^ aCollection ].
-
-	dict := aCollection groupedBy: [ :e | e operator ].
-	operators := dict keys.
-	1 to: (self totalNumberOfMutants: aCollection size) do: [ :i |
-		operator := operators at:
-			            (random nextIntegerBetween: 1 and: operators size).
-
-		"if all the mutants generated with a given operator have already been selected, another operator is chosen"
-		[ (dict at: operator) allSatisfy: [ :each | newColl includes: each ] ]
-			whileTrue: [
-				operator := operators at:
-					            (random nextIntegerBetween: 1 and: operators size) ].
-
-		size := (dict at: operator) size.
-		self
-			addMutantIn: newColl
-			from: (dict at: operator)
-			using: random
-			and: size ].
-	^ newColl
-]
-
-{ #category : #accessing }
-RandomOperatorMutantSelectionStrategy >> totalNumberOfMutants: aSize [
-
-	^ randomMutantSelection totalNumberOfMutants: aSize
 ]
