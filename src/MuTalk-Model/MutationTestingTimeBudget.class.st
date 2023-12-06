@@ -11,12 +11,12 @@ Class {
 MutationTestingTimeBudget >> check: aCollection [
 
 	| currentTime |
-	currentTime := Time current.
-	^ (currentTime subtractTime: initialTime) >= constraint
+	currentTime := Time current asMilliSeconds.
+	^ currentTime - initialTime >= constraint asMilliSeconds
 ]
 
 { #category : #accessing }
 MutationTestingTimeBudget >> start [
 
-	initialTime := Time current
+	initialTime := Time current asMilliSeconds
 ]

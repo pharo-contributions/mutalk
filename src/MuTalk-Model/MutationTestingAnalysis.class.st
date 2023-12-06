@@ -359,9 +359,11 @@ MutationTestingAnalysis >> generateCoverageAnalysis [
 
 { #category : #running }
 MutationTestingAnalysis >> generateMutations [
-	mutations := mutationsGenerationStrategy 
-		mutationsFor: self
-		loggingIn: logger
+
+	mutations ifNil: [
+		mutations := mutationsGenerationStrategy
+			             mutationsFor: self
+			             loggingIn: logger ]
 ]
 
 { #category : #running }
