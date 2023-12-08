@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #validation }
-MutationTestingTimeBudget >> check: aCollection [
+MutationTestingTimeBudget >> check: partialCollection with: initialCollection [
 
 	| currentTime |
 	currentTime := Time current.

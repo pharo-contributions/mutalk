@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #validation }
-MutationTestingBudget >> check: aCollection [
+MutationTestingBudget >> check: partialCollection with: initialCollection [
 
 	^ self subclassResponsibility
 ]

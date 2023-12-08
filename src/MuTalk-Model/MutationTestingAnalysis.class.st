@@ -376,7 +376,8 @@ MutationTestingAnalysis >> generateResults [
 					 using: testCases
 					 following: mutantsEvaluationStrategy
 					 andConsidering: self coverageAnalysisResult) value.
-			(budget check: particularResults) ifTrue: [ ^ particularResults ] ]
+			(budget check: particularResults with: mutations) ifTrue: [
+				^ particularResults ] ]
 		displayingProgress: [ :aClass |
 			'Evaluating Mutants: ' , particularResults size asString , '/'
 			, mutations size asString ].
