@@ -29,27 +29,7 @@ MutationTestingFixedRandomMutantsBudgetTest >> setUp [
 ]
 
 { #category : #tests }
-MutationTestingFixedRandomMutantsBudgetTest >> test0Mutants [
-
-	budget constraint: 0.
-	analysis run.
-	self
-		assert: analysis generalResult numberOfEvaluatedMutants
-		equals: 0
-]
-
-{ #category : #tests }
-MutationTestingFixedRandomMutantsBudgetTest >> test10Mutants [
-
-	budget constraint: 10.
-	analysis run.
-	self
-		assert: analysis generalResult numberOfEvaluatedMutants
-		equals: 10
-]
-
-{ #category : #tests }
-MutationTestingFixedRandomMutantsBudgetTest >> testGreaterConstraint [
+MutationTestingFixedRandomMutantsBudgetTest >> testEvaluateAllMutantsWithConstraintGreaterThanActualNumberOfMutations [
 
 	budget constraint: 50.
 	analysis run.
@@ -59,9 +39,29 @@ MutationTestingFixedRandomMutantsBudgetTest >> testGreaterConstraint [
 ]
 
 { #category : #tests }
-MutationTestingFixedRandomMutantsBudgetTest >> testNegativeMutants [
+MutationTestingFixedRandomMutantsBudgetTest >> testEvaluateTheCorrectNumberOfMutants [
+
+	budget constraint: 10.
+	analysis run.
+	self
+		assert: analysis generalResult numberOfEvaluatedMutants
+		equals: 10
+]
+
+{ #category : #tests }
+MutationTestingFixedRandomMutantsBudgetTest >> testEvaluateZeroMutantsWIthNegativeConstraint [
 
 	budget constraint: -10.
+	analysis run.
+	self
+		assert: analysis generalResult numberOfEvaluatedMutants
+		equals: 0
+]
+
+{ #category : #tests }
+MutationTestingFixedRandomMutantsBudgetTest >> testEvaluateZeroMutantsWithConstraintOfZero [
+
+	budget constraint: 0.
 	analysis run.
 	self
 		assert: analysis generalResult numberOfEvaluatedMutants
