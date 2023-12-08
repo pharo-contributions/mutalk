@@ -5,7 +5,7 @@ Class {
 		'budget',
 		'analysis'
 	],
-	#category : 'MuTalk-Tests'
+	#category : #'MuTalk-Tests'
 }
 
 { #category : #running }
@@ -65,8 +65,8 @@ MutationTestingTimeBudgetTest >> testWithNoTimeForMutantsRunsNoMutants [
 	duration := self fixedAnalysisTime / 4.
 	analysisTime := [ result := self runAnalysisFor: duration ] timeToRun.
 
-	"We always treat at least one mutant"
-	self assert: result numberOfEvaluatedMutants equals: 1
+	"We never treat mutants"
+	self assert: result numberOfEvaluatedMutants equals: 0
 ]
 
 { #category : #tests }

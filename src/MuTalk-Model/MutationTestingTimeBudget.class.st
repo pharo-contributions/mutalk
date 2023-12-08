@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'initialTime'
 	],
-	#category : 'MuTalk-Model'
+	#category : #'MuTalk-Model'
 }
 
 { #category : #'instance creation' }
@@ -19,8 +19,8 @@ MutationTestingTimeBudget class >> for: aDuration [
 MutationTestingTimeBudget >> check: partialCollection with: initialCollection [
 
 	| currentTime |
-	currentTime := Time current.
-	^ (currentTime subtractTime: initialTime) >= constraint
+	currentTime := Time current asMilliSeconds.
+	^ currentTime - initialTime >= constraint asMilliSeconds
 ]
 
 { #category : #accessing }
