@@ -34,8 +34,10 @@ MutationTestingTimeBudgetTest >> runAnalysisWithBudget: aBudget [
 		            mutating: classesToMutate
 		            using: MutantOperator contents
 		            with: AllTestsMethodsRunningTestSelectionStrategy new
-		            with: (ManualMutationSelectionStrategy with:
-				             (InfiniteReadStream on: { NullMutation new }))
+		            with:
+			            (ManualMutationSelectionStrategy with:
+				             (Generator on: [ :gen |
+					              [ true ] whileTrue: [ gen yield: NullMutation new ] ]))
 		            budget: aBudget.
 
 	analysis run.

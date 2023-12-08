@@ -1,15 +1,16 @@
 Class {
-	#name : #TestResourceClassForTestingCoverage,
-	#superclass : #TestResource,
-	#category : 'MuTalk-TestResources'
+	#name : 'TestResourceClassForTestingCoverage',
+	#superclass : 'TestResource',
+	#category : 'MuTalk-TestResources',
+	#package : 'MuTalk-TestResources'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TestResourceClassForTestingCoverage >> doSomething [
 	^ClassForTestingCoverage new anUncoveredMethod.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TestResourceClassForTestingCoverage >> setUp [
 	self doSomething
 ]

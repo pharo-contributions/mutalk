@@ -1,10 +1,11 @@
 Class {
-	#name : #AuxiliarClassForMutationTestingBudget,
-	#superclass : #Object,
-	#category : #'MuTalk-TestResources'
+	#name : 'AuxiliarClassForMutationTestingBudget',
+	#superclass : 'Object',
+	#category : 'MuTalk-TestResources',
+	#package : 'MuTalk-TestResources'
 }
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 AuxiliarClassForMutationTestingBudget >> nil [
 
 	^ nil

@@ -1,15 +1,16 @@
 Class {
-	#name : #ClassForTestingCoverage,
-	#superclass : #Object,
-	#category : #'MuTalk-TestResources'
+	#name : 'ClassForTestingCoverage',
+	#superclass : 'Object',
+	#category : 'MuTalk-TestResources',
+	#package : 'MuTalk-TestResources'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ClassForTestingCoverage class >> aClassCoveredMethod [
 	^true.
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ClassForTestingCoverage class >> new: aSize [
 	" from UUID class>> #new:"
 	(aSize == 16) ifFalse: [ self error: 'Wrong UUID size' ].
@@ -17,17 +18,17 @@ ClassForTestingCoverage class >> new: aSize [
 	^ super new: aSize
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ClassForTestingCoverage >> aCoveredMethod [
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ClassForTestingCoverage >> anUncoveredMethod [
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 ClassForTestingCoverage >> anUncoveredMethodSubClassResponsibility [
 
 	self subclassResponsibility 
