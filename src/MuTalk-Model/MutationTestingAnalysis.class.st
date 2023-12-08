@@ -6,15 +6,15 @@ Class {
 		'operators',
 		'particularResults',
 		'elapsedTime',
-		'mutationsGenerationStrategy',
 		'mutantsEvaluationStrategy',
 		'mutations',
 		'testCases',
 		'coverageAnalysisResult',
 		'logger',
-		'budget'
+		'budget',
+		'mutationsSelectionStrategy'
 	],
-	#category : #'MuTalk-Model'
+	#category : 'MuTalk-Model'
 }
 
 { #category : #defaults }
@@ -359,9 +359,11 @@ MutationTestingAnalysis >> generateCoverageAnalysis [
 
 { #category : #running }
 MutationTestingAnalysis >> generateMutations [
-	mutations := mutationsGenerationStrategy 
-		mutationsFor: self
-		loggingIn: logger
+
+	^ mutations ifNil: [
+		mutations := mutationsSelectionStrategy
+			             mutationsFor: self
+			             loggingIn: logger ]
 ]
 
 { #category : #running }
@@ -398,7 +400,7 @@ MutationTestingAnalysis >> initializeFor: someTestCasesReferences mutating: some
 	modelClasses := someModelClasses.
 	testCases := someTestCasesReferences.
 	operators := operatorCollection.
-	mutationsGenerationStrategy := aMutationsGenerationStrategy.
+	mutationsSelectionStrategy := aMutationsGenerationStrategy.
 	mutantsEvaluationStrategy := aMutantsEvaluationStrategy.
 	particularResults := OrderedCollection new.
 	elapsedTime := 0.
@@ -440,13 +442,13 @@ MutationTestingAnalysis >> mutations: anObject [
 { #category : #accessing }
 MutationTestingAnalysis >> mutationsGenerationStrategy [
 
-	^ mutationsGenerationStrategy
+	^ mutationsSelectionStrategy
 ]
 
 { #category : #accessing }
 MutationTestingAnalysis >> mutationsGenerationStrategy: anObject [
 
-	mutationsGenerationStrategy := anObject
+	mutationsSelectionStrategy := anObject
 ]
 
 { #category : #accesing }
