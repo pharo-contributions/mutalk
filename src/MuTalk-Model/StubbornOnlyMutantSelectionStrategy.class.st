@@ -1,10 +1,12 @@
 Class {
-	#name : #StubbornOnlyMutantSelectionStrategy,
-	#superclass : #SelectingFromCoverageMutantSelectionStrategy,
-	#category : #'MuTalk-Model-Mutations generation strategies'
+	#name : 'StubbornOnlyMutantSelectionStrategy',
+	#superclass : 'SelectingFromCoverageMutantSelectionStrategy',
+	#category : 'MuTalk-Model-Mutations generation strategies',
+	#package : 'MuTalk-Model',
+	#tag : 'Mutations generation strategies'
 }
 
-{ #category : #generating }
+{ #category : 'generating' }
 StubbornOnlyMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
 	| mutations subSuite trivialAnalysis |

@@ -1,34 +1,35 @@
 Class {
-	#name : #MutantEvaluationResultTest,
-	#superclass : #TestCase,
+	#name : 'MutantEvaluationResultTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'resource'
 	],
-	#category : 'MuTalk-Tests'
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantEvaluationResultTest class >> packageNamesUnderTest [
 	^ #('MutationTesting-Model')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantEvaluationResultTest class >> resources [
 	^ {MutationTestingResource}
 ]
 
-{ #category : #'testing - printing' }
+{ #category : 'testing - printing' }
 MutantEvaluationResultTest >> mutantPrintString [
 	"printing the mutation used in this tests."
 	^ resource mutation printString
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultTest >> setUp [
 	resource := MutationTestingResource current
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultTest >> testMutationResultEmpty [
 	"Test the creation of a Mutant Result Empty."
 	| result |
@@ -39,7 +40,7 @@ MutantEvaluationResultTest >> testMutationResultEmpty [
 	self assert: result runCount = 0
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultTest >> testMutationResultKilledByError [
 	| result |
 	result := resource evaluationResultForKilledMutantByError.
@@ -49,7 +50,7 @@ MutantEvaluationResultTest >> testMutationResultKilledByError [
 	self assert: result runCount = 1
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultTest >> testMutationResultKilledByFailure [
 	| result |
 	result := resource evaluationResultForKilledMutantByFailure.
@@ -59,7 +60,7 @@ MutantEvaluationResultTest >> testMutationResultKilledByFailure [
 	self assert: result runCount = 1
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultTest >> testMutationResultSurvived [
 	"Test the creation of a Mutant Result that survived"
 	| result |
@@ -70,7 +71,7 @@ MutantEvaluationResultTest >> testMutationResultSurvived [
 	self assert: result runCount = 1
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultTest >> testMutationResultTerminated [
 	| result |
 	result := resource evaluationResultForTerminatedMutant.
@@ -80,7 +81,7 @@ MutantEvaluationResultTest >> testMutationResultTerminated [
 	self assert: result runCount = 0
 ]
 
-{ #category : #'testing - printing' }
+{ #category : 'testing - printing' }
 MutantEvaluationResultTest >> testPrintingMutationResultEmpty [
 	"printing a mutation result empty."
 	| result stream |
@@ -89,7 +90,7 @@ MutantEvaluationResultTest >> testPrintingMutationResultEmpty [
 	self assert: result printString = stream contents
 ]
 
-{ #category : #'testing - printing' }
+{ #category : 'testing - printing' }
 MutantEvaluationResultTest >> testPrintingMutationResultKilledByError [
 	"printing a mutation result killed by error."
 	| result stream |
@@ -98,7 +99,7 @@ MutantEvaluationResultTest >> testPrintingMutationResultKilledByError [
 	self assert: result printString = stream contents
 ]
 
-{ #category : #'testing - printing' }
+{ #category : 'testing - printing' }
 MutantEvaluationResultTest >> testPrintingMutationResultKilledByFailure [
 	"printing a mutation result killed by failure."
 	| result stream |
@@ -107,7 +108,7 @@ MutantEvaluationResultTest >> testPrintingMutationResultKilledByFailure [
 	self assert: result printString = stream contents
 ]
 
-{ #category : #'testing - printing' }
+{ #category : 'testing - printing' }
 MutantEvaluationResultTest >> testPrintingMutationResultSurvived [
 	"printing a mutation result alive."
 	| result stream |
@@ -116,7 +117,7 @@ MutantEvaluationResultTest >> testPrintingMutationResultSurvived [
 	self assert: result printString = stream contents
 ]
 
-{ #category : #'testing - printing' }
+{ #category : 'testing - printing' }
 MutantEvaluationResultTest >> testPrintingMutationResultTerminated [
 	"printing a mutation result terminated."
 	| result stream |

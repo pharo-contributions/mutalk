@@ -1,27 +1,29 @@
 Class {
-	#name : #RemoveExceptionHandlerOperator,
-	#superclass : #MutantOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'RemoveExceptionHandlerOperator',
+	#superclass : 'MutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 RemoveExceptionHandlerOperator >> description [
 	^'Remove Exception Handler Operator'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 RemoveExceptionHandlerOperator >> expressionToReplace [ 
 	^'``@aBlock on: ``@anException do: ``@anotherBlock'
 
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 RemoveExceptionHandlerOperator >> newExpression [ 
 	^'``@aBlock value'
 
 ]
 
-{ #category : #suggestions }
+{ #category : 'suggestions' }
 RemoveExceptionHandlerOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [
 	^aMutantKillingSuggestionGenerator suggestionForMutationProducedByARemoveExceptionHandlerOperator: aMutation.
 ]

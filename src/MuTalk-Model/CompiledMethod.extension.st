@@ -1,6 +1,6 @@
-Extension { #name : #CompiledMethod }
+Extension { #name : 'CompiledMethod' }
 
-{ #category : #'*MuTalk-Model' }
+{ #category : '*MuTalk-Model' }
 CompiledMethod >> ignoredMutationOperators [
 
 	^ (self pragmaAt: #ignoreForMutations:)

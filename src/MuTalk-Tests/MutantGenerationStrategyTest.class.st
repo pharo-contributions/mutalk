@@ -1,13 +1,14 @@
 Class {
-	#name : #MutantGenerationStrategyTest,
-	#superclass : #TestCase,
+	#name : 'MutantGenerationStrategyTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'resource'
 	],
-	#category : #'MuTalk-Tests'
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantGenerationStrategyTest >> testSelectingFromCoverageMutationsGenerationShouldOnlyMutateCoveredMethods [
 	| classes mutationTestingAnalysis operator |
 	classes := OrderedCollection with: AuxiliarClassForTestingStrategies.

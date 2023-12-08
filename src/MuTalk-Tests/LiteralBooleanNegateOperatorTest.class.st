@@ -1,52 +1,53 @@
 Class {
-	#name : #LiteralBooleanNegateOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : #'MuTalk-Tests'
+	#name : 'LiteralBooleanNegateOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LiteralBooleanNegateOperatorTest >> methodWithNoSenders [
 
 	^ Dictionary new at: #hello put: 'Hi'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LiteralBooleanNegateOperatorTest >> methodWithOneSender [
 
 	^ Dictionary new at: 1 ifAbsent: [ self error: true ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LiteralBooleanNegateOperatorTest >> methodWithOneSenderModified [
 
 	^ Dictionary new at: 1 ifAbsent: [ self error: false ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LiteralBooleanNegateOperatorTest >> methodWithTwoSenders [
 
 	^ true & false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LiteralBooleanNegateOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	^ false & false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LiteralBooleanNegateOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	^ true & true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LiteralBooleanNegateOperatorTest >> operator [
 
 	^ LiteralBooleanNegateOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LiteralBooleanNegateOperatorTest >> operatorDescription [
 
 	^ self operator description 

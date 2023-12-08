@@ -1,20 +1,22 @@
 Class {
-	#name : #ReplaceReceiverOperator,
-	#superclass : #MutantOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'ReplaceReceiverOperator',
+	#superclass : 'MutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 ReplaceReceiverOperator >> description [
 	^'Replace ', self selector printString,' receiver with ', self newReceiverExpression.
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 ReplaceReceiverOperator >> expressionToReplace [ 
 	^'``@receiver', ' ', self messageSendExpression.
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 ReplaceReceiverOperator >> messageSendExpression [
 	| numberOfArgument |
 	numberOfArgument := 0.
@@ -25,17 +27,17 @@ ReplaceReceiverOperator >> messageSendExpression [
 			expression , keyword , ' ``@arg' , numberOfArgument asString , ' ']
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 ReplaceReceiverOperator >> newExpression [
 	^self newReceiverExpression, ' ', self messageSendExpression.
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 ReplaceReceiverOperator >> newReceiverExpression [
 	self subclassResponsibility
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 ReplaceReceiverOperator >> selector [
 	self subclassResponsibility
 ]

@@ -1,30 +1,31 @@
 Class {
-	#name : #ReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : 'MuTalk-Tests'
+	#name : 'ReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithNoSenders [  
 	 1 + 2.
 	^#(1) detect:[:each | true]  
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithOneSender [  
 	^OrderedCollection new 
 		detect: [:each | each notNil] 
 		ifNone: [true]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithOneSenderModified [
 		^OrderedCollection new 
 		detect: [:each | false] 
 		ifNone: [true]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithTwoSenders [
 	|collection|
 	collection := OrderedCollection with: 1 with: 2.
@@ -38,7 +39,7 @@ ReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithTwoSe
 		ifNone: [0]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithTwoSendersModifiedFirst [
 	|collection|
 	collection := OrderedCollection with: 1 with: 2.
@@ -47,7 +48,7 @@ ReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithTwoSe
 		ifNone: [0]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithTwoSendersModifiedSecond [
 	|collection|
 	collection := OrderedCollection with: 1 with: 2.
@@ -61,12 +62,12 @@ ReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithTwoSe
 		ifNone: [0]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> operator [
 	^ ReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> operatorDescription [ 
 	^'Replace detect: block with [:each | false] when #detect:ifNone: ' 
 ]

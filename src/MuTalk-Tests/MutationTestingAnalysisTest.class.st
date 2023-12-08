@@ -1,20 +1,21 @@
 Class {
-	#name : #MutationTestingAnalysisTest,
-	#superclass : #TestCase,
-	#category : #'MuTalk-Tests'
+	#name : 'MutationTestingAnalysisTest',
+	#superclass : 'TestCase',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingAnalysisTest class >> classNamesNotUnderTest [
 	^ #('MutationBrowser' 'MutationTestRunner' )
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingAnalysisTest class >> packageNamesUnderTest [
 	^ #('MutationTesting-Model')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingAnalysisTest >> ifFalseForIfTrueReplacementMutation [
 	"Return a Collection with a Mutation Operation to be applied to the AuxiliarClass. 
 	In this case, the operation will be a boolean Replacement (ifFalse for ifTrue)."
@@ -23,7 +24,7 @@ MutationTestingAnalysisTest >> ifFalseForIfTrueReplacementMutation [
 	^ OrderedCollection with: operator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingAnalysisTest >> ifTrueForIfFalseReplacementMutation [
 	"Return a Collection with a Mutation Operation to be applied to the
 	DummyClass. In this case, the operation will be a boolean Replacement (ifTrue for ifFalse)."
@@ -32,7 +33,7 @@ MutationTestingAnalysisTest >> ifTrueForIfFalseReplacementMutation [
 	^ OrderedCollection with: operator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingAnalysisTest >> minusForPlusReplacementMutation [
 	"Return a Collection with a Mutation Operation to be applied to the method in MutationTestingAuxiliarClass. 
 	In this case, the operation will be an Arithmetic Replacement (Minus for Plus)."
@@ -41,7 +42,7 @@ MutationTestingAnalysisTest >> minusForPlusReplacementMutation [
 	^ OrderedCollection with: operator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingAnalysisTest >> plusForMinusReplacementMutation [
 	"Return a Collection with a Mutation Operation to be applied to the
 	DummyClass. In this case, the operation will be an Arithmetic
@@ -51,14 +52,14 @@ MutationTestingAnalysisTest >> plusForMinusReplacementMutation [
 	^ OrderedCollection with: operator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingAnalysisTest >> selectForRejectReplacementMutation [
 	| operator |
 	operator := ReplaceSelectWithRejectMutantOperator new.
 	^ OrderedCollection with: operator
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingInfiniteLoopAnalysis [
 
 	| analysis results mutationResult |
@@ -79,7 +80,7 @@ MutationTestingAnalysisTest >> testExecutingInfiniteLoopAnalysis [
 	self assert: mutationResult killed
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingInfiniteRecursionAnalysis [
 
 	| analysis results mutationResult |
@@ -100,7 +101,7 @@ MutationTestingAnalysisTest >> testExecutingInfiniteRecursionAnalysis [
 	self assert: mutationResult killed
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingSimpleMutation [
 	| analysis results generalResult mutationResult |
 	analysis := MutationTestingAnalysis 
@@ -116,7 +117,7 @@ MutationTestingAnalysisTest >> testExecutingSimpleMutation [
 	self assert: generalResult numberOfKilledMutants = 1
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingSimpleMutationForClassMethods [
 	| analysis results generalResult mutationResult |
 	analysis := MutationTestingAnalysis 
@@ -132,7 +133,7 @@ MutationTestingAnalysisTest >> testExecutingSimpleMutationForClassMethods [
 	self assert: generalResult numberOfKilledMutants = 1
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingSimpleMutationWhenNotRunnedAnalysis [
 	| analysis results generalResult |
 	analysis := MutationTestingAnalysis 
@@ -146,7 +147,7 @@ MutationTestingAnalysisTest >> testExecutingSimpleMutationWhenNotRunnedAnalysis 
 	self assert: generalResult numberOfEvaluatedMutants = 0
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingTwoMutantsFromDiferentMethods [
 	"Obtain 2 mutants using ifFalse-->ifTrue replacement in two diferent methods."
 	| analysis results operatorSelection |
@@ -162,7 +163,7 @@ MutationTestingAnalysisTest >> testExecutingTwoMutantsFromDiferentMethods [
 	results do: [ :mutationResult | self deny: mutationResult killed ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingTwoMutantsFromSameMethod [
 	"Obtain 2 mutants using --->+ replacement in only one method."
 	| analysis results operatorSelection |
@@ -178,7 +179,7 @@ MutationTestingAnalysisTest >> testExecutingTwoMutantsFromSameMethod [
 	results do: [ :mutationResult | self deny: mutationResult killed ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingTwoMutations [
 	"Execute 2 diferent mutations #ifTrue-->#ifFalse: and
 	#+-->#-"

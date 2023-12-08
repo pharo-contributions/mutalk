@@ -1,27 +1,28 @@
 Class {
-	#name : #ReplaceDoBlockWithEmptyBlockOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : 'MuTalk-Tests'
+	#name : 'ReplaceDoBlockWithEmptyBlockOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithNoSenders [  
 	^ 1 + 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithOneSender [  
 	^OrderedCollection new 
 		do: [:element | element notNil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithOneSenderModified [
 	^OrderedCollection new 
 		do: [:each | ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithTwoSenders [
 	OrderedCollection new 
 		do: [:element | element notNil].
@@ -29,7 +30,7 @@ ReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithTwoSenders [
 		do: [:element | element isNil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithTwoSendersModifiedFirst [
 	OrderedCollection new 
 		do: [:each | ].
@@ -37,7 +38,7 @@ ReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithTwoSendersModifiedFirst [
 		do: [:element | element isNil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithTwoSendersModifiedSecond [
 	OrderedCollection new 
 		do: [:element | element notNil].
@@ -45,12 +46,12 @@ ReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithTwoSendersModifiedSecond [
 		do: [:each | ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDoBlockWithEmptyBlockOperatorTest >> operator [
 	^ ReplaceDoBlockWithEmptyBlockOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDoBlockWithEmptyBlockOperatorTest >> operatorDescription [
 	^'Replace do block with [:each |]'.
 ]

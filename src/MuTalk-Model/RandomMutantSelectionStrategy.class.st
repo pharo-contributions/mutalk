@@ -1,19 +1,21 @@
 Class {
-	#name : #RandomMutantSelectionStrategy,
-	#superclass : #Object,
+	#name : 'RandomMutantSelectionStrategy',
+	#superclass : 'Object',
 	#instVars : [
 		'mutationsGenerationStrategy'
 	],
-	#category : #'MuTalk-Model-Mutations generation strategies'
+	#category : 'MuTalk-Model-Mutations generation strategies',
+	#package : 'MuTalk-Model',
+	#tag : 'Mutations generation strategies'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RandomMutantSelectionStrategy class >> using: aMutationsGenerationStrategy [
 
 	^ self new mutationsGenerationStrategy: aMutationsGenerationStrategy
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 RandomMutantSelectionStrategy >> addMutantIn: newColl from: oldColl using: random and: aNumber [
 
 	| index |
@@ -26,38 +28,38 @@ RandomMutantSelectionStrategy >> addMutantIn: newColl from: oldColl using: rando
 	newColl add: (oldColl at: index)
 ]
 
-{ #category : #'accessing-defaults' }
+{ #category : 'accessing-defaults' }
 RandomMutantSelectionStrategy >> defaultMutationGenerationStrategy [
 
 	^ AllMutantSelectionStrategy new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RandomMutantSelectionStrategy >> highLimitCondition: aSize [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RandomMutantSelectionStrategy >> initialize [
 
 	super initialize.
 	mutationsGenerationStrategy := self defaultMutationGenerationStrategy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RandomMutantSelectionStrategy >> lowLimitCondition [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 RandomMutantSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
 
 	^ mutationsGenerationStrategy methodsToMutateFrom: aMutationTestingAnalysis
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 RandomMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis [
 
 	^ self
@@ -65,7 +67,7 @@ RandomMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis [
 		  loggingIn: self nullLogger
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 RandomMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
 	| mutations |
@@ -74,7 +76,7 @@ RandomMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingI
 	^ self selectMutantsFrom: mutations
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 RandomMutantSelectionStrategy >> mutationsFor: aMethod usingAll: aCollectionOfMutantOperators logginIn: aLogger [
 
 	^ mutationsGenerationStrategy
@@ -83,25 +85,25 @@ RandomMutantSelectionStrategy >> mutationsFor: aMethod usingAll: aCollectionOfMu
 		  logginIn: aLogger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RandomMutantSelectionStrategy >> mutationsGenerationStrategy [
 
 	^ mutationsGenerationStrategy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RandomMutantSelectionStrategy >> mutationsGenerationStrategy: aMutationsGenerationStrategy [
 
 	mutationsGenerationStrategy := aMutationsGenerationStrategy
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 RandomMutantSelectionStrategy >> nullLogger [
 
 	^ mutationsGenerationStrategy nullLogger
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 RandomMutantSelectionStrategy >> selectMutantsFrom: aCollection [
 
 	| size newColl random |
@@ -121,7 +123,7 @@ RandomMutantSelectionStrategy >> selectMutantsFrom: aCollection [
 	^ newColl
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RandomMutantSelectionStrategy >> totalNumberOfMutants: aSize [
 
 	^ self subclassResponsibility

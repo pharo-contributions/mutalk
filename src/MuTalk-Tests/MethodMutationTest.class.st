@@ -1,15 +1,16 @@
 Class {
-	#name : #MethodMutationTest,
-	#superclass : #TestCase,
-	#category : #'MuTalk-Tests'
+	#name : 'MethodMutationTest',
+	#superclass : 'TestCase',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 MethodMutationTest >> simpleTestCaseRessource [
 	self assert: 1 + 1 equals: 2
 ]
 
-{ #category : #'testing accessing' }
+{ #category : 'testing accessing' }
 MethodMutationTest >> testAccessing [
 
 	| compiledMethod operator modifiedSource methodMutation |
@@ -33,7 +34,7 @@ MethodMutationTest >> testAccessing [
 	self assert: methodMutation modifiedSource equals: modifiedSource
 ]
 
-{ #category : #'testing accessing' }
+{ #category : 'testing accessing' }
 MethodMutationTest >> testAccessingToNodes [
 	|compiledMethod operator modifiedSource methodMutation|
 	
@@ -51,7 +52,7 @@ MethodMutationTest >> testAccessingToNodes [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MethodMutationTest >> testMutatedNodeBugFix [
 	| method m |
 	method := ClassForTestingCoverage class>>#new:.
@@ -61,7 +62,7 @@ MethodMutationTest >> testMutatedNodeBugFix [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MethodMutationTest >> testMutationInfiniteLoop [
 
 	| compiledMethod operator modifiedSource methodMutation res |
@@ -91,7 +92,7 @@ MethodMutationTest >> testMutationInfiniteLoop [
 	self assert: res errors size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MethodMutationTest >> testMutationInfiniteRecursion [
 
 	| compiledMethod operator modifiedSource methodMutation res |
@@ -121,7 +122,7 @@ MethodMutationTest >> testMutationInfiniteRecursion [
 	self assert: res errors size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MethodMutationTest >> testMutationRun [
 	| compiledMethod operator modifiedSource methodMutation res |
 	compiledMethod := AuxiliarClassForMutationTestingAnalysis

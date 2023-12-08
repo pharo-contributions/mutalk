@@ -1,16 +1,18 @@
 Class {
-	#name : #LiteralBooleanNegateOperator,
-	#superclass : #BlockBasedMutantOperator,
-	#category : #'MuTalk-Model-Operators'
+	#name : 'LiteralBooleanNegateOperator',
+	#superclass : 'BlockBasedMutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 LiteralBooleanNegateOperator >> description [
 
 	^ 'Negate a literal boolean'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 LiteralBooleanNegateOperator >> expressionToReplace [
 
 	^ [ :aNode | 
@@ -18,7 +20,7 @@ LiteralBooleanNegateOperator >> expressionToReplace [
 		  { true. false } includes: aNode value  ] ]
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 LiteralBooleanNegateOperator >> newExpression [
 
 	^ [ :anOldNode | RBLiteralValueNode value: anOldNode value not ]

@@ -1,10 +1,11 @@
 Class {
-	#name : #AuxiliarTestClassForTestingStrategies,
-	#superclass : #TestCase,
-	#category : 'MuTalk-TestResources'
+	#name : 'AuxiliarTestClassForTestingStrategies',
+	#superclass : 'TestCase',
+	#category : 'MuTalk-TestResources',
+	#package : 'MuTalk-TestResources'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AuxiliarTestClassForTestingStrategies >> testMethodThatCoverMethod1 [
 
 	self assert: AuxiliarClassForTestingStrategies new method1 = 1. 
@@ -12,7 +13,7 @@ AuxiliarTestClassForTestingStrategies >> testMethodThatCoverMethod1 [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AuxiliarTestClassForTestingStrategies >> testMethodThatCoverMethod2 [
 
 	self assert: AuxiliarClassForTestingStrategies new method2 = 2. 

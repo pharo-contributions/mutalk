@@ -1,10 +1,11 @@
 Class {
-	#name : #FakeInfiniteLoopForTest,
-	#superclass : #Object,
-	#category : #'MuTalk-Tests'
+	#name : 'FakeInfiniteLoopForTest',
+	#superclass : 'Object',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #factorials }
+{ #category : 'factorials' }
 FakeInfiniteLoopForTest >> iterativeFactorial: anInt [
 
 	| factorial i |
@@ -20,7 +21,7 @@ FakeInfiniteLoopForTest >> iterativeFactorial: anInt [
 			  factorial ]
 ]
 
-{ #category : #factorials }
+{ #category : 'factorials' }
 FakeInfiniteLoopForTest >> recursiveFactorial: anInt [
 
 	"If a mutation replaces this cut condition to false, this will loop"

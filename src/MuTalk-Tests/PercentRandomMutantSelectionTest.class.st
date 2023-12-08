@@ -1,10 +1,11 @@
 Class {
-	#name : #PercentRandomMutantSelectionTest,
-	#superclass : #RandomMutantSelectionTest,
-	#category : #'MuTalk-Tests'
+	#name : 'PercentRandomMutantSelectionTest',
+	#superclass : 'RandomMutantSelectionTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PercentRandomMutantSelectionTest >> testSelectMutantsFrom [
 
 	| select coll |
@@ -13,7 +14,7 @@ PercentRandomMutantSelectionTest >> testSelectMutantsFrom [
 	self assert: (select selectMutantsFrom: coll) size equals: 5
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PercentRandomMutantSelectionTest >> testSelectMutantsFrom2 [
 
 	| select coll |
@@ -24,7 +25,7 @@ PercentRandomMutantSelectionTest >> testSelectMutantsFrom2 [
 		equals: {  } asOrderedCollection
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PercentRandomMutantSelectionTest >> testSelectMutantsFrom3 [
 
 	| select coll |
@@ -33,7 +34,7 @@ PercentRandomMutantSelectionTest >> testSelectMutantsFrom3 [
 	self assert: (select selectMutantsFrom: coll) equals: coll
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PercentRandomMutantSelectionTest >> testSelectMutantsFrom4 [
 
 	| select coll |
@@ -42,7 +43,7 @@ PercentRandomMutantSelectionTest >> testSelectMutantsFrom4 [
 	self should: [ select percentageOfMutants: -50 ] raise: Error
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PercentRandomMutantSelectionTest >> testSelectMutantsFrom5 [
 
 	| select coll |
@@ -51,7 +52,7 @@ PercentRandomMutantSelectionTest >> testSelectMutantsFrom5 [
 	self should: [ select percentageOfMutants: 150 ] raise: Error
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PercentRandomMutantSelectionTest >> testSelectMutantsFromDistinctElements [
 
 	| select coll newColl |

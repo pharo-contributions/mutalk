@@ -1,45 +1,46 @@
 Class {
-	#name : #ReplaceOrWithAndMutantOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : 'MuTalk-Tests'
+	#name : 'ReplaceOrWithAndMutantOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithAndMutantOperatorTest >> methodWithNoSenders [  
 	^ true and: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithAndMutantOperatorTest >> methodWithOneSender [  
 	^ true or: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithAndMutantOperatorTest >> methodWithOneSenderModified [
 	^ true and: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithAndMutantOperatorTest >> methodWithTwoSenders [  
 	^ true or: [true or: [false]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithAndMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 	^ true and: [true or: [false]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithAndMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 	^ true or: [true and: [false]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithAndMutantOperatorTest >> operator [
 	^ ReplaceOrWithAndMutantOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithAndMutantOperatorTest >> operatorDescription [
 	^'Replace #or: with #and:'
 ]

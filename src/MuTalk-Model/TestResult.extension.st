@@ -1,6 +1,6 @@
-Extension { #name : #TestResult }
+Extension { #name : 'TestResult' }
 
-{ #category : #'*MuTalk-Model' }
+{ #category : '*MuTalk-Model' }
 TestResult >> addAllResults: aTestResult [
 
 	failures addAll: aTestResult failures.
@@ -9,27 +9,27 @@ TestResult >> addAllResults: aTestResult [
 	skipped addAll: aTestResult skipped.
 ]
 
-{ #category : #'*MuTalk-Model' }
+{ #category : '*MuTalk-Model' }
 TestResult >> concreteErrors [
     ^ errors
 ]
 
-{ #category : #'*MuTalk-Model' }
+{ #category : '*MuTalk-Model' }
 TestResult >> concreteFailures [
     ^ failures
 ]
 
-{ #category : #'*MuTalk-Model' }
+{ #category : '*MuTalk-Model' }
 TestResult >> concretePassed [
     ^ passed
 ]
 
-{ #category : #'*MuTalk-Model' }
+{ #category : '*MuTalk-Model' }
 TestResult >> errorsSize [
     ^ errors size
 ]
 
-{ #category : #'*MuTalk-Model' }
+{ #category : '*MuTalk-Model' }
 TestResult >> failuresSize [
     ^ failures size
 ]

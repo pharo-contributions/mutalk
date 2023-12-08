@@ -1,5 +1,6 @@
 Class {
-	#name : #MethodInstallerException,
-	#superclass : #Error,
-	#category : 'MuTalk-Model'
+	#name : 'MethodInstallerException',
+	#superclass : 'Error',
+	#category : 'MuTalk-Model',
+	#package : 'MuTalk-Model'
 }

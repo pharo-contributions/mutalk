@@ -1,30 +1,31 @@
 Class {
-	#name : #ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : 'MuTalk-Tests'
+	#name : 'ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithNoSenders [  
 	 1 + 2.
 	^#(1) detect:[:each | true]  
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithOneSender [  
 	^OrderedCollection new 
 		detect: [:each | each notNil] 
 		ifNone: [true]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithOneSenderModified [
 	^OrderedCollection new 
 		detect: [:each | each notNil] 
 		ifNone: []
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithTwoSenders [
 	|collection|
 	collection := OrderedCollection with: 1 with: 2.
@@ -38,7 +39,7 @@ ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithTwoSenders
 		ifNone: [0]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithTwoSendersModifiedFirst [
 	|collection|
 	collection := OrderedCollection with: 1 with: 2.
@@ -52,7 +53,7 @@ ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithTwoSenders
 		ifNone: []
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithTwoSendersModifiedSecond [
 	|collection|
 	collection := OrderedCollection with: 1 with: 2.
@@ -66,12 +67,12 @@ ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithTwoSenders
 		ifNone: [0]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> operator [
 	^ ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> operatorDescription [ 
 	^'Replace ifNone: block with [] when #detect:ifNone:'
 ]

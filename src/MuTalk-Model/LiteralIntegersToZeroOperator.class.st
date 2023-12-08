@@ -1,16 +1,18 @@
 Class {
-	#name : #LiteralIntegersToZeroOperator,
-	#superclass : #BlockBasedMutantOperator,
-	#category : #'MuTalk-Model-Operators'
+	#name : 'LiteralIntegersToZeroOperator',
+	#superclass : 'BlockBasedMutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 LiteralIntegersToZeroOperator >> description [
 
 	^ 'Convert a literal integer to zero'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 LiteralIntegersToZeroOperator >> expressionToReplace [
 
 	^ [ :aNode | 
@@ -18,7 +20,7 @@ LiteralIntegersToZeroOperator >> expressionToReplace [
 		  aNode value isInteger and: [aNode value isZero not] ] ]
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 LiteralIntegersToZeroOperator >> newExpression [
 
 	^ [ :anOldNode | RBLiteralValueNode value: 0 ]

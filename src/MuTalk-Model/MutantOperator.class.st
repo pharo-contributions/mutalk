@@ -1,17 +1,19 @@
 Class {
-	#name : #MutantOperator,
-	#superclass : #Object,
-	#category : #'MuTalk-Model-Operators'
+	#name : 'MutantOperator',
+	#superclass : 'Object',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantOperator class >> allConcreteSubclasses [
 
 	^ self allSubclasses reject: [ :ea | 
 		  ea isAbstract | ea isOriginalOperator not ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantOperator class >> contents [
 
 	"This returns only the traditional operators "
@@ -22,7 +24,7 @@ MutantOperator class >> contents [
 		  elem1 description <= elem2 description ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantOperator class >> contentsAll [
 
 	"This returns all operators (block based and traditional) "
@@ -32,24 +34,24 @@ MutantOperator class >> contentsAll [
 		  elem1 description <= elem2 description ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantOperator class >> isAbstract [
 	^self subclasses isNotEmpty
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantOperator class >> isOriginalOperator [
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutantOperator class >> recursionsDetectionStatement [
 
 	^ RBParser parseExpression:
 		  ('MuTalkInfiniteRecursionError onCount: {1}' format: { self recursionsDetectionThreshold } )
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutantOperator class >> recursionsDetectionThreshold [
 
 	"We need a big enough number"
@@ -57,7 +59,7 @@ MutantOperator class >> recursionsDetectionThreshold [
 	^ 1024
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 MutantOperator >> applyTo: anOldNode [
 
 	| rewriter |
@@ -71,22 +73,22 @@ MutantOperator >> applyTo: anOldNode [
 	^ rewriter tree
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 MutantOperator >> description [
 	self subclassResponsibility
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 MutantOperator >> expressionToReplace [
 	self subclassResponsibility
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutantOperator >> is: originalRBMethodNode equalTo: nodeThatMatches [ 
 	^ nodeThatMatches formattedCode = originalRBMethodNode formattedCode
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutantOperator >> isAPosibleMutatedNode: aRBMethodNode [ 
 	|nodeThatMatches |
 	
@@ -96,7 +98,7 @@ MutantOperator >> isAPosibleMutatedNode: aRBMethodNode [
 	^ nodeThatMatches notNil and: [self is: nodeThatMatches equalTo: aRBMethodNode]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutantOperator >> isAPosibleNodeToMutate: aRBMethodNode [ 
 	| nodeThatMatches |
 	nodeThatMatches := RBParseTreeSearcher treeMatching: self expressionToReplace
@@ -105,19 +107,19 @@ MutantOperator >> isAPosibleNodeToMutate: aRBMethodNode [
 	^ nodeThatMatches notNil and: [ self is: aRBMethodNode equalTo: nodeThatMatches ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantOperator >> isNodeOfMutation: posibleMutatedRBMethodNode comparingWith: originalRBMethodNode [ 
 	^ (self isAPosibleNodeToMutate: originalRBMethodNode) 
 		and: [ self isAPosibleMutatedNode: posibleMutatedRBMethodNode ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutantOperator >> modifiedSourceFor: aCompiledMethod number: aNumber [ 
 	"this method must be removed, it is only added because some tests send this message - Gabo"
 		^self modifiedSourceFor: aCompiledMethod with: aCompiledMethod parseTree number: aNumber 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber [
 
 	| rewriter parser number nNode |
@@ -141,7 +143,7 @@ MutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aN
 	^ parser formattedCode
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutantOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumberOfSelector [
 
 	^ MethodMutation
@@ -151,7 +153,7 @@ MutantOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumberO
 		  ofClass: aCompiledMethod methodClass
 ]
 
-{ #category : #'mutant generation' }
+{ #category : 'mutant generation' }
 MutantOperator >> mutationsFor: aCompiledMethod [ 
 
 	(aCompiledMethod ignoredMutationOperators includes: self class) ifTrue: [ ^ Array new ].
@@ -160,7 +162,7 @@ MutantOperator >> mutationsFor: aCompiledMethod [
 	
 ]
 
-{ #category : #'mutant generation' }
+{ #category : 'mutant generation' }
 MutantOperator >> mutationsFor: aCompiledMethod with: aParseTree [ 
 	| numberOfMutations |
 	numberOfMutations := ((aCompiledMethod hasPragmaNamed: #ignoreForMutations) or: [ aCompiledMethod hasPragmaNamed: #ignoreForCoverage ])
@@ -173,23 +175,23 @@ MutantOperator >> mutationsFor: aCompiledMethod with: aParseTree [
 				number: aNumberOfSelector]
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 MutantOperator >> newExpression [
 	self subclassResponsibility
 ]
 
-{ #category : #suggestions }
+{ #category : 'suggestions' }
 MutantOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [
 	^'No Suggestion'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 MutantOperator >> timesToApplyIn: aCompiledMethod [ 
 	^self timesToApplyIn: aCompiledMethod  with: aCompiledMethod parseTree.
 	
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 MutantOperator >> timesToApplyIn: aCompiledMethod with: aParseTree [ 
 	"Evaluates how many times can the operator be applyied"	
 	|searcher timesToApply|

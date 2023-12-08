@@ -1,26 +1,28 @@
 Class {
-	#name : #MutantReporter,
-	#superclass : #Object,
+	#name : 'MutantReporter',
+	#superclass : 'Object',
 	#instVars : [
 		'mutantEvaluationResult'
 	],
-	#category : 'MuTalk-Model-Reporting'
+	#category : 'MuTalk-Model-Reporting',
+	#package : 'MuTalk-Model',
+	#tag : 'Reporting'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MutantReporter class >> for: aMutantEvaluationResult [ 
 	^self new 
 		initializeFor: aMutantEvaluationResult;
 		yourself 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MutantReporter >> initializeFor: aMutantEvaluationResult [ 
 
 	mutantEvaluationResult := aMutantEvaluationResult 
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 MutantReporter >> value [
 	| stream |
 	stream := String

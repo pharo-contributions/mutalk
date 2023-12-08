@@ -1,16 +1,18 @@
 Class {
-	#name : #MutantEvaluationResultTerminated,
-	#superclass : #MutantEvaluationResult,
-	#category : 'MuTalk-Model-Mutant evaluation results'
+	#name : 'MutantEvaluationResultTerminated',
+	#superclass : 'MutantEvaluationResult',
+	#category : 'MuTalk-Model-Mutant evaluation results',
+	#package : 'MuTalk-Model',
+	#tag : 'Mutant evaluation results'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MutantEvaluationResultTerminated class >> canHandle: aMutant withResults: aTestResult [
 
 	^aTestResult isNil
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MutantEvaluationResultTerminated class >> newFor: aMutant results: aTestResult producedBy: aMutantEvaluation [ 
 	^ self new
 		initializeFor: aMutant
@@ -18,63 +20,63 @@ MutantEvaluationResultTerminated class >> newFor: aMutant results: aTestResult p
 		yourself
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MutantEvaluationResultTerminated >> initializeFor: aMutation producedBy: aMutantEvaluation [ 
 	mutant := aMutation.
 	mutantEvaluation := aMutantEvaluation
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultTerminated >> killed [
 	^false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantEvaluationResultTerminated >> killingSuggestions [ 
 	
 	^'MUTANT KILLED'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultTerminated >> particularResults [
 	
 	^OrderedCollection new
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 MutantEvaluationResultTerminated >> printDetailedResultOn: aStream [
 
 		aStream cr; nextPutAll: 'TEST EXECUTION TERMINATED'; cr.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantEvaluationResultTerminated >> result [
 	^nil
 ]
 
-{ #category : #browsing }
+{ #category : 'browsing' }
 MutantEvaluationResultTerminated >> resultClass [
 	
 	^mutant originalClass
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultTerminated >> resultString [
 	^'Mutation TERMINATED'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultTerminated >> runCount [
 
 	^0
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultTerminated >> survived [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultTerminated >> terminated [
 
 	^true

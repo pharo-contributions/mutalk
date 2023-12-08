@@ -1,15 +1,17 @@
 Class {
-	#name : #ReplaceSelectWithRejectMutantOperator,
-	#superclass : #SelectorReplacementMutantOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'ReplaceSelectWithRejectMutantOperator',
+	#superclass : 'SelectorReplacementMutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceSelectWithRejectMutantOperator >> newSelector [
 	^#reject:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceSelectWithRejectMutantOperator >> oldSelector [
 	^#select:
 ]

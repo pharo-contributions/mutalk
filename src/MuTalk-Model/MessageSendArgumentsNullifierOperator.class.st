@@ -1,23 +1,25 @@
 Class {
-	#name : #MessageSendArgumentsNullifierOperator,
-	#superclass : #BlockBasedMutantOperator,
-	#category : #'MuTalk-Model-Operators'
+	#name : 'MessageSendArgumentsNullifierOperator',
+	#superclass : 'BlockBasedMutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 MessageSendArgumentsNullifierOperator >> description [
 
 	^ 'Nullify the arguments of message sends'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 MessageSendArgumentsNullifierOperator >> expressionToReplace [
 
 	^ [ :aNode | 
 	  aNode isMessage and: [ aNode arguments size >= self whichArgument ] ]
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 MessageSendArgumentsNullifierOperator >> newExpression [
 
 	| whichToReplace nodeCopy |
@@ -28,7 +30,7 @@ MessageSendArgumentsNullifierOperator >> newExpression [
 	 nodeCopy]
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 MessageSendArgumentsNullifierOperator >> whichArgument [
 	^ self subclassResponsibility 
 ]

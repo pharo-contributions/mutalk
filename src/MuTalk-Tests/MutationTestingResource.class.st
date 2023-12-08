@@ -1,13 +1,14 @@
 Class {
-	#name : #MutationTestingResource,
-	#superclass : #TestResource,
+	#name : 'MutationTestingResource',
+	#superclass : 'TestResource',
 	#instVars : [
 		'testResource'
 	],
-	#category : #'MuTalk-Tests'
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 MutationTestingResource >> evaluationResultEmpty [
 	"Build a MutationEvaluationResult empty"
 	| mutant testResultEmpty |
@@ -18,7 +19,7 @@ MutationTestingResource >> evaluationResultEmpty [
 		results: testResultEmpty
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 MutationTestingResource >> evaluationResultForAliveMutant [
 	"Build a MutationEvaluationResult for aMutant with only one survived"
 	| mutation testResultWithoutErrors |
@@ -29,7 +30,7 @@ MutationTestingResource >> evaluationResultForAliveMutant [
 		results: testResultWithoutErrors
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 MutationTestingResource >> evaluationResultForKilledMutantByError [
 	"Build a MutationEvaluationResult for aMutant with only one Error"
 	| mutation testResultWithOneError |
@@ -40,7 +41,7 @@ MutationTestingResource >> evaluationResultForKilledMutantByError [
 		results: testResultWithOneError
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 MutationTestingResource >> evaluationResultForKilledMutantByFailure [
 	"Build a MutationEvaluationResult for aMutant with only one Failure"
 	| mutation testResultWithOneFailure |
@@ -51,7 +52,7 @@ MutationTestingResource >> evaluationResultForKilledMutantByFailure [
 		results: testResultWithOneFailure
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 MutationTestingResource >> evaluationResultForTerminatedMutant [
 	"Build a MutationEvaluationResult for aMutant terminated"
 	| mutation |
@@ -61,12 +62,12 @@ MutationTestingResource >> evaluationResultForTerminatedMutant [
 		results: nil
 ]
 
-{ #category : #'building-private' }
+{ #category : 'building-private' }
 MutationTestingResource >> methodForBuildingMutant [
 	^1+2
 ]
 
-{ #category : #'building-private' }
+{ #category : 'building-private' }
 MutationTestingResource >> mutation [
 	"Build Mock Object that simulates a Mutant"
 	| method |
@@ -78,18 +79,18 @@ MutationTestingResource >> mutation [
 		ofClass: self class
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 MutationTestingResource >> setUp [
 	testResource := MutationTestCaseResource new
 ]
 
-{ #category : #'building-private' }
+{ #category : 'building-private' }
 MutationTestingResource >> testResultEmpty [
 	"Build a TestResult empty"
 	^ TestResult new
 ]
 
-{ #category : #'building-private' }
+{ #category : 'building-private' }
 MutationTestingResource >> testResultWithError [
 	"Build a TestResult with error"
 	| case |
@@ -97,7 +98,7 @@ MutationTestingResource >> testResultWithError [
 	^ case run
 ]
 
-{ #category : #'building-private' }
+{ #category : 'building-private' }
 MutationTestingResource >> testResultWithFailure [
 	"Build a TestResult with failure"
 	| case |
@@ -105,7 +106,7 @@ MutationTestingResource >> testResultWithFailure [
 	^ case run
 ]
 
-{ #category : #'building-private' }
+{ #category : 'building-private' }
 MutationTestingResource >> testResultWithoutErrorOrFailure [
 	"Build a TestResult without errors or failures"
 	| case |

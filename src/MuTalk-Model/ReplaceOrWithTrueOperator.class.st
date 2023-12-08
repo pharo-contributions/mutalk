@@ -1,25 +1,27 @@
 Class {
-	#name : #ReplaceOrWithTrueOperator,
-	#superclass : #MutantOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'ReplaceOrWithTrueOperator',
+	#superclass : 'MutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 ReplaceOrWithTrueOperator >> description [
 	^'Replace #or: with true'.
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 ReplaceOrWithTrueOperator >> expressionToReplace [ 
 	^'``@object or: ``@aBlock'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 ReplaceOrWithTrueOperator >> newExpression [ 
 	^'true'
 ]
 
-{ #category : #suggestions }
+{ #category : 'suggestions' }
 ReplaceOrWithTrueOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [
 	^aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceOrWithTrueOperator: aMutation.
 ]

@@ -1,16 +1,17 @@
 Class {
-	#name : #MessageSendArguments3rdNullifierOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : #'MuTalk-Tests'
+	#name : 'MessageSendArguments3rdNullifierOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments3rdNullifierOperatorTest >> methodWithNoSenders [
 
 	^ self operatorDescription 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments3rdNullifierOperatorTest >> methodWithOneSender [
 
 	| o |
@@ -20,7 +21,7 @@ MessageSendArguments3rdNullifierOperatorTest >> methodWithOneSender [
 	o at: 1 put: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments3rdNullifierOperatorTest >> methodWithOneSenderModified [
 
 	| o |
@@ -30,7 +31,7 @@ MessageSendArguments3rdNullifierOperatorTest >> methodWithOneSenderModified [
 	o at: 1 put: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments3rdNullifierOperatorTest >> methodWithTwoSenders [
 
 	| o |
@@ -41,7 +42,7 @@ MessageSendArguments3rdNullifierOperatorTest >> methodWithTwoSenders [
 	o at: 1 put: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments3rdNullifierOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	| o |
@@ -52,7 +53,7 @@ MessageSendArguments3rdNullifierOperatorTest >> methodWithTwoSendersModifiedFirs
 	o at: 1 put: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments3rdNullifierOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	| o |
@@ -63,13 +64,13 @@ MessageSendArguments3rdNullifierOperatorTest >> methodWithTwoSendersModifiedSeco
 	o at: 1 put: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments3rdNullifierOperatorTest >> operator [
 
 	^ MessageSendArguments3rdNullifierOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments3rdNullifierOperatorTest >> operatorDescription [
 
 	^ self operator  description

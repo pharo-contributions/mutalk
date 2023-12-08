@@ -1,6 +1,6 @@
 Class {
-	#name : #MethodMutation,
-	#superclass : #Object,
+	#name : 'MethodMutation',
+	#superclass : 'Object',
 	#instVars : [
 		'nodeNumber',
 		'originalMethod',
@@ -9,10 +9,11 @@ Class {
 		'testCaseReferences',
 		'originalProtocol'
 	],
-	#category : #'MuTalk-Model'
+	#category : 'MuTalk-Model',
+	#package : 'MuTalk-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
 	^ self new
 		initializeFor: aMethod
@@ -22,7 +23,7 @@ MethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeN
 		 yourself
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
 	originalMethod := aMethod.
 	originalProtocol := aMethod protocol.
@@ -31,7 +32,7 @@ MethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aN
 	originalClass := aClass
 ]
 
-{ #category : #installing }
+{ #category : 'installing' }
 MethodMutation >> install [
 	"Install the mutant compiling the modified source into the class."
 
@@ -40,24 +41,24 @@ MethodMutation >> install [
 		in: originalClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MethodMutation >> modifiedSource [
 
 	^ operator modifiedSourceFor: originalMethod number: nodeNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MethodMutation >> mutatedNode [
 
 	^ operator applyTo: self nodeToMutate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MethodMutation >> nodeNumber: anInteger [ 
 	nodeNumber := anInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MethodMutation >> nodeToMutate [
 
 	| n searcher |
@@ -72,27 +73,27 @@ MethodMutation >> nodeToMutate [
 	self error: 'Not found'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MethodMutation >> operator [
 	^operator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MethodMutation >> originalClass [
 	^ originalClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MethodMutation >> originalMethod [
 	^originalMethod.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MethodMutation >> originalSource [
 	^ originalMethod sourceCode asString
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 MethodMutation >> printOn: aStream [ 
 	aStream nextPutAll: operator description;
 		 nextPutAll: ' in ';
@@ -101,7 +102,7 @@ MethodMutation >> printOn: aStream [
 		nextPutAll: originalMethod  selector printString.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 MethodMutation >> runMutant [
 
 	^ [ 
@@ -110,7 +111,7 @@ MethodMutation >> runMutant [
 	] ensure: [ self uninstall ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MethodMutation >> runTests [
 
 	^ (TestSuite named: 'Tests cases for: ' , self printString)
@@ -118,17 +119,17 @@ MethodMutation >> runTests [
 		  runStoppingOnFirstFailOrError
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MethodMutation >> testCaseReferences [
 	^ testCaseReferences
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MethodMutation >> testCaseReferences: aCollectionOfTestCaseReferences [
 	testCaseReferences := aCollectionOfTestCaseReferences
 ]
 
-{ #category : #installing }
+{ #category : 'installing' }
 MethodMutation >> uninstall [
 	"UnInstall the mutant recompiling the original method into the class."
 

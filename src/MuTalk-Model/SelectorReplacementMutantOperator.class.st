@@ -1,15 +1,17 @@
 Class {
-	#name : #SelectorReplacementMutantOperator,
-	#superclass : #MutantOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'SelectorReplacementMutantOperator',
+	#superclass : 'MutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 SelectorReplacementMutantOperator >> description [
 	^ 'Replace ' , self oldSelector printString , ' with ' , self newSelector printString
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 SelectorReplacementMutantOperator >> expressionToReplace [ 
 	| oldString |
 	oldString := RBParseTreeSearcher buildSelectorString: self oldSelector.
@@ -17,7 +19,7 @@ SelectorReplacementMutantOperator >> expressionToReplace [
 	
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 SelectorReplacementMutantOperator >> newExpression [ 
 	| newString |
 	newString := RBParseTreeSearcher buildSelectorString: self newSelector.
@@ -25,12 +27,12 @@ SelectorReplacementMutantOperator >> newExpression [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SelectorReplacementMutantOperator >> newSelector [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SelectorReplacementMutantOperator >> oldSelector [
 	self subclassResponsibility
 ]

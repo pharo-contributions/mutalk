@@ -1,16 +1,17 @@
 Class {
-	#name : #MessageSendArguments1stNullifierOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : #'MuTalk-Tests'
+	#name : 'MessageSendArguments1stNullifierOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments1stNullifierOperatorTest >> methodWithNoSenders [
 
 	^ self operatorDescription 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments1stNullifierOperatorTest >> methodWithOneSender [
 
 	| o |
@@ -18,7 +19,7 @@ MessageSendArguments1stNullifierOperatorTest >> methodWithOneSender [
 	o at: 1 put: 2.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments1stNullifierOperatorTest >> methodWithOneSenderModified [
 
 	
@@ -27,7 +28,7 @@ MessageSendArguments1stNullifierOperatorTest >> methodWithOneSenderModified [
 	o at: nil put: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments1stNullifierOperatorTest >> methodWithTwoSenders [
 
 	
@@ -37,7 +38,7 @@ MessageSendArguments1stNullifierOperatorTest >> methodWithTwoSenders [
 	o at: 1 .
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments1stNullifierOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	| o |
@@ -46,7 +47,7 @@ MessageSendArguments1stNullifierOperatorTest >> methodWithTwoSendersModifiedFirs
 	o at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments1stNullifierOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	| o |
@@ -55,13 +56,13 @@ MessageSendArguments1stNullifierOperatorTest >> methodWithTwoSendersModifiedSeco
 	o at: nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments1stNullifierOperatorTest >> operator [
 
 	^ MessageSendArguments1stNullifierOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendArguments1stNullifierOperatorTest >> operatorDescription [
 
 	^ self operator  description
