@@ -36,9 +36,8 @@ MutationTestingTimeBudgetTest >> runAnalysisWithBudget: aBudget [
 		            mutating: classesToMutate
 		            using: MutantOperator contents
 		            with: AllTestsMethodsRunningTestSelectionStrategy new
-		            with: AllMutantSelectionStrategy new
+		            with: (ManualMutationSelectionStrategy with: mutStream)
 		            budget: aBudget.
-	analysis mutations: mutStream.
 
 	analysis run.
 	^ analysis generalResult

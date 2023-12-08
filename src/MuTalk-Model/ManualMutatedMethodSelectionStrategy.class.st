@@ -1,5 +1,5 @@
 Class {
-	#name : 'ManualMutantSelectionStrategy',
+	#name : 'ManualMutatedMethodSelectionStrategy',
 	#superclass : 'MutantSelectionStrategy',
 	#instVars : [
 		'targetMethods'
@@ -10,13 +10,13 @@ Class {
 }
 
 { #category : 'generating' }
-ManualMutantSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
+ManualMutatedMethodSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
 
 	^ targetMethods 
 ]
 
 { #category : 'accessing' }
-ManualMutantSelectionStrategy >> targetMethods: anObject [
+ManualMutatedMethodSelectionStrategy >> targetMethods: anObject [
 
 	targetMethods := anObject
 ]
