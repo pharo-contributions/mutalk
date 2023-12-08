@@ -1,10 +1,11 @@
 Class {
-	#name : #RandomMutantSelectionTest,
-	#superclass : #TestCase,
-	#category : #'MuTalk-Tests'
+	#name : 'RandomMutantSelectionTest',
+	#superclass : 'TestCase',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 RandomMutantSelectionTest >> testDefaultMutationsGenerationStrategy [
 
 	self

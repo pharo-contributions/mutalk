@@ -1,22 +1,24 @@
 Class {
-	#name : #LiteralIntegersDecreaseOperator,
-	#superclass : #BlockBasedMutantOperator,
-	#category : #'MuTalk-Model-Operators'
+	#name : 'LiteralIntegersDecreaseOperator',
+	#superclass : 'BlockBasedMutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 LiteralIntegersDecreaseOperator >> description [
 
 	^ 'Decrease a literal integer'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 LiteralIntegersDecreaseOperator >> expressionToReplace [
 
 	^ [ :aNode | aNode isLiteralNode & aNode isLiteralArray not and: [ aNode value isInteger ]  ]
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 LiteralIntegersDecreaseOperator >> newExpression [
 
 	^ [ :anOldNode | RBLiteralValueNode value: anOldNode value - 1 ]

@@ -1,24 +1,25 @@
 Class {
-	#name : #TestSuiteWrappedForCoverage,
-	#superclass : #TestSuite,
+	#name : 'TestSuiteWrappedForCoverage',
+	#superclass : 'TestSuite',
 	#instVars : [
 		'coverageAnalysis'
 	],
-	#category : 'MuTalk-Model'
+	#category : 'MuTalk-Model',
+	#package : 'MuTalk-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 TestSuiteWrappedForCoverage class >> for: aCoverageAnalysis named: aString [ 
 	^self new initializeFor: aCoverageAnalysis named: aString.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TestSuiteWrappedForCoverage >> initializeFor: aCoverageAnalysis named: aString [
 	self name: aString.
 	coverageAnalysis := aCoverageAnalysis.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 TestSuiteWrappedForCoverage >> run: aResult [ 
 	self tests do: [:each |coverageAnalysis currentTest: each.
 								self changed: each.

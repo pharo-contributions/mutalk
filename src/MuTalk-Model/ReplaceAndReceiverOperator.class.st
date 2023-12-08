@@ -1,10 +1,12 @@
 Class {
-	#name : #ReplaceAndReceiverOperator,
-	#superclass : #ReplaceReceiverOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'ReplaceAndReceiverOperator',
+	#superclass : 'ReplaceReceiverOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #applying }
+{ #category : 'applying' }
 ReplaceAndReceiverOperator >> selector [
 	^#and:
 ]

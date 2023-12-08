@@ -1,16 +1,17 @@
 Class {
-	#name : #MutationTestingFreeBudget,
-	#superclass : #MutationTestingBudget,
-	#category : #'MuTalk-Model'
+	#name : 'MutationTestingFreeBudget',
+	#superclass : 'MutationTestingBudget',
+	#category : 'MuTalk-Model',
+	#package : 'MuTalk-Model'
 }
 
-{ #category : #validation }
+{ #category : 'validation' }
 MutationTestingFreeBudget >> check: aCollection [
 
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingFreeBudget >> start [
 
 	

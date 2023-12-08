@@ -1,45 +1,46 @@
 Class {
-	#name : #ReplaceAndWithEqvMutantOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : 'MuTalk-Tests'
+	#name : 'ReplaceAndWithEqvMutantOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithEqvMutantOperatorTest >> methodWithNoSenders [  
 	^ true or: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithEqvMutantOperatorTest >> methodWithOneSender [  
 	^ true and: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithEqvMutantOperatorTest >> methodWithOneSenderModified [
 	^ true bEqv: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithEqvMutantOperatorTest >> methodWithTwoSenders [  
 	^ true and: [true and: [false]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithEqvMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 	^ true bEqv: [true and: [false]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithEqvMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 	^ true and: [true bEqv: [false]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithEqvMutantOperatorTest >> operator [
 	^ ReplaceAndWithEqvMutantOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithEqvMutantOperatorTest >> operatorDescription [
 	^'Replace #and: with #bEqv:'
 ]

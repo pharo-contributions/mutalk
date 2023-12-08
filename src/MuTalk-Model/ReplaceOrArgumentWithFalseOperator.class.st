@@ -1,25 +1,27 @@
 Class {
-	#name : #ReplaceOrArgumentWithFalseOperator,
-	#superclass : #MutantOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'ReplaceOrArgumentWithFalseOperator',
+	#superclass : 'MutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 ReplaceOrArgumentWithFalseOperator >> description [
 	^'Replace #or: argument with [false]'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 ReplaceOrArgumentWithFalseOperator >> expressionToReplace [ 
 	^'``@object or: ``@aBlock'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 ReplaceOrArgumentWithFalseOperator >> newExpression [
 	^'``@object or: [false]'
 ]
 
-{ #category : #suggestions }
+{ #category : 'suggestions' }
 ReplaceOrArgumentWithFalseOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [
 	^aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceOrArgumentWithFalseOperator: aMutation.
 ]

@@ -1,47 +1,48 @@
 Class {
-	#name : #ExtremeTransformationOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : #'MuTalk-Tests'
+	#name : 'ExtremeTransformationOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExtremeTransformationOperatorTest >> methodWithOneSender [
 
 	self operator.
 	self operatorDescription 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExtremeTransformationOperatorTest >> methodWithOneSenderModified [
 
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExtremeTransformationOperatorTest >> operator [
 
 	^ ExtremeTransformationOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ExtremeTransformationOperatorTest >> operatorDescription [
 
 	^ self operator  description
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ExtremeTransformationOperatorTest >> testApplyMutantToMethod [
 
 	self assert: self assertApplyingMutantToFirstSenderInOneSenderMethod
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ExtremeTransformationOperatorTest >> testNumberMutantsGenerated [
 
 	self assert: self assertNumberMutantsGeneratedForOneSenderMethod
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ExtremeTransformationOperatorTest >> testTimesToApplyMutantToMethod [
 
 	self assert: self assertTimesToApplyOperatorToOneSenderMethod

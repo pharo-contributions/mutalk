@@ -1,13 +1,14 @@
 Class {
-	#name : #TestCasesSelectionStrategyTest,
-	#superclass : #TestCase,
+	#name : 'TestCasesSelectionStrategyTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'resource'
 	],
-	#category : #'MuTalk-Tests'
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TestCasesSelectionStrategyTest >> allTestsFromPackage [
 	^ (OrderedCollection
 		with: TestClassForTestingCoverage
@@ -20,7 +21,7 @@ TestCasesSelectionStrategyTest >> allTestsFromPackage [
 			tests]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TestCasesSelectionStrategyTest >> allTestsIn: aCollection areIncludedIn: anotherCollection [
 
 	^ ((aCollection collect: [ :testCase | testCase selector ]) 
@@ -32,7 +33,7 @@ TestCasesSelectionStrategyTest >> allTestsIn: aCollection areIncludedIn: another
 				  (aCollection collect: [ :testCase | testCase selector ]) ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TestCasesSelectionStrategyTest >> testClassTestCaseSelectionStrategy [
 	| testCase |
 	testCase := TestClassForTestingCoverage selector: #testCase1.
@@ -43,13 +44,13 @@ TestCasesSelectionStrategyTest >> testClassTestCaseSelectionStrategy [
 				areIncludedIn: TestClassForTestingCoverage suite tests)
 ]
 
-{ #category : #'testing-class' }
+{ #category : 'testing-class' }
 TestCasesSelectionStrategyTest >> testClassTestCaseSelectionStrategyForEmptyTestSet [
 
 	self assert: (ClassTestCasesSelectionStrategy new testCasesFor: OrderedCollection new) isEmpty
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TestCasesSelectionStrategyTest >> testNoneTestCaseSelectionStrategy [
 	| testCase |
 	testCase := TestClassForTestingCoverage selector: #testCase1.
@@ -58,13 +59,13 @@ TestCasesSelectionStrategyTest >> testNoneTestCaseSelectionStrategy [
 			= (OrderedCollection with: testCase)
 ]
 
-{ #category : #'testing-none' }
+{ #category : 'testing-none' }
 TestCasesSelectionStrategyTest >> testNoneTestCaseSelectionStrategyForEmptyTestSet [
 
 	self assert: (NoneTestCasesSelectionStrategy new testCasesFor: OrderedCollection new ) isEmpty
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TestCasesSelectionStrategyTest >> testPackageTestCaseSelectionStrategy [
 	| testCase |
 	testCase := TestClassForTestingCoverage selector: #testCase1.
@@ -75,7 +76,7 @@ TestCasesSelectionStrategyTest >> testPackageTestCaseSelectionStrategy [
 				areIncludedIn: (self allTestsFromPackage))
 ]
 
-{ #category : #'testing-package' }
+{ #category : 'testing-package' }
 TestCasesSelectionStrategyTest >> testPackageTestCaseSelectionStrategyForEmptyTestSet [
 
 	self assert: (PackageTestCasesSelectionStrategy new testCasesFor: OrderedCollection new ) isEmpty

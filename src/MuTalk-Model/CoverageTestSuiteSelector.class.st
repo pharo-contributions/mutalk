@@ -1,10 +1,11 @@
 Class {
-	#name : #CoverageTestSuiteSelector,
-	#superclass : #Object,
-	#category : #'MuTalk-Model'
+	#name : 'CoverageTestSuiteSelector',
+	#superclass : 'Object',
+	#category : 'MuTalk-Model',
+	#package : 'MuTalk-Model'
 }
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 CoverageTestSuiteSelector >> selectTestsFrom: aMutationTestingAnalysis [
 	
 	| methodsToCover testCaseCandidates selectedTests |

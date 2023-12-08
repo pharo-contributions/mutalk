@@ -1,20 +1,22 @@
 Class {
-	#name : #MutationTestingAnalysisLogger,
-	#superclass : #Object,
-	#category : 'MuTalk-Model-Logging'
+	#name : 'MutationTestingAnalysisLogger',
+	#superclass : 'Object',
+	#category : 'MuTalk-Model-Logging',
+	#package : 'MuTalk-Model',
+	#tag : 'Logging'
 }
 
-{ #category : #logging }
+{ #category : 'logging' }
 MutationTestingAnalysisLogger >> logAnalysisStartFor: aMutationTestingAnalysis [ 
 	self subclassResponsibility 
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 MutationTestingAnalysisLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
 	self subclassResponsibility 
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 MutationTestingAnalysisLogger >> logStartEvaluating: aMethodMutation [ 
 	self subclassResponsibility
 ]

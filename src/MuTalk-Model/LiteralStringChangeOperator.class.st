@@ -1,16 +1,18 @@
 Class {
-	#name : #LiteralStringChangeOperator,
-	#superclass : #BlockBasedMutantOperator,
-	#category : #'MuTalk-Model-Operators'
+	#name : 'LiteralStringChangeOperator',
+	#superclass : 'BlockBasedMutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 LiteralStringChangeOperator >> description [
 
 	^ 'Convert a literal string to a predefined string'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 LiteralStringChangeOperator >> expressionToReplace [
 
 	^ [ :aNode | 
@@ -18,13 +20,13 @@ LiteralStringChangeOperator >> expressionToReplace [
 		  aNode value isString and: [ aNode value ~= self stringReplaced ] ] ]
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 LiteralStringChangeOperator >> newExpression [
 
 	^ [ :anOldNode | RBLiteralValueNode value: self stringReplaced  ]
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 LiteralStringChangeOperator >> stringReplaced [
 	^ 'rAnDoM-MuTalk-StRiNg'
 ]

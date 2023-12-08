@@ -1,10 +1,11 @@
 Class {
-	#name : #MethodInstaller,
-	#superclass : #Object,
-	#category : #'MuTalk-Model'
+	#name : 'MethodInstaller',
+	#superclass : 'Object',
+	#category : 'MuTalk-Model',
+	#package : 'MuTalk-Model'
 }
 
-{ #category : #installing }
+{ #category : 'installing' }
 MethodInstaller >> install: aMethod for: selector in: aClass withProtocol: methodProtocol [
 
 	aClass
@@ -13,7 +14,7 @@ MethodInstaller >> install: aMethod for: selector in: aClass withProtocol: metho
 		inProtocol: methodProtocol
 ]
 
-{ #category : #installing }
+{ #category : 'installing' }
 MethodInstaller >> installFromSource: aSourceCode in: aClass [
 	"Install a SourceCode in aClass. Raise exception in case de installation is
 	not posible."
@@ -23,7 +24,7 @@ MethodInstaller >> installFromSource: aSourceCode in: aClass [
 		do: [ :error | MethodInstallerException signal ]
 ]
 
-{ #category : #installing }
+{ #category : 'installing' }
 MethodInstaller >> installFromSourceSilently: aSourceCode in: aClass [
 	"Install a SourceCode in aClass. Raise exception in case de installation is
 	not posible."
@@ -33,7 +34,7 @@ MethodInstaller >> installFromSourceSilently: aSourceCode in: aClass [
 		do: [ :error | MethodInstallerException signal ]
 ]
 
-{ #category : #installing }
+{ #category : 'installing' }
 MethodInstaller >> uninstall: aSelector from: aClass [ 
 	"Uninstall a method referenced by aSelector in aClass. Raise exception in
 	case de uninstall is	not posible."

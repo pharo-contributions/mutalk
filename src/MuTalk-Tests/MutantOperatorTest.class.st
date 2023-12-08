@@ -1,20 +1,21 @@
 Class {
-	#name : #MutantOperatorTest,
-	#superclass : #TestCase,
-	#category : #'MuTalk-Tests'
+	#name : 'MutantOperatorTest',
+	#superclass : 'TestCase',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantOperatorTest class >> isAbstract [
 	^ self name = #MutantOperatorTest
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantOperatorTest class >> packageNamesUnderTest [
 	^ #('MutationTesting-Model')
 ]
 
-{ #category : #asserts }
+{ #category : 'asserts' }
 MutantOperatorTest >> assertApplyingMutantToFirstSenderInOneSenderMethod [
 	^ self compareSource: 
 				(self operator 
@@ -24,7 +25,7 @@ MutantOperatorTest >> assertApplyingMutantToFirstSenderInOneSenderMethod [
 			replacingSelector: #methodWithOneSender
 ]
 
-{ #category : #asserts }
+{ #category : 'asserts' }
 MutantOperatorTest >> assertApplyingMutantToFirstSenderInTwoSendersMethod [
 	^self 
 		compareSource: 
@@ -35,7 +36,7 @@ MutantOperatorTest >> assertApplyingMutantToFirstSenderInTwoSendersMethod [
 		replacingSelector: #methodWithTwoSenders
 ]
 
-{ #category : #asserts }
+{ #category : 'asserts' }
 MutantOperatorTest >> assertApplyingMutantToNonSenderMethod [
 	^self 
 		compareSource: 
@@ -46,7 +47,7 @@ MutantOperatorTest >> assertApplyingMutantToNonSenderMethod [
 		replacingSelector: #methodWithNoSenders
 ]
 
-{ #category : #asserts }
+{ #category : 'asserts' }
 MutantOperatorTest >> assertApplyingMutantToSecondSenderInTwoSendersMethod [
 	^self 
 		compareSource: 
@@ -57,43 +58,43 @@ MutantOperatorTest >> assertApplyingMutantToSecondSenderInTwoSendersMethod [
 		replacingSelector: #methodWithTwoSenders
 ]
 
-{ #category : #asserts }
+{ #category : 'asserts' }
 MutantOperatorTest >> assertNumberMutantsGeneratedForNonSenderMethod [
 	|mutationsGenerated|
 	mutationsGenerated := self operator mutationsFor: self class >> #methodWithNoSenders.
 	^mutationsGenerated size = 0.
 ]
 
-{ #category : #asserts }
+{ #category : 'asserts' }
 MutantOperatorTest >> assertNumberMutantsGeneratedForOneSenderMethod [
 	|mutationsGenerated|
 	mutationsGenerated := self operator mutationsFor: self class >> #methodWithOneSender.
 	^mutationsGenerated size = 1.
 ]
 
-{ #category : #asserts }
+{ #category : 'asserts' }
 MutantOperatorTest >> assertNumberMutantsGeneratedForTwoSendersMethod [
 	|mutationsGenerated|
 	mutationsGenerated := self operator mutationsFor: self class >> #methodWithTwoSenders.
 	^mutationsGenerated size = 2.
 ]
 
-{ #category : #asserts }
+{ #category : 'asserts' }
 MutantOperatorTest >> assertTimesToApplyOperatorInTwoSendersMethod [
 	^ (self operator timesToApplyIn: self class >> #methodWithTwoSenders) = 2
 ]
 
-{ #category : #asserts }
+{ #category : 'asserts' }
 MutantOperatorTest >> assertTimesToApplyOperatorToNonSenderMethod [
 	^ (self operator timesToApplyIn: self class >> #methodWithNoSenders) = 0
 ]
 
-{ #category : #asserts }
+{ #category : 'asserts' }
 MutantOperatorTest >> assertTimesToApplyOperatorToOneSenderMethod [
 	^ (self operator timesToApplyIn: self class >> #methodWithOneSender) = 1
 ]
 
-{ #category : #formatting }
+{ #category : 'formatting' }
 MutantOperatorTest >> compareSource: aSource withSourceInMethod: aCompiledMethod replacingSelector: aSelector [
 	"Compare both source replacing the selector of CompiledMethod for aSelector (to make then equal) 
 	and formatting both sources equally."
@@ -109,55 +110,55 @@ MutantOperatorTest >> compareSource: aSource withSourceInMethod: aCompiledMethod
 		= (self formattedStringFor: secondStringModified)
 ]
 
-{ #category : #formatting }
+{ #category : 'formatting' }
 MutantOperatorTest >> formattedStringFor: aMethodString [ 
 	^ (RBParser parseMethod: aMethodString) formattedCode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantOperatorTest >> methodWithNoSenders [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantOperatorTest >> methodWithOneSender [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantOperatorTest >> methodWithOneSenderModified [
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantOperatorTest >> methodWithTwoSenders [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantOperatorTest >> operator [
 	self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantOperatorTest >> operatorDescription [
 	self subclassResponsibility 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantOperatorTest >> testApplyMutantToMethod [
 	self assert: self assertApplyingMutantToNonSenderMethod.
 	self assert: self assertApplyingMutantToFirstSenderInOneSenderMethod.
@@ -165,19 +166,19 @@ MutantOperatorTest >> testApplyMutantToMethod [
 	self assert: self assertApplyingMutantToSecondSenderInTwoSendersMethod
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantOperatorTest >> testNumberMutantsGenerated [
 	self assert: self assertNumberMutantsGeneratedForNonSenderMethod.
 	self assert: self assertNumberMutantsGeneratedForOneSenderMethod.
 	self assert: self assertNumberMutantsGeneratedForTwoSendersMethod
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantOperatorTest >> testPrintingAccessors [
 	self assert: self operator description = self operatorDescription.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantOperatorTest >> testTimesToApplyMutantToMethod [
 	self assert: self assertTimesToApplyOperatorToNonSenderMethod.
 	self assert: self assertTimesToApplyOperatorToOneSenderMethod.

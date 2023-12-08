@@ -1,45 +1,46 @@
 Class {
-	#name : #ReplaceOrArgumentWithFalseOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : 'MuTalk-Tests'
+	#name : 'ReplaceOrArgumentWithFalseOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrArgumentWithFalseOperatorTest >> methodWithNoSenders [  
 	^ true and: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrArgumentWithFalseOperatorTest >> methodWithOneSender [  
 	^ true or: [true]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrArgumentWithFalseOperatorTest >> methodWithOneSenderModified [
 	^ true or: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrArgumentWithFalseOperatorTest >> methodWithTwoSenders [  
 	^ true or: [true or: [true]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrArgumentWithFalseOperatorTest >> methodWithTwoSendersModifiedFirst [
 	^ true or: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrArgumentWithFalseOperatorTest >> methodWithTwoSendersModifiedSecond [
 	^ true or: [true or: [false]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrArgumentWithFalseOperatorTest >> operator [
 	^ ReplaceOrArgumentWithFalseOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrArgumentWithFalseOperatorTest >> operatorDescription [
 	^'Replace #or: argument with [false]'
 ]

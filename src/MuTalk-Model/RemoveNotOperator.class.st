@@ -1,20 +1,22 @@
 Class {
-	#name : #RemoveNotOperator,
-	#superclass : #MutantOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'RemoveNotOperator',
+	#superclass : 'MutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 RemoveNotOperator >> description [
 	^'Remove #not'.
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 RemoveNotOperator >> expressionToReplace [ 
 	^'``@aBoolean not'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 RemoveNotOperator >> newExpression [
 	^'``@aBoolean'
 ]

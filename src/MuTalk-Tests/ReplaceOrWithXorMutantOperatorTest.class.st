@@ -1,45 +1,46 @@
 Class {
-	#name : #ReplaceOrWithXorMutantOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : 'MuTalk-Tests'
+	#name : 'ReplaceOrWithXorMutantOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithXorMutantOperatorTest >> methodWithNoSenders [  
 	^ true and: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithXorMutantOperatorTest >> methodWithOneSender [  
 	^ true or: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithXorMutantOperatorTest >> methodWithOneSenderModified [
 	^ true bXor: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithXorMutantOperatorTest >> methodWithTwoSenders [  
 	^ true or: [true or: [false]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithXorMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 	^ true bXor: [true or: [false]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithXorMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 	^ true or: [true bXor: [false]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithXorMutantOperatorTest >> operator [
 	^ ReplaceOrWithXorMutantOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithXorMutantOperatorTest >> operatorDescription [
 	^'Replace #or: with #bXor:'
 ]

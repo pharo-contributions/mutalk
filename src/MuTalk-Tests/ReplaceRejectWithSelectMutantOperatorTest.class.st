@@ -1,27 +1,28 @@
 Class {
-	#name : #ReplaceRejectWithSelectMutantOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : 'MuTalk-Tests'
+	#name : 'ReplaceRejectWithSelectMutantOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceRejectWithSelectMutantOperatorTest >> methodWithNoSenders [  
 	^ 1 + 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceRejectWithSelectMutantOperatorTest >> methodWithOneSender [  
 	^OrderedCollection new 
 		reject: [:element | element notNil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceRejectWithSelectMutantOperatorTest >> methodWithOneSenderModified [
 	^OrderedCollection new 
 		select: [:element | element notNil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceRejectWithSelectMutantOperatorTest >> methodWithTwoSenders [
 	OrderedCollection new 
 		reject: [:element | element notNil].
@@ -29,7 +30,7 @@ ReplaceRejectWithSelectMutantOperatorTest >> methodWithTwoSenders [
 		reject: [:element | element isNil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceRejectWithSelectMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 	OrderedCollection new 
 		select: [:element | element notNil].
@@ -37,7 +38,7 @@ ReplaceRejectWithSelectMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 		reject: [:element | element isNil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceRejectWithSelectMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 	OrderedCollection new 
 		reject: [:element | element notNil].
@@ -45,12 +46,12 @@ ReplaceRejectWithSelectMutantOperatorTest >> methodWithTwoSendersModifiedSecond 
 		select: [:element | element isNil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceRejectWithSelectMutantOperatorTest >> operator [
 	^ ReplaceRejectWithSelectMutantOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceRejectWithSelectMutantOperatorTest >> operatorDescription [
 	^'Replace #reject: with #select:'
 ]

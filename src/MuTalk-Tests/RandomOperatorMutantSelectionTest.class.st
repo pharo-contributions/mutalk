@@ -1,13 +1,14 @@
 Class {
-	#name : #RandomOperatorMutantSelectionTest,
-	#superclass : #TestCase,
+	#name : 'RandomOperatorMutantSelectionTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'coll'
 	],
-	#category : #'MuTalk-Tests'
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 RandomOperatorMutantSelectionTest >> setUp [
 
 	| mutants |
@@ -49,7 +50,7 @@ RandomOperatorMutantSelectionTest >> setUp [
 	coll addAll: mutants
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom [
 
 	| select newColl |
@@ -58,7 +59,7 @@ RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom [
 	self assert: newColl size equals: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom2 [
 
 	| select newColl |
@@ -67,7 +68,7 @@ RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom2 [
 	self assert: newColl equals: {  } asOrderedCollection
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom3 [
 
 	| select newColl |
@@ -76,7 +77,7 @@ RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom3 [
 	self assert: newColl equals: coll
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom4 [
 
 	| select newColl |
@@ -85,7 +86,7 @@ RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFrom4 [
 	self assert: newColl equals: coll
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFromDistinctElements [
 
 	| select newColl |
@@ -96,7 +97,7 @@ RandomOperatorMutantSelectionTest >> testFixedSelectMutantsFromDistinctElements 
 		equals: newColl asBag
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom [
 
 	| select newColl |
@@ -105,7 +106,7 @@ RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom [
 	self assert: newColl size equals: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom2 [
 
 	| select newColl |
@@ -114,7 +115,7 @@ RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom2 [
 	self assert: newColl equals: {  } asOrderedCollection
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom3 [
 
 	| select newColl |
@@ -123,7 +124,7 @@ RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom3 [
 	self assert: newColl equals: coll
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom4 [
 
 	self
@@ -131,7 +132,7 @@ RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom4 [
 		raise: Error
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom5 [
 
 	self
@@ -139,7 +140,7 @@ RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFrom5 [
 		raise: Error
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RandomOperatorMutantSelectionTest >> testPercentSelectMutantsFromDistinctElements [
 
 	| select newColl |

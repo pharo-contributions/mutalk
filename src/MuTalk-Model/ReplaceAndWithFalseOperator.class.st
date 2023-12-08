@@ -1,25 +1,27 @@
 Class {
-	#name : #ReplaceAndWithFalseOperator,
-	#superclass : #MutantOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'ReplaceAndWithFalseOperator',
+	#superclass : 'MutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 ReplaceAndWithFalseOperator >> description [
 	^'Replace #and: with false'.
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 ReplaceAndWithFalseOperator >> expressionToReplace [ 
 	^'``@object and: ``@aBlock'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 ReplaceAndWithFalseOperator >> newExpression [ 
 	^'false'
 ]
 
-{ #category : #suggestions }
+{ #category : 'suggestions' }
 ReplaceAndWithFalseOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [
 	^aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceAndWithFalseOperator: aMutation.
 ]

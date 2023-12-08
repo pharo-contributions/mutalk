@@ -1,10 +1,11 @@
 Class {
-	#name : #MuTalkInfiniteRecursionError,
-	#superclass : #Error,
-	#category : #'MuTalk-Model'
+	#name : 'MuTalkInfiniteRecursionError',
+	#superclass : 'Error',
+	#category : 'MuTalk-Model',
+	#package : 'MuTalk-Model'
 }
 
-{ #category : #halting }
+{ #category : 'halting' }
 MuTalkInfiniteRecursionError class >> onCount: anInteger [
 
 	"Based on Halt"
@@ -13,7 +14,7 @@ MuTalkInfiniteRecursionError class >> onCount: anInteger [
 		  (node propertyAt: #haltCount) > anInteger ]
 ]
 
-{ #category : #halting }
+{ #category : 'halting' }
 MuTalkInfiniteRecursionError class >> onCountWithBehavior: behaviorBlock [
 	
 	| callingContext node |

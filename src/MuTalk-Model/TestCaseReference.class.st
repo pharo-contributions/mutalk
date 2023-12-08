@@ -1,47 +1,48 @@
 Class {
-	#name : #TestCaseReference,
-	#superclass : #Object,
+	#name : 'TestCaseReference',
+	#superclass : 'Object',
 	#instVars : [
 		'class',
 		'selector',
 		'lastTimeToRun'
 	],
-	#category : #'MuTalk-Model'
+	#category : 'MuTalk-Model',
+	#package : 'MuTalk-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 TestCaseReference class >> for: aSelector in: aClass [ 
 	^self new initializeFor: aSelector in: aClass
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 TestCaseReference class >> forTestCase: aTestCase [ 
 	^self for: aTestCase selector in: aTestCase class
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 TestCaseReference >> initializeFor: aSelector in: aClass [
 	class := aClass.
 	selector := aSelector.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TestCaseReference >> lastTimeToRun [
 	^ lastTimeToRun
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TestCaseReference >> method [
 	
 	^ class >> selector
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 TestCaseReference >> resources [
 	^self testCase resources
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 TestCaseReference >> run [
 	"kept for retrocompatibility"
 	
@@ -49,12 +50,12 @@ TestCaseReference >> run [
 	^ self runChecked
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 TestCaseReference >> run: aTestResult [
 	^self testCase run: aTestResult
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 TestCaseReference >> runChecked [
 	| result |	
 	result := self runUnchecked.
@@ -63,7 +64,7 @@ TestCaseReference >> runChecked [
 	^ result
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 TestCaseReference >> runUnchecked [
 
 	| result |
@@ -71,7 +72,7 @@ TestCaseReference >> runUnchecked [
 	^ result
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 TestCaseReference >> testCase [
 	^class selector: selector.
 ]

@@ -1,13 +1,22 @@
 Class {
-	#name : #MutationTestingTimeBudget,
-	#superclass : #MutationTestingBudget,
+	#name : 'MutationTestingTimeBudget',
+	#superclass : 'MutationTestingBudget',
 	#instVars : [
 		'initialTime'
 	],
-	#category : #'MuTalk-Model'
+	#category : 'MuTalk-Model',
+	#package : 'MuTalk-Model'
 }
 
-{ #category : #validation }
+{ #category : 'instance creation' }
+MutationTestingTimeBudget class >> for: aDuration [
+
+	^ self new
+		  constraint: aDuration;
+		  yourself
+]
+
+{ #category : 'validation' }
 MutationTestingTimeBudget >> check: aCollection [
 
 	| currentTime |
@@ -15,7 +24,7 @@ MutationTestingTimeBudget >> check: aCollection [
 	^ currentTime - initialTime >= constraint asMilliSeconds
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingTimeBudget >> start [
 
 	initialTime := Time current asMilliSeconds

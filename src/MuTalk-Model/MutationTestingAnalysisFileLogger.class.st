@@ -1,34 +1,36 @@
 Class {
-	#name : #MutationTestingAnalysisFileLogger,
-	#superclass : #MutationTestingAnalysisLogger,
+	#name : 'MutationTestingAnalysisFileLogger',
+	#superclass : 'MutationTestingAnalysisLogger',
 	#instVars : [
 		'fileStream'
 	],
-	#category : 'MuTalk-Model-Logging'
+	#category : 'MuTalk-Model-Logging',
+	#package : 'MuTalk-Model',
+	#tag : 'Logging'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MutationTestingAnalysisFileLogger class >> toFileNamed: aString [
 	^self new initializeToFileNamed: aString.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MutationTestingAnalysisFileLogger >> initializeToFileNamed: aString [
 	fileStream := FileStream forceNewFileNamed: aString.
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 MutationTestingAnalysisFileLogger >> logAnalysisStartFor: aMutationTestingAnalysis [ 
 	self writeLineToFile: 'The analysis is starting...'.
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 MutationTestingAnalysisFileLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [ 
 	self writeLineToFile: 'Generating mutations for '
 			, (self methodNameOf: aCompiledMethod) , '  With operator:' , aMutantOperator description
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 MutationTestingAnalysisFileLogger >> logStartEvaluating: aMethodMutation [
 	| logStream |
 	logStream := WriteStream on: String new.
@@ -41,12 +43,12 @@ MutationTestingAnalysisFileLogger >> logStartEvaluating: aMethodMutation [
 	self writeLineToFile: logStream contents
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutationTestingAnalysisFileLogger >> methodNameOf: aCompiledMethod [ 
 	^aCompiledMethod methodClass name asString , '>>' , aCompiledMethod selector printString 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutationTestingAnalysisFileLogger >> writeLineToFile: aString [ 
 	[fileStream closed
 		ifTrue: [fileStream open].

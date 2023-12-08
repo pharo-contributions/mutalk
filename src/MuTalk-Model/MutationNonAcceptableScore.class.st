@@ -1,30 +1,32 @@
 Class {
-	#name : #MutationNonAcceptableScore,
-	#superclass : #MutationScoreBehavior,
-	#category : 'MuTalk-Model-Score'
+	#name : 'MutationNonAcceptableScore',
+	#superclass : 'MutationScoreBehavior',
+	#category : 'MuTalk-Model-Score',
+	#package : 'MuTalk-Model',
+	#tag : 'Score'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MutationNonAcceptableScore class >> canHandle: aMutationTestingGeneralResult [ 
 	^aMutationTestingGeneralResult mutationScore < 50
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationNonAcceptableScore >> color [
 	^Color red
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationNonAcceptableScore >> isAcceptableScore [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationNonAcceptableScore >> isAlmostAcceptableScore [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationNonAcceptableScore >> isNonAcceptableScore [
 	^true
 ]

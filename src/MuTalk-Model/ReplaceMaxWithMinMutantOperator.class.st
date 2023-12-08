@@ -1,15 +1,17 @@
 Class {
-	#name : #ReplaceMaxWithMinMutantOperator,
-	#superclass : #SelectorReplacementMutantOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'ReplaceMaxWithMinMutantOperator',
+	#superclass : 'SelectorReplacementMutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceMaxWithMinMutantOperator >> newSelector [
 	^#min:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceMaxWithMinMutantOperator >> oldSelector [
 	^#max:
 ]

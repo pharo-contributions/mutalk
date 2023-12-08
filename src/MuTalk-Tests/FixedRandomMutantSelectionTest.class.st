@@ -1,10 +1,11 @@
 Class {
-	#name : #FixedRandomMutantSelectionTest,
-	#superclass : #RandomMutantSelectionTest,
-	#category : #'MuTalk-Tests'
+	#name : 'FixedRandomMutantSelectionTest',
+	#superclass : 'RandomMutantSelectionTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 FixedRandomMutantSelectionTest >> testSelectMutantsFrom [
 
 	| select coll |
@@ -13,7 +14,7 @@ FixedRandomMutantSelectionTest >> testSelectMutantsFrom [
 	self assert: (select selectMutantsFrom: coll) size equals: 5
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FixedRandomMutantSelectionTest >> testSelectMutantsFrom2 [
 
 	| select coll |
@@ -24,7 +25,7 @@ FixedRandomMutantSelectionTest >> testSelectMutantsFrom2 [
 		equals: {  } asOrderedCollection
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FixedRandomMutantSelectionTest >> testSelectMutantsFrom3 [
 
 	| select coll |
@@ -33,7 +34,7 @@ FixedRandomMutantSelectionTest >> testSelectMutantsFrom3 [
 	self assert: (select selectMutantsFrom: coll) equals: coll
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FixedRandomMutantSelectionTest >> testSelectMutantsFrom4 [
 
 	| select coll |
@@ -42,7 +43,7 @@ FixedRandomMutantSelectionTest >> testSelectMutantsFrom4 [
 	self assert: (select selectMutantsFrom: coll) equals: coll
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 FixedRandomMutantSelectionTest >> testSelectMutantsFromDistinctElements [
 
 	| select coll newColl |
