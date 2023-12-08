@@ -370,14 +370,14 @@ MutationTestingAnalysis >> generateResults [
 	particularResults := OrderedCollection new.
 	mutations
 		do: [ :aMutation |
+			(budget check: particularResults with: mutations) ifTrue: [
+				^ particularResults ].
 			logger logStartEvaluating: aMutation.
 			particularResults add: (MutantEvaluation
 					 for: aMutation
 					 using: testCases
 					 following: mutantsEvaluationStrategy
-					 andConsidering: self coverageAnalysisResult) value.
-			(budget check: particularResults with: mutations) ifTrue: [
-				^ particularResults ] ]
+					 andConsidering: self coverageAnalysisResult) value ]
 		displayingProgress: [ :aClass |
 			'Evaluating Mutants: ' , particularResults size asString , '/'
 			, mutations size asString ].

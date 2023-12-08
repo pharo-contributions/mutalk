@@ -32,6 +32,18 @@ MutationTestingPercentRandomMutantsBudgetTest >> setUp [
 ]
 
 { #category : #tests }
+MutationTestingPercentRandomMutantsBudgetTest >> test0Percent [
+
+	budget constraint: 0.
+	analysis run.
+	self
+		assert:
+			analysis generalResult numberOfEvaluatedMutants / numberOfMutations
+			* 100
+		equals: 0
+]
+
+{ #category : #tests }
 MutationTestingPercentRandomMutantsBudgetTest >> test120Percent [
 
 	budget constraint: 120.
@@ -53,4 +65,16 @@ MutationTestingPercentRandomMutantsBudgetTest >> test20Percent [
 			analysis generalResult numberOfEvaluatedMutants / numberOfMutations
 			* 100
 		equals: 20
+]
+
+{ #category : #tests }
+MutationTestingPercentRandomMutantsBudgetTest >> testNegativePercent [
+
+	budget constraint: -10.
+	analysis run.
+	self
+		assert:
+			analysis generalResult numberOfEvaluatedMutants / numberOfMutations
+			* 100
+		equals: 0
 ]
