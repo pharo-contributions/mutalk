@@ -1,9 +1,6 @@
 Class {
 	#name : #RandomOperatorMutantSelectionStrategy,
-	#superclass : #Object,
-	#instVars : [
-		'randomMutantSelection'
-	],
+	#superclass : #RandomMutantSelectionStrategy,
 	#category : #'MuTalk-Model-Mutations generation strategies'
 }
 
@@ -21,74 +18,61 @@ RandomOperatorMutantSelectionStrategy class >> percent: aPercentage [
 		  (PercentRandomMutantSelectionStrategy new percentageOfMutants: aPercentage)
 ]
 
-{ #category : #'accessing-defaults' }
-RandomOperatorMutantSelectionStrategy >> defaultMutationGenerationStrategy [
-
-	^ randomMutantSelection defaultMutationGenerationStrategy
-]
-
-{ #category : #initialization }
-RandomOperatorMutantSelectionStrategy >> initialize [
-
-	randomMutantSelection initialize
-]
-
-{ #category : #generating }
-RandomOperatorMutantSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
-
-	^ randomMutantSelection methodsToMutateFrom: aMutationTestingAnalysis
-]
-
-{ #category : #generating }
-RandomOperatorMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis [
-
-	^ randomMutantSelection mutationsFor: aMutationTestingAnalysis
-]
-
 { #category : #generating }
 RandomOperatorMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
-	^ randomMutantSelection
-		  mutationsFor: aMutationTestingAnalysis
-		  loggingIn: aLogger
+	| mutations shuffledMutations mutationDict operators operator random |
+	mutations := mutationsGenerationStrategy
+		             mutationsFor: aMutationTestingAnalysis
+		             loggingIn: aLogger.
+
+	mutationDict := mutations groupedBy: [ :e | e operator ].
+	operators := mutationDict keys.
+	shuffledMutations := OrderedCollection new.
+	random := Random new.
+
+	1 to: mutations size do: [ :i |
+		operator := self
+			            selectOperatorFrom: operators
+			            and: mutationDict
+			            using: random
+			            for: shuffledMutations.
+
+		shuffledMutations add: (self
+				 selectMutantFrom: mutationDict
+				 with: operator
+				 using: random
+				 for: shuffledMutations) ].
+
+	^ shuffledMutations
 ]
 
-{ #category : #generating }
-RandomOperatorMutantSelectionStrategy >> mutationsFor: aMethod usingAll: aCollectionOfMutantOperators logginIn: aLogger [
+{ #category : #selection }
+RandomOperatorMutantSelectionStrategy >> selectMutantFrom: mutationDictionnary with: anOperator using: aRandom for: newCollection [
 
-	^ randomMutantSelection
-		  mutationsFor: aMethod
-		  usingAll: aCollectionOfMutantOperators
-		  logginIn: aLogger
+	| size index |
+	size := (mutationDictionnary at: anOperator) size.
+	index := aRandom nextIntegerBetween: 1 and: size.
+
+	"If the selected mutant has already been added, another one is chosen"
+	[ newCollection includes:
+		((mutationDictionnary at: anOperator) at: index) ] whileTrue: [
+		index := aRandom nextIntegerBetween: 1 and: size ].
+
+	^ (mutationDictionnary at: anOperator) at: index
 ]
 
-{ #category : #accessing }
-RandomOperatorMutantSelectionStrategy >> mutationsGenerationStrategy [
+{ #category : #selection }
+RandomOperatorMutantSelectionStrategy >> selectOperatorFrom: operators and: mutationDictionnary using: aRandom for: newCollection [
 
-	^ randomMutantSelection mutationsGenerationStrategy
-]
+	| size index |
+	size := operators size.
+	index := aRandom nextIntegerBetween: 1 and: size.
 
-{ #category : #accessing }
-RandomOperatorMutantSelectionStrategy >> mutationsGenerationStrategy: aMutationsGenerationStrategy [
+	"if all the mutants generated with a given operator have already been selected, another operator is chosen"
+	[ (mutationDictionnary at: (operators at: index)) allSatisfy: [ :each |
+		newCollection includes: each ] ] whileTrue: [
+		index := aRandom nextIntegerBetween: 1 and: size ].
 
-	^ randomMutantSelection mutationsGenerationStrategy:
-		  aMutationsGenerationStrategy
-]
-
-{ #category : #logging }
-RandomOperatorMutantSelectionStrategy >> nullLogger [
-
-	^ randomMutantSelection nullLogger
-]
-
-{ #category : #accessing }
-RandomOperatorMutantSelectionStrategy >> randomMutantSelection [
-
-	^ randomMutantSelection
-]
-
-{ #category : #accessing }
-RandomOperatorMutantSelectionStrategy >> randomMutantSelection: anObject [
-
-	randomMutantSelection := anObject
+	^ operators at: index
 ]
