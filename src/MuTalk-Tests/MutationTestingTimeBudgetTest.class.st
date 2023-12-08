@@ -25,18 +25,17 @@ MutationTestingTimeBudgetTest >> runAnalysisFor: aDuration [
 { #category : 'running' }
 MutationTestingTimeBudgetTest >> runAnalysisWithBudget: aBudget [
 
-	| testCases classesToMutate mutStream |
+	| testCases classesToMutate |
 	testCases := { AuxiliarTestClassForMutationTestingBudget }.
 	classesToMutate := { AuxiliarClassForMutationTestingBudget }.
-
-	mutStream := InfiniteReadStream on: { NullMutation new }.
 
 	analysis := MutationTestingAnalysis
 		            testCasesFrom: testCases
 		            mutating: classesToMutate
 		            using: MutantOperator contents
 		            with: AllTestsMethodsRunningTestSelectionStrategy new
-		            with: (ManualMutationSelectionStrategy with: mutStream)
+		            with: (ManualMutationSelectionStrategy with:
+				             (InfiniteReadStream on: { NullMutation new }))
 		            budget: aBudget.
 
 	analysis run.
