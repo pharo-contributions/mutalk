@@ -1,5 +1,5 @@
 Class {
-	#name : #MutationTestingPercentRandomMutantsBudgetTest,
+	#name : #MutationTestingPercentageOfMutantsBudgetTest,
 	#superclass : #MutationTestingBudgetTest,
 	#instVars : [
 		'numberOfMutations'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #running }
-MutationTestingPercentRandomMutantsBudgetTest >> runAnalysisFor: aPercentage [
+MutationTestingPercentageOfMutantsBudgetTest >> runAnalysisFor: aPercentage [
 
 	| result |
 	result := self
@@ -21,7 +21,7 @@ MutationTestingPercentRandomMutantsBudgetTest >> runAnalysisFor: aPercentage [
 ]
 
 { #category : #tests }
-MutationTestingPercentRandomMutantsBudgetTest >> testEvaluateAllMutantsWithMoreThanOneHundredPercentConstraint [
+MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateAllMutantsWithMoreThanOneHundredPercentConstraint [
 
 	self runAnalysisFor: 120.
 	self
@@ -31,7 +31,7 @@ MutationTestingPercentRandomMutantsBudgetTest >> testEvaluateAllMutantsWithMoreT
 ]
 
 { #category : #tests }
-MutationTestingPercentRandomMutantsBudgetTest >> testEvaluateTheCorrectPercentageOfMutants [
+MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateTheCorrectPercentageOfMutants [
 
 	self runAnalysisFor: 20.
 	self
@@ -41,7 +41,7 @@ MutationTestingPercentRandomMutantsBudgetTest >> testEvaluateTheCorrectPercentag
 ]
 
 { #category : #tests }
-MutationTestingPercentRandomMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithNegativePercentConstraint [
+MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithNegativePercentConstraint [
 
 	self runAnalysisFor: -10.
 	self
@@ -51,7 +51,7 @@ MutationTestingPercentRandomMutantsBudgetTest >> testEvaluateZeroPercentOfMutant
 ]
 
 { #category : #tests }
-MutationTestingPercentRandomMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithZeroPercentConstraint [
+MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithZeroPercentConstraint [
 
 	self runAnalysisFor: 0.
 	self

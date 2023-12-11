@@ -1,11 +1,11 @@
 Class {
-	#name : #MutationTestingFixedRandomMutantsBudgetTest,
+	#name : #MutationTestingFixedNumberOfMutantsBudgetTest,
 	#superclass : #MutationTestingBudgetTest,
 	#category : #'MuTalk-Tests'
 }
 
 { #category : #running }
-MutationTestingFixedRandomMutantsBudgetTest >> runAnalysisFor: aNumber [
+MutationTestingFixedNumberOfMutantsBudgetTest >> runAnalysisFor: aNumber [
 
 	^ self
 		  runAnalysisWithBudget: (MutationTestingFixedNumberOfMutantsBudget for: aNumber)
@@ -14,7 +14,7 @@ MutationTestingFixedRandomMutantsBudgetTest >> runAnalysisFor: aNumber [
 ]
 
 { #category : #tests }
-MutationTestingFixedRandomMutantsBudgetTest >> testEvaluateAllMutantsWithConstraintGreaterThanActualNumberOfMutations [
+MutationTestingFixedNumberOfMutantsBudgetTest >> testEvaluateAllMutantsWithConstraintGreaterThanActualNumberOfMutations [
 
 	self runAnalysisFor: 50.
 	self
@@ -23,7 +23,7 @@ MutationTestingFixedRandomMutantsBudgetTest >> testEvaluateAllMutantsWithConstra
 ]
 
 { #category : #tests }
-MutationTestingFixedRandomMutantsBudgetTest >> testEvaluateTheCorrectNumberOfMutants [
+MutationTestingFixedNumberOfMutantsBudgetTest >> testEvaluateTheCorrectNumberOfMutants [
 
 	self runAnalysisFor: 10.
 	self
@@ -32,7 +32,7 @@ MutationTestingFixedRandomMutantsBudgetTest >> testEvaluateTheCorrectNumberOfMut
 ]
 
 { #category : #tests }
-MutationTestingFixedRandomMutantsBudgetTest >> testEvaluateZeroMutantsWithConstraintOfZero [
+MutationTestingFixedNumberOfMutantsBudgetTest >> testEvaluateZeroMutantsWithConstraintOfZero [
 
 	self runAnalysisFor: 0.
 	self
@@ -41,7 +41,7 @@ MutationTestingFixedRandomMutantsBudgetTest >> testEvaluateZeroMutantsWithConstr
 ]
 
 { #category : #tests }
-MutationTestingFixedRandomMutantsBudgetTest >> testEvaluateZeroMutantsWithNegativeConstraint [
+MutationTestingFixedNumberOfMutantsBudgetTest >> testEvaluateZeroMutantsWithNegativeConstraint [
 
 	self runAnalysisFor: -10.
 	self
