@@ -1,10 +1,6 @@
 Class {
 	#name : #MutationTestingTimeBudgetTest,
-	#superclass : #TestCase,
-	#instVars : [
-		'budget',
-		'analysis'
-	],
+	#superclass : #MutationTestingBudgetTest,
 	#category : #'MuTalk-Tests'
 }
 
@@ -17,16 +13,14 @@ MutationTestingTimeBudgetTest >> fixedAnalysisTime [
 { #category : #running }
 MutationTestingTimeBudgetTest >> runAnalysisFor: aDuration [
 
-	^ self runAnalysisWithBudget:
-		  (MutationTestingTimeBudget for: aDuration)
+	^ self
+		  runAnalysisWithBudget: (MutationTestingTimeBudget for: aDuration)
+		  on: { AuxiliarClassForMutationTestingBudget }
+		  withTests: { AuxiliarTestClassForMutationTestingBudget }
 ]
 
 { #category : #running }
-MutationTestingTimeBudgetTest >> runAnalysisWithBudget: aBudget [
-
-	| testCases classesToMutate |
-	testCases := { AuxiliarTestClassForMutationTestingBudget }.
-	classesToMutate := { AuxiliarClassForMutationTestingBudget }.
+MutationTestingTimeBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests: testCases [
 
 	analysis := MutationTestingAnalysis
 		            testCasesFrom: testCases

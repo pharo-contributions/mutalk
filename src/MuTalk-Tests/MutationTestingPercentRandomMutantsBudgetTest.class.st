@@ -1,80 +1,61 @@
 Class {
 	#name : #MutationTestingPercentRandomMutantsBudgetTest,
-	#superclass : #TestCase,
+	#superclass : #MutationTestingBudgetTest,
 	#instVars : [
-		'budget',
-		'analysis',
 		'numberOfMutations'
 	],
 	#category : #'MuTalk-Tests'
 }
 
 { #category : #running }
-MutationTestingPercentRandomMutantsBudgetTest >> setUp [
+MutationTestingPercentRandomMutantsBudgetTest >> runAnalysisFor: aPercentage [
 
-	| testCases classesToMutate |
-	super setUp.
-
-	testCases := { AuxiliarClassForMutationTestingAnalysisTest }.
-	classesToMutate := { AuxiliarClassForMutationTestingAnalysis }.
-
-	budget := MutationTestingPercentRandomMutantsBudget new.
-
-	analysis := MutationTestingAnalysis
-		            testCasesFrom: testCases
-		            mutating: classesToMutate
-		            using: MutantOperator contents
-		            with: AllTestsMethodsRunningTestSelectionStrategy new
-		            with: AllMutantSelectionStrategy new
-		            budget: budget.
-	analysis generateMutations.
-	numberOfMutations := analysis mutations size
+	| result |
+	result := self
+		          runAnalysisWithBudget:
+		          (MutationTestingPercentageOfMutantsBudget for: aPercentage)
+		          on: { AuxiliarClassForMutationTestingAnalysis }
+		          withTests: { AuxiliarClassForMutationTestingAnalysisTest }.
+	numberOfMutations := analysis mutations size.
+	^ result
 ]
 
 { #category : #tests }
 MutationTestingPercentRandomMutantsBudgetTest >> testEvaluateAllMutantsWithMoreThanOneHundredPercentConstraint [
 
-	budget constraint: 120.
-	analysis run.
+	self runAnalysisFor: 120.
 	self
 		assert:
-			analysis generalResult numberOfEvaluatedMutants / numberOfMutations
-			* 100
+			analysis generalResult numberOfEvaluatedMutants / numberOfMutations * 100
 		equals: 100
 ]
 
 { #category : #tests }
 MutationTestingPercentRandomMutantsBudgetTest >> testEvaluateTheCorrectPercentageOfMutants [
 
-	budget constraint: 20.
-	analysis run.
+	self runAnalysisFor: 20.
 	self
 		assert:
-			analysis generalResult numberOfEvaluatedMutants / numberOfMutations
-			* 100
+			analysis generalResult numberOfEvaluatedMutants / numberOfMutations * 100
 		equals: 20
 ]
 
 { #category : #tests }
 MutationTestingPercentRandomMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithNegativePercentConstraint [
 
-	budget constraint: -10.
-	analysis run.
+	self runAnalysisFor: -10.
 	self
 		assert:
-			analysis generalResult numberOfEvaluatedMutants / numberOfMutations
-			* 100
+			analysis generalResult numberOfEvaluatedMutants / numberOfMutations * 100
 		equals: 0
 ]
 
 { #category : #tests }
 MutationTestingPercentRandomMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithZeroPercentConstraint [
 
-	budget constraint: 0.
-	analysis run.
+	self runAnalysisFor: 0.
 	self
 		assert:
-			analysis generalResult numberOfEvaluatedMutants / numberOfMutations
-			* 100
+			analysis generalResult numberOfEvaluatedMutants / numberOfMutations * 100
 		equals: 0
 ]
