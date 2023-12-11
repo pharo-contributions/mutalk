@@ -7,6 +7,14 @@ Class {
 	#category : #'MuTalk-Model'
 }
 
+{ #category : #'instance creation' }
+MutationTestingBudget class >> for: aConstraint [
+
+	^ self new
+		  constraint: aConstraint;
+		  yourself
+]
+
 { #category : #validation }
 MutationTestingBudget >> check: partialCollection with: initialCollection [
 
