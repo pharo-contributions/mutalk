@@ -1,7 +1,7 @@
 Class {
 	#name : #SelectingFromCoverageTestSelectionStrategy,
 	#superclass : #TestSelectionStrategy,
-	#category : #'MuTalk-Model-Mutant evaluation strategies'
+	#category : #'MuTalk-Model-Test selection strategies'
 }
 
 { #category : #private }

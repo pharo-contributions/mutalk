@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'targetMethods'
 	],
-	#category : 'MuTalk-Model-Mutations generation strategies'
+	#category : #'MuTalk-Model-Mutant selection strategies'
 }
 
 { #category : #generating }

@@ -1,7 +1,7 @@
 Class {
 	#name : #RandomOperatorMutantSelectionStrategy,
 	#superclass : #RandomMutantSelectionStrategy,
-	#category : #'MuTalk-Model-Mutations generation strategies'
+	#category : #'MuTalk-Model-Mutant selection strategies'
 }
 
 { #category : #intialization }

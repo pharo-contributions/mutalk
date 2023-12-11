@@ -1,7 +1,7 @@
 Class {
 	#name : #SelectingFromCoverageMutantSelectionStrategy,
 	#superclass : #MutantSelectionStrategy,
-	#category : #'MuTalk-Model-Mutations generation strategies'
+	#category : #'MuTalk-Model-Mutant selection strategies'
 }
 
 { #category : #generating }

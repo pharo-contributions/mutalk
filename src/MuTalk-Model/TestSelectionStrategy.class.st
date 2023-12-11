@@ -1,7 +1,7 @@
 Class {
 	#name : #TestSelectionStrategy,
 	#superclass : #Object,
-	#category : #'MuTalk-Model-Mutant evaluation strategies'
+	#category : #'MuTalk-Model-Test selection strategies'
 }
 
 { #category : #evaluating }

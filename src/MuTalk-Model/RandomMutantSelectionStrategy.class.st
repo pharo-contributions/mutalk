@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'mutationsGenerationStrategy'
 	],
-	#category : #'MuTalk-Model-Mutations generation strategies'
+	#category : #'MuTalk-Model-Mutant selection strategies'
 }
 
 { #category : #'instance creation' }
