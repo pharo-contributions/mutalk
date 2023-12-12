@@ -1,23 +1,25 @@
 Class {
-	#name : #MessageSendToYourselfOperator,
-	#superclass : #BlockBasedMutantOperator,
-	#category : #'MuTalk-Model-Operators'
+	#name : 'MessageSendToYourselfOperator',
+	#superclass : 'BlockBasedMutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 MessageSendToYourselfOperator >> description [
 
 	^ 'Chnage a message send with #yourself'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 MessageSendToYourselfOperator >> expressionToReplace [
 
 	^ [ :aNode | 
 	  aNode isMessage and: [ aNode selector ~= #yourself ] ]
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 MessageSendToYourselfOperator >> newExpression [
 
 	| nodeCopy |

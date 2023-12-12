@@ -1,38 +1,40 @@
 Class {
-	#name : #RandomMutantSelectionStrategy,
-	#superclass : #Object,
+	#name : 'RandomMutantSelectionStrategy',
+	#superclass : 'Object',
 	#instVars : [
 		'mutationsGenerationStrategy'
 	],
-	#category : #'MuTalk-Model-Mutant selection strategies'
+	#category : 'MuTalk-Model-Mutant selection strategies',
+	#package : 'MuTalk-Model',
+	#tag : 'Mutant selection strategies'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RandomMutantSelectionStrategy class >> using: aMutationsGenerationStrategy [
 
 	^ self new mutationsGenerationStrategy: aMutationsGenerationStrategy
 ]
 
-{ #category : #'accessing-defaults' }
+{ #category : 'accessing-defaults' }
 RandomMutantSelectionStrategy >> defaultMutationGenerationStrategy [
 
 	^ AllMutantSelectionStrategy new
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RandomMutantSelectionStrategy >> initialize [
 
 	super initialize.
 	mutationsGenerationStrategy := self defaultMutationGenerationStrategy
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 RandomMutantSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
 
 	^ mutationsGenerationStrategy methodsToMutateFrom: aMutationTestingAnalysis
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 RandomMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis [
 
 	^ self
@@ -40,7 +42,7 @@ RandomMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis [
 		  loggingIn: self nullLogger
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 RandomMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
 	| mutations |
@@ -49,7 +51,7 @@ RandomMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingI
 	^ mutations shuffle
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 RandomMutantSelectionStrategy >> mutationsFor: aMethod usingAll: aCollectionOfMutantOperators logginIn: aLogger [
 
 	^ mutationsGenerationStrategy
@@ -58,19 +60,19 @@ RandomMutantSelectionStrategy >> mutationsFor: aMethod usingAll: aCollectionOfMu
 		  logginIn: aLogger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RandomMutantSelectionStrategy >> mutationsGenerationStrategy [
 
 	^ mutationsGenerationStrategy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RandomMutantSelectionStrategy >> mutationsGenerationStrategy: aMutationsGenerationStrategy [
 
 	mutationsGenerationStrategy := aMutationsGenerationStrategy
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 RandomMutantSelectionStrategy >> nullLogger [
 
 	^ mutationsGenerationStrategy nullLogger

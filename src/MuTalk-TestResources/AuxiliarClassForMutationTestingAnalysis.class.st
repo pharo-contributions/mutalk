@@ -1,10 +1,11 @@
 Class {
-	#name : #AuxiliarClassForMutationTestingAnalysis,
-	#superclass : #Object,
-	#category : 'MuTalk-TestResources'
+	#name : 'AuxiliarClassForMutationTestingAnalysis',
+	#superclass : 'Object',
+	#category : 'MuTalk-TestResources',
+	#package : 'MuTalk-TestResources'
 }
 
-{ #category : #auxiliar }
+{ #category : 'auxiliar' }
 AuxiliarClassForMutationTestingAnalysis class >> classMethodThatSendsSelect [
 	|collection|
 	collection := OrderedCollection with: 1.
@@ -12,30 +13,30 @@ AuxiliarClassForMutationTestingAnalysis class >> classMethodThatSendsSelect [
 		select: [:item | item = 1]
 ]
 
-{ #category : #auxiliar }
+{ #category : 'auxiliar' }
 AuxiliarClassForMutationTestingAnalysis >> anotherMethodWithOneIfFalseSender [
 	false ifFalse: [^1].
 	^2
 ]
 
-{ #category : #auxiliar }
+{ #category : 'auxiliar' }
 AuxiliarClassForMutationTestingAnalysis >> methodWithOneIfFalseSender [
 	true ifFalse: [^1].
 	^2
 ]
 
-{ #category : #auxiliar }
+{ #category : 'auxiliar' }
 AuxiliarClassForMutationTestingAnalysis >> methodWithOneIfTrueSender [
 	true ifTrue: [ ^ 1 ].
 	^ 2
 ]
 
-{ #category : #auxiliar }
+{ #category : 'auxiliar' }
 AuxiliarClassForMutationTestingAnalysis >> methodWithOnePlusSender [
 	^ 1 + 2
 ]
 
-{ #category : #auxiliar }
+{ #category : 'auxiliar' }
 AuxiliarClassForMutationTestingAnalysis >> methodWithTwoMinusSenders [
 	^ 1 - 2 - 3
 ]

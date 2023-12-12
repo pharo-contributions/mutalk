@@ -1,22 +1,24 @@
 Class {
-	#name : #LiteralIntegersIncreaseOperator,
-	#superclass : #BlockBasedMutantOperator,
-	#category : #'MuTalk-Model-Operators'
+	#name : 'LiteralIntegersIncreaseOperator',
+	#superclass : 'BlockBasedMutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 LiteralIntegersIncreaseOperator >> description [
 
 	^ 'Increase a literal integer'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 LiteralIntegersIncreaseOperator >> expressionToReplace [
 
 	^ [ :aNode | aNode isLiteralNode & aNode isLiteralArray not and: [ aNode value isInteger ]  ]
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 LiteralIntegersIncreaseOperator >> newExpression [
 
 	^ [ :anOldNode | RBLiteralValueNode value: anOldNode value + 1 ]

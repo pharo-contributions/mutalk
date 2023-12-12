@@ -1,25 +1,26 @@
 Class {
-	#name : #MutationTestCaseResource,
-	#superclass : #TestCase,
-	#category : 'MuTalk-Tests'
+	#name : 'MutationTestCaseResource',
+	#superclass : 'TestCase',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestCaseResource class >> packageNamesUnderTest [
 	^ #('MutationTesting-Model')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestCaseResource >> error [
 	3 zork
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestCaseResource >> fail [
 	self assert: false.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestCaseResource >> pass [
 	self assert: true
 ]

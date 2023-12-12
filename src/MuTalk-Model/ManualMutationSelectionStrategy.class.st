@@ -2,15 +2,17 @@
 This strategy uses a fixed list of mutations pre-computed by the user
 "
 Class {
-	#name : #ManualMutationSelectionStrategy,
-	#superclass : #MutantSelectionStrategy,
+	#name : 'ManualMutationSelectionStrategy',
+	#superclass : 'MutantSelectionStrategy',
 	#instVars : [
 		'mutations'
 	],
-	#category : #'MuTalk-Model-Mutant selection strategies'
+	#category : 'MuTalk-Model-Mutant selection strategies',
+	#package : 'MuTalk-Model',
+	#tag : 'Mutant selection strategies'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ManualMutationSelectionStrategy class >> with: aCollection [
 
 	^ self new
@@ -18,12 +20,12 @@ ManualMutationSelectionStrategy class >> with: aCollection [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ManualMutationSelectionStrategy >> mutations: anInfiniteReadStream [ 
 	mutations := anInfiniteReadStream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ManualMutationSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
 	"Do not compute a list of mutations, just use the explicit one"

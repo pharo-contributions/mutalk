@@ -1,10 +1,11 @@
 Class {
-	#name : #MutationTestingFixedNumberOfMutantsBudgetTest,
-	#superclass : #MutationTestingBudgetTest,
-	#category : #'MuTalk-Tests'
+	#name : 'MutationTestingFixedNumberOfMutantsBudgetTest',
+	#superclass : 'MutationTestingBudgetTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 MutationTestingFixedNumberOfMutantsBudgetTest >> runAnalysisFor: aNumber [
 
 	^ self
@@ -13,7 +14,7 @@ MutationTestingFixedNumberOfMutantsBudgetTest >> runAnalysisFor: aNumber [
 		  withTests: { AuxiliarClassForMutationTestingAnalysisTest }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MutationTestingFixedNumberOfMutantsBudgetTest >> testEvaluateAllMutantsWithConstraintGreaterThanActualNumberOfMutations [
 
 	self runAnalysisFor: 50.
@@ -22,7 +23,7 @@ MutationTestingFixedNumberOfMutantsBudgetTest >> testEvaluateAllMutantsWithConst
 		equals: 25
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MutationTestingFixedNumberOfMutantsBudgetTest >> testEvaluateTheCorrectNumberOfMutants [
 
 	self runAnalysisFor: 10.
@@ -31,7 +32,7 @@ MutationTestingFixedNumberOfMutantsBudgetTest >> testEvaluateTheCorrectNumberOfM
 		equals: 10
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MutationTestingFixedNumberOfMutantsBudgetTest >> testEvaluateZeroMutantsWithConstraintOfZero [
 
 	self runAnalysisFor: 0.
@@ -40,7 +41,7 @@ MutationTestingFixedNumberOfMutantsBudgetTest >> testEvaluateZeroMutantsWithCons
 		equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MutationTestingFixedNumberOfMutantsBudgetTest >> testEvaluateZeroMutantsWithNegativeConstraint [
 
 	self runAnalysisFor: -10.

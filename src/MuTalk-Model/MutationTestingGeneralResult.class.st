@@ -1,66 +1,67 @@
 Class {
-	#name : #MutationTestingGeneralResult,
-	#superclass : #Object,
+	#name : 'MutationTestingGeneralResult',
+	#superclass : 'Object',
 	#instVars : [
 		'particularResults',
 		'elapsedTime'
 	],
-	#category : 'MuTalk-Model'
+	#category : 'MuTalk-Model',
+	#package : 'MuTalk-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MutationTestingGeneralResult class >> empty [
 	^ self for: OrderedCollection new
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MutationTestingGeneralResult class >> for: mutantsEvaluationsResults [ 
 	^self for: mutantsEvaluationsResults timed: Duration new
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MutationTestingGeneralResult class >> for: mutantsEvaluationsResults timed: anElapsedTime [ 
 	^ self new initializeFor: mutantsEvaluationsResults timed: anElapsedTime;
 		 yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingGeneralResult >> aliveMutants [
 	^ particularResults select: [ :evaluationResult | evaluationResult survived ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationTestingGeneralResult >> elapsedTime [
 	^ elapsedTime
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 MutationTestingGeneralResult >> initializeFor: mutantsEvaluationsResults timed: anElapsedTime [
 	particularResults := mutantsEvaluationsResults.
 	elapsedTime := anElapsedTime
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationTestingGeneralResult >> isAcceptableScore [
 	^ self mutationScore > 80
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationTestingGeneralResult >> isNonAcceptableScore [
 	^ self mutationScore < 50
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingGeneralResult >> killedMutants [
 	^ particularResults select: [ :evaluationResult | evaluationResult killed ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingGeneralResult >> killedOrTerminatedMutants [
 	^ particularResults select: [ :evaluationResult | evaluationResult killed or: [ evaluationResult terminated ] ]
 ]
 
-{ #category : #details }
+{ #category : 'details' }
 MutationTestingGeneralResult >> mutationScore [
 	"Returns the mutation Score of this general result. A mutation score is the
 	killedOrTerminatedMutants / numberOfEvaluatedMutants"
@@ -68,42 +69,42 @@ MutationTestingGeneralResult >> mutationScore [
 	^ (self numberOfKilledOrTerminatedMutants * 100 / self numberOfEvaluatedMutants) asInteger
 ]
 
-{ #category : #details }
+{ #category : 'details' }
 MutationTestingGeneralResult >> mutationScoreModel [
 	^MutationScoreBehavior buildFor: self
 ]
 
-{ #category : #details }
+{ #category : 'details' }
 MutationTestingGeneralResult >> numberOfAliveMutants [
 	"Returns the number of survived Mutants of this result"
 	^ self aliveMutants size
 ]
 
-{ #category : #details }
+{ #category : 'details' }
 MutationTestingGeneralResult >> numberOfEvaluatedMutants [
 	"Returns the number of Mutants Evaluated"
 	^ particularResults size
 ]
 
-{ #category : #details }
+{ #category : 'details' }
 MutationTestingGeneralResult >> numberOfKilledMutants [
 	"Returns the number of killed Mutants of this result"
 	^ self killedMutants size
 ]
 
-{ #category : #details }
+{ #category : 'details' }
 MutationTestingGeneralResult >> numberOfKilledOrTerminatedMutants [
 	"Returns the number of killed or terminated Mutants of this result"
 	^ self killedOrTerminatedMutants size
 ]
 
-{ #category : #details }
+{ #category : 'details' }
 MutationTestingGeneralResult >> numberOfTerminatedMutants [
 	"Returns the number of Mutants terminated"
 	^ self terminatedMutants size
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 MutationTestingGeneralResult >> printDetailedInfoOn: aStream [ 
 	
 	(particularResults 
@@ -116,7 +117,7 @@ MutationTestingGeneralResult >> printDetailedInfoOn: aStream [
 			]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 MutationTestingGeneralResult >> printOn: aStream [ 
 	aStream
 		nextPutAll: self numberOfEvaluatedMutants printString;
@@ -131,7 +132,7 @@ MutationTestingGeneralResult >> printOn: aStream [
 		nextPutAll: '%.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingGeneralResult >> terminatedMutants [
 	^ particularResults select: [ :evaluationResult | evaluationResult terminated ]
 ]

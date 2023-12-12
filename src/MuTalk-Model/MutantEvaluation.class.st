@@ -1,39 +1,40 @@
 Class {
-	#name : #MutantEvaluation,
-	#superclass : #Object,
+	#name : 'MutantEvaluation',
+	#superclass : 'Object',
 	#instVars : [
 		'mutation',
 		'strategy',
 		'testCases',
 		'coverageAnalysisResult'
 	],
-	#category : #'MuTalk-Model'
+	#category : 'MuTalk-Model',
+	#package : 'MuTalk-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MutantEvaluation class >> for: aMutation using:aCollectionOftestCases following: aMutantEvaluationStrategy [ 
 	^self for: aMutation using: aCollectionOftestCases following: aMutantEvaluationStrategy andConsidering:nil  
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MutantEvaluation class >> for: aMutation using: aCollectionOftestCases following: aMutantEvaluationStrategy and: aTestSelectionStrategy [ 
 	|tests|
 	tests := aTestSelectionStrategy testCasesFromReferencies: aCollectionOftestCases.
 	^self for: aMutation using: tests following: aMutantEvaluationStrategy andConsidering:nil
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MutantEvaluation class >> for: aMutation using:aCollectionOftestCases following: aMutantEvaluationStrategy andConsidering: aCoverageAnalysisResult [ 
 	^self new initializeFor: aMutation using:aCollectionOftestCases following: aMutantEvaluationStrategy andConsidering: aCoverageAnalysisResult
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantEvaluation >> coverageAnalysisResult [
 
 	^coverageAnalysisResult 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MutantEvaluation >> initializeCoverageResultIfNil [
 	coverageAnalysisResult 
 		ifNil:[ |coverageAnalysis|
@@ -42,7 +43,7 @@ MutantEvaluation >> initializeCoverageResultIfNil [
 				coverageAnalysisResult := coverageAnalysis run;result].
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MutantEvaluation >> initializeFor: aMutation using:aCollectionOftestCases following: aMutantEvaluationStrategy andConsidering: aCoverageAnalysisResult [
 	mutation := aMutation.
 	testCases := aCollectionOftestCases.
@@ -50,29 +51,29 @@ MutantEvaluation >> initializeFor: aMutation using:aCollectionOftestCases follow
 	coverageAnalysisResult := aCoverageAnalysisResult	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutantEvaluation >> runTests [
 
 	^ mutation runMutant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantEvaluation >> strategy [
 	^strategy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantEvaluation >> testCases [
 	^testCases
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutantEvaluation >> testResults [ 
 
 	^ [ self runTests ] valueWithin: (strategy timeoutForTestsOf: self) milliSeconds onTimeout: [ nil ]
 ]
 
-{ #category : #evaluation }
+{ #category : 'evaluation' }
 MutantEvaluation >> value [
 	| testResults |
 	self initializeCoverageResultIfNil.

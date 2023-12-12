@@ -1,6 +1,6 @@
 Class {
-	#name : #MutantEvaluationStrategyTest,
-	#superclass : #TestCase,
+	#name : 'MutantEvaluationStrategyTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'resource',
 		'classes',
@@ -10,40 +10,42 @@ Class {
 		'testCases',
 		'testCasesUsed'
 	],
-	#category : #'MuTalk-Tests'
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationStrategyTest class >> isAbstract [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantEvaluationStrategyTest class >> packageNamesUnderTest [
 	^ #('MutationTesting-Model')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantEvaluationStrategyTest class >> resources [
 	^ {MutationTestingResource}
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 MutantEvaluationStrategyTest >> assertMutantInCoverageOfTestCase [
 	self subclassResponsibility
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 MutantEvaluationStrategyTest >> assertMutantNotInCoverage [
 	self subclassResponsibility
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 MutantEvaluationStrategyTest >> assertMutantNotInCoverageOfTest [
+
 	self subclassResponsibility
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 MutantEvaluationStrategyTest >> getTestsCasesToEvaluateForMutant: aMethodSelector [
 	| mutation |
 	mutation := (operator mutationsFor: AuxiliarClassForTestingStrategies >> aMethodSelector) asOrderedCollection first.
@@ -53,12 +55,12 @@ MutantEvaluationStrategyTest >> getTestsCasesToEvaluateForMutant: aMethodSelecto
 
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 MutantEvaluationStrategyTest >> selectionStrategy [
 	^ self subclassResponsibility
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 MutantEvaluationStrategyTest >> setUp [
 	resource := MutationTestingResource current.
 	
@@ -75,21 +77,21 @@ MutantEvaluationStrategyTest >> setUp [
 	mutationTestingAnalysis generateCoverageAnalysis.
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 MutantEvaluationStrategyTest >> testMutantInCoverageOfTestCase [
 
 	testCases := self getTestsCasesToEvaluateForMutant: #method1.
 	^ self assertMutantInCoverageOfTestCase
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 MutantEvaluationStrategyTest >> testMutantNotInCoverage [
 
 	testCases := self getTestsCasesToEvaluateForMutant: #aNotCoveredMethod.
 	^ self assertMutantNotInCoverage
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 MutantEvaluationStrategyTest >> testMutantNotInCoverageOfTest [
 
 	testCases := self getTestsCasesToEvaluateForMutant: #method1.

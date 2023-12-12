@@ -1,31 +1,32 @@
 Class {
-	#name : #MutantKillingSuggesionTest,
-	#superclass : #TestCase,
+	#name : 'MutantKillingSuggesionTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'resource'
 	],
-	#category : #'MuTalk-Tests'
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantKillingSuggesionTest class >> resources [
 	^ {MutationTestingResource}
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantKillingSuggesionTest >> killedMutant [
 
 	^resource evaluationResultForKilledMutantByError
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantKillingSuggesionTest >> methodToTestSuggestionToKillRAO [
 
 	^2 = (1 + 1) and: [ Set new isEmpty ].
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantKillingSuggesionTest >> methodToTestSuggestionToKillRAOWithAssignments [
 	|firstCondition secondCondition|
 	firstCondition := 2 = (1 + 1).
@@ -33,7 +34,7 @@ MutantKillingSuggesionTest >> methodToTestSuggestionToKillRAOWithAssignments [
 	^firstCondition and: [secondCondition ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantKillingSuggesionTest >> methodToTestSuggestionToKillRCOWithAssignments [
 	|aValue anotherValue|
 	aValue := 1.
@@ -42,14 +43,14 @@ MutantKillingSuggesionTest >> methodToTestSuggestionToKillRCOWithAssignments [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantKillingSuggesionTest >> methodToTestSuggestionToKillROA [
 
 	^2 = (1 + 1) or: [ Set new isEmpty ].
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantKillingSuggesionTest >> methodToTestSuggestionToKillROAWithAssignments [
 	|firstCondition secondCondition|
 	firstCondition := 2 = (1 + 1).
@@ -57,71 +58,71 @@ MutantKillingSuggesionTest >> methodToTestSuggestionToKillROAWithAssignments [
 	^firstCondition or: [secondCondition ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantKillingSuggesionTest >> methodToTestSuggestionToKillRemoveExceptionHandler [
 
 	[1/0] on:Exception do:[:ex | Transcript show:'error'].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantKillingSuggesionTest >> methodToTestSuggestionToKillReplaceDoBlockWithEmptyBlock [
 	OrderedCollection new do: [:each | Transcript show: each]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantKillingSuggesionTest >> methodToTestSuggestionToKillReplaceIfFalseReceiver [
 	^ 1 = 1 ifFalse: [ 8 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantKillingSuggesionTest >> methodToTestSuggestionToKillReplaceIfTrueIfFalseReceiver [
 	^ 1 = 1
 		ifTrue: [1]
 		ifFalse: [8]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantKillingSuggesionTest >> methodToTestSuggestionToKillReplaceIfTrueReceiver [
 	^ 1 = 1 ifTrue: [ 8 ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 MutantKillingSuggesionTest >> setUp [
 	resource := MutationTestingResource current
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantKillingSuggesionTest >> survivedMutant [
 
 	^resource evaluationResultForAliveMutant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantKillingSuggesionTest >> terminatedMutant [
 
 	^resource evaluationResultForTerminatedMutant
 ]
 
-{ #category : #'testing-results' }
+{ #category : 'testing-results' }
 MutantKillingSuggesionTest >> testSuggestionForKilledMutant [
 
 	self assert: self killedMutant killingSuggestions = 'MUTANT KILLED'
 ]
 
-{ #category : #'testing-results' }
+{ #category : 'testing-results' }
 MutantKillingSuggesionTest >> testSuggestionForSurvivedMutant [
 
 	self assert: self survivedMutant killingSuggestions
 			= (MutantKillingSuggestionGenerator new suggestionFor: self survivedMutant mutant)
 ]
 
-{ #category : #'testing-results' }
+{ #category : 'testing-results' }
 MutantKillingSuggesionTest >> testSuggestionForTerminatedMutant [
 
 	self assert: self terminatedMutant killingSuggestions = 'MUTANT KILLED'
 ]
 
-{ #category : #'testing-operators' }
+{ #category : 'testing-operators' }
 MutantKillingSuggesionTest >> testSuggestionToKillRemoveCaret [
 	| operator mutation |
 	operator := RemoveCaretOperator new.
@@ -129,7 +130,7 @@ MutantKillingSuggesionTest >> testSuggestionToKillRemoveCaret [
 	self assert: (MutantKillingSuggestionGenerator new suggestionFor: mutation) equals: 'It is missing a test case to check that the method is returning aValue + anotherValue'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantKillingSuggesionTest >> testSuggestionToKillRemoveExceptionHandler [
 	| operator mutation |
 	operator := RemoveExceptionHandlerOperator new.
@@ -137,7 +138,7 @@ MutantKillingSuggesionTest >> testSuggestionToKillRemoveExceptionHandler [
 	self assert: (MutantKillingSuggestionGenerator new suggestionFor: mutation) string = 'It is missing a test case to check that when an exception of kind Exception is signaled, it is handled evaluating the block [ :ex | Transcript show: ''error'' ]'.
 ]
 
-{ #category : #'testing-operators' }
+{ #category : 'testing-operators' }
 MutantKillingSuggesionTest >> testSuggestionToKillReplaceAndForOr [
 	| operator mutation mutationWithAssignment |
 	operator := ReplaceAndWithOrMutantOperator new.
@@ -147,7 +148,7 @@ MutantKillingSuggesionTest >> testSuggestionToKillReplaceAndForOr [
 	self assert: (MutantKillingSuggestionGenerator new suggestionFor: mutationWithAssignment) = 'It is missing a test case where only one of the conditions firstCondition and [ secondCondition ] is True.'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantKillingSuggesionTest >> testSuggestionToKillReplaceDoBlockWithEmptyBlock [
 	| operator mutation |
 	operator := ReplaceDoBlockWithEmptyBlockOperator new.
@@ -155,7 +156,7 @@ MutantKillingSuggesionTest >> testSuggestionToKillReplaceDoBlockWithEmptyBlock [
 	self assert: (MutantKillingSuggestionGenerator new suggestionFor: mutation) string = 'It is missing a test case to check that there is an iteration doing [ :each | Transcript show: each ] on each element of OrderedCollection new'.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantKillingSuggesionTest >> testSuggestionToKillReplaceIfFalseReceiverWithFalse [
 	| operator mutation |
 	operator := ReplaceIfFalseReceiverWithFalseOperator new.
@@ -163,7 +164,7 @@ MutantKillingSuggesionTest >> testSuggestionToKillReplaceIfFalseReceiverWithFals
 	self assert: (MutantKillingSuggestionGenerator new suggestionFor: mutation) string = 'It is missing a test case to check that when 1 = 1 is true, [ 8 ] is not evaluated'.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantKillingSuggesionTest >> testSuggestionToKillReplaceIfFalseReceiverWithTrue [
 	| operator mutation |
 	operator := ReplaceIfFalseReceiverWithTrueOperator new.
@@ -171,7 +172,7 @@ MutantKillingSuggesionTest >> testSuggestionToKillReplaceIfFalseReceiverWithTrue
 	self assert: (MutantKillingSuggestionGenerator new suggestionFor: mutation) string = 'It is missing a test case to check that when 1 = 1 is false, [ 8 ] is evaluated'.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantKillingSuggesionTest >> testSuggestionToKillReplaceIfTrueReceiverWithFalse [
 	| operator mutation |
 	operator := ReplaceIfTrueReceiverWithFalseOperator new.
@@ -179,7 +180,7 @@ MutantKillingSuggesionTest >> testSuggestionToKillReplaceIfTrueReceiverWithFalse
 	self assert: (MutantKillingSuggestionGenerator new suggestionFor: mutation) string = 'It is missing a test case to check that when 1 = 1 is true, [ 8 ] is evaluated'.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantKillingSuggesionTest >> testSuggestionToKillReplaceIfTrueReceiverWithTrue [
 	| operator mutation |
 	operator := ReplaceIfTrueReceiverWithTrueOperator new.
@@ -187,7 +188,7 @@ MutantKillingSuggesionTest >> testSuggestionToKillReplaceIfTrueReceiverWithTrue 
 	self assert: (MutantKillingSuggestionGenerator new suggestionFor: mutation) string = 'It is missing a test case to check that when 1 = 1 is false, [ 8 ] is not evaluated'.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantKillingSuggesionTest >> testSuggestionToKillReplaceIfTrueifFalseReceiverWithFalse [
 	| operator mutation |
 	operator := ReplaceIfTrueIfFalseReceiverWithFalseOperator new.
@@ -195,7 +196,7 @@ MutantKillingSuggesionTest >> testSuggestionToKillReplaceIfTrueifFalseReceiverWi
 	self assert: (MutantKillingSuggestionGenerator new suggestionFor: mutation) string = 'It is missing a test case to check that when 1 = 1 is true, [ 1 ] is evaluated and [ 8 ] is not'.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantKillingSuggesionTest >> testSuggestionToKillReplaceIfTrueifFalseReceiverWithTrue [
 	| operator mutation |
 	operator := ReplaceIfTrueIfFalseReceiverWithTrueOperator new.
@@ -203,7 +204,7 @@ MutantKillingSuggesionTest >> testSuggestionToKillReplaceIfTrueifFalseReceiverWi
 	self assert: (MutantKillingSuggestionGenerator new suggestionFor: mutation) string = 'It is missing a test case to check that when 1 = 1 is false, [ 8 ] is evaluated and [ 1 ] is not'.
 ]
 
-{ #category : #'testing-operators' }
+{ #category : 'testing-operators' }
 MutantKillingSuggesionTest >> testSuggestionToKillReplaceOrForAnd [
 	| operator mutation mutationWithAssignment |
 	operator := ReplaceOrWithAndMutantOperator new.

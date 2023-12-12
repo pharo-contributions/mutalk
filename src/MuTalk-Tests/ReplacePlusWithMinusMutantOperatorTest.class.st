@@ -1,45 +1,46 @@
 Class {
-	#name : #ReplacePlusWithMinusMutantOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : 'MuTalk-Tests'
+	#name : 'ReplacePlusWithMinusMutantOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplacePlusWithMinusMutantOperatorTest >> methodWithNoSenders [  
 	^ 1 - 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplacePlusWithMinusMutantOperatorTest >> methodWithOneSender [  
 	^ 1 + 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplacePlusWithMinusMutantOperatorTest >> methodWithOneSenderModified [
 	^ 1 - 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplacePlusWithMinusMutantOperatorTest >> methodWithTwoSenders [
 	^ 1 + 2 + 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplacePlusWithMinusMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 	^ 1 + 2 - 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplacePlusWithMinusMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 	^ 1 - 2 + 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplacePlusWithMinusMutantOperatorTest >> operator [
 	^ ReplacePlusWithMinusMutantOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplacePlusWithMinusMutantOperatorTest >> operatorDescription [
 	^'Replace #+ with #-'
 ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #AllMutantSelectionStrategy,
-	#superclass : #MutantSelectionStrategy,
-	#category : #'MuTalk-Model-Mutant selection strategies'
+	#name : 'AllMutantSelectionStrategy',
+	#superclass : 'MutantSelectionStrategy',
+	#category : 'MuTalk-Model-Mutant selection strategies',
+	#package : 'MuTalk-Model',
+	#tag : 'Mutant selection strategies'
 }
 
-{ #category : #generating }
+{ #category : 'generating' }
 AllMutantSelectionStrategy >> classesAndMetaclassesFrom: modelClasses [ 
 	^ modelClasses
 		inject: OrderedCollection new
@@ -14,7 +16,7 @@ AllMutantSelectionStrategy >> classesAndMetaclassesFrom: modelClasses [
 			classes]
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 AllMutantSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [ 
 	^ (self classesAndMetaclassesFrom: aMutationTestingAnalysis modelClasses)
 		inject: OrderedCollection new

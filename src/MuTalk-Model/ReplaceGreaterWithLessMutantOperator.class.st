@@ -1,15 +1,17 @@
 Class {
-	#name : #ReplaceGreaterWithLessMutantOperator,
-	#superclass : #SelectorReplacementMutantOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'ReplaceGreaterWithLessMutantOperator',
+	#superclass : 'SelectorReplacementMutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceGreaterWithLessMutantOperator >> newSelector [
 	^#<
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceGreaterWithLessMutantOperator >> oldSelector [
 	^#>
 ]

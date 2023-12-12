@@ -1,35 +1,36 @@
 Class {
-	#name : #MessageSendToYourselfOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : #'MuTalk-Tests'
+	#name : 'MessageSendToYourselfOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendToYourselfOperatorTest >> methodWithNoSenders [
 
 	^ 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendToYourselfOperatorTest >> methodWithOneSender [
 
 	self operator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendToYourselfOperatorTest >> methodWithOneSenderModified [
 
 	self yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendToYourselfOperatorTest >> methodWithTwoSenders [
 
 	 | dict |
 dict:= Dictionary new. dict at: 1 put: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendToYourselfOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	| dict |
@@ -37,7 +38,7 @@ MessageSendToYourselfOperatorTest >> methodWithTwoSendersModifiedFirst [
 	dict at: 1 put: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendToYourselfOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	| dict |
@@ -45,13 +46,13 @@ MessageSendToYourselfOperatorTest >> methodWithTwoSendersModifiedSecond [
 	dict yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendToYourselfOperatorTest >> operator [
 
 	^ MessageSendToYourselfOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MessageSendToYourselfOperatorTest >> operatorDescription [
 
 	^ self operator  description

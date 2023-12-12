@@ -1,45 +1,46 @@
 Class {
-	#name : #ReplaceGreaterOrEqualWithEqualMutantOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : 'MuTalk-Tests'
+	#name : 'ReplaceGreaterOrEqualWithEqualMutantOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceGreaterOrEqualWithEqualMutantOperatorTest >> methodWithNoSenders [  
 	^ 1 - 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceGreaterOrEqualWithEqualMutantOperatorTest >> methodWithOneSender [  
 	^ 2 >= 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceGreaterOrEqualWithEqualMutantOperatorTest >> methodWithOneSenderModified [
 	^ 2 = 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceGreaterOrEqualWithEqualMutantOperatorTest >> methodWithTwoSenders [
 	^ 1 >= 2 or: [2 >= 3].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceGreaterOrEqualWithEqualMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 	^ 1 = 2 or: [2 >= 3].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceGreaterOrEqualWithEqualMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 	^ 1 >= 2 or: [2 = 3].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceGreaterOrEqualWithEqualMutantOperatorTest >> operator [
 	^ ReplaceGreaterOrEqualWithEqualMutantOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceGreaterOrEqualWithEqualMutantOperatorTest >> operatorDescription [
 	^'Replace #''>='' with #=' 
 ]

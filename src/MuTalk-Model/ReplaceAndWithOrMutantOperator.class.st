@@ -1,20 +1,22 @@
 Class {
-	#name : #ReplaceAndWithOrMutantOperator,
-	#superclass : #SelectorReplacementMutantOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'ReplaceAndWithOrMutantOperator',
+	#superclass : 'SelectorReplacementMutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithOrMutantOperator >> newSelector [
 	^#or:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithOrMutantOperator >> oldSelector [
 	^#and:
 ]
 
-{ #category : #suggestions }
+{ #category : 'suggestions' }
 ReplaceAndWithOrMutantOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [ 
 	^ aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceAndWithOrMutantOperator: aMutation
 ]

@@ -1,16 +1,17 @@
 Class {
-	#name : #MutationTestingFixedNumberOfMutantsBudget,
-	#superclass : #MutationTestingBudget,
-	#category : #'MuTalk-Model'
+	#name : 'MutationTestingFixedNumberOfMutantsBudget',
+	#superclass : 'MutationTestingBudget',
+	#category : 'MuTalk-Model',
+	#package : 'MuTalk-Model'
 }
 
-{ #category : #validation }
+{ #category : 'validation' }
 MutationTestingFixedNumberOfMutantsBudget >> check: partialCollection with: initialCollection [
 
 	^ partialCollection size >= constraint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingFixedNumberOfMutantsBudget >> start [
 
 	

@@ -1,25 +1,27 @@
 Class {
-	#name : #ReplaceAndArgumentWithTrueOperator,
-	#superclass : #MutantOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'ReplaceAndArgumentWithTrueOperator',
+	#superclass : 'MutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 ReplaceAndArgumentWithTrueOperator >> description [
 	^'Replace #and: argument with [true]'.
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 ReplaceAndArgumentWithTrueOperator >> expressionToReplace [ 
 	^'``@object and: ``@aBlock'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 ReplaceAndArgumentWithTrueOperator >> newExpression [ 
 	^'``@object and: [true]'
 ]
 
-{ #category : #suggestions }
+{ #category : 'suggestions' }
 ReplaceAndArgumentWithTrueOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [
 	^aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceAndArgumentWithTrueOperator: aMutation.
 ]

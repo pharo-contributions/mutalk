@@ -1,10 +1,11 @@
 Class {
-	#name : #MutationTestingAnalysisLoggerTest,
-	#superclass : #TestCase,
-	#category : 'MuTalk-Tests'
+	#name : 'MutationTestingAnalysisLoggerTest',
+	#superclass : 'TestCase',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationTestingAnalysisLoggerTest >> testExecutingSimpleMutation [
 	| analysis logger operator |
 	logger := MockMutationTestingAnalysisLogger new.

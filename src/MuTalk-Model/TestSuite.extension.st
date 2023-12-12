@@ -1,6 +1,6 @@
-Extension { #name : #TestSuite }
+Extension { #name : 'TestSuite' }
 
-{ #category : #'*MuTalk-Model' }
+{ #category : '*MuTalk-Model' }
 TestSuite >> runStoppingOnFirstFailOrError [
     | result |
      result := TestResult new.
@@ -10,7 +10,7 @@ TestSuite >> runStoppingOnFirstFailOrError [
     ^result
 ]
 
-{ #category : #'*MuTalk-Model' }
+{ #category : '*MuTalk-Model' }
 TestSuite >> runStoppingOnFirstFailOrError: aResult [
     self tests do: [:each |
         self changed: each.

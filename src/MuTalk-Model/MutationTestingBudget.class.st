@@ -1,13 +1,14 @@
 Class {
-	#name : #MutationTestingBudget,
-	#superclass : #Object,
+	#name : 'MutationTestingBudget',
+	#superclass : 'Object',
 	#instVars : [
 		'constraint'
 	],
-	#category : #'MuTalk-Model'
+	#category : 'MuTalk-Model',
+	#package : 'MuTalk-Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MutationTestingBudget class >> for: aConstraint [
 
 	^ self new
@@ -15,25 +16,25 @@ MutationTestingBudget class >> for: aConstraint [
 		  yourself
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 MutationTestingBudget >> check: partialCollection with: initialCollection [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingBudget >> constraint [
 
 	^ constraint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingBudget >> constraint: aConstraint [
 
 	constraint := aConstraint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationTestingBudget >> start [
 
 	^ self subclassResponsibility

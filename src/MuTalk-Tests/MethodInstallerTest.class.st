@@ -1,30 +1,31 @@
 Class {
-	#name : #MethodInstallerTest,
-	#superclass : #TestCase,
+	#name : 'MethodInstallerTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'anonymousClass',
 		'anonymousClassWithMethod'
 	],
-	#category : #'MuTalk-Tests'
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MethodInstallerTest class >> packageNamesUnderTest [
 	^ #('MutationTesting-Model')
 ]
 
-{ #category : #testProtocol }
+{ #category : 'testProtocol' }
 MethodInstallerTest >> methodInstalled [
 	"this method is used to test installation,"
 	^ 3 + 4
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MethodInstallerTest >> methodToUninstall [ ^self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MethodInstallerTest >> numberOfMethodVersionsOf: aSelector in: aClass [ 
 	
 	| aMethod |
@@ -37,7 +38,7 @@ MethodInstallerTest >> numberOfMethodVersionsOf: aSelector in: aClass [
 		isMeta: aMethod origin isClassSide) size
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 MethodInstallerTest >> tearDown [
 	"Unistall methods that should not be istalled and install method that should be installed."
 
@@ -50,7 +51,7 @@ MethodInstallerTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MethodInstallerTest >> testInstallMethodException [
 	"Try to install a method that produce an Exception."
 
@@ -66,7 +67,7 @@ MethodInstallerTest >> testInstallMethodException [
 		raise: MethodInstallerException
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MethodInstallerTest >> testInstallMethodOnEmptyClass [
 	"Install a method on Self"
 
@@ -80,7 +81,7 @@ MethodInstallerTest >> testInstallMethodOnEmptyClass [
 	self assert: (self class includesSelector: selector)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MethodInstallerTest >> testInstallerShouldNotAddSourceVersions [
 	"Install a method that produce an Exception. For this. me use an
 	Anonimous Class."
@@ -108,7 +109,7 @@ MethodInstallerTest >> testInstallerShouldNotAddSourceVersions [
 		= previousNumberOfVersions
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MethodInstallerTest >> testUnInstallMethodOnClass [
 	"Uninstall a method from a class that has the method implemented."
 	|selector|

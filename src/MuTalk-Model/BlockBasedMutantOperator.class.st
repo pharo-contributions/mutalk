@@ -1,15 +1,17 @@
 Class {
-	#name : #BlockBasedMutantOperator,
-	#superclass : #MutantOperator,
-	#category : #'MuTalk-Model-Operators'
+	#name : 'BlockBasedMutantOperator',
+	#superclass : 'MutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 BlockBasedMutantOperator class >> isOriginalOperator [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 BlockBasedMutantOperator >> isAPosibleMutatedNode: aRBMethodNode [
 
 	| nodeThatMatches |
@@ -18,7 +20,7 @@ BlockBasedMutantOperator >> isAPosibleMutatedNode: aRBMethodNode [
 		  self is: nodeThatMatches equalTo: aRBMethodNode ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 BlockBasedMutantOperator >> isAPosibleNodeToMutate: aRBMethodNode [
 
 	| nodeThatMatches |
@@ -30,7 +32,7 @@ BlockBasedMutantOperator >> isAPosibleNodeToMutate: aRBMethodNode [
 		  self is: aRBMethodNode equalTo: nodeThatMatches ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 BlockBasedMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber [
 
 	| parser allNodes |
@@ -44,7 +46,7 @@ BlockBasedMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree 
 	^ parser formattedCode
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 BlockBasedMutantOperator >> timesToApplyIn: aCompiledMethod with: aParseTree [
 
 	"Evaluates how many times can the operator be applyied"

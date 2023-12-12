@@ -1,10 +1,12 @@
 Class {
-	#name : #MessageSendArguments1stNullifierOperator,
-	#superclass : #MessageSendArgumentsNullifierOperator,
-	#category : #'MuTalk-Model-Operators'
+	#name : 'MessageSendArguments1stNullifierOperator',
+	#superclass : 'MessageSendArgumentsNullifierOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #applying }
+{ #category : 'applying' }
 MessageSendArguments1stNullifierOperator >> whichArgument [
 
 	^ 1

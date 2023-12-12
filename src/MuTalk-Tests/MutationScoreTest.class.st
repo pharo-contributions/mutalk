@@ -1,34 +1,35 @@
 Class {
-	#name : #MutationScoreTest,
-	#superclass : #TestCase,
+	#name : 'MutationScoreTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'resource'
 	],
-	#category : 'MuTalk-Tests'
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationScoreTest >> mutationResultAcceptable [
 	^MutationTestingGeneralResult for: (OrderedCollection with: resource evaluationResultForKilledMutantByError)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationScoreTest >> mutationResultAlmostAcceptable [
 	^MutationTestingGeneralResult for: (OrderedCollection with: resource evaluationResultForKilledMutantByError with: resource evaluationResultForAliveMutant)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutationScoreTest >> mutationResultNonAcceptable [
 	^MutationTestingGeneralResult 
 		for: (OrderedCollection with: resource evaluationResultForAliveMutant)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationScoreTest >> setUp [
 	resource := MutationTestingResource current
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationScoreTest >> testMutationScoreAcceptable [
 	|score|
 	score := (MutationAcceptableScore scoreFor: self mutationResultAcceptable).
@@ -37,7 +38,7 @@ MutationScoreTest >> testMutationScoreAcceptable [
 	self deny: score isAlmostAcceptableScore.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationScoreTest >> testMutationScoreAlmostAcceptable [
 	|score|
 	score := (MutationAlmostAcceptableScore scoreFor: self mutationResultAlmostAcceptable).
@@ -46,7 +47,7 @@ MutationScoreTest >> testMutationScoreAlmostAcceptable [
 	self assert: score isAlmostAcceptableScore.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationScoreTest >> testMutationScoreColor [
 	|score|
 	score := (MutationScoreBehavior buildFor: self mutationResultAcceptable).
@@ -59,7 +60,7 @@ MutationScoreTest >> testMutationScoreColor [
 	self assert: score color = Color yellow.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationScoreTest >> testMutationScoreCreation [
 	|score|
 	score := (MutationScoreBehavior buildFor: self mutationResultAcceptable).
@@ -70,7 +71,7 @@ MutationScoreTest >> testMutationScoreCreation [
 	self assert: score isNonAcceptableScore.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutationScoreTest >> testMutationScoreNonAcceptable [
 	|score|
 	score := (MutationNonAcceptableScore scoreFor: self mutationResultNonAcceptable).

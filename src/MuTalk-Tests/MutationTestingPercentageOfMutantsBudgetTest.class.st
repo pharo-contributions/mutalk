@@ -1,13 +1,14 @@
 Class {
-	#name : #MutationTestingPercentageOfMutantsBudgetTest,
-	#superclass : #MutationTestingBudgetTest,
+	#name : 'MutationTestingPercentageOfMutantsBudgetTest',
+	#superclass : 'MutationTestingBudgetTest',
 	#instVars : [
 		'numberOfMutations'
 	],
-	#category : #'MuTalk-Tests'
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 MutationTestingPercentageOfMutantsBudgetTest >> runAnalysisFor: aPercentage [
 
 	| result |
@@ -20,7 +21,7 @@ MutationTestingPercentageOfMutantsBudgetTest >> runAnalysisFor: aPercentage [
 	^ result
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateAllMutantsWithMoreThanOneHundredPercentConstraint [
 
 	self runAnalysisFor: 120.
@@ -30,7 +31,7 @@ MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateAllMutantsWithMoreTh
 		equals: 100
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateTheCorrectPercentageOfMutants [
 
 	self runAnalysisFor: 20.
@@ -40,7 +41,7 @@ MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateTheCorrectPercentage
 		equals: 20
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithNegativePercentConstraint [
 
 	self runAnalysisFor: -10.
@@ -50,7 +51,7 @@ MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutants
 		equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithZeroPercentConstraint [
 
 	self runAnalysisFor: 0.

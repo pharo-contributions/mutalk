@@ -1,19 +1,20 @@
 Class {
-	#name : #MutationTestingBudgetTest,
-	#superclass : #TestCase,
+	#name : 'MutationTestingBudgetTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'analysis'
 	],
-	#category : #'MuTalk-Tests'
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 MutationTestingBudgetTest >> runAnalysisFor: aConstraint [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 MutationTestingBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests: testCases [
 
 	analysis := MutationTestingAnalysis

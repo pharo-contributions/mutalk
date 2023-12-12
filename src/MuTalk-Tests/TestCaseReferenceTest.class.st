@@ -1,15 +1,16 @@
 Class {
-	#name : #TestCaseReferenceTest,
-	#superclass : #TestCase,
-	#category : #'MuTalk-Tests'
+	#name : 'TestCaseReferenceTest',
+	#superclass : 'TestCase',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #resources }
+{ #category : 'resources' }
 TestCaseReferenceTest >> test1 [
 	^self assert: true.
 ]
 
-{ #category : #resources }
+{ #category : 'resources' }
 TestCaseReferenceTest >> testATestReferenceResult [
 	| testReference |
 	testReference := self testReferenceForTest1.
@@ -17,7 +18,7 @@ TestCaseReferenceTest >> testATestReferenceResult [
 	
 ]
 
-{ #category : #resources }
+{ #category : 'resources' }
 TestCaseReferenceTest >> testReferenceForTest1 [
 	^ TestCaseReference 
 		for: #test1

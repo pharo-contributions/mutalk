@@ -1,16 +1,17 @@
 Class {
-	#name : #MutationTestingTimeBudgetTest,
-	#superclass : #MutationTestingBudgetTest,
-	#category : #'MuTalk-Tests'
+	#name : 'MutationTestingTimeBudgetTest',
+	#superclass : 'MutationTestingBudgetTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 MutationTestingTimeBudgetTest >> fixedAnalysisTime [
 
 	^ [ self runAnalysisFor: 0 seconds ] timeToRun
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 MutationTestingTimeBudgetTest >> runAnalysisFor: aDuration [
 
 	^ self
@@ -19,7 +20,7 @@ MutationTestingTimeBudgetTest >> runAnalysisFor: aDuration [
 		  withTests: { AuxiliarTestClassForMutationTestingBudget }
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 MutationTestingTimeBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests: testCases [
 
 	analysis := MutationTestingAnalysis
@@ -37,7 +38,7 @@ MutationTestingTimeBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMut
 	^ analysis generalResult
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MutationTestingTimeBudgetTest >> testWithNoTimeForMutantsRespectsDeadline [
 
 	| duration analysisTime error fixedAnalysisTime |
@@ -51,7 +52,7 @@ MutationTestingTimeBudgetTest >> testWithNoTimeForMutantsRespectsDeadline [
 	self assert: analysisTime - fixedAnalysisTime <= error
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MutationTestingTimeBudgetTest >> testWithNoTimeForMutantsRunsNoMutants [
 
 	| duration analysisTime result |
@@ -63,7 +64,7 @@ MutationTestingTimeBudgetTest >> testWithNoTimeForMutantsRunsNoMutants [
 	self assert: result numberOfEvaluatedMutants equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MutationTestingTimeBudgetTest >> testWithTimeForMutantsRespectsDeadline [
 
 	| duration analysisTime error |
@@ -76,7 +77,7 @@ MutationTestingTimeBudgetTest >> testWithTimeForMutantsRespectsDeadline [
 	self assert: analysisTime - duration <= error
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MutationTestingTimeBudgetTest >> testWithTimeForMutantsRunsManyMutants [
 
 	| duration analysisTime result |

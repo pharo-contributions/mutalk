@@ -1,15 +1,17 @@
 Class {
-	#name : #ClassTestCasesSelectionStrategy,
-	#superclass : #TestCasesSelectionStrategy,
-	#category : 'MuTalk-Model-TestCases selection strategies'
+	#name : 'ClassTestCasesSelectionStrategy',
+	#superclass : 'TestCasesSelectionStrategy',
+	#category : 'MuTalk-Model-TestCases selection strategies',
+	#package : 'MuTalk-Model',
+	#tag : 'TestCases selection strategies'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 ClassTestCasesSelectionStrategy >> description [
 	^'Tests in Same Clases'
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 ClassTestCasesSelectionStrategy >> testCasesFor: aTestCollection [ 
 	"Returns all tests in testClases from a collection of tests."
 	
@@ -23,7 +25,7 @@ ClassTestCasesSelectionStrategy >> testCasesFor: aTestCollection [
 			resultTests ]
 ]
 
-{ #category : #selecting }
+{ #category : 'selecting' }
 ClassTestCasesSelectionStrategy >> testClassesFrom: aTestCollection [ 
 	^ (aTestCollection collect: [ :testCase | testCase class ]) asSet
 ]

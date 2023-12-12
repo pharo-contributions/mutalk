@@ -1,19 +1,21 @@
 Class {
-	#name : #MutantEvaluationResultSurvived,
-	#superclass : #MutantEvaluationResult,
+	#name : 'MutantEvaluationResultSurvived',
+	#superclass : 'MutantEvaluationResult',
 	#instVars : [
 		'result'
 	],
-	#category : 'MuTalk-Model-Mutant evaluation results'
+	#category : 'MuTalk-Model-Mutant evaluation results',
+	#package : 'MuTalk-Model',
+	#tag : 'Mutant evaluation results'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MutantEvaluationResultSurvived class >> canHandle: aMutant withResults: aTestResult [ 
 	^ aTestResult notNil
 		and: [aTestResult errorsSize + aTestResult failuresSize = 0]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MutantEvaluationResultSurvived class >> newFor: aMutant results: aTestResult producedBy: aMutantEvaluation [ 
 	^ self new
 		initializeFor: aMutant
@@ -22,29 +24,29 @@ MutantEvaluationResultSurvived class >> newFor: aMutant results: aTestResult pro
 		yourself
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MutantEvaluationResultSurvived >> initializeFor: aMutant results: aTestResult producedBy: aMutantEvaluation [ 
 	mutant := aMutant.
 	result := aTestResult.
 	mutantEvaluation := aMutantEvaluation
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultSurvived >> killed [
 	^false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantEvaluationResultSurvived >> killingSuggestions [
 	^ (MutantKillingSuggestionGenerator new suggestionFor: mutant)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultSurvived >> particularResults [
 	^result tests
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 MutantEvaluationResultSurvived >> printDetailedResultOn: aStream [ 
 
 		aStream cr; nextPutAll: 'PASSED'; cr.
@@ -59,12 +61,12 @@ MutantEvaluationResultSurvived >> printDetailedResultOn: aStream [
 		aStream cr.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutantEvaluationResultSurvived >> result [
 	^result
 ]
 
-{ #category : #browsing }
+{ #category : 'browsing' }
 MutantEvaluationResultSurvived >> resultClass [
 	
 	^result tests isEmpty 
@@ -72,24 +74,24 @@ MutantEvaluationResultSurvived >> resultClass [
 		ifFalse: [result tests first class] 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultSurvived >> resultString [
 	
 	^result printString
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultSurvived >> runCount [
 
 	^result runCount
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultSurvived >> survived [
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MutantEvaluationResultSurvived >> terminated [
 
 	^false

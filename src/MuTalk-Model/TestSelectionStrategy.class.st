@@ -1,15 +1,17 @@
 Class {
-	#name : #TestSelectionStrategy,
-	#superclass : #Object,
-	#category : #'MuTalk-Model-Test selection strategies'
+	#name : 'TestSelectionStrategy',
+	#superclass : 'Object',
+	#category : 'MuTalk-Model-Test selection strategies',
+	#package : 'MuTalk-Model',
+	#tag : 'Test selection strategies'
 }
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 TestSelectionStrategy >> testCasesToEvaluate: aMutation for: aMutantEvaluation [
 	self subclassResponsibility
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 TestSelectionStrategy >> timeoutForTestsOf: aMutantEvaluation [
 	^aMutantEvaluation coverageAnalysisResult timeToRunTests * 3
 ]

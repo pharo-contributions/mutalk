@@ -1,24 +1,26 @@
 Class {
-	#name : #RandomOperatorMutantSelectionStrategy,
-	#superclass : #RandomMutantSelectionStrategy,
-	#category : #'MuTalk-Model-Mutant selection strategies'
+	#name : 'RandomOperatorMutantSelectionStrategy',
+	#superclass : 'RandomMutantSelectionStrategy',
+	#category : 'MuTalk-Model-Mutant selection strategies',
+	#package : 'MuTalk-Model',
+	#tag : 'Mutant selection strategies'
 }
 
-{ #category : #intialization }
+{ #category : 'intialization' }
 RandomOperatorMutantSelectionStrategy class >> fixed: aNumber [
 
 	^ self new randomMutantSelection:
 		  (FixedRandomMutantSelectionStrategy new numberOfMutants: aNumber)
 ]
 
-{ #category : #intialization }
+{ #category : 'intialization' }
 RandomOperatorMutantSelectionStrategy class >> percent: aPercentage [
 
 	^ self new randomMutantSelection:
 		  (PercentRandomMutantSelectionStrategy new percentageOfMutants: aPercentage)
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 RandomOperatorMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
 	| mutations shuffledMutations mutationDict operators operator random |
@@ -47,7 +49,7 @@ RandomOperatorMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis 
 	^ shuffledMutations
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 RandomOperatorMutantSelectionStrategy >> selectMutantFrom: mutationDictionnary with: anOperator using: aRandom for: newCollection [
 
 	| size index |
@@ -62,7 +64,7 @@ RandomOperatorMutantSelectionStrategy >> selectMutantFrom: mutationDictionnary w
 	^ (mutationDictionnary at: anOperator) at: index
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 RandomOperatorMutantSelectionStrategy >> selectOperatorFrom: operators and: mutationDictionnary using: aRandom for: newCollection [
 
 	| size index |
@@ -70,7 +72,8 @@ RandomOperatorMutantSelectionStrategy >> selectOperatorFrom: operators and: muta
 	index := aRandom nextIntegerBetween: 1 and: size.
 
 	"if all the mutants generated with a given operator have already been selected, another operator is chosen"
-	[ (mutationDictionnary at: (operators at: index)) allSatisfy: [ :each |
+	[
+	(mutationDictionnary at: (operators at: index)) allSatisfy: [ :each |
 		newCollection includes: each ] ] whileTrue: [
 		index := aRandom nextIntegerBetween: 1 and: size ].
 

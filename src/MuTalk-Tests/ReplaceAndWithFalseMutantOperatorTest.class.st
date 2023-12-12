@@ -1,45 +1,46 @@
 Class {
-	#name : #ReplaceAndWithFalseMutantOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : 'MuTalk-Tests'
+	#name : 'ReplaceAndWithFalseMutantOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithFalseMutantOperatorTest >> methodWithNoSenders [  
 	^ true or: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithFalseMutantOperatorTest >> methodWithOneSender [  
 	^ true and: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithFalseMutantOperatorTest >> methodWithOneSenderModified [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithFalseMutantOperatorTest >> methodWithTwoSenders [  
 	^ true and: [true and: [false]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithFalseMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithFalseMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 	^ true and: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithFalseMutantOperatorTest >> operator [
 	^ ReplaceAndWithFalseOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithFalseMutantOperatorTest >> operatorDescription [
 	^'Replace #and: with false'
 ]

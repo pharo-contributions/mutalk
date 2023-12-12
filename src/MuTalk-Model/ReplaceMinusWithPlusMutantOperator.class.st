@@ -1,15 +1,17 @@
 Class {
-	#name : #ReplaceMinusWithPlusMutantOperator,
-	#superclass : #SelectorReplacementMutantOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'ReplaceMinusWithPlusMutantOperator',
+	#superclass : 'SelectorReplacementMutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceMinusWithPlusMutantOperator >> newSelector [
 	^#+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceMinusWithPlusMutantOperator >> oldSelector [
 	^#-
 ]

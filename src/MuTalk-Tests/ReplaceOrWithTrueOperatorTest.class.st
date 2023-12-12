@@ -1,45 +1,46 @@
 Class {
-	#name : #ReplaceOrWithTrueOperatorTest,
-	#superclass : #MutantOperatorTest,
-	#category : 'MuTalk-Tests'
+	#name : 'ReplaceOrWithTrueOperatorTest',
+	#superclass : 'MutantOperatorTest',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithTrueOperatorTest >> methodWithNoSenders [  
 	^ true and: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithTrueOperatorTest >> methodWithOneSender [  
 	^ true or: [true]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithTrueOperatorTest >> methodWithOneSenderModified [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithTrueOperatorTest >> methodWithTwoSenders [  
 	^ true or: [true or: [true]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithTrueOperatorTest >> methodWithTwoSendersModifiedFirst [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithTrueOperatorTest >> methodWithTwoSendersModifiedSecond [
 	^ true or: [true]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithTrueOperatorTest >> operator [
 	^ ReplaceOrWithTrueOperator new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceOrWithTrueOperatorTest >> operatorDescription [
 	^'Replace #or: with true'
 ]

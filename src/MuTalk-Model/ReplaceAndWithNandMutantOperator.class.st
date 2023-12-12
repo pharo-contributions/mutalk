@@ -1,15 +1,17 @@
 Class {
-	#name : #ReplaceAndWithNandMutantOperator,
-	#superclass : #SelectorReplacementMutantOperator,
-	#category : 'MuTalk-Model-Operators'
+	#name : 'ReplaceAndWithNandMutantOperator',
+	#superclass : 'SelectorReplacementMutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithNandMutantOperator >> newSelector [
 	^#nand:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ReplaceAndWithNandMutantOperator >> oldSelector [
 	^#and:
 ]

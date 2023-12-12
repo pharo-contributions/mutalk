@@ -1,16 +1,18 @@
 Class {
-	#name : #LiteralStringToEmptyOperator,
-	#superclass : #BlockBasedMutantOperator,
-	#category : #'MuTalk-Model-Operators'
+	#name : 'LiteralStringToEmptyOperator',
+	#superclass : 'BlockBasedMutantOperator',
+	#category : 'MuTalk-Model-Operators',
+	#package : 'MuTalk-Model',
+	#tag : 'Operators'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 LiteralStringToEmptyOperator >> description [
 
 	^ 'Convert a literal string to empty string'
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 LiteralStringToEmptyOperator >> expressionToReplace [
 
 	^ [ :aNode | 
@@ -18,7 +20,7 @@ LiteralStringToEmptyOperator >> expressionToReplace [
 		  aNode value isString  and: [aNode value isNotEmpty ]  ] ]
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 LiteralStringToEmptyOperator >> newExpression [
 
 	^ [ :anOldNode | RBLiteralValueNode value: '' ]

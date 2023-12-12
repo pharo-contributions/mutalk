@@ -1,10 +1,11 @@
 Class {
-	#name : #RandomMutantSelectionTest,
-	#superclass : #TestCase,
-	#category : #'MuTalk-Tests'
+	#name : 'RandomMutantSelectionTest',
+	#superclass : 'TestCase',
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 RandomMutantSelectionTest >> compareMutationsOf: mutations1 and: mutations2 [
 
 	| mutant1 mutant2 |
@@ -19,7 +20,7 @@ RandomMutantSelectionTest >> compareMutationsOf: mutations1 and: mutations2 [
 	^ true
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RandomMutantSelectionTest >> testDefaultMutationsGenerationStrategyIsAllMutantSelectionStrategy [
 
 	self
@@ -27,7 +28,7 @@ RandomMutantSelectionTest >> testDefaultMutationsGenerationStrategyIsAllMutantSe
 		equals: AllMutantSelectionStrategy new species
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RandomMutantSelectionTest >> testExecutingGenerateMutationsTwoTimesGivesTwoDifferentSetsOfMutations [
 
 	| analysis mutations1 mutations2 |
