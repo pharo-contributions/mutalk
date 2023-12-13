@@ -60,7 +60,7 @@ MutationTestingTimeBudgetTest >> testWithNoTimeForMutantsRunsNoMutants [
 	duration := self fixedAnalysisTime / 4.
 	analysisTime := [ result := self runAnalysisFor: duration ] timeToRun.
 
-	"We never treat mutants"
+	"We never treat mutants because the budget was exceeded running the initial test run, coverage analysis, etc"
 	self assert: result numberOfEvaluatedMutants equals: 0
 ]
 
