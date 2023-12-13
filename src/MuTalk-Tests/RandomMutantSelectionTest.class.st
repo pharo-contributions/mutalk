@@ -5,8 +5,21 @@ Class {
 	#package : 'MuTalk-Tests'
 }
 
+{ #category : 'accessing' }
+RandomMutantSelectionTest >> atLeastTwoDifferentMutantCollectionsIn: aCollection [
+
+	| res |
+	1 to: aCollection size - 1 do: [ :i |
+		i + 1 to: aCollection size do: [ :j |
+			(self sameMutationsIn: (aCollection at: i) and: (aCollection at: j))
+				ifFalse: [ res := false ] ] ].
+	res ifNil: [ res := true ].
+	1halt.
+	^ res
+]
+
 { #category : 'comparing' }
-RandomMutantSelectionTest >> compareMutationsOf: mutations1 and: mutations2 [
+RandomMutantSelectionTest >> sameMutationsIn: mutations1 and: mutations2 [
 
 	| mutant1 mutant2 |
 	mutations1 size = mutations2 size ifFalse: [ ^ false ].
@@ -29,20 +42,19 @@ RandomMutantSelectionTest >> testDefaultMutationsGenerationStrategyIsAllMutantSe
 { #category : 'tests' }
 RandomMutantSelectionTest >> testExecutingGenerateMutationsTwoTimesGivesTwoDifferentSetsOfMutations [
 
-	| analysis mutations1 mutations2 |
-	analysis := MutationTestingAnalysis
-		            testCasesFrom:
-		            { AuxiliarClassForMutationTestingAnalysisTest }
-		            mutating: { AuxiliarClassForMutationTestingAnalysis }
-		            using: MutantOperator contents
-		            with: AllTestsMethodsRunningTestSelectionStrategy new
-		            with: RandomMutantSelectionStrategy new.
+	| analysis mutationSet |
+	"mutationSet is a set of collections of mutants"
+	mutationSet := Set new.
+	1 to: 5 do: [ :i | 1 halt.
+		analysis := MutationTestingAnalysis
+			            testCasesFrom:
+			            { AuxiliarClassForMutationTestingAnalysisTest }
+			            mutating: { AuxiliarClassForMutationTestingAnalysis }
+			            using: MutantOperator contents
+			            with: AllTestsMethodsRunningTestSelectionStrategy new
+			            with: AllMutantSelectionStrategy new.
 
+		mutationSet add: (analysis generateMutations at: 1)  ].
 
-	mutations1 := analysis generateMutations.
-	"If there are already mutations for the analysis, it doesn't re-generate mutations, so we need to reset them"
-	analysis mutations: nil.
-	mutations2 := analysis generateMutations.
-
-	self deny: (self compareMutationsOf: mutations1 and: mutations2)
+	self assert: mutationSet size equals: 25
 ]

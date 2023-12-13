@@ -25,12 +25,14 @@ MethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeN
 
 { #category : 'comparing' }
 MethodMutation >> = anObject [
-"Two method mutations are equals if they have the same operator, and if they mutate the same method from the same class"
-	
+	"Two method mutations are equals if they have the same operator, and if they mutate the same method from the same class"
+
 	anObject species = self class ifFalse: [ ^ false ].
-	^ self operator species = anObject operator species and: [
-		  self originalMethod = anObject originalMethod and: [
-			  self originalClass = anObject originalClass ] ]
+	self operator species = anObject operator species ifFalse: [ ^ false ].
+	self originalMethod = anObject originalMethod ifFalse: [ ^ false ].
+	self originalClass = anObject originalClass ifFalse: [ ^ false ].
+	self nodeNumber = anObject nodeNumber ifFalse: [ ^ false ].
+	^ true
 ]
 
 { #category : 'initialize-release' }
@@ -61,6 +63,12 @@ MethodMutation >> modifiedSource [
 MethodMutation >> mutatedNode [
 
 	^ operator applyTo: self nodeToMutate
+]
+
+{ #category : 'accessing' }
+MethodMutation >> nodeNumber [
+
+	^ nodeNumber
 ]
 
 { #category : 'accessing' }
