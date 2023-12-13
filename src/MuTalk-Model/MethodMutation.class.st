@@ -23,6 +23,16 @@ MethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeN
 		 yourself
 ]
 
+{ #category : 'comparing' }
+MethodMutation >> = anObject [
+"Two method mutations are equals if they have the same operator, and if they mutate the same method from the same class"
+	
+	anObject species = self class ifFalse: [ ^ false ].
+	^ self operator species = anObject operator species and: [
+		  self originalMethod = anObject originalMethod and: [
+			  self originalClass = anObject originalClass ] ]
+]
+
 { #category : 'initialize-release' }
 MethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
 	originalMethod := aMethod.

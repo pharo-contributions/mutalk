@@ -13,9 +13,7 @@ RandomMutantSelectionTest >> compareMutationsOf: mutations1 and: mutations2 [
 	1 to: mutations1 size do: [ :i |
 		mutant1 := mutations1 at: i.
 		mutant2 := mutations2 at: i.
-		(mutant1 operator species = mutant2 operator species and: [
-			 ( mutant1 originalMethod = mutant2 originalMethod ) and: [
-				 mutant1 originalClass = mutant2 originalClass ] ]) ifFalse: [
+		mutant1 = mutant2 ifFalse: [
 			^ false ] ].
 	^ true
 ]
