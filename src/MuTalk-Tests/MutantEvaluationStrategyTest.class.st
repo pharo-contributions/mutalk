@@ -41,6 +41,7 @@ MutantEvaluationStrategyTest >> assertMutantNotInCoverage [
 
 { #category : 'asserting' }
 MutantEvaluationStrategyTest >> assertMutantNotInCoverageOfTest [
+
 	self subclassResponsibility
 ]
 

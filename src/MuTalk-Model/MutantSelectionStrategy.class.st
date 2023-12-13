@@ -1,9 +1,9 @@
 Class {
 	#name : 'MutantSelectionStrategy',
 	#superclass : 'Object',
-	#category : 'MuTalk-Model-Mutations generation strategies',
+	#category : 'MuTalk-Model-Mutant selection strategies',
 	#package : 'MuTalk-Model',
-	#tag : 'Mutations generation strategies'
+	#tag : 'Mutant selection strategies'
 }
 
 { #category : 'generating' }

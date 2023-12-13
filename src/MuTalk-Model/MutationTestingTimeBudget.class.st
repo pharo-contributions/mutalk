@@ -8,16 +8,8 @@ Class {
 	#package : 'MuTalk-Model'
 }
 
-{ #category : 'instance creation' }
-MutationTestingTimeBudget class >> for: aDuration [
-
-	^ self new
-		  constraint: aDuration;
-		  yourself
-]
-
 { #category : 'validation' }
-MutationTestingTimeBudget >> check: aCollection [
+MutationTestingTimeBudget >> check: partialCollection with: initialCollection [
 
 	| currentTime |
 	currentTime := Time current asMilliSeconds.

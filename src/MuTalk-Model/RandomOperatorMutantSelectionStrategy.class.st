@@ -1,12 +1,9 @@
 Class {
 	#name : 'RandomOperatorMutantSelectionStrategy',
-	#superclass : 'Object',
-	#instVars : [
-		'randomMutantSelection'
-	],
-	#category : 'MuTalk-Model-Mutations generation strategies',
+	#superclass : 'RandomMutantSelectionStrategy',
+	#category : 'MuTalk-Model-Mutant selection strategies',
 	#package : 'MuTalk-Model',
-	#tag : 'Mutations generation strategies'
+	#tag : 'Mutant selection strategies'
 }
 
 { #category : 'intialization' }
@@ -23,129 +20,62 @@ RandomOperatorMutantSelectionStrategy class >> percent: aPercentage [
 		  (PercentRandomMutantSelectionStrategy new percentageOfMutants: aPercentage)
 ]
 
-{ #category : 'adding' }
-RandomOperatorMutantSelectionStrategy >> addMutantIn: newColl from: oldColl using: random and: aNumber [
-
-	randomMutantSelection addMutantIn: newColl from: oldColl using: random and: aNumber
-]
-
-{ #category : 'accessing-defaults' }
-RandomOperatorMutantSelectionStrategy >> defaultMutationGenerationStrategy [
-
-	^ randomMutantSelection defaultMutationGenerationStrategy
-]
-
-{ #category : 'accessing' }
-RandomOperatorMutantSelectionStrategy >> highLimitCondition: aSize [
-
-	^ randomMutantSelection highLimitCondition: aSize
-]
-
-{ #category : 'initialization' }
-RandomOperatorMutantSelectionStrategy >> initialize [
-
-	randomMutantSelection initialize
-]
-
-{ #category : 'accessing' }
-RandomOperatorMutantSelectionStrategy >> lowLimitCondition [
-
-	^ randomMutantSelection lowLimitCondition
-]
-
-{ #category : 'generating' }
-RandomOperatorMutantSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
-
-	^ randomMutantSelection methodsToMutateFrom: aMutationTestingAnalysis
-]
-
-{ #category : 'generating' }
-RandomOperatorMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis [
-
-	^ randomMutantSelection mutationsFor: aMutationTestingAnalysis
-]
-
 { #category : 'generating' }
 RandomOperatorMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
-	^ randomMutantSelection
-		  mutationsFor: aMutationTestingAnalysis
-		  loggingIn: aLogger
-]
+	| mutations shuffledMutations mutationDict operators operator random |
+	mutations := mutationsGenerationStrategy
+		             mutationsFor: aMutationTestingAnalysis
+		             loggingIn: aLogger.
 
-{ #category : 'generating' }
-RandomOperatorMutantSelectionStrategy >> mutationsFor: aMethod usingAll: aCollectionOfMutantOperators logginIn: aLogger [
-
-	^ randomMutantSelection
-		  mutationsFor: aMethod
-		  usingAll: aCollectionOfMutantOperators
-		  logginIn: aLogger
-]
-
-{ #category : 'accessing' }
-RandomOperatorMutantSelectionStrategy >> mutationsGenerationStrategy [
-
-	^ randomMutantSelection mutationsGenerationStrategy
-]
-
-{ #category : 'accessing' }
-RandomOperatorMutantSelectionStrategy >> mutationsGenerationStrategy: aMutationsGenerationStrategy [
-
-	^ randomMutantSelection mutationsGenerationStrategy:
-		  aMutationsGenerationStrategy
-]
-
-{ #category : 'logging' }
-RandomOperatorMutantSelectionStrategy >> nullLogger [
-
-	^ randomMutantSelection nullLogger
-]
-
-{ #category : 'accessing' }
-RandomOperatorMutantSelectionStrategy >> randomMutantSelection [
-
-	^ randomMutantSelection
-]
-
-{ #category : 'accessing' }
-RandomOperatorMutantSelectionStrategy >> randomMutantSelection: anObject [
-
-	randomMutantSelection := anObject
-]
-
-{ #category : 'generating' }
-RandomOperatorMutantSelectionStrategy >> selectMutantsFrom: aCollection [
-
-	| size newColl random dict operators operator |
-	newColl := aCollection copyEmpty.
+	mutationDict := mutations groupedBy: [ :e | e operator ].
+	operators := mutationDict keys.
+	shuffledMutations := OrderedCollection new.
 	random := Random new.
 
-	self lowLimitCondition ifTrue: [ ^ newColl ].
-	(self highLimitCondition: aCollection size) ifTrue: [ ^ aCollection ].
+	1 to: mutations size do: [ :i |
+		operator := self
+			            selectOperatorFrom: operators
+			            and: mutationDict
+			            using: random
+			            for: shuffledMutations.
 
-	dict := aCollection groupedBy: [ :e | e operator ].
-	operators := dict keys.
-	1 to: (self totalNumberOfMutants: aCollection size) do: [ :i |
-		operator := operators at:
-			            (random nextIntegerBetween: 1 and: operators size).
+		shuffledMutations add: (self
+				 selectMutantFrom: mutationDict
+				 with: operator
+				 using: random
+				 for: shuffledMutations) ].
 
-		"if all the mutants generated with a given operator have already been selected, another operator is chosen"
-		[ (dict at: operator) allSatisfy: [ :each | newColl includes: each ] ]
-			whileTrue: [
-				operator := operators at:
-					            (random nextIntegerBetween: 1 and: operators size) ].
-
-		size := (dict at: operator) size.
-		self
-			addMutantIn: newColl
-			from: (dict at: operator)
-			using: random
-			and: size ].
-	^ newColl
+	^ shuffledMutations
 ]
 
-{ #category : 'accessing' }
-RandomOperatorMutantSelectionStrategy >> totalNumberOfMutants: aSize [
+{ #category : 'selection' }
+RandomOperatorMutantSelectionStrategy >> selectMutantFrom: mutationDictionnary with: anOperator using: aRandom for: newCollection [
 
-	^ randomMutantSelection totalNumberOfMutants: aSize
+	| size index |
+	size := (mutationDictionnary at: anOperator) size.
+	index := aRandom nextIntegerBetween: 1 and: size.
+
+	"If the selected mutant has already been added, another one is chosen"
+	[ newCollection includes:
+		((mutationDictionnary at: anOperator) at: index) ] whileTrue: [
+		index := aRandom nextIntegerBetween: 1 and: size ].
+
+	^ (mutationDictionnary at: anOperator) at: index
+]
+
+{ #category : 'selection' }
+RandomOperatorMutantSelectionStrategy >> selectOperatorFrom: operators and: mutationDictionnary using: aRandom for: newCollection [
+
+	| size index |
+	size := operators size.
+	index := aRandom nextIntegerBetween: 1 and: size.
+
+	"if all the mutants generated with a given operator have already been selected, another operator is chosen"
+	[
+	(mutationDictionnary at: (operators at: index)) allSatisfy: [ :each |
+		newCollection includes: each ] ] whileTrue: [
+		index := aRandom nextIntegerBetween: 1 and: size ].
+
+	^ operators at: index
 ]

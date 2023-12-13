@@ -8,8 +8,16 @@ Class {
 	#package : 'MuTalk-Model'
 }
 
+{ #category : 'instance creation' }
+MutationTestingBudget class >> for: aConstraint [
+
+	^ self new
+		  constraint: aConstraint;
+		  yourself
+]
+
 { #category : 'validation' }
-MutationTestingBudget >> check: aCollection [
+MutationTestingBudget >> check: partialCollection with: initialCollection [
 
 	^ self subclassResponsibility
 ]

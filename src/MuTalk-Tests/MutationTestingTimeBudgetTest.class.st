@@ -1,10 +1,6 @@
 Class {
 	#name : 'MutationTestingTimeBudgetTest',
-	#superclass : 'TestCase',
-	#instVars : [
-		'budget',
-		'analysis'
-	],
+	#superclass : 'MutationTestingBudgetTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
@@ -18,16 +14,14 @@ MutationTestingTimeBudgetTest >> fixedAnalysisTime [
 { #category : 'running' }
 MutationTestingTimeBudgetTest >> runAnalysisFor: aDuration [
 
-	^ self runAnalysisWithBudget:
-		  (MutationTestingTimeBudget for: aDuration)
+	^ self
+		  runAnalysisWithBudget: (MutationTestingTimeBudget for: aDuration)
+		  on: { AuxiliarClassForMutationTestingBudget }
+		  withTests: { AuxiliarTestClassForMutationTestingBudget }
 ]
 
 { #category : 'running' }
-MutationTestingTimeBudgetTest >> runAnalysisWithBudget: aBudget [
-
-	| testCases classesToMutate |
-	testCases := { AuxiliarTestClassForMutationTestingBudget }.
-	classesToMutate := { AuxiliarClassForMutationTestingBudget }.
+MutationTestingTimeBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests: testCases [
 
 	analysis := MutationTestingAnalysis
 		            testCasesFrom: testCases
@@ -66,8 +60,8 @@ MutationTestingTimeBudgetTest >> testWithNoTimeForMutantsRunsNoMutants [
 	duration := self fixedAnalysisTime / 4.
 	analysisTime := [ result := self runAnalysisFor: duration ] timeToRun.
 
-	"We always treat at least one mutant"
-	self assert: result numberOfEvaluatedMutants equals: 1
+	"We never treat mutants because the budget was exceeded running the initial test run, coverage analysis, etc"
+	self assert: result numberOfEvaluatedMutants equals: 0
 ]
 
 { #category : 'tests' }

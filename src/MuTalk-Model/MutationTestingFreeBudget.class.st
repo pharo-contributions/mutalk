@@ -6,7 +6,7 @@ Class {
 }
 
 { #category : 'validation' }
-MutationTestingFreeBudget >> check: aCollection [
+MutationTestingFreeBudget >> check: partialCollection with: initialCollection [
 
 	^ false
 ]

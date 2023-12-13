@@ -20,6 +20,7 @@ ClassForTestingCoverage class >> new: aSize [
 
 { #category : 'as yet unclassified' }
 ClassForTestingCoverage >> aCoveredMethod [
+
 	^ true
 ]
 
