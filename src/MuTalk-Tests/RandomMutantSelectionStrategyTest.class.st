@@ -35,7 +35,9 @@ RandomMutantSelectionStrategyTest >> sameMutationOrderIn: mutantCollection1 and:
 
 { #category : 'tests' }
 RandomMutantSelectionStrategyTest >> testAtLeastTwoDifferentMutantCollectionsAmongFive [
-	"Here, two mutant collections are differents when their mutants are not in the same order"
+	"This test is to ensure that RandomMutantSelectionStrategy doesn't always produce the same mutant collections.
+	If it can produce at least two different collections, we assume it correctly randomize the inital mutant collection.
+	Here, two mutant collections are differents when their mutants are not in the same order."
 
 	| analysis mutationsCollection |
 	"mutationsCollection is a collection of mutant collections"
