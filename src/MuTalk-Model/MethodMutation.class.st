@@ -27,6 +27,7 @@ MethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeN
 MethodMutation >> = anObject [
 	"Two method mutations are equals if they have the same operator,if they mutate the same method from the same class, and if they have the same node number"
 
+	self == anObject ifTrue: [ ^ true ].
 	anObject species = self class ifFalse: [ ^ false ].
 	self operator species = anObject operator species ifFalse: [ ^ false ].
 	self originalMethod = anObject originalMethod ifFalse: [ ^ false ].
