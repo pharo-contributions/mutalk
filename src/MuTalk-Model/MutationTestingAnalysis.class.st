@@ -31,7 +31,7 @@ MutationTestingAnalysis class >> defaultMutantsEvaluationStrategy [
 { #category : 'defaults' }
 MutationTestingAnalysis class >> defaultMutationTestingBudget [
 
-	^ MutationTestingFreeBudget new
+	^ MTFreeBudget new
 ]
 
 { #category : 'defaults' }

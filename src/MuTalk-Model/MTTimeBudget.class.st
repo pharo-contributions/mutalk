@@ -1,6 +1,6 @@
 Class {
-	#name : 'MutationTestingTimeBudget',
-	#superclass : 'MutationTestingBudget',
+	#name : 'MTTimeBudget',
+	#superclass : 'MTBudget',
 	#instVars : [
 		'initialTime'
 	],
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : 'validation' }
-MutationTestingTimeBudget >> check: partialCollection with: initialCollection [
+MTTimeBudget >> check: partialCollection with: initialCollection [
 
 	| currentTime |
 	currentTime := Time current asMilliSeconds.
@@ -17,7 +17,7 @@ MutationTestingTimeBudget >> check: partialCollection with: initialCollection [
 ]
 
 { #category : 'accessing' }
-MutationTestingTimeBudget >> start [
+MTTimeBudget >> start [
 
 	initialTime := Time current asMilliSeconds
 ]

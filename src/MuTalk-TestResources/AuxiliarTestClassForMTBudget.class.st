@@ -1,5 +1,5 @@
 Class {
-	#name : 'AuxiliarTestClassForMutationTestingBudget',
+	#name : 'AuxiliarTestClassForMTBudget',
 	#superclass : 'TestCase',
 	#instVars : [
 		'object'
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : 'tests' }
-AuxiliarTestClassForMutationTestingBudget >> testNil [
+AuxiliarTestClassForMTBudget >> testNil [
 
 	
 ]
