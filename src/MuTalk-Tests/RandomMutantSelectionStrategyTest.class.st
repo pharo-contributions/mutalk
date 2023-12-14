@@ -5,7 +5,7 @@ Class {
 	#package : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : 'comparing' }
 RandomMutantSelectionStrategyTest >> atLeastTwoDifferentMutantCollectionsIn: aCollection [
 	"aCollection is a collection of mutant collections. This method returns true if among these mutant collections, at least 2 are differents."
 
