@@ -1,5 +1,5 @@
 Class {
-	#name : 'MutationTestingBudgetTest',
+	#name : 'MTBudgetTest',
 	#superclass : 'TestCase',
 	#instVars : [
 		'analysis'
@@ -9,13 +9,13 @@ Class {
 }
 
 { #category : 'running' }
-MutationTestingBudgetTest >> runAnalysisFor: aConstraint [
+MTBudgetTest >> runAnalysisFor: aConstraint [
 
 	^ self subclassResponsibility
 ]
 
 { #category : 'running' }
-MutationTestingBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests: testCases [
+MTBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests: testCases [
 
 	analysis := MutationTestingAnalysis
 		            testCasesFrom: testCases

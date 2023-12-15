@@ -1,6 +1,6 @@
 Class {
-	#name : 'MutationTestingPercentageOfMutantsBudgetTest',
-	#superclass : 'MutationTestingBudgetTest',
+	#name : 'MTPercentageOfMutantsBudgetTest',
+	#superclass : 'MTBudgetTest',
 	#instVars : [
 		'numberOfMutations'
 	],
@@ -9,12 +9,12 @@ Class {
 }
 
 { #category : 'running' }
-MutationTestingPercentageOfMutantsBudgetTest >> runAnalysisFor: aPercentage [
+MTPercentageOfMutantsBudgetTest >> runAnalysisFor: aPercentage [
 
 	| result |
 	result := self
 		          runAnalysisWithBudget:
-		          (MutationTestingPercentageOfMutantsBudget for: aPercentage)
+		          (MTPercentageOfMutantsBudget for: aPercentage)
 		          on: { AuxiliarClassForMutationTestingAnalysis }
 		          withTests: { AuxiliarClassForMutationTestingAnalysisTest }.
 	numberOfMutations := analysis mutations size.
@@ -22,7 +22,7 @@ MutationTestingPercentageOfMutantsBudgetTest >> runAnalysisFor: aPercentage [
 ]
 
 { #category : 'tests' }
-MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateAllMutantsWithMoreThanOneHundredPercentConstraint [
+MTPercentageOfMutantsBudgetTest >> testEvaluateAllMutantsWithMoreThanOneHundredPercentConstraint [
 
 	self runAnalysisFor: 120.
 	self
@@ -32,7 +32,7 @@ MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateAllMutantsWithMoreTh
 ]
 
 { #category : 'tests' }
-MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithNegativePercentConstraint [
+MTPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithNegativePercentConstraint [
 
 	self runAnalysisFor: -10.
 	self
@@ -42,7 +42,7 @@ MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutants
 ]
 
 { #category : 'tests' }
-MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithZeroPercentConstraint [
+MTPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithZeroPercentConstraint [
 
 	self runAnalysisFor: 0.
 	self
@@ -52,7 +52,7 @@ MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutants
 ]
 
 { #category : 'tests' }
-MutationTestingPercentageOfMutantsBudgetTest >> testExactPercentageOfMutants [
+MTPercentageOfMutantsBudgetTest >> testExactPercentageOfMutants [
 
 	self runAnalysisFor: 20.
 	self
@@ -62,7 +62,7 @@ MutationTestingPercentageOfMutantsBudgetTest >> testExactPercentageOfMutants [
 ]
 
 { #category : 'tests' }
-MutationTestingPercentageOfMutantsBudgetTest >> testNonExactPercentageOfMutants [
+MTPercentageOfMutantsBudgetTest >> testNonExactPercentageOfMutants [
 
 	self runAnalysisFor: 21.
 	self assert:

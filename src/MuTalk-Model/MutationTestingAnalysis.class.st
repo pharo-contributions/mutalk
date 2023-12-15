@@ -31,7 +31,7 @@ MutationTestingAnalysis class >> defaultMutantsEvaluationStrategy [
 { #category : 'defaults' }
 MutationTestingAnalysis class >> defaultMutationTestingBudget [
 
-	^ MutationTestingFreeBudget new
+	^ MTFreeBudget new
 ]
 
 { #category : 'defaults' }
@@ -372,7 +372,7 @@ MutationTestingAnalysis >> generateResults [
 
 	particularResults := OrderedCollection new.
 	mutations do: [ :aMutation |
-		(budget check: particularResults with: mutations) ifTrue: [
+		(budget exceedBudgetOn: particularResults considering: mutations) ifTrue: [
 			^ particularResults ].
 		logger logStartEvaluating: aMutation.
 		particularResults add: (MutantEvaluation

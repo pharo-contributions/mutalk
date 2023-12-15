@@ -1,27 +1,27 @@
 Class {
-	#name : 'MutationTestingTimeBudgetTest',
-	#superclass : 'MutationTestingBudgetTest',
+	#name : 'MTTimeBudgetTest',
+	#superclass : 'MTBudgetTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
 
 { #category : 'running' }
-MutationTestingTimeBudgetTest >> fixedAnalysisTime [
+MTTimeBudgetTest >> fixedAnalysisTime [
 
 	^ [ self runAnalysisFor: 0 seconds ] timeToRun
 ]
 
 { #category : 'running' }
-MutationTestingTimeBudgetTest >> runAnalysisFor: aDuration [
+MTTimeBudgetTest >> runAnalysisFor: aDuration [
 
 	^ self
-		  runAnalysisWithBudget: (MutationTestingTimeBudget for: aDuration)
-		  on: { AuxiliarClassForMutationTestingBudget }
-		  withTests: { AuxiliarTestClassForMutationTestingBudget }
+		  runAnalysisWithBudget: (MTTimeBudget for: aDuration)
+		  on: { AuxiliarClassForMTBudget }
+		  withTests: { AuxiliarTestClassForMTBudget }
 ]
 
 { #category : 'running' }
-MutationTestingTimeBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests: testCases [
+MTTimeBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests: testCases [
 
 	analysis := MutationTestingAnalysis
 		            testCasesFrom: testCases
@@ -39,7 +39,7 @@ MutationTestingTimeBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMut
 ]
 
 { #category : 'tests' }
-MutationTestingTimeBudgetTest >> testWithNoTimeForMutantsRespectsDeadline [
+MTTimeBudgetTest >> testWithNoTimeForMutantsRespectsDeadline [
 
 	| duration analysisTime error fixedAnalysisTime |
 	"Let's run the analysis for so much time that it will run the fixed cost (initial test run, coverage analysis) * N, making sure we will execute some mutants"
@@ -53,7 +53,7 @@ MutationTestingTimeBudgetTest >> testWithNoTimeForMutantsRespectsDeadline [
 ]
 
 { #category : 'tests' }
-MutationTestingTimeBudgetTest >> testWithNoTimeForMutantsRunsNoMutants [
+MTTimeBudgetTest >> testWithNoTimeForMutantsRunsNoMutants [
 
 	| duration analysisTime result |
 	"Divide duration by 4 to make sure we never have time for mutants"
@@ -65,7 +65,7 @@ MutationTestingTimeBudgetTest >> testWithNoTimeForMutantsRunsNoMutants [
 ]
 
 { #category : 'tests' }
-MutationTestingTimeBudgetTest >> testWithTimeForMutantsRespectsDeadline [
+MTTimeBudgetTest >> testWithTimeForMutantsRespectsDeadline [
 
 	| duration analysisTime error |
 	"Let's run the analysis for so much time that it will run the fixed cost (initial test run, coverage analysis) * N, making sure we will execute some mutants"
@@ -78,7 +78,7 @@ MutationTestingTimeBudgetTest >> testWithTimeForMutantsRespectsDeadline [
 ]
 
 { #category : 'tests' }
-MutationTestingTimeBudgetTest >> testWithTimeForMutantsRunsManyMutants [
+MTTimeBudgetTest >> testWithTimeForMutantsRunsManyMutants [
 
 	| duration analysisTime result |
 	"Let's run the analysis for so much time that it will run the fixed cost (initial test run, coverage analysis) * N, making sure we will execute some mutants"
