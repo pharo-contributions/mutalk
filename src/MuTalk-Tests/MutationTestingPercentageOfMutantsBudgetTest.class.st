@@ -32,16 +32,6 @@ MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateAllMutantsWithMoreTh
 ]
 
 { #category : 'tests' }
-MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateTheCorrectPercentageOfMutants [
-
-	self runAnalysisFor: 20.
-	self
-		assert:
-			analysis generalResult numberOfEvaluatedMutants / numberOfMutations * 100
-		equals: 20
-]
-
-{ #category : 'tests' }
 MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithNegativePercentConstraint [
 
 	self runAnalysisFor: -10.
@@ -59,4 +49,25 @@ MutationTestingPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutants
 		assert:
 			analysis generalResult numberOfEvaluatedMutants / numberOfMutations * 100
 		equals: 0
+]
+
+{ #category : 'tests' }
+MutationTestingPercentageOfMutantsBudgetTest >> testExactPercentageOfMutants [
+
+	self runAnalysisFor: 20.
+	self
+		assert:
+			analysis generalResult numberOfEvaluatedMutants / numberOfMutations * 100
+		equals: 20
+]
+
+{ #category : 'tests' }
+MutationTestingPercentageOfMutantsBudgetTest >> testNonExactPercentageOfMutants [
+
+	self runAnalysisFor: 21.
+	self assert:
+		analysis generalResult numberOfEvaluatedMutants / numberOfMutations * 100 >= 21.
+	self
+		assert: analysis generalResult numberOfEvaluatedMutants
+		equals: 6
 ]
