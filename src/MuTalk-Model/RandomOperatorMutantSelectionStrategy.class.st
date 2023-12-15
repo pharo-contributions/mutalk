@@ -23,59 +23,24 @@ RandomOperatorMutantSelectionStrategy class >> percent: aPercentage [
 { #category : 'generating' }
 RandomOperatorMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
-	| mutations shuffledMutations mutationDict operators operator random |
+	| mutations shuffledMutations mutationDict |
 	mutations := mutationsGenerationStrategy
 		             mutationsFor: aMutationTestingAnalysis
 		             loggingIn: aLogger.
 
+	"Invariant: mutationsDict values are never empty.
+	If they were to be empty, we remove the entry from the dictionary."
 	mutationDict := mutations groupedBy: [ :e | e operator ].
-	operators := mutationDict keys.
+	mutationDict := mutationDict collect: [ :mutationList |
+		mutationList shuffled readStream ].
+
 	shuffledMutations := OrderedCollection new.
-	random := Random new.
-
 	1 to: mutations size do: [ :i |
-		operator := self
-			            selectOperatorFrom: operators
-			            and: mutationDict
-			            using: random
-			            for: shuffledMutations.
-
-		shuffledMutations add: (self
-				 selectMutantFrom: mutationDict
-				 with: operator
-				 using: random
-				 for: shuffledMutations) ].
+		| operator operatorMutations |
+		operator := mutationDict keys atRandom.
+		operatorMutations := mutationDict at: operator.
+		shuffledMutations add: operatorMutations next.
+		operatorMutations atEnd ifTrue: [ mutationDict removeKey: operator ] ].
 
 	^ shuffledMutations
-]
-
-{ #category : 'selection' }
-RandomOperatorMutantSelectionStrategy >> selectMutantFrom: mutationDictionnary with: anOperator using: aRandom for: newCollection [
-
-	| size index |
-	size := (mutationDictionnary at: anOperator) size.
-	index := aRandom nextIntegerBetween: 1 and: size.
-
-	"If the selected mutant has already been added, another one is chosen"
-	[ newCollection includes:
-		((mutationDictionnary at: anOperator) at: index) ] whileTrue: [
-		index := aRandom nextIntegerBetween: 1 and: size ].
-
-	^ (mutationDictionnary at: anOperator) at: index
-]
-
-{ #category : 'selection' }
-RandomOperatorMutantSelectionStrategy >> selectOperatorFrom: operators and: mutationDictionnary using: aRandom for: newCollection [
-
-	| size index |
-	size := operators size.
-	index := aRandom nextIntegerBetween: 1 and: size.
-
-	"if all the mutants generated with a given operator have already been selected, another operator is chosen"
-	[
-	(mutationDictionnary at: (operators at: index)) allSatisfy: [ :each |
-		newCollection includes: each ] ] whileTrue: [
-		index := aRandom nextIntegerBetween: 1 and: size ].
-
-	^ operators at: index
 ]

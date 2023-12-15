@@ -8,10 +8,19 @@ Class {
 	#package : 'MuTalk-Tests'
 }
 
-{ #category : 'running' }
-MTBudgetTest >> runAnalysisFor: aConstraint [
+{ #category : 'testing' }
+MTBudgetTest class >> isAbstract [
 
-	^ self subclassResponsibility
+	^ self == MTBudgetTest
+]
+
+{ #category : 'running' }
+MTBudgetTest >> runAnalysisFor: aBudget [
+
+	^ self
+		  runAnalysisWithBudget: aBudget
+		  on: { AuxiliarClassForMutationTestingAnalysis }
+		  withTests: { AuxiliarClassForMutationTestingAnalysisTest }
 ]
 
 { #category : 'running' }

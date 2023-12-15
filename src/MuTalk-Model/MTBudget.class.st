@@ -29,7 +29,7 @@ MTBudget >> constraint: aConstraint [
 ]
 
 { #category : 'validation' }
-MTBudget >> exceedBudgetOn: partialCollection considering: initialCollection [
+MTBudget >> exceedsBudgetOn: partialCollection fromTotalMutations: initialCollection [
 	"Returns true if partialCollection exceed the budget (the time is over, there is enough mutants, etc). Some budgets need data on initialCollection (e.g. percentage budget needs the size)"
 
 	^ self subclassResponsibility

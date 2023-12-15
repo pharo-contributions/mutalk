@@ -38,7 +38,7 @@ MutantEvaluationResultTerminated >> killingSuggestions [
 ]
 
 { #category : 'testing' }
-MutantEvaluationResultTerminated >> particularResults [
+MutantEvaluationResultTerminated >> mutantResults [
 	
 	^OrderedCollection new
 ]

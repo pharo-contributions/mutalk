@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'modelClasses',
 		'operators',
-		'particularResults',
 		'elapsedTime',
 		'mutantsEvaluationStrategy',
 		'mutations',
@@ -12,7 +11,8 @@ Class {
 		'coverageAnalysisResult',
 		'logger',
 		'budget',
-		'mutationsSelectionStrategy'
+		'mutationsSelectionStrategy',
+		'mutantResults'
 	],
 	#category : 'MuTalk-Model',
 	#package : 'MuTalk-Model'
@@ -349,7 +349,7 @@ MutationTestingAnalysis >> coverageAnalysisResult: anObject [
 { #category : 'results' }
 MutationTestingAnalysis >> generalResult [
 	^ MutationTestingGeneralResult
-		for: particularResults
+		for: mutantResults
 		timed: (Duration nanoSeconds: (Duration milliSeconds: elapsedTime) nanoSeconds)
 ]
 
@@ -370,17 +370,17 @@ MutationTestingAnalysis >> generateMutations [
 { #category : 'running' }
 MutationTestingAnalysis >> generateResults [
 
-	particularResults := OrderedCollection new.
+	mutantResults := OrderedCollection new.
 	mutations do: [ :aMutation |
-		(budget exceedBudgetOn: particularResults considering: mutations) ifTrue: [
-			^ particularResults ].
+		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations) ifTrue: [
+			^ mutantResults ].
 		logger logStartEvaluating: aMutation.
-		particularResults add: (MutantEvaluation
+		mutantResults add: (MutantEvaluation
 				 for: aMutation
 				 using: testCases
 				 following: mutantsEvaluationStrategy
 				 andConsidering: self coverageAnalysisResult) value ].
-	^ particularResults
+	^ mutantResults
 ]
 
 { #category : 'running' }
@@ -399,7 +399,7 @@ MutationTestingAnalysis >> initializeFor: someTestCasesReferences mutating: some
 	operators := operatorCollection.
 	mutationsSelectionStrategy := aMutationsGenerationStrategy.
 	mutantsEvaluationStrategy := aMutantsEvaluationStrategy.
-	particularResults := OrderedCollection new.
+	mutantResults := OrderedCollection new.
 	elapsedTime := 0.
 	logger := aLogger.
 	budget := aBudget
@@ -411,6 +411,11 @@ MutationTestingAnalysis >> modelClasses [
 	^ modelClasses
 		reject: [:class | self testBaseClasses
 				anySatisfy: [:classToFilter | class includesBehavior: classToFilter]]
+]
+
+{ #category : 'results' }
+MutationTestingAnalysis >> mutantResults [
+	^ mutantResults
 ]
 
 { #category : 'accessing' }
@@ -451,11 +456,6 @@ MutationTestingAnalysis >> mutationsGenerationStrategy: anObject [
 { #category : 'accesing' }
 MutationTestingAnalysis >> operators [
 	^operators 
-]
-
-{ #category : 'results' }
-MutationTestingAnalysis >> particularResults [
-	^ particularResults
 ]
 
 { #category : 'running' }

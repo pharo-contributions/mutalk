@@ -1,14 +1,15 @@
 Class {
-	#name : #MutalkCI,
-	#superclass : #Object,
+	#name : 'MutalkCI',
+	#superclass : 'Object',
 	#instVars : [
 		'project',
 		'commit'
 	],
-	#category : #'MuTalk-CI'
+	#category : 'MuTalk-CI',
+	#package : 'MuTalk-CI'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCI >> allChangesForRepo [
 	| repo cmt diff leafs targets |
 	repo := self getRepo.
@@ -30,7 +31,7 @@ MutalkCI >> allChangesForRepo [
 	^ targets
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutalkCI >> allClassesForRepo [
 
 	| repo |
@@ -40,24 +41,24 @@ MutalkCI >> allClassesForRepo [
 		  p package asPackage definedClasses asOrderedCollection ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCI >> commit [
 
 	^ commit
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCI >> commit: anObject [
 
 	commit := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutalkCI >> exportFileName [
 	^ '__mutalk_export.json'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutalkCI >> exportResultJson: analysis [
 
 	| json file repo commitFrom commitTo timestamp |
@@ -79,7 +80,7 @@ MutalkCI >> exportResultJson: analysis [
 		close
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutalkCI >> exportResultJson: analysis coverageInfo: coverageInfo [
 
 	| json file repo commitFrom commitTo timestamp |
@@ -102,7 +103,7 @@ MutalkCI >> exportResultJson: analysis coverageInfo: coverageInfo [
 		close
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCI >> getRepo [
 
 	IceRepository registry
@@ -131,7 +132,7 @@ MutalkCI >> getRepo [
 	self error: 'repo not installed. ' , project
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCI >> mutateAll [
 
 	| classes tests targets |
@@ -147,7 +148,7 @@ MutalkCI >> mutateAll [
 		SelectingFromCoverageMutantSelectionStrategy new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCI >> mutateDiff [
 
 	| targets targetMethods tests classes |
@@ -165,7 +166,7 @@ MutalkCI >> mutateDiff [
 		SelectingFromAlivesMutationsGenerationStrategy new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCI >> prepareCoverageInfo: anAnalyse [
 
 	^ CoveragePropagationPreparation new
@@ -173,19 +174,19 @@ MutalkCI >> prepareCoverageInfo: anAnalyse [
 		prepare
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCI >> project [
 
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCI >> project: anObject [
 
 	project := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCI >> recentCommit [
 
 	commit := self getRepo head commit ancestors
@@ -193,7 +194,7 @@ MutalkCI >> recentCommit [
 		          ifEmpty: [ IceNoCommit new ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutalkCI >> runMutalkTargets: targets tests: tests generationStrategy: generationStrategy [
 
 	| analysis coverageInfo |

@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : 'validation' }
-MTTimeBudget >> exceedBudgetOn: partialCollection considering: initialCollection [
+MTTimeBudget >> exceedsBudgetOn: computedMutations fromTotalMutations: totalMutations [
 
 	| currentTime |
 	currentTime := Time current asMilliSeconds.

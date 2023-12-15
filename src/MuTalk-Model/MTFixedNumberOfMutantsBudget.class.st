@@ -6,7 +6,7 @@ Class {
 }
 
 { #category : 'validation' }
-MTFixedNumberOfMutantsBudget >> exceedBudgetOn: partialCollection considering: initialCollection [
+MTFixedNumberOfMutantsBudget >> exceedsBudgetOn: computedMutations fromTotalMutations: totalMutations [
 
-	^ partialCollection size >= constraint
+	^ computedMutations size >= constraint
 ]
