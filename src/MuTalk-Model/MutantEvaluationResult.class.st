@@ -68,7 +68,7 @@ MutantEvaluationResult >> mutantEvaluation [
 ]
 
 { #category : 'accessing' }
-MutantEvaluationResult >> particularResults [ 
+MutantEvaluationResult >> mutantResults [ 
 	
 	self subclassResponsibility 
 ]

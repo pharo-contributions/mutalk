@@ -1,25 +1,26 @@
 Class {
-	#name : #AbstractMutationTestingJsonExporter,
-	#superclass : #Object,
+	#name : 'AbstractMutationTestingJsonExporter',
+	#superclass : 'Object',
 	#instVars : [
 		'mtResult'
 	],
-	#category : #'MuTalk-CI'
+	#category : 'MuTalk-CI',
+	#package : 'MuTalk-CI'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AbstractMutationTestingJsonExporter >> export [
 
 	self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AbstractMutationTestingJsonExporter >> mtResult [
 
 	^ mtResult
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AbstractMutationTestingJsonExporter >> mtResult: anObject [
 
 	mtResult := anObject

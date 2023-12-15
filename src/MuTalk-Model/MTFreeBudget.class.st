@@ -6,7 +6,7 @@ Class {
 }
 
 { #category : 'validation' }
-MTFreeBudget >> exceedBudgetOn: partialCollection considering: initialCollection [
+MTFreeBudget >> exceedsBudgetOn: computedMutations fromTotalMutations: totalMutations [
 	"Since this budget have no constraint, the budget is never exceeded"
 
 	^ false

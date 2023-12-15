@@ -1,25 +1,26 @@
 Class {
-	#name : #AbstractCoverageInfoPreparation,
-	#superclass : #Object,
+	#name : 'AbstractCoverageInfoPreparation',
+	#superclass : 'Object',
 	#instVars : [
 		'mtResult'
 	],
-	#category : #'MuTalk-CI'
+	#category : 'MuTalk-CI',
+	#package : 'MuTalk-CI'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AbstractCoverageInfoPreparation >> mtResult [
 
 	^ mtResult
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AbstractCoverageInfoPreparation >> mtResult: anObject [
 
 	mtResult := anObject
 ]
 
-{ #category : #decoration }
+{ #category : 'decoration' }
 AbstractCoverageInfoPreparation >> prepare [
 	self subclassResponsibility 
 ]

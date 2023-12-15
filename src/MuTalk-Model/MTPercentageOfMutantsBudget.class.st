@@ -6,8 +6,8 @@ Class {
 }
 
 { #category : 'validation' }
-MTPercentageOfMutantsBudget >> exceedBudgetOn: partialCollection considering: initialCollection [
+MTPercentageOfMutantsBudget >> exceedsBudgetOn: computedMutations fromTotalMutations: totalMutations [
 
-	^ partialCollection size
-	  >= (constraint / 100 * initialCollection size)
+	^ computedMutations size
+	  >= (constraint / 100 * totalMutations size)
 ]

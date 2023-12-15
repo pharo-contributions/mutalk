@@ -1,6 +1,6 @@
 Class {
-	#name : #MutalkCITonelJsonExporter,
-	#superclass : #AbstractMutationTestingJsonExporter,
+	#name : 'MutalkCITonelJsonExporter',
+	#superclass : 'AbstractMutationTestingJsonExporter',
 	#instVars : [
 		'seqNum',
 		'pull_request_id',
@@ -9,10 +9,11 @@ Class {
 		'root',
 		'coverageInfo'
 	],
-	#category : #'MuTalk-CI'
+	#category : 'MuTalk-CI',
+	#package : 'MuTalk-CI'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCITonelJsonExporter class >> isInTonelFormatCodeLocatedAt: aDirectoryName [
 	"The whole file format decision can be better resolver if delegated to the loadSpec, but this is a class method without access to it."
 
@@ -27,50 +28,50 @@ MutalkCITonelJsonExporter class >> isInTonelFormatCodeLocatedAt: aDirectoryName 
 	^ false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCITonelJsonExporter >> classMutations: class [
 	| mutations |
-	mutations:= mtResult particularResults select: [ :mutationEval | 
+	mutations:= mtResult mutantResults select: [ :mutationEval | 
 		mutationEval mutant originalClass = class ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCITonelJsonExporter >> cloneLocation [
 
 	^ cloneLocation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCITonelJsonExporter >> cloneLocation: anObject [
 
 	cloneLocation := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCITonelJsonExporter >> commit [
 
 	^ commit
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCITonelJsonExporter >> commit: anObject [
 
 	commit := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCITonelJsonExporter >> coverageInfo [
 
 	^ coverageInfo
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCITonelJsonExporter >> coverageInfo: anObject [
 
 	coverageInfo := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCITonelJsonExporter >> export [
 
 	| source_files test_cases json obj |
@@ -87,7 +88,7 @@ MutalkCITonelJsonExporter >> export [
 	^ json
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCITonelJsonExporter >> exportClassMutations: class [
 
 	| mutations path hash file |
@@ -95,7 +96,7 @@ MutalkCITonelJsonExporter >> exportClassMutations: class [
 	file := self getFileOfClass: class.
 	hash := self getHashOfFile: class.
 	seqNum := 0.
-	mutations := mtResult particularResults select: [ :mutationEval | 
+	mutations := mtResult mutantResults select: [ :mutationEval | 
 		             mutationEval mutant originalClass = class ].
 	mutations := mutations collect: [ :mutationEval | 
 		             self
@@ -108,7 +109,7 @@ MutalkCITonelJsonExporter >> exportClassMutations: class [
 		  (#mutations -> mutations asArray) } asDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCITonelJsonExporter >> exportMutationEvaluation: mutationEvaluation filePath: filePath [
 
 	| sequence_number descrption start_line end_line mutated_source result modifiedSource originalSource mutatedNode nodeToMutate offset classToCover selector mutated_lines coveredBy dictionary mutationCoverage |
@@ -161,7 +162,7 @@ MutalkCITonelJsonExporter >> exportMutationEvaluation: mutationEvaluation filePa
 	^ dictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCITonelJsonExporter >> exportTestCases [
 
 	^ mtResult testCases collect: [ :tcase | 
@@ -170,7 +171,7 @@ MutalkCITonelJsonExporter >> exportTestCases [
 		fileName , ':' , tcase testCase selector ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCITonelJsonExporter >> extractMutatedLine: mutatedNode nodeToMutate: nodeToMutate originalSource: originalSource modifiedSource: modifiedSource [
 
 	| mSource_1 mSource_2 mSource_3 mSource ending changedLines mSource_1_break start_of_changes |
@@ -201,7 +202,7 @@ MutalkCITonelJsonExporter >> extractMutatedLine: mutatedNode nodeToMutate: nodeT
 	^ changedLines
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCITonelJsonExporter >> generateCoveredByFor: coverageInfoItem mutationCoverage: mutationCoverage [
 
 	| class file result level testMethodName line path |
@@ -223,20 +224,20 @@ MutalkCITonelJsonExporter >> generateCoveredByFor: coverageInfoItem mutationCove
 	^ result
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCITonelJsonExporter >> getFileOfClass: class [
 
 	^ (cloneLocation , '/' , (self getPathOfClass: class)) asFileReference
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCITonelJsonExporter >> getHashOfFile: class [
 
 	^ (self getFileOfClass: class) readStreamDo: [ :stream | 
 		  (MD5 hashMessage: stream contents) hex ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCITonelJsonExporter >> getPathOfClass: class [
 
 	"Based on code in SmalltalkCI project"
@@ -250,7 +251,7 @@ MutalkCITonelJsonExporter >> getPathOfClass: class [
 	^ fileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCITonelJsonExporter >> lineNumberOffsetClass: classToCover method: method in: filePath [
 
 	" From smalltalkCI "
@@ -271,37 +272,37 @@ MutalkCITonelJsonExporter >> lineNumberOffsetClass: classToCover method: method 
 	^ 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCITonelJsonExporter >> pull_request_id [
 
 	^ pull_request_id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCITonelJsonExporter >> pull_request_id: anObject [
 
 	pull_request_id := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCITonelJsonExporter >> root [
 
 	^ root
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCITonelJsonExporter >> root: anObject [
 
 	root := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCITonelJsonExporter >> seqNum [
 
 	^ seqNum
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCITonelJsonExporter >> seqNum: anObject [
 
 	seqNum := anObject

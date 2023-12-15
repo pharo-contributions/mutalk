@@ -1,28 +1,29 @@
 Class {
-	#name : #MutalkCommandLineHandler,
-	#superclass : #CommandLineHandler,
+	#name : 'MutalkCommandLineHandler',
+	#superclass : 'CommandLineHandler',
 	#instVars : [
 		'result',
 		'project',
 		'commit',
 		'diff'
 	],
-	#category : #'MuTalk-CI'
+	#category : 'MuTalk-CI',
+	#package : 'MuTalk-CI'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCommandLineHandler class >> commandName [ 
 	^ 'mutalk'
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCommandLineHandler class >> description [
 
 	^ 'Runs mutation testing'
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 MutalkCommandLineHandler >> activate [
 
 	| noquit saveit |
@@ -40,7 +41,7 @@ MutalkCommandLineHandler >> activate [
 	Smalltalk snapshot: saveit andQuit: noquit not
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 MutalkCommandLineHandler >> hasArgument: command [
 
 	| cmd |
@@ -51,14 +52,14 @@ MutalkCommandLineHandler >> hasArgument: command [
 		ifFound: [ :arg | ^ arg allButFirst: cmd size ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutalkCommandLineHandler >> icebergProject [ 
 			MutalkCI new
 				project: project;
 				mutateAll 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutalkCommandLineHandler >> icebergProjectCommit [
 
 	MutalkCI new
@@ -67,7 +68,7 @@ MutalkCommandLineHandler >> icebergProjectCommit [
 		mutateDiff
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MutalkCommandLineHandler >> icebergProjectDiff [
 
 			MutalkCI new

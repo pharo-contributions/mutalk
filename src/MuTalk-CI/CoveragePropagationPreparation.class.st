@@ -1,6 +1,6 @@
 Class {
-	#name : #CoveragePropagationPreparation,
-	#superclass : #AbstractCoverageInfoPreparation,
+	#name : 'CoveragePropagationPreparation',
+	#superclass : 'AbstractCoverageInfoPreparation',
 	#instVars : [
 		'flakyDetection',
 		'link',
@@ -8,10 +8,11 @@ Class {
 		'observations',
 		'propagationDetected'
 	],
-	#category : #'MuTalk-CI'
+	#category : 'MuTalk-CI',
+	#package : 'MuTalk-CI'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> captureStateNode: aNode context: aContext object: anObject [
 
 	| temps selfobject |
@@ -28,7 +29,7 @@ CoveragePropagationPreparation >> captureStateNode: aNode context: aContext obje
 		  (#object -> selfobject) } asDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> checkFlakyState: state [
 
 	| oldState |
@@ -37,7 +38,7 @@ CoveragePropagationPreparation >> checkFlakyState: state [
 	self detectAllStateChangesState1: oldState State2: state andDo: [ :state1 :state2 :key | state1 removeKey: key ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> checkPropagationInState: state [
 
 	| oldState |
@@ -49,7 +50,7 @@ CoveragePropagationPreparation >> checkPropagationInState: state [
 		andDo: [ :state1 :state2 :key | propagationDetected := true ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> detectAllStateChangesState1: state1 State2: state2 andDo: aBlock [
 
 	state1 isDictionary ifFalse: [ ^ state1 = state2 ].
@@ -61,7 +62,7 @@ CoveragePropagationPreparation >> detectAllStateChangesState1: state1 State2: st
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> executeAfterNode: aNode context: aContext object: anObject [
 
 	| newItem state |
@@ -79,7 +80,7 @@ CoveragePropagationPreparation >> executeAfterNode: aNode context: aContext obje
 				ifFalse: [ self checkPropagationInState: state ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> generateItemFor: aMutationEvaluation [
 
 	| item |
@@ -94,14 +95,14 @@ CoveragePropagationPreparation >> generateItemFor: aMutationEvaluation [
 	^ item
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> insertState: state [
 
 	observations add: state.
 	counter := counter + 1
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> installMetalinkToNode: statement [
 
 	link ifNil: [ 
@@ -114,7 +115,7 @@ CoveragePropagationPreparation >> installMetalinkToNode: statement [
 	statement link: link
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> installMetalinks: covered [
 
 	| testCase |
@@ -123,13 +124,13 @@ CoveragePropagationPreparation >> installMetalinks: covered [
 		:statement | self installMetalinkToNode: statement ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> installMutant: aMutationEvaluation [
 
 	aMutationEvaluation mutant install.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CoveragePropagationPreparation >> isChangesPropagatedTo: covered for: aMutationEvaluation [
 
 	observations := OrderedCollection new.
@@ -148,7 +149,7 @@ CoveragePropagationPreparation >> isChangesPropagatedTo: covered for: aMutationE
 	^ propagationDetected
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> methodCoveredByFor: aMutationEvaluation [
 
 	^ aMutationEvaluation mutantEvaluation coverageAnalysisResult 
@@ -157,18 +158,18 @@ CoveragePropagationPreparation >> methodCoveredByFor: aMutationEvaluation [
 	
 ]
 
-{ #category : #decoration }
+{ #category : 'decoration' }
 CoveragePropagationPreparation >> prepare [
 
 	| allSurvived result |
 	result := OrderedCollection new.
-	allSurvived := mtResult particularResults select: #survived.
+	allSurvived := mtResult mutantResults select: #survived.
 	result addAll:
 		(allSurvived collect: [ :survived | self generateItemFor: survived ]).
 	^ result 
 ]
 
-{ #category : #controlling }
+{ #category : 'controlling' }
 CoveragePropagationPreparation >> runTestCase: testCaseReference [
 
 	| results |
@@ -178,7 +179,7 @@ CoveragePropagationPreparation >> runTestCase: testCaseReference [
 	^ results
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> serializeObject: anObject level: aLevel [
 
 	| ins |
@@ -190,7 +191,7 @@ CoveragePropagationPreparation >> serializeObject: anObject level: aLevel [
 		   insName -> ins ]) asDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> testsWithSuccessfulPropagationFor: aMutationEvaluation [
 
 	| allCovered |
@@ -201,13 +202,13 @@ CoveragePropagationPreparation >> testsWithSuccessfulPropagationFor: aMutationEv
 		self isChangesPropagatedTo: covered for: aMutationEvaluation ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> uninstallMetalinks [
 
 	link uninstall 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CoveragePropagationPreparation >> uninstallMutant: aMutationEvaluation [
 
 	aMutationEvaluation mutant uninstall

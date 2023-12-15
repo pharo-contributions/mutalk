@@ -45,7 +45,7 @@ MutantEvaluationResultKilled >> killingSuggestions [
 ]
 
 { #category : 'browsing' }
-MutantEvaluationResultKilled >> particularResults [
+MutantEvaluationResultKilled >> mutantResults [
 	
 	^result tests
 ]

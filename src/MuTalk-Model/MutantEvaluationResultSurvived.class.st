@@ -42,7 +42,7 @@ MutantEvaluationResultSurvived >> killingSuggestions [
 ]
 
 { #category : 'testing' }
-MutantEvaluationResultSurvived >> particularResults [
+MutantEvaluationResultSurvived >> mutantResults [
 	^result tests
 ]
 

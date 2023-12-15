@@ -74,7 +74,7 @@ MutationTestingAnalysisTest >> testExecutingInfiniteLoopAnalysis [
 
 	analysis run.
 
-	results := analysis particularResults.
+	results := analysis mutantResults.
 	self assert: results size equals: 1.
 	mutationResult := results first.
 	self assert: mutationResult killed
@@ -95,7 +95,7 @@ MutationTestingAnalysisTest >> testExecutingInfiniteRecursionAnalysis [
 
 	analysis run.
 
-	results := analysis particularResults.
+	results := analysis mutantResults.
 	self assert: results size equals: 1.
 	mutationResult := results first.
 	self assert: mutationResult killed
@@ -110,7 +110,7 @@ MutationTestingAnalysisTest >> testExecutingSimpleMutation [
 		using: self plusForMinusReplacementMutation.
 	analysis run.
 	generalResult := analysis generalResult.
-	results := analysis particularResults.
+	results := analysis mutantResults.
 	self assert: results size = 1.
 	mutationResult := results first.
 	self assert: mutationResult killed.
@@ -126,7 +126,7 @@ MutationTestingAnalysisTest >> testExecutingSimpleMutationForClassMethods [
 		using: self selectForRejectReplacementMutation.
 	analysis run.
 	generalResult := analysis generalResult.
-	results := analysis particularResults.
+	results := analysis mutantResults.
 	self assert: results size = 1.
 	mutationResult := results first.
 	self assert: mutationResult killed.
@@ -142,7 +142,7 @@ MutationTestingAnalysisTest >> testExecutingSimpleMutationWhenNotRunnedAnalysis 
 		using: self plusForMinusReplacementMutation.
 	"analysis run."
 	generalResult := analysis generalResult.
-	results := analysis particularResults.
+	results := analysis mutantResults.
 	self assert: results size = 0.
 	self assert: generalResult numberOfEvaluatedMutants = 0
 ]
@@ -158,7 +158,7 @@ MutationTestingAnalysisTest >> testExecutingTwoMutantsFromDiferentMethods [
 		mutating: (Array with: AuxiliarClassForMutationTestingAnalysis)
 		using: operatorSelection.
 	analysis run.
-	results := analysis particularResults.
+	results := analysis mutantResults.
 	self assert: results size = 2.
 	results do: [ :mutationResult | self deny: mutationResult killed ]
 ]
@@ -174,7 +174,7 @@ MutationTestingAnalysisTest >> testExecutingTwoMutantsFromSameMethod [
 		mutating: (Array with: AuxiliarClassForMutationTestingAnalysis)
 		using: operatorSelection.
 	analysis run.
-	results := analysis particularResults.
+	results := analysis mutantResults.
 	self assert: results size = 2.
 	results do: [ :mutationResult | self deny: mutationResult killed ]
 ]
@@ -193,7 +193,7 @@ MutationTestingAnalysisTest >> testExecutingTwoMutations [
 		using: operatorSelection.
 	analysis run.
 	generalResult := analysis generalResult.
-	results := analysis particularResults.
+	results := analysis mutantResults.
 	self assert: results size = 2.
 	results do: [ :mutationResult | self assert: mutationResult killed ].
 	self assert: generalResult numberOfKilledMutants = 2
