@@ -5,19 +5,16 @@ Class {
 	#package : 'MuTalk-Tests'
 }
 
-{ #category : 'running' }
-MTFixedNumberOfMutantsBudgetTest >> runAnalysisFor: aNumber [
+{ #category : 'tests' }
+MTFixedNumberOfMutantsBudgetTest >> runAnalysisForFixedNumberOfMutants: aNumber [
 
-	^ self
-		  runAnalysisWithBudget: (MTFixedNumberOfMutantsBudget for: aNumber)
-		  on: { AuxiliarClassForMutationTestingAnalysis }
-		  withTests: { AuxiliarClassForMutationTestingAnalysisTest }
+	self runAnalysisFor: (MTFixedNumberOfMutantsBudget for: aNumber)
 ]
 
 { #category : 'tests' }
 MTFixedNumberOfMutantsBudgetTest >> testEvaluateAllMutantsWithConstraintGreaterThanActualNumberOfMutations [
 
-	self runAnalysisFor: 50.
+	self runAnalysisForFixedNumberOfMutants: 50.
 	self
 		assert: analysis generalResult numberOfEvaluatedMutants
 		equals: 25
@@ -26,7 +23,7 @@ MTFixedNumberOfMutantsBudgetTest >> testEvaluateAllMutantsWithConstraintGreaterT
 { #category : 'tests' }
 MTFixedNumberOfMutantsBudgetTest >> testEvaluateTheCorrectNumberOfMutants [
 
-	self runAnalysisFor: 10.
+	self runAnalysisForFixedNumberOfMutants: 10.
 	self
 		assert: analysis generalResult numberOfEvaluatedMutants
 		equals: 10
@@ -35,7 +32,7 @@ MTFixedNumberOfMutantsBudgetTest >> testEvaluateTheCorrectNumberOfMutants [
 { #category : 'tests' }
 MTFixedNumberOfMutantsBudgetTest >> testEvaluateZeroMutantsWithConstraintOfZero [
 
-	self runAnalysisFor: 0.
+	self runAnalysisForFixedNumberOfMutants: 0.
 	self
 		assert: analysis generalResult numberOfEvaluatedMutants
 		equals: 0
@@ -44,7 +41,7 @@ MTFixedNumberOfMutantsBudgetTest >> testEvaluateZeroMutantsWithConstraintOfZero 
 { #category : 'tests' }
 MTFixedNumberOfMutantsBudgetTest >> testEvaluateZeroMutantsWithNegativeConstraint [
 
-	self runAnalysisFor: -10.
+	self runAnalysisForFixedNumberOfMutants: -10.
 	self
 		assert: analysis generalResult numberOfEvaluatedMutants
 		equals: 0

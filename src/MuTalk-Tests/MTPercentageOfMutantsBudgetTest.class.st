@@ -8,65 +8,52 @@ Class {
 	#package : 'MuTalk-Tests'
 }
 
-{ #category : 'running' }
-MTPercentageOfMutantsBudgetTest >> runAnalysisFor: aPercentage [
+{ #category : 'tests' }
+MTPercentageOfMutantsBudgetTest >> percentageOfEvaluatedMutants [
 
-	| result |
-	result := self
-		          runAnalysisWithBudget:
-		          (MTPercentageOfMutantsBudget for: aPercentage)
-		          on: { AuxiliarClassForMutationTestingAnalysis }
-		          withTests: { AuxiliarClassForMutationTestingAnalysisTest }.
-	numberOfMutations := analysis mutations size.
-	^ result
+	^ analysis generalResult numberOfEvaluatedMutants
+	  / analysis mutations size * 100
+]
+
+{ #category : 'tests' }
+MTPercentageOfMutantsBudgetTest >> runAnalysisForPercentageOfMutants: aPercentage [
+
+	self runAnalysisFor: (MTPercentageOfMutantsBudget for: aPercentage)
 ]
 
 { #category : 'tests' }
 MTPercentageOfMutantsBudgetTest >> testEvaluateAllMutantsWithMoreThanOneHundredPercentConstraint [
 
-	self runAnalysisFor: 120.
-	self
-		assert:
-			analysis generalResult numberOfEvaluatedMutants / numberOfMutations * 100
-		equals: 100
+	self runAnalysisForPercentageOfMutants: 120.
+	self assert: self percentageOfEvaluatedMutants equals: 100
 ]
 
 { #category : 'tests' }
 MTPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithNegativePercentConstraint [
 
-	self runAnalysisFor: -10.
-	self
-		assert:
-			analysis generalResult numberOfEvaluatedMutants / numberOfMutations * 100
-		equals: 0
+	self runAnalysisForPercentageOfMutants: -10.
+	self assert: self percentageOfEvaluatedMutants equals: 0
 ]
 
 { #category : 'tests' }
 MTPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithZeroPercentConstraint [
 
-	self runAnalysisFor: 0.
-	self
-		assert:
-			analysis generalResult numberOfEvaluatedMutants / numberOfMutations * 100
-		equals: 0
+	self runAnalysisForPercentageOfMutants: 0.
+	self assert: self percentageOfEvaluatedMutants equals: 0
 ]
 
 { #category : 'tests' }
 MTPercentageOfMutantsBudgetTest >> testExactPercentageOfMutants [
 
-	self runAnalysisFor: 20.
-	self
-		assert:
-			analysis generalResult numberOfEvaluatedMutants / numberOfMutations * 100
-		equals: 20
+	self runAnalysisForPercentageOfMutants: 20.
+	self assert: self percentageOfEvaluatedMutants equals: 20
 ]
 
 { #category : 'tests' }
 MTPercentageOfMutantsBudgetTest >> testNonExactPercentageOfMutants [
 
-	self runAnalysisFor: 21.
-	self assert:
-		analysis generalResult numberOfEvaluatedMutants / numberOfMutations * 100 >= 21.
+	self runAnalysisForPercentageOfMutants: 21.
+	self assert: self percentageOfEvaluatedMutants >= 21.
 	self
 		assert: analysis generalResult numberOfEvaluatedMutants
 		equals: 6
