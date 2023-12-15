@@ -6,7 +6,7 @@ Class {
 }
 
 { #category : 'validation' }
-MTFixedNumberOfMutantsBudget >> check: partialCollection with: initialCollection [
+MTFixedNumberOfMutantsBudget >> exceedBudgetOn: partialCollection considering: initialCollection [
 
 	^ partialCollection size >= constraint
 ]

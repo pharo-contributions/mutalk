@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : 'validation' }
-MTTimeBudget >> check: partialCollection with: initialCollection [
+MTTimeBudget >> exceedBudgetOn: partialCollection considering: initialCollection [
 
 	| currentTime |
 	currentTime := Time current asMilliSeconds.

@@ -6,7 +6,7 @@ Class {
 }
 
 { #category : 'validation' }
-MTPercentageOfMutantsBudget >> check: partialCollection with: initialCollection [
+MTPercentageOfMutantsBudget >> exceedBudgetOn: partialCollection considering: initialCollection [
 
 	^ partialCollection size
 	  >= (constraint / 100 * initialCollection size)

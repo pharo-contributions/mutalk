@@ -16,12 +16,6 @@ MTBudget class >> for: aConstraint [
 		  yourself
 ]
 
-{ #category : 'validation' }
-MTBudget >> check: partialCollection with: initialCollection [
-
-	^ self subclassResponsibility
-]
-
 { #category : 'accessing' }
 MTBudget >> constraint [
 
@@ -32,6 +26,13 @@ MTBudget >> constraint [
 MTBudget >> constraint: aConstraint [
 
 	constraint := aConstraint
+]
+
+{ #category : 'validation' }
+MTBudget >> exceedBudgetOn: partialCollection considering: initialCollection [
+	"Returns true if partialCollection exceed the budget (the time is over, there is enough mutants, etc). Some budgets need data on initialCollection (e.g. percentage budget needs the size)"
+
+	^ self subclassResponsibility
 ]
 
 { #category : 'accessing' }
