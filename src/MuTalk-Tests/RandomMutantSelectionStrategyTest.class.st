@@ -5,6 +5,12 @@ Class {
 	#package : 'MuTalk-Tests'
 }
 
+{ #category : 'accessing' }
+RandomMutantSelectionStrategyTest >> classToTest [
+
+	^ RandomMutantSelectionStrategy
+]
+
 { #category : 'tests' }
 RandomMutantSelectionStrategyTest >> testAtLeastTwoDifferentMutantCollectionsAmongFive [
 	"This test is to ensure that RandomMutantSelectionStrategy doesn't always produce the same mutant collections.
@@ -21,7 +27,7 @@ RandomMutantSelectionStrategyTest >> testAtLeastTwoDifferentMutantCollectionsAmo
 			            mutating: { AuxiliarClassForMutationTestingAnalysis }
 			            using: MutantOperator contents
 			            with: AllTestsMethodsRunningTestSelectionStrategy new
-			            with: RandomMutantSelectionStrategy new.
+			            with: self classToTest new.
 		mutationsSet add: analysis generateMutations ].
 
 	"If the size of the set is at least 2, there is at least 2 different mutant collections, so at least 2 different orders of mutants."
@@ -32,6 +38,6 @@ RandomMutantSelectionStrategyTest >> testAtLeastTwoDifferentMutantCollectionsAmo
 RandomMutantSelectionStrategyTest >> testDefaultMutationsGenerationStrategyIsAllMutantSelectionStrategy [
 
 	self
-		assert: RandomMutantSelectionStrategy new mutationsGenerationStrategy species
+		assert: self classToTest new mutationsGenerationStrategy species
 		equals: AllMutantSelectionStrategy new species
 ]

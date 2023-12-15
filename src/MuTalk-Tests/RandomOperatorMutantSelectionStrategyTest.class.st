@@ -4,3 +4,9 @@ Class {
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
+
+{ #category : 'accessing' }
+RandomOperatorMutantSelectionStrategyTest >> classToTest [
+
+	^ RandomOperatorMutantSelectionStrategy
+]
