@@ -10,5 +10,8 @@ SmalltalkCISpec {
         #coverage : {
             #packages : [ 'MuTalk*' ]
         }
+        #exclude : {
+            #classes : [ #AuxiliarTestClassForContinuingTestsExecutionAfterFirstFail ]
+        }
     }
 }
