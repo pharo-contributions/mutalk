@@ -131,10 +131,12 @@ MethodMutation >> printOn: aStream [
 { #category : 'running' }
 MethodMutation >> runMutant [
 
-	^ [ 
+	| testResults |
+	EpMonitor disableDuring: [
+		[
 		self install.
-		self runTests
-	] ensure: [ self uninstall ]
+		testResults := self runTests ] ensure: [ self uninstall ] ].
+	^ testResults
 ]
 
 { #category : 'private' }
