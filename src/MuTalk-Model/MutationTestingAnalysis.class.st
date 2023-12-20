@@ -12,7 +12,8 @@ Class {
 		'logger',
 		'budget',
 		'mutationsSelectionStrategy',
-		'mutantResults'
+		'mutantResults',
+		'stopOnErrorOrFail'
 	],
 	#category : 'MuTalk-Model',
 	#package : 'MuTalk-Model'
@@ -346,6 +347,12 @@ MutationTestingAnalysis >> coverageAnalysisResult: anObject [
 	coverageAnalysisResult := anObject
 ]
 
+{ #category : 'accessing' }
+MutationTestingAnalysis >> doNotStopOnErrorOrFail [
+
+	stopOnErrorOrFail := false
+]
+
 { #category : 'results' }
 MutationTestingAnalysis >> generalResult [
 	^ MutationTestingGeneralResult
@@ -370,16 +377,21 @@ MutationTestingAnalysis >> generateMutations [
 { #category : 'running' }
 MutationTestingAnalysis >> generateResults [
 
+	| mutantEvaluation |
 	mutantResults := OrderedCollection new.
 	mutations do: [ :aMutation |
-		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations) ifTrue: [
-			^ mutantResults ].
+		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)
+			ifTrue: [ ^ mutantResults ].
 		logger logStartEvaluating: aMutation.
-		mutantResults add: (MutantEvaluation
-				 for: aMutation
-				 using: testCases
-				 following: mutantsEvaluationStrategy
-				 andConsidering: self coverageAnalysisResult) value ].
+		mutantEvaluation := MutantEvaluation
+			                    for: aMutation
+			                    using: testCases
+			                    following: mutantsEvaluationStrategy
+			                    andConsidering: self coverageAnalysisResult.
+
+		mutantResults add: (stopOnErrorOrFail
+				 ifTrue: [ mutantEvaluation value ]
+				 ifFalse: [ mutantEvaluation valueWithoutStoppingOnError ]) ].
 	^ mutantResults
 ]
 
@@ -402,7 +414,8 @@ MutationTestingAnalysis >> initializeFor: someTestCasesReferences mutating: some
 	mutantResults := OrderedCollection new.
 	elapsedTime := 0.
 	logger := aLogger.
-	budget := aBudget
+	budget := aBudget.
+	stopOnErrorOrFail := true
 ]
 
 { #category : 'accesing' }
@@ -476,6 +489,12 @@ MutationTestingAnalysis >> run [
 						do: [:ex | 
 							self inform: 'Your tests have Errors or Failures. Please correct them.'.
 							ex return: false]
+]
+
+{ #category : 'accessing' }
+MutationTestingAnalysis >> stopOnErrorOrFail: aBoolean [
+
+	stopOnErrorOrFail := aBoolean
 ]
 
 { #category : 'accesing' }

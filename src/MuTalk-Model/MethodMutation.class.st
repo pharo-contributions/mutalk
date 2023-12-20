@@ -137,12 +137,29 @@ MethodMutation >> runMutant [
 	] ensure: [ self uninstall ]
 ]
 
+{ #category : 'running' }
+MethodMutation >> runMutantWithoutStoppingOnError [
+
+	^ [ 
+		self install.
+		self runTestsWithoutStoppingOnError
+	] ensure: [ self uninstall ]
+]
+
 { #category : 'private' }
 MethodMutation >> runTests [
 
 	^ (TestSuite named: 'Tests cases for: ' , self printString)
 		  addTests: testCaseReferences;
 		  runStoppingOnFirstFailOrError
+]
+
+{ #category : 'private' }
+MethodMutation >> runTestsWithoutStoppingOnError [
+
+	^ (TestSuite named: 'Tests cases for: ' , self printString)
+		  addTests: testCaseReferences;
+		  run
 ]
 
 { #category : 'private' }

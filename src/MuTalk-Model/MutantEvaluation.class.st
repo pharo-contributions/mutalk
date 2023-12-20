@@ -85,3 +85,18 @@ MutantEvaluation >> value [
 		results: testResults
 		producedBy: self
 ]
+
+{ #category : 'evaluation' }
+MutantEvaluation >> valueWithoutStoppingOnError [
+
+	| testResults |
+	self initializeCoverageResultIfNil.
+
+	mutation testCaseReferences:
+		(strategy testCasesToEvaluate: mutation for: self).
+	testResults := mutation runMutantWithoutStoppingOnError.
+	^ MutantEvaluationResult
+		  for: mutation
+		  results: testResults
+		  producedBy: self
+]
