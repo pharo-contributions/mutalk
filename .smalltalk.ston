@@ -9,7 +9,7 @@ SmalltalkCISpec {
     #testing : {
         #coverage : {
             #packages : [ 'MuTalk*' ]
-        }
+        },
         #exclude : {
             #classes : [ #AuxiliarTestClassForContinuingTestsExecutionAfterFirstFail ]
         }
