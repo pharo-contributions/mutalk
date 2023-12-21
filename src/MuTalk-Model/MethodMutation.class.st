@@ -131,9 +131,12 @@ MethodMutation >> printOn: aStream [
 { #category : 'running' }
 MethodMutation >> runMutantStoppingOnError: aBoolean [
 
-	^ [
-	  self install.
-	  self runTestsStoppingOnError: aBoolean ] ensure: [ self uninstall ]
+	| testResults |
+	EpMonitor disableDuring: [
+		[ self install.
+		testResults :=  self runTestsStoppingOnError: aBoolean
+  		] ensure: [ self uninstall ] ].
+	^ testResults
 ]
 
 { #category : 'private' }
