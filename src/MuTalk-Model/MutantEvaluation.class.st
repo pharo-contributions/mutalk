@@ -74,27 +74,14 @@ MutantEvaluation >> testResults [
 ]
 
 { #category : 'evaluation' }
-MutantEvaluation >> value [
-	| testResults |
-	self initializeCoverageResultIfNil.
-
-	mutation testCaseReferences: (strategy testCasesToEvaluate: mutation for: self).
-	testResults := mutation runMutant.
-	^ MutantEvaluationResult
-		for: mutation
-		results: testResults
-		producedBy: self
-]
-
-{ #category : 'evaluation' }
-MutantEvaluation >> valueWithoutStoppingOnError [
+MutantEvaluation >> valueStoppingOnError: aBoolean [
 
 	| testResults |
 	self initializeCoverageResultIfNil.
 
 	mutation testCaseReferences:
 		(strategy testCasesToEvaluate: mutation for: self).
-	testResults := mutation runMutantWithoutStoppingOnError.
+	testResults := mutation runMutantStoppingOnError: aBoolean.
 	^ MutantEvaluationResult
 		  for: mutation
 		  results: testResults

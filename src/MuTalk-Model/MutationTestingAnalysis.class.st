@@ -377,21 +377,17 @@ MutationTestingAnalysis >> generateMutations [
 { #category : 'running' }
 MutationTestingAnalysis >> generateResults [
 
-	| mutantEvaluation |
 	mutantResults := OrderedCollection new.
 	mutations do: [ :aMutation |
 		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)
 			ifTrue: [ ^ mutantResults ].
 		logger logStartEvaluating: aMutation.
-		mutantEvaluation := MutantEvaluation
-			                    for: aMutation
-			                    using: testCases
-			                    following: mutantsEvaluationStrategy
-			                    andConsidering: self coverageAnalysisResult.
-
-		mutantResults add: (stopOnErrorOrFail
-				 ifTrue: [ mutantEvaluation value ]
-				 ifFalse: [ mutantEvaluation valueWithoutStoppingOnError ]) ].
+		mutantResults add: ((MutantEvaluation
+				  for: aMutation
+				  using: testCases
+				  following: mutantsEvaluationStrategy
+				  andConsidering: self coverageAnalysisResult)
+				 valueStoppingOnError: stopOnErrorOrFail) ].
 	^ mutantResults
 ]
 

@@ -129,37 +129,22 @@ MethodMutation >> printOn: aStream [
 ]
 
 { #category : 'running' }
-MethodMutation >> runMutant [
+MethodMutation >> runMutantStoppingOnError: aBoolean [
 
-	^ [ 
-		self install.
-		self runTests
-	] ensure: [ self uninstall ]
-]
-
-{ #category : 'running' }
-MethodMutation >> runMutantWithoutStoppingOnError [
-
-	^ [ 
-		self install.
-		self runTestsWithoutStoppingOnError
-	] ensure: [ self uninstall ]
+	^ [
+	  self install.
+	  self runTestsStoppingOnError: aBoolean ] ensure: [ self uninstall ]
 ]
 
 { #category : 'private' }
-MethodMutation >> runTests [
+MethodMutation >> runTestsStoppingOnError: aBoolean [
 
-	^ (TestSuite named: 'Tests cases for: ' , self printString)
-		  addTests: testCaseReferences;
-		  runStoppingOnFirstFailOrError
-]
-
-{ #category : 'private' }
-MethodMutation >> runTestsWithoutStoppingOnError [
-
-	^ (TestSuite named: 'Tests cases for: ' , self printString)
-		  addTests: testCaseReferences;
-		  run
+	| testSuite |
+	testSuite := TestSuite named: 'Tests cases for: ' , self printString.
+	testSuite addTests: testCaseReferences.
+	^ aBoolean
+		  ifTrue: [ testSuite runStoppingOnFirstFailOrError ]
+		  ifFalse: [ testSuite run ]
 ]
 
 { #category : 'private' }

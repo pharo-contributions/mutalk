@@ -87,7 +87,7 @@ MethodMutationTest >> testMutationInfiniteLoop [
 			 for: #testIterativeFactorial
 			 in: FakeInfiniteLoopsTest) }.
 
-	res := methodMutation runMutant.
+	res := methodMutation runMutantStoppingOnError: true.
 
 	self assert: res errors size equals: 1
 ]
@@ -117,7 +117,7 @@ MethodMutationTest >> testMutationInfiniteRecursion [
 			 for: #testRecursiveFactorial
 			 in: FakeInfiniteLoopsTest) }.
 
-	res := methodMutation runMutant.
+	res := methodMutation runMutantStoppingOnError: true.
 
 	self assert: res errors size equals: 1
 ]
@@ -137,7 +137,7 @@ MethodMutationTest >> testMutationRun [
 		nodeNumber: 1
 		ofClass: AuxiliarClassForMutationTestingAnalysis.
 	methodMutation testCaseReferences: { TestCaseReference for: #simpleTestCaseRessource in: self class }.
-	res := methodMutation runMutant.
+	res := methodMutation runMutantStoppingOnError: true.
 
 	self assert: res runCount equals: 1
 ]
