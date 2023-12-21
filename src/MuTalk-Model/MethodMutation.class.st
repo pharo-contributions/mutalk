@@ -129,22 +129,25 @@ MethodMutation >> printOn: aStream [
 ]
 
 { #category : 'running' }
-MethodMutation >> runMutant [
+MethodMutation >> runMutantStoppingOnError: aBoolean [
 
 	| testResults |
 	EpMonitor disableDuring: [
-		[
 		self install.
-		testResults := self runTests ] ensure: [ self uninstall ] ].
+		testResults :=  self runTestsStoppingOnError: aBoolean
+  ] ensure: [ self uninstall ].
 	^ testResults
 ]
 
 { #category : 'private' }
-MethodMutation >> runTests [
+MethodMutation >> runTestsStoppingOnError: aBoolean [
 
-	^ (TestSuite named: 'Tests cases for: ' , self printString)
-		  addTests: testCaseReferences;
-		  runStoppingOnFirstFailOrError
+	| testSuite |
+	testSuite := TestSuite named: 'Tests cases for: ' , self printString.
+	testSuite addTests: testCaseReferences.
+	^ aBoolean
+		  ifTrue: [ testSuite runStoppingOnFirstFailOrError ]
+		  ifFalse: [ testSuite run ]
 ]
 
 { #category : 'private' }
