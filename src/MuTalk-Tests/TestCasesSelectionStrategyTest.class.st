@@ -14,7 +14,8 @@ TestCasesSelectionStrategyTest >> allTestsFromPackage [
 		with: TestClassForTestingCoverage
 		with: AuxiliarTestClassForTestingStrategies
 		with: AuxiliarClassForMutationTestingAnalysisTest
-		with: AuxiliarTestClassForMTBudget)
+		with: AuxiliarTestClassForMTBudget
+		with: AuxiliarTestClassForContinuingTestsExecutionAfterFirstFail)
 		inject: OrderedCollection new
 		into: [:tests :testClass | 
 			tests addAll: testClass suite tests.

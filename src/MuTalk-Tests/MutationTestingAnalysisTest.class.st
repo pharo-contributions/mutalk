@@ -198,3 +198,22 @@ MutationTestingAnalysisTest >> testExecutingTwoMutations [
 	results do: [ :mutationResult | self assert: mutationResult killed ].
 	self assert: generalResult numberOfKilledMutants = 2
 ]
+
+{ #category : 'tests' }
+MutationTestingAnalysisTest >> testRunningAllTests [
+	"This test verify that the test evaluation keeps running even after the first error, if specified"
+
+	| analysis |
+	analysis := MutationTestingAnalysis
+		            testCasesFrom: { AuxiliarTestClassForContinuingTestsExecutionAfterFirstFail }
+		            mutating: { AuxiliarClassForMutationTestingAnalysis }
+		            using: MutantOperator contents.
+
+	analysis doNotStopOnErrorOrFail.
+	"In this class, tests fail after a certain of executions"
+	AuxiliarTestClassForContinuingTestsExecutionAfterFirstFail reset.
+	analysis run.
+	"Counting the number of failed test for a mutant"
+	self assert:
+		analysis generalResult killedMutants first result failures size > 1
+]
