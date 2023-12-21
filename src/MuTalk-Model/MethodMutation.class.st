@@ -133,9 +133,9 @@ MethodMutation >> runMutantStoppingOnError: aBoolean [
 
 	| testResults |
 	EpMonitor disableDuring: [
-		self install.
+		[ self install.
 		testResults :=  self runTestsStoppingOnError: aBoolean
-  ] ensure: [ self uninstall ].
+  		] ensure: [ self uninstall ] ].
 	^ testResults
 ]
 
