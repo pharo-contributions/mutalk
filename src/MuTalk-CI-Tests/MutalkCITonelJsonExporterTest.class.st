@@ -2,32 +2,30 @@
 A MutalkCITonelJsonExporterTest is a test class for testing the behavior of MutalkCITonelJsonExporter
 "
 Class {
-	#name : #MutalkCITonelJsonExporterTest,
-	#superclass : #TestCase,
-	#category : #'MuTalk-CI-Tests'
+	#name : 'MutalkCITonelJsonExporterTest',
+	#superclass : 'TestCase',
+	#category : 'MuTalk-CI-Tests',
+	#package : 'MuTalk-CI-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 MutalkCITonelJsonExporterTest >> testWorking [
-
 	"requires https://github.com/mabdi/smalltalk-SmallBank"
 
 	| analysis json moreInfo |
-	
-	self skip. 
-	
-	analysis := MutationTestingAnalysis
-		            testCasesFrom: { SmallBankTest }
-		            mutating: { SmallBank }
-		            using: MutantOperator contents
-		            with: AllTestsMethodsRunningTestSelectionStrategy new.
+	self skip.
+
+	analysis := MutationTestingAnalysisBuilder new
+		            testClasses: { SmallBankTest };
+		            classesToMutate: { SmallBank };
+		            buildAnalysis.
 	analysis run.
 	moreInfo := CoveragePropagationPreparation new
 		            mtResult: analysis;
 		            prepare.
 	json := MutalkCITonelJsonExporter new
 		        mtResult: analysis;
-		coverageInfo: moreInfo;
+		        coverageInfo: moreInfo;
 		        cloneLocation: FileLocator localDirectory fullName
 			        , '/iceberg/mabdi/smalltalk-smallbank';
 		        root: 'src';

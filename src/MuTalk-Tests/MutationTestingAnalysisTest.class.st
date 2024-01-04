@@ -67,10 +67,11 @@ MutationTestingAnalysisTest >> testExecutingInfiniteLoopAnalysis [
 	So this test will need a higher time limit"
 	self timeLimit: self defaultTimeLimit * 2.
 
-	analysis := MutationTestingAnalysis
-		            testCasesFrom: { FakeInfiniteLoopsTest }
-		            mutating: { FakeInfiniteLoopForTest }
-		            using: { ReplaceLessOrEqualWithTrueOperator new }.
+	analysis := MutationTestingAnalysisBuilder new
+		            testClasses: { FakeInfiniteLoopsTest };
+		            classesToMutate: { FakeInfiniteLoopForTest };
+		            operators: { ReplaceLessOrEqualWithTrueOperator new };
+		            buildAnalysis.
 
 	analysis run.
 
@@ -88,10 +89,12 @@ MutationTestingAnalysisTest >> testExecutingInfiniteRecursionAnalysis [
 	So this test will need a higher time limit"
 	self timeLimit: self defaultTimeLimit * 2.
 
-	analysis := MutationTestingAnalysis
-		            testCasesFrom: { FakeInfiniteLoopsTest }
-		            mutating: { FakeInfiniteLoopForTest }
-		            using: { ReplaceIfTrueReceiverWithFalseOperator new }.
+	analysis := MutationTestingAnalysisBuilder new
+		            testClasses: { FakeInfiniteLoopsTest };
+		            classesToMutate: { FakeInfiniteLoopForTest };
+		            operators:
+			            { ReplaceIfTrueReceiverWithFalseOperator new };
+		            buildAnalysis.
 
 	analysis run.
 
@@ -103,11 +106,16 @@ MutationTestingAnalysisTest >> testExecutingInfiniteRecursionAnalysis [
 
 { #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingSimpleMutation [
+
 	| analysis results generalResult mutationResult |
-	analysis := MutationTestingAnalysis 
-		testCasesFrom: (Array with: AuxiliarClassForMutationTestingAnalysisTest)
-		mutating: (Array with: AuxiliarClassForMutationTestingAnalysis)
-		using: self plusForMinusReplacementMutation.
+	analysis := MutationTestingAnalysisBuilder new
+		            testClasses:
+			            (Array with:
+					             AuxiliarClassForMutationTestingAnalysisTest);
+		            classesToMutate:
+			            (Array with: AuxiliarClassForMutationTestingAnalysis);
+		            operators: self plusForMinusReplacementMutation;
+		            buildAnalysis.
 	analysis run.
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
@@ -119,11 +127,16 @@ MutationTestingAnalysisTest >> testExecutingSimpleMutation [
 
 { #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingSimpleMutationForClassMethods [
+
 	| analysis results generalResult mutationResult |
-	analysis := MutationTestingAnalysis 
-		testCasesFrom: (Array with: AuxiliarClassForMutationTestingAnalysisTest)
-		mutating: (Array with: AuxiliarClassForMutationTestingAnalysis)
-		using: self selectForRejectReplacementMutation.
+	analysis := MutationTestingAnalysisBuilder new
+		            testClasses:
+			            (Array with:
+					             AuxiliarClassForMutationTestingAnalysisTest);
+		            classesToMutate:
+			            (Array with: AuxiliarClassForMutationTestingAnalysis);
+		            operators: self selectForRejectReplacementMutation;
+		            buildAnalysis.
 	analysis run.
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
@@ -135,11 +148,16 @@ MutationTestingAnalysisTest >> testExecutingSimpleMutationForClassMethods [
 
 { #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingSimpleMutationWhenNotRunnedAnalysis [
+
 	| analysis results generalResult |
-	analysis := MutationTestingAnalysis 
-		testCasesFrom: (Array with: AuxiliarClassForMutationTestingAnalysisTest)
-		mutating: (Array with: AuxiliarClassForMutationTestingAnalysis)
-		using: self plusForMinusReplacementMutation.
+	analysis := MutationTestingAnalysisBuilder new
+		            testClasses:
+			            (Array with:
+					             AuxiliarClassForMutationTestingAnalysisTest);
+		            classesToMutate:
+			            (Array with: AuxiliarClassForMutationTestingAnalysis);
+		            operators: self plusForMinusReplacementMutation;
+		            buildAnalysis.
 	"analysis run."
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
@@ -150,13 +168,16 @@ MutationTestingAnalysisTest >> testExecutingSimpleMutationWhenNotRunnedAnalysis 
 { #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingTwoMutantsFromDiferentMethods [
 	"Obtain 2 mutants using ifFalse-->ifTrue replacement in two diferent methods."
+
 	| analysis results operatorSelection |
 	operatorSelection := OrderedCollection new.
 	operatorSelection addAll: self ifFalseForIfTrueReplacementMutation.
-	analysis := MutationTestingAnalysis 
-		testCasesFrom: Array new
-		mutating: (Array with: AuxiliarClassForMutationTestingAnalysis)
-		using: operatorSelection.
+	analysis := MutationTestingAnalysisBuilder new
+		            testClasses: Array new;
+		            classesToMutate:
+			            (Array with: AuxiliarClassForMutationTestingAnalysis);
+		            operators: operatorSelection;
+		            buildAnalysis.
 	analysis run.
 	results := analysis mutantResults.
 	self assert: results size = 2.
@@ -166,13 +187,16 @@ MutationTestingAnalysisTest >> testExecutingTwoMutantsFromDiferentMethods [
 { #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingTwoMutantsFromSameMethod [
 	"Obtain 2 mutants using --->+ replacement in only one method."
+
 	| analysis results operatorSelection |
 	operatorSelection := OrderedCollection new.
 	operatorSelection addAll: self minusForPlusReplacementMutation.
-	analysis := MutationTestingAnalysis 
-		testCasesFrom: Array new
-		mutating: (Array with: AuxiliarClassForMutationTestingAnalysis)
-		using: operatorSelection.
+	analysis := MutationTestingAnalysisBuilder new
+		            testClasses: Array new;
+		            classesToMutate:
+			            (Array with: AuxiliarClassForMutationTestingAnalysis);
+		            operators: operatorSelection;
+		            buildAnalysis.
 	analysis run.
 	results := analysis mutantResults.
 	self assert: results size = 2.
@@ -183,14 +207,19 @@ MutationTestingAnalysisTest >> testExecutingTwoMutantsFromSameMethod [
 MutationTestingAnalysisTest >> testExecutingTwoMutations [
 	"Execute 2 diferent mutations #ifTrue-->#ifFalse: and
 	#+-->#-"
+
 	| analysis results generalResult operatorSelection |
 	operatorSelection := OrderedCollection new.
 	operatorSelection addAll: self plusForMinusReplacementMutation.
 	operatorSelection addAll: self ifTrueForIfFalseReplacementMutation.
-	analysis := MutationTestingAnalysis 
-		testCasesFrom: (Array with: AuxiliarClassForMutationTestingAnalysisTest)
-		mutating: (Array with: AuxiliarClassForMutationTestingAnalysis)
-		using: operatorSelection.
+	analysis := MutationTestingAnalysisBuilder new
+		            testClasses:
+			            (Array with:
+					             AuxiliarClassForMutationTestingAnalysisTest);
+		            classesToMutate:
+			            (Array with: AuxiliarClassForMutationTestingAnalysis);
+		            operators: operatorSelection;
+		            buildAnalysis.
 	analysis run.
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
@@ -204,10 +233,13 @@ MutationTestingAnalysisTest >> testRunningAllTests [
 	"This test verify that the test evaluation keeps running even after the first error, if specified"
 
 	| analysis |
-	analysis := MutationTestingAnalysis
-		            testCasesFrom: { AuxiliarTestClassForContinuingTestsExecutionAfterFirstFail }
-		            mutating: { AuxiliarClassForMutationTestingAnalysis }
-		            using: MutantOperator contents.
+	analysis := MutationTestingAnalysisBuilder new
+		            testClasses:
+			            { AuxiliarTestClassForContinuingTestsExecutionAfterFirstFail };
+		            classesToMutate:
+			            { AuxiliarClassForMutationTestingAnalysis };
+		            operators: MutantOperator contents;
+		            buildAnalysis.
 
 	analysis doNotStopOnErrorOrFail.
 	"In this class, tests fail after a certain of executions"

@@ -494,7 +494,7 @@ MutationTestingAnalysis >> testCases [
 ]
 
 { #category : 'accessing' }
-MutationTestingAnalysis >> testCases: anObject [
+MutationTestingAnalysis >> testClasses: anObject [
 
 	testCases := anObject
 ]

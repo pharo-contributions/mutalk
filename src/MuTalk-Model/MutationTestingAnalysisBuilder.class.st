@@ -33,6 +33,12 @@ MutationTestingAnalysisBuilder >> buildAnalysis [
 		  budget: budget
 ]
 
+{ #category : 'accessing' }
+MutationTestingAnalysisBuilder >> classesToMutate: anObject [
+
+	modelClasses := anObject
+]
+
 { #category : 'accessing - defaults' }
 MutationTestingAnalysisBuilder >> defaultBudget [
 
@@ -81,12 +87,6 @@ MutationTestingAnalysisBuilder >> logger: anObject [
 ]
 
 { #category : 'accessing' }
-MutationTestingAnalysisBuilder >> modelClasses: anObject [
-
-	modelClasses := anObject
-]
-
-{ #category : 'accessing' }
 MutationTestingAnalysisBuilder >> mutantSelectionStrategy: anObject [
 
 	mutantSelectionStrategy := anObject
@@ -99,9 +99,9 @@ MutationTestingAnalysisBuilder >> operators: anObject [
 ]
 
 { #category : 'accessing' }
-MutationTestingAnalysisBuilder >> testCases: aClassCollection [
+MutationTestingAnalysisBuilder >> testCases: anObject [
 
-	testCases := self testCasesFrom: aClassCollection
+	testCases := anObject
 ]
 
 { #category : 'accessing' }
@@ -121,6 +121,12 @@ MutationTestingAnalysisBuilder >> testCasesReferencesFrom: testClass [
 
 	^ testClass allTestSelectors collect: [ :each |
 		  TestCaseReference for: each in: testClass ]
+]
+
+{ #category : 'accessing' }
+MutationTestingAnalysisBuilder >> testClasses: aClassCollection [
+
+	testCases := self testCasesFrom: aClassCollection
 ]
 
 { #category : 'accessing' }

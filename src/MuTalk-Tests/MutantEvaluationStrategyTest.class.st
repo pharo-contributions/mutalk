@@ -62,19 +62,20 @@ MutantEvaluationStrategyTest >> selectionStrategy [
 
 { #category : 'running' }
 MutantEvaluationStrategyTest >> setUp [
+
 	resource := MutationTestingResource current.
-	
+
 	classes := OrderedCollection with: AuxiliarClassForTestingStrategies.
 	operator := ReplaceIfTrueWithIfFalseMutantOperator new.
 	evaluationStrategy := self selectionStrategy new.
 	testCasesUsed := AuxiliarTestClassForTestingStrategies suite tests.
-	mutationTestingAnalysis := MutationTestingAnalysis 
-		for: testCasesUsed
-		mutating: classes
-		using: (Set with: operator)
-		with: evaluationStrategy
-		with: AllMutantSelectionStrategy new.
-	mutationTestingAnalysis generateCoverageAnalysis.
+	mutationTestingAnalysis := MutationTestingAnalysisBuilder new
+		                           testCases: testCasesUsed;
+		                           classesToMutate: classes;
+		                           operators: (Set with: operator);
+		                           testSelectionStrategy: evaluationStrategy;
+		                           buildAnalysis.
+	mutationTestingAnalysis generateCoverageAnalysis
 ]
 
 { #category : 'test' }

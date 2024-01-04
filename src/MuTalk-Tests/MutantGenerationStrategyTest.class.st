@@ -10,16 +10,24 @@ Class {
 
 { #category : 'testing' }
 MutantGenerationStrategyTest >> testSelectingFromCoverageMutationsGenerationShouldOnlyMutateCoveredMethods [
+
 	| classes mutationTestingAnalysis operator |
 	classes := OrderedCollection with: AuxiliarClassForTestingStrategies.
 	operator := ReplaceIfTrueWithIfFalseMutantOperator new.
-	mutationTestingAnalysis := MutationTestingAnalysis 
-		for: (MutationTestingAnalysis testCasesReferencesFrom: AuxiliarTestClassForTestingStrategies)
-		mutating: classes
-		using: (Set with: operator)
-		with: AllTestsMethodsRunningTestSelectionStrategy new
-		with: SelectingFromCoverageMutantSelectionStrategy new.
+	mutationTestingAnalysis := MutationTestingAnalysisBuilder new
+		                           testCases:
+			                           (MutationTestingAnalysis
+				                            testCasesReferencesFrom:
+					                            AuxiliarTestClassForTestingStrategies);
+		                           classesToMutate: classes;
+		                           operators: (Set with: operator);
+		                           mutantSelectionStrategy:
+			                           SelectingFromCoverageMutantSelectionStrategy
+				                           new;
+		                           buildAnalysis.
 	mutationTestingAnalysis run.
-	self assert: ((mutationTestingAnalysis mutations collect: [ :each | each originalMethod selector ]) includes: #method1).
-	self deny: ((mutationTestingAnalysis mutations collect: [ :each | each originalMethod selector ]) includes: #aNotCoveredMethod)
+	self assert: ((mutationTestingAnalysis mutations collect: [ :each |
+			  each originalMethod selector ]) includes: #method1).
+	self deny: ((mutationTestingAnalysis mutations collect: [ :each |
+			  each originalMethod selector ]) includes: #aNotCoveredMethod)
 ]
