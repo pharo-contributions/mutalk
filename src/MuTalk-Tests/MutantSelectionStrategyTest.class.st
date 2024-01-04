@@ -1,5 +1,5 @@
 Class {
-	#name : 'MutantGenerationStrategyTest',
+	#name : 'MutantSelectionStrategyTest',
 	#superclass : 'TestCase',
 	#instVars : [
 		'resource'
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : 'testing' }
-MutantGenerationStrategyTest >> testSelectingFromCoverageMutationsGenerationShouldOnlyMutateCoveredMethods [
+MutantSelectionStrategyTest >> testSelectingFromCoverageMutantSelectionShouldOnlyMutateCoveredMethods [
 
 	| classes mutationTestingAnalysis operator |
 	classes := OrderedCollection with: AuxiliarClassForTestingStrategies.

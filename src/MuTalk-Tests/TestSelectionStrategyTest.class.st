@@ -1,5 +1,5 @@
 Class {
-	#name : 'MutantEvaluationStrategyTest',
+	#name : 'TestSelectionStrategyTest',
 	#superclass : 'TestCase',
 	#instVars : [
 		'resource',
@@ -15,38 +15,38 @@ Class {
 }
 
 { #category : 'testing' }
-MutantEvaluationStrategyTest class >> isAbstract [
+TestSelectionStrategyTest class >> isAbstract [
 	^ true
 ]
 
 { #category : 'accessing' }
-MutantEvaluationStrategyTest class >> packageNamesUnderTest [
+TestSelectionStrategyTest class >> packageNamesUnderTest [
 	^ #('MutationTesting-Model')
 ]
 
 { #category : 'accessing' }
-MutantEvaluationStrategyTest class >> resources [
+TestSelectionStrategyTest class >> resources [
 	^ {MutationTestingResource}
 ]
 
 { #category : 'asserting' }
-MutantEvaluationStrategyTest >> assertMutantInCoverageOfTestCase [
+TestSelectionStrategyTest >> assertMutantInCoverageOfTestCase [
 	self subclassResponsibility
 ]
 
 { #category : 'asserting' }
-MutantEvaluationStrategyTest >> assertMutantNotInCoverage [
+TestSelectionStrategyTest >> assertMutantNotInCoverage [
 	self subclassResponsibility
 ]
 
 { #category : 'asserting' }
-MutantEvaluationStrategyTest >> assertMutantNotInCoverageOfTest [
+TestSelectionStrategyTest >> assertMutantNotInCoverageOfTest [
 
 	self subclassResponsibility
 ]
 
 { #category : 'running' }
-MutantEvaluationStrategyTest >> getTestsCasesToEvaluateForMutant: aMethodSelector [
+TestSelectionStrategyTest >> getTestsCasesToEvaluateForMutant: aMethodSelector [
 	| mutation |
 	mutation := (operator mutationsFor: AuxiliarClassForTestingStrategies >> aMethodSelector) asOrderedCollection first.
 	^ evaluationStrategy 
@@ -56,13 +56,14 @@ MutantEvaluationStrategyTest >> getTestsCasesToEvaluateForMutant: aMethodSelecto
 ]
 
 { #category : 'configuring' }
-MutantEvaluationStrategyTest >> selectionStrategy [
+TestSelectionStrategyTest >> selectionStrategy [
 	^ self subclassResponsibility
 ]
 
 { #category : 'running' }
-MutantEvaluationStrategyTest >> setUp [
+TestSelectionStrategyTest >> setUp [
 
+	super setUp.
 	resource := MutationTestingResource current.
 
 	classes := OrderedCollection with: AuxiliarClassForTestingStrategies.
@@ -79,21 +80,21 @@ MutantEvaluationStrategyTest >> setUp [
 ]
 
 { #category : 'test' }
-MutantEvaluationStrategyTest >> testMutantInCoverageOfTestCase [
+TestSelectionStrategyTest >> testMutantInCoverageOfTestCase [
 
 	testCases := self getTestsCasesToEvaluateForMutant: #method1.
 	^ self assertMutantInCoverageOfTestCase
 ]
 
 { #category : 'test' }
-MutantEvaluationStrategyTest >> testMutantNotInCoverage [
+TestSelectionStrategyTest >> testMutantNotInCoverage [
 
 	testCases := self getTestsCasesToEvaluateForMutant: #aNotCoveredMethod.
 	^ self assertMutantNotInCoverage
 ]
 
 { #category : 'test' }
-MutantEvaluationStrategyTest >> testMutantNotInCoverageOfTest [
+TestSelectionStrategyTest >> testMutantNotInCoverageOfTest [
 
 	testCases := self getTestsCasesToEvaluateForMutant: #method1.
 	^ self assertMutantNotInCoverageOfTest
