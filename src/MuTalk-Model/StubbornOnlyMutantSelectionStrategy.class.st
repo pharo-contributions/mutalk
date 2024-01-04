@@ -22,7 +22,7 @@ StubbornOnlyMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis lo
 	trivialAnalysis
 		testCases: subSuite;
 		mutations: mutations;
-		mutantsEvaluationStrategy: AllTestsMethodsRunningTestSelectionStrategy new.
+		testSelectionStrategy: AllTestsMethodsRunningTestSelectionStrategy new.
 	trivialAnalysis generateResults.
 	1halt.
 	

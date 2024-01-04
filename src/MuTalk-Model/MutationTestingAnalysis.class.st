@@ -5,15 +5,15 @@ Class {
 		'modelClasses',
 		'operators',
 		'elapsedTime',
-		'mutantsEvaluationStrategy',
 		'mutations',
 		'testCases',
 		'coverageAnalysisResult',
 		'logger',
 		'budget',
-		'mutationsSelectionStrategy',
 		'mutantResults',
-		'stopOnErrorOrFail'
+		'stopOnErrorOrFail',
+		'testSelectionStrategy',
+		'mutantSelectionStrategy'
 	],
 	#category : 'MuTalk-Model',
 	#package : 'MuTalk-Model'
@@ -369,7 +369,7 @@ MutationTestingAnalysis >> generateCoverageAnalysis [
 MutationTestingAnalysis >> generateMutations [
 
 	^ mutations ifNil: [
-		mutations := mutationsSelectionStrategy
+		mutations := mutantSelectionStrategy
 			             mutationsFor: self
 			             loggingIn: logger ]
 ]
@@ -385,7 +385,7 @@ MutationTestingAnalysis >> generateResults [
 		mutantResults add: ((MutantEvaluation
 				  for: aMutation
 				  using: testCases
-				  following: mutantsEvaluationStrategy
+				  following: testSelectionStrategy
 				  andConsidering: self coverageAnalysisResult)
 				 valueStoppingOnError: stopOnErrorOrFail) ].
 	^ mutantResults
@@ -400,13 +400,13 @@ MutationTestingAnalysis >> initialTestRun [
 ]
 
 { #category : 'initialize-release' }
-MutationTestingAnalysis >> initializeFor: someTestCasesReferences mutating: someModelClasses using: operatorCollection with: aMutantsEvaluationStrategy with: aMutationsGenerationStrategy loggingIn: aLogger budget: aBudget [
+MutationTestingAnalysis >> initializeFor: someTestCasesReferences mutating: someModelClasses using: operatorCollection with: aTestSelectionStrategy with: aMutantSelectionStrategy loggingIn: aLogger budget: aBudget [
 
 	modelClasses := someModelClasses.
 	testCases := someTestCasesReferences.
 	operators := operatorCollection.
-	mutationsSelectionStrategy := aMutationsGenerationStrategy.
-	mutantsEvaluationStrategy := aMutantsEvaluationStrategy.
+	mutantSelectionStrategy := aMutantSelectionStrategy.
+	testSelectionStrategy := aTestSelectionStrategy.
 	mutantResults := OrderedCollection new.
 	elapsedTime := 0.
 	logger := aLogger.
@@ -428,15 +428,15 @@ MutationTestingAnalysis >> mutantResults [
 ]
 
 { #category : 'accessing' }
-MutationTestingAnalysis >> mutantsEvaluationStrategy [
+MutationTestingAnalysis >> mutantSelectionStrategy [
 
-	^ mutantsEvaluationStrategy
+	^ mutantSelectionStrategy
 ]
 
 { #category : 'accessing' }
-MutationTestingAnalysis >> mutantsEvaluationStrategy: anObject [
+MutationTestingAnalysis >> mutantSelectionStrategy: anObject [
 
-	mutantsEvaluationStrategy := anObject
+	mutantSelectionStrategy := anObject
 ]
 
 { #category : 'accesing' }
@@ -448,18 +448,6 @@ MutationTestingAnalysis >> mutations [
 MutationTestingAnalysis >> mutations: anObject [
 
 	mutations := anObject
-]
-
-{ #category : 'accessing' }
-MutationTestingAnalysis >> mutationsGenerationStrategy [
-
-	^ mutationsSelectionStrategy
-]
-
-{ #category : 'accessing' }
-MutationTestingAnalysis >> mutationsGenerationStrategy: anObject [
-
-	mutationsSelectionStrategy := anObject
 ]
 
 { #category : 'accesing' }
@@ -509,4 +497,16 @@ MutationTestingAnalysis >> testCases [
 MutationTestingAnalysis >> testCases: anObject [
 
 	testCases := anObject
+]
+
+{ #category : 'accessing' }
+MutationTestingAnalysis >> testSelectionStrategy [
+
+	^ testSelectionStrategy
+]
+
+{ #category : 'accessing' }
+MutationTestingAnalysis >> testSelectionStrategy: anObject [
+
+	testSelectionStrategy := anObject
 ]

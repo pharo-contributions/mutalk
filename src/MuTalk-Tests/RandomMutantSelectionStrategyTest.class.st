@@ -38,6 +38,6 @@ RandomMutantSelectionStrategyTest >> testAtLeastTwoDifferentMutantCollectionsAmo
 RandomMutantSelectionStrategyTest >> testDefaultMutationsGenerationStrategyIsAllMutantSelectionStrategy [
 
 	self
-		assert: self classToTest new mutationsGenerationStrategy species
+		assert: self classToTest new mutantSelectionStrategy species
 		equals: AllMutantSelectionStrategy new species
 ]

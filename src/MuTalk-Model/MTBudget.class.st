@@ -4,8 +4,9 @@ Class {
 	#instVars : [
 		'constraint'
 	],
-	#category : 'MuTalk-Model',
-	#package : 'MuTalk-Model'
+	#category : 'MuTalk-Model-Budgets',
+	#package : 'MuTalk-Model',
+	#tag : 'Budgets'
 }
 
 { #category : 'instance creation' }
