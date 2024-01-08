@@ -335,6 +335,18 @@ MutationTestingAnalysis class >> testCasesReferencesFrom: testClass [
 			in: testClass ]
 ]
 
+{ #category : 'accessing' }
+MutationTestingAnalysis >> budget [
+
+	^ budget
+]
+
+{ #category : 'accessing' }
+MutationTestingAnalysis >> budget: anObject [
+
+	budget := anObject
+]
+
 { #category : 'accesing' }
 MutationTestingAnalysis >> coverageAnalysisResult [
 	
