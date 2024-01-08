@@ -48,7 +48,7 @@ MutationTestingAnalysisBuilderTest >> testDefaultParameters [
 	analysis := MutationTestingAnalysisBuilder new buildAnalysis.
 	self
 		assert: (analysis operators collect: [ :op | op species ])
-		equals: (MutantOperator contents collect: [ :op | op species ]).
+		equals: (MutantOperator contentsAll collect: [ :op | op species ]).
 	self
 		assert: analysis mutantSelectionStrategy species
 		equals: AllMutantSelectionStrategy.
