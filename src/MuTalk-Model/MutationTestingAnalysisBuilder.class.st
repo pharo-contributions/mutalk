@@ -60,7 +60,7 @@ MutationTestingAnalysisBuilder >> defaultMutantSelectionStrategy [
 { #category : 'accessing - defaults' }
 MutationTestingAnalysisBuilder >> defaultOperators [
 
-	^ MutantOperator contentsAll
+	^ MutantOperator contents
 ]
 
 { #category : 'accessing - defaults' }
