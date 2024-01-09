@@ -20,9 +20,9 @@ StubbornOnlyMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis lo
 	"subSuite := (1 to: 15) collect: [ :e | aMutationTestingAnalysis testCases atRandom ]."
 	trivialAnalysis := aMutationTestingAnalysis copy.
 	trivialAnalysis
-		testCases: subSuite;
+		testClasses: subSuite;
 		mutations: mutations;
-		mutantsEvaluationStrategy: AllTestsMethodsRunningTestSelectionStrategy new.
+		testSelectionStrategy: AllTestsMethodsRunningTestSelectionStrategy new.
 	trivialAnalysis generateResults.
 	1halt.
 	

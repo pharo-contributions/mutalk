@@ -198,12 +198,13 @@ MutalkCI >> recentCommit [
 MutalkCI >> runMutalkTargets: targets tests: tests generationStrategy: generationStrategy [
 
 	| analysis coverageInfo |
-	analysis := MutationTestingAnalysis
-		            testCasesFrom: tests
-		            mutating: targets
-		            using: MutantOperator contents
-		            with: SelectingFromCoverageTestSelectionStrategy new
-		            with: generationStrategy.
+	analysis := MutationTestingAnalysisBuilder new
+		            testClasses: tests;
+		            classesToMutate: targets;
+		            testSelectionStrategy:
+			            SelectingFromCoverageTestSelectionStrategy new;
+		            mutantSelectionStrategy: generationStrategy;
+		            buildAnalysis.
 	analysis run.
 	coverageInfo := self prepareCoverageInfo: analysis.
 	self exportResultJson: analysis coverageInfo: coverageInfo

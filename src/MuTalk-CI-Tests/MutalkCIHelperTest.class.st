@@ -1,10 +1,11 @@
 Class {
-	#name : #MutalkCIHelperTest,
-	#superclass : #TestCase,
-	#category : #'MuTalk-CI-Tests'
+	#name : 'MutalkCIHelperTest',
+	#superclass : 'TestCase',
+	#category : 'MuTalk-CI-Tests',
+	#package : 'MuTalk-CI-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 MutalkCIHelperTest >> testMoveX [
 
 	| obj |

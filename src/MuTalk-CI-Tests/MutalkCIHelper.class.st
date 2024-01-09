@@ -1,58 +1,59 @@
 Class {
-	#name : #MutalkCIHelper,
-	#superclass : #Object,
+	#name : 'MutalkCIHelper',
+	#superclass : 'Object',
 	#instVars : [
 		'myRandom',
 		'myObject',
 		'myLiteral'
 	],
-	#category : #'MuTalk-CI-Tests'
+	#category : 'MuTalk-CI-Tests',
+	#package : 'MuTalk-CI-Tests'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 MutalkCIHelper >> initialize [
 
 	myRandom := UUID new asString.
 	myObject := (10 @ 20)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 MutalkCIHelper >> moveX [
 
 	myObject setX: myObject x + 1 setY: myObject y
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCIHelper >> myLiteral [
 
 	^ myLiteral
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCIHelper >> myLiteral: anObject [
 
 	myLiteral := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCIHelper >> myObject [
 
 	^ myObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCIHelper >> myObject: anObject [
 
 	myObject := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCIHelper >> myRandom [
 
 	^ myRandom
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MutalkCIHelper >> myRandom: anObject [
 
 	myRandom := anObject

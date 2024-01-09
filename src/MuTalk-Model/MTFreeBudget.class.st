@@ -1,8 +1,9 @@
 Class {
 	#name : 'MTFreeBudget',
 	#superclass : 'MTBudget',
-	#category : 'MuTalk-Model',
-	#package : 'MuTalk-Model'
+	#category : 'MuTalk-Model-Budgets',
+	#package : 'MuTalk-Model',
+	#tag : 'Budgets'
 }
 
 { #category : 'validation' }

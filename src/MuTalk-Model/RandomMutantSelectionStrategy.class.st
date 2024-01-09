@@ -12,7 +12,7 @@ Class {
 { #category : 'instance creation' }
 RandomMutantSelectionStrategy class >> using: aMutationsGenerationStrategy [
 
-	^ self new mutationsGenerationStrategy: aMutationsGenerationStrategy
+	^ self new mutantSelectionStrategy: aMutationsGenerationStrategy
 ]
 
 { #category : 'accessing-defaults' }
@@ -32,6 +32,18 @@ RandomMutantSelectionStrategy >> initialize [
 RandomMutantSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
 
 	^ mutationsGenerationStrategy methodsToMutateFrom: aMutationTestingAnalysis
+]
+
+{ #category : 'accessing' }
+RandomMutantSelectionStrategy >> mutantSelectionStrategy [
+
+	^ mutationsGenerationStrategy
+]
+
+{ #category : 'accessing' }
+RandomMutantSelectionStrategy >> mutantSelectionStrategy: aMutationsGenerationStrategy [
+
+	mutationsGenerationStrategy := aMutationsGenerationStrategy
 ]
 
 { #category : 'generating' }
@@ -58,18 +70,6 @@ RandomMutantSelectionStrategy >> mutationsFor: aMethod usingAll: aCollectionOfMu
 		  mutationsFor: aMethod
 		  usingAll: aCollectionOfMutantOperators
 		  logginIn: aLogger
-]
-
-{ #category : 'accessing' }
-RandomMutantSelectionStrategy >> mutationsGenerationStrategy [
-
-	^ mutationsGenerationStrategy
-]
-
-{ #category : 'accessing' }
-RandomMutantSelectionStrategy >> mutationsGenerationStrategy: aMutationsGenerationStrategy [
-
-	mutationsGenerationStrategy := aMutationsGenerationStrategy
 ]
 
 { #category : 'logging' }
