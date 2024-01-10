@@ -551,6 +551,20 @@ MutationTestingAnalysis >> initialTestRun [
 	testCases do: [ :aTestCase | aTestCase runChecked ]
 ]
 
+{ #category : 'initialization' }
+MutationTestingAnalysis >> initialize [
+
+	super initialize.
+	operators := self defaultOperators.
+	mutantSelectionStrategy := self defaultMutantSelectionStrategy.
+	testSelectionStrategy := self defaultTestSelectionStrategy.
+	mutantResults := OrderedCollection new.
+	elapsedTime := 0.
+	logger := self defaultLogger.
+	budget := self defaultBudget.
+	stopOnErrorOrFail := true
+]
+
 { #category : 'accessing' }
 MutationTestingAnalysis >> logger [
 
@@ -589,9 +603,10 @@ MutationTestingAnalysis >> mutantSelectionStrategy: anObject [
 	mutantSelectionStrategy := anObject
 ]
 
-{ #category : 'accesing' }
+{ #category : 'accessing' }
 MutationTestingAnalysis >> mutations [
-	^mutations
+
+	^ mutations
 ]
 
 { #category : 'accessing' }
@@ -600,9 +615,10 @@ MutationTestingAnalysis >> mutations: anObject [
 	mutations := anObject
 ]
 
-{ #category : 'accesing' }
+{ #category : 'accessing' }
 MutationTestingAnalysis >> operators [
-	^operators 
+
+	^ operators
 ]
 
 { #category : 'accessing' }
@@ -640,16 +656,16 @@ MutationTestingAnalysis >> stopOnErrorOrFail: aBoolean [
 	stopOnErrorOrFail := aBoolean
 ]
 
-{ #category : 'accesing' }
+{ #category : 'accessing' }
 MutationTestingAnalysis >> testBaseClasses [
 
-	^OrderedCollection with: TestCase with: TestResource
+	^ OrderedCollection with: TestCase with: TestResource
 ]
 
-{ #category : 'accesing' }
+{ #category : 'accessing' }
 MutationTestingAnalysis >> testCases [
-	^testCases
 
+	^ testCases
 ]
 
 { #category : 'accessing' }
