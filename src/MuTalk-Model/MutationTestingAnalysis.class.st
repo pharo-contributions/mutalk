@@ -444,6 +444,12 @@ MutationTestingAnalysis >> budget: anObject [
 	budget := anObject
 ]
 
+{ #category : 'accessing' }
+MutationTestingAnalysis >> classesToMutate: anObject [
+
+	modelClasses := anObject
+]
+
 { #category : 'accesing' }
 MutationTestingAnalysis >> coverageAnalysisResult [
 	
@@ -456,6 +462,36 @@ MutationTestingAnalysis >> coverageAnalysisResult: anObject [
 	coverageAnalysisResult := anObject
 ]
 
+{ #category : 'accessing - defaults' }
+MutationTestingAnalysis >> defaultBudget [
+
+	^ MTFreeBudget new
+]
+
+{ #category : 'defaults' }
+MutationTestingAnalysis >> defaultLogger [
+
+	^ NullMutationTestingAnalysisLogger new
+]
+
+{ #category : 'accessing - defaults' }
+MutationTestingAnalysis >> defaultMutantSelectionStrategy [
+
+	^ AllMutantSelectionStrategy new
+]
+
+{ #category : 'accessing - defaults' }
+MutationTestingAnalysis >> defaultOperators [
+
+	^ MutantOperator contents
+]
+
+{ #category : 'accessing - defaults' }
+MutationTestingAnalysis >> defaultTestSelectionStrategy [
+
+	^ AllTestsMethodsRunningTestSelectionStrategy new
+]
+
 { #category : 'accessing' }
 MutationTestingAnalysis >> doNotStopOnErrorOrFail [
 
@@ -464,23 +500,30 @@ MutationTestingAnalysis >> doNotStopOnErrorOrFail [
 
 { #category : 'results' }
 MutationTestingAnalysis >> generalResult [
+
 	^ MutationTestingGeneralResult
-		for: mutantResults
-		timed: (Duration nanoSeconds: (Duration milliSeconds: elapsedTime) nanoSeconds)
+		  for: mutantResults
+		  timed: (Duration nanoSeconds:
+				   (Duration milliSeconds: elapsedTime) nanoSeconds)
 ]
 
 { #category : 'running' }
 MutationTestingAnalysis >> generateCoverageAnalysis [
-	coverageAnalysisResult := (CoverageAnalysis for: self modelClasses running: testCases) run; result
+
+	coverageAnalysisResult := (CoverageAnalysis
+		                           for: self modelClasses
+		                           running: testCases)
+		                          run;
+		                          result
 ]
 
 { #category : 'running' }
 MutationTestingAnalysis >> generateMutations [
 
 	^ mutations ifNil: [
-		mutations := mutantSelectionStrategy
-			             mutationsFor: self
-			             loggingIn: logger ]
+		  mutations := mutantSelectionStrategy
+			               mutationsFor: self
+			               loggingIn: logger ]
 ]
 
 { #category : 'running' }
@@ -502,25 +545,22 @@ MutationTestingAnalysis >> generateResults [
 
 { #category : 'running' }
 MutationTestingAnalysis >> initialTestRun [
-
 	"Do an initial run of the tests to check that they are all green.
 	Only green tests count for the mutation testing analysis"
+
 	testCases do: [ :aTestCase | aTestCase runChecked ]
 ]
 
-{ #category : 'initialize-release' }
-MutationTestingAnalysis >> initializeFor: someTestCasesReferences mutating: someModelClasses using: operatorCollection with: aTestSelectionStrategy with: aMutantSelectionStrategy loggingIn: aLogger budget: aBudget [
+{ #category : 'accessing' }
+MutationTestingAnalysis >> logger [
 
-	modelClasses := someModelClasses.
-	testCases := someTestCasesReferences.
-	operators := operatorCollection.
-	mutantSelectionStrategy := aMutantSelectionStrategy.
-	testSelectionStrategy := aTestSelectionStrategy.
-	mutantResults := OrderedCollection new.
-	elapsedTime := 0.
-	logger := aLogger.
-	budget := aBudget.
-	stopOnErrorOrFail := true
+	^ logger
+]
+
+{ #category : 'accessing' }
+MutationTestingAnalysis >> logger: anObject [
+
+	logger := anObject
 ]
 
 { #category : 'accesing' }
@@ -533,6 +573,7 @@ MutationTestingAnalysis >> modelClasses [
 
 { #category : 'results' }
 MutationTestingAnalysis >> mutantResults [
+
 	^ mutantResults
 ]
 
@@ -564,24 +605,33 @@ MutationTestingAnalysis >> operators [
 	^operators 
 ]
 
+{ #category : 'accessing' }
+MutationTestingAnalysis >> operators: anObject [
+
+	operators := anObject
+]
+
 { #category : 'running' }
 MutationTestingAnalysis >> run [
 	"Obtain mutants applying the operators in the classes (or
 	methods of
 	those classes) and execute all mutants in the set of testClases.
 	We obtain a result for each mutant generated"
-	^[budget start.
-	self initialTestRun.
-	logger logAnalysisStartFor:self.
-	elapsedTime := Time millisecondsToRun: [
-					self generateCoverageAnalysis.
-					self generateMutations.
-					self generateResults.].
-					true]
-						on: TestsWithErrorsException
-						do: [:ex | 
-							self inform: 'Your tests have Errors or Failures. Please correct them.'.
-							ex return: false]
+
+	^ [
+	  budget start.
+	  self initialTestRun.
+	  logger logAnalysisStartFor: self.
+	  elapsedTime := Time millisecondsToRun: [
+		                 self generateCoverageAnalysis.
+		                 self generateMutations.
+		                 self generateResults ].
+	  true ]
+		  on: TestsWithErrorsException
+		  do: [ :ex |
+			  self inform:
+				  'Your tests have Errors or Failures. Please correct them.'.
+			  ex return: false ]
 ]
 
 { #category : 'accessing' }
@@ -603,9 +653,33 @@ MutationTestingAnalysis >> testCases [
 ]
 
 { #category : 'accessing' }
-MutationTestingAnalysis >> testClasses: anObject [
+MutationTestingAnalysis >> testCases: anObject [
 
 	testCases := anObject
+]
+
+{ #category : 'accessing' }
+MutationTestingAnalysis >> testCasesFrom: aClassCollection [
+
+	^ aClassCollection
+		  inject: OrderedCollection new
+		  into: [ :testCase :testClass |
+			  testClass isAbstract ifFalse: [
+				  testCase addAll: (self testCasesReferencesFrom: testClass) ].
+			  testCase ]
+]
+
+{ #category : 'tests' }
+MutationTestingAnalysis >> testCasesReferencesFrom: testClass [
+
+	^ testClass allTestSelectors collect: [ :each |
+		  TestCaseReference for: each in: testClass ]
+]
+
+{ #category : 'accessing' }
+MutationTestingAnalysis >> testClasses: aClassCollection [
+
+	testCases := self testCasesFrom: aClassCollection
 ]
 
 { #category : 'accessing' }

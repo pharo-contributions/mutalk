@@ -70,12 +70,11 @@ TestSelectionStrategyTest >> setUp [
 	operator := ReplaceIfTrueWithIfFalseMutantOperator new.
 	evaluationStrategy := self selectionStrategy new.
 	testCasesUsed := AuxiliarTestClassForTestingStrategies suite tests.
-	mutationTestingAnalysis := MutationTestingAnalysisBuilder new
+	mutationTestingAnalysis := MutationTestingAnalysis new
 		                           testCases: testCasesUsed;
 		                           classesToMutate: classes;
 		                           operators: (Set with: operator);
-		                           testSelectionStrategy: evaluationStrategy;
-		                           buildAnalysis.
+		                           testSelectionStrategy: evaluationStrategy.
 	mutationTestingAnalysis generateCoverageAnalysis
 ]
 
