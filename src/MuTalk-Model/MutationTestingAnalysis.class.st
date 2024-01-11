@@ -229,12 +229,12 @@ MutationTestingAnalysis class >> for: testCases mutating: classes using: operato
 		'This method will be removed in the next version of MuTalk.
 		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
 	^ self new
-		  initializeFor: testCases
-		  mutating: classes
-		  using: operatorCollection
-		  with: aMutantsEvaluationStrategy
-		  with: aMutationsGenerationStrategy
-		  loggingIn: aLogger
+		  testCases: testCases;
+		  classesToMutate: classes;
+		  operators: operatorCollection;
+		  testSelectionStrategy: aMutantsEvaluationStrategy;
+		  mutantSelectionStrategy: aMutationsGenerationStrategy;
+		  logger: aLogger;
 		  budget: aBudget;
 		  yourself
 ]
@@ -501,10 +501,7 @@ MutationTestingAnalysis >> doNotStopOnErrorOrFail [
 { #category : 'results' }
 MutationTestingAnalysis >> generalResult [
 
-	^ MutationTestingGeneralResult
-		  for: mutantResults
-		  timed: (Duration nanoSeconds:
-				   (Duration milliSeconds: elapsedTime) nanoSeconds)
+	^ MutationTestingGeneralResult for: mutantResults timed: elapsedTime
 ]
 
 { #category : 'running' }
@@ -638,10 +635,10 @@ MutationTestingAnalysis >> run [
 	  budget start.
 	  self initialTestRun.
 	  logger logAnalysisStartFor: self.
-	  elapsedTime := Time millisecondsToRun: [
-		                 self generateCoverageAnalysis.
-		                 self generateMutations.
-		                 self generateResults ].
+	  elapsedTime := [
+	                 self generateCoverageAnalysis.
+	                 self generateMutations.
+	                 self generateResults ] timeToRun.
 	  true ]
 		  on: TestsWithErrorsException
 		  do: [ :ex |
