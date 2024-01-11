@@ -501,10 +501,7 @@ MutationTestingAnalysis >> doNotStopOnErrorOrFail [
 { #category : 'results' }
 MutationTestingAnalysis >> generalResult [
 
-	^ MutationTestingGeneralResult
-		  for: mutantResults
-		  timed: (Duration nanoSeconds:
-				   (Duration milliSeconds: elapsedTime) nanoSeconds)
+	^ MutationTestingGeneralResult for: mutantResults timed: elapsedTime
 ]
 
 { #category : 'running' }
