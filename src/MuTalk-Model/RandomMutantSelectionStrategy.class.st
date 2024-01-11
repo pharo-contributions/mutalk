@@ -12,7 +12,9 @@ Class {
 { #category : 'instance creation' }
 RandomMutantSelectionStrategy class >> using: aMutationsGenerationStrategy [
 
-	^ self new mutantSelectionStrategy: aMutationsGenerationStrategy
+	^ self new
+		  mutantSelectionStrategy: aMutationsGenerationStrategy;
+		  yourself
 ]
 
 { #category : 'accessing-defaults' }
