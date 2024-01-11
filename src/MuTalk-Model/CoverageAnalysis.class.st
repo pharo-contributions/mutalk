@@ -115,7 +115,7 @@ CoverageAnalysis >> runTests [
 		                                   for: self
 		                                   named: 'Test Suite for Coverage'.
 	                          suite addTests: testCases.
-	                          suite run ] millisecondsToRun
+	                          suite run ] timeToRun
 ]
 
 { #category : 'private' }

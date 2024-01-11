@@ -641,7 +641,7 @@ MutationTestingAnalysis >> run [
 	  elapsedTime := [
 	                 self generateCoverageAnalysis.
 	                 self generateMutations.
-	                 self generateResults ] millisecondsToRun.
+	                 self generateResults ] timeToRun.
 	  true ]
 		  on: TestsWithErrorsException
 		  do: [ :ex |
