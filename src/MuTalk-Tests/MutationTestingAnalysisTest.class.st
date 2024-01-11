@@ -59,6 +59,23 @@ MutationTestingAnalysisTest >> selectForRejectReplacementMutation [
 	^ OrderedCollection with: operator
 ]
 
+{ #category : 'tests' }
+MutationTestingAnalysisTest >> testDefaultParameters [
+
+	| analysis |
+	analysis := MutationTestingAnalysis new.
+	self
+		assert: (analysis operators collect: [ :op | op species ])
+		equals: (MutantOperator contents collect: [ :op | op species ]).
+	self
+		assert: analysis mutantSelectionStrategy species
+		equals: AllMutantSelectionStrategy.
+	self
+		assert: analysis testSelectionStrategy species
+		equals: AllTestsMethodsRunningTestSelectionStrategy.
+	self assert: analysis budget species equals: MTFreeBudget
+]
+
 { #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingInfiniteLoopAnalysis [
 
@@ -67,11 +84,10 @@ MutationTestingAnalysisTest >> testExecutingInfiniteLoopAnalysis [
 	So this test will need a higher time limit"
 	self timeLimit: self defaultTimeLimit * 2.
 
-	analysis := MutationTestingAnalysisBuilder new
+	analysis := MutationTestingAnalysis new
 		            testClasses: { FakeInfiniteLoopsTest };
 		            classesToMutate: { FakeInfiniteLoopForTest };
-		            operators: { ReplaceLessOrEqualWithTrueOperator new };
-		            buildAnalysis.
+		            operators: { ReplaceLessOrEqualWithTrueOperator new }.
 
 	analysis run.
 
@@ -89,12 +105,11 @@ MutationTestingAnalysisTest >> testExecutingInfiniteRecursionAnalysis [
 	So this test will need a higher time limit"
 	self timeLimit: self defaultTimeLimit * 2.
 
-	analysis := MutationTestingAnalysisBuilder new
+	analysis := MutationTestingAnalysis new
 		            testClasses: { FakeInfiniteLoopsTest };
 		            classesToMutate: { FakeInfiniteLoopForTest };
 		            operators:
-			            { ReplaceIfTrueReceiverWithFalseOperator new };
-		            buildAnalysis.
+			            { ReplaceIfTrueReceiverWithFalseOperator new }.
 
 	analysis run.
 
@@ -108,61 +123,58 @@ MutationTestingAnalysisTest >> testExecutingInfiniteRecursionAnalysis [
 MutationTestingAnalysisTest >> testExecutingSimpleMutation [
 
 	| analysis results generalResult mutationResult |
-	analysis := MutationTestingAnalysisBuilder new
+	analysis := MutationTestingAnalysis new
 		            testClasses:
 			            (Array with:
 					             AuxiliarClassForMutationTestingAnalysisTest);
 		            classesToMutate:
 			            (Array with: AuxiliarClassForMutationTestingAnalysis);
-		            operators: self plusForMinusReplacementMutation;
-		            buildAnalysis.
+		            operators: self plusForMinusReplacementMutation.
 	analysis run.
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
-	self assert: results size = 1.
+	self assert: results size equals: 1.
 	mutationResult := results first.
 	self assert: mutationResult killed.
-	self assert: generalResult numberOfKilledMutants = 1
+	self assert: generalResult numberOfKilledMutants equals: 1
 ]
 
 { #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingSimpleMutationForClassMethods [
 
 	| analysis results generalResult mutationResult |
-	analysis := MutationTestingAnalysisBuilder new
+	analysis := MutationTestingAnalysis new
 		            testClasses:
 			            (Array with:
 					             AuxiliarClassForMutationTestingAnalysisTest);
 		            classesToMutate:
 			            (Array with: AuxiliarClassForMutationTestingAnalysis);
-		            operators: self selectForRejectReplacementMutation;
-		            buildAnalysis.
+		            operators: self selectForRejectReplacementMutation.
 	analysis run.
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
-	self assert: results size = 1.
+	self assert: results size equals: 1.
 	mutationResult := results first.
 	self assert: mutationResult killed.
-	self assert: generalResult numberOfKilledMutants = 1
+	self assert: generalResult numberOfKilledMutants equals: 1
 ]
 
 { #category : 'testing' }
 MutationTestingAnalysisTest >> testExecutingSimpleMutationWhenNotRunnedAnalysis [
 
 	| analysis results generalResult |
-	analysis := MutationTestingAnalysisBuilder new
+	analysis := MutationTestingAnalysis new
 		            testClasses:
 			            (Array with:
 					             AuxiliarClassForMutationTestingAnalysisTest);
 		            classesToMutate:
 			            (Array with: AuxiliarClassForMutationTestingAnalysis);
-		            operators: self plusForMinusReplacementMutation;
-		            buildAnalysis.
+		            operators: self plusForMinusReplacementMutation.
 	"analysis run."
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
-	self assert: results size = 0.
-	self assert: generalResult numberOfEvaluatedMutants = 0
+	self assert: results isEmpty.
+	self assert: generalResult numberOfEvaluatedMutants equals: 0
 ]
 
 { #category : 'testing' }
@@ -172,15 +184,14 @@ MutationTestingAnalysisTest >> testExecutingTwoMutantsFromDiferentMethods [
 	| analysis results operatorSelection |
 	operatorSelection := OrderedCollection new.
 	operatorSelection addAll: self ifFalseForIfTrueReplacementMutation.
-	analysis := MutationTestingAnalysisBuilder new
+	analysis := MutationTestingAnalysis new
 		            testClasses: Array new;
 		            classesToMutate:
 			            (Array with: AuxiliarClassForMutationTestingAnalysis);
-		            operators: operatorSelection;
-		            buildAnalysis.
+		            operators: operatorSelection.
 	analysis run.
 	results := analysis mutantResults.
-	self assert: results size = 2.
+	self assert: results size equals: 2.
 	results do: [ :mutationResult | self deny: mutationResult killed ]
 ]
 
@@ -191,15 +202,14 @@ MutationTestingAnalysisTest >> testExecutingTwoMutantsFromSameMethod [
 	| analysis results operatorSelection |
 	operatorSelection := OrderedCollection new.
 	operatorSelection addAll: self minusForPlusReplacementMutation.
-	analysis := MutationTestingAnalysisBuilder new
+	analysis := MutationTestingAnalysis new
 		            testClasses: Array new;
 		            classesToMutate:
 			            (Array with: AuxiliarClassForMutationTestingAnalysis);
-		            operators: operatorSelection;
-		            buildAnalysis.
+		            operators: operatorSelection.
 	analysis run.
 	results := analysis mutantResults.
-	self assert: results size = 2.
+	self assert: results size equals: 2.
 	results do: [ :mutationResult | self deny: mutationResult killed ]
 ]
 
@@ -212,20 +222,19 @@ MutationTestingAnalysisTest >> testExecutingTwoMutations [
 	operatorSelection := OrderedCollection new.
 	operatorSelection addAll: self plusForMinusReplacementMutation.
 	operatorSelection addAll: self ifTrueForIfFalseReplacementMutation.
-	analysis := MutationTestingAnalysisBuilder new
+	analysis := MutationTestingAnalysis new
 		            testClasses:
 			            (Array with:
 					             AuxiliarClassForMutationTestingAnalysisTest);
 		            classesToMutate:
 			            (Array with: AuxiliarClassForMutationTestingAnalysis);
-		            operators: operatorSelection;
-		            buildAnalysis.
+		            operators: operatorSelection.
 	analysis run.
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
-	self assert: results size = 2.
+	self assert: results size equals: 2.
 	results do: [ :mutationResult | self assert: mutationResult killed ].
-	self assert: generalResult numberOfKilledMutants = 2
+	self assert: generalResult numberOfKilledMutants equals: 2
 ]
 
 { #category : 'tests' }
@@ -233,13 +242,12 @@ MutationTestingAnalysisTest >> testRunningAllTests [
 	"This test verify that the test evaluation keeps running even after the first error, if specified"
 
 	| analysis |
-	analysis := MutationTestingAnalysisBuilder new
+	analysis := MutationTestingAnalysis new
 		            testClasses:
 			            { AuxiliarTestClassForContinuingTestsExecutionAfterFirstFail };
 		            classesToMutate:
 			            { AuxiliarClassForMutationTestingAnalysis };
-		            operators: MutantOperator contents;
-		            buildAnalysis.
+		            operators: MutantOperator contents.
 
 	analysis doNotStopOnErrorOrFail.
 	"In this class, tests fail after a certain of executions"

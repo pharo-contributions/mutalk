@@ -15,10 +15,9 @@ MutalkCITonelJsonExporterTest >> testWorking [
 	| analysis json moreInfo |
 	self skip.
 
-	analysis := MutationTestingAnalysisBuilder new
+	analysis := MutationTestingAnalysis new
 		            testClasses: { SmallBankTest };
-		            classesToMutate: { SmallBank };
-		            buildAnalysis.
+		            classesToMutate: { SmallBank }.
 	analysis run.
 	moreInfo := CoveragePropagationPreparation new
 		            mtResult: analysis;

@@ -14,17 +14,14 @@ MutantSelectionStrategyTest >> testSelectingFromCoverageMutantSelectionShouldOnl
 	| classes mutationTestingAnalysis operator |
 	classes := OrderedCollection with: AuxiliarClassForTestingStrategies.
 	operator := ReplaceIfTrueWithIfFalseMutantOperator new.
-	mutationTestingAnalysis := MutationTestingAnalysisBuilder new
-		                           testCases:
-			                           (MutationTestingAnalysis
-				                            testCasesReferencesFrom:
-					                            AuxiliarTestClassForTestingStrategies);
+	mutationTestingAnalysis := MutationTestingAnalysis new
+		                           testClasses:
+			                           { AuxiliarTestClassForTestingStrategies };
 		                           classesToMutate: classes;
 		                           operators: (Set with: operator);
 		                           mutantSelectionStrategy:
 			                           SelectingFromCoverageMutantSelectionStrategy
-				                           new;
-		                           buildAnalysis.
+				                           new.
 	mutationTestingAnalysis run.
 	self assert: ((mutationTestingAnalysis mutations collect: [ :each |
 			  each originalMethod selector ]) includes: #method1).

@@ -11,15 +11,14 @@ MutationTestingAnalysisLoggerTest >> testExecutingSimpleMutation [
 	| analysis logger operator |
 	logger := MockMutationTestingAnalysisLogger new.
 	operator := ReplacePlusWithMinusMutantOperator new.
-	analysis := MutationTestingAnalysisBuilder new
+	analysis := MutationTestingAnalysis new
 		            testClasses:
 			            (Array with:
 					             AuxiliarClassForMutationTestingAnalysisTest);
 		            classesToMutate:
 			            (Array with: AuxiliarClassForMutationTestingAnalysis);
 		            operators: (Array with: operator);
-		            logger: logger;
-		            buildAnalysis.
+		            logger: logger.
 	analysis run.
 	self assert: logger loggedStartAnalysis.
 	self assert: (logger

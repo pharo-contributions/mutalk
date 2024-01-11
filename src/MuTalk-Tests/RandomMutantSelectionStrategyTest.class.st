@@ -21,13 +21,12 @@ RandomMutantSelectionStrategyTest >> testAtLeastTwoDifferentMutantCollectionsAmo
 	"mutationsSet is a set of mutant collections"
 	mutationsSet := Set new.
 	1 to: 5 do: [ :i |
-		analysis := MutationTestingAnalysisBuilder new
+		analysis := MutationTestingAnalysis new
 			            testClasses:
 				            { AuxiliarClassForMutationTestingAnalysisTest };
 			            classesToMutate:
 				            { AuxiliarClassForMutationTestingAnalysis };
-			            mutantSelectionStrategy: self classToTest new;
-			            buildAnalysis.
+			            mutantSelectionStrategy: self classToTest new.
 		mutationsSet add: analysis generateMutations ].
 
 	"If the size of the set is at least 2, there is at least 2 different mutant collections, so at least 2 different orders of mutants."

@@ -26,11 +26,10 @@ MTBudgetTest >> runAnalysisFor: aBudget [
 { #category : 'running' }
 MTBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests: testCases [
 
-	analysis := MutationTestingAnalysisBuilder new
+	analysis := MutationTestingAnalysis new
 		            testClasses: testCases;
 		            classesToMutate: classesToMutate;
-		            budget: aBudget;
-		            buildAnalysis.
+		            budget: aBudget.
 
 	analysis run.
 	^ analysis generalResult

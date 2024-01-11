@@ -12,10 +12,9 @@ Class {
 CoveragePropagationPreparationTest >> testWorking [
 
 	| analysis moreInfo mutant |
-	analysis := MutationTestingAnalysisBuilder new
+	analysis := MutationTestingAnalysis new
 		            testClasses: { MutalkCIHelperTest };
-		            classesToMutate: { MutalkCIHelper };
-		            buildAnalysis.
+		            classesToMutate: { MutalkCIHelper }.
 	analysis run.
 
 	moreInfo := CoveragePropagationPreparation new
