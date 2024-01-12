@@ -1,6 +1,6 @@
 Class {
 	#name : 'SelectingFromAlivesMutationsGenerationStrategy',
-	#superclass : 'MTSelectingFromAlivesMutationsGenerationStrategy',
+	#superclass : 'MTSelectingFromAlivesMutantSelectionStrategy',
 	#category : 'MuTalk-CI',
 	#package : 'MuTalk-CI'
 }

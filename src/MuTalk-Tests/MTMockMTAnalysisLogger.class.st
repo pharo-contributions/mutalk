@@ -1,5 +1,5 @@
 Class {
-	#name : 'MTMockMutationTestingAnalysisLogger',
+	#name : 'MTMockMTAnalysisLogger',
 	#superclass : 'MTAnalysisLogger',
 	#instVars : [
 		'loggedStartAnalysis',
@@ -11,47 +11,47 @@ Class {
 }
 
 { #category : 'instance creation' }
-MTMockMutationTestingAnalysisLogger class >> new [
+MTMockMTAnalysisLogger class >> new [
 	^super new initialize.
 ]
 
-{ #category : 'initialize-release' }
-MTMockMutationTestingAnalysisLogger >> initialize [ 
+{ #category : 'initialization' }
+MTMockMTAnalysisLogger >> initialize [ 
 	loggedStartAnalysis := false.
 	loggedStartBuildingMutations := OrderedCollection new.
 	loggedEvaluationMutations := OrderedCollection new.
 ]
 
-{ #category : 'loggin' }
-MTMockMutationTestingAnalysisLogger >> logAnalysisStartFor: aMutationTestingAnalysis [ 
+{ #category : 'logging' }
+MTMockMTAnalysisLogger >> logAnalysisStartFor: aMutationTestingAnalysis [ 
 	loggedStartAnalysis := true.
 ]
 
-{ #category : 'loggin' }
-MTMockMutationTestingAnalysisLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
+{ #category : 'logging' }
+MTMockMTAnalysisLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
 	loggedStartBuildingMutations add:(Array with:aCompiledMethod with: aMutantOperator ). 
 
 	
 ]
 
 { #category : 'logging' }
-MTMockMutationTestingAnalysisLogger >> logStartEvaluating: aMethodMutation [ 
+MTMockMTAnalysisLogger >> logStartEvaluating: aMethodMutation [ 
 	loggedEvaluationMutations add: aMethodMutation.
 ]
 
 { #category : 'testing' }
-MTMockMutationTestingAnalysisLogger >> loggedStartAnalysis [
+MTMockMTAnalysisLogger >> loggedStartAnalysis [
 	^loggedStartAnalysis
 ]
 
 { #category : 'testing' }
-MTMockMutationTestingAnalysisLogger >> loggedStartBuildingMutationsFor: aCompiledMethod using: aMutantOperator [
+MTMockMTAnalysisLogger >> loggedStartBuildingMutationsFor: aCompiledMethod using: aMutantOperator [
 	^loggedStartBuildingMutations anySatisfy:[:array | (array at:1 ) = aCompiledMethod and:[(array at:2) = aMutantOperator ]]  
 	
 ]
 
 { #category : 'testing' }
-MTMockMutationTestingAnalysisLogger >> loggedStartMutantEvaluationForMutationOf: aCompiledMethod [ 
+MTMockMTAnalysisLogger >> loggedStartMutantEvaluationForMutationOf: aCompiledMethod [ 
 	^ loggedEvaluationMutations
 		anySatisfy: [:aMutation | aMutation originalMethod = aCompiledMethod]
 ]

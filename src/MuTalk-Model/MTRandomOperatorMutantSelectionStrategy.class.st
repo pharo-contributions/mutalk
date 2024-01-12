@@ -6,20 +6,6 @@ Class {
 	#tag : 'Mutant selection strategies'
 }
 
-{ #category : 'intialization' }
-MTRandomOperatorMutantSelectionStrategy class >> fixed: aNumber [
-
-	^ self new randomMutantSelection:
-		  (FixedRandomMutantSelectionStrategy new numberOfMutants: aNumber)
-]
-
-{ #category : 'intialization' }
-MTRandomOperatorMutantSelectionStrategy class >> percent: aPercentage [
-
-	^ self new randomMutantSelection:
-		  (PercentRandomMutantSelectionStrategy new percentageOfMutants: aPercentage)
-]
-
 { #category : 'generating' }
 MTRandomOperatorMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 

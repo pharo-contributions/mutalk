@@ -1,6 +1,6 @@
 Class {
 	#name : 'NullMutationTestingAnalysisLogger',
-	#superclass : 'MTNullMutationTestingAnalysisLogger',
+	#superclass : 'MTNullAnalysisLogger',
 	#category : 'MuTalk-Model-Logging',
 	#package : 'MuTalk-Model',
 	#tag : 'Logging'

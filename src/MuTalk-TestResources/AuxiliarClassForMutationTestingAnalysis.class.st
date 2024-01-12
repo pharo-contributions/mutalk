@@ -1,6 +1,6 @@
 Class {
 	#name : 'AuxiliarClassForMutationTestingAnalysis',
-	#superclass : 'MTAuxiliarClassForMutationTestingAnalysis',
+	#superclass : 'MTAuxiliarClassForMTAnalysis',
 	#category : 'MuTalk-TestResources',
 	#package : 'MuTalk-TestResources'
 }

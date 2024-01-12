@@ -1,6 +1,6 @@
 Class {
 	#name : 'ExtremeTransformationOperator',
-	#superclass : 'MTExtremeTransformationOperator',
+	#superclass : 'MTEmptyMethodOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'

@@ -1,5 +1,5 @@
 Class {
-	#name : 'MTAbstractMutationTestingJsonExporter',
+	#name : 'MTAbstractJsonExporter',
 	#superclass : 'Object',
 	#instVars : [
 		'mtResult'
@@ -9,19 +9,19 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-MTAbstractMutationTestingJsonExporter >> export [
+MTAbstractJsonExporter >> export [
 
 	self subclassResponsibility 
 ]
 
 { #category : 'accessing' }
-MTAbstractMutationTestingJsonExporter >> mtResult [
+MTAbstractJsonExporter >> mtResult [
 
 	^ mtResult
 ]
 
 { #category : 'accessing' }
-MTAbstractMutationTestingJsonExporter >> mtResult: anObject [
+MTAbstractJsonExporter >> mtResult: anObject [
 
 	mtResult := anObject
 ]

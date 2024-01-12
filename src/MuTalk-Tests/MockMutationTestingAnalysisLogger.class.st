@@ -1,6 +1,6 @@
 Class {
 	#name : 'MockMutationTestingAnalysisLogger',
-	#superclass : 'MTMockMutationTestingAnalysisLogger',
+	#superclass : 'MTMockMTAnalysisLogger',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }

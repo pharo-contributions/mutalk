@@ -1,6 +1,6 @@
 Class {
 	#name : 'MTCITonelJsonExporter',
-	#superclass : 'MTAbstractMutationTestingJsonExporter',
+	#superclass : 'MTAbstractJsonExporter',
 	#instVars : [
 		'seqNum',
 		'pull_request_id',

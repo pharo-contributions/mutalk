@@ -1,36 +1,36 @@
 Class {
-	#name : 'MTAuxiliarClassForMutationTestingAnalysisTest',
+	#name : 'MTAuxiliarClassForMTAnalysisTest',
 	#superclass : 'TestCase',
 	#category : 'MuTalk-TestResources',
 	#package : 'MuTalk-TestResources'
 }
 
 { #category : 'testing' }
-MTAuxiliarClassForMutationTestingAnalysisTest >> testAnotherMethodWithOneIfFalseSender [
+MTAuxiliarClassForMTAnalysisTest >> testAnotherMethodWithOneIfFalseSender [
 	self assert: AuxiliarClassForMutationTestingAnalysis new anotherMethodWithOneIfFalseSender = 1
 ]
 
 { #category : 'testing' }
-MTAuxiliarClassForMutationTestingAnalysisTest >> testClassMethodThatSendsSelect [
+MTAuxiliarClassForMTAnalysisTest >> testClassMethodThatSendsSelect [
 	self assert: AuxiliarClassForMutationTestingAnalysis classMethodThatSendsSelect notEmpty
 ]
 
 { #category : 'testing' }
-MTAuxiliarClassForMutationTestingAnalysisTest >> testMethodWithOneIfFalseSender [
+MTAuxiliarClassForMTAnalysisTest >> testMethodWithOneIfFalseSender [
 	self assert: AuxiliarClassForMutationTestingAnalysis new methodWithOneIfFalseSender = 2
 ]
 
 { #category : 'testing' }
-MTAuxiliarClassForMutationTestingAnalysisTest >> testMethodWithOneIfTrueSender [
+MTAuxiliarClassForMTAnalysisTest >> testMethodWithOneIfTrueSender [
 	self assert: AuxiliarClassForMutationTestingAnalysis new methodWithOneIfTrueSender = 1
 ]
 
 { #category : 'testing' }
-MTAuxiliarClassForMutationTestingAnalysisTest >> testMethodWithOnePlusSender [
+MTAuxiliarClassForMTAnalysisTest >> testMethodWithOnePlusSender [
 	self assert: AuxiliarClassForMutationTestingAnalysis new methodWithOnePlusSender = 3
 ]
 
 { #category : 'testing' }
-MTAuxiliarClassForMutationTestingAnalysisTest >> testMethodWithTwoMinusSenders [
+MTAuxiliarClassForMTAnalysisTest >> testMethodWithTwoMinusSenders [
 	self assert: AuxiliarClassForMutationTestingAnalysis new methodWithTwoMinusSenders = -4
 ]

@@ -1,6 +1,6 @@
 Class {
 	#name : 'AbstractMutationTestingJsonExporter',
-	#superclass : 'MTAbstractMutationTestingJsonExporter',
+	#superclass : 'MTAbstractJsonExporter',
 	#category : 'MuTalk-CI',
 	#package : 'MuTalk-CI'
 }
