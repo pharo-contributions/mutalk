@@ -1,27 +1,13 @@
 Class {
 	#name : 'LiteralIntegersToZeroOperator',
-	#superclass : 'BlockBasedMutantOperator',
+	#superclass : 'MTLiteralIntegersToZeroOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'printing' }
-LiteralIntegersToZeroOperator >> description [
+{ #category : 'as yet unclassified' }
+LiteralIntegersToZeroOperator class >> isDeprecated [
 
-	^ 'Convert a literal integer to zero'
-]
-
-{ #category : 'applying' }
-LiteralIntegersToZeroOperator >> expressionToReplace [
-
-	^ [ :aNode | 
-	  aNode isLiteralNode & aNode isLiteralArray not and: [ 
-		  aNode value isInteger and: [aNode value isZero not] ] ]
-]
-
-{ #category : 'applying' }
-LiteralIntegersToZeroOperator >> newExpression [
-
-	^ [ :anOldNode | RBLiteralValueNode value: 0 ]
+	^ true
 ]

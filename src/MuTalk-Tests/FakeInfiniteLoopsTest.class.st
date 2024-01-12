@@ -1,24 +1,12 @@
 Class {
 	#name : 'FakeInfiniteLoopsTest',
-	#superclass : 'TestCase',
+	#superclass : 'MTFakeInfiniteLoopsTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
 
-{ #category : 'tests' }
-FakeInfiniteLoopsTest >> testIterativeFactorial [
+{ #category : 'as yet unclassified' }
+FakeInfiniteLoopsTest class >> isDeprecated [
 
-	| ins |
-	ins := FakeInfiniteLoopForTest new.
-	self assert: (ins iterativeFactorial: 3) equals: 6.
-	self assert: (ins iterativeFactorial: 5) equals: 120
-]
-
-{ #category : 'tests' }
-FakeInfiniteLoopsTest >> testRecursiveFactorial [
-
-	| ins |
-	ins := FakeInfiniteLoopForTest new.
-	self assert: (ins recursiveFactorial: 3) equals: 6.
-	self assert: (ins recursiveFactorial: 5) equals: 120
+	^ true
 ]

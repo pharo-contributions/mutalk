@@ -1,22 +1,13 @@
 Class {
 	#name : 'RemoveInjectIntoOperator',
-	#superclass : 'MutantOperator',
+	#superclass : 'MTRemoveInjectIntoOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'printing' }
-RemoveInjectIntoOperator >> description [
-	^'Replace inject:aValue into:aBlock with aValue'.
-]
+{ #category : 'as yet unclassified' }
+RemoveInjectIntoOperator class >> isDeprecated [
 
-{ #category : 'applying' }
-RemoveInjectIntoOperator >> expressionToReplace [ 
-	^'``@aCollection inject: ``@aValue into:``@aBlock'
-]
-
-{ #category : 'applying' }
-RemoveInjectIntoOperator >> newExpression [
-	^'``@aValue'
+	^ true
 ]

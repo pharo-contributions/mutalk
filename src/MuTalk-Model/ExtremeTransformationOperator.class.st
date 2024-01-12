@@ -1,26 +1,13 @@
 Class {
 	#name : 'ExtremeTransformationOperator',
-	#superclass : 'BlockBasedMutantOperator',
+	#superclass : 'MTExtremeTransformationOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'accessing' }
-ExtremeTransformationOperator >> description [
+{ #category : 'as yet unclassified' }
+ExtremeTransformationOperator class >> isDeprecated [
 
-	^ 'Removing all lines in a method'
-]
-
-{ #category : 'applying' }
-ExtremeTransformationOperator >> expressionToReplace [
-
-	^ [ :aNode | 
-	  aNode isSequence and: [ aNode parent isMethod] ]
-]
-
-{ #category : 'instance creation' }
-ExtremeTransformationOperator >> newExpression [
-
-	^ [ :anOldNode | RBSequenceNode statements: #() ]
+	^ true
 ]

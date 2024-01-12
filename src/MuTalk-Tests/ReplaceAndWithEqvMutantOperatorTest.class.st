@@ -1,46 +1,12 @@
 Class {
 	#name : 'ReplaceAndWithEqvMutantOperatorTest',
-	#superclass : 'MutantOperatorTest',
+	#superclass : 'MTReplaceAndWithEqvMutantOperatorTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
-ReplaceAndWithEqvMutantOperatorTest >> methodWithNoSenders [  
-	^ true or: [false]
-]
+{ #category : 'as yet unclassified' }
+ReplaceAndWithEqvMutantOperatorTest class >> isDeprecated [
 
-{ #category : 'accessing' }
-ReplaceAndWithEqvMutantOperatorTest >> methodWithOneSender [  
-	^ true and: [false]
-]
-
-{ #category : 'accessing' }
-ReplaceAndWithEqvMutantOperatorTest >> methodWithOneSenderModified [
-	^ true bEqv: [false]
-]
-
-{ #category : 'accessing' }
-ReplaceAndWithEqvMutantOperatorTest >> methodWithTwoSenders [  
-	^ true and: [true and: [false]]
-]
-
-{ #category : 'accessing' }
-ReplaceAndWithEqvMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
-	^ true bEqv: [true and: [false]]
-]
-
-{ #category : 'accessing' }
-ReplaceAndWithEqvMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
-	^ true and: [true bEqv: [false]]
-]
-
-{ #category : 'accessing' }
-ReplaceAndWithEqvMutantOperatorTest >> operator [
-	^ ReplaceAndWithEqvMutantOperator new
-]
-
-{ #category : 'accessing' }
-ReplaceAndWithEqvMutantOperatorTest >> operatorDescription [
-	^'Replace #and: with #bEqv:'
+	^ true
 ]

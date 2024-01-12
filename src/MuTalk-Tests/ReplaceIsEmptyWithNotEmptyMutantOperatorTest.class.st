@@ -1,49 +1,12 @@
 Class {
 	#name : 'ReplaceIsEmptyWithNotEmptyMutantOperatorTest',
-	#superclass : 'MutantOperatorTest',
+	#superclass : 'MTReplaceIsEmptyWithNotEmptyMutantOperatorTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
-ReplaceIsEmptyWithNotEmptyMutantOperatorTest >> methodWithNoSenders [  
-	^ 1 + 2
-]
+{ #category : 'as yet unclassified' }
+ReplaceIsEmptyWithNotEmptyMutantOperatorTest class >> isDeprecated [
 
-{ #category : 'accessing' }
-ReplaceIsEmptyWithNotEmptyMutantOperatorTest >> methodWithOneSender [  
-	^OrderedCollection new isEmpty
-]
-
-{ #category : 'accessing' }
-ReplaceIsEmptyWithNotEmptyMutantOperatorTest >> methodWithOneSenderModified [
-	^OrderedCollection new notEmpty
-]
-
-{ #category : 'accessing' }
-ReplaceIsEmptyWithNotEmptyMutantOperatorTest >> methodWithTwoSenders [
-	OrderedCollection new isEmpty.
-	OrderedCollection new isEmpty
-]
-
-{ #category : 'accessing' }
-ReplaceIsEmptyWithNotEmptyMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
-	OrderedCollection new notEmpty.
-	OrderedCollection new isEmpty
-]
-
-{ #category : 'accessing' }
-ReplaceIsEmptyWithNotEmptyMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
-	OrderedCollection new isEmpty.
-	OrderedCollection new notEmpty
-]
-
-{ #category : 'accessing' }
-ReplaceIsEmptyWithNotEmptyMutantOperatorTest >> operator [
-	^ReplaceIsEmptyWithNotEmptyMutantOperator new
-]
-
-{ #category : 'accessing' }
-ReplaceIsEmptyWithNotEmptyMutantOperatorTest >> operatorDescription [
-	^'Replace #isEmpty with #notEmpty'
+	^ true
 ]

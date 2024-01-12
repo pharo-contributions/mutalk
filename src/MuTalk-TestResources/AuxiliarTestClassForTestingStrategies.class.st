@@ -1,22 +1,12 @@
 Class {
 	#name : 'AuxiliarTestClassForTestingStrategies',
-	#superclass : 'TestCase',
+	#superclass : 'MTAuxiliarTestClassForTestingStrategies',
 	#category : 'MuTalk-TestResources',
 	#package : 'MuTalk-TestResources'
 }
 
 { #category : 'as yet unclassified' }
-AuxiliarTestClassForTestingStrategies >> testMethodThatCoverMethod1 [
+AuxiliarTestClassForTestingStrategies class >> isDeprecated [
 
-	self assert: AuxiliarClassForTestingStrategies new method1 = 1. 
-	
-	
-]
-
-{ #category : 'as yet unclassified' }
-AuxiliarTestClassForTestingStrategies >> testMethodThatCoverMethod2 [
-
-	self assert: AuxiliarClassForTestingStrategies new method2 = 2. 
-	
-	
+	^ true
 ]

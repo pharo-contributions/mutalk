@@ -1,46 +1,12 @@
 Class {
 	#name : 'ReplaceLessOrEqualWithEqualMutantOperatorTest',
-	#superclass : 'MutantOperatorTest',
+	#superclass : 'MTReplaceLessOrEqualWithEqualMutantOperatorTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
-ReplaceLessOrEqualWithEqualMutantOperatorTest >> methodWithNoSenders [  
-	^ 1 - 2
-]
+{ #category : 'as yet unclassified' }
+ReplaceLessOrEqualWithEqualMutantOperatorTest class >> isDeprecated [
 
-{ #category : 'accessing' }
-ReplaceLessOrEqualWithEqualMutantOperatorTest >> methodWithOneSender [  
-	^ 1 <= 2
-]
-
-{ #category : 'accessing' }
-ReplaceLessOrEqualWithEqualMutantOperatorTest >> methodWithOneSenderModified [
-	^ 1 = 2
-]
-
-{ #category : 'accessing' }
-ReplaceLessOrEqualWithEqualMutantOperatorTest >> methodWithTwoSenders [
-	^ 1 <= 2 or: [2 <= 3].
-]
-
-{ #category : 'accessing' }
-ReplaceLessOrEqualWithEqualMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
-	^ 1 = 2 or: [2 <= 3].
-]
-
-{ #category : 'accessing' }
-ReplaceLessOrEqualWithEqualMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
-	^ 1 <= 2 or: [2 = 3].
-]
-
-{ #category : 'accessing' }
-ReplaceLessOrEqualWithEqualMutantOperatorTest >> operator [
-	^ ReplaceLessOrEqualWithEqualMutantOperator new
-]
-
-{ #category : 'accessing' }
-ReplaceLessOrEqualWithEqualMutantOperatorTest >> operatorDescription [
-	^'Replace #''<='' with #=' 
+	^ true
 ]

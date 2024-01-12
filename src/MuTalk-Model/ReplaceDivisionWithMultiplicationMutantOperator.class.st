@@ -1,17 +1,13 @@
 Class {
 	#name : 'ReplaceDivisionWithMultiplicationMutantOperator',
-	#superclass : 'SelectorReplacementMutantOperator',
+	#superclass : 'MTReplaceDivisionWithMultiplicationMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'accessing' }
-ReplaceDivisionWithMultiplicationMutantOperator >> newSelector [
-	^#*
-]
+{ #category : 'as yet unclassified' }
+ReplaceDivisionWithMultiplicationMutantOperator class >> isDeprecated [
 
-{ #category : 'accessing' }
-ReplaceDivisionWithMultiplicationMutantOperator >> oldSelector [
-	^#/
+	^ true
 ]

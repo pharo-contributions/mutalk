@@ -1,36 +1,12 @@
 Class {
 	#name : 'AllTestsMethodsRunningTestSelectionStrategyTest',
-	#superclass : 'TestSelectionStrategyTest',
+	#superclass : 'MTAllTestsMethodsRunningTestSelectionStrategyTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
 
-{ #category : 'testing' }
-AllTestsMethodsRunningTestSelectionStrategyTest class >> isAbstract [
-	^ false
-]
+{ #category : 'as yet unclassified' }
+AllTestsMethodsRunningTestSelectionStrategyTest class >> isDeprecated [
 
-{ #category : 'asserting' }
-AllTestsMethodsRunningTestSelectionStrategyTest >> assertForAllMutants [
-	self assert: testCases size equals: testCasesUsed size
-]
-
-{ #category : 'asserting' }
-AllTestsMethodsRunningTestSelectionStrategyTest >> assertMutantInCoverageOfTestCase [
-	self assertForAllMutants
-]
-
-{ #category : 'asserting' }
-AllTestsMethodsRunningTestSelectionStrategyTest >> assertMutantNotInCoverage [
-	self assertForAllMutants
-]
-
-{ #category : 'asserting' }
-AllTestsMethodsRunningTestSelectionStrategyTest >> assertMutantNotInCoverageOfTest [
-	self assertForAllMutants
-]
-
-{ #category : 'configuring' }
-AllTestsMethodsRunningTestSelectionStrategyTest >> selectionStrategy [
-	^ AllTestsMethodsRunningTestSelectionStrategy
+	^ true
 ]

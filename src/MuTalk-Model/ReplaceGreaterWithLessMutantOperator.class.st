@@ -1,17 +1,13 @@
 Class {
 	#name : 'ReplaceGreaterWithLessMutantOperator',
-	#superclass : 'SelectorReplacementMutantOperator',
+	#superclass : 'MTReplaceGreaterWithLessMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'accessing' }
-ReplaceGreaterWithLessMutantOperator >> newSelector [
-	^#<
-]
+{ #category : 'as yet unclassified' }
+ReplaceGreaterWithLessMutantOperator class >> isDeprecated [
 
-{ #category : 'accessing' }
-ReplaceGreaterWithLessMutantOperator >> oldSelector [
-	^#>
+	^ true
 ]

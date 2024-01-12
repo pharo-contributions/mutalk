@@ -1,38 +1,13 @@
 Class {
 	#name : 'SelectorReplacementMutantOperator',
-	#superclass : 'MutantOperator',
+	#superclass : 'MTSelectorReplacementMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'printing' }
-SelectorReplacementMutantOperator >> description [
-	^ 'Replace ' , self oldSelector printString , ' with ' , self newSelector printString
-]
+{ #category : 'as yet unclassified' }
+SelectorReplacementMutantOperator class >> isDeprecated [
 
-{ #category : 'applying' }
-SelectorReplacementMutantOperator >> expressionToReplace [ 
-	| oldString |
-	oldString := RBParseTreeSearcher buildSelectorString: self oldSelector.
-	^'``@object ' , oldString
-	
-]
-
-{ #category : 'applying' }
-SelectorReplacementMutantOperator >> newExpression [ 
-	| newString |
-	newString := RBParseTreeSearcher buildSelectorString: self newSelector.
-	^'``@object ' , newString
-
-]
-
-{ #category : 'accessing' }
-SelectorReplacementMutantOperator >> newSelector [
-	self subclassResponsibility
-]
-
-{ #category : 'accessing' }
-SelectorReplacementMutantOperator >> oldSelector [
-	self subclassResponsibility
+	^ true
 ]

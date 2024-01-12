@@ -1,30 +1,12 @@
 Class {
 	#name : 'MutantSelectionStrategyTest',
-	#superclass : 'TestCase',
-	#instVars : [
-		'resource'
-	],
+	#superclass : 'MTMutantSelectionStrategyTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
 
-{ #category : 'testing' }
-MutantSelectionStrategyTest >> testSelectingFromCoverageMutantSelectionShouldOnlyMutateCoveredMethods [
+{ #category : 'as yet unclassified' }
+MutantSelectionStrategyTest class >> isDeprecated [
 
-	| classes mutationTestingAnalysis operator |
-	classes := OrderedCollection with: AuxiliarClassForTestingStrategies.
-	operator := ReplaceIfTrueWithIfFalseMutantOperator new.
-	mutationTestingAnalysis := MutationTestingAnalysis new
-		                           testClasses:
-			                           { AuxiliarTestClassForTestingStrategies };
-		                           classesToMutate: classes;
-		                           operators: (Set with: operator);
-		                           mutantSelectionStrategy:
-			                           SelectingFromCoverageMutantSelectionStrategy
-				                           new.
-	mutationTestingAnalysis run.
-	self assert: ((mutationTestingAnalysis mutations collect: [ :each |
-			  each originalMethod selector ]) includes: #method1).
-	self deny: ((mutationTestingAnalysis mutations collect: [ :each |
-			  each originalMethod selector ]) includes: #aNotCoveredMethod)
+	^ true
 ]

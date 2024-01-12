@@ -1,6 +1,12 @@
 Class {
 	#name : 'MethodInstallerException',
-	#superclass : 'Error',
+	#superclass : 'MTMethodInstallerException',
 	#category : 'MuTalk-Model',
 	#package : 'MuTalk-Model'
 }
+
+{ #category : 'as yet unclassified' }
+MethodInstallerException class >> isDeprecated [
+
+	^ true
+]

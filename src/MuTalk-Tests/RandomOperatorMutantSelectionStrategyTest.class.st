@@ -1,12 +1,12 @@
 Class {
 	#name : 'RandomOperatorMutantSelectionStrategyTest',
-	#superclass : 'RandomMutantSelectionStrategyTest',
+	#superclass : 'MTRandomOperatorMutantSelectionStrategyTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
-RandomOperatorMutantSelectionStrategyTest >> classToTest [
+{ #category : 'as yet unclassified' }
+RandomOperatorMutantSelectionStrategyTest class >> isDeprecated [
 
-	^ RandomOperatorMutantSelectionStrategy
+	^ true
 ]

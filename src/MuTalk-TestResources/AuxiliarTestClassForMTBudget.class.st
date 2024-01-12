@@ -1,15 +1,12 @@
 Class {
 	#name : 'AuxiliarTestClassForMTBudget',
-	#superclass : 'TestCase',
-	#instVars : [
-		'object'
-	],
+	#superclass : 'MTAuxiliarTestClassForMTBudget',
 	#category : 'MuTalk-TestResources',
 	#package : 'MuTalk-TestResources'
 }
 
-{ #category : 'tests' }
-AuxiliarTestClassForMTBudget >> testNil [
+{ #category : 'as yet unclassified' }
+AuxiliarTestClassForMTBudget class >> isDeprecated [
 
-	
+	^ true
 ]

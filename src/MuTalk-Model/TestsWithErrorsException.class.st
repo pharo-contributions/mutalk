@@ -1,6 +1,12 @@
 Class {
 	#name : 'TestsWithErrorsException',
-	#superclass : 'Error',
+	#superclass : 'MTTestsWithErrorsException',
 	#category : 'MuTalk-Model',
 	#package : 'MuTalk-Model'
 }
+
+{ #category : 'as yet unclassified' }
+TestsWithErrorsException class >> isDeprecated [
+
+	^ true
+]

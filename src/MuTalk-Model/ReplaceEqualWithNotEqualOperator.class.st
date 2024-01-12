@@ -1,17 +1,13 @@
 Class {
 	#name : 'ReplaceEqualWithNotEqualOperator',
-	#superclass : 'SelectorReplacementMutantOperator',
+	#superclass : 'MTReplaceEqualWithNotEqualOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'accessing' }
-ReplaceEqualWithNotEqualOperator >> newSelector [
-	^#~=
-]
+{ #category : 'as yet unclassified' }
+ReplaceEqualWithNotEqualOperator class >> isDeprecated [
 
-{ #category : 'accessing' }
-ReplaceEqualWithNotEqualOperator >> oldSelector [
-	^#=
+	^ true
 ]
