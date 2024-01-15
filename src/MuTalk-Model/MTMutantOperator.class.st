@@ -15,28 +15,27 @@ MTMutantOperator class >> allConcreteSubclasses [
 
 { #category : 'accessing' }
 MTMutantOperator class >> contents [
-
 	"This returns only the traditional operators "
 
-
-	^ (self allConcreteSubclasses collect: [ :class | class new ]) 
-		  asSortedCollection: [ :elem1 :elem2 | 
+	^ ((self allConcreteSubclasses reject: #isDeprecated) collect: [
+		   :class | class new ]) asSortedCollection: [ :elem1 :elem2 |
 		  elem1 description <= elem2 description ]
 ]
 
 { #category : 'accessing' }
 MTMutantOperator class >> contentsAll [
-
 	"This returns all operators (block based and traditional) "
 
-	^ ((self allSubclasses reject: [ :ea | ea isAbstract ]) collect: [ 
-		   :class | class new ]) asSortedCollection: [ :elem1 :elem2 | 
+	^ ((self allSubclasses reject: [ :ea |
+		    ea isAbstract or: [ ea isDeprecated ] ]) collect: [ :class |
+		   class new ]) asSortedCollection: [ :elem1 :elem2 |
 		  elem1 description <= elem2 description ]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'testing' }
 MTMutantOperator class >> isAbstract [
-	^self subclasses isNotEmpty
+
+	^ self == MTMutantOperator
 ]
 
 { #category : 'testing' }

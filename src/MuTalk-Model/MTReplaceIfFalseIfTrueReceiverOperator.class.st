@@ -6,6 +6,12 @@ Class {
 	#tag : 'Operators'
 }
 
+{ #category : 'testing' }
+MTReplaceIfFalseIfTrueReceiverOperator class >> isAbstract [
+
+	^ self == MTReplaceIfFalseIfTrueReceiverOperator
+]
+
 { #category : 'applying' }
 MTReplaceIfFalseIfTrueReceiverOperator >> selector [
 	^#ifFalse:IfTrue:

@@ -1,10 +1,16 @@
 Class {
 	#name : 'MTBlockBasedMutantOperator',
-	#superclass : 'MTMutantOperator',
+	#superclass : 'MutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
+
+{ #category : 'testing' }
+MTBlockBasedMutantOperator class >> isAbstract [
+
+	^ self == MTBlockBasedMutantOperator
+]
 
 { #category : 'testing' }
 MTBlockBasedMutantOperator class >> isOriginalOperator [

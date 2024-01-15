@@ -1,10 +1,16 @@
 Class {
 	#name : 'MTSelectorReplacementMutantOperator',
-	#superclass : 'MTMutantOperator',
+	#superclass : 'MutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
+
+{ #category : 'testing' }
+MTSelectorReplacementMutantOperator class >> isAbstract [
+
+	^ self == MTSelectorReplacementMutantOperator
+]
 
 { #category : 'printing' }
 MTSelectorReplacementMutantOperator >> description [

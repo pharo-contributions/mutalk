@@ -6,6 +6,12 @@ Class {
 	#tag : 'Operators'
 }
 
+{ #category : 'testing' }
+MTMessageSendArgumentsNullifierOperator class >> isAbstract [
+
+	^ self == MTMessageSendArgumentsNullifierOperator
+]
+
 { #category : 'printing' }
 MTMessageSendArgumentsNullifierOperator >> description [
 

@@ -7,7 +7,8 @@ Class {
 
 { #category : 'testing' }
 MTMutantOperatorTest class >> isAbstract [
-	^ self name = #MTMutantOperatorTest
+
+	^ self == MTMutantOperatorTest
 ]
 
 { #category : 'accessing' }

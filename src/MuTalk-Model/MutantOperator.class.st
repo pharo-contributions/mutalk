@@ -6,8 +6,14 @@ Class {
 	#tag : 'Operators'
 }
 
-{ #category : 'as yet unclassified' }
-MutantOperator class >> isDeprecated [
+{ #category : 'testing' }
+MutantOperator class >> isAbstract [
 
-	^ true
+	^ self == MutantOperator
+]
+
+{ #category : 'testing' }
+MutantOperator class >> isDeprecated [ 
+
+	^ self == MutantOperator
 ]

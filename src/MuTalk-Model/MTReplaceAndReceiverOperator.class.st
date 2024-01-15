@@ -6,6 +6,12 @@ Class {
 	#tag : 'Operators'
 }
 
+{ #category : 'testing' }
+MTReplaceAndReceiverOperator class >> isAbstract [
+
+	^ self == MTReplaceAndReceiverOperator
+]
+
 { #category : 'applying' }
 MTReplaceAndReceiverOperator >> selector [
 	^#and:
