@@ -20,7 +20,6 @@ MTTestCaseReferenceTest >> testATestReferenceResult [
 
 { #category : 'resources' }
 MTTestCaseReferenceTest >> testReferenceForTest1 [
-	^ TestCaseReference 
-		for: #test1
-		in: self class
+
+	^ MTTestCaseReference for: #test1 in: self class
 ]

@@ -47,7 +47,7 @@ MTRemoveAtIfAbsentMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 { #category : 'accessing' }
 MTRemoveAtIfAbsentMutantOperatorTest >> operator [
-	^ RemoveAtIfAbsentOperator new
+	^ MTRemoveAtIfAbsentOperator new
 ]
 
 { #category : 'accessing' }

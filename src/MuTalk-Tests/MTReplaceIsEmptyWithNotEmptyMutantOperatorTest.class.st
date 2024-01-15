@@ -40,7 +40,7 @@ MTReplaceIsEmptyWithNotEmptyMutantOperatorTest >> methodWithTwoSendersModifiedSe
 
 { #category : 'accessing' }
 MTReplaceIsEmptyWithNotEmptyMutantOperatorTest >> operator [
-	^ReplaceIsEmptyWithNotEmptyMutantOperator new
+	^MTReplaceIsEmptyWithNotEmptyMutantOperator new
 ]
 
 { #category : 'accessing' }

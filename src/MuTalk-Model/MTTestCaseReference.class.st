@@ -60,7 +60,7 @@ MTTestCaseReference >> runChecked [
 	| result |	
 	result := self runUnchecked.
 	(result unexpectedFailureCount > 0 or: [ result unexpectedErrorCount > 0 ])
-		ifTrue: [ TestsWithErrorsException signal ].
+		ifTrue: [ MTTestsWithErrorsException signal ].
 	^ result
 ]
 

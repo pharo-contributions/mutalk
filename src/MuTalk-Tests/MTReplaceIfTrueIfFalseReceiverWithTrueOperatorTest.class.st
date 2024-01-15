@@ -49,7 +49,7 @@ MTReplaceIfTrueIfFalseReceiverWithTrueOperatorTest >> methodWithTwoSendersModifi
 
 { #category : 'accessing' }
 MTReplaceIfTrueIfFalseReceiverWithTrueOperatorTest >> operator [
-	^ ReplaceIfTrueIfFalseReceiverWithTrueOperator new
+	^ MTReplaceIfTrueIfFalseReceiverWithTrueOperator new
 ]
 
 { #category : 'accessing' }

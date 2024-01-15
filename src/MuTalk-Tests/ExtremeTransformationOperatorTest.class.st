@@ -1,6 +1,6 @@
 Class {
 	#name : 'ExtremeTransformationOperatorTest',
-	#superclass : 'MTExtremeTransformationOperatorTest',
+	#superclass : 'MTEmptyMethodOperatorTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }

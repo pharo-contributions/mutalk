@@ -14,7 +14,7 @@ MTStubbornOnlyMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis 
 	
 	
 	1halt.
-	subSuite := CoverageTestSuiteSelector new
+	subSuite := MTCoverageTestSuiteSelector new
 		selectTestsFrom: aMutationTestingAnalysis.
 	
 	"subSuite := (1 to: 15) collect: [ :e | aMutationTestingAnalysis testCases atRandom ]."
@@ -22,7 +22,7 @@ MTStubbornOnlyMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis 
 	trivialAnalysis
 		testClasses: subSuite;
 		mutations: mutations;
-		testSelectionStrategy: AllTestsMethodsRunningTestSelectionStrategy new.
+		testSelectionStrategy: MTAllTestsMethodsRunningTestSelectionStrategy new.
 	trivialAnalysis generateResults.
 	1halt.
 	

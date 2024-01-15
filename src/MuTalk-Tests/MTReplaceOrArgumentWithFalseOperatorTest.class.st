@@ -37,7 +37,7 @@ MTReplaceOrArgumentWithFalseOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 { #category : 'accessing' }
 MTReplaceOrArgumentWithFalseOperatorTest >> operator [
-	^ ReplaceOrArgumentWithFalseOperator new
+	^ MTReplaceOrArgumentWithFalseOperator new
 ]
 
 { #category : 'accessing' }

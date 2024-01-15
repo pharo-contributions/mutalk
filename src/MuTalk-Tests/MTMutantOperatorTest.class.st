@@ -7,7 +7,7 @@ Class {
 
 { #category : 'testing' }
 MTMutantOperatorTest class >> isAbstract [
-	^ self name = #MutantOperatorTest
+	^ self name = #MTMutantOperatorTest
 ]
 
 { #category : 'accessing' }
@@ -153,12 +153,12 @@ MTMutantOperatorTest >> operator [
 	self subclassResponsibility
 ]
 
-{ #category : 'testing' }
+{ #category : 'accessing' }
 MTMutantOperatorTest >> operatorDescription [
 	self subclassResponsibility 
 ]
 
-{ #category : 'testing' }
+{ #category : 'tests' }
 MTMutantOperatorTest >> testApplyMutantToMethod [
 	self assert: self assertApplyingMutantToNonSenderMethod.
 	self assert: self assertApplyingMutantToFirstSenderInOneSenderMethod.
@@ -166,19 +166,22 @@ MTMutantOperatorTest >> testApplyMutantToMethod [
 	self assert: self assertApplyingMutantToSecondSenderInTwoSendersMethod
 ]
 
-{ #category : 'testing' }
+{ #category : 'tests' }
 MTMutantOperatorTest >> testNumberMutantsGenerated [
 	self assert: self assertNumberMutantsGeneratedForNonSenderMethod.
 	self assert: self assertNumberMutantsGeneratedForOneSenderMethod.
 	self assert: self assertNumberMutantsGeneratedForTwoSendersMethod
 ]
 
-{ #category : 'testing' }
+{ #category : 'tests' }
 MTMutantOperatorTest >> testPrintingAccessors [
-	self assert: self operator description = self operatorDescription.
+
+	self
+		assert: self operator description
+		equals: self operatorDescription
 ]
 
-{ #category : 'testing' }
+{ #category : 'tests' }
 MTMutantOperatorTest >> testTimesToApplyMutantToMethod [
 	self assert: self assertTimesToApplyOperatorToNonSenderMethod.
 	self assert: self assertTimesToApplyOperatorToOneSenderMethod.

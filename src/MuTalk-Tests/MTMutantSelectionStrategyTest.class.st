@@ -12,15 +12,15 @@ Class {
 MTMutantSelectionStrategyTest >> testSelectingFromCoverageMutantSelectionShouldOnlyMutateCoveredMethods [
 
 	| classes mutationTestingAnalysis operator |
-	classes := OrderedCollection with: AuxiliarClassForTestingStrategies.
-	operator := ReplaceIfTrueWithIfFalseMutantOperator new.
-	mutationTestingAnalysis := MutationTestingAnalysis new
+	classes := OrderedCollection with: MTAuxiliarClassForTestingStrategies.
+	operator := MTReplaceIfTrueWithIfFalseMutantOperator new.
+	mutationTestingAnalysis := MTAnalysis new
 		                           testClasses:
-			                           { AuxiliarTestClassForTestingStrategies };
+			                           { MTAuxiliarTestClassForTestingStrategies };
 		                           classesToMutate: classes;
 		                           operators: (Set with: operator);
 		                           mutantSelectionStrategy:
-			                           SelectingFromCoverageMutantSelectionStrategy
+			                           MTSelectingFromCoverageMutantSelectionStrategy
 				                           new.
 	mutationTestingAnalysis run.
 	self assert: ((mutationTestingAnalysis mutations collect: [ :each |

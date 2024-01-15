@@ -15,14 +15,14 @@ MTCITonelJsonExporterTest >> testWorking [
 	| analysis json moreInfo |
 	self skip.
 
-	analysis := MutationTestingAnalysis new
+	analysis := MTAnalysis new
 		            testClasses: { SmallBankTest };
 		            classesToMutate: { SmallBank }.
 	analysis run.
-	moreInfo := CoveragePropagationPreparation new
+	moreInfo := MTCoveragePropagationPreparation new
 		            mtResult: analysis;
 		            prepare.
-	json := MutalkCITonelJsonExporter new
+	json := MTCITonelJsonExporter new
 		        mtResult: analysis;
 		        coverageInfo: moreInfo;
 		        cloneLocation: FileLocator localDirectory fullName

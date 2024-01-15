@@ -10,29 +10,37 @@ Class {
 
 { #category : 'accessing' }
 MTMutationScoreTest >> mutationResultAcceptable [
-	^MutationTestingGeneralResult for: (OrderedCollection with: resource evaluationResultForKilledMutantByError)
+
+	^ MTGeneralResult for: (OrderedCollection with:
+			   resource evaluationResultForKilledMutantByError)
 ]
 
 { #category : 'accessing' }
 MTMutationScoreTest >> mutationResultAlmostAcceptable [
-	^MutationTestingGeneralResult for: (OrderedCollection with: resource evaluationResultForKilledMutantByError with: resource evaluationResultForAliveMutant)
+
+	^ MTGeneralResult for: (OrderedCollection
+			   with: resource evaluationResultForKilledMutantByError
+			   with: resource evaluationResultForAliveMutant)
 ]
 
 { #category : 'accessing' }
 MTMutationScoreTest >> mutationResultNonAcceptable [
-	^MutationTestingGeneralResult 
-		for: (OrderedCollection with: resource evaluationResultForAliveMutant)
+
+	^ MTGeneralResult for:
+		  (OrderedCollection with: resource evaluationResultForAliveMutant)
 ]
 
-{ #category : 'testing' }
+{ #category : 'running' }
 MTMutationScoreTest >> setUp [
-	resource := MutationTestingResource current
+
+	super setUp.
+	resource := MTResource current
 ]
 
 { #category : 'testing' }
 MTMutationScoreTest >> testMutationScoreAcceptable [
 	|score|
-	score := (MutationAcceptableScore scoreFor: self mutationResultAcceptable).
+	score := (MTMutationAcceptableScore scoreFor: self mutationResultAcceptable).
 	self assert: score isAcceptableScore.
 	self deny: score isNonAcceptableScore.
 	self deny: score isAlmostAcceptableScore.
@@ -41,7 +49,7 @@ MTMutationScoreTest >> testMutationScoreAcceptable [
 { #category : 'testing' }
 MTMutationScoreTest >> testMutationScoreAlmostAcceptable [
 	|score|
-	score := (MutationAlmostAcceptableScore scoreFor: self mutationResultAlmostAcceptable).
+	score := (MTMutationAlmostAcceptableScore scoreFor: self mutationResultAlmostAcceptable).
 	self deny: score isAcceptableScore.
 	self deny: score isNonAcceptableScore.
 	self assert: score isAlmostAcceptableScore.
@@ -49,32 +57,40 @@ MTMutationScoreTest >> testMutationScoreAlmostAcceptable [
 
 { #category : 'testing' }
 MTMutationScoreTest >> testMutationScoreColor [
-	|score|
-	score := (MutationScoreBehavior buildFor: self mutationResultAcceptable).
-	self assert: score color = Color green.
-	
-	score := (MutationScoreBehavior buildFor: self mutationResultNonAcceptable).
-	self assert: score color = Color red.
-	
-	score := (MutationScoreBehavior buildFor: self mutationResultAlmostAcceptable).
-	self assert: score color = Color yellow.
+
+	| score |
+	score := MTMutationScoreBehavior buildFor:
+		         self mutationResultAcceptable.
+	self assert: score color equals: Color green.
+
+	score := MTMutationScoreBehavior buildFor:
+		         self mutationResultNonAcceptable.
+	self assert: score color equals: Color red.
+
+	score := MTMutationScoreBehavior buildFor:
+		         self mutationResultAlmostAcceptable.
+	self assert: score color equals: Color yellow
 ]
 
 { #category : 'testing' }
 MTMutationScoreTest >> testMutationScoreCreation [
-	|score|
-	score := (MutationScoreBehavior buildFor: self mutationResultAcceptable).
+
+	| score |
+	score := MTMutationScoreBehavior buildFor:
+		         self mutationResultAcceptable.
 	self assert: score isAcceptableScore.
-	score := (MutationScoreBehavior buildFor: self mutationResultAlmostAcceptable).
+	score := MTMutationScoreBehavior buildFor:
+		         self mutationResultAlmostAcceptable.
 	self assert: score isAlmostAcceptableScore.
-	score := (MutationScoreBehavior buildFor: self mutationResultNonAcceptable).
-	self assert: score isNonAcceptableScore.
+	score := MTMutationScoreBehavior buildFor:
+		         self mutationResultNonAcceptable.
+	self assert: score isNonAcceptableScore
 ]
 
 { #category : 'testing' }
 MTMutationScoreTest >> testMutationScoreNonAcceptable [
 	|score|
-	score := (MutationNonAcceptableScore scoreFor: self mutationResultNonAcceptable).
+	score := (MTMutationNonAcceptableScore scoreFor: self mutationResultNonAcceptable).
 	self deny: score isAcceptableScore.
 	self assert: score isNonAcceptableScore.
 	self deny: score isAlmostAcceptableScore.

@@ -47,7 +47,7 @@ MTLiteralIntegersIncreaseOperatorTest >> methodWithTwoSendersModifiedSecond [
 { #category : 'accessing' }
 MTLiteralIntegersIncreaseOperatorTest >> operator [
 
-	^ LiteralIntegersIncreaseOperator new
+	^ MTLiteralIntegersIncreaseOperator new
 ]
 
 { #category : 'accessing' }

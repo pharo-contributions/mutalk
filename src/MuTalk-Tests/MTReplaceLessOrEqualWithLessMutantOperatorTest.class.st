@@ -37,7 +37,7 @@ MTReplaceLessOrEqualWithLessMutantOperatorTest >> methodWithTwoSendersModifiedSe
 
 { #category : 'accessing' }
 MTReplaceLessOrEqualWithLessMutantOperatorTest >> operator [
-	^ ReplaceLessOrEqualWithLessMutantOperator new
+	^ MTReplaceLessOrEqualWithLessMutantOperator new
 ]
 
 { #category : 'accessing' }

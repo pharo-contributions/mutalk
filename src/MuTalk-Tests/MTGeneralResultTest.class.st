@@ -15,44 +15,56 @@ MTGeneralResultTest class >> packageNamesUnderTest [
 
 { #category : 'accessing' }
 MTGeneralResultTest class >> resources [
-	^ {MutationTestingResource}
+	^ {MTResource}
 ]
 
 { #category : 'accessing' }
 MTGeneralResultTest >> mutationEngineGeneralEmptyResult [
 	"Returns an empty Mutant Engine General Result."
-	^ MutationTestingGeneralResult empty
+
+	^ MTGeneralResult empty
 ]
 
 { #category : 'accessing' }
 MTGeneralResultTest >> mutationEngineGeneralResultWithOneAliveMutant [
 	"Returns a Mutant Engine General Result with only one mutant survived."
-	^ MutationTestingGeneralResult for: (OrderedCollection with: resource evaluationResultForAliveMutant)
+
+	^ MTGeneralResult for:
+		  (OrderedCollection with: resource evaluationResultForAliveMutant)
 ]
 
 { #category : 'accessing' }
 MTGeneralResultTest >> mutationEngineGeneralResultWithOneKilledMutantByError [
 	"Returns a Mutant Engine General Result with only one mutant killed by
 	error. "
-	^ MutationTestingGeneralResult for: (OrderedCollection with: resource evaluationResultForKilledMutantByError)
+
+	^ MTGeneralResult for: (OrderedCollection with:
+			   resource evaluationResultForKilledMutantByError)
 ]
 
 { #category : 'accessing' }
 MTGeneralResultTest >> mutationEngineGeneralResultWithOneKilledMutantByFailure [
 	"Returns a Mutant Engine General Result with only one mutant killed by
 	failure."
-	^ MutationTestingGeneralResult for: (OrderedCollection with: resource evaluationResultForKilledMutantByFailure)
+
+	^ MTGeneralResult for: (OrderedCollection with:
+			   resource evaluationResultForKilledMutantByFailure)
 ]
 
 { #category : 'accessing' }
 MTGeneralResultTest >> mutationEngineGeneralResultWithOneTerminatedMutant [
 	"Returns a Mutant Engine General Result with only one terminated mutant."
-	^ MutationTestingGeneralResult for: (OrderedCollection with: resource evaluationResultForTerminatedMutant)
+
+	^ MTGeneralResult for:
+		  (OrderedCollection with:
+			   resource evaluationResultForTerminatedMutant)
 ]
 
-{ #category : 'building' }
+{ #category : 'running' }
 MTGeneralResultTest >> setUp [
-	resource := MutationTestingResource current
+
+	super setUp.
+	resource := MTResource current
 ]
 
 { #category : 'testing' }

@@ -4,5 +4,5 @@ Extension { #name : 'MTGeneralResult' }
 MTGeneralResult >> inspectorExtension [
 
 	<inspectorPresentationOrder: 0 title: 'Mutation Results'>
-	^ MutationResultsPresenter on: self aliveMutants
+	^ MTMutationResultsPresenter on: self aliveMutants
 ]

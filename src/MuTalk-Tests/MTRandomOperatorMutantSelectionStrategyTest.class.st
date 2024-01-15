@@ -8,5 +8,5 @@ Class {
 { #category : 'accessing' }
 MTRandomOperatorMutantSelectionStrategyTest >> classToTest [
 
-	^ RandomOperatorMutantSelectionStrategy
+	^ MTRandomOperatorMutantSelectionStrategy
 ]

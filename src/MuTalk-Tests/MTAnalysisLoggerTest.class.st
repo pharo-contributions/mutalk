@@ -9,24 +9,21 @@ Class {
 MTAnalysisLoggerTest >> testExecutingSimpleMutation [
 
 	| analysis logger operator |
-	logger := MockMutationTestingAnalysisLogger new.
-	operator := ReplacePlusWithMinusMutantOperator new.
-	analysis := MutationTestingAnalysis new
+	logger := MTMockMTAnalysisLogger new.
+	operator := MTReplacePlusWithMinusMutantOperator new.
+	analysis := MTAnalysis new
 		            testClasses:
-			            (Array with:
-					             AuxiliarClassForMutationTestingAnalysisTest);
+			            (Array with: MTAuxiliarClassForMTAnalysisTest);
 		            classesToMutate:
-			            (Array with: AuxiliarClassForMutationTestingAnalysis);
+			            (Array with: MTAuxiliarClassForMTAnalysis);
 		            operators: (Array with: operator);
 		            logger: logger.
 	analysis run.
 	self assert: logger loggedStartAnalysis.
 	self assert: (logger
 			 loggedStartBuildingMutationsFor:
-			 AuxiliarClassForMutationTestingAnalysis
-			 >> #methodWithOnePlusSender
+			 MTAuxiliarClassForMTAnalysis >> #methodWithOnePlusSender
 			 using: operator).
 	self assert: (logger loggedStartMutantEvaluationForMutationOf:
-			 AuxiliarClassForMutationTestingAnalysis
-			 >> #methodWithOnePlusSender)
+			 MTAuxiliarClassForMTAnalysis >> #methodWithOnePlusSender)
 ]

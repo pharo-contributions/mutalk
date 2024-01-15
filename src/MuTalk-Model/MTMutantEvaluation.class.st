@@ -38,7 +38,7 @@ MTMutantEvaluation >> coverageAnalysisResult [
 MTMutantEvaluation >> initializeCoverageResultIfNil [
 	coverageAnalysisResult 
 		ifNil:[ |coverageAnalysis|
-				coverageAnalysis := CoverageAnalysis for: (OrderedCollection with: mutation originalClass)
+				coverageAnalysis := MTCoverageAnalysis for: (OrderedCollection with: mutation originalClass)
 															 running: testCases. 
 				coverageAnalysisResult := coverageAnalysis run;result].
 ]
@@ -82,7 +82,7 @@ MTMutantEvaluation >> valueStoppingOnError: aBoolean [
 	mutation testCaseReferences:
 		(strategy testCasesToEvaluate: mutation for: self).
 	testResults := mutation runMutantStoppingOnError: aBoolean.
-	^ MutantEvaluationResult
+	^ MTMutantEvaluationResult
 		  for: mutation
 		  results: testResults
 		  producedBy: self

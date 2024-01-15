@@ -59,7 +59,7 @@ MTMessageSendArguments1stNullifierOperatorTest >> methodWithTwoSendersModifiedSe
 { #category : 'accessing' }
 MTMessageSendArguments1stNullifierOperatorTest >> operator [
 
-	^ MessageSendArguments1stNullifierOperator new
+	^ MTMessageSendArguments1stNullifierOperator new
 ]
 
 { #category : 'accessing' }

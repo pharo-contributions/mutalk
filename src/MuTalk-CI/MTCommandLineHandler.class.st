@@ -53,16 +53,17 @@ MTCommandLineHandler >> hasArgument: command [
 ]
 
 { #category : 'private' }
-MTCommandLineHandler >> icebergProject [ 
-			MutalkCI new
-				project: project;
-				mutateAll 
+MTCommandLineHandler >> icebergProject [
+
+	MTCI new
+		project: project;
+		mutateAll
 ]
 
 { #category : 'private' }
 MTCommandLineHandler >> icebergProjectCommit [
 
-	MutalkCI new
+	MTCI new
 		project: project;
 		commit: commit;
 		mutateDiff
@@ -71,8 +72,8 @@ MTCommandLineHandler >> icebergProjectCommit [
 { #category : 'private' }
 MTCommandLineHandler >> icebergProjectDiff [
 
-			MutalkCI new
-				project: project;
-				recentCommit;
-				mutateDiff 
+	MTCI new
+		project: project;
+		recentCommit;
+		mutateDiff
 ]

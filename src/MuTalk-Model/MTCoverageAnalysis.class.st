@@ -85,7 +85,7 @@ MTCoverageAnalysis >> methodToTestDictionaryFrom: wrappers [
 
 { #category : 'private' }
 MTCoverageAnalysis >> methodWrappersFor: methodReferences [ 
-	^ methodReferences collect: [ :each | MethodWrapperForCoverage on: each for: self ]
+	^ methodReferences collect: [ :each | MTMethodWrapperForCoverage on: each for: self ]
 ]
 
 { #category : 'accessing' }
@@ -100,7 +100,7 @@ MTCoverageAnalysis >> run [
 	methodReferences := self methodReferences.
 	wrappers := self methodWrappersFor: methodReferences.
 	self runTestsInstalling: wrappers.
-	result := CoverageAnalysisResult
+	result := MTCoverageAnalysisResult
 		          from: (self methodToTestDictionaryFrom: wrappers)
 		          elapsedTime: testRunningElapsedTime.
 	result methodReferences: (self classesAndMetaclasses flatCollect: [:cls | cls methods])
@@ -111,7 +111,7 @@ MTCoverageAnalysis >> runTests [
 
 	testRunningElapsedTime := [
 	                          | suite |
-	                          suite := TestSuiteWrappedForCoverage
+	                          suite := MTTestSuiteWrappedForCoverage
 		                                   for: self
 		                                   named: 'Test Suite for Coverage'.
 	                          suite addTests: testCases.

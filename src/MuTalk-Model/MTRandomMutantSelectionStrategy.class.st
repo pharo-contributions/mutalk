@@ -18,16 +18,16 @@ MTRandomMutantSelectionStrategy class >> using: aMutationsGenerationStrategy [
 ]
 
 { #category : 'accessing-defaults' }
-MTRandomMutantSelectionStrategy >> defaultMutationGenerationStrategy [
+MTRandomMutantSelectionStrategy >> defaultMutantSelectionStrategy [
 
-	^ AllMutantSelectionStrategy new
+	^ MTAllMutantSelectionStrategy new
 ]
 
 { #category : 'initialization' }
 MTRandomMutantSelectionStrategy >> initialize [
 
 	super initialize.
-	mutationsGenerationStrategy := self defaultMutationGenerationStrategy
+	mutationsGenerationStrategy := self defaultMutantSelectionStrategy
 ]
 
 { #category : 'generating' }

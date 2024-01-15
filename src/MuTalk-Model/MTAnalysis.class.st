@@ -25,16 +25,16 @@ MTAnalysis class >> defaultLogger [
 	self deprecated:
 		'This method will be removed in the next version of MuTalk.
 		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ NullMutationTestingAnalysisLogger new
+	^ MTNullAnalysisLogger new
 ]
 
 { #category : 'defaults' }
-MTAnalysis class >> defaultMutantsEvaluationStrategy [
+MTAnalysis class >> defaultMutantSelectionStrategy [
 
 	self deprecated:
 		'This method will be removed in the next version of MuTalk.
 		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ AllTestsMethodsRunningTestSelectionStrategy new
+	^ MTAllMutantSelectionStrategy new
 ]
 
 { #category : 'defaults' }
@@ -47,12 +47,12 @@ MTAnalysis class >> defaultMutationTestingBudget [
 ]
 
 { #category : 'defaults' }
-MTAnalysis class >> defaultMutationsGenerationStrategy [
+MTAnalysis class >> defaultTestSelectionStrategy [
 
 	self deprecated:
 		'This method will be removed in the next version of MuTalk.
 		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ AllMutantSelectionStrategy new
+	^ MTAllTestsMethodsRunningTestSelectionStrategy new
 ]
 
 { #category : 'instance creation' }
@@ -65,8 +65,8 @@ MTAnalysis class >> for: testCases mutating: classes using: operatorCollection [
 		  for: testCases
 		  mutating: classes
 		  using: operatorCollection
-		  with: self defaultMutantsEvaluationStrategy
-		  with: self defaultMutationsGenerationStrategy
+		  with: self defaultTestSelectionStrategy
+		  with: self defaultMutantSelectionStrategy
 ]
 
 { #category : 'instance creation' }
@@ -79,8 +79,8 @@ MTAnalysis class >> for: testCases mutating: classes using: operatorCollection b
 		  for: testCases
 		  mutating: classes
 		  using: operatorCollection
-		  with: self defaultMutantsEvaluationStrategy
-		  with: self defaultMutationsGenerationStrategy
+		  with: self defaultTestSelectionStrategy
+		  with: self defaultMutantSelectionStrategy
 		  budget: aBudget
 ]
 
@@ -94,8 +94,8 @@ MTAnalysis class >> for: testCases mutating: classes using: operatorCollection l
 		  for: testCases
 		  mutating: classes
 		  using: operatorCollection
-		  with: self defaultMutantsEvaluationStrategy
-		  with: self defaultMutationsGenerationStrategy
+		  with: self defaultTestSelectionStrategy
+		  with: self defaultMutantSelectionStrategy
 		  loggingIn: aLogger
 ]
 
@@ -109,8 +109,8 @@ MTAnalysis class >> for: testCases mutating: classes using: operatorCollection l
 		  for: testCases
 		  mutating: classes
 		  using: operatorCollection
-		  with: self defaultMutantsEvaluationStrategy
-		  with: self defaultMutationsGenerationStrategy
+		  with: self defaultTestSelectionStrategy
+		  with: self defaultMutantSelectionStrategy
 		  loggingIn: aLogger
 		  budget: aBudget
 ]
@@ -126,7 +126,7 @@ MTAnalysis class >> for: testCases mutating: classes using: operatorCollection w
 		  mutating: classes
 		  using: operatorCollection
 		  with: aMutantEvaluationStrategy
-		  with: self defaultMutationsGenerationStrategy
+		  with: self defaultMutantSelectionStrategy
 ]
 
 { #category : 'instance creation' }
@@ -140,7 +140,7 @@ MTAnalysis class >> for: testCases mutating: classes using: operatorCollection w
 		  mutating: classes
 		  using: operatorCollection
 		  with: aMutantEvaluationStrategy
-		  with: self defaultMutationsGenerationStrategy
+		  with: self defaultMutantSelectionStrategy
 		  budget: aBudget
 ]
 
@@ -155,7 +155,7 @@ MTAnalysis class >> for: testCases mutating: classes using: operatorCollection w
 		  mutating: classes
 		  using: operatorCollection
 		  with: aMutantEvaluationStrategy
-		  with: self defaultMutationsGenerationStrategy
+		  with: self defaultMutantSelectionStrategy
 		  loggingIn: aLogger
 ]
 
@@ -170,7 +170,7 @@ MTAnalysis class >> for: testCases mutating: classes using: operatorCollection w
 		  mutating: classes
 		  using: operatorCollection
 		  with: aMutantEvaluationStrategy
-		  with: self defaultMutationsGenerationStrategy
+		  with: self defaultMutantSelectionStrategy
 		  loggingIn: aLogger
 		  budget: aBudget
 ]
@@ -248,8 +248,7 @@ MTAnalysis class >> testCasesFrom: testClasses [
 	^ testClasses
 		  inject: OrderedCollection new
 		  into: [ :testCases :testClass |
-			  ((testClass isKindOf: TestCase class) and: [
-				   testClass isAbstract not ]) ifTrue: [
+			  testClass isAbstract ifFalse: [
 				  testCases addAll: (self testCasesReferencesFrom: testClass) ].
 			  testCases ]
 ]
@@ -429,7 +428,7 @@ MTAnalysis class >> testCasesReferencesFrom: testClass [
 		'This method will be removed in the next version of MuTalk.
 		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
 	^ testClass allTestSelectors collect: [ :each |
-		  TestCaseReference for: each in: testClass ]
+		  MTTestCaseReference for: each in: testClass ]
 ]
 
 { #category : 'accessing' }
@@ -450,10 +449,10 @@ MTAnalysis >> classesToMutate: anObject [
 	modelClasses := anObject
 ]
 
-{ #category : 'accesing' }
+{ #category : 'accessing' }
 MTAnalysis >> coverageAnalysisResult [
-	
-	^coverageAnalysisResult
+
+	^ coverageAnalysisResult
 ]
 
 { #category : 'accessing' }
@@ -471,25 +470,25 @@ MTAnalysis >> defaultBudget [
 { #category : 'defaults' }
 MTAnalysis >> defaultLogger [
 
-	^ NullMutationTestingAnalysisLogger new
+	^ MTNullAnalysisLogger new
 ]
 
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultMutantSelectionStrategy [
 
-	^ AllMutantSelectionStrategy new
+	^ MTAllMutantSelectionStrategy new
 ]
 
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultOperators [
 
-	^ MutantOperator contents
+	^ MTMutantOperator contents
 ]
 
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultTestSelectionStrategy [
 
-	^ AllTestsMethodsRunningTestSelectionStrategy new
+	^ MTAllTestsMethodsRunningTestSelectionStrategy new
 ]
 
 { #category : 'accessing' }
@@ -501,13 +500,13 @@ MTAnalysis >> doNotStopOnErrorOrFail [
 { #category : 'results' }
 MTAnalysis >> generalResult [
 
-	^ MutationTestingGeneralResult for: mutantResults timed: elapsedTime
+	^ MTGeneralResult for: mutantResults timed: elapsedTime
 ]
 
 { #category : 'running' }
 MTAnalysis >> generateCoverageAnalysis [
 
-	coverageAnalysisResult := (CoverageAnalysis
+	coverageAnalysisResult := (MTCoverageAnalysis
 		                           for: self modelClasses
 		                           running: testCases)
 		                          run;
@@ -531,7 +530,7 @@ MTAnalysis >> generateResults [
 		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)
 			ifTrue: [ ^ mutantResults ].
 		logger logStartEvaluating: aMutation.
-		mutantResults add: ((MutantEvaluation
+		mutantResults add: ((MTMutantEvaluation
 				  for: aMutation
 				  using: testCases
 				  following: testSelectionStrategy
@@ -574,12 +573,13 @@ MTAnalysis >> logger: anObject [
 	logger := anObject
 ]
 
-{ #category : 'accesing' }
+{ #category : 'accessing' }
 MTAnalysis >> modelClasses [
 	"Filter tests and testsResources"
-	^ modelClasses
-		reject: [:class | self testBaseClasses
-				anySatisfy: [:classToFilter | class includesBehavior: classToFilter]]
+
+	^ modelClasses reject: [ :class |
+		  self testBaseClasses anySatisfy: [ :classToFilter |
+			  class includesBehavior: classToFilter ] ]
 ]
 
 { #category : 'results' }
@@ -640,7 +640,7 @@ MTAnalysis >> run [
 	                 self generateMutations.
 	                 self generateResults ] timeToRun.
 	  true ]
-		  on: TestsWithErrorsException
+		  on: MTTestsWithErrorsException
 		  do: [ :ex |
 			  self inform:
 				  'Your tests have Errors or Failures. Please correct them.'.
@@ -686,7 +686,7 @@ MTAnalysis >> testCasesFrom: aClassCollection [
 MTAnalysis >> testCasesReferencesFrom: testClass [
 
 	^ testClass allTestSelectors collect: [ :each |
-		  TestCaseReference for: each in: testClass ]
+		  MTTestCaseReference for: each in: testClass ]
 ]
 
 { #category : 'accessing' }

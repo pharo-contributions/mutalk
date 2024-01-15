@@ -8,7 +8,7 @@ Class {
 { #category : 'accessing' }
 MTRandomMutantSelectionStrategyTest >> classToTest [
 
-	^ RandomMutantSelectionStrategy
+	^ MTRandomMutantSelectionStrategy
 ]
 
 { #category : 'tests' }
@@ -21,11 +21,11 @@ MTRandomMutantSelectionStrategyTest >> testAtLeastTwoDifferentMutantCollectionsA
 	"mutationsSet is a set of mutant collections"
 	mutationsSet := Set new.
 	1 to: 5 do: [ :i |
-		analysis := MutationTestingAnalysis new
+		analysis := MTAnalysis new
 			            testClasses:
-				            { AuxiliarClassForMutationTestingAnalysisTest };
+				            { MTAuxiliarClassForMTAnalysisTest };
 			            classesToMutate:
-				            { AuxiliarClassForMutationTestingAnalysis };
+				            { MTAuxiliarClassForMTAnalysis };
 			            mutantSelectionStrategy: self classToTest new.
 		mutationsSet add: analysis generateMutations ].
 
@@ -34,9 +34,9 @@ MTRandomMutantSelectionStrategyTest >> testAtLeastTwoDifferentMutantCollectionsA
 ]
 
 { #category : 'tests' }
-MTRandomMutantSelectionStrategyTest >> testDefaultMutationsGenerationStrategyIsAllMutantSelectionStrategy [
+MTRandomMutantSelectionStrategyTest >> testDefaultMutantSelectionStrategyIsAllMutantSelectionStrategy [
 
 	self
 		assert: self classToTest new mutantSelectionStrategy species
-		equals: AllMutantSelectionStrategy new species
+		equals: MTAllMutantSelectionStrategy new species
 ]

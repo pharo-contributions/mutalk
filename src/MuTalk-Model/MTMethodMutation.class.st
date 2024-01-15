@@ -56,7 +56,7 @@ MTMethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: 
 MTMethodMutation >> install [
 	"Install the mutant compiling the modified source into the class."
 
-	MethodInstaller new
+	MTMethodInstaller new
 		installFromSourceSilently: self modifiedSource
 		in: originalClass
 ]
@@ -164,7 +164,7 @@ MTMethodMutation >> testCaseReferences: aCollectionOfTestCaseReferences [
 MTMethodMutation >> uninstall [
 	"UnInstall the mutant recompiling the original method into the class."
 
-	MethodInstaller new
+	MTMethodInstaller new
 		install: originalMethod
 		for: originalMethod selector
 		in: originalClass

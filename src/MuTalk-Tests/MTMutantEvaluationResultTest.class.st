@@ -15,7 +15,7 @@ MTMutantEvaluationResultTest class >> packageNamesUnderTest [
 
 { #category : 'accessing' }
 MTMutantEvaluationResultTest class >> resources [
-	^ {MutationTestingResource}
+	^ {MTResource}
 ]
 
 { #category : 'testing - printing' }
@@ -24,9 +24,11 @@ MTMutantEvaluationResultTest >> mutantPrintString [
 	^ resource mutation printString
 ]
 
-{ #category : 'testing' }
+{ #category : 'running' }
 MTMutantEvaluationResultTest >> setUp [
-	resource := MutationTestingResource current
+
+	super setUp.
+	resource := MTResource current
 ]
 
 { #category : 'testing' }

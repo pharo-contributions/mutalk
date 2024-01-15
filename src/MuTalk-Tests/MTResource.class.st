@@ -14,7 +14,7 @@ MTResource >> evaluationResultEmpty [
 	| mutant testResultEmpty |
 	mutant := self mutation.
 	testResultEmpty := self testResultEmpty.
-	^ MutantEvaluationResult 
+	^ MTMutantEvaluationResult 
 		for: mutant
 		results: testResultEmpty
 ]
@@ -25,7 +25,7 @@ MTResource >> evaluationResultForAliveMutant [
 	| mutation testResultWithoutErrors |
 	mutation := self mutation.
 	testResultWithoutErrors := self testResultWithoutErrorOrFailure.
-	^ MutantEvaluationResult 
+	^ MTMutantEvaluationResult 
 		for: mutation
 		results: testResultWithoutErrors
 ]
@@ -36,7 +36,7 @@ MTResource >> evaluationResultForKilledMutantByError [
 	| mutation testResultWithOneError |
 	mutation := self mutation.
 	testResultWithOneError := self testResultWithError.
-	^ MutantEvaluationResult 
+	^ MTMutantEvaluationResult 
 		for: mutation
 		results: testResultWithOneError
 ]
@@ -47,7 +47,7 @@ MTResource >> evaluationResultForKilledMutantByFailure [
 	| mutation testResultWithOneFailure |
 	mutation := self mutation.
 	testResultWithOneFailure := self testResultWithFailure.
-	^ MutantEvaluationResult 
+	^ MTMutantEvaluationResult 
 		for: mutation
 		results: testResultWithOneFailure
 ]
@@ -57,7 +57,7 @@ MTResource >> evaluationResultForTerminatedMutant [
 	"Build a MutationEvaluationResult for aMutant terminated"
 	| mutation |
 	mutation := self mutation.
-	^ MutantEvaluationResult 
+	^ MTMutantEvaluationResult 
 		for: mutation
 		results: nil
 ]
@@ -72,16 +72,18 @@ MTResource >> mutation [
 	"Build Mock Object that simulates a Mutant"
 	| method |
 	method := self class >> #methodForBuildingMutant.
-	^ MethodMutation
+	^ MTMethodMutation
 		for: method
-		using: ReplacePlusWithMinusMutantOperator new
+		using: MTReplacePlusWithMinusMutantOperator new
 		nodeNumber: 1
 		ofClass: self class
 ]
 
-{ #category : 'building' }
+{ #category : 'running' }
 MTResource >> setUp [
-	testResource := MutationTestCaseResource new
+
+	super setUp.
+	testResource := MTMutationTestCaseResource new
 ]
 
 { #category : 'building-private' }

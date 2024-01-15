@@ -37,7 +37,7 @@ MTReplaceGreaterOrEqualWithGreaterMutantOperatorTest >> methodWithTwoSendersModi
 
 { #category : 'accessing' }
 MTReplaceGreaterOrEqualWithGreaterMutantOperatorTest >> operator [
-	^ ReplaceGreaterOrEqualWithGreaterMutantOperator new
+	^ MTReplaceGreaterOrEqualWithGreaterMutantOperator new
 ]
 
 { #category : 'accessing' }

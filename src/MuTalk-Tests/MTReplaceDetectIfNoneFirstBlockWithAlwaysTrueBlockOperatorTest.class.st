@@ -64,7 +64,7 @@ MTReplaceDetectIfNoneFirstBlockWithAlwaysTrueBlockOperatorTest >> methodWithTwoS
 
 { #category : 'accessing' }
 MTReplaceDetectIfNoneFirstBlockWithAlwaysTrueBlockOperatorTest >> operator [
-	^ ReplaceDetectIfNoneFirstBlockWithAlwaysTrueBlockOperator new
+	^ MTReplaceDetectIfNoneFirstBlockWithAlwaysTrueBlockOperator new
 ]
 
 { #category : 'accessing' }

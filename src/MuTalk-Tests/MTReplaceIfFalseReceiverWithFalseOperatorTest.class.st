@@ -46,7 +46,7 @@ MTReplaceIfFalseReceiverWithFalseOperatorTest >> methodWithTwoSendersModifiedSec
 
 { #category : 'accessing' }
 MTReplaceIfFalseReceiverWithFalseOperatorTest >> operator [
-	^ ReplaceIfFalseReceiverWithFalseOperator new
+	^ MTReplaceIfFalseReceiverWithFalseOperator new
 ]
 
 { #category : 'accessing' }

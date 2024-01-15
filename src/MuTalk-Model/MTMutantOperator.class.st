@@ -146,7 +146,7 @@ MTMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: 
 { #category : 'private' }
 MTMutantOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumberOfSelector [
 
-	^ MethodMutation
+	^ MTMethodMutation
 		  for: aCompiledMethod
 		  using: self
 		  nodeNumber: aNumberOfSelector

@@ -5,18 +5,18 @@ Class {
 	#package : 'MuTalk-TestResources'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'tests' }
 MTAuxiliarTestClassForTestingStrategies >> testMethodThatCoverMethod1 [
 
-	self assert: AuxiliarClassForTestingStrategies new method1 = 1. 
-	
-	
+	self
+		assert: MTAuxiliarClassForTestingStrategies new method1
+		equals: 1
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'tests' }
 MTAuxiliarTestClassForTestingStrategies >> testMethodThatCoverMethod2 [
 
-	self assert: AuxiliarClassForTestingStrategies new method2 = 2. 
-	
-	
+	self
+		assert: MTAuxiliarClassForTestingStrategies new method2
+		equals: 2
 ]

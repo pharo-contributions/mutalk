@@ -49,7 +49,7 @@ MTMessageSendToYourselfOperatorTest >> methodWithTwoSendersModifiedSecond [
 { #category : 'accessing' }
 MTMessageSendToYourselfOperatorTest >> operator [
 
-	^ MessageSendToYourselfOperator new
+	^ MTMessageSendToYourselfOperator new
 ]
 
 { #category : 'accessing' }

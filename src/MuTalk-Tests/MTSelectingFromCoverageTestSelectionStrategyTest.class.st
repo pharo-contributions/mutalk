@@ -27,5 +27,5 @@ MTSelectingFromCoverageTestSelectionStrategyTest >> assertMutantNotInCoverageOfT
 
 { #category : 'configuring' }
 MTSelectingFromCoverageTestSelectionStrategyTest >> selectionStrategy [
-	^ SelectingFromCoverageTestSelectionStrategy
+	^ MTSelectingFromCoverageTestSelectionStrategy
 ]

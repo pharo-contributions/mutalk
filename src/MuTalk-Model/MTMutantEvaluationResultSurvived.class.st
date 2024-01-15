@@ -38,7 +38,8 @@ MTMutantEvaluationResultSurvived >> killed [
 
 { #category : 'accessing' }
 MTMutantEvaluationResultSurvived >> killingSuggestions [
-	^ (MutantKillingSuggestionGenerator new suggestionFor: mutant)
+
+	^ MTMutantKillingSuggestionGenerator new suggestionFor: mutant
 ]
 
 { #category : 'testing' }

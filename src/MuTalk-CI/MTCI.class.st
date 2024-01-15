@@ -67,7 +67,7 @@ MTCI >> exportResultJson: analysis [
 	commitTo := repo head commit id.
 	timestamp := DateAndTime now asUnixTime.
 
-	json := MutalkCITonelJsonExporter new
+	json := MTCITonelJsonExporter new
 		        mtResult: analysis;
 		        commit: commitTo;
 		        root: repo subdirectory;
@@ -89,7 +89,7 @@ MTCI >> exportResultJson: analysis coverageInfo: coverageInfo [
 	commitTo := repo head commit id.
 	timestamp := DateAndTime now asUnixTime.
 
-	json := MutalkCITonelJsonExporter new
+	json := MTCITonelJsonExporter new
 		        mtResult: analysis;
 		        commit: commitTo;
 		coverageInfo: coverageInfo;
@@ -145,7 +145,7 @@ MTCI >> mutateAll [
 		runMutalkTargets: targets
 		tests: tests
 		generationStrategy:
-		SelectingFromCoverageMutantSelectionStrategy new
+		MTSelectingFromCoverageMutantSelectionStrategy new
 ]
 
 { #category : 'as yet unclassified' }
@@ -154,7 +154,7 @@ MTCI >> mutateDiff [
 	| targets targetMethods tests classes |
 	classes := self allClassesForRepo.
 	targetMethods := self allChangesForRepo.
-	
+
 
 	tests := classes select: #isTestCase.
 	targets := (targetMethods collect: #methodClass) asSet.
@@ -162,14 +162,13 @@ MTCI >> mutateDiff [
 	self
 		runMutalkTargets: targets
 		tests: tests
-		generationStrategy:
-		SelectingFromAlivesMutationsGenerationStrategy new
+		generationStrategy: MTSelectingFromAlivesMutantSelectionStrategy new
 ]
 
 { #category : 'as yet unclassified' }
 MTCI >> prepareCoverageInfo: anAnalyse [
 
-	^ CoveragePropagationPreparation new
+	^ MTCoveragePropagationPreparation new
 		mtResult: anAnalyse;
 		prepare
 ]
@@ -198,11 +197,11 @@ MTCI >> recentCommit [
 MTCI >> runMutalkTargets: targets tests: tests generationStrategy: generationStrategy [
 
 	| analysis coverageInfo |
-	analysis := MutationTestingAnalysis new
+	analysis := MTAnalysis new
 		            testClasses: tests;
 		            classesToMutate: targets;
 		            testSelectionStrategy:
-			            SelectingFromCoverageTestSelectionStrategy new;
+			            MTSelectingFromCoverageTestSelectionStrategy new;
 		            mutantSelectionStrategy: generationStrategy.
 	analysis run.
 	coverageInfo := self prepareCoverageInfo: analysis.

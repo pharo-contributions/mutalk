@@ -44,7 +44,7 @@ MTReplaceAndReceiverWithTrueOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 { #category : 'accessing' }
 MTReplaceAndReceiverWithTrueOperatorTest >> operator [
-	^ ReplaceAndReceiverWithTrueOperator new
+	^ MTReplaceAndReceiverWithTrueOperator new
 ]
 
 { #category : 'accessing' }

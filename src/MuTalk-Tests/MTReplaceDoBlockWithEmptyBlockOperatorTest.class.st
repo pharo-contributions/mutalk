@@ -48,7 +48,7 @@ MTReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithTwoSendersModifiedSecond
 
 { #category : 'accessing' }
 MTReplaceDoBlockWithEmptyBlockOperatorTest >> operator [
-	^ ReplaceDoBlockWithEmptyBlockOperator new
+	^ MTReplaceDoBlockWithEmptyBlockOperator new
 ]
 
 { #category : 'accessing' }

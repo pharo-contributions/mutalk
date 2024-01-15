@@ -7,17 +7,18 @@ Class {
 
 { #category : 'as yet unclassified' }
 MTTestClassForTestingCoverage class >> resources [
-	^Array with:TestResourceClassForTestingCoverage 
+
+	^ Array with: MTTestResourceClassForTestingCoverage
 ]
 
 { #category : 'testing' }
 MTTestClassForTestingCoverage >> testCase1 [
-	self assert: ClassForTestingCoverage new aCoveredMethod.
+	self assert: MTClassForTestingCoverage new aCoveredMethod.
 ]
 
 { #category : 'testing' }
 MTTestClassForTestingCoverage >> testCase2 [
-	self assert: ClassForTestingCoverage new aCoveredMethod.
+	self assert: MTClassForTestingCoverage new aCoveredMethod.
 ]
 
 { #category : 'testing' }
@@ -27,5 +28,5 @@ MTTestClassForTestingCoverage >> testCase3 [
 
 { #category : 'testing' }
 MTTestClassForTestingCoverage >> testCaseThatCoversAClassMethod [
-	self assert: ClassForTestingCoverage aClassCoveredMethod.
+	self assert: MTClassForTestingCoverage aClassCoveredMethod.
 ]

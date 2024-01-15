@@ -9,7 +9,7 @@ Class {
 MTFakeInfiniteLoopsTest >> testIterativeFactorial [
 
 	| ins |
-	ins := FakeInfiniteLoopForTest new.
+	ins := MTFakeInfiniteLoopForTest new.
 	self assert: (ins iterativeFactorial: 3) equals: 6.
 	self assert: (ins iterativeFactorial: 5) equals: 120
 ]
@@ -18,7 +18,7 @@ MTFakeInfiniteLoopsTest >> testIterativeFactorial [
 MTFakeInfiniteLoopsTest >> testRecursiveFactorial [
 
 	| ins |
-	ins := FakeInfiniteLoopForTest new.
+	ins := MTFakeInfiniteLoopForTest new.
 	self assert: (ins recursiveFactorial: 3) equals: 6.
 	self assert: (ins recursiveFactorial: 5) equals: 120
 ]

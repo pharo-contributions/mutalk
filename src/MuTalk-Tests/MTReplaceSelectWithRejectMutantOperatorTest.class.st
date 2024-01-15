@@ -48,7 +48,7 @@ MTReplaceSelectWithRejectMutantOperatorTest >> methodWithTwoSendersModifiedSecon
 
 { #category : 'accessing' }
 MTReplaceSelectWithRejectMutantOperatorTest >> operator [
-	^ ReplaceSelectWithRejectMutantOperator new
+	^ MTReplaceSelectWithRejectMutantOperator new
 ]
 
 { #category : 'accessing' }

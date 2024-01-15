@@ -41,7 +41,7 @@ MTRemoveExceptionHandlerOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 { #category : 'accessing' }
 MTRemoveExceptionHandlerOperatorTest >> operator [
-	^ RemoveExceptionHandlerOperator new
+	^ MTRemoveExceptionHandlerOperator new
 ]
 
 { #category : 'accessing' }

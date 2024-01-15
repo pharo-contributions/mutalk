@@ -9,7 +9,7 @@ Class {
 MTCIHelperTest >> testMoveX [
 
 	| obj |
-	obj := MutalkCIHelper new.
+	obj := MTCIHelper new.
 	obj moveX.
 	self assert: obj myObject y equals: 20.
 	"Missing assertion is:     

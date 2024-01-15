@@ -37,7 +37,7 @@ MTReplacePlusWithMinusMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 { #category : 'accessing' }
 MTReplacePlusWithMinusMutantOperatorTest >> operator [
-	^ ReplacePlusWithMinusMutantOperator new
+	^ MTReplacePlusWithMinusMutantOperator new
 ]
 
 { #category : 'accessing' }

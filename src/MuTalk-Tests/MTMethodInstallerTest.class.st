@@ -38,14 +38,14 @@ MTMethodInstallerTest >> numberOfMethodVersionsOf: aSelector in: aClass [
 		isMeta: aMethod origin isClassSide) size
 ]
 
-{ #category : 'building' }
+{ #category : 'running' }
 MTMethodInstallerTest >> tearDown [
 	"Unistall methods that should not be istalled and install method that should be installed."
 
 	(self class includesSelector: #methodNotInstalled) ifTrue: [ 
-		MethodInstaller new uninstall: #methodNotInstalled from: self class ].
+		MTMethodInstaller new uninstall: #methodNotInstalled from: self class ].
 	(self class includesSelector: #methodToUninstall) ifFalse: [ 
-		MethodInstaller new
+		MTMethodInstaller new
 			installFromSource: 'methodToUninstall ^self'
 			in: self class ].
 	super tearDown
@@ -61,10 +61,10 @@ MTMethodInstallerTest >> testInstallMethodException [
 	aSourceCode := selector asString , '  ^3+'.
 	self
 		should: [ 
-			MethodInstaller new
+			MTMethodInstaller new
 				installFromSourceSilently: aSourceCode
 				in: self class ]
-		raise: MethodInstallerException
+		raise: MTMethodInstallerException
 ]
 
 { #category : 'testing' }
@@ -75,7 +75,7 @@ MTMethodInstallerTest >> testInstallMethodOnEmptyClass [
 	selector := #methodNotInstalled.
 	self deny: (self class includesSelector: selector).
 	aSourceCode := selector asString , '  ^3+4'.
-	MethodInstaller new
+	MTMethodInstaller new
 		installFromSourceSilently: aSourceCode
 		in: self class.
 	self assert: (self class includesSelector: selector)
@@ -94,19 +94,18 @@ MTMethodInstallerTest >> testInstallerShouldNotAddSourceVersions [
 		                            in: self class.
 
 	aSourceCode := selector asString , '  ^3+4'.
-	[ 
-	MethodInstaller new
+	[
+	MTMethodInstaller new
 		installFromSourceSilently: aSourceCode
-		in: self class ] ensure: [ 
-		MethodInstaller new
+		in: self class ] ensure: [
+		MTMethodInstaller new
 			install: previousCompiledMethod
 			for: selector
 			in: self class
 			withProtocol: 'testProtocol' ].
-
-	self assert:
-		(self numberOfMethodVersionsOf: selector in: self class)
-		= previousNumberOfVersions
+	self
+		assert: (self numberOfMethodVersionsOf: selector in: self class)
+		equals: previousNumberOfVersions
 ]
 
 { #category : 'testing' }
@@ -115,7 +114,7 @@ MTMethodInstallerTest >> testUnInstallMethodOnClass [
 	|selector|
 	selector := #methodToUninstall.
 	self assert: (self class includesSelector: selector).
-	MethodInstaller new uninstall: selector from: self class.
+	MTMethodInstaller new uninstall: selector from: self class.
 	self deny: (self class includesSelector: selector)
 		
 ]

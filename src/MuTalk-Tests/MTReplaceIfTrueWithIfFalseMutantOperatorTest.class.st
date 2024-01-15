@@ -46,7 +46,7 @@ MTReplaceIfTrueWithIfFalseMutantOperatorTest >> methodWithTwoSendersModifiedSeco
 
 { #category : 'accessing' }
 MTReplaceIfTrueWithIfFalseMutantOperatorTest >> operator [
-	^ ReplaceIfTrueWithIfFalseMutantOperator new
+	^ MTReplaceIfTrueWithIfFalseMutantOperator new
 ]
 
 { #category : 'accessing' }

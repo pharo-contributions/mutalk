@@ -10,16 +10,18 @@ Class {
 
 { #category : 'as yet unclassified' }
 MTTestCasesSelectionStrategyTest >> allTestsFromPackage [
+
 	^ (OrderedCollection
-		with: TestClassForTestingCoverage
-		with: AuxiliarTestClassForTestingStrategies
-		with: AuxiliarClassForMutationTestingAnalysisTest
-		with: AuxiliarTestClassForMTBudget
-		with: AuxiliarTestClassForContinuingTestsExecutionAfterFirstFail)
-		inject: OrderedCollection new
-		into: [:tests :testClass | 
-			tests addAll: testClass suite tests.
-			tests]
+		   with: MTTestClassForTestingCoverage
+		   with: MTAuxiliarTestClassForTestingStrategies
+		   with: MTAuxiliarClassForMTAnalysisTest
+		   with: MTAuxiliarTestClassForMTBudget
+		   with:
+		   MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail)
+		  inject: OrderedCollection new
+		  into: [ :tests :testClass |
+			  tests addAll: testClass suite tests.
+			  tests ]
 ]
 
 { #category : 'as yet unclassified' }
@@ -37,48 +39,53 @@ MTTestCasesSelectionStrategyTest >> allTestsIn: aCollection areIncludedIn: anoth
 { #category : 'as yet unclassified' }
 MTTestCasesSelectionStrategyTest >> testClassTestCaseSelectionStrategy [
 	| testCase |
-	testCase := TestClassForTestingCoverage selector: #testCase1.
+	testCase := MTTestClassForTestingCoverage selector: #testCase1.
 	self
 		assert: (self
-				allTestsIn: (ClassTestCasesSelectionStrategy new
+				allTestsIn: (MTClassTestCasesSelectionStrategy new
 						testCasesFor: (OrderedCollection with: testCase))
-				areIncludedIn: TestClassForTestingCoverage suite tests)
+				areIncludedIn: MTTestClassForTestingCoverage suite tests)
 ]
 
 { #category : 'testing-class' }
 MTTestCasesSelectionStrategyTest >> testClassTestCaseSelectionStrategyForEmptyTestSet [
 
-	self assert: (ClassTestCasesSelectionStrategy new testCasesFor: OrderedCollection new) isEmpty
+	self assert: (MTClassTestCasesSelectionStrategy new testCasesFor: OrderedCollection new) isEmpty
 ]
 
 { #category : 'as yet unclassified' }
 MTTestCasesSelectionStrategyTest >> testNoneTestCaseSelectionStrategy [
+
 	| testCase |
-	testCase := TestClassForTestingCoverage selector: #testCase1.
-	self assert: (NoneTestCasesSelectionStrategy new
-			testCasesFor: (OrderedCollection with: testCase))
-			= (OrderedCollection with: testCase)
+	testCase := MTTestClassForTestingCoverage selector: #testCase1.
+	self
+		assert: (MTNoneTestCasesSelectionStrategy new testCasesFor:
+				 (OrderedCollection with: testCase))
+		equals: (OrderedCollection with: testCase)
 ]
 
 { #category : 'testing-none' }
 MTTestCasesSelectionStrategyTest >> testNoneTestCaseSelectionStrategyForEmptyTestSet [
 
-	self assert: (NoneTestCasesSelectionStrategy new testCasesFor: OrderedCollection new ) isEmpty
+	self assert: (MTNoneTestCasesSelectionStrategy new testCasesFor:
+			 OrderedCollection new) isEmpty
 ]
 
 { #category : 'as yet unclassified' }
 MTTestCasesSelectionStrategyTest >> testPackageTestCaseSelectionStrategy [
+
 	| testCase |
-	testCase := TestClassForTestingCoverage selector: #testCase1.
-	self
-		assert: (self
-				allTestsIn: (PackageTestCasesSelectionStrategy new
-						testCasesFor: (OrderedCollection with: testCase))
-				areIncludedIn: (self allTestsFromPackage))
+	testCase := MTTestClassForTestingCoverage selector: #testCase1.
+	self assert: (self
+			 allTestsIn:
+				 (MTPackageTestCasesSelectionStrategy new testCasesFor:
+					  (OrderedCollection with: testCase))
+			 areIncludedIn: self allTestsFromPackage)
 ]
 
 { #category : 'testing-package' }
 MTTestCasesSelectionStrategyTest >> testPackageTestCaseSelectionStrategyForEmptyTestSet [
 
-	self assert: (PackageTestCasesSelectionStrategy new testCasesFor: OrderedCollection new ) isEmpty
+	self assert: (MTPackageTestCasesSelectionStrategy new testCasesFor:
+			 OrderedCollection new) isEmpty
 ]

@@ -21,7 +21,7 @@ MTMethodInstaller >> installFromSource: aSourceCode in: aClass [
 
 	[ aClass compile: aSourceCode ]
 		on: Error , SyntaxErrorNotification
-		do: [ :error | MethodInstallerException signal ]
+		do: [ :error | MTMethodInstallerException signal ]
 ]
 
 { #category : 'installing' }
@@ -31,7 +31,7 @@ MTMethodInstaller >> installFromSourceSilently: aSourceCode in: aClass [
 
 	[ aClass compileSilently: aSourceCode ]
 		on: Error , SyntaxErrorNotification
-		do: [ :error | MethodInstallerException signal ]
+		do: [ :error | MTMethodInstallerException signal ]
 ]
 
 { #category : 'installing' }
@@ -40,5 +40,5 @@ MTMethodInstaller >> uninstall: aSelector from: aClass [
 	case de uninstall is	not posible."
 	[aClass removeSelector: aSelector]
 		on: Error
-		do: [:error | MethodInstallerException signal]
+		do: [:error | MTMethodInstallerException signal]
 ]

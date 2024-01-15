@@ -69,7 +69,7 @@ MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithTwoSende
 
 { #category : 'accessing' }
 MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> operator [
-	^ ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperator new
+	^ MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperator new
 ]
 
 { #category : 'accessing' }

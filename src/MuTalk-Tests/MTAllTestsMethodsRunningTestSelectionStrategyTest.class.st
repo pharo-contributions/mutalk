@@ -32,5 +32,5 @@ MTAllTestsMethodsRunningTestSelectionStrategyTest >> assertMutantNotInCoverageOf
 
 { #category : 'configuring' }
 MTAllTestsMethodsRunningTestSelectionStrategyTest >> selectionStrategy [
-	^ AllTestsMethodsRunningTestSelectionStrategy
+	^ MTAllTestsMethodsRunningTestSelectionStrategy
 ]

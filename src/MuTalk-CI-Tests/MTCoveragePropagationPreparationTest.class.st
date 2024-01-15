@@ -12,18 +12,18 @@ Class {
 MTCoveragePropagationPreparationTest >> testWorking [
 
 	| analysis moreInfo mutant |
-	analysis := MutationTestingAnalysis new
-		            testClasses: { MutalkCIHelperTest };
-		            classesToMutate: { MutalkCIHelper }.
+	analysis := MTAnalysis new
+		            testClasses: { MTCIHelperTest };
+		            classesToMutate: { MTCIHelper }.
 	analysis run.
 
-	moreInfo := CoveragePropagationPreparation new
+	moreInfo := MTCoveragePropagationPreparation new
 		            mtResult: analysis;
 		            prepare.
 	self assert: moreInfo class equals: OrderedCollection.
 	mutant := moreInfo detect: [ :item |
 		          (item at: #mutationEvaluation) mutant operator class
-		          = ReplacePlusWithMinusMutantOperator ].
+		          = MTReplacePlusWithMinusMutantOperator ].
 	self assert: (mutant at: #coveredBy) isNotEmpty.
 	self assert: (mutant at: #testStateChangedIn) isNotEmpty
 ]

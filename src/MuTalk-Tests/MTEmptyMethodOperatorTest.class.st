@@ -1,49 +1,49 @@
 Class {
-	#name : 'MTExtremeTransformationOperatorTest',
+	#name : 'MTEmptyMethodOperatorTest',
 	#superclass : 'MTMutantOperatorTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
 
 { #category : 'accessing' }
-MTExtremeTransformationOperatorTest >> methodWithOneSender [
+MTEmptyMethodOperatorTest >> methodWithOneSender [
 
 	self operator.
 	self operatorDescription 
 ]
 
 { #category : 'accessing' }
-MTExtremeTransformationOperatorTest >> methodWithOneSenderModified [
+MTEmptyMethodOperatorTest >> methodWithOneSenderModified [
 
 	
 ]
 
 { #category : 'accessing' }
-MTExtremeTransformationOperatorTest >> operator [
+MTEmptyMethodOperatorTest >> operator [
 
-	^ ExtremeTransformationOperator new
+	^ MTEmptyMethodOperator new
 ]
 
 { #category : 'accessing' }
-MTExtremeTransformationOperatorTest >> operatorDescription [
+MTEmptyMethodOperatorTest >> operatorDescription [
 
 	^ self operator  description
 ]
 
 { #category : 'tests' }
-MTExtremeTransformationOperatorTest >> testApplyMutantToMethod [
+MTEmptyMethodOperatorTest >> testApplyMutantToMethod [
 
 	self assert: self assertApplyingMutantToFirstSenderInOneSenderMethod
 ]
 
 { #category : 'tests' }
-MTExtremeTransformationOperatorTest >> testNumberMutantsGenerated [
+MTEmptyMethodOperatorTest >> testNumberMutantsGenerated [
 
 	self assert: self assertNumberMutantsGeneratedForOneSenderMethod
 ]
 
 { #category : 'tests' }
-MTExtremeTransformationOperatorTest >> testTimesToApplyMutantToMethod [
+MTEmptyMethodOperatorTest >> testTimesToApplyMutantToMethod [
 
 	self assert: self assertTimesToApplyOperatorToOneSenderMethod
 ]

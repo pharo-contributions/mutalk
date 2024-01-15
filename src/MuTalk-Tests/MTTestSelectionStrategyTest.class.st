@@ -26,7 +26,7 @@ MTTestSelectionStrategyTest class >> packageNamesUnderTest [
 
 { #category : 'accessing' }
 MTTestSelectionStrategyTest class >> resources [
-	^ {MutationTestingResource}
+	^ {MTResource}
 ]
 
 { #category : 'asserting' }
@@ -48,7 +48,7 @@ MTTestSelectionStrategyTest >> assertMutantNotInCoverageOfTest [
 { #category : 'running' }
 MTTestSelectionStrategyTest >> getTestsCasesToEvaluateForMutant: aMethodSelector [
 	| mutation |
-	mutation := (operator mutationsFor: AuxiliarClassForTestingStrategies >> aMethodSelector) asOrderedCollection first.
+	mutation := (operator mutationsFor: MTAuxiliarClassForTestingStrategies >> aMethodSelector) asOrderedCollection first.
 	^ evaluationStrategy 
 		testCasesToEvaluate: mutation
 		for: mutationTestingAnalysis.
@@ -64,13 +64,13 @@ MTTestSelectionStrategyTest >> selectionStrategy [
 MTTestSelectionStrategyTest >> setUp [
 
 	super setUp.
-	resource := MutationTestingResource current.
+	resource := MTResource current.
 
-	classes := OrderedCollection with: AuxiliarClassForTestingStrategies.
-	operator := ReplaceIfTrueWithIfFalseMutantOperator new.
+	classes := OrderedCollection with: MTAuxiliarClassForTestingStrategies.
+	operator := MTReplaceIfTrueWithIfFalseMutantOperator new.
 	evaluationStrategy := self selectionStrategy new.
-	testCasesUsed := AuxiliarTestClassForTestingStrategies suite tests.
-	mutationTestingAnalysis := MutationTestingAnalysis new
+	testCasesUsed := MTAuxiliarTestClassForTestingStrategies suite tests.
+	mutationTestingAnalysis := MTAnalysis new
 		                           testCases: testCasesUsed;
 		                           classesToMutate: classes;
 		                           operators: (Set with: operator);

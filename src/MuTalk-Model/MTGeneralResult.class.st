@@ -71,7 +71,8 @@ MTGeneralResult >> mutationScore [
 
 { #category : 'details' }
 MTGeneralResult >> mutationScoreModel [
-	^MutationScoreBehavior buildFor: self
+
+	^ MTMutationScoreBehavior buildFor: self
 ]
 
 { #category : 'details' }

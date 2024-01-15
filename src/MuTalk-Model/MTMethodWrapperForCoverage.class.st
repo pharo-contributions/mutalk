@@ -31,7 +31,7 @@ MTMethodWrapperForCoverage >> mark [
 
 ]
 
-{ #category : 'accessing' }
+{ #category : 'evaluation' }
 MTMethodWrapperForCoverage >> run: aSelector with: anArray in: aReceiver [
 	self mark.
 	^ aReceiver withArgs: anArray executeMethod: method

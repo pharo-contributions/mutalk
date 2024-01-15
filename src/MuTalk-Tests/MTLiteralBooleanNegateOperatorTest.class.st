@@ -44,7 +44,7 @@ MTLiteralBooleanNegateOperatorTest >> methodWithTwoSendersModifiedSecond [
 { #category : 'accessing' }
 MTLiteralBooleanNegateOperatorTest >> operator [
 
-	^ LiteralBooleanNegateOperator new
+	^ MTLiteralBooleanNegateOperator new
 ]
 
 { #category : 'accessing' }
