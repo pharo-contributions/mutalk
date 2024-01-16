@@ -1,22 +1,12 @@
 Class {
 	#name : 'SelectingFromAlivesMutationsGenerationStrategy',
-	#superclass : 'MutantSelectionStrategy',
-	#instVars : [
-		'analysis'
-	],
+	#superclass : 'MTSelectingFromAlivesMutantSelectionStrategy',
 	#category : 'MuTalk-CI',
 	#package : 'MuTalk-CI'
 }
 
-{ #category : 'accessing' }
-SelectingFromAlivesMutationsGenerationStrategy >> analysis: anObject [
+{ #category : 'as yet unclassified' }
+SelectingFromAlivesMutationsGenerationStrategy class >> isDeprecated [
 
-	analysis := anObject
-]
-
-{ #category : 'generating' }
-SelectingFromAlivesMutationsGenerationStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
-
-	^ (analysis generalResult aliveMutants collect: [ :alive | 
-		   alive mutant originalMethod ]) asSet 
+	^ true
 ]

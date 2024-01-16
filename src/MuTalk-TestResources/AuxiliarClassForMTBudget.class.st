@@ -1,12 +1,12 @@
 Class {
 	#name : 'AuxiliarClassForMTBudget',
-	#superclass : 'Object',
+	#superclass : 'MTAuxiliarClassForMTBudget',
 	#category : 'MuTalk-TestResources',
 	#package : 'MuTalk-TestResources'
 }
 
-{ #category : 'arithmetic' }
-AuxiliarClassForMTBudget >> nil [
+{ #category : 'as yet unclassified' }
+AuxiliarClassForMTBudget class >> isDeprecated [
 
-	^ nil
+	^ true
 ]

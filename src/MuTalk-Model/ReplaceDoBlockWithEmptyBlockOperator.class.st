@@ -1,27 +1,13 @@
 Class {
 	#name : 'ReplaceDoBlockWithEmptyBlockOperator',
-	#superclass : 'MutantOperator',
+	#superclass : 'MTReplaceDoBlockWithEmptyBlockOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'printing' }
-ReplaceDoBlockWithEmptyBlockOperator >> description [
-	^'Replace do block with [:each |]'.
-]
+{ #category : 'as yet unclassified' }
+ReplaceDoBlockWithEmptyBlockOperator class >> isDeprecated [
 
-{ #category : 'applying' }
-ReplaceDoBlockWithEmptyBlockOperator >> expressionToReplace [ 
-	^'``@collection do: ``@aBlock'
-]
-
-{ #category : 'applying' }
-ReplaceDoBlockWithEmptyBlockOperator >> newExpression [
-	^'``@collection do: [:each | ]'
-]
-
-{ #category : 'suggestions' }
-ReplaceDoBlockWithEmptyBlockOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [
-	^aMutantKillingSuggestionGenerator suggestionForMutationProducedByADoBlockWithEmptyBlockOperator: aMutation.
+	^ true
 ]

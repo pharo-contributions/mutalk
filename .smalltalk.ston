@@ -11,7 +11,7 @@ SmalltalkCISpec {
             #packages : [ 'MuTalk*' ]
         },
         #exclude : {
-            #classes : [ #AuxiliarTestClassForContinuingTestsExecutionAfterFirstFail ]
+            #classes : [ #MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail ]
         }
     }
 }

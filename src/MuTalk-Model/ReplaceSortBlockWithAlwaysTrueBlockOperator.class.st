@@ -1,22 +1,13 @@
 Class {
 	#name : 'ReplaceSortBlockWithAlwaysTrueBlockOperator',
-	#superclass : 'MutantOperator',
+	#superclass : 'MTReplaceSortBlockWithAlwaysTrueBlockOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'printing' }
-ReplaceSortBlockWithAlwaysTrueBlockOperator >> description [
-	^'Replace sortBlock:aBlock with sortBlock:[:a :b| true]'.
-]
+{ #category : 'as yet unclassified' }
+ReplaceSortBlockWithAlwaysTrueBlockOperator class >> isDeprecated [
 
-{ #category : 'applying' }
-ReplaceSortBlockWithAlwaysTrueBlockOperator >> expressionToReplace [ 
-	^'``@sortedCollection sortBlock: ``@aBlock'
-]
-
-{ #category : 'applying' }
-ReplaceSortBlockWithAlwaysTrueBlockOperator >> newExpression [
-	^'``@sortedCollection sortBlock: [:a :b| true]'.
+	^ true
 ]

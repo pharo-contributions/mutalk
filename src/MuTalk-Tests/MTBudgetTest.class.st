@@ -19,14 +19,14 @@ MTBudgetTest >> runAnalysisFor: aBudget [
 
 	^ self
 		  runAnalysisWithBudget: aBudget
-		  on: { AuxiliarClassForMutationTestingAnalysis }
-		  withTests: { AuxiliarClassForMutationTestingAnalysisTest }
+		  on: { MTAuxiliarClassForMTAnalysis }
+		  withTests: { MTAuxiliarClassForMTAnalysisTest }
 ]
 
 { #category : 'running' }
 MTBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests: testCases [
 
-	analysis := MutationTestingAnalysis new
+	analysis := MTAnalysis new
 		            testClasses: testCases;
 		            classesToMutate: classesToMutate;
 		            budget: aBudget.

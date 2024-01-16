@@ -1,27 +1,12 @@
 Class {
 	#name : 'AbstractMutationTestingJsonExporter',
-	#superclass : 'Object',
-	#instVars : [
-		'mtResult'
-	],
+	#superclass : 'MTAbstractJsonExporter',
 	#category : 'MuTalk-CI',
 	#package : 'MuTalk-CI'
 }
 
 { #category : 'as yet unclassified' }
-AbstractMutationTestingJsonExporter >> export [
+AbstractMutationTestingJsonExporter class >> isDeprecated [
 
-	self subclassResponsibility 
-]
-
-{ #category : 'accessing' }
-AbstractMutationTestingJsonExporter >> mtResult [
-
-	^ mtResult
-]
-
-{ #category : 'accessing' }
-AbstractMutationTestingJsonExporter >> mtResult: anObject [
-
-	mtResult := anObject
+	^ true
 ]

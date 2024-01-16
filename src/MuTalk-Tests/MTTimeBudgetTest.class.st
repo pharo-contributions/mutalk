@@ -20,14 +20,14 @@ MTTimeBudgetTest >> runAnalysisForDuration: aDuration [
 { #category : 'running' }
 MTTimeBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests: testCases [
 
-	analysis := MutationTestingAnalysis new
+	analysis := MTAnalysis new
 		            testClasses: testCases;
 		            classesToMutate: classesToMutate;
 		            mutantSelectionStrategy:
-			            (ManualMutationSelectionStrategy with:
+			            (MTManualMutationSelectionStrategy with:
 					             (Generator on: [ :gen |
 							              [ true ] whileTrue: [
-									              gen yield: NullMutation new ] ]));
+									              gen yield: MTNullMutation new ] ]));
 		            budget: aBudget.
 
 	analysis run.
