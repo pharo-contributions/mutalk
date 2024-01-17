@@ -1,25 +1,13 @@
 Class {
 	#name : 'LiteralIntegersIncreaseOperator',
-	#superclass : 'BlockBasedMutantOperator',
+	#superclass : 'MTLiteralIntegersIncreaseOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'printing' }
-LiteralIntegersIncreaseOperator >> description [
+{ #category : 'as yet unclassified' }
+LiteralIntegersIncreaseOperator class >> isDeprecated [
 
-	^ 'Increase a literal integer'
-]
-
-{ #category : 'applying' }
-LiteralIntegersIncreaseOperator >> expressionToReplace [
-
-	^ [ :aNode | aNode isLiteralNode & aNode isLiteralArray not and: [ aNode value isInteger ]  ]
-]
-
-{ #category : 'applying' }
-LiteralIntegersIncreaseOperator >> newExpression [
-
-	^ [ :anOldNode | RBLiteralValueNode value: anOldNode value + 1 ]
+	^ true
 ]

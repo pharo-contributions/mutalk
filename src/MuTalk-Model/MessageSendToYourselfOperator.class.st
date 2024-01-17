@@ -1,30 +1,13 @@
 Class {
 	#name : 'MessageSendToYourselfOperator',
-	#superclass : 'BlockBasedMutantOperator',
+	#superclass : 'MTMessageSendToYourselfOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'printing' }
-MessageSendToYourselfOperator >> description [
+{ #category : 'as yet unclassified' }
+MessageSendToYourselfOperator class >> isDeprecated [
 
-	^ 'Chnage a message send with #yourself'
-]
-
-{ #category : 'applying' }
-MessageSendToYourselfOperator >> expressionToReplace [
-
-	^ [ :aNode | 
-	  aNode isMessage and: [ aNode selector ~= #yourself ] ]
-]
-
-{ #category : 'applying' }
-MessageSendToYourselfOperator >> newExpression [
-
-	| nodeCopy |
-	^ [ :anOldNode | 
-	  nodeCopy := anOldNode copy.
-		RBMessageNode receiver: nodeCopy receiver selector: #yourself
-	   ]
+	^ true
 ]

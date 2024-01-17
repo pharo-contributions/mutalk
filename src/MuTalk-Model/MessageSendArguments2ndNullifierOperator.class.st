@@ -1,13 +1,13 @@
 Class {
 	#name : 'MessageSendArguments2ndNullifierOperator',
-	#superclass : 'MessageSendArgumentsNullifierOperator',
+	#superclass : 'MTMessageSendArguments2ndNullifierOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'applying' }
-MessageSendArguments2ndNullifierOperator >> whichArgument [
+{ #category : 'as yet unclassified' }
+MessageSendArguments2ndNullifierOperator class >> isDeprecated [
 
-	^ 2
+	^ true
 ]

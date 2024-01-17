@@ -1,17 +1,13 @@
 Class {
 	#name : 'ReplaceIfTrueWithIfFalseMutantOperator',
-	#superclass : 'SelectorReplacementMutantOperator',
+	#superclass : 'MTReplaceIfTrueWithIfFalseMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'accessing' }
-ReplaceIfTrueWithIfFalseMutantOperator >> newSelector [
-	^#ifFalse:
-]
+{ #category : 'as yet unclassified' }
+ReplaceIfTrueWithIfFalseMutantOperator class >> isDeprecated [
 
-{ #category : 'accessing' }
-ReplaceIfTrueWithIfFalseMutantOperator >> oldSelector [
-	^#ifTrue:
+	^ true
 ]

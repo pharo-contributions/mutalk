@@ -1,16 +1,12 @@
 Class {
 	#name : 'TestResourceClassForTestingCoverage',
-	#superclass : 'TestResource',
+	#superclass : 'MTTestResourceClassForTestingCoverage',
 	#category : 'MuTalk-TestResources',
 	#package : 'MuTalk-TestResources'
 }
 
 { #category : 'as yet unclassified' }
-TestResourceClassForTestingCoverage >> doSomething [
-	^ClassForTestingCoverage new anUncoveredMethod.
-]
+TestResourceClassForTestingCoverage class >> isDeprecated [
 
-{ #category : 'as yet unclassified' }
-TestResourceClassForTestingCoverage >> setUp [
-	self doSomething
+	^ true
 ]

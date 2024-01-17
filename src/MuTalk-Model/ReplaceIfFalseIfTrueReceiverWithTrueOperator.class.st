@@ -1,12 +1,13 @@
 Class {
 	#name : 'ReplaceIfFalseIfTrueReceiverWithTrueOperator',
-	#superclass : 'ReplaceIfFalseIfTrueReceiverOperator',
+	#superclass : 'MTReplaceIfFalseIfTrueReceiverWithTrueOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'applying' }
-ReplaceIfFalseIfTrueReceiverWithTrueOperator >> newReceiverExpression [ 
-	^'true'
+{ #category : 'as yet unclassified' }
+ReplaceIfFalseIfTrueReceiverWithTrueOperator class >> isDeprecated [
+
+	^ true
 ]

@@ -1,22 +1,13 @@
 Class {
 	#name : 'ReplaceAndWithEqvMutantOperator',
-	#superclass : 'SelectorReplacementMutantOperator',
+	#superclass : 'MTReplaceAndWithEqvMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'accessing' }
-ReplaceAndWithEqvMutantOperator >> newSelector [
-	^#bEqv:
-]
+{ #category : 'as yet unclassified' }
+ReplaceAndWithEqvMutantOperator class >> isDeprecated [
 
-{ #category : 'accessing' }
-ReplaceAndWithEqvMutantOperator >> oldSelector [
-	^#and:
-]
-
-{ #category : 'suggestions' }
-ReplaceAndWithEqvMutantOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [ 
-	^ aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceAndWithEqvMutantOperator: aMutation
+	^ true
 ]

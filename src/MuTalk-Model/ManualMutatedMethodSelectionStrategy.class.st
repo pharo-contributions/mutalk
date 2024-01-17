@@ -1,22 +1,13 @@
 Class {
 	#name : 'ManualMutatedMethodSelectionStrategy',
-	#superclass : 'MutantSelectionStrategy',
-	#instVars : [
-		'targetMethods'
-	],
+	#superclass : 'MTManualMutatedMethodSelectionStrategy',
 	#category : 'MuTalk-Model-Mutant selection strategies',
 	#package : 'MuTalk-Model',
 	#tag : 'Mutant selection strategies'
 }
 
-{ #category : 'generating' }
-ManualMutatedMethodSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
+{ #category : 'as yet unclassified' }
+ManualMutatedMethodSelectionStrategy class >> isDeprecated [
 
-	^ targetMethods 
-]
-
-{ #category : 'accessing' }
-ManualMutatedMethodSelectionStrategy >> targetMethods: anObject [
-
-	targetMethods := anObject
+	^ true
 ]

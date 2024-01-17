@@ -1,22 +1,13 @@
 Class {
 	#name : 'ReplaceLessOrEqualWithEqualMutantOperator',
-	#superclass : 'SelectorReplacementMutantOperator',
+	#superclass : 'MTReplaceLessOrEqualWithEqualMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'accessing' }
-ReplaceLessOrEqualWithEqualMutantOperator >> newSelector [ 
-	^#=
-]
+{ #category : 'as yet unclassified' }
+ReplaceLessOrEqualWithEqualMutantOperator class >> isDeprecated [
 
-{ #category : 'accessing' }
-ReplaceLessOrEqualWithEqualMutantOperator >> oldSelector [
-	^#<=
-]
-
-{ #category : 'suggestions' }
-ReplaceLessOrEqualWithEqualMutantOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [ 
-	^ aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceLessOrEqualWithEqualMutantOperator: aMutation
+	^ true
 ]

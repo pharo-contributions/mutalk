@@ -1,17 +1,13 @@
 Class {
 	#name : 'ReplaceAndReceiverWithTrueOperator',
-	#superclass : 'ReplaceAndReceiverOperator',
+	#superclass : 'MTReplaceAndReceiverWithTrueOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'applying' }
-ReplaceAndReceiverWithTrueOperator >> newReceiverExpression [ 
-	^'true'
-]
+{ #category : 'as yet unclassified' }
+ReplaceAndReceiverWithTrueOperator class >> isDeprecated [
 
-{ #category : 'applying' }
-ReplaceAndReceiverWithTrueOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [ 
-	^ aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceAndReceiverWithTrueMutantOperator: aMutation
+	^ true
 ]

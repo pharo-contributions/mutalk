@@ -1,17 +1,13 @@
 Class {
 	#name : 'TestSelectionStrategy',
-	#superclass : 'Object',
+	#superclass : 'MTTestSelectionStrategy',
 	#category : 'MuTalk-Model-Test selection strategies',
 	#package : 'MuTalk-Model',
 	#tag : 'Test selection strategies'
 }
 
-{ #category : 'evaluating' }
-TestSelectionStrategy >> testCasesToEvaluate: aMutation for: aMutantEvaluation [
-	self subclassResponsibility
-]
+{ #category : 'as yet unclassified' }
+TestSelectionStrategy class >> isDeprecated [
 
-{ #category : 'evaluating' }
-TestSelectionStrategy >> timeoutForTestsOf: aMutantEvaluation [
-	^aMutantEvaluation coverageAnalysisResult timeToRunTests * 3
+	^ true
 ]

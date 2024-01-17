@@ -1,25 +1,13 @@
 Class {
 	#name : 'LiteralIntegersDecreaseOperator',
-	#superclass : 'BlockBasedMutantOperator',
+	#superclass : 'MTLiteralIntegersDecreaseOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
 
-{ #category : 'printing' }
-LiteralIntegersDecreaseOperator >> description [
+{ #category : 'as yet unclassified' }
+LiteralIntegersDecreaseOperator class >> isDeprecated [
 
-	^ 'Decrease a literal integer'
-]
-
-{ #category : 'applying' }
-LiteralIntegersDecreaseOperator >> expressionToReplace [
-
-	^ [ :aNode | aNode isLiteralNode & aNode isLiteralArray not and: [ aNode value isInteger ]  ]
-]
-
-{ #category : 'applying' }
-LiteralIntegersDecreaseOperator >> newExpression [
-
-	^ [ :anOldNode | RBLiteralValueNode value: anOldNode value - 1 ]
+	^ true
 ]
