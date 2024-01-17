@@ -73,22 +73,22 @@ In the future we plan to improve the UI to allow MuTalk to be used:
 > What is the difference between each running mode?
 
 We have four modes to run an analysis:
-* Mutate All, Run All: it means mutating all your code and then running all tests. You can do that with:
+* Mutate All, Run All: it means mutating all your code and then running all tests.
     * ```smalltalk
       analysis mutantSelectionStrategy: MTAllMutantSelectionStrategy new;
 	  testSelectionStrategy: MTAllTestsMethodsRunningTestSelectionStrategy new.
       ```
-* Mutate All, run Covering: it means mutating all your code but, for each mutated method, running tests that cover it. The result should be, in general, the same than running Mutate All, Run All, but taking less time. You can do that with:
+* Mutate All, run Covering: it means mutating all your code but, for each mutated method, running tests that cover it. The result should be, in general, the same than running Mutate All, Run All, but taking less time.
     * ```smalltalk
       analysis mutantSelectionStrategy: MTAllMutantSelectionStrategy new;
 	  testSelectionStrategy: MTSelectingFromCoverageTestSelectionStrategy new.
       ```
-* Mutate Covered, Run All: it means mutating only code covered by tests and then running all tests. You can do that with:
+* Mutate Covered, Run All: it means mutating only code covered by tests and then running all tests.
     * ```smalltalk
       analysis mutantSelectionStrategy: MTSelectingFromCoverageMutantSelectionStrategy new;
 	  testSelectionStrategy: MTAllTestsMethodsRunningTestSelectionStrategy new.
       ```
-* Mutate Covered, Run Covering: it means mutating covered code and, for each mutated method, running tests that cover it. The result must be, in general, the same than running Mutate Covered, run All, but taking less time. You can do that with:
+* Mutate Covered, Run Covering: it means mutating covered code and, for each mutated method, running tests that cover it. The result must be, in general, the same than running Mutate Covered, run All, but taking less time.
     * ```smalltalk
       analysis mutantSelectionStrategy: MTSelectingFromCoverageMutantSelectionStrategy new;
 	  testSelectionStrategy: MTSelectingFromCoverageTestSelectionStrategy new.
@@ -100,7 +100,7 @@ There are various options you can play with.
 You can change the mutant selection strategy as we presented above, but there are more. You can manually give the methods to be mutated with `MTManualMutatedMethodSelectionStrategy`, or directly give the mutations with `MTManualMutationSelectionStrategy`.
 You can also randomize the mutations order with `MTRandomMutantSelectionStrategy`. This strategy relies on another mutant selection strategy (by default it is the all mutant one) to generate the mutations, then it shuffles the collection of mutations. Another option is to use `MTRandomOperatorMutantSelectionStrategy`, which randomly selects a mutant operator then randomly selects a mutation from this operator.
 
-Theses strategies are especially useful when paired with budgets, in particular the ones on number of mutants. Budgets are meant to impose a limitation on the analysis.  
+Theses random strategies are especially useful when paired with budgets, in particular the ones on number of mutants. Budgets are meant to impose a limitation on the analysis.  
 There are 4 types:
 * No budget: the analysis will run until finished or until it encounters a bug.
   * ```smalltalk
