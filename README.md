@@ -72,15 +72,62 @@ In the future we plan to improve the UI to allow MuTalk to be used:
 
 > What is the difference between each running mode?
 
-We have four modes:
-* Mutate All, Run All: it means mutating all your code and then running all tests
-* Mutate All, run Covering: it means mutating all your code but, for each mutated method, running tests that cover it. The result should be, in general, the same than running Mutate All, Run All, but taking less time
-* Mutate Covered, Run All: it means mutating only code covered by tests and then running all tests
-* Mutate Covered, Run Covering: it means mutating covered code and, for each mutated method, running tests that cover it. The result must be, in general, the same than running Mutate Covered, run All, but taking less time.
+We have four modes to run an analysis:
+* Mutate All, Run All: it means mutating all your code and then running all tests. You can do that with:
+    * ```smalltalk
+      analysis mutantSelectionStrategy: MTAllMutantSelectionStrategy new;
+	  testSelectionStrategy: MTAllTestsMethodsRunningTestSelectionStrategy new.
+      ```
+* Mutate All, run Covering: it means mutating all your code but, for each mutated method, running tests that cover it. The result should be, in general, the same than running Mutate All, Run All, but taking less time. You can do that with:
+    * ```smalltalk
+      analysis mutantSelectionStrategy: MTAllMutantSelectionStrategy new;
+	  testSelectionStrategy: MTSelectingFromCoverageTestSelectionStrategy new.
+      ```
+* Mutate Covered, Run All: it means mutating only code covered by tests and then running all tests. You can do that with:
+    * ```smalltalk
+      analysis mutantSelectionStrategy: MTSelectingFromCoverageMutantSelectionStrategy new;
+	  testSelectionStrategy: MTAllTestsMethodsRunningTestSelectionStrategy new.
+      ```
+* Mutate Covered, Run Covering: it means mutating covered code and, for each mutated method, running tests that cover it. The result must be, in general, the same than running Mutate Covered, run All, but taking less time. You can do that with:
+    * ```smalltalk
+      analysis mutantSelectionStrategy: MTSelectingFromCoverageMutantSelectionStrategy new;
+	  testSelectionStrategy: MTSelectingFromCoverageTestSelectionStrategy new.
+      ```
+
+> What are the options when running an analysis?
+
+There are various options you can play with.
+You can change the mutant selection strategy as we presented above, but there are more. You can manually give the methods to be mutated with `MTManualMutatedMethodSelectionStrategy`, or directly give the mutations with `MTManualMutationSelectionStrategy`.
+You can also randomize the mutations order with `MTRandomMutantSelectionStrategy`. This strategy relies on another mutant selection strategy (by default it is the all mutant one) to generate the mutations, then it shuffles the collection of mutations. Another option is to use `MTRandomOperatorMutantSelectionStrategy`, which randomly selects a mutant operator then randomly selects a mutation from this operator.
+
+Theses strategies are especially useful when paired with budgets, in particular the ones on number of mutants. Budgets are meant to impose a limitation on the analysis.  
+There are 4 types:
+* No budget: the analysis will run until finished or until it encounters a bug.
+  * ```smalltalk
+    analysis budget: MTFreeBudget new.
+    ```
+* Budget on a fixed number of mutants: the analysis will stop when the given number of mutants have been evaluated.
+  * ```smalltalk
+    analysis budget: (MTFixedNumberOfMutantsBudget for: 10).
+    ```
+* Budget on a percentage of mutants: the analysis will stop when the given percentage of mutants have been evaluated. If the percentage gives a non exact number of mutants (for instance 7.6 mutants), it stops at the rounded up number (here it would be 8 mutants).
+  * ```smalltalk
+    analysis budget: (MTPercentageOfMutantsBudget for: 10).
+    ```
+* Budget on time: the analysis will run until the given time as passed. If a mutant is being evaluated when the time is up, the analysis continues until this evaluation is finished.
+  * ```smalltalk
+    analysis budget: (MTTimeBudget for: 10 seconds).
+    ```
+
+When evaluating a mutant the analysis installs the mutation, runs all tests, and at the first failing test it ends the evaluation, uninstalls the mutation and moves on to the next mutant. However in some cases you need the analysis to run all tests and do not stop at the first failing test.  
+You can do that in MuTalk with this option:
+```smalltalk
+analysis doNotStopOnErrorOrFail.
+```
 
 > What is the default mode to run mutation testing?
 
-Mutate Covered, Run Covering or maybe Mutate All, run Covering if you are not measuring coverage before running mutation testing.
+The default parameters are: mutate all, run all, no budget and stop at first fail.
 
 > Does MuTalk replace coverage analysis?
 
