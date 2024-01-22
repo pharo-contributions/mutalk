@@ -7,19 +7,13 @@ Mutation Testing in Smalltalk
 [![Pharo version](https://img.shields.io/badge/Pharo-10-%23aac9ff.svg)](https://pharo.org/download)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/pavel-krivanek/mutalk/master/LICENSE)
 
-This project was originally developed at the University of Buenos Aires (Argentina) by Nicolás Chillo, Gabriel Brunstein and others. It was created in times of Pharo 1.1 and the last versions on which MuTalk can run is Pharo 1.3. This is resurection of this project.
-
-### Current status 
-
-- all tests are green
-- mutation analysis works
-- UI is under working. There is already a custom inspector tab to better visualise the results
+This project was originally developed at the University of Buenos Aires (Argentina) by Nicolás Chillo, Gabriel Brunstein and others in times of Pharo 1.1.
 
 ## How to load
 ```smalltalk
 Metacello new
   baseline: 'MuTalk';
-  repository: 'github://pharo-contributions/mutalk/src';
+  repository: 'github://pharo-contributions/mutalk:v2.0.0/src';
   load.
 ```
 
