@@ -20,6 +20,15 @@ MTTestCaseReference class >> forTestCase: aTestCase [
 	^self for: aTestCase selector in: aTestCase class
 ]
 
+{ #category : 'comparing' }
+MTTestCaseReference >> = anObject [
+
+	self == anObject ifTrue: [ ^ true ].
+	anObject species = self class ifFalse: [ ^ false ].
+	self testCaseClass = anObject testCaseClass ifFalse: [ ^ false ].
+	^ self selector = anObject selector
+]
+
 { #category : 'initialize' }
 MTTestCaseReference >> initializeFor: aSelector in: aClass [
 	class := aClass.
@@ -72,7 +81,19 @@ MTTestCaseReference >> runUnchecked [
 	^ result
 ]
 
+{ #category : 'accessing' }
+MTTestCaseReference >> selector [
+
+	^ selector
+]
+
 { #category : 'evaluating' }
 MTTestCaseReference >> testCase [
 	^class selector: selector.
+]
+
+{ #category : 'accessing' }
+MTTestCaseReference >> testCaseClass [
+
+	^ class
 ]
