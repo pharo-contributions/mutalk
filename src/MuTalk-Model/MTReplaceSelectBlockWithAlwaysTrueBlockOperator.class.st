@@ -1,6 +1,6 @@
 Class {
 	#name : 'MTReplaceSelectBlockWithAlwaysTrueBlockOperator',
-	#superclass : 'MutantOperator',
+	#superclass : 'MTMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
