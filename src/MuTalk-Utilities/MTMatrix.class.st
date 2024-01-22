@@ -118,6 +118,19 @@ MTMatrix >> evaluationResultFor: aMutant [
 		   evaluationResult mutant = aMutant ]) result
 ]
 
+{ #category : 'rendering' }
+MTMatrix >> failingTestsFor: aMutation [
+
+	| indicies testResults |
+	indicies := OrderedCollection new.
+	testResults := self at: aMutation.
+	1 to: testResults size do: [ :i |
+	(testResults at: i) ifTrue: [ indicies add: i ] ].
+
+	^ testCases select: [ :test |
+		  indicies includes: (testCases indexOf: test) ]
+]
+
 { #category : 'computing' }
 MTMatrix >> failuresFor: aMutant [
 
@@ -129,11 +142,11 @@ MTMatrix >> failuresFor: aMutant [
 MTMatrix >> generateMatrix [
 
 	| matrix |
-	self runAnalysis.
-	matrix  := RSDSM new.
-	matrix objectsX: mutations .
-	matrix objectsY: testCases .
-	matrix dependency: [ :mutation | (self at: mutation) ].
+	self build.
+	matrix := RSDSM new.
+	matrix objectsX: mutations.
+	matrix objectsY: testCases.
+	matrix dependency: [ :mutation | self failingTestsFor: mutation ].
 	matrix open
 ]
 
