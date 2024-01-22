@@ -41,6 +41,14 @@ MTMatrix class >> forAPackage: aPackage andTestPackage: aTestPackage [
 			  (aTestPackage asPackage definedClasses select: #isTestCase)
 ]
 
+{ #category : 'instance creation' }
+MTMatrix class >> forClasses: aCollectionOfClasses andTests: aCollectionOfTests [
+
+	^ self new
+		  classesToMutate: aCollectionOfClasses;
+		  testClasses: aCollectionOfTests
+]
+
 { #category : 'adding' }
 MTMatrix >> addMutantSetsIn: aCollection using: aSymbol [
 
