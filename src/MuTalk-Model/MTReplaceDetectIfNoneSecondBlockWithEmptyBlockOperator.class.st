@@ -1,6 +1,6 @@
 Class {
 	#name : 'MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperator',
-	#superclass : 'MutantOperator',
+	#superclass : 'MTMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
