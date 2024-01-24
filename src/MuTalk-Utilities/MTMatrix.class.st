@@ -150,10 +150,10 @@ MTMatrix >> failuresFor: aMutant [
 MTMatrix >> generateMatrix [
 
 	| matrix |
-	self build.
 	matrix := RSDSM new.
-	matrix objectsX: mutations.
-	matrix objectsY: testCases.
+	matrix objectsX: testCases.
+	matrix objectsY: mutations.
+	matrix setShouldFeedY.
 	matrix dependency: [ :mutation | self failingTestsFor: mutation ].
 	matrix open
 ]
