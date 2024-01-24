@@ -29,6 +29,12 @@ MTTestCaseReference >> = anObject [
 	^ self selector = anObject selector
 ]
 
+{ #category : 'comparing' }
+MTTestCaseReference >> hash [
+
+	^ selector hash + class hash
+]
+
 { #category : 'initialize' }
 MTTestCaseReference >> initializeFor: aSelector in: aClass [
 	class := aClass.
