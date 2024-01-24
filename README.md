@@ -55,6 +55,10 @@ However, so far it is a “brute force” technique that takes too long to provi
 
 This Smalltalk-based tool was developed at the University of Buenos Aires (Argentina) in the context of the final thesis work. The tool uses Smalltalk's dynamic and meta-programming facilities to notably reduce the time to get valuable output and help to understand and implement new tests due to its integration with the rest of the environment.
 
+## Wiki
+
+You can find a wiki [here](https://github.com/pharo-contributions/mutalk/wiki).
+
 ## FAQ
 
 > How can I run a mutation testing analysis on my packages?
@@ -131,7 +135,3 @@ No, it doesn't. It complements coverage. We should first try to write all the te
 > My image is freezing when running a mutation testing analysis, what can I do?
 
 You can can open the Mutation Testing Runner and then Activate Logging to File. It will generate a file called MutationTestingLog.txt which lets you know which mutant is causing your image to freeze. You can install the mutation by hand, and then debug running your tests. You will probably need to exclude a class or an operator from the analysis.
-
-## Wiki
-
-You can find a wiki [here](https://github.com/pharo-contributions/mutalk/wiki).
