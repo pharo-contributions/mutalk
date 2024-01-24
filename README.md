@@ -5,6 +5,7 @@ Mutation Testing in Smalltalk
 [![Coverage Status](https://coveralls.io/repos/github/pavel-krivanek/mutalk/badge.svg?branch=master)](https://coveralls.io/github/pavel-krivanek/mutalk?branch=master)
 [![Pharo version](https://img.shields.io/badge/Pharo-9.0-%23aac9ff.svg)](https://pharo.org/download)
 [![Pharo version](https://img.shields.io/badge/Pharo-10-%23aac9ff.svg)](https://pharo.org/download)
+[![Pharo version](https://img.shields.io/badge/Pharo-11-%23aac9ff.svg)](https://pharo.org/download)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/pavel-krivanek/mutalk/master/LICENSE)
 
 This project was originally developed at the University of Buenos Aires (Argentina) by Nicolás Chillo, Gabriel Brunstein and others in times of Pharo 1.1.
@@ -130,3 +131,7 @@ No, it doesn't. It complements coverage. We should first try to write all the te
 > My image is freezing when running a mutation testing analysis, what can I do?
 
 You can can open the Mutation Testing Runner and then Activate Logging to File. It will generate a file called MutationTestingLog.txt which lets you know which mutant is causing your image to freeze. You can install the mutation by hand, and then debug running your tests. You will probably need to exclude a class or an operator from the analysis.
+
+## Wiki
+
+You can find a wiki [here](https://github.com/pharo-contributions/mutalk/wiki).
