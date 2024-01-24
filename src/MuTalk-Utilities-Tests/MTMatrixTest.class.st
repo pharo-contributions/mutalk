@@ -7,8 +7,8 @@ Class {
 		'equivalentMutants',
 		'includedMutants'
 	],
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#category : 'MuTalk-Utilities-Tests',
+	#package : 'MuTalk-Utilities-Tests'
 }
 
 { #category : 'running' }

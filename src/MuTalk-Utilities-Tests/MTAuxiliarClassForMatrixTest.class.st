@@ -4,8 +4,8 @@ Class {
 	#instVars : [
 		'obj'
 	],
-	#category : 'MuTalk-TestResources',
-	#package : 'MuTalk-TestResources'
+	#category : 'MuTalk-Utilities-Tests',
+	#package : 'MuTalk-Utilities-Tests'
 }
 
 { #category : 'running' }

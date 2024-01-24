@@ -4,8 +4,8 @@ Class {
 	#instVars : [
 		'counter'
 	],
-	#category : 'MuTalk-TestResources',
-	#package : 'MuTalk-TestResources'
+	#category : 'MuTalk-Utilities-Tests',
+	#package : 'MuTalk-Utilities-Tests'
 }
 
 { #category : 'initialization' }
