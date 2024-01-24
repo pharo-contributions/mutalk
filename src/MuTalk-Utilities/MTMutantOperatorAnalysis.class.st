@@ -5,6 +5,22 @@ Class {
 	#package : 'MuTalk-Utilities'
 }
 
+{ #category : 'adding' }
+MTMutantOperatorAnalysis >> addAllAssociationsFrom: sourceDictionary to: destinationDictionary [
+
+	sourceDictionary associationsDo: [ :assoc |
+		| key value |
+		key := assoc key.
+		value := assoc value.
+		destinationDictionary
+			at: key
+			ifPresent: [ :v |
+			destinationDictionary at: key update: [ :val | val + value ] ]
+			ifAbsentPut: [ destinationDictionary at: key put: value ] ].
+
+	^ destinationDictionary
+]
+
 { #category : 'computing' }
 MTMutantOperatorAnalysis >> allOperatorsFor: aCollectionOfPackages [
 
@@ -12,15 +28,19 @@ MTMutantOperatorAnalysis >> allOperatorsFor: aCollectionOfPackages [
 	allOperatorsDictionary := Dictionary new.
 
 	aCollectionOfPackages do: [ :name |
-		| operatorsDictionary |
+		| operatorsDictionary operatorsWithoutMutants |
 		operatorsDictionary := self getMutantOperatorsDictionaryFor: name.
+		operatorsWithoutMutants := self findOperatorsWithoutMutantsFor:
+			                           operatorsDictionary.
 
-		operatorsDictionary := operatorsDictionary asDictionary
-			                       addAllWithoutOverwrite:
-				                       (self findOperatorsWithoutMutantsFor:
-						                        operatorsDictionary);
-			                       yourself.
-		allOperatorsDictionary addAllWithoutOverwrite: operatorsDictionary ].
+		operatorsDictionary := self
+			                       addAllAssociationsFrom:
+			                       operatorsWithoutMutants
+			                       to: operatorsDictionary asDictionary.
+
+		self
+			addAllAssociationsFrom: operatorsDictionary
+			to: allOperatorsDictionary ].
 
 	^ allOperatorsDictionary
 ]
@@ -33,22 +53,20 @@ MTMutantOperatorAnalysis >> findOperatorsWithoutMutantsFor: aDictionary [
 		                            #species) reject: [ :ope |
 		                           aDictionary keys includes: ope ].
 
-	^ OrderedDictionary new
-		  addAll: (operatorsWithoutMutants collect: [ :each | each -> 0 ]);
+	^ Dictionary new
+		  addAll: (operatorsWithoutMutants collect: [ :each | each -> 0 ]) asDictionary;
 		  yourself
 ]
 
 { #category : 'computing' }
 MTMutantOperatorAnalysis >> getMutantOperatorsDictionaryFor: aName [
 
-	| analysis dic classesToMutate testCases |
+	| analysis dic classesToMutate |
 	classesToMutate := aName asPackage definedClasses.
-	testCases := (aName , '-Tests') asPackage definedClasses select:
-		             #isTestCase.
 
 	analysis := MTAnalysis new
 		            classesToMutate: classesToMutate;
-		            testClasses: testCases;
+		            testClasses: {  };
 		            operators: MTMutantOperator contentsAll.
 
 	analysis generateMutations.
