@@ -24,25 +24,21 @@ MTMutantOperatorAnalysis >> addAllAssociationsFrom: sourceDictionary to: destina
 { #category : 'computing' }
 MTMutantOperatorAnalysis >> allOperatorsFor: aCollectionOfPackages [
 
-	| allOperatorsDictionary |
-	allOperatorsDictionary := Dictionary new.
+	^ aCollectionOfPackages
+		  inject: Dictionary new
+		  into: [ :dictionary :name |
+			  | operatorsDictionary operatorsWithoutMutants |
+			  operatorsDictionary := self getMutantOperatorsDictionaryFor: name.
+			  operatorsWithoutMutants := self findOperatorsWithoutMutantsFor:
+				                             operatorsDictionary.
 
-	aCollectionOfPackages do: [ :name |
-		| operatorsDictionary operatorsWithoutMutants |
-		operatorsDictionary := self getMutantOperatorsDictionaryFor: name.
-		operatorsWithoutMutants := self findOperatorsWithoutMutantsFor:
-			                           operatorsDictionary.
+			  operatorsDictionary := self
+				                         addAllAssociationsFrom:
+				                         operatorsWithoutMutants
+				                         to: operatorsDictionary asDictionary.
 
-		operatorsDictionary := self
-			                       addAllAssociationsFrom:
-			                       operatorsWithoutMutants
-			                       to: operatorsDictionary asDictionary.
-
-		self
-			addAllAssociationsFrom: operatorsDictionary
-			to: allOperatorsDictionary ].
-
-	^ allOperatorsDictionary
+			  self addAllAssociationsFrom: operatorsDictionary to: dictionary.
+			  dictionary ]
 ]
 
 { #category : 'computing' }
