@@ -30,14 +30,16 @@ MTMissingMutantOperatorAnalysis >> getAllMethodsFrom: aCollectionOfPackages [
 { #category : 'computing' }
 MTMissingMutantOperatorAnalysis >> getMutatedMethodsFrom: aName [
 
-	| classesToMutate testCases analysis |
+	| classesToMutate analysis mutatedMethods |
 	classesToMutate := aName asPackage definedClasses.
-	testCases := (aName , '-Tests') asPackage definedClasses select:
-		             #isTestCase.
 
 	analysis := MTAnalysis new
 		            classesToMutate: classesToMutate;
-		            testClasses: testCases;
+		            testClasses: {  };
 		            operators: MTMutantOperator contentsAll.
-	^ (analysis generateMutations groupedBy: #originalMethod) keys
+
+	mutatedMethods := Set withAll:
+		                  (analysis generateMutations collect:
+			                   #originalMethod).
+	^ mutatedMethods
 ]
