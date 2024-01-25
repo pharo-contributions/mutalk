@@ -9,5 +9,6 @@ Class {
 { #category : 'enumerating' }
 MTTimeTestFilter >> filterTests: aTestCaseCollection [
 
-	^ aTestCaseCollection select: [ :testCaseReference | testCaseReference lastTimeToRun <= condition ]
+	^ aTestCaseCollection select: [ :testCaseReference |
+		  testCaseReference lastTimeToRun <= condition ]
 ]
