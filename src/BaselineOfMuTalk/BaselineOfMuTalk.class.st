@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfMuTalk,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfMuTalk
+	#name : 'BaselineOfMuTalk',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfMuTalk',
+	#package : 'BaselineOfMuTalk'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfMuTalk >> baseline: spec [
 	<baseline>
 
@@ -16,11 +17,13 @@ BaselineOfMuTalk >> baseline: spec [
 			package: 'MuTalk-CI' with: [ spec requires: #( 'MuTalk-Model' ) ];
 			package: 'MuTalk-CI-Tests' with: [ spec requires: #( 'MuTalk-Model' 'MuTalk-CI' ) ];
 			package: 'MuTalk-Tests' with: [ spec requires: #( 'MuTalk-Model' 'MuTalk-TestResources' ) ];
-			package: 'MuTalk-SpecUI' with: [ spec requires: #('MuTalk-Model') ].
+			package: 'MuTalk-SpecUI' with: [ spec requires: #('MuTalk-Model') ];
+			package: 'MuTalk-Utilities' with: [ spec requires: #( 'MuTalk-Model' ) ];
+			package: 'MuTalk-Utilities-Tests' with: [ spec requires: #( 'MuTalk-Model' 'MuTalk-Utilities' ) ].
 
 		spec
 			group: 'default'
 			with:
 				#( 'TestCoverage' 'MuTalk-Model' 'MuTalk-TestResources' 'MuTalk-Tests'
-				   'MuTalk-CI' 'MuTalk-CI-Tests' 'MuTalk-SpecUI' ) ]
+				   'MuTalk-CI' 'MuTalk-CI-Tests' 'MuTalk-SpecUI' 'MuTalk-Utilities' 'MuTalk-Utilities-Tests' ) ]
 ]
