@@ -5,7 +5,7 @@ Class {
 	#package : 'MuTalk-Utilities-Tests'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'auxiliar' }
 MTAuxiliarClassForMutantOperatorAnalysis >> methodA [
 
 	| result |
@@ -13,7 +13,7 @@ MTAuxiliarClassForMutantOperatorAnalysis >> methodA [
 	^ result
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'auxiliar' }
 MTAuxiliarClassForMutantOperatorAnalysis >> methodB [
 
 	false ifFalse: [ ^ 1 ]
