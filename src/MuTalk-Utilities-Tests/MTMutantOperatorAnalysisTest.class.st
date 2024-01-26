@@ -1,17 +1,28 @@
 Class {
 	#name : 'MTMutantOperatorAnalysisTest',
 	#superclass : 'TestCase',
+	#instVars : [
+		'operatorAnalysis'
+	],
 	#category : 'MuTalk-Utilities-Tests',
 	#package : 'MuTalk-Utilities-Tests'
 }
+
+{ #category : 'running' }
+MTMutantOperatorAnalysisTest >> setUp [
+
+	super setUp.
+
+	operatorAnalysis := MTMutantOperatorAnalysis forClasses:
+		                    { MTAuxiliarClassForMutantOperatorAnalysis }
+]
 
 { #category : 'tests' }
 MTMutantOperatorAnalysisTest >> testGetAllOperators [
 
 	| actual expected |
-	actual := (MTMutantOperatorAnalysis new
-		           operatorsProducingOver: 0
-		           mutantsFor: { 'MuTalk-Utilities-Tests' }) keys asSet.
+	actual := (operatorAnalysis operatorsProducingOverXMutants: 0) keys
+		          asSet.
 	expected := (MTMutantOperator contentsAll collect: #species) asSet.
 
 	self assert: actual equals: expected
@@ -21,13 +32,12 @@ MTMutantOperatorAnalysisTest >> testGetAllOperators [
 MTMutantOperatorAnalysisTest >> testOperatorsProducingOver [
 
 	| actual expected |
-	actual := (MTMutantOperatorAnalysis new
-		           operatorsProducingOver: 3
-		           mutantsFor: { 'MuTalk-Utilities-Tests' }) keys asSet.
+	actual := (operatorAnalysis operatorsProducingOverXMutants: 3) keys
+		          asSet.
 	expected := Set
-		            with: MTEmptyMethodOperator
-		            with: MTRemoveCaretOperator
-		            with: MTMessageSendToYourselfOperator.
+		            with: MTLiteralIntegersIncreaseOperator
+		            with: MTLiteralIntegersToZeroOperator
+		            with: MTLiteralIntegersDecreaseOperator.
 
 	self assert: actual equals: expected
 ]
@@ -36,14 +46,14 @@ MTMutantOperatorAnalysisTest >> testOperatorsProducingOver [
 MTMutantOperatorAnalysisTest >> testOperatorsProducingUnder [
 
 	| actual expected |
-	actual := (MTMutantOperatorAnalysis new
-		           operatorsProducingUnder: 3
-		           mutantsFor: { 'MuTalk-Utilities-Tests' }) keys asSet.
+	actual := (operatorAnalysis operatorsProducingUnderXMutants: 2) keys
+		          asSet.
 	expected := (MTMutantOperator contentsAll collect: #species) asSet
 		            reject: [ :operator |
 			            {
-				            MTEmptyMethodOperator.
-				            MTMessageSendToYourselfOperator } includes: operator ].
+				            MTLiteralIntegersIncreaseOperator.
+				            MTLiteralIntegersToZeroOperator.
+				            MTLiteralIntegersDecreaseOperator } includes: operator ].
 
 	self assert: actual equals: expected
 ]
