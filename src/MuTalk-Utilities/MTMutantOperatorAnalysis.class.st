@@ -80,7 +80,9 @@ MTMutantOperatorAnalysis >> findOperatorsWithoutMutantsFor: aDictionary [
 		                           aDictionary keys includes: ope ].
 
 	^ Dictionary new
-		  addAll: (operatorsWithoutMutants collect: [ :each | each -> 0 ]) asDictionary;
+		  addAll:
+			  (operatorsWithoutMutants collect: [ :each | each -> 0 ])
+				  asDictionary;
 		  yourself
 ]
 
