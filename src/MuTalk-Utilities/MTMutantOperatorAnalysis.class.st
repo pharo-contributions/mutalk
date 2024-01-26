@@ -1,9 +1,31 @@
 Class {
 	#name : 'MTMutantOperatorAnalysis',
 	#superclass : 'Object',
+	#instVars : [
+		'classes'
+	],
 	#category : 'MuTalk-Utilities',
 	#package : 'MuTalk-Utilities'
 }
+
+{ #category : 'environments' }
+MTMutantOperatorAnalysis class >> forClasses: aCollectionOfClasses [
+
+	^ self new classes: aCollectionOfClasses
+]
+
+{ #category : 'environments' }
+MTMutantOperatorAnalysis class >> forPackages: aCollectionOfPackages [
+
+	| allClasses |
+	allClasses := aCollectionOfPackages
+		              inject: OrderedCollection new
+		              into: [ :coll :package |
+			              coll addAll: package asPackage definedClasses.
+			              coll ].
+		
+	^ self new classes: allClasses
+]
 
 { #category : 'adding' }
 MTMutantOperatorAnalysis >> addAllAssociationsFrom: sourceDictionary to: destinationDictionary [
@@ -22,23 +44,31 @@ MTMutantOperatorAnalysis >> addAllAssociationsFrom: sourceDictionary to: destina
 ]
 
 { #category : 'computing' }
-MTMutantOperatorAnalysis >> allOperatorsFor: aCollectionOfPackages [
+MTMutantOperatorAnalysis >> allOperators [
 
-	^ aCollectionOfPackages
-		  inject: Dictionary new
-		  into: [ :dictionary :name |
-			  | operatorsDictionary operatorsWithoutMutants |
-			  operatorsDictionary := self getMutantOperatorsDictionaryFor: name.
-			  operatorsWithoutMutants := self findOperatorsWithoutMutantsFor:
-				                             operatorsDictionary.
+	| operatorsDictionary operatorsWithoutMutants |
+	operatorsDictionary := self getMutantOperatorsDictionary.
+	operatorsWithoutMutants := self findOperatorsWithoutMutantsFor:
+		                           operatorsDictionary.
 
-			  operatorsDictionary := self
-				                         addAllAssociationsFrom:
-				                         operatorsWithoutMutants
-				                         to: operatorsDictionary asDictionary.
+	operatorsDictionary := self
+		                       addAllAssociationsFrom:
+		                       operatorsWithoutMutants
+		                       to: operatorsDictionary asDictionary.
 
-			  self addAllAssociationsFrom: operatorsDictionary to: dictionary.
-			  dictionary ]
+	^ operatorsDictionary
+]
+
+{ #category : 'accessing' }
+MTMutantOperatorAnalysis >> classes [
+
+	^ classes
+]
+
+{ #category : 'accessing' }
+MTMutantOperatorAnalysis >> classes: anObject [
+
+	classes := anObject
 ]
 
 { #category : 'computing' }
@@ -55,13 +85,11 @@ MTMutantOperatorAnalysis >> findOperatorsWithoutMutantsFor: aDictionary [
 ]
 
 { #category : 'computing' }
-MTMutantOperatorAnalysis >> getMutantOperatorsDictionaryFor: aName [
+MTMutantOperatorAnalysis >> getMutantOperatorsDictionary [
 
-	| analysis dic classesToMutate |
-	classesToMutate := aName asPackage definedClasses.
-
+	| analysis dic |
 	analysis := MTAnalysis new
-		            classesToMutate: classesToMutate;
+		            classesToMutate: classes;
 		            testClasses: {  };
 		            operators: MTMutantOperator contentsAll.
 
@@ -72,23 +100,19 @@ MTMutantOperatorAnalysis >> getMutantOperatorsDictionaryFor: aName [
 ]
 
 { #category : 'computing' }
-MTMutantOperatorAnalysis >> operatorsProducingOver: aNumber mutantsFor: aCollectionOfPackages [
+MTMutantOperatorAnalysis >> operatorsProducingOverXMutants: aNumber [
 
-	^ self
-		  operatorsSelectedWith: [ :value | value >= aNumber ]
-		  for: aCollectionOfPackages
+	^ self operatorsSelectedWith: [ :value | value >= aNumber ]
 ]
 
 { #category : 'computing' }
-MTMutantOperatorAnalysis >> operatorsProducingUnder: aNumber mutantsFor: aCollectionOfPackages [
+MTMutantOperatorAnalysis >> operatorsProducingUnderXMutants: aNumber [
 
-	^ self
-		  operatorsSelectedWith: [ :value | value <= aNumber ]
-		  for: aCollectionOfPackages
+	^ self operatorsSelectedWith: [ :value | value <= aNumber ]
 ]
 
 { #category : 'computing' }
-MTMutantOperatorAnalysis >> operatorsSelectedWith: aBlock for: aCollectionOfPackages [
+MTMutantOperatorAnalysis >> operatorsSelectedWith: aBlock [
 
-	^ (self allOperatorsFor: aCollectionOfPackages) select: aBlock
+	^ self allOperators select: aBlock
 ]
