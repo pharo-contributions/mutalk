@@ -8,18 +8,13 @@ Class {
 { #category : 'tests' }
 MTNonMutatedMethodsAnalysisTest >> testNonMutatedMethods [
 
-	| testClasses nonMutatedMethods results |
-	testClasses := 'MuTalk-Utilities-Tests' asPackage definedClasses
-		               select: #isTestCase.
-	nonMutatedMethods := testClasses
-		                     inject: Set new
-		                     into: [ :set :testClass |
-			                     set addAll: testClass methods.
-			                     set ].
+	| results |
+	results := (MTNonMutatedMethodsAnalysis forClasses: {
+			            MTAuxiliarClassForMatrix.
+			            MTAuxiliarClassForMatrixTest })
+		           findMethodsWithoutMutation asSet.
 
-	results := (MTNonMutatedMethodsAnalysis forPackages:
-		            { 'MuTalk-Utilities-Tests' }) findMethodsWithoutMutation
-		           asSet.
-
-	self assert: nonMutatedMethods equals: results
+	self
+		assert: results
+		equals: MTAuxiliarClassForMatrixTest methods asSet
 ]
