@@ -1,43 +1,9 @@
 Class {
 	#name : 'MTNonMutatedMethodsAnalysis',
-	#superclass : 'Object',
-	#instVars : [
-		'classes'
-	],
+	#superclass : 'MTUtilityAnalysis',
 	#category : 'MuTalk-Utilities',
 	#package : 'MuTalk-Utilities'
 }
-
-{ #category : 'environments' }
-MTNonMutatedMethodsAnalysis class >> forClasses: aCollectionOfClasses [
-
-	^ self new classes: aCollectionOfClasses
-]
-
-{ #category : 'environments' }
-MTNonMutatedMethodsAnalysis class >> forPackages: aCollectionOfPackages [
-
-	| allClasses |
-	allClasses := aCollectionOfPackages
-		              inject: OrderedCollection new
-		              into: [ :coll :package |
-			              coll addAll: package asPackage definedClasses.
-			              coll ].
-		
-	^ self new classes: allClasses
-]
-
-{ #category : 'accessing' }
-MTNonMutatedMethodsAnalysis >> classes [
-
-	^ classes
-]
-
-{ #category : 'accessing' }
-MTNonMutatedMethodsAnalysis >> classes: anObject [
-
-	classes := anObject
-]
 
 { #category : 'computing' }
 MTNonMutatedMethodsAnalysis >> findMethodsWithoutMutation [

@@ -1,31 +1,9 @@
 Class {
 	#name : 'MTMutantOperatorAnalysis',
-	#superclass : 'Object',
-	#instVars : [
-		'classes'
-	],
+	#superclass : 'MTUtilityAnalysis',
 	#category : 'MuTalk-Utilities',
 	#package : 'MuTalk-Utilities'
 }
-
-{ #category : 'environments' }
-MTMutantOperatorAnalysis class >> forClasses: aCollectionOfClasses [
-
-	^ self new classes: aCollectionOfClasses
-]
-
-{ #category : 'environments' }
-MTMutantOperatorAnalysis class >> forPackages: aCollectionOfPackages [
-
-	| allClasses |
-	allClasses := aCollectionOfPackages
-		              inject: OrderedCollection new
-		              into: [ :coll :package |
-			              coll addAll: package asPackage definedClasses.
-			              coll ].
-		
-	^ self new classes: allClasses
-]
 
 { #category : 'adding' }
 MTMutantOperatorAnalysis >> addAllAssociationsFrom: sourceDictionary to: destinationDictionary [
@@ -57,18 +35,6 @@ MTMutantOperatorAnalysis >> allOperators [
 		                       to: operatorsDictionary asDictionary.
 
 	^ operatorsDictionary
-]
-
-{ #category : 'accessing' }
-MTMutantOperatorAnalysis >> classes [
-
-	^ classes
-]
-
-{ #category : 'accessing' }
-MTMutantOperatorAnalysis >> classes: anObject [
-
-	classes := anObject
 ]
 
 { #category : 'computing' }
