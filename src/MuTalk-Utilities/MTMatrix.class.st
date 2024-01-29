@@ -13,32 +13,13 @@ Class {
 }
 
 { #category : 'instance creation' }
-MTMatrix class >> forAClass: aClass [
+MTMatrix class >> forClasses: aCollectionOfClasses [
 
-	^ self new
-		  classesToMutate: (Set with: aClass);
-		  testClasses: (Set with:
-					   (aClass name , 'Test' asClassInEnvironment:
-							    self class environment))
-]
-
-{ #category : 'instance creation' }
-MTMatrix class >> forAPackage: aPackage [
-
-	^ self new
-		  classesToMutate: aPackage asPackage definedClasses;
-		  testClasses:
-			  ((aPackage , '-Tests') asPackage definedClasses select:
-					   #isTestCase)
-]
-
-{ #category : 'instance creation' }
-MTMatrix class >> forAPackage: aPackage andTestPackage: aTestPackage [
-
-	^ self new
-		  classesToMutate: aPackage asPackage definedClasses;
-		  testClasses:
-			  (aTestPackage asPackage definedClasses select: #isTestCase)
+	^ self
+		  forClasses: aCollectionOfClasses
+		  andTests: (aCollectionOfClasses collect: [ :class |
+				   class name , 'Test' asClassInEnvironment:
+					   self class environment ])
 ]
 
 { #category : 'instance creation' }
@@ -47,6 +28,31 @@ MTMatrix class >> forClasses: aCollectionOfClasses andTests: aCollectionOfTests 
 	^ self new
 		  classesToMutate: aCollectionOfClasses;
 		  testClasses: aCollectionOfTests
+]
+
+{ #category : 'instance creation' }
+MTMatrix class >> forPackages: aCollectionOfPackages [
+
+	^ self
+		  forPackages: aCollectionOfPackages
+		  andTestPackages:
+		  (aCollectionOfPackages collect: [ :package | package , '-Tests' ])
+]
+
+{ #category : 'instance creation' }
+MTMatrix class >> forPackages: aCollectionOfPackages andTestPackages: aCollectionOfTestPackages [
+
+	^ self new
+		  classesToMutate: (aCollectionOfPackages
+				   inject: OrderedCollection new
+				   into: [ :coll :package |
+					   coll addAll: package asPackage definedClasses.
+					   coll ]);
+		  testClasses: (aCollectionOfTestPackages
+				   inject: OrderedCollection new
+				   into: [ :testColl :testPackage |
+					   testColl addAll:
+							   (testPackage asPackage definedClasses select: #isTestCase) ])
 ]
 
 { #category : 'adding' }
@@ -100,6 +106,12 @@ MTMatrix >> build [
 			put:
 			(testCases collect: [ :test |
 				 (self failuresFor: mut) includes: test ]) ]
+]
+
+{ #category : 'accessing' }
+MTMatrix >> classesToMutate [
+
+	^ classesToMutate
 ]
 
 { #category : 'accessing' }
@@ -195,6 +207,12 @@ MTMatrix >> mutantOperation: aSymbol with: mutant1 and: mutant2 [
 ]
 
 { #category : 'accessing' }
+MTMatrix >> mutations [
+
+	^ mutations
+]
+
+{ #category : 'accessing' }
 MTMatrix >> mutations: anObject [
 
 	mutations := anObject
@@ -210,6 +228,18 @@ MTMatrix >> runAnalysis [
 	analysis run.
 	testCases := analysis testCases.
 	mutations := analysis mutations
+]
+
+{ #category : 'accessing' }
+MTMatrix >> testCases [
+
+	^ testCases
+]
+
+{ #category : 'accessing' }
+MTMatrix >> testClasses [
+
+	^ testClasses
 ]
 
 { #category : 'accessing' }
