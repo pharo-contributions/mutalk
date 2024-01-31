@@ -49,9 +49,3 @@ MTLiteralIntegersIncreaseOperatorTest >> operator [
 
 	^ MTLiteralIntegersIncreaseOperator new
 ]
-
-{ #category : 'accessing' }
-MTLiteralIntegersIncreaseOperatorTest >> operatorDescription [
-
-	^ 'Increase a literal integer'
-]

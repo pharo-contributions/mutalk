@@ -50,8 +50,3 @@ MTReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithTwoSendersModifiedSecond
 MTReplaceDoBlockWithEmptyBlockOperatorTest >> operator [
 	^ MTReplaceDoBlockWithEmptyBlockOperator new
 ]
-
-{ #category : 'accessing' }
-MTReplaceDoBlockWithEmptyBlockOperatorTest >> operatorDescription [
-	^'Replace do block with [:each |]'.
-]

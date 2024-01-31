@@ -66,8 +66,3 @@ MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithTwo
 MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> operator [
 	^ MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperator new
 ]
-
-{ #category : 'accessing' }
-MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> operatorDescription [ 
-	^'Replace detect: block with [:each | false] when #detect:ifNone: ' 
-]

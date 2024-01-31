@@ -42,8 +42,3 @@ MTReplaceIsEmptyWithNotEmptyMutantOperatorTest >> methodWithTwoSendersModifiedSe
 MTReplaceIsEmptyWithNotEmptyMutantOperatorTest >> operator [
 	^MTReplaceIsEmptyWithNotEmptyMutantOperator new
 ]
-
-{ #category : 'accessing' }
-MTReplaceIsEmptyWithNotEmptyMutantOperatorTest >> operatorDescription [
-	^'Replace #isEmpty with #notEmpty'
-]

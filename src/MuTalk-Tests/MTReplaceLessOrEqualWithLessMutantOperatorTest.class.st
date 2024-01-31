@@ -39,8 +39,3 @@ MTReplaceLessOrEqualWithLessMutantOperatorTest >> methodWithTwoSendersModifiedSe
 MTReplaceLessOrEqualWithLessMutantOperatorTest >> operator [
 	^ MTReplaceLessOrEqualWithLessMutantOperator new
 ]
-
-{ #category : 'accessing' }
-MTReplaceLessOrEqualWithLessMutantOperatorTest >> operatorDescription [
-	^'Replace #''<='' with #<' 
-]

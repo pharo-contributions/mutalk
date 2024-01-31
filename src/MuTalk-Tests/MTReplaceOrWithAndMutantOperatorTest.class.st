@@ -39,8 +39,3 @@ MTReplaceOrWithAndMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 MTReplaceOrWithAndMutantOperatorTest >> operator [
 	^ MTReplaceOrWithAndMutantOperator new
 ]
-
-{ #category : 'accessing' }
-MTReplaceOrWithAndMutantOperatorTest >> operatorDescription [
-	^'Replace #or: with #and:'
-]

@@ -39,8 +39,3 @@ MTReplaceOrArgumentWithFalseOperatorTest >> methodWithTwoSendersModifiedSecond [
 MTReplaceOrArgumentWithFalseOperatorTest >> operator [
 	^ MTReplaceOrArgumentWithFalseOperator new
 ]
-
-{ #category : 'accessing' }
-MTReplaceOrArgumentWithFalseOperatorTest >> operatorDescription [
-	^'Replace #or: argument with [false]'
-]

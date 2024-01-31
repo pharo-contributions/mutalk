@@ -61,9 +61,3 @@ MTMessageSendArguments1stNullifierOperatorTest >> operator [
 
 	^ MTMessageSendArguments1stNullifierOperator new
 ]
-
-{ #category : 'accessing' }
-MTMessageSendArguments1stNullifierOperatorTest >> operatorDescription [
-
-	^ self operator  description
-]

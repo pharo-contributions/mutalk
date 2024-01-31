@@ -48,8 +48,3 @@ MTReplaceIfFalseReceiverWithFalseOperatorTest >> methodWithTwoSendersModifiedSec
 MTReplaceIfFalseReceiverWithFalseOperatorTest >> operator [
 	^ MTReplaceIfFalseReceiverWithFalseOperator new
 ]
-
-{ #category : 'accessing' }
-MTReplaceIfFalseReceiverWithFalseOperatorTest >> operatorDescription [
-	^'Replace #ifFalse: receiver with false'
-]

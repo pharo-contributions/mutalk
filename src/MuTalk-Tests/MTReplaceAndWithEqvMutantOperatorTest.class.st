@@ -39,8 +39,3 @@ MTReplaceAndWithEqvMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 MTReplaceAndWithEqvMutantOperatorTest >> operator [
 	^ MTReplaceAndWithEqvMutantOperator new
 ]
-
-{ #category : 'accessing' }
-MTReplaceAndWithEqvMutantOperatorTest >> operatorDescription [
-	^'Replace #and: with #bEqv:'
-]
