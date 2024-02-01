@@ -13,7 +13,8 @@ Class {
 		'mutantResults',
 		'stopOnErrorOrFail',
 		'testSelectionStrategy',
-		'mutantSelectionStrategy'
+		'mutantSelectionStrategy',
+		'testFilter'
 	],
 	#category : 'MuTalk-Model',
 	#package : 'MuTalk-Model'
@@ -486,6 +487,12 @@ MTAnalysis >> defaultOperators [
 ]
 
 { #category : 'accessing - defaults' }
+MTAnalysis >> defaultTestFilter [
+
+	^ MTFreeTestFilter new
+]
+
+{ #category : 'accessing - defaults' }
 MTAnalysis >> defaultTestSelectionStrategy [
 
 	^ MTAllTestsMethodsRunningTestSelectionStrategy new
@@ -525,14 +532,17 @@ MTAnalysis >> generateMutations [
 { #category : 'running' }
 MTAnalysis >> generateResults [
 
+	| tests |
 	mutantResults := OrderedCollection new.
+	tests := testFilter filterTests: testCases.
+
 	mutations do: [ :aMutation |
 		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)
 			ifTrue: [ ^ mutantResults ].
 		logger logStartEvaluating: aMutation.
 		mutantResults add: ((MTMutantEvaluation
 				  for: aMutation
-				  using: testCases
+				  using: tests
 				  following: testSelectionStrategy
 				  andConsidering: self coverageAnalysisResult)
 				 valueStoppingOnError: stopOnErrorOrFail) ].
@@ -558,6 +568,7 @@ MTAnalysis >> initialize [
 	elapsedTime := 0.
 	logger := self defaultLogger.
 	budget := self defaultBudget.
+	testFilter := self defaultTestFilter.
 	stopOnErrorOrFail := true
 ]
 
@@ -693,6 +704,18 @@ MTAnalysis >> testCasesReferencesFrom: testClass [
 MTAnalysis >> testClasses: aClassCollection [
 
 	testCases := self testCasesFrom: aClassCollection
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> testFilter [
+
+	^ testFilter
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> testFilter: anObject [
+
+	testFilter := anObject
 ]
 
 { #category : 'accessing' }
