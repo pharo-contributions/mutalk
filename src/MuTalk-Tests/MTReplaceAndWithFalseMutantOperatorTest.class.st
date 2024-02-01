@@ -39,8 +39,3 @@ MTReplaceAndWithFalseMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 MTReplaceAndWithFalseMutantOperatorTest >> operator [
 	^ MTReplaceAndWithFalseOperator new
 ]
-
-{ #category : 'accessing' }
-MTReplaceAndWithFalseMutantOperatorTest >> operatorDescription [
-	^'Replace #and: with false'
-]

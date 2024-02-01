@@ -71,8 +71,3 @@ MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithTwoSende
 MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> operator [
 	^ MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperator new
 ]
-
-{ #category : 'accessing' }
-MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> operatorDescription [ 
-	^'Replace ifNone: block with [] when #detect:ifNone:'
-]

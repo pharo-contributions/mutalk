@@ -46,8 +46,3 @@ MTReplaceAndArgumentWithTrueOperatorTest >> methodWithTwoSendersModifiedSecond [
 MTReplaceAndArgumentWithTrueOperatorTest >> operator [
 	^ MTReplaceAndArgumentWithTrueOperator new.
 ]
-
-{ #category : 'accessing' }
-MTReplaceAndArgumentWithTrueOperatorTest >> operatorDescription [
-	^'Replace #and: argument with [true]'
-]

@@ -46,8 +46,3 @@ MTRemoveCaretMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 MTRemoveCaretMutantOperatorTest >> operator [
 	^ MTRemoveCaretOperator new
 ]
-
-{ #category : 'accessing' }
-MTRemoveCaretMutantOperatorTest >> operatorDescription [
-	^ 'Remove ^' 
-]

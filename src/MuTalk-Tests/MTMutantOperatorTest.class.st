@@ -156,7 +156,8 @@ MTMutantOperatorTest >> operator [
 
 { #category : 'accessing' }
 MTMutantOperatorTest >> operatorDescription [
-	self subclassResponsibility 
+
+	^ self operator description
 ]
 
 { #category : 'tests' }

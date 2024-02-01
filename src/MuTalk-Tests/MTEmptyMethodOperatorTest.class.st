@@ -24,12 +24,6 @@ MTEmptyMethodOperatorTest >> operator [
 	^ MTEmptyMethodOperator new
 ]
 
-{ #category : 'accessing' }
-MTEmptyMethodOperatorTest >> operatorDescription [
-
-	^ self operator  description
-]
-
 { #category : 'tests' }
 MTEmptyMethodOperatorTest >> testApplyMutantToMethod [
 

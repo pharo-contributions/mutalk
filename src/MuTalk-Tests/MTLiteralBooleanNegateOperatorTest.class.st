@@ -46,9 +46,3 @@ MTLiteralBooleanNegateOperatorTest >> operator [
 
 	^ MTLiteralBooleanNegateOperator new
 ]
-
-{ #category : 'accessing' }
-MTLiteralBooleanNegateOperatorTest >> operatorDescription [
-
-	^ self operator description 
-]

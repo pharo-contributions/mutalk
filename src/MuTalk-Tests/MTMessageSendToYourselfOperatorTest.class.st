@@ -51,9 +51,3 @@ MTMessageSendToYourselfOperatorTest >> operator [
 
 	^ MTMessageSendToYourselfOperator new
 ]
-
-{ #category : 'accessing' }
-MTMessageSendToYourselfOperatorTest >> operatorDescription [
-
-	^ self operator  description
-]

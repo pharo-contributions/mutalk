@@ -39,8 +39,3 @@ MTReplaceGreaterOrEqualWithGreaterMutantOperatorTest >> methodWithTwoSendersModi
 MTReplaceGreaterOrEqualWithGreaterMutantOperatorTest >> operator [
 	^ MTReplaceGreaterOrEqualWithGreaterMutantOperator new
 ]
-
-{ #category : 'accessing' }
-MTReplaceGreaterOrEqualWithGreaterMutantOperatorTest >> operatorDescription [
-	^'Replace #''>='' with #>' 
-]
