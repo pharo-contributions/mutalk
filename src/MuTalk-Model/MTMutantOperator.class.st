@@ -162,16 +162,30 @@ MTMutantOperator >> mutationsFor: aCompiledMethod [
 ]
 
 { #category : 'mutant generation' }
-MTMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree [ 
+MTMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree [
+
 	| numberOfMutations |
-	numberOfMutations := ((aCompiledMethod hasPragmaNamed: #ignoreForMutations) or: [ aCompiledMethod hasPragmaNamed: #ignoreForCoverage ])
-		ifTrue: [ ^ Array new ]
-		ifFalse: [ self timesToApplyIn: aCompiledMethod with: aParseTree ].
+	numberOfMutations := ((aCompiledMethod hasPragmaNamed:
+		                       #ignoreForMutations) or: [
+		                      aCompiledMethod hasPragmaNamed:
+			                      #ignoreForCoverage ])
+		                     ifTrue: [ ^ Array new ]
+		                     ifFalse: [
+		                     self
+			                     timesToApplyIn: aCompiledMethod
+			                     with: aParseTree ].
 	^ (1 to: numberOfMutations)
-		collect: [:aNumberOfSelector | self
-				mutationFor: aCompiledMethod
-				with: aParseTree
-				number: aNumberOfSelector]
+		  inject: OrderedCollection new
+		  into: [ :coll :aNumberOfSelector |
+			  | mutation |
+			  mutation := self
+				              mutationFor: aCompiledMethod
+				              with: aParseTree
+				              number: aNumberOfSelector.
+			  mutation isArray
+				  ifTrue: [ coll addAll: mutation ]
+				  ifFalse: [ coll add: mutation ].
+			  coll ]
 ]
 
 { #category : 'applying' }
