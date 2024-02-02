@@ -22,22 +22,6 @@ MTMutantOperatorAnalysis >> addAllAssociationsFrom: sourceDictionary to: destina
 ]
 
 { #category : 'computing' }
-MTMutantOperatorAnalysis >> allOperators [
-
-	| operatorsDictionary operatorsWithoutMutants |
-	operatorsDictionary := self getMutantOperatorsDictionary.
-	operatorsWithoutMutants := self findOperatorsWithoutMutantsFor:
-		                           operatorsDictionary.
-
-	operatorsDictionary := self
-		                       addAllAssociationsFrom:
-		                       operatorsWithoutMutants
-		                       to: operatorsDictionary asDictionary.
-
-	^ operatorsDictionary
-]
-
-{ #category : 'computing' }
 MTMutantOperatorAnalysis >> findOperatorsWithoutMutantsFor: aDictionary [
 
 	| operatorsWithoutMutants |
@@ -53,7 +37,7 @@ MTMutantOperatorAnalysis >> findOperatorsWithoutMutantsFor: aDictionary [
 ]
 
 { #category : 'computing' }
-MTMutantOperatorAnalysis >> getMutantOperatorsDictionary [
+MTMutantOperatorAnalysis >> mutantOperatorsDictionaryFromAnalysis [
 
 	| analysis dic |
 	analysis := MTAnalysis new
@@ -68,13 +52,13 @@ MTMutantOperatorAnalysis >> getMutantOperatorsDictionary [
 ]
 
 { #category : 'computing' }
-MTMutantOperatorAnalysis >> operatorsProducingOverXMutants: aNumber [
+MTMutantOperatorAnalysis >> operatorsProducingAtLeast: aNumber [
 
 	^ self operatorsSelectedWith: [ :value | value >= aNumber ]
 ]
 
 { #category : 'computing' }
-MTMutantOperatorAnalysis >> operatorsProducingUnderXMutants: aNumber [
+MTMutantOperatorAnalysis >> operatorsProducingAtMost: aNumber [
 
 	^ self operatorsSelectedWith: [ :value | value <= aNumber ]
 ]
@@ -82,5 +66,21 @@ MTMutantOperatorAnalysis >> operatorsProducingUnderXMutants: aNumber [
 { #category : 'computing' }
 MTMutantOperatorAnalysis >> operatorsSelectedWith: aBlock [
 
-	^ self allOperators select: aBlock
+	^ (self wholeOperatorsDictionary select: aBlock) keys asSet
+]
+
+{ #category : 'computing' }
+MTMutantOperatorAnalysis >> wholeOperatorsDictionary [
+
+	| operatorsDictionary operatorsWithoutMutants |
+	operatorsDictionary := self mutantOperatorsDictionaryFromAnalysis.
+	operatorsWithoutMutants := self findOperatorsWithoutMutantsFor:
+		                           operatorsDictionary.
+
+	operatorsDictionary := self
+		                       addAllAssociationsFrom:
+		                       operatorsWithoutMutants
+		                       to: operatorsDictionary asDictionary.
+
+	^ operatorsDictionary
 ]

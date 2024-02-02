@@ -21,7 +21,7 @@ MTMutantOperatorAnalysisTest >> setUp [
 MTMutantOperatorAnalysisTest >> testGetAllOperators [
 
 	| actual expected |
-	actual := (operatorAnalysis operatorsProducingOverXMutants: 0) keys
+	actual := (operatorAnalysis operatorsProducingAtLeast: 0) keys
 		          asSet.
 	expected := (MTMutantOperator contentsAll collect: #species) asSet.
 
@@ -32,7 +32,7 @@ MTMutantOperatorAnalysisTest >> testGetAllOperators [
 MTMutantOperatorAnalysisTest >> testOperatorsProducingOver [
 
 	| actual expected |
-	actual := (operatorAnalysis operatorsProducingOverXMutants: 3) keys
+	actual := (operatorAnalysis operatorsProducingAtLeast: 3) keys
 		          asSet.
 	expected := Set
 		            with: MTLiteralIntegersIncreaseOperator
@@ -46,7 +46,7 @@ MTMutantOperatorAnalysisTest >> testOperatorsProducingOver [
 MTMutantOperatorAnalysisTest >> testOperatorsProducingUnder [
 
 	| actual expected |
-	actual := (operatorAnalysis operatorsProducingUnderXMutants: 2) keys
+	actual := (operatorAnalysis operatorsProducingAtMost: 2) keys
 		          asSet.
 	expected := (MTMutantOperator contentsAll collect: #species) asSet
 		            reject: [ :operator |
