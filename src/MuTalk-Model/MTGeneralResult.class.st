@@ -105,6 +105,12 @@ MTGeneralResult >> numberOfTerminatedMutants [
 	^ self terminatedMutants size
 ]
 
+{ #category : 'accessing' }
+MTGeneralResult >> particularResults [
+
+	^ particularResults
+]
+
 { #category : 'printing' }
 MTGeneralResult >> printDetailedInfoOn: aStream [ 
 	

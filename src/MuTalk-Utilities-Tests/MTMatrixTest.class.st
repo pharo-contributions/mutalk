@@ -15,7 +15,7 @@ Class {
 MTMatrixTest >> setUp [
 
 	super setUp.
-	matrix := MTMatrix forAClass: MTAuxiliarClassForMatrix.
+	matrix := MTMatrix forClasses: { MTAuxiliarClassForMatrix }.
 	matrix build.
 	self setUpVariablesForTest
 ]

@@ -1,0 +1,40 @@
+Class {
+	#name : 'MTUtilityAnalysis',
+	#superclass : 'Object',
+	#instVars : [
+		'classes'
+	],
+	#category : 'MuTalk-Utilities',
+	#package : 'MuTalk-Utilities'
+}
+
+{ #category : 'environments' }
+MTUtilityAnalysis class >> forClasses: aCollectionOfClasses [
+
+	^ self new classes: aCollectionOfClasses
+]
+
+{ #category : 'environments' }
+MTUtilityAnalysis class >> forPackages: aCollectionOfPackages [
+
+	| allClasses |
+	allClasses := aCollectionOfPackages
+		              inject: OrderedCollection new
+		              into: [ :coll :package |
+			              coll addAll: package asPackage definedClasses.
+			              coll ].
+		
+	^ self new classes: allClasses
+]
+
+{ #category : 'accessing' }
+MTUtilityAnalysis >> classes [
+
+	^ classes
+]
+
+{ #category : 'accessing' }
+MTUtilityAnalysis >> classes: anObject [
+
+	classes := anObject
+]
