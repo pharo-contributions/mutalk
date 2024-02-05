@@ -17,16 +17,19 @@ MTBlockBasedMutantOperator class >> isOriginalOperator [
 	^ false
 ]
 
-{ #category : 'testing' }
+{ #category : 'private' }
 MTBlockBasedMutantOperator >> isAPosibleMutatedNode: aRBMethodNode [
 
 	| nodeThatMatches |
-	nodeThatMatches := aRBMethodNode allChildren detect:  self newExpression ifNone: [nil].
-	^ nodeThatMatches notNil and: [ 
+	nodeThatMatches := aRBMethodNode allChildren
+		                   detect: self newExpression
+		                   ifNone: [ nil ].
+
+	^ nodeThatMatches notNil and: [
 		  self is: nodeThatMatches equalTo: aRBMethodNode ]
 ]
 
-{ #category : 'testing' }
+{ #category : 'private' }
 MTBlockBasedMutantOperator >> isAPosibleNodeToMutate: aRBMethodNode [
 
 	| nodeThatMatches |
@@ -34,7 +37,7 @@ MTBlockBasedMutantOperator >> isAPosibleNodeToMutate: aRBMethodNode [
 		                   detect: self expressionToReplace
 		                   ifNone: [ nil ].
 
-	^ nodeThatMatches notNil and: [ 
+	^ nodeThatMatches notNil and: [
 		  self is: aRBMethodNode equalTo: nodeThatMatches ]
 ]
 

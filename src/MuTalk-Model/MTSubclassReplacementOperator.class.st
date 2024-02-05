@@ -22,10 +22,8 @@ MTSubclassReplacementOperator >> expressionToReplace [
 	^ [ :aNode |
 	  aNode isVariable and: [
 		  (self class environment includesKey: aNode name) and: [
-			  (classesToReplace
-				   at: (self indexFor: aNode)
-				   put: (self class environment at: aNode name)) subclasses
-				  isNotEmpty ] ] ]
+			  (classesToReplace add: (self class environment at: aNode name))
+				  subclasses isNotEmpty ] ] ]
 ]
 
 { #category : 'accessing' }
@@ -39,16 +37,44 @@ MTSubclassReplacementOperator >> indexFor: aNode [
 MTSubclassReplacementOperator >> initialize [
 
 	super initialize.
-	classesToReplace := Dictionary new
+	classesToReplace := OrderedCollection new
+]
+
+{ #category : 'private' }
+MTSubclassReplacementOperator >> modifiedSourceFor: aCompiledMethod number: aNumber newExpression: anExpression [
+
+	^ self
+		  modifiedSourceFor: aCompiledMethod
+		  with: aCompiledMethod parseTree
+		  number: aNumber
+		  newExpression: anExpression
+]
+
+{ #category : 'private' }
+MTSubclassReplacementOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber newExpression: anExpression [
+
+	| parser allNodes |
+	parser := aParseTree copy.
+	allNodes := parser allChildren select: self expressionToReplace.
+	allNodes size >= aNumber ifTrue: [
+		| oldNode newNode |
+		oldNode := allNodes at: aNumber.
+		newNode := anExpression value: oldNode.
+		oldNode replaceWith: newNode ].
+	^ parser formattedCode
 ]
 
 { #category : 'private' }
 MTSubclassReplacementOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumberOfSelector storeIn: aCollection [
 
-	aCollection addAll: ((1 to: 2) collect: [ :i |
+	| classToReplace |
+	classToReplace := classesToReplace at: aNumberOfSelector.
+	aCollection addAll:
+		((1 to: classToReplace subclasses size) collect: [ :index |
 			 | newExpression |
-			 newExpression := (classesToReplace at: aNumberOfSelector)
-				                  subclasses at: i.
+			 newExpression := self
+				                  newExpressionForClass: aNumberOfSelector
+				                  andSubclass: index.
 			 MTParametricMethodMutation
 				 for: aCompiledMethod
 				 using: self
@@ -61,18 +87,16 @@ MTSubclassReplacementOperator >> mutationFor: aCompiledMethod with: aParseTree n
 { #category : 'applying' }
 MTSubclassReplacementOperator >> newExpression [
 
+	
+]
+
+{ #category : 'applying' }
+MTSubclassReplacementOperator >> newExpressionForClass: classIndex andSubclass: subclassIndex [
+
 	^ [ :anOldNode |
 	  | nodeCopy |
 	  nodeCopy := anOldNode copy.
 	  nodeCopy name:
-		  ((classesToReplace at: (self indexFor: anOldNode)) subclasses at:
-			   counter) name.
-	  counter := counter + 1.
+		  ((classesToReplace at: classIndex) subclasses at: subclassIndex) name.
 	  nodeCopy ]
-]
-
-{ #category : 'initialization' }
-MTSubclassReplacementOperator >> resetCounter [
-
-	counter := 1
 ]
