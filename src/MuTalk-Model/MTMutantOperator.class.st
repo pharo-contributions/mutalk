@@ -143,13 +143,14 @@ MTMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: 
 ]
 
 { #category : 'private' }
-MTMutantOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumberOfSelector [
+MTMutantOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumberOfSelector storeIn: aCollection [
 
-	^ MTMethodMutation
-		  for: aCompiledMethod
-		  using: self
-		  nodeNumber: aNumberOfSelector
-		  ofClass: aCompiledMethod methodClass
+	aCollection add: (MTMethodMutation
+			 for: aCompiledMethod
+			 using: self
+			 nodeNumber: aNumberOfSelector
+			 ofClass: aCompiledMethod methodClass).
+	^ aCollection
 ]
 
 { #category : 'mutant generation' }
@@ -176,16 +177,12 @@ MTMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree [
 			                     with: aParseTree ].
 	^ (1 to: numberOfMutations)
 		  inject: OrderedCollection new
-		  into: [ :coll :aNumberOfSelector |
-			  | mutation |
-			  mutation := self
-				              mutationFor: aCompiledMethod
-				              with: aParseTree
-				              number: aNumberOfSelector.
-			  mutation isArray
-				  ifTrue: [ coll addAll: mutation ]
-				  ifFalse: [ coll add: mutation ].
-			  coll ]
+		  into: [ :collection :aNumberOfSelector |
+			  self
+				  mutationFor: aCompiledMethod
+				  with: aParseTree
+				  number: aNumberOfSelector
+				  storeIn: collection ]
 ]
 
 { #category : 'applying' }

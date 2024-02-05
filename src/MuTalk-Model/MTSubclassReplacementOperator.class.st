@@ -43,17 +43,19 @@ MTSubclassReplacementOperator >> initialize [
 ]
 
 { #category : 'private' }
-MTSubclassReplacementOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumberOfSelector [
+MTSubclassReplacementOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumberOfSelector storeIn: aCollection [
 
-	| mutations |
-	mutations := (1 to: 2) collect: [ :i |
-		             MTMethodMutation
-			             for: aCompiledMethod
-			             using: self
-			             nodeNumber: aNumberOfSelector
-			             ofClass: aCompiledMethod methodClass ].
-	self resetCounter.
-	^ mutations
+	aCollection addAll: ((1 to: 2) collect: [ :i |
+			 | newExpression |
+			 newExpression := (classesToReplace at: aNumberOfSelector)
+				                  subclasses at: i.
+			 MTParametricMethodMutation
+				 for: aCompiledMethod
+				 using: self
+				 nodeNumber: aNumberOfSelector
+				 ofClass: aCompiledMethod methodClass
+				 replacingWith: newExpression ]).
+	^ aCollection
 ]
 
 { #category : 'applying' }
