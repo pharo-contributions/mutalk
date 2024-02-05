@@ -22,22 +22,24 @@ MTMutantOperatorAnalysis >> addAllAssociationsFrom: sourceDictionary to: destina
 ]
 
 { #category : 'computing' }
-MTMutantOperatorAnalysis >> findOperatorsWithoutMutantsFor: aDictionary [
+MTMutantOperatorAnalysis >> operatorDictionary [
+	"Returns the dictionary with mutant operators as keys, and for each operator the number of mutants it produce"
 
-	| operatorsWithoutMutants |
-	operatorsWithoutMutants := (MTMutantOperator contentsAll collect:
-		                            #species) reject: [ :ope |
-		                           aDictionary keys includes: ope ].
+	| operatorDictionary operatorsWithoutMutants |
+	operatorDictionary := self operatorDictionaryFromAnalysis.
+	operatorsWithoutMutants := self operatorsWithoutMutantsFor:
+		                           operatorDictionary.
 
-	^ Dictionary new
-		  addAll:
-			  (operatorsWithoutMutants collect: [ :each | each -> 0 ])
-				  asDictionary;
-		  yourself
+	operatorDictionary := self
+		                       addAllAssociationsFrom:
+		                       operatorsWithoutMutants
+		                       to: operatorDictionary asDictionary.
+
+	^ operatorDictionary
 ]
 
 { #category : 'computing' }
-MTMutantOperatorAnalysis >> mutantOperatorsDictionaryFromAnalysis [
+MTMutantOperatorAnalysis >> operatorDictionaryFromAnalysis [
 
 	| analysis dic |
 	analysis := MTAnalysis new
@@ -66,21 +68,20 @@ MTMutantOperatorAnalysis >> operatorsProducingAtMost: aNumber [
 { #category : 'computing' }
 MTMutantOperatorAnalysis >> operatorsSelectedWith: aBlock [
 
-	^ (self wholeOperatorsDictionary select: aBlock) keys asSet
+	^ (self operatorDictionary select: aBlock) keys asSet
 ]
 
 { #category : 'computing' }
-MTMutantOperatorAnalysis >> wholeOperatorsDictionary [
+MTMutantOperatorAnalysis >> operatorsWithoutMutantsFor: aDictionary [
 
-	| operatorsDictionary operatorsWithoutMutants |
-	operatorsDictionary := self mutantOperatorsDictionaryFromAnalysis.
-	operatorsWithoutMutants := self findOperatorsWithoutMutantsFor:
-		                           operatorsDictionary.
+	| operatorsWithoutMutants |
+	operatorsWithoutMutants := (MTMutantOperator contentsAll collect:
+		                            #species) reject: [ :ope |
+		                           aDictionary keys includes: ope ].
 
-	operatorsDictionary := self
-		                       addAllAssociationsFrom:
-		                       operatorsWithoutMutants
-		                       to: operatorsDictionary asDictionary.
-
-	^ operatorsDictionary
+	^ Dictionary new
+		  addAll:
+			  (operatorsWithoutMutants collect: [ :each | each -> 0 ])
+				  asDictionary;
+		  yourself
 ]

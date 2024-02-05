@@ -12,7 +12,7 @@ MTNonMutatedMethodsAnalysisTest >> testNonMutatedMethods [
 	results := (MTNonMutatedMethodsAnalysis forClasses: {
 			            MTAuxiliarClassForMatrix.
 			            MTAuxiliarClassForMatrixTest })
-		           findMethodsWithoutMutation asSet.
+		           methodsWithoutMutation asSet.
 
 	self
 		assert: results

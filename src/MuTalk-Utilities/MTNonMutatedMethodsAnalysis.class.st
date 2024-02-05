@@ -6,17 +6,7 @@ Class {
 }
 
 { #category : 'computing' }
-MTNonMutatedMethodsAnalysis >> findMethodsWithoutMutation [
-
-	| allMethods allMutatedMethods |
-	allMethods := self getAllMethods.
-	allMutatedMethods := self getMutatedMethods.
-
-	^ allMethods reject: [ :method | allMutatedMethods includes: method ]
-]
-
-{ #category : 'computing' }
-MTNonMutatedMethodsAnalysis >> getAllMethods [
+MTNonMutatedMethodsAnalysis >> allMethods [
 
 	^ classes inject: OrderedCollection new into: [ :coll :class |
 		  coll addAll: (class methods reject: #isExtension).
@@ -24,7 +14,17 @@ MTNonMutatedMethodsAnalysis >> getAllMethods [
 ]
 
 { #category : 'computing' }
-MTNonMutatedMethodsAnalysis >> getMutatedMethods [
+MTNonMutatedMethodsAnalysis >> methodsWithoutMutation [
+
+	| allMethods allMutatedMethods |
+	allMethods := self allMethods.
+	allMutatedMethods := self mutatedMethods.
+
+	^ allMethods reject: [ :method | allMutatedMethods includes: method ]
+]
+
+{ #category : 'computing' }
+MTNonMutatedMethodsAnalysis >> mutatedMethods [
 
 	| analysis mutatedMethods |
 	analysis := MTAnalysis new
