@@ -37,30 +37,6 @@ MTSubclassReplacementOperator >> initialize [
 ]
 
 { #category : 'private' }
-MTSubclassReplacementOperator >> modifiedSourceFor: aCompiledMethod number: aNumber newExpression: anExpression [
-
-	^ self
-		  modifiedSourceFor: aCompiledMethod
-		  with: aCompiledMethod parseTree
-		  number: aNumber
-		  newExpression: anExpression
-]
-
-{ #category : 'private' }
-MTSubclassReplacementOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber newExpression: anExpression [
-
-	| parser allNodes |
-	parser := aParseTree copy.
-	allNodes := parser allChildren select: self expressionToReplace.
-	allNodes size >= aNumber ifTrue: [
-		| oldNode newNode |
-		oldNode := allNodes at: aNumber.
-		newNode := anExpression value: oldNode.
-		oldNode replaceWith: newNode ].
-	^ parser formattedCode
-]
-
-{ #category : 'private' }
 MTSubclassReplacementOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumberOfSelector storeIn: aCollection [
 
 	| classToReplace |
@@ -71,7 +47,7 @@ MTSubclassReplacementOperator >> mutationFor: aCompiledMethod with: aParseTree n
 			 newExpression := self
 				                  newExpressionForClass: aNumberOfSelector
 				                  andSubclass: index.
-			 MTParametricMethodMutation
+			 MTMethodMutation
 				 for: aCompiledMethod
 				 using: self
 				 nodeNumber: aNumberOfSelector

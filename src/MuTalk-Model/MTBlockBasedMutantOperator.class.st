@@ -42,15 +42,15 @@ MTBlockBasedMutantOperator >> isAPosibleNodeToMutate: aRBMethodNode [
 ]
 
 { #category : 'private' }
-MTBlockBasedMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber [
+MTBlockBasedMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber newExpression: anExpression [
 
 	| parser allNodes |
 	parser := aParseTree copy.
 	allNodes := parser allChildren select: self expressionToReplace.
-	allNodes size >= aNumber ifTrue: [ 
+	allNodes size >= aNumber ifTrue: [
 		| oldNode newNode |
 		oldNode := allNodes at: aNumber.
-		newNode := self newExpression value: oldNode.
+		newNode := anExpression value: oldNode.
 		oldNode replaceWith: newNode ].
 	^ parser formattedCode
 ]

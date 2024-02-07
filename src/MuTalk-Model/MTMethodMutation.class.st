@@ -7,20 +7,23 @@ Class {
 		'operator',
 		'originalClass',
 		'testCaseReferences',
-		'originalProtocol'
+		'originalProtocol',
+		'newExpression'
 	],
 	#category : 'MuTalk-Model',
 	#package : 'MuTalk-Model'
 }
 
 { #category : 'instance creation' }
-MTMethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
+MTMethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass replacingWith: anObject [
+
 	^ self new
-		initializeFor: aMethod
-		using: anOperatorApplied
-		nodeNumber: aNodeNumber
-		ofClass: aClass;
-		 yourself
+		  initializeFor: aMethod
+		  using: anOperatorApplied
+		  nodeNumber: aNodeNumber
+		  ofClass: aClass
+		  replacingWith: anObject;
+		  yourself
 ]
 
 { #category : 'comparing' }
@@ -44,12 +47,14 @@ MTMethodMutation >> hash [
 ]
 
 { #category : 'initialize-release' }
-MTMethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
+MTMethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass replacingWith: anObject [
+
 	originalMethod := aMethod.
 	originalProtocol := aMethod protocol.
 	operator := anOperatorApplied.
 	nodeNumber := aNodeNumber.
-	originalClass := aClass
+	originalClass := aClass.
+	newExpression := anObject
 ]
 
 { #category : 'installing' }
@@ -64,7 +69,10 @@ MTMethodMutation >> install [
 { #category : 'accessing' }
 MTMethodMutation >> modifiedSource [
 
-	^ operator modifiedSourceFor: originalMethod number: nodeNumber
+	^ operator
+		  modifiedSourceFor: originalMethod
+		  number: nodeNumber
+		  newExpression: newExpression
 ]
 
 { #category : 'accessing' }

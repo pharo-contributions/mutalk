@@ -113,13 +113,17 @@ MTMutantOperator >> isNodeOfMutation: posibleMutatedRBMethodNode comparingWith: 
 ]
 
 { #category : 'private' }
-MTMutantOperator >> modifiedSourceFor: aCompiledMethod number: aNumber [ 
-	"this method must be removed, it is only added because some tests send this message - Gabo"
-		^self modifiedSourceFor: aCompiledMethod with: aCompiledMethod parseTree number: aNumber 
+MTMutantOperator >> modifiedSourceFor: aCompiledMethod number: aNumber newExpression: anExpression [
+
+	^ self
+		  modifiedSourceFor: aCompiledMethod
+		  with: aCompiledMethod parseTree
+		  number: aNumber
+		  newExpression: anExpression
 ]
 
 { #category : 'private' }
-MTMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber [
+MTMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber newExpression: anExpression [
 
 	| rewriter parser number nNode |
 	rewriter := RBParseTreeRewriter new.
@@ -127,14 +131,14 @@ MTMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: 
 	parser := aParseTree copy.
 	rewriter
 		replace: self expressionToReplace
-		withValueFrom: [ :oNode | 
+		withValueFrom: [ :oNode |
 			| oldNode newNode |
-			nNode := RBParser parseRewriteExpression: self newExpression.
+			nNode := RBParser parseRewriteExpression: anExpression.
 			nNode := nNode copyInContext: rewriter context.
 			oldNode := oNode.
 			newNode := nNode.
 			newNode ]
-		when: [ :node | 
+		when: [ :node |
 			number := number - 1.
 			number = 0 ].
 	rewriter executeTree: parser.
@@ -149,7 +153,8 @@ MTMutantOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumbe
 			 for: aCompiledMethod
 			 using: self
 			 nodeNumber: aNumberOfSelector
-			 ofClass: aCompiledMethod methodClass).
+			 ofClass: aCompiledMethod methodClass
+			 replacingWith: self newExpression).
 	^ aCollection
 ]
 
