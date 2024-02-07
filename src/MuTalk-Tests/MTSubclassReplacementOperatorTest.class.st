@@ -31,6 +31,18 @@ MTSubclassReplacementOperatorTest >> assertApplyingMutantToFirstSenderInTwoSende
 ]
 
 { #category : 'asserts' }
+MTSubclassReplacementOperatorTest >> assertApplyingMutantToNonSenderMethod [
+
+^ self
+		  compareSource: (self operator
+				   modifiedSourceFor: self class >> #methodWithNoSenders
+				   number: 1
+				   newExpression: self newExpression)
+		  withSourceInMethod: self class >> #methodWithNoSenders
+		  replacingSelector: #methodWithNoSenders
+]
+
+{ #category : 'asserts' }
 MTSubclassReplacementOperatorTest >> assertApplyingMutantToSecondSenderInTwoSendersMethod [
 
 	^ self

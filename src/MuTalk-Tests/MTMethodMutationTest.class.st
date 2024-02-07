@@ -19,12 +19,14 @@ MTMethodMutationTest >> testAccessing [
 	operator := MTReplacePlusWithMinusMutantOperator new.
 	modifiedSource := operator
 		                  modifiedSourceFor: compiledMethod
-		                  number: 1.
+		                  number: 1
+		                  newExpression: operator newExpression.
 	methodMutation := MTMethodMutation
 		                  for: compiledMethod
 		                  using: operator
 		                  nodeNumber: 1
-		                  ofClass: MTAuxiliarClassForMTAnalysis.
+		                  ofClass: MTAuxiliarClassForMTAnalysis
+		                  replacingWith: operator newExpression.
 	self
 		assert: methodMutation originalSource
 		equals: compiledMethod sourceCode asString.
@@ -43,12 +45,14 @@ MTMethodMutationTest >> testAccessingToNodes [
 	operator := MTReplacePlusWithMinusMutantOperator new.
 	modifiedSource := operator
 		                  modifiedSourceFor: compiledMethod
-		                  number: 1.
+		                  number: 1
+		                  newExpression: operator newExpression.
 	methodMutation := MTMethodMutation
 		                  for: compiledMethod
 		                  using: operator
 		                  nodeNumber: 1
-		                  ofClass: MTAuxiliarClassForMTAnalysis.
+		                  ofClass: MTAuxiliarClassForMTAnalysis
+		                  replacingWith: operator newExpression.
 	self
 		assert: methodMutation nodeToMutate formattedCode
 		equals: '1 + 2'.
@@ -69,22 +73,23 @@ MTMethodMutationTest >> testMutatedNodeBugFix [
 MTMethodMutationTest >> testMutationInfiniteLoop [
 
 	| compiledMethod operator modifiedSource methodMutation res |
-	
 	"This test will execute another test that will time out.
 	So this test will need a higher time limit"
 	self timeLimit: self defaultTimeLimit * 2.
-	
+
 	compiledMethod := MTFakeInfiniteLoopForTest >> #iterativeFactorial:.
 	operator := MTReplaceLessOrEqualWithTrueOperator new.
-	
+
 	modifiedSource := operator
 		                  modifiedSourceFor: compiledMethod
-		                  number: 1.
+		                  number: 1
+		                  newExpression: operator newExpression.
 	methodMutation := MTMethodMutation
 		                  for: compiledMethod
 		                  using: operator
 		                  nodeNumber: 1
-		                  ofClass: MTFakeInfiniteLoopForTest.
+		                  ofClass: MTFakeInfiniteLoopForTest
+		                  replacingWith: operator newExpression.
 
 	methodMutation testCaseReferences: { (MTTestCaseReference
 			 for: #testIterativeFactorial
@@ -99,22 +104,23 @@ MTMethodMutationTest >> testMutationInfiniteLoop [
 MTMethodMutationTest >> testMutationInfiniteRecursion [
 
 	| compiledMethod operator modifiedSource methodMutation res |
-	
 	"This test will execute another test that will time out.
 	So this test will need a higher time limit"
 	self timeLimit: self defaultTimeLimit * 2.
-	
+
 	compiledMethod := MTFakeInfiniteLoopForTest >> #recursiveFactorial:.
 	operator := MTReplaceIfTrueReceiverWithFalseOperator new.
-	
+
 	modifiedSource := operator
 		                  modifiedSourceFor: compiledMethod
-		                  number: 1.
+		                  number: 1
+		                  newExpression: operator newExpression.
 	methodMutation := MTMethodMutation
 		                  for: compiledMethod
 		                  using: operator
 		                  nodeNumber: 1
-		                  ofClass: MTFakeInfiniteLoopForTest.
+		                  ofClass: MTFakeInfiniteLoopForTest
+		                  replacingWith: operator newExpression.
 
 	methodMutation testCaseReferences: { (MTTestCaseReference
 			 for: #testRecursiveFactorial
@@ -134,12 +140,14 @@ MTMethodMutationTest >> testMutationRun [
 	operator := MTReplacePlusWithMinusMutantOperator new.
 	modifiedSource := operator
 		                  modifiedSourceFor: compiledMethod
-		                  number: 1.
+		                  number: 1
+		                  newExpression: operator newExpression.
 	methodMutation := MTMethodMutation
 		                  for: compiledMethod
 		                  using: operator
 		                  nodeNumber: 1
-		                  ofClass: MTAuxiliarClassForMTAnalysis.
+		                  ofClass: MTAuxiliarClassForMTAnalysis
+		                  replacingWith: operator newExpression.
 	methodMutation testCaseReferences:
 		{ (MTTestCaseReference for: #simpleTestCaseRessource in: self class) }.
 	res := methodMutation runMutantStoppingOnError: true.

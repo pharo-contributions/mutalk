@@ -70,13 +70,16 @@ MTResource >> methodForBuildingMutant [
 { #category : 'building-private' }
 MTResource >> mutation [
 	"Build Mock Object that simulates a Mutant"
-	| method |
+
+	| method operator |
 	method := self class >> #methodForBuildingMutant.
+	operator := MTReplacePlusWithMinusMutantOperator new.
 	^ MTMethodMutation
-		for: method
-		using: MTReplacePlusWithMinusMutantOperator new
-		nodeNumber: 1
-		ofClass: self class
+		  for: method
+		  using: operator
+		  nodeNumber: 1
+		  ofClass: self class
+		  replacingWith: operator newExpression
 ]
 
 { #category : 'running' }

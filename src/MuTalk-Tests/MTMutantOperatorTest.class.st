@@ -18,45 +18,52 @@ MTMutantOperatorTest class >> packageNamesUnderTest [
 
 { #category : 'asserts' }
 MTMutantOperatorTest >> assertApplyingMutantToFirstSenderInOneSenderMethod [
-	^ self compareSource: 
-				(self operator 
-						modifiedSourceFor: self class >> #methodWithOneSender
-						number: 1) 
-			withSourceInMethod: self class >> #methodWithOneSenderModified
-			replacingSelector: #methodWithOneSender
+
+	^ self
+		  compareSource: (self operator
+				   modifiedSourceFor: self class >> #methodWithOneSender
+				   number: 1
+				   newExpression: self operator newExpression)
+		  withSourceInMethod: self class >> #methodWithOneSenderModified
+		  replacingSelector: #methodWithOneSender
 ]
 
 { #category : 'asserts' }
 MTMutantOperatorTest >> assertApplyingMutantToFirstSenderInTwoSendersMethod [
-	^self 
-		compareSource: 
-			(self operator 
-					modifiedSourceFor: self class >> #methodWithTwoSenders
-					number: 1) 
-		withSourceInMethod: self class >> #methodWithTwoSendersModifiedFirst
-		replacingSelector: #methodWithTwoSenders
+
+	^ self
+		  compareSource: (self operator
+				   modifiedSourceFor: self class >> #methodWithTwoSenders
+				   number: 1
+				   newExpression: self operator newExpression)
+		  withSourceInMethod:
+		  self class >> #methodWithTwoSendersModifiedFirst
+		  replacingSelector: #methodWithTwoSenders
 ]
 
 { #category : 'asserts' }
 MTMutantOperatorTest >> assertApplyingMutantToNonSenderMethod [
-	^self 
-		compareSource: 
-			(self operator 
-					modifiedSourceFor: self class >> #methodWithNoSenders
-					number: 1) 
-		withSourceInMethod: self class >> #methodWithNoSenders
-		replacingSelector: #methodWithNoSenders
+
+^ self
+		  compareSource: (self operator
+				   modifiedSourceFor: self class >> #methodWithNoSenders
+				   number: 1
+				   newExpression: self operator newExpression)
+		  withSourceInMethod: self class >> #methodWithNoSenders
+		  replacingSelector: #methodWithNoSenders
 ]
 
 { #category : 'asserts' }
 MTMutantOperatorTest >> assertApplyingMutantToSecondSenderInTwoSendersMethod [
-	^self 
-		compareSource: 
-			(self operator 
-					modifiedSourceFor: self class >> #methodWithTwoSenders
-					number: 2) 
-		withSourceInMethod: self class >> #methodWithTwoSendersModifiedSecond
-		replacingSelector: #methodWithTwoSenders
+
+	^ self
+		  compareSource: (self operator
+				   modifiedSourceFor: self class >> #methodWithTwoSenders
+				   number: 2
+				   newExpression: self operator newExpression)
+		  withSourceInMethod:
+		  self class >> #methodWithTwoSendersModifiedSecond
+		  replacingSelector: #methodWithTwoSenders
 ]
 
 { #category : 'asserts' }
