@@ -113,6 +113,16 @@ MTMutantOperator >> isNodeOfMutation: posibleMutatedRBMethodNode comparingWith: 
 ]
 
 { #category : 'private' }
+MTMutantOperator >> modifiedSourceFor: aCompiledMethod number: aNumber [
+
+	^ self
+		  modifiedSourceFor: aCompiledMethod
+		  with: aCompiledMethod parseTree
+		  number: aNumber
+		  newExpression: self newExpression
+]
+
+{ #category : 'private' }
 MTMutantOperator >> modifiedSourceFor: aCompiledMethod number: aNumber newExpression: anExpression [
 
 	^ self
@@ -153,8 +163,7 @@ MTMutantOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumbe
 			 for: aCompiledMethod
 			 using: self
 			 nodeNumber: aNumberOfSelector
-			 ofClass: aCompiledMethod methodClass
-			 replacingWith: self newExpression).
+			 ofClass: aCompiledMethod methodClass).
 	^ aCollection
 ]
 

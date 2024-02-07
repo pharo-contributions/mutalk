@@ -22,8 +22,7 @@ MTMutantOperatorTest >> assertApplyingMutantToFirstSenderInOneSenderMethod [
 	^ self
 		  compareSource: (self operator
 				   modifiedSourceFor: self class >> #methodWithOneSender
-				   number: 1
-				   newExpression: self operator newExpression)
+				   number: 1)
 		  withSourceInMethod: self class >> #methodWithOneSenderModified
 		  replacingSelector: #methodWithOneSender
 ]
@@ -34,8 +33,7 @@ MTMutantOperatorTest >> assertApplyingMutantToFirstSenderInTwoSendersMethod [
 	^ self
 		  compareSource: (self operator
 				   modifiedSourceFor: self class >> #methodWithTwoSenders
-				   number: 1
-				   newExpression: self operator newExpression)
+				   number: 1)
 		  withSourceInMethod:
 		  self class >> #methodWithTwoSendersModifiedFirst
 		  replacingSelector: #methodWithTwoSenders
@@ -44,11 +42,10 @@ MTMutantOperatorTest >> assertApplyingMutantToFirstSenderInTwoSendersMethod [
 { #category : 'asserts' }
 MTMutantOperatorTest >> assertApplyingMutantToNonSenderMethod [
 
-^ self
+	^ self
 		  compareSource: (self operator
 				   modifiedSourceFor: self class >> #methodWithNoSenders
-				   number: 1
-				   newExpression: self operator newExpression)
+				   number: 1)
 		  withSourceInMethod: self class >> #methodWithNoSenders
 		  replacingSelector: #methodWithNoSenders
 ]
@@ -59,8 +56,7 @@ MTMutantOperatorTest >> assertApplyingMutantToSecondSenderInTwoSendersMethod [
 	^ self
 		  compareSource: (self operator
 				   modifiedSourceFor: self class >> #methodWithTwoSenders
-				   number: 2
-				   newExpression: self operator newExpression)
+				   number: 2)
 		  withSourceInMethod:
 		  self class >> #methodWithTwoSendersModifiedSecond
 		  replacingSelector: #methodWithTwoSenders

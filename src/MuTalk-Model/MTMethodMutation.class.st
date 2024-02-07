@@ -15,6 +15,17 @@ Class {
 }
 
 { #category : 'instance creation' }
+MTMethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
+
+	^ self new
+		  initializeFor: aMethod
+		  using: anOperatorApplied
+		  nodeNumber: aNodeNumber
+		  ofClass: aClass;
+		  yourself
+]
+
+{ #category : 'instance creation' }
 MTMethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass replacingWith: anObject [
 
 	^ self new
@@ -44,6 +55,17 @@ MTMethodMutation >> hash [
 
 	^ self operator species hash + self originalMethod hash
 	  + self originalClass hash + self nodeNumber hash
+]
+
+{ #category : 'initialize-release' }
+MTMethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
+
+	self
+		initializeFor: aMethod
+		using: anOperatorApplied
+		nodeNumber: aNodeNumber
+		ofClass: aClass
+		replacingWith: anOperatorApplied newExpression
 ]
 
 { #category : 'initialize-release' }

@@ -19,14 +19,12 @@ MTMethodMutationTest >> testAccessing [
 	operator := MTReplacePlusWithMinusMutantOperator new.
 	modifiedSource := operator
 		                  modifiedSourceFor: compiledMethod
-		                  number: 1
-		                  newExpression: operator newExpression.
+		                  number: 1.
 	methodMutation := MTMethodMutation
 		                  for: compiledMethod
 		                  using: operator
 		                  nodeNumber: 1
-		                  ofClass: MTAuxiliarClassForMTAnalysis
-		                  replacingWith: operator newExpression.
+		                  ofClass: MTAuxiliarClassForMTAnalysis.
 	self
 		assert: methodMutation originalSource
 		equals: compiledMethod sourceCode asString.
@@ -45,14 +43,12 @@ MTMethodMutationTest >> testAccessingToNodes [
 	operator := MTReplacePlusWithMinusMutantOperator new.
 	modifiedSource := operator
 		                  modifiedSourceFor: compiledMethod
-		                  number: 1
-		                  newExpression: operator newExpression.
+		                  number: 1.
 	methodMutation := MTMethodMutation
 		                  for: compiledMethod
 		                  using: operator
 		                  nodeNumber: 1
-		                  ofClass: MTAuxiliarClassForMTAnalysis
-		                  replacingWith: operator newExpression.
+		                  ofClass: MTAuxiliarClassForMTAnalysis.
 	self
 		assert: methodMutation nodeToMutate formattedCode
 		equals: '1 + 2'.
@@ -82,14 +78,12 @@ MTMethodMutationTest >> testMutationInfiniteLoop [
 
 	modifiedSource := operator
 		                  modifiedSourceFor: compiledMethod
-		                  number: 1
-		                  newExpression: operator newExpression.
+		                  number: 1.
 	methodMutation := MTMethodMutation
 		                  for: compiledMethod
 		                  using: operator
 		                  nodeNumber: 1
-		                  ofClass: MTFakeInfiniteLoopForTest
-		                  replacingWith: operator newExpression.
+		                  ofClass: MTFakeInfiniteLoopForTest.
 
 	methodMutation testCaseReferences: { (MTTestCaseReference
 			 for: #testIterativeFactorial
@@ -113,14 +107,12 @@ MTMethodMutationTest >> testMutationInfiniteRecursion [
 
 	modifiedSource := operator
 		                  modifiedSourceFor: compiledMethod
-		                  number: 1
-		                  newExpression: operator newExpression.
+		                  number: 1.
 	methodMutation := MTMethodMutation
 		                  for: compiledMethod
 		                  using: operator
 		                  nodeNumber: 1
-		                  ofClass: MTFakeInfiniteLoopForTest
-		                  replacingWith: operator newExpression.
+		                  ofClass: MTFakeInfiniteLoopForTest.
 
 	methodMutation testCaseReferences: { (MTTestCaseReference
 			 for: #testRecursiveFactorial
@@ -140,14 +132,12 @@ MTMethodMutationTest >> testMutationRun [
 	operator := MTReplacePlusWithMinusMutantOperator new.
 	modifiedSource := operator
 		                  modifiedSourceFor: compiledMethod
-		                  number: 1
-		                  newExpression: operator newExpression.
+		                  number: 1.
 	methodMutation := MTMethodMutation
 		                  for: compiledMethod
 		                  using: operator
 		                  nodeNumber: 1
-		                  ofClass: MTAuxiliarClassForMTAnalysis
-		                  replacingWith: operator newExpression.
+		                  ofClass: MTAuxiliarClassForMTAnalysis.
 	methodMutation testCaseReferences:
 		{ (MTTestCaseReference for: #simpleTestCaseRessource in: self class) }.
 	res := methodMutation runMutantStoppingOnError: true.

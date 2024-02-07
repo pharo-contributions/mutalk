@@ -79,7 +79,6 @@ MTResource >> mutation [
 		  using: operator
 		  nodeNumber: 1
 		  ofClass: self class
-		  replacingWith: operator newExpression
 ]
 
 { #category : 'running' }
