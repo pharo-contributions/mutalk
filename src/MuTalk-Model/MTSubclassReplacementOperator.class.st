@@ -2,8 +2,7 @@ Class {
 	#name : 'MTSubclassReplacementOperator',
 	#superclass : 'MTBlockBasedMutantOperator',
 	#instVars : [
-		'classesToReplace',
-		'counter'
+		'classesToReplace'
 	],
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
@@ -22,15 +21,12 @@ MTSubclassReplacementOperator >> expressionToReplace [
 	^ [ :aNode |
 	  aNode isVariable and: [
 		  (self class environment includesKey: aNode name) and: [
-			  (classesToReplace add: (self class environment at: aNode name))
-				  subclasses isNotEmpty ] ] ]
-]
-
-{ #category : 'accessing' }
-MTSubclassReplacementOperator >> indexFor: aNode [
-
-	^ aNode startForReplacement
-	  + (self class environment at: aNode name) hash
+			  | referencedClass shouldReplace |
+			  referencedClass := self class environment at: aNode name.
+			  shouldReplace := referencedClass isClass and: [
+				                   referencedClass subclasses notEmpty ].
+			  shouldReplace ifTrue: [ classesToReplace add: referencedClass ].
+			  shouldReplace ] ] ]
 ]
 
 { #category : 'initialization' }
@@ -85,18 +81,13 @@ MTSubclassReplacementOperator >> mutationFor: aCompiledMethod with: aParseTree n
 ]
 
 { #category : 'applying' }
-MTSubclassReplacementOperator >> newExpression [
-
-	
-]
-
-{ #category : 'applying' }
 MTSubclassReplacementOperator >> newExpressionForClass: classIndex andSubclass: subclassIndex [
 
 	^ [ :anOldNode |
 	  | nodeCopy |
 	  nodeCopy := anOldNode copy.
 	  nodeCopy name:
-		  ((classesToReplace at: classIndex) subclasses at: subclassIndex) name.
+		  ((classesToReplace at: classIndex) subclasses at: subclassIndex)
+			  name.
 	  nodeCopy ]
 ]
