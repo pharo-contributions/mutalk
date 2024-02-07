@@ -9,7 +9,7 @@ Class {
 { #category : 'printing' }
 MTMessageSendToYourselfOperator >> description [
 
-	^ 'Chnage a message send with #yourself'
+	^ 'Change a message send with #yourself'
 ]
 
 { #category : 'applying' }
