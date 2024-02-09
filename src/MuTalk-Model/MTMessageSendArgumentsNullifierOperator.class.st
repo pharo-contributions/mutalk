@@ -19,13 +19,6 @@ MTMessageSendArgumentsNullifierOperator >> description [
 ]
 
 { #category : 'applying' }
-MTMessageSendArgumentsNullifierOperator >> expressionToReplace [
-
-	^ [ :aNode | 
-	  aNode isMessage and: [ aNode arguments size >= self whichArgument ] ]
-]
-
-{ #category : 'applying' }
 MTMessageSendArgumentsNullifierOperator >> newExpression [
 
 	| whichToReplace nodeCopy |
@@ -34,6 +27,13 @@ MTMessageSendArgumentsNullifierOperator >> newExpression [
 	  whichToReplace := nodeCopy arguments at: self whichArgument.
 	  whichToReplace replaceWith: (RBLiteralValueNode value: nil).
 	 nodeCopy]
+]
+
+{ #category : 'applying' }
+MTMessageSendArgumentsNullifierOperator >> nodeSelectionPredicate [
+
+	^ [ :aNode | 
+	  aNode isMessage and: [ aNode arguments size >= self whichArgument ] ]
 ]
 
 { #category : 'applying' }

@@ -13,14 +13,14 @@ MTEmptyMethodOperator >> description [
 ]
 
 { #category : 'applying' }
-MTEmptyMethodOperator >> expressionToReplace [
-
-	^ [ :aNode | 
-	  aNode isSequence and: [ aNode parent isMethod] ]
-]
-
-{ #category : 'applying' }
 MTEmptyMethodOperator >> newExpression [
 
 	^ [ :anOldNode | RBSequenceNode statements: #() ]
+]
+
+{ #category : 'applying' }
+MTEmptyMethodOperator >> nodeSelectionPredicate [
+
+	^ [ :aNode | 
+	  aNode isSequence and: [ aNode parent isMethod] ]
 ]

@@ -13,13 +13,13 @@ MTLiteralIntegersDecreaseOperator >> description [
 ]
 
 { #category : 'applying' }
-MTLiteralIntegersDecreaseOperator >> expressionToReplace [
-
-	^ [ :aNode | aNode isLiteralNode & aNode isLiteralArray not and: [ aNode value isInteger ]  ]
-]
-
-{ #category : 'applying' }
 MTLiteralIntegersDecreaseOperator >> newExpression [
 
 	^ [ :anOldNode | RBLiteralValueNode value: anOldNode value - 1 ]
+]
+
+{ #category : 'applying' }
+MTLiteralIntegersDecreaseOperator >> nodeSelectionPredicate [
+
+	^ [ :aNode | aNode isLiteralNode & aNode isLiteralArray not and: [ aNode value isInteger ]  ]
 ]

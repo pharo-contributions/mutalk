@@ -13,15 +13,15 @@ MTLiteralBooleanNegateOperator >> description [
 ]
 
 { #category : 'applying' }
-MTLiteralBooleanNegateOperator >> expressionToReplace [
+MTLiteralBooleanNegateOperator >> newExpression [
+
+	^ [ :anOldNode | RBLiteralValueNode value: anOldNode value not ]
+]
+
+{ #category : 'applying' }
+MTLiteralBooleanNegateOperator >> nodeSelectionPredicate [
 
 	^ [ :aNode | 
 	  aNode isLiteralNode & aNode isLiteralArray not and: [ 
 		  { true. false } includes: aNode value  ] ]
-]
-
-{ #category : 'applying' }
-MTLiteralBooleanNegateOperator >> newExpression [
-
-	^ [ :anOldNode | RBLiteralValueNode value: anOldNode value not ]
 ]

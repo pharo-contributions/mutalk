@@ -13,17 +13,17 @@ MTLiteralStringChangeOperator >> description [
 ]
 
 { #category : 'applying' }
-MTLiteralStringChangeOperator >> expressionToReplace [
+MTLiteralStringChangeOperator >> newExpression [
+
+	^ [ :anOldNode | RBLiteralValueNode value: self stringReplaced  ]
+]
+
+{ #category : 'applying' }
+MTLiteralStringChangeOperator >> nodeSelectionPredicate [
 
 	^ [ :aNode | 
 	  aNode isLiteralNode & aNode isLiteralArray not and: [ 
 		  aNode value isString and: [ aNode value ~= self stringReplaced ] ] ]
-]
-
-{ #category : 'applying' }
-MTLiteralStringChangeOperator >> newExpression [
-
-	^ [ :anOldNode | RBLiteralValueNode value: self stringReplaced  ]
 ]
 
 { #category : 'applying' }

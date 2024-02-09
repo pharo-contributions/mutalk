@@ -13,13 +13,6 @@ MTMessageSendToYourselfOperator >> description [
 ]
 
 { #category : 'applying' }
-MTMessageSendToYourselfOperator >> expressionToReplace [
-
-	^ [ :aNode | 
-	  aNode isMessage and: [ aNode selector ~= #yourself ] ]
-]
-
-{ #category : 'applying' }
 MTMessageSendToYourselfOperator >> newExpression [
 
 	| nodeCopy |
@@ -27,4 +20,11 @@ MTMessageSendToYourselfOperator >> newExpression [
 	  nodeCopy := anOldNode copy.
 		RBMessageNode receiver: nodeCopy receiver selector: #yourself
 	   ]
+]
+
+{ #category : 'applying' }
+MTMessageSendToYourselfOperator >> nodeSelectionPredicate [
+
+	^ [ :aNode | 
+	  aNode isMessage and: [ aNode selector ~= #yourself ] ]
 ]

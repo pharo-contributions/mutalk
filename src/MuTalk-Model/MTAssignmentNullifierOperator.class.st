@@ -13,12 +13,6 @@ MTAssignmentNullifierOperator >> description [
 ]
 
 { #category : 'applying' }
-MTAssignmentNullifierOperator >> expressionToReplace [
-
-	^ [ :aNode | aNode isAssignment & aNode value isNotNil ]
-]
-
-{ #category : 'applying' }
 MTAssignmentNullifierOperator >> newExpression [
 
 	^ [ :anOldNode |
@@ -26,4 +20,10 @@ MTAssignmentNullifierOperator >> newExpression [
 	  nodeCopy := anOldNode copy.
 	  nodeCopy value: (RBLiteralValueNode value: nil).
 	  nodeCopy ]
+]
+
+{ #category : 'applying' }
+MTAssignmentNullifierOperator >> nodeSelectionPredicate [
+
+	^ [ :aNode | aNode isAssignment & aNode value isNotNil ]
 ]

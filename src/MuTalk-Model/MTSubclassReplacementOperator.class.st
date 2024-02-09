@@ -15,20 +15,6 @@ MTSubclassReplacementOperator >> description [
 	^ 'Replace a class reference by a reference to one of its subclasses'
 ]
 
-{ #category : 'applying' }
-MTSubclassReplacementOperator >> expressionToReplace [
-
-	^ [ :aNode |
-	  aNode isVariable and: [
-		  (self class environment includesKey: aNode name) and: [
-			  | referencedClass shouldReplace |
-			  referencedClass := self class environment at: aNode name.
-			  shouldReplace := referencedClass isClass and: [
-				                   referencedClass subclasses notEmpty ].
-			  shouldReplace ifTrue: [ self addClassInDictionary: referencedClass forMethodOf: aNode ].
-			  shouldReplace ] ] ]
-]
-
 { #category : 'initialization' }
 MTSubclassReplacementOperator >> initialize [
 
@@ -67,4 +53,16 @@ MTSubclassReplacementOperator >> newExpressionForClass: classIndex andSubclass: 
 		  ((classesToReplace at: classIndex) subclasses at: subclassIndex)
 			  name.
 	  nodeCopy ]
+]
+
+{ #category : 'applying' }
+MTSubclassReplacementOperator >> nodeSelectionPredicate [
+
+	^ [ :aNode |
+	  aNode isVariable and: [
+		  (self class environment includesKey: aNode name) and: [
+			  | referencedClass |
+			  referencedClass := self class environment at: aNode name.
+			  referencedClass isClass and: [
+				  referencedClass subclasses notEmpty ] ] ] ]
 ]

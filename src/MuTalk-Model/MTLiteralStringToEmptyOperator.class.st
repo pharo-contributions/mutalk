@@ -13,15 +13,15 @@ MTLiteralStringToEmptyOperator >> description [
 ]
 
 { #category : 'applying' }
-MTLiteralStringToEmptyOperator >> expressionToReplace [
+MTLiteralStringToEmptyOperator >> newExpression [
+
+	^ [ :anOldNode | RBLiteralValueNode value: '' ]
+]
+
+{ #category : 'applying' }
+MTLiteralStringToEmptyOperator >> nodeSelectionPredicate [
 
 	^ [ :aNode | 
 	  aNode isLiteralNode & aNode isLiteralArray not and: [ 
 		  aNode value isString  and: [aNode value isNotEmpty ]  ] ]
-]
-
-{ #category : 'applying' }
-MTLiteralStringToEmptyOperator >> newExpression [
-
-	^ [ :anOldNode | RBLiteralValueNode value: '' ]
 ]
