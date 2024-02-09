@@ -23,36 +23,35 @@ MTSubclassReplacementOperator >> initialize [
 ]
 
 { #category : 'private' }
-MTSubclassReplacementOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumberOfSelector storeIn: aCollection [
+MTSubclassReplacementOperator >> mutationsFor: aCompiledMethod with: aParseTree [
 
-	| classToReplace |
-	classToReplace := classesToReplace at: aNumberOfSelector.
-	aCollection addAll:
-		((1 to: classToReplace subclasses size) collect: [ :index |
-			 | newExpression |
-			 newExpression := self
-				                  newExpressionForClass: aNumberOfSelector
-				                  andSubclass: index.
-			Halt if: [ aCompiledMethod = (UUID>>#initialize) ].
-			 MTMethodMutation
-				 for: aCompiledMethod
-				 using: self
-				 nodeNumber: aNumberOfSelector
-				 ofClass: aCompiledMethod methodClass
-				 replacingWith: newExpression ]).
-	^ aCollection
-]
+	| numberOfAffectedNodes |
+	((aCompiledMethod hasPragmaNamed: #ignoreForMutations) or: [
+		 aCompiledMethod hasPragmaNamed: #ignoreForCoverage ]) ifTrue: [
+		^ #(  ) ].
 
-{ #category : 'applying' }
-MTSubclassReplacementOperator >> newExpressionForClass: classIndex andSubclass: subclassIndex [
-
-	^ [ :anOldNode |
-	  | nodeCopy |
-	  nodeCopy := anOldNode copy.
-	  nodeCopy name:
-		  ((classesToReplace at: classIndex) subclasses at: subclassIndex)
-			  name.
-	  nodeCopy ]
+	numberOfAffectedNodes := self
+		                         timesToApplyIn: aCompiledMethod
+		                         with: aParseTree.
+	^ (1 to: numberOfAffectedNodes)
+		  inject: OrderedCollection new
+		  into: [ :accumulator :nodeIndex |
+			  | classToReplace affectedNode |
+			  affectedNode := self affectedNodeFor: aParseTree at: nodeIndex.
+			  "We know that the affectedNode is on a class reference to a class that exists and has subclasses"
+			  classToReplace := self class environment at: affectedNode name.
+			  accumulator addAll:
+				  (classToReplace subclasses collect: [ :subclass |
+					   | newExpression |
+					   newExpression := [ :anOldNode |
+					                    RBVariableNode named: subclass name ].
+					   MTMethodMutation
+						   for: aCompiledMethod
+						   using: self
+						   nodeNumber: nodeIndex
+						   ofClass: aCompiledMethod methodClass
+						   replacingWith: newExpression ]).
+			  accumulator ]
 ]
 
 { #category : 'applying' }
@@ -65,4 +64,13 @@ MTSubclassReplacementOperator >> nodeSelectionPredicate [
 			  referencedClass := self class environment at: aNode name.
 			  referencedClass isClass and: [
 				  referencedClass subclasses notEmpty ] ] ] ]
+]
+
+{ #category : 'applying' }
+MTSubclassReplacementOperator >> subclassesForNode: aNode [
+	"pre condition: aNode is a class reference node that exists"
+
+	| referencedClass |
+	referencedClass := self class environment at: aNode name.
+	^ referencedClass subclasses
 ]
