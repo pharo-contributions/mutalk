@@ -40,15 +40,15 @@ MTPredicateBasedMutantOperator >> appliesToNode: aNode [
 { #category : 'private' }
 MTPredicateBasedMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber newExpression: anExpression [
 
-	| parseTree allNodes |
-	parseTree := aParseTree copy.
-	allNodes := self affectedNodesFor: parseTree.
+	| parseTreeCopy allNodes |
+	parseTreeCopy := aParseTree copy.
+	allNodes := self affectedNodesFor: parseTreeCopy.
 	allNodes size >= aNumber ifTrue: [
 		| oldNode newNode |
 		oldNode := allNodes at: aNumber.
 		newNode := anExpression value: oldNode.
 		oldNode replaceWith: newNode ].
-	^ parseTree formattedCode
+	^ parseTreeCopy formattedCode
 ]
 
 { #category : 'instance creation' }
