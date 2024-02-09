@@ -42,12 +42,11 @@ MTPredicateBasedMutantOperator >> modifiedSourceFor: aCompiledMethod with: aPars
 
 	| parseTree allNodes |
 	parseTree := aParseTree copy.
-	allNodes := self affectedNodesFor: aParseTree.
+	allNodes := self affectedNodesFor: parseTree.
 	allNodes size >= aNumber ifTrue: [
 		| oldNode newNode |
 		oldNode := allNodes at: aNumber.
 		newNode := anExpression value: oldNode.
-		1halt.
 		oldNode replaceWith: newNode ].
 	^ parseTree formattedCode
 ]
