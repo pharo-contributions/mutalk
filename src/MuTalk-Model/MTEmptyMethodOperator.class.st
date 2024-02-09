@@ -19,7 +19,7 @@ MTEmptyMethodOperator >> description [
 ]
 
 { #category : 'applying' }
-MTEmptyMethodOperator >> newExpression [
+MTEmptyMethodOperator >> newNodeFrom: anOldNode [
 
-	^ [ :anOldNode | RBSequenceNode statements: #() ]
+	^ RBSequenceNode statements: #(  )
 ]

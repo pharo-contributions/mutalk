@@ -51,8 +51,14 @@ MTPredicateBasedMutantOperator >> modifiedSourceFor: aCompiledMethod with: aPars
 	^ parseTreeCopy formattedCode
 ]
 
-{ #category : 'instance creation' }
+{ #category : 'applying' }
 MTPredicateBasedMutantOperator >> newExpression [
+
+	^ [ :anOldNode | self newNodeFrom: anOldNode ]
+]
+
+{ #category : 'instance creation' }
+MTPredicateBasedMutantOperator >> newNodeFrom: anOldNode [
 
 	self subclassResponsibility
 ]

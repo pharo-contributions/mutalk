@@ -20,7 +20,7 @@ MTLiteralStringToEmptyOperator >> description [
 ]
 
 { #category : 'applying' }
-MTLiteralStringToEmptyOperator >> newExpression [
+MTLiteralStringToEmptyOperator >> newNodeFrom: anOldNode [
 
-	^ [ :anOldNode | RBLiteralValueNode value: '' ]
+	^ RBLiteralValueNode value: ''
 ]

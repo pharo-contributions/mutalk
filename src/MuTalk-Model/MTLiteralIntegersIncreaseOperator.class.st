@@ -20,7 +20,7 @@ MTLiteralIntegersIncreaseOperator >> description [
 ]
 
 { #category : 'applying' }
-MTLiteralIntegersIncreaseOperator >> newExpression [
+MTLiteralIntegersIncreaseOperator >> newNodeFrom: anOldNode [
 
-	^ [ :anOldNode | RBLiteralValueNode value: anOldNode value + 1 ]
+	^ RBLiteralValueNode value: anOldNode value + 1
 ]

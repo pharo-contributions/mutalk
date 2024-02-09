@@ -20,9 +20,9 @@ MTLiteralStringChangeOperator >> description [
 ]
 
 { #category : 'applying' }
-MTLiteralStringChangeOperator >> newExpression [
+MTLiteralStringChangeOperator >> newNodeFrom: anOldNode [
 
-	^ [ :anOldNode | RBLiteralValueNode value: self stringReplaced  ]
+	^ RBLiteralValueNode value: self stringReplaced
 ]
 
 { #category : 'applying' }

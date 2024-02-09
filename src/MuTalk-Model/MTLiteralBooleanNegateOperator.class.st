@@ -20,7 +20,7 @@ MTLiteralBooleanNegateOperator >> description [
 ]
 
 { #category : 'applying' }
-MTLiteralBooleanNegateOperator >> newExpression [
+MTLiteralBooleanNegateOperator >> newNodeFrom: anOldNode [
 
-	^ [ :anOldNode | RBLiteralValueNode value: anOldNode value not ]
+	^ RBLiteralValueNode value: anOldNode value not
 ]

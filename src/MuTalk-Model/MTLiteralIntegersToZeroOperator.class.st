@@ -20,7 +20,7 @@ MTLiteralIntegersToZeroOperator >> description [
 ]
 
 { #category : 'applying' }
-MTLiteralIntegersToZeroOperator >> newExpression [
+MTLiteralIntegersToZeroOperator >> newNodeFrom: anOldNode [
 
-	^ [ :anOldNode | RBLiteralValueNode value: 0 ]
+	^ RBLiteralValueNode value: 0
 ]

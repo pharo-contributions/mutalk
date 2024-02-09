@@ -19,11 +19,10 @@ MTAssignmentNullifierOperator >> description [
 ]
 
 { #category : 'applying' }
-MTAssignmentNullifierOperator >> newExpression [
+MTAssignmentNullifierOperator >> newNodeFrom: anOldNode [
 
-	^ [ :anOldNode |
-	  | nodeCopy |
-	  nodeCopy := anOldNode copy.
-	  nodeCopy value: (RBLiteralValueNode value: nil).
-	  nodeCopy ]
+	| nodeCopy |
+	nodeCopy := anOldNode copy.
+	nodeCopy value: (RBLiteralValueNode value: nil).
+	^ nodeCopy
 ]

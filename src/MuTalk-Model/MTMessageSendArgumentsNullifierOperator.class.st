@@ -25,14 +25,13 @@ MTMessageSendArgumentsNullifierOperator >> description [
 ]
 
 { #category : 'applying' }
-MTMessageSendArgumentsNullifierOperator >> newExpression [
+MTMessageSendArgumentsNullifierOperator >> newNodeFrom: anOldNode [
 
-	| whichToReplace nodeCopy |
-	^ [ :anOldNode | 
-	  nodeCopy := anOldNode copy.
-	  whichToReplace := nodeCopy arguments at: self whichArgument.
-	  whichToReplace replaceWith: (RBLiteralValueNode value: nil).
-	 nodeCopy]
+	| nodeCopy whichToReplace |
+	nodeCopy := anOldNode copy.
+	whichToReplace := nodeCopy arguments at: self whichArgument.
+	whichToReplace replaceWith: (RBLiteralValueNode value: nil).
+	^ nodeCopy
 ]
 
 { #category : 'applying' }

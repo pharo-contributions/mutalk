@@ -19,11 +19,9 @@ MTMessageSendToYourselfOperator >> description [
 ]
 
 { #category : 'applying' }
-MTMessageSendToYourselfOperator >> newExpression [
+MTMessageSendToYourselfOperator >> newNodeFrom: anOldNode [
 
 	| nodeCopy |
-	^ [ :anOldNode | 
-	  nodeCopy := anOldNode copy.
-		RBMessageNode receiver: nodeCopy receiver selector: #yourself
-	   ]
+	nodeCopy := anOldNode copy.
+	^ RBMessageNode receiver: nodeCopy receiver selector: #yourself
 ]
