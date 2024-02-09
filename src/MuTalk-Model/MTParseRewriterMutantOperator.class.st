@@ -1,5 +1,5 @@
 Class {
-	#name : 'MTMutantOperator',
+	#name : 'MTParseRewriterMutantOperator',
 	#superclass : 'MTAbstractMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
@@ -7,13 +7,13 @@ Class {
 }
 
 { #category : 'testing' }
-MTMutantOperator class >> isAbstract [
+MTParseRewriterMutantOperator class >> isAbstract [
 
-	^ self == MTMutantOperator
+	^ self == MTParseRewriterMutantOperator
 ]
 
 { #category : 'applying' }
-MTMutantOperator >> applyTo: anOldNode [
+MTParseRewriterMutantOperator >> applyTo: anOldNode [
 
 	| rewriter |
 	rewriter := RBParseTreeRewriter new.
@@ -27,12 +27,12 @@ MTMutantOperator >> applyTo: anOldNode [
 ]
 
 { #category : 'applying' }
-MTMutantOperator >> expressionToReplace [
+MTParseRewriterMutantOperator >> expressionToReplace [
 	self subclassResponsibility
 ]
 
 { #category : 'private' }
-MTMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber newExpression: anExpression [
+MTParseRewriterMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber newExpression: anExpression [
 
 	| rewriter parser number nNode |
 	rewriter := RBParseTreeRewriter new.
@@ -56,7 +56,12 @@ MTMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: 
 ]
 
 { #category : 'applying' }
-MTMutantOperator >> timesToApplyIn: aCompiledMethod with: aParseTree [ 
+MTParseRewriterMutantOperator >> newExpression [
+	self subclassResponsibility
+]
+
+{ #category : 'applying' }
+MTParseRewriterMutantOperator >> timesToApplyIn: aCompiledMethod with: aParseTree [ 
 	"Evaluates how many times can the operator be applyied"	
 	|searcher timesToApply|
 	searcher := RBParseTreeSearcher new.

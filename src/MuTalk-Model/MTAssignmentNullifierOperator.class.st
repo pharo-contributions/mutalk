@@ -1,10 +1,16 @@
 Class {
 	#name : 'MTAssignmentNullifierOperator',
-	#superclass : 'MTBlockBasedMutantOperator',
+	#superclass : 'MTPredicateBasedMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
+
+{ #category : 'applying' }
+MTAssignmentNullifierOperator >> appliesToNode: aNode [
+
+	^ aNode isAssignment & aNode value isNotNil
+]
 
 { #category : 'printing' }
 MTAssignmentNullifierOperator >> description [
@@ -20,10 +26,4 @@ MTAssignmentNullifierOperator >> newExpression [
 	  nodeCopy := anOldNode copy.
 	  nodeCopy value: (RBLiteralValueNode value: nil).
 	  nodeCopy ]
-]
-
-{ #category : 'applying' }
-MTAssignmentNullifierOperator >> nodeSelectionPredicate [
-
-	^ [ :aNode | aNode isAssignment & aNode value isNotNil ]
 ]

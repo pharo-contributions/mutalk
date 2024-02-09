@@ -95,17 +95,6 @@ MTAbstractMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree 
 	self subclassResponsibility
 ]
 
-{ #category : 'private' }
-MTAbstractMutantOperator >> mutationFor: aCompiledMethod with: aParseTree number: aNumberOfSelector storeIn: aCollection [
-
-	aCollection add: (MTMethodMutation
-			 for: aCompiledMethod
-			 using: self
-			 nodeNumber: aNumberOfSelector
-			 ofClass: aCompiledMethod methodClass).
-	^ aCollection
-]
-
 { #category : 'mutant generation' }
 MTAbstractMutantOperator >> mutationsFor: aCompiledMethod [ 
 
@@ -118,29 +107,33 @@ MTAbstractMutantOperator >> mutationsFor: aCompiledMethod [
 { #category : 'mutant generation' }
 MTAbstractMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree [
 
-	| numberOfMutations |
-	numberOfMutations := ((aCompiledMethod hasPragmaNamed:
-		                       #ignoreForMutations) or: [
-		                      aCompiledMethod hasPragmaNamed:
-			                      #ignoreForCoverage ])
-		                     ifTrue: [ ^ Array new ]
-		                     ifFalse: [
-		                     self
-			                     timesToApplyIn: aCompiledMethod
-			                     with: aParseTree ].
-	^ (1 to: numberOfMutations)
+	| numberOfAffectedNodes |
+	((aCompiledMethod hasPragmaNamed: #ignoreForMutations) or: [
+		 aCompiledMethod hasPragmaNamed: #ignoreForCoverage ]) ifTrue: [
+		^ #(  ) ].
+
+	numberOfAffectedNodes := self
+		                         timesToApplyIn: aCompiledMethod
+		                         with: aParseTree.
+	^ (1 to: numberOfAffectedNodes)
 		  inject: OrderedCollection new
-		  into: [ :collection :aNumberOfSelector |
+		  into: [ :accumulator :nodeIndex |
 			  self
-				  mutationFor: aCompiledMethod
+				  mutationsFor: aCompiledMethod
 				  with: aParseTree
-				  number: aNumberOfSelector
-				  storeIn: collection ]
+				  number: nodeIndex
+				  storeIn: accumulator ]
 ]
 
-{ #category : 'applying' }
-MTAbstractMutantOperator >> newExpression [
-	self subclassResponsibility
+{ #category : 'private' }
+MTAbstractMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree number: aNumberOfSelector storeIn: aCollection [
+
+	aCollection add: (MTMethodMutation
+			 for: aCompiledMethod
+			 using: self
+			 nodeNumber: aNumberOfSelector
+			 ofClass: aCompiledMethod methodClass).
+	^ aCollection
 ]
 
 { #category : 'suggestions' }

@@ -1,10 +1,17 @@
 Class {
 	#name : 'MTLiteralIntegersDecreaseOperator',
-	#superclass : 'MTBlockBasedMutantOperator',
+	#superclass : 'MTPredicateBasedMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
+
+{ #category : 'applying' }
+MTLiteralIntegersDecreaseOperator >> appliesToNode: aNode [
+
+	^ aNode isLiteralNode & aNode isLiteralArray not and: [
+		  aNode value isInteger ]
+]
 
 { #category : 'printing' }
 MTLiteralIntegersDecreaseOperator >> description [
@@ -16,10 +23,4 @@ MTLiteralIntegersDecreaseOperator >> description [
 MTLiteralIntegersDecreaseOperator >> newExpression [
 
 	^ [ :anOldNode | RBLiteralValueNode value: anOldNode value - 1 ]
-]
-
-{ #category : 'applying' }
-MTLiteralIntegersDecreaseOperator >> nodeSelectionPredicate [
-
-	^ [ :aNode | aNode isLiteralNode & aNode isLiteralArray not and: [ aNode value isInteger ]  ]
 ]

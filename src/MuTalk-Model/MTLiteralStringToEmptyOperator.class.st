@@ -1,10 +1,17 @@
 Class {
 	#name : 'MTLiteralStringToEmptyOperator',
-	#superclass : 'MTBlockBasedMutantOperator',
+	#superclass : 'MTPredicateBasedMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
+
+{ #category : 'applying' }
+MTLiteralStringToEmptyOperator >> appliesToNode: aNode [
+
+	^ aNode isLiteralNode & aNode isLiteralArray not and: [
+		  aNode value isString and: [ aNode value isNotEmpty ] ]
+]
 
 { #category : 'printing' }
 MTLiteralStringToEmptyOperator >> description [
@@ -16,12 +23,4 @@ MTLiteralStringToEmptyOperator >> description [
 MTLiteralStringToEmptyOperator >> newExpression [
 
 	^ [ :anOldNode | RBLiteralValueNode value: '' ]
-]
-
-{ #category : 'applying' }
-MTLiteralStringToEmptyOperator >> nodeSelectionPredicate [
-
-	^ [ :aNode | 
-	  aNode isLiteralNode & aNode isLiteralArray not and: [ 
-		  aNode value isString  and: [aNode value isNotEmpty ]  ] ]
 ]

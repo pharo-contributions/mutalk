@@ -1,10 +1,16 @@
 Class {
 	#name : 'MTEmptyMethodOperator',
-	#superclass : 'MTBlockBasedMutantOperator',
+	#superclass : 'MTPredicateBasedMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
+
+{ #category : 'applying' }
+MTEmptyMethodOperator >> appliesToNode: aNode [
+
+	^ aNode isSequence and: [ aNode parent isMethod ]
+]
 
 { #category : 'printing' }
 MTEmptyMethodOperator >> description [
@@ -16,11 +22,4 @@ MTEmptyMethodOperator >> description [
 MTEmptyMethodOperator >> newExpression [
 
 	^ [ :anOldNode | RBSequenceNode statements: #() ]
-]
-
-{ #category : 'applying' }
-MTEmptyMethodOperator >> nodeSelectionPredicate [
-
-	^ [ :aNode | 
-	  aNode isSequence and: [ aNode parent isMethod] ]
 ]

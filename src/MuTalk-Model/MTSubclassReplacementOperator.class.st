@@ -1,6 +1,6 @@
 Class {
 	#name : 'MTSubclassReplacementOperator',
-	#superclass : 'MTBlockBasedMutantOperator',
+	#superclass : 'MTPredicateBasedMutantOperator',
 	#instVars : [
 		'classesToReplace'
 	],
@@ -8,6 +8,17 @@ Class {
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
+
+{ #category : 'applying' }
+MTSubclassReplacementOperator >> appliesToNode: aNode [
+
+	^ aNode isVariable and: [
+		  (self class environment includesKey: aNode name) and: [
+			  | referencedClass |
+			  referencedClass := self class environment at: aNode name.
+			  referencedClass isClass and: [
+				  referencedClass subclasses notEmpty ] ] ]
+]
 
 { #category : 'printing' }
 MTSubclassReplacementOperator >> description [
@@ -23,47 +34,24 @@ MTSubclassReplacementOperator >> initialize [
 ]
 
 { #category : 'private' }
-MTSubclassReplacementOperator >> mutationsFor: aCompiledMethod with: aParseTree [
+MTSubclassReplacementOperator >> mutationsFor: aCompiledMethod with: aParseTree number: nodeIndex storeIn: accumulator [
 
-	| numberOfAffectedNodes |
-	((aCompiledMethod hasPragmaNamed: #ignoreForMutations) or: [
-		 aCompiledMethod hasPragmaNamed: #ignoreForCoverage ]) ifTrue: [
-		^ #(  ) ].
-
-	numberOfAffectedNodes := self
-		                         timesToApplyIn: aCompiledMethod
-		                         with: aParseTree.
-	^ (1 to: numberOfAffectedNodes)
-		  inject: OrderedCollection new
-		  into: [ :accumulator :nodeIndex |
-			  | classToReplace affectedNode |
-			  affectedNode := self affectedNodeFor: aParseTree at: nodeIndex.
-			  "We know that the affectedNode is on a class reference to a class that exists and has subclasses"
-			  classToReplace := self class environment at: affectedNode name.
-			  accumulator addAll:
-				  (classToReplace subclasses collect: [ :subclass |
-					   | newExpression |
-					   newExpression := [ :anOldNode |
-					                    RBVariableNode named: subclass name ].
-					   MTMethodMutation
-						   for: aCompiledMethod
-						   using: self
-						   nodeNumber: nodeIndex
-						   ofClass: aCompiledMethod methodClass
-						   replacingWith: newExpression ]).
-			  accumulator ]
-]
-
-{ #category : 'applying' }
-MTSubclassReplacementOperator >> nodeSelectionPredicate [
-
-	^ [ :aNode |
-	  aNode isVariable and: [
-		  (self class environment includesKey: aNode name) and: [
-			  | referencedClass |
-			  referencedClass := self class environment at: aNode name.
-			  referencedClass isClass and: [
-				  referencedClass subclasses notEmpty ] ] ] ]
+	| classToReplace affectedNode |
+	affectedNode := self affectedNodeFor: aParseTree at: nodeIndex.
+	"We know that the affectedNode is on a class reference to a class that exists and has subclasses"
+	classToReplace := self class environment at: affectedNode name.
+	accumulator addAll:
+		(classToReplace subclasses collect: [ :subclass |
+			 | newExpression |
+			 newExpression := [ :anOldNode |
+			                  RBVariableNode named: subclass name ].
+			 MTMethodMutation
+				 for: aCompiledMethod
+				 using: self
+				 nodeNumber: nodeIndex
+				 ofClass: aCompiledMethod methodClass
+				 replacingWith: newExpression ]).
+	^ accumulator
 ]
 
 { #category : 'applying' }
