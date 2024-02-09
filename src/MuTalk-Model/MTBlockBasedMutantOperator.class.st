@@ -1,6 +1,6 @@
 Class {
 	#name : 'MTBlockBasedMutantOperator',
-	#superclass : 'MTMutantOperator',
+	#superclass : 'MTAbstractMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
@@ -15,30 +15,6 @@ MTBlockBasedMutantOperator class >> isAbstract [
 { #category : 'testing' }
 MTBlockBasedMutantOperator class >> isOriginalOperator [
 	^ false
-]
-
-{ #category : 'private' }
-MTBlockBasedMutantOperator >> isAPosibleMutatedNode: aRBMethodNode [
-
-	| nodeThatMatches |
-	nodeThatMatches := aRBMethodNode allChildren
-		                   detect: self newExpression
-		                   ifNone: [ nil ].
-
-	^ nodeThatMatches notNil and: [
-		  self is: nodeThatMatches equalTo: aRBMethodNode ]
-]
-
-{ #category : 'private' }
-MTBlockBasedMutantOperator >> isAPosibleNodeToMutate: aRBMethodNode [
-
-	| nodeThatMatches |
-	nodeThatMatches := aRBMethodNode allChildren
-		                   detect: self expressionToReplace
-		                   ifNone: [ nil ].
-
-	^ nodeThatMatches notNil and: [
-		  self is: aRBMethodNode equalTo: nodeThatMatches ]
 ]
 
 { #category : 'private' }

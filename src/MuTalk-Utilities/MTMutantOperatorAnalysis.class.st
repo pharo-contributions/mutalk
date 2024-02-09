@@ -45,7 +45,7 @@ MTMutantOperatorAnalysis >> operatorDictionaryFromAnalysis [
 	analysis := MTAnalysis new
 		            classesToMutate: classes;
 		            testClasses: {  };
-		            operators: MTMutantOperator contentsAll.
+		            operators: MTAbstractMutantOperator contentsAll.
 
 	analysis generateMutations.
 
@@ -75,7 +75,7 @@ MTMutantOperatorAnalysis >> operatorsSelectedWith: aBlock [
 MTMutantOperatorAnalysis >> operatorsWithoutMutantsFor: aDictionary [
 
 	| operatorsWithoutMutants |
-	operatorsWithoutMutants := (MTMutantOperator contentsAll collect:
+	operatorsWithoutMutants := (MTAbstractMutantOperator contentsAll collect:
 		                            #species) reject: [ :ope |
 		                           aDictionary keys includes: ope ].
 

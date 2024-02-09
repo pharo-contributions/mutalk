@@ -25,7 +25,7 @@ MTSubclassReplacementOperator >> expressionToReplace [
 			  referencedClass := self class environment at: aNode name.
 			  shouldReplace := referencedClass isClass and: [
 				                   referencedClass subclasses notEmpty ].
-			  shouldReplace ifTrue: [ classesToReplace add: referencedClass ].
+			  shouldReplace ifTrue: [ self addClassInDictionary: referencedClass forMethodOf: aNode ].
 			  shouldReplace ] ] ]
 ]
 
@@ -33,7 +33,7 @@ MTSubclassReplacementOperator >> expressionToReplace [
 MTSubclassReplacementOperator >> initialize [
 
 	super initialize.
-	classesToReplace := OrderedCollection new
+	classesToReplace := Dictionary new
 ]
 
 { #category : 'private' }
@@ -47,6 +47,7 @@ MTSubclassReplacementOperator >> mutationFor: aCompiledMethod with: aParseTree n
 			 newExpression := self
 				                  newExpressionForClass: aNumberOfSelector
 				                  andSubclass: index.
+			Halt if: [ aCompiledMethod = (UUID>>#initialize) ].
 			 MTMethodMutation
 				 for: aCompiledMethod
 				 using: self
