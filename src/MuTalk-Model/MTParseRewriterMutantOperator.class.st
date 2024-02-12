@@ -55,6 +55,17 @@ MTParseRewriterMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParse
 	^ parser formattedCode
 ]
 
+{ #category : 'private' }
+MTParseRewriterMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree number: nodeIndex storeIn: accumulator [
+
+	accumulator add: (MTMethodMutation
+			 for: aCompiledMethod
+			 using: self
+			 nodeNumber: nodeIndex
+			 ofClass: aCompiledMethod methodClass).
+	^ accumulator
+]
+
 { #category : 'applying' }
 MTParseRewriterMutantOperator >> newExpression [
 	self subclassResponsibility

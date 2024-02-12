@@ -28,7 +28,8 @@ MTPredicateBasedMutantOperator >> affectedNodeFor: aParseTree at: nodeIndex [
 { #category : 'private' }
 MTPredicateBasedMutantOperator >> affectedNodesFor: aParseTree [
 
-	^ aParseTree allChildren select: self nodeSelectionPredicate
+	^ aParseTree allChildren select: [ :aNode |
+		  self appliesToNode: aNode ]
 ]
 
 { #category : 'instance creation' }
@@ -38,35 +39,38 @@ MTPredicateBasedMutantOperator >> appliesToNode: aNode [
 ]
 
 { #category : 'private' }
-MTPredicateBasedMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber newExpression: anExpression [
+MTPredicateBasedMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber newExpression: aNode [
 
 	| parseTreeCopy allNodes |
 	parseTreeCopy := aParseTree copy.
 	allNodes := self affectedNodesFor: parseTreeCopy.
 	allNodes size >= aNumber ifTrue: [
-		| oldNode newNode |
+		| oldNode |
 		oldNode := allNodes at: aNumber.
-		newNode := anExpression value: oldNode.
-		oldNode replaceWith: newNode ].
+		oldNode replaceWith: aNode ].
 	^ parseTreeCopy formattedCode
 ]
 
-{ #category : 'applying' }
-MTPredicateBasedMutantOperator >> newExpression [
+{ #category : 'private' }
+MTPredicateBasedMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree number: nodeIndex storeIn: accumulator [
 
-	^ [ :anOldNode | self newNodeFrom: anOldNode ]
+	| affectedNode newNode |
+	affectedNode := self affectedNodeFor: aParseTree at: nodeIndex.
+	newNode := self newNodeFrom: affectedNode.
+
+	accumulator add: (MTMethodMutation
+			 for: aCompiledMethod
+			 using: self
+			 nodeNumber: nodeIndex
+			 ofClass: aCompiledMethod methodClass
+			 replacingWith: newNode).
+	^ accumulator
 ]
 
 { #category : 'instance creation' }
 MTPredicateBasedMutantOperator >> newNodeFrom: anOldNode [
 
 	self subclassResponsibility
-]
-
-{ #category : 'applying' }
-MTPredicateBasedMutantOperator >> nodeSelectionPredicate [
-
-	^ [ :aNode | self appliesToNode: aNode ]
 ]
 
 { #category : 'private' }

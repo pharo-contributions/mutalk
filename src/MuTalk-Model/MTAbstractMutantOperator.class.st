@@ -126,14 +126,9 @@ MTAbstractMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree [
 ]
 
 { #category : 'private' }
-MTAbstractMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree number: aNumberOfSelector storeIn: aCollection [
+MTAbstractMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree number: nodeIndex storeIn: accumulator [
 
-	aCollection add: (MTMethodMutation
-			 for: aCompiledMethod
-			 using: self
-			 nodeNumber: aNumberOfSelector
-			 ofClass: aCompiledMethod methodClass).
-	^ aCollection
+	self subclassResponsibility
 ]
 
 { #category : 'suggestions' }
