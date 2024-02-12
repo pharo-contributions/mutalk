@@ -98,37 +98,3 @@ MTParseRewriterMutantOperatorTest >> operator [
 
 	self subclassResponsibility
 ]
-
-{ #category : 'tests' }
-MTParseRewriterMutantOperatorTest >> testApplyMutantToMethod [
-
-	self assert: self assertApplyingMutantToNonSenderMethod.
-	self assert: self assertApplyingMutantToFirstSenderInOneSenderMethod.
-	self assert: self assertApplyingMutantToFirstSenderInTwoSendersMethod.
-	self assert:
-		self assertApplyingMutantToSecondSenderInTwoSendersMethod
-]
-
-{ #category : 'tests' }
-MTParseRewriterMutantOperatorTest >> testNumberMutantsGenerated [
-
-	self assert: self assertNumberMutantsGeneratedForNonSenderMethod.
-	self assert: self assertNumberMutantsGeneratedForOneSenderMethod.
-	self assert: self assertNumberMutantsGeneratedForTwoSendersMethod
-]
-
-{ #category : 'tests' }
-MTParseRewriterMutantOperatorTest >> testPrintingAccessors [
-
-	self
-		assert: self operator description
-		equals: self operatorDescription
-]
-
-{ #category : 'tests' }
-MTParseRewriterMutantOperatorTest >> testTimesToApplyMutantToMethod [
-
-	self assert: self assertTimesToApplyOperatorToNonSenderMethod.
-	self assert: self assertTimesToApplyOperatorToOneSenderMethod.
-	self assert: self assertTimesToApplyOperatorInTwoSendersMethod
-]

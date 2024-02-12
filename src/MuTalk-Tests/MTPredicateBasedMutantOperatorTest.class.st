@@ -120,37 +120,3 @@ MTPredicateBasedMutantOperatorTest >> operator [
 
 	self subclassResponsibility
 ]
-
-{ #category : 'tests' }
-MTPredicateBasedMutantOperatorTest >> testApplyMutantToMethod [
-
-	self assert: self assertApplyingMutantToNonSenderMethod.
-	self assert: self assertApplyingMutantToFirstSenderInOneSenderMethod.
-	self assert: self assertApplyingMutantToFirstSenderInTwoSendersMethod.
-	self assert:
-		self assertApplyingMutantToSecondSenderInTwoSendersMethod
-]
-
-{ #category : 'tests' }
-MTPredicateBasedMutantOperatorTest >> testNumberMutantsGenerated [
-
-	self assert: self assertNumberMutantsGeneratedForNonSenderMethod.
-	self assert: self assertNumberMutantsGeneratedForOneSenderMethod.
-	self assert: self assertNumberMutantsGeneratedForTwoSendersMethod
-]
-
-{ #category : 'tests' }
-MTPredicateBasedMutantOperatorTest >> testPrintingAccessors [
-
-	self
-		assert: self operator description
-		equals: self operatorDescription
-]
-
-{ #category : 'tests' }
-MTPredicateBasedMutantOperatorTest >> testTimesToApplyMutantToMethod [
-
-	self assert: self assertTimesToApplyOperatorToNonSenderMethod.
-	self assert: self assertTimesToApplyOperatorToOneSenderMethod.
-	self assert: self assertTimesToApplyOperatorInTwoSendersMethod
-]
