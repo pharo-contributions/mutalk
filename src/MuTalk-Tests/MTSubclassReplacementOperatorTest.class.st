@@ -1,59 +1,9 @@
 Class {
 	#name : 'MTSubclassReplacementOperatorTest',
-	#superclass : 'MTMutantOperatorTest',
+	#superclass : 'MTPredicateBasedMutantOperatorTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
-
-{ #category : 'asserts' }
-MTSubclassReplacementOperatorTest >> assertApplyingMutantToFirstSenderInOneSenderMethod [
-
-	^ self
-		  compareSource: (self operator
-				   modifiedSourceFor: self class >> #methodWithOneSender
-				   number: 1
-				   newExpression: self newExpression)
-		  withSourceInMethod: self class >> #methodWithOneSenderModified
-		  replacingSelector: #methodWithOneSender
-]
-
-{ #category : 'asserts' }
-MTSubclassReplacementOperatorTest >> assertApplyingMutantToFirstSenderInTwoSendersMethod [
-
-	^ self
-		  compareSource: (self operator
-				   modifiedSourceFor: self class >> #methodWithTwoSenders
-				   number: 1
-				   newExpression: self newExpression)
-		  withSourceInMethod:
-		  self class >> #methodWithTwoSendersModifiedFirst
-		  replacingSelector: #methodWithTwoSenders
-]
-
-{ #category : 'asserts' }
-MTSubclassReplacementOperatorTest >> assertApplyingMutantToNonSenderMethod [
-
-^ self
-		  compareSource: (self operator
-				   modifiedSourceFor: self class >> #methodWithNoSenders
-				   number: 1
-				   newExpression: self newExpression)
-		  withSourceInMethod: self class >> #methodWithNoSenders
-		  replacingSelector: #methodWithNoSenders
-]
-
-{ #category : 'asserts' }
-MTSubclassReplacementOperatorTest >> assertApplyingMutantToSecondSenderInTwoSendersMethod [
-
-	^ self
-		  compareSource: (self operator
-				   modifiedSourceFor: self class >> #methodWithTwoSenders
-				   number: 2
-				   newExpression: self newExpression)
-		  withSourceInMethod:
-		  self class >> #methodWithTwoSendersModifiedSecond
-		  replacingSelector: #methodWithTwoSenders
-]
 
 { #category : 'asserts' }
 MTSubclassReplacementOperatorTest >> assertApplyingMutantWithFirstSubclassInClassWithManySubclassesMethod [
@@ -63,7 +13,7 @@ MTSubclassReplacementOperatorTest >> assertApplyingMutantWithFirstSubclassInClas
 				   modifiedSourceFor:
 				   self class >> #methodUsingClassWithManySubclasses
 				   number: 1
-				   newExpression: self newExpressionFirstSubclass)
+				   newExpression: self newNodeFirstSubclass)
 		  withSourceInMethod:
 		  self class >> #methodUsingClassWithManySubclassesModifiedFirst
 		  replacingSelector: #methodUsingClassWithManySubclasses
@@ -77,7 +27,7 @@ MTSubclassReplacementOperatorTest >> assertApplyingMutantWithSecondSubclassInCla
 				   modifiedSourceFor:
 				   self class >> #methodUsingClassWithManySubclasses
 				   number: 1
-				   newExpression: self newExpressionSecondSubclass)
+				   newExpression: self newNodeSecondSubclass)
 		  withSourceInMethod:
 		  self class >> #methodUsingClassWithManySubclassesModifiedSecond
 		  replacingSelector: #methodUsingClassWithManySubclasses
@@ -91,7 +41,7 @@ MTSubclassReplacementOperatorTest >> assertApplyingMutantWithThirdSubclassInClas
 				   modifiedSourceFor:
 				   self class >> #methodUsingClassWithManySubclasses
 				   number: 1
-				   newExpression: self newExpressionThirdSubclass)
+				   newExpression: self newNodeThirdSubclass)
 		  withSourceInMethod:
 		  self class >> #methodUsingClassWithManySubclassesModifiedThird
 		  replacingSelector: #methodUsingClassWithManySubclasses
@@ -150,7 +100,7 @@ MTSubclassReplacementOperatorTest >> methodWithTwoSenders [
 
 	| object |
 	object := MTAuxiliarClassForSubclassReplacementOperator new.
-	object := MTAuxiliarClassForSubclassReplacementOperator new
+	object := MTAuxiliarClassForSubclassReplacementOperatorBis new
 ]
 
 { #category : 'accessing' }
@@ -158,7 +108,7 @@ MTSubclassReplacementOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	| object |
 	object := MTAuxiliarSubclassForSubclassReplacementOperator new.
-	object := MTAuxiliarClassForSubclassReplacementOperator new
+	object := MTAuxiliarClassForSubclassReplacementOperatorBis new
 ]
 
 { #category : 'accessing' }
@@ -166,51 +116,49 @@ MTSubclassReplacementOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	| object |
 	object := MTAuxiliarClassForSubclassReplacementOperator new.
-	object := MTAuxiliarSubclassForSubclassReplacementOperator new
+	object := MTAuxiliarSubclassForSubclassReplacementOperatorBis new
 ]
 
 { #category : 'asserts' }
-MTSubclassReplacementOperatorTest >> newExpression [
+MTSubclassReplacementOperatorTest >> newNodeFirstSubclass [
 
-	^ [ :anOldNode |
-	  | nodeCopy |
-	  nodeCopy := anOldNode copy.
-	  nodeCopy name:
-		  MTAuxiliarSubclassForSubclassReplacementOperator name.
-	  nodeCopy ]
+	^ RBVariableNode named:
+		  MTAuxiliarSubclass1ForSubclassReplacementWithManySubclasses name
+]
+
+{ #category : 'accessing' }
+MTSubclassReplacementOperatorTest >> newNodeOneSender [
+
+	^ RBVariableNode named:
+		  MTAuxiliarSubclassForSubclassReplacementOperator name
 ]
 
 { #category : 'asserts' }
-MTSubclassReplacementOperatorTest >> newExpressionFirstSubclass [
+MTSubclassReplacementOperatorTest >> newNodeSecondSubclass [
 
-	^ [ :anOldNode |
-	  | nodeCopy |
-	  nodeCopy := anOldNode copy.
-	  nodeCopy name:
-		  MTAuxiliarSubclass1ForSubclassReplacementWithManySubclasses name.
-	  nodeCopy ]
+	^ RBVariableNode named:
+		  MTAuxiliarSubclass2ForSubclassReplacementWithManySubclasses name
 ]
 
 { #category : 'asserts' }
-MTSubclassReplacementOperatorTest >> newExpressionSecondSubclass [
+MTSubclassReplacementOperatorTest >> newNodeThirdSubclass [
 
-	^ [ :anOldNode |
-	  | nodeCopy |
-	  nodeCopy := anOldNode copy.
-	  nodeCopy name:
-		  MTAuxiliarSubclass2ForSubclassReplacementWithManySubclasses name.
-	  nodeCopy ]
+	^ RBVariableNode named:
+		  MTAuxiliarSubclass3ForSubclassReplacementWithManySubclasses name
 ]
 
-{ #category : 'asserts' }
-MTSubclassReplacementOperatorTest >> newExpressionThirdSubclass [
+{ #category : 'accessing' }
+MTSubclassReplacementOperatorTest >> newNodeTwoSendersFirst [
 
-	^ [ :anOldNode |
-	  | nodeCopy |
-	  nodeCopy := anOldNode copy.
-	  nodeCopy name:
-		  MTAuxiliarSubclass3ForSubclassReplacementWithManySubclasses name.
-	  nodeCopy ]
+	^ RBVariableNode named:
+		  MTAuxiliarSubclassForSubclassReplacementOperator name
+]
+
+{ #category : 'accessing' }
+MTSubclassReplacementOperatorTest >> newNodeTwoSendersSecond [
+
+	^ RBVariableNode named:
+		  MTAuxiliarSubclassForSubclassReplacementOperatorBis name
 ]
 
 { #category : 'accessing' }

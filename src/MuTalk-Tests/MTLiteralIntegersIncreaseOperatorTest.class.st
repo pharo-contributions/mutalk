@@ -3,7 +3,7 @@ A LiteralIntegersIncreaseOperatorTest is a test class for testing the behavior o
 "
 Class {
 	#name : 'MTLiteralIntegersIncreaseOperatorTest',
-	#superclass : 'MTMutantOperatorTest',
+	#superclass : 'MTPredicateBasedMutantOperatorTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
@@ -42,6 +42,24 @@ MTLiteralIntegersIncreaseOperatorTest >> methodWithTwoSendersModifiedFirst [
 MTLiteralIntegersIncreaseOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	^ 1 >= 3
+]
+
+{ #category : 'accessing' }
+MTLiteralIntegersIncreaseOperatorTest >> newNodeOneSender [
+
+	^ RBLiteralValueNode value: 2
+]
+
+{ #category : 'accessing' }
+MTLiteralIntegersIncreaseOperatorTest >> newNodeTwoSendersFirst [
+
+	^ RBLiteralValueNode value: 2
+]
+
+{ #category : 'accessing' }
+MTLiteralIntegersIncreaseOperatorTest >> newNodeTwoSendersSecond [
+
+	^ RBLiteralValueNode value: 3
 ]
 
 { #category : 'accessing' }

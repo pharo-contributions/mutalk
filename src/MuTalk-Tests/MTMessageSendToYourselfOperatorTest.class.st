@@ -1,6 +1,6 @@
 Class {
 	#name : 'MTMessageSendToYourselfOperatorTest',
-	#superclass : 'MTMutantOperatorTest',
+	#superclass : 'MTPredicateBasedMutantOperatorTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
@@ -26,8 +26,9 @@ MTMessageSendToYourselfOperatorTest >> methodWithOneSenderModified [
 { #category : 'accessing' }
 MTMessageSendToYourselfOperatorTest >> methodWithTwoSenders [
 
-	 | dict |
-dict:= Dictionary new. dict at: 1 put: 2
+	| dict |
+	dict := Dictionary new.
+	dict at: 1 put: 2
 ]
 
 { #category : 'accessing' }
@@ -44,6 +45,30 @@ MTMessageSendToYourselfOperatorTest >> methodWithTwoSendersModifiedSecond [
 	| dict |
 	dict := Dictionary new.
 	dict yourself
+]
+
+{ #category : 'accessing' }
+MTMessageSendToYourselfOperatorTest >> newNodeOneSender [
+
+	^ RBSequenceNode statements: { (RBMessageNode
+			   receiver: (RBVariableNode named: #self)
+			   selector: #yourself) }
+]
+
+{ #category : 'accessing' }
+MTMessageSendToYourselfOperatorTest >> newNodeTwoSendersFirst [ 
+
+	^ RBSequenceNode statements: { (RBMessageNode
+			   receiver: (RBVariableNode named: #Dictionary)
+			   selector: #yourself) }
+]
+
+{ #category : 'accessing' }
+MTMessageSendToYourselfOperatorTest >> newNodeTwoSendersSecond [
+
+	^ RBSequenceNode statements: { (RBMessageNode
+			   receiver: (RBVariableNode named: #dict)
+			   selector: #yourself) }
 ]
 
 { #category : 'accessing' }

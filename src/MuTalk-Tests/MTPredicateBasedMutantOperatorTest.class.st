@@ -1,105 +1,109 @@
 Class {
-	#name : 'MTMutantOperatorTest',
+	#name : 'MTPredicateBasedMutantOperatorTest',
 	#superclass : 'TestCase',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
 
 { #category : 'testing' }
-MTMutantOperatorTest class >> isAbstract [
+MTPredicateBasedMutantOperatorTest class >> isAbstract [
 
-	^ self == MTMutantOperatorTest
+	^ self == MTPredicateBasedMutantOperatorTest
 ]
 
 { #category : 'accessing' }
-MTMutantOperatorTest class >> packageNamesUnderTest [
+MTPredicateBasedMutantOperatorTest class >> packageNamesUnderTest [
 	^ #('MutationTesting-Model')
 ]
 
 { #category : 'asserts' }
-MTMutantOperatorTest >> assertApplyingMutantToFirstSenderInOneSenderMethod [
+MTPredicateBasedMutantOperatorTest >> assertApplyingMutantToFirstSenderInOneSenderMethod [
 
 	^ self
 		  compareSource: (self operator
 				   modifiedSourceFor: self class >> #methodWithOneSender
-				   number: 1)
+				   number: 1
+				   newExpression: self newNodeOneSender)
 		  withSourceInMethod: self class >> #methodWithOneSenderModified
 		  replacingSelector: #methodWithOneSender
 ]
 
 { #category : 'asserts' }
-MTMutantOperatorTest >> assertApplyingMutantToFirstSenderInTwoSendersMethod [
+MTPredicateBasedMutantOperatorTest >> assertApplyingMutantToFirstSenderInTwoSendersMethod [
 
 	^ self
 		  compareSource: (self operator
 				   modifiedSourceFor: self class >> #methodWithTwoSenders
-				   number: 1)
+				   number: 1
+				   newExpression: self newNodeTwoSendersFirst)
 		  withSourceInMethod:
 		  self class >> #methodWithTwoSendersModifiedFirst
 		  replacingSelector: #methodWithTwoSenders
 ]
 
 { #category : 'asserts' }
-MTMutantOperatorTest >> assertApplyingMutantToNonSenderMethod [
+MTPredicateBasedMutantOperatorTest >> assertApplyingMutantToNonSenderMethod [
 
 	^ self
 		  compareSource: (self operator
 				   modifiedSourceFor: self class >> #methodWithNoSenders
-				   number: 1)
+				   number: 1
+				   newExpression: self newNodeOneSender)
 		  withSourceInMethod: self class >> #methodWithNoSenders
 		  replacingSelector: #methodWithNoSenders
 ]
 
 { #category : 'asserts' }
-MTMutantOperatorTest >> assertApplyingMutantToSecondSenderInTwoSendersMethod [
+MTPredicateBasedMutantOperatorTest >> assertApplyingMutantToSecondSenderInTwoSendersMethod [
 
 	^ self
 		  compareSource: (self operator
 				   modifiedSourceFor: self class >> #methodWithTwoSenders
-				   number: 2)
+				   number: 2
+				   newExpression: self newNodeTwoSendersSecond)
 		  withSourceInMethod:
 		  self class >> #methodWithTwoSendersModifiedSecond
 		  replacingSelector: #methodWithTwoSenders
 ]
 
 { #category : 'asserts' }
-MTMutantOperatorTest >> assertNumberMutantsGeneratedForNonSenderMethod [
+MTPredicateBasedMutantOperatorTest >> assertNumberMutantsGeneratedForNonSenderMethod [
 	|mutationsGenerated|
 	mutationsGenerated := self operator mutationsFor: self class >> #methodWithNoSenders.
 	^mutationsGenerated size = 0.
 ]
 
 { #category : 'asserts' }
-MTMutantOperatorTest >> assertNumberMutantsGeneratedForOneSenderMethod [
+MTPredicateBasedMutantOperatorTest >> assertNumberMutantsGeneratedForOneSenderMethod [
 	|mutationsGenerated|
 	mutationsGenerated := self operator mutationsFor: self class >> #methodWithOneSender.
 	^mutationsGenerated size = 1.
 ]
 
 { #category : 'asserts' }
-MTMutantOperatorTest >> assertNumberMutantsGeneratedForTwoSendersMethod [
+MTPredicateBasedMutantOperatorTest >> assertNumberMutantsGeneratedForTwoSendersMethod [
 	|mutationsGenerated|
 	mutationsGenerated := self operator mutationsFor: self class >> #methodWithTwoSenders.
 	^mutationsGenerated size = 2.
 ]
 
 { #category : 'asserts' }
-MTMutantOperatorTest >> assertTimesToApplyOperatorInTwoSendersMethod [
+MTPredicateBasedMutantOperatorTest >> assertTimesToApplyOperatorInTwoSendersMethod [
 	^ (self operator timesToApplyIn: self class >> #methodWithTwoSenders) = 2
 ]
 
 { #category : 'asserts' }
-MTMutantOperatorTest >> assertTimesToApplyOperatorToNonSenderMethod [
+MTPredicateBasedMutantOperatorTest >> assertTimesToApplyOperatorToNonSenderMethod [
 	^ (self operator timesToApplyIn: self class >> #methodWithNoSenders) = 0
 ]
 
 { #category : 'asserts' }
-MTMutantOperatorTest >> assertTimesToApplyOperatorToOneSenderMethod [
+MTPredicateBasedMutantOperatorTest >> assertTimesToApplyOperatorToOneSenderMethod [
 	^ (self operator timesToApplyIn: self class >> #methodWithOneSender) = 1
 ]
 
 { #category : 'formatting' }
-MTMutantOperatorTest >> compareSource: aSource withSourceInMethod: aCompiledMethod replacingSelector: aSelector [
+MTPredicateBasedMutantOperatorTest >> compareSource: aSource withSourceInMethod: aCompiledMethod replacingSelector: aSelector [
 	"Compare both source replacing the selector of CompiledMethod for aSelector (to make then equal) 
 	and formatting both sources equally."
 
@@ -115,56 +119,74 @@ MTMutantOperatorTest >> compareSource: aSource withSourceInMethod: aCompiledMeth
 ]
 
 { #category : 'formatting' }
-MTMutantOperatorTest >> formattedStringFor: aMethodString [ 
+MTPredicateBasedMutantOperatorTest >> formattedStringFor: aMethodString [ 
 	^ (RBParser parseMethod: aMethodString) formattedCode
 ]
 
 { #category : 'accessing' }
-MTMutantOperatorTest >> methodWithNoSenders [
+MTPredicateBasedMutantOperatorTest >> methodWithNoSenders [
 	self subclassResponsibility
 ]
 
 { #category : 'accessing' }
-MTMutantOperatorTest >> methodWithOneSender [
+MTPredicateBasedMutantOperatorTest >> methodWithOneSender [
 	self subclassResponsibility
 ]
 
 { #category : 'accessing' }
-MTMutantOperatorTest >> methodWithOneSenderModified [
-
-	self subclassResponsibility
-]
-
-{ #category : 'accessing' }
-MTMutantOperatorTest >> methodWithTwoSenders [
-	self subclassResponsibility
-]
-
-{ #category : 'accessing' }
-MTMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
+MTPredicateBasedMutantOperatorTest >> methodWithOneSenderModified [
 
 	self subclassResponsibility
 ]
 
 { #category : 'accessing' }
-MTMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
+MTPredicateBasedMutantOperatorTest >> methodWithTwoSenders [
+	self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+MTPredicateBasedMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	self subclassResponsibility
 ]
 
 { #category : 'accessing' }
-MTMutantOperatorTest >> operator [
+MTPredicateBasedMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
+
 	self subclassResponsibility
 ]
 
 { #category : 'accessing' }
-MTMutantOperatorTest >> operatorDescription [
+MTPredicateBasedMutantOperatorTest >> newNodeOneSender [
+
+	self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+MTPredicateBasedMutantOperatorTest >> newNodeTwoSendersFirst [
+
+	self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+MTPredicateBasedMutantOperatorTest >> newNodeTwoSendersSecond [
+
+	self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+MTPredicateBasedMutantOperatorTest >> operator [
+	self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+MTPredicateBasedMutantOperatorTest >> operatorDescription [
 
 	^ self operator description
 ]
 
 { #category : 'tests' }
-MTMutantOperatorTest >> testApplyMutantToMethod [
+MTPredicateBasedMutantOperatorTest >> testApplyMutantToMethod [
 	self assert: self assertApplyingMutantToNonSenderMethod.
 	self assert: self assertApplyingMutantToFirstSenderInOneSenderMethod.
 	self assert: self assertApplyingMutantToFirstSenderInTwoSendersMethod.
@@ -172,14 +194,14 @@ MTMutantOperatorTest >> testApplyMutantToMethod [
 ]
 
 { #category : 'tests' }
-MTMutantOperatorTest >> testNumberMutantsGenerated [
+MTPredicateBasedMutantOperatorTest >> testNumberMutantsGenerated [
 	self assert: self assertNumberMutantsGeneratedForNonSenderMethod.
 	self assert: self assertNumberMutantsGeneratedForOneSenderMethod.
 	self assert: self assertNumberMutantsGeneratedForTwoSendersMethod
 ]
 
 { #category : 'tests' }
-MTMutantOperatorTest >> testPrintingAccessors [
+MTPredicateBasedMutantOperatorTest >> testPrintingAccessors [
 
 	self
 		assert: self operator description
@@ -187,7 +209,7 @@ MTMutantOperatorTest >> testPrintingAccessors [
 ]
 
 { #category : 'tests' }
-MTMutantOperatorTest >> testTimesToApplyMutantToMethod [
+MTPredicateBasedMutantOperatorTest >> testTimesToApplyMutantToMethod [
 	self assert: self assertTimesToApplyOperatorToNonSenderMethod.
 	self assert: self assertTimesToApplyOperatorToOneSenderMethod.
 	self assert: self assertTimesToApplyOperatorInTwoSendersMethod
