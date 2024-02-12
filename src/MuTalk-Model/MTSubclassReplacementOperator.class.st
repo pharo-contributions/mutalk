@@ -36,15 +36,13 @@ MTSubclassReplacementOperator >> initialize [
 { #category : 'private' }
 MTSubclassReplacementOperator >> mutationsFor: aCompiledMethod with: aParseTree number: nodeIndex storeIn: accumulator [
 
-	| classToReplace affectedNode |
+	| subclasses affectedNode |
 	affectedNode := self affectedNodeFor: aParseTree at: nodeIndex.
 	"We know that the affectedNode is on a class reference to a class that exists and has subclasses"
-	classToReplace := self class environment at: affectedNode name.
-	accumulator addAll:
-		(classToReplace subclasses collect: [ :subclass |
+	subclasses := self subclassesForNode: affectedNode.
+	accumulator addAll: (subclasses collect: [ :subclass |
 			 | newExpression |
-			 newExpression := [ :anOldNode |
-			                  RBVariableNode named: subclass name ].
+			 newExpression := RBVariableNode named: subclass name.
 			 MTMethodMutation
 				 for: aCompiledMethod
 				 using: self
