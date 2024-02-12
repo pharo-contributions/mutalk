@@ -8,7 +8,7 @@ Class {
 		'originalClass',
 		'testCaseReferences',
 		'originalProtocol',
-		'newExpression'
+		'data'
 	],
 	#category : 'MuTalk-Model',
 	#package : 'MuTalk-Model'
@@ -26,14 +26,14 @@ MTMethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNod
 ]
 
 { #category : 'instance creation' }
-MTMethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass replacingWith: anObject [
+MTMethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass withData: anObject [
 
 	^ self new
 		  initializeFor: aMethod
 		  using: anOperatorApplied
 		  nodeNumber: aNodeNumber
 		  ofClass: aClass
-		  replacingWith: anObject;
+		  withData: anObject;
 		  yourself
 ]
 
@@ -48,6 +48,18 @@ MTMethodMutation >> = anObject [
 	self originalClass = anObject originalClass ifFalse: [ ^ false ].
 	self nodeNumber = anObject nodeNumber ifFalse: [ ^ false ].
 	^ true
+]
+
+{ #category : 'accessing' }
+MTMethodMutation >> data [
+
+	^ data
+]
+
+{ #category : 'accessing' }
+MTMethodMutation >> data: anObject [
+
+	data := anObject
 ]
 
 { #category : 'comparing' }
@@ -65,18 +77,18 @@ MTMethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: 
 		using: anOperatorApplied
 		nodeNumber: aNodeNumber
 		ofClass: aClass
-		replacingWith: anOperatorApplied newExpression
+		withData: anOperatorApplied newExpression
 ]
 
 { #category : 'initialize-release' }
-MTMethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass replacingWith: anObject [
+MTMethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass withData: anObject [
 
 	originalMethod := aMethod.
 	originalProtocol := aMethod protocol.
 	operator := anOperatorApplied.
 	nodeNumber := aNodeNumber.
 	originalClass := aClass.
-	newExpression := anObject
+	data := anObject
 ]
 
 { #category : 'installing' }
@@ -94,7 +106,7 @@ MTMethodMutation >> modifiedSource [
 	^ operator
 		  modifiedSourceFor: originalMethod
 		  number: nodeNumber
-		  newExpression: newExpression
+		  newExpression: data
 ]
 
 { #category : 'accessing' }

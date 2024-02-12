@@ -63,7 +63,7 @@ MTPredicateBasedMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree
 			 using: self
 			 nodeNumber: nodeIndex
 			 ofClass: aCompiledMethod methodClass
-			 replacingWith: newNode).
+			 withData: newNode).
 	^ accumulator
 ]
 

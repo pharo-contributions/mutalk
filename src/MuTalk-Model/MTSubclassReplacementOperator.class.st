@@ -38,7 +38,7 @@ MTSubclassReplacementOperator >> mutationsFor: aCompiledMethod with: aParseTree 
 				 using: self
 				 nodeNumber: nodeIndex
 				 ofClass: aCompiledMethod methodClass
-				 replacingWith: newExpression ]).
+				 withData: newExpression ]).
 	^ accumulator
 ]
 
