@@ -1,9 +1,6 @@
 Class {
 	#name : 'MTSubclassReplacementOperator',
 	#superclass : 'MTPredicateBasedMutantOperator',
-	#instVars : [
-		'classesToReplace'
-	],
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
@@ -26,37 +23,29 @@ MTSubclassReplacementOperator >> description [
 	^ 'Replace a class reference by a reference to one of its subclasses'
 ]
 
-{ #category : 'initialization' }
-MTSubclassReplacementOperator >> initialize [
-
-	super initialize.
-	classesToReplace := Dictionary new
-]
-
 { #category : 'private' }
 MTSubclassReplacementOperator >> mutationsFor: aCompiledMethod with: aParseTree number: nodeIndex storeIn: accumulator [
 
-	| subclassNodes affectedNode |
+	| subclasses affectedNode |
 	affectedNode := self affectedNodeFor: aParseTree at: nodeIndex.
 	"We know that the affectedNode is on a class reference to a class that exists and has subclasses"
-	subclassNodes := self newNodeFrom: affectedNode.
-	accumulator addAll: (subclassNodes collect: [ :newNode |
+	subclasses := self subclassesForNode: affectedNode.
+	accumulator addAll: (subclasses collect: [ :subclass |
+			 | newExpression |
+			 newExpression := RBVariableNode named: subclass name.
 			 MTMethodMutation
 				 for: aCompiledMethod
 				 using: self
 				 nodeNumber: nodeIndex
 				 ofClass: aCompiledMethod methodClass
-				 replacingWith: newNode ]).
+				 replacingWith: newExpression ]).
 	^ accumulator
 ]
 
 { #category : 'instance creation' }
 MTSubclassReplacementOperator >> newNodeFrom: anOldNode [
 
-	| subclasses |
-	subclasses := self subclassesForNode: anOldNode.
-	^ subclasses collect: [ :subclass |
-		  RBVariableNode named: subclass name ]
+	
 ]
 
 { #category : 'applying' }
