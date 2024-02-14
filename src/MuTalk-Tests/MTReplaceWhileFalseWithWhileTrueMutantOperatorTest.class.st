@@ -1,6 +1,6 @@
 Class {
 	#name : 'MTReplaceWhileFalseWithWhileTrueMutantOperatorTest',
-	#superclass : 'MTMutantOperatorTest',
+	#superclass : 'MTParseRewriterMutantOperatorTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }

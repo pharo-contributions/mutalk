@@ -483,7 +483,7 @@ MTAnalysis >> defaultMutantSelectionStrategy [
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultOperators [
 
-	^ MTMutantOperator contents
+	^ MTAbstractMutantOperator contents
 ]
 
 { #category : 'accessing - defaults' }

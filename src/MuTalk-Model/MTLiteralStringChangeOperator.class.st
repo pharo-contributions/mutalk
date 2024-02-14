@@ -1,10 +1,17 @@
 Class {
 	#name : 'MTLiteralStringChangeOperator',
-	#superclass : 'MTBlockBasedMutantOperator',
+	#superclass : 'MTPredicateBasedMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
+
+{ #category : 'applying' }
+MTLiteralStringChangeOperator >> appliesToNode: aNode [
+
+	^ aNode isLiteralNode & aNode isLiteralArray not and: [
+		  aNode value isString and: [ aNode value ~= self stringReplaced ] ]
+]
 
 { #category : 'printing' }
 MTLiteralStringChangeOperator >> description [
@@ -13,17 +20,9 @@ MTLiteralStringChangeOperator >> description [
 ]
 
 { #category : 'applying' }
-MTLiteralStringChangeOperator >> expressionToReplace [
+MTLiteralStringChangeOperator >> newNodeFrom: anOldNode [
 
-	^ [ :aNode | 
-	  aNode isLiteralNode & aNode isLiteralArray not and: [ 
-		  aNode value isString and: [ aNode value ~= self stringReplaced ] ] ]
-]
-
-{ #category : 'applying' }
-MTLiteralStringChangeOperator >> newExpression [
-
-	^ [ :anOldNode | RBLiteralValueNode value: self stringReplaced  ]
+	^ RBLiteralValueNode value: self stringReplaced
 ]
 
 { #category : 'applying' }

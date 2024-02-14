@@ -1,6 +1,6 @@
 Class {
 	#name : 'MTRemoveExceptionHandlerOperator',
-	#superclass : 'MTMutantOperator',
+	#superclass : 'MTParseRewriterMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'

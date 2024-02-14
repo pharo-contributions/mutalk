@@ -1,6 +1,6 @@
 Class {
 	#name : 'MTMessageSendArgumentsNullifierOperator',
-	#superclass : 'MTBlockBasedMutantOperator',
+	#superclass : 'MTPredicateBasedMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
@@ -12,6 +12,12 @@ MTMessageSendArgumentsNullifierOperator class >> isAbstract [
 	^ self == MTMessageSendArgumentsNullifierOperator
 ]
 
+{ #category : 'applying' }
+MTMessageSendArgumentsNullifierOperator >> appliesToNode: aNode [
+
+	^ aNode isMessage and: [ aNode arguments size >= self whichArgument ]
+]
+
 { #category : 'printing' }
 MTMessageSendArgumentsNullifierOperator >> description [
 
@@ -19,21 +25,13 @@ MTMessageSendArgumentsNullifierOperator >> description [
 ]
 
 { #category : 'applying' }
-MTMessageSendArgumentsNullifierOperator >> expressionToReplace [
+MTMessageSendArgumentsNullifierOperator >> newNodeFrom: anOldNode [
 
-	^ [ :aNode | 
-	  aNode isMessage and: [ aNode arguments size >= self whichArgument ] ]
-]
-
-{ #category : 'applying' }
-MTMessageSendArgumentsNullifierOperator >> newExpression [
-
-	| whichToReplace nodeCopy |
-	^ [ :anOldNode | 
-	  nodeCopy := anOldNode copy.
-	  whichToReplace := nodeCopy arguments at: self whichArgument.
-	  whichToReplace replaceWith: (RBLiteralValueNode value: nil).
-	 nodeCopy]
+	| nodeCopy whichToReplace |
+	nodeCopy := anOldNode copy.
+	whichToReplace := nodeCopy arguments at: self whichArgument.
+	whichToReplace replaceWith: (RBLiteralValueNode value: nil).
+	^ nodeCopy
 ]
 
 { #category : 'applying' }

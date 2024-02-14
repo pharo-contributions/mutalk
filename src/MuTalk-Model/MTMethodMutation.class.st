@@ -7,7 +7,8 @@ Class {
 		'operator',
 		'originalClass',
 		'testCaseReferences',
-		'originalProtocol'
+		'originalProtocol',
+		'data'
 	],
 	#category : 'MuTalk-Model',
 	#package : 'MuTalk-Model'
@@ -15,12 +16,25 @@ Class {
 
 { #category : 'instance creation' }
 MTMethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
+
 	^ self new
-		initializeFor: aMethod
-		using: anOperatorApplied
-		nodeNumber: aNodeNumber
-		ofClass: aClass;
-		 yourself
+		  initializeFor: aMethod
+		  using: anOperatorApplied
+		  nodeNumber: aNodeNumber
+		  ofClass: aClass;
+		  yourself
+]
+
+{ #category : 'instance creation' }
+MTMethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass withData: anObject [
+
+	^ self new
+		  initializeFor: aMethod
+		  using: anOperatorApplied
+		  nodeNumber: aNodeNumber
+		  ofClass: aClass
+		  withData: anObject;
+		  yourself
 ]
 
 { #category : 'comparing' }
@@ -36,6 +50,18 @@ MTMethodMutation >> = anObject [
 	^ true
 ]
 
+{ #category : 'accessing' }
+MTMethodMutation >> data [
+
+	^ data
+]
+
+{ #category : 'accessing' }
+MTMethodMutation >> data: anObject [
+
+	data := anObject
+]
+
 { #category : 'comparing' }
 MTMethodMutation >> hash [
 
@@ -45,11 +71,24 @@ MTMethodMutation >> hash [
 
 { #category : 'initialize-release' }
 MTMethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
+
+	self
+		initializeFor: aMethod
+		using: anOperatorApplied
+		nodeNumber: aNodeNumber
+		ofClass: aClass
+		withData: anOperatorApplied newExpression
+]
+
+{ #category : 'initialize-release' }
+MTMethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass withData: anObject [
+
 	originalMethod := aMethod.
 	originalProtocol := aMethod protocol.
 	operator := anOperatorApplied.
 	nodeNumber := aNodeNumber.
-	originalClass := aClass
+	originalClass := aClass.
+	data := anObject
 ]
 
 { #category : 'installing' }
@@ -64,7 +103,10 @@ MTMethodMutation >> install [
 { #category : 'accessing' }
 MTMethodMutation >> modifiedSource [
 
-	^ operator modifiedSourceFor: originalMethod number: nodeNumber
+	^ operator
+		  modifiedSourceFor: originalMethod
+		  number: nodeNumber
+		  newExpression: data
 ]
 
 { #category : 'accessing' }

@@ -69,14 +69,13 @@ MTMethodMutationTest >> testMutatedNodeBugFix [
 MTMethodMutationTest >> testMutationInfiniteLoop [
 
 	| compiledMethod operator modifiedSource methodMutation res |
-	
 	"This test will execute another test that will time out.
 	So this test will need a higher time limit"
 	self timeLimit: self defaultTimeLimit * 2.
-	
+
 	compiledMethod := MTFakeInfiniteLoopForTest >> #iterativeFactorial:.
 	operator := MTReplaceLessOrEqualWithTrueOperator new.
-	
+
 	modifiedSource := operator
 		                  modifiedSourceFor: compiledMethod
 		                  number: 1.
@@ -99,14 +98,13 @@ MTMethodMutationTest >> testMutationInfiniteLoop [
 MTMethodMutationTest >> testMutationInfiniteRecursion [
 
 	| compiledMethod operator modifiedSource methodMutation res |
-	
 	"This test will execute another test that will time out.
 	So this test will need a higher time limit"
 	self timeLimit: self defaultTimeLimit * 2.
-	
+
 	compiledMethod := MTFakeInfiniteLoopForTest >> #recursiveFactorial:.
 	operator := MTReplaceIfTrueReceiverWithFalseOperator new.
-	
+
 	modifiedSource := operator
 		                  modifiedSourceFor: compiledMethod
 		                  number: 1.

@@ -1,6 +1,6 @@
 Class {
 	#name : 'MTReplaceLessOrEqualWithLessMutantOperatorTest',
-	#superclass : 'MTMutantOperatorTest',
+	#superclass : 'MTParseRewriterMutantOperatorTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }

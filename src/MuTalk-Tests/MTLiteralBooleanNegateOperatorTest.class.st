@@ -1,6 +1,6 @@
 Class {
 	#name : 'MTLiteralBooleanNegateOperatorTest',
-	#superclass : 'MTMutantOperatorTest',
+	#superclass : 'MTPredicateBasedMutantOperatorTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
@@ -39,6 +39,24 @@ MTLiteralBooleanNegateOperatorTest >> methodWithTwoSendersModifiedFirst [
 MTLiteralBooleanNegateOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	^ true & true
+]
+
+{ #category : 'accessing' }
+MTLiteralBooleanNegateOperatorTest >> newNodeOneSender [
+
+	^ RBLiteralValueNode value: false
+]
+
+{ #category : 'accessing' }
+MTLiteralBooleanNegateOperatorTest >> newNodeTwoSendersFirst [
+
+	^ RBLiteralValueNode value: false
+]
+
+{ #category : 'accessing' }
+MTLiteralBooleanNegateOperatorTest >> newNodeTwoSendersSecond [
+
+	^ RBLiteralValueNode value: true
 ]
 
 { #category : 'accessing' }

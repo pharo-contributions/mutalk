@@ -1,10 +1,17 @@
 Class {
 	#name : 'MTLiteralIntegersToZeroOperator',
-	#superclass : 'MTBlockBasedMutantOperator',
+	#superclass : 'MTPredicateBasedMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
+
+{ #category : 'applying' }
+MTLiteralIntegersToZeroOperator >> appliesToNode: aNode [
+
+	^ aNode isLiteralNode & aNode isLiteralArray not and: [
+		  aNode value isInteger and: [ aNode value isZero not ] ]
+]
 
 { #category : 'printing' }
 MTLiteralIntegersToZeroOperator >> description [
@@ -13,15 +20,7 @@ MTLiteralIntegersToZeroOperator >> description [
 ]
 
 { #category : 'applying' }
-MTLiteralIntegersToZeroOperator >> expressionToReplace [
+MTLiteralIntegersToZeroOperator >> newNodeFrom: anOldNode [
 
-	^ [ :aNode | 
-	  aNode isLiteralNode & aNode isLiteralArray not and: [ 
-		  aNode value isInteger and: [aNode value isZero not] ] ]
-]
-
-{ #category : 'applying' }
-MTLiteralIntegersToZeroOperator >> newExpression [
-
-	^ [ :anOldNode | RBLiteralValueNode value: 0 ]
+	^ RBLiteralValueNode value: 0
 ]

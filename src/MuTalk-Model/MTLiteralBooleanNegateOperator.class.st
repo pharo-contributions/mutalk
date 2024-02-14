@@ -1,10 +1,17 @@
 Class {
 	#name : 'MTLiteralBooleanNegateOperator',
-	#superclass : 'MTBlockBasedMutantOperator',
+	#superclass : 'MTPredicateBasedMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
+
+{ #category : 'applying' }
+MTLiteralBooleanNegateOperator >> appliesToNode: aNode [
+
+	^ aNode isLiteralNode & aNode isLiteralArray not and: [
+		  { true. false } includes: aNode value ]
+]
 
 { #category : 'printing' }
 MTLiteralBooleanNegateOperator >> description [
@@ -13,15 +20,7 @@ MTLiteralBooleanNegateOperator >> description [
 ]
 
 { #category : 'applying' }
-MTLiteralBooleanNegateOperator >> expressionToReplace [
+MTLiteralBooleanNegateOperator >> newNodeFrom: anOldNode [
 
-	^ [ :aNode | 
-	  aNode isLiteralNode & aNode isLiteralArray not and: [ 
-		  { true. false } includes: aNode value  ] ]
-]
-
-{ #category : 'applying' }
-MTLiteralBooleanNegateOperator >> newExpression [
-
-	^ [ :anOldNode | RBLiteralValueNode value: anOldNode value not ]
+	^ RBLiteralValueNode value: anOldNode value not
 ]

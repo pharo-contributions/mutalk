@@ -1,6 +1,6 @@
 Class {
 	#name : 'MTAssignmentNullifierOperatorTest',
-	#superclass : 'MTMutantOperatorTest',
+	#superclass : 'MTPredicateBasedMutantOperatorTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
@@ -47,6 +47,30 @@ MTAssignmentNullifierOperatorTest >> methodWithTwoSendersModifiedSecond [
 	| i j |
 	i := 1.
 	j := nil
+]
+
+{ #category : 'accessing' }
+MTAssignmentNullifierOperatorTest >> newNodeOneSender [
+
+	^ RBAssignmentNode
+		  variable: (RBVariableNode named: #i)
+		  value: (RBLiteralValueNode value: nil)
+]
+
+{ #category : 'accessing' }
+MTAssignmentNullifierOperatorTest >> newNodeTwoSendersFirst [
+
+	^ RBAssignmentNode
+		  variable: (RBVariableNode named: #i)
+		  value: (RBLiteralValueNode value: nil)
+]
+
+{ #category : 'accessing' }
+MTAssignmentNullifierOperatorTest >> newNodeTwoSendersSecond [
+
+	^ RBAssignmentNode
+		  variable: (RBVariableNode named: #j)
+		  value: (RBLiteralValueNode value: nil)
 ]
 
 { #category : 'accessing' }

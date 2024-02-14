@@ -22,7 +22,7 @@ MTMutantOperatorAnalysisTest >> testGetAllOperators [
 
 	| actual expected |
 	actual := operatorAnalysis operatorsProducingAtLeast: 0.
-	expected := (MTMutantOperator contentsAll collect: #species) asSet.
+	expected := (MTAbstractMutantOperator contentsAll collect: #species) asSet.
 
 	self assert: actual equals: expected
 ]
@@ -45,7 +45,7 @@ MTMutantOperatorAnalysisTest >> testOperatorsProducingUnder [
 
 	| actual expected |
 	actual := operatorAnalysis operatorsProducingAtMost: 2.
-	expected := (MTMutantOperator contentsAll collect: #species) asSet
+	expected := (MTAbstractMutantOperator contentsAll collect: #species) asSet
 		            reject: [ :operator |
 			            {
 				            MTLiteralIntegersIncreaseOperator.

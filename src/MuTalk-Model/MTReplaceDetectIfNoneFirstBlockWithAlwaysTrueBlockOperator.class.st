@@ -1,6 +1,6 @@
 Class {
 	#name : 'MTReplaceDetectIfNoneFirstBlockWithAlwaysTrueBlockOperator',
-	#superclass : 'MTMutantOperator',
+	#superclass : 'MTParseRewriterMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'

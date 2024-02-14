@@ -1,6 +1,6 @@
 Class {
 	#name : 'MTEmptyMethodOperatorTest',
-	#superclass : 'MTMutantOperatorTest',
+	#superclass : 'MTPredicateBasedMutantOperatorTest',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
@@ -16,6 +16,12 @@ MTEmptyMethodOperatorTest >> methodWithOneSender [
 MTEmptyMethodOperatorTest >> methodWithOneSenderModified [
 
 	
+]
+
+{ #category : 'accessing' }
+MTEmptyMethodOperatorTest >> newNodeOneSender [
+
+	^ RBSequenceNode statements: #(  )
 ]
 
 { #category : 'accessing' }

@@ -1,10 +1,16 @@
 Class {
 	#name : 'MTAssignmentNullifierOperator',
-	#superclass : 'MTBlockBasedMutantOperator',
+	#superclass : 'MTPredicateBasedMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
+
+{ #category : 'applying' }
+MTAssignmentNullifierOperator >> appliesToNode: aNode [
+
+	^ aNode isAssignment & aNode value isNotNil
+]
 
 { #category : 'printing' }
 MTAssignmentNullifierOperator >> description [
@@ -13,17 +19,10 @@ MTAssignmentNullifierOperator >> description [
 ]
 
 { #category : 'applying' }
-MTAssignmentNullifierOperator >> expressionToReplace [
+MTAssignmentNullifierOperator >> newNodeFrom: anOldNode [
 
-	^ [ :aNode | aNode isAssignment & aNode value isNotNil ]
-]
-
-{ #category : 'applying' }
-MTAssignmentNullifierOperator >> newExpression [
-
-	^ [ :anOldNode |
-	  | nodeCopy |
-	  nodeCopy := anOldNode copy.
-	  nodeCopy value: (RBLiteralValueNode value: nil).
-	  nodeCopy ]
+	| nodeCopy |
+	nodeCopy := anOldNode copy.
+	nodeCopy value: (RBLiteralValueNode value: nil).
+	^ nodeCopy
 ]

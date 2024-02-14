@@ -1,10 +1,17 @@
 Class {
 	#name : 'MTLiteralIntegersIncreaseOperator',
-	#superclass : 'MTBlockBasedMutantOperator',
+	#superclass : 'MTPredicateBasedMutantOperator',
 	#category : 'MuTalk-Model-Operators',
 	#package : 'MuTalk-Model',
 	#tag : 'Operators'
 }
+
+{ #category : 'applying' }
+MTLiteralIntegersIncreaseOperator >> appliesToNode: aNode [
+
+	^ aNode isLiteralNode & aNode isLiteralArray not and: [
+		  aNode value isInteger ]
+]
 
 { #category : 'printing' }
 MTLiteralIntegersIncreaseOperator >> description [
@@ -13,13 +20,7 @@ MTLiteralIntegersIncreaseOperator >> description [
 ]
 
 { #category : 'applying' }
-MTLiteralIntegersIncreaseOperator >> expressionToReplace [
+MTLiteralIntegersIncreaseOperator >> newNodeFrom: anOldNode [
 
-	^ [ :aNode | aNode isLiteralNode & aNode isLiteralArray not and: [ aNode value isInteger ]  ]
-]
-
-{ #category : 'applying' }
-MTLiteralIntegersIncreaseOperator >> newExpression [
-
-	^ [ :anOldNode | RBLiteralValueNode value: anOldNode value + 1 ]
+	^ RBLiteralValueNode value: anOldNode value + 1
 ]
