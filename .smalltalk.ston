@@ -5,13 +5,5 @@ SmalltalkCISpec {
             #directory : 'src',
             #platforms : [ #pharo ]
         }
-    ],
-    #testing : {
-        #coverage : {
-            #packages : [ 'MuTalk*' ]
-        },
-        #exclude : {
-            #classes : [ #MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail ]
-        }
-    }
+    ]
 }
