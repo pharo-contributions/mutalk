@@ -2,7 +2,7 @@ Class {
 	#name : 'MTAnalysisFileLogger',
 	#superclass : 'MTAnalysisLogger',
 	#instVars : [
-		'fileStream'
+		'fileReference'
 	],
 	#category : 'MuTalk-Model-Logging',
 	#package : 'MuTalk-Model',
@@ -16,22 +16,27 @@ MTAnalysisFileLogger class >> toFileNamed: aString [
 
 { #category : 'initialize-release' }
 MTAnalysisFileLogger >> initializeToFileNamed: aString [
-	fileStream := FileStream forceNewFileNamed: aString.
+
+	fileReference := aString asFileReference
 ]
 
 { #category : 'logging' }
-MTAnalysisFileLogger >> logAnalysisStartFor: aMutationTestingAnalysis [ 
-	self writeLineToFile: 'The analysis is starting...'.
+MTAnalysisFileLogger >> logAnalysisStartFor: aMutationTestingAnalysis [
+
+	self writeLineToFile: 'The analysis is starting...'
 ]
 
 { #category : 'logging' }
-MTAnalysisFileLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [ 
-	self writeLineToFile: 'Generating mutations for '
-			, (self methodNameOf: aCompiledMethod) , '  With operator:' , aMutantOperator description
+MTAnalysisFileLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
+
+	self writeLineToFile:
+		'Generating mutations for ' , (self methodNameOf: aCompiledMethod)
+		, '  With operator:' , aMutantOperator description
 ]
 
 { #category : 'logging' }
 MTAnalysisFileLogger >> logStartEvaluating: aMethodMutation [
+
 	| logStream |
 	logStream := WriteStream on: String new.
 	logStream
@@ -44,14 +49,18 @@ MTAnalysisFileLogger >> logStartEvaluating: aMethodMutation [
 ]
 
 { #category : 'private' }
-MTAnalysisFileLogger >> methodNameOf: aCompiledMethod [ 
-	^aCompiledMethod methodClass name asString , '>>' , aCompiledMethod selector printString 
+MTAnalysisFileLogger >> methodNameOf: aCompiledMethod [
+
+	^ aCompiledMethod methodClass name asString , '>>'
+	  , aCompiledMethod selector printString
 ]
 
 { #category : 'private' }
-MTAnalysisFileLogger >> writeLineToFile: aString [ 
-	[fileStream closed
-		ifTrue: [fileStream open].
-	fileStream setToEnd; nextPutAll: aString; cr]
-		ensure: [fileStream close]
+MTAnalysisFileLogger >> writeLineToFile: aString [
+
+	fileReference writeStreamDo: [ :stream |
+		stream
+			setToEnd;
+			nextPutAll: aString;
+			cr ]
 ]
