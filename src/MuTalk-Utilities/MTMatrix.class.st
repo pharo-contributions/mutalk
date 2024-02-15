@@ -120,24 +120,24 @@ MTMatrix >> classesToMutate: aClass [
 	classesToMutate := aClass
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'computing' }
 MTMatrix >> dataForTests: testCollection andMutations: mutationCollection [
 
 	| totalNumberOfTests numberOfFailuresCollection killedCount |
 	totalNumberOfTests := testCollection size * mutationCollection size.
 	numberOfFailuresCollection := mutationCollection collect: [ :mutation |
-		                              ((self failuresFor: mutation) select: [
-			                               :testCase |
-			                               testCase testCaseClass
-			                               =
-			                               (testCollection at: 1) testCaseClass ])
-			                              size ].
+		                              | testClass |
+		                              testClass := testCollection atRandom
+			                                           testCaseClass.
+		                              (self
+			                               failuresFor: mutation
+			                               andTestClass: testClass) size ].
 	killedCount := numberOfFailuresCollection fold: [ :num1 :num2 |
 		               num1 + num2 ].
 	^ (killedCount / totalNumberOfTests * 100) asInteger
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'computing' }
 MTMatrix >> dataMatrixForTests: testDictionary andMutations: mutationDictionary [
 
 	^ (mutationDictionary collect: [ :mutationCollection |
@@ -183,6 +183,13 @@ MTMatrix >> failuresFor: aMutant [
 
 	^ (self evaluationResultFor: aMutant) defects asOrderedCollection collect: [ :each |
 		  MTTestCaseReference for: each selector in: each class ]
+]
+
+{ #category : 'computing' }
+MTMatrix >> failuresFor: aMutation andTestClass: aTestClass [
+
+	^ (self failuresFor: aMutation) select: [ :testCase |
+		  testCase testCaseClass = aTestClass ]
 ]
 
 { #category : 'rendering' }
