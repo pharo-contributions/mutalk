@@ -232,9 +232,6 @@ MTMatrix >> initializeHeatmap [
 
 	| heatmap |
 	heatmap := RSHeatmap new.
-	heatmap colorPalette: (NSScale linear range: {
-				 Color red.
-				 Color red muchLighter }).
 	heatmap labelShapeCell labelShape bold.
 	heatmap shape extent: 50 @ 20.
 	^ heatmap
