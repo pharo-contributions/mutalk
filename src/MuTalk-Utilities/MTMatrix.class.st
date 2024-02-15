@@ -120,6 +120,33 @@ MTMatrix >> classesToMutate: aClass [
 	classesToMutate := aClass
 ]
 
+{ #category : 'as yet unclassified' }
+MTMatrix >> dataForTests: testCollection andMutations: mutationCollection [
+
+	| totalNumberOfTests numberOfFailuresCollection killedCount |
+	totalNumberOfTests := testCollection size * mutationCollection size.
+	numberOfFailuresCollection := mutationCollection collect: [ :mutation |
+		                              ((self failuresFor: mutation) select: [
+			                               :testCase |
+			                               testCase testCaseClass
+			                               =
+			                               (testCollection at: 1) testCaseClass ])
+			                              size ].
+	killedCount := numberOfFailuresCollection fold: [ :num1 :num2 |
+		               num1 + num2 ].
+	^ (killedCount / totalNumberOfTests * 100) asInteger
+]
+
+{ #category : 'as yet unclassified' }
+MTMatrix >> dataMatrixForTests: testDictionary andMutations: mutationDictionary [
+
+	^ (mutationDictionary collect: [ :mutationCollection |
+		   (testDictionary collect: [ :testCollection |
+			    self
+				    dataForTests: testCollection
+				    andMutations: mutationCollection ]) asArray ]) asArray
+]
+
 { #category : 'accessing' }
 MTMatrix >> equivalentMutants [
 
@@ -156,6 +183,34 @@ MTMatrix >> failuresFor: aMutant [
 
 	^ (self evaluationResultFor: aMutant) defects asOrderedCollection collect: [ :each |
 		  MTTestCaseReference for: each selector in: each class ]
+]
+
+{ #category : 'rendering' }
+MTMatrix >> generateHeatmap [
+
+	| heatmap mutationDictionary testDictionary |
+	mutationDictionary := mutations groupedBy: [ :mutation |
+		                      mutation operator species ].
+	testDictionary := testCases groupedBy: #testCaseClass.
+
+	heatmap := RSHeatmap new.
+	heatmap colorPalette: (NSScale linear range: {
+				 Color gray.
+				 Color purple muchDarker }).
+	heatmap labelShapeCell labelShape
+		border: (RSBorder new
+				 color: Color black;
+				 width: 0.2);
+		color: Color white.
+	heatmap shape extent: 50 @ 20.
+
+	heatmap objectsX: testClasses.
+	heatmap objectsY: mutationDictionary keys.
+	heatmap dataMatrix: (self
+			 dataMatrixForTests: testDictionary
+			 andMutations: mutationDictionary).
+
+	heatmap open
 ]
 
 { #category : 'rendering' }
