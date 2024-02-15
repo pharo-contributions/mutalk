@@ -193,16 +193,7 @@ MTMatrix >> generateHeatmap [
 		                      mutation operator species ].
 	testDictionary := testCases groupedBy: #testCaseClass.
 
-	heatmap := RSHeatmap new.
-	heatmap colorPalette: (NSScale linear range: {
-				 Color gray.
-				 Color purple muchDarker }).
-	heatmap labelShapeCell labelShape
-		border: (RSBorder new
-				 color: Color black;
-				 width: 0.2);
-		color: Color white.
-	heatmap shape extent: 50 @ 20.
+	heatmap := self initializeHeatmap.
 
 	heatmap objectsX: testClasses.
 	heatmap objectsY: mutationDictionary keys.
@@ -234,6 +225,19 @@ MTMatrix >> includedMutants [
 	self addMutantSetsIn: includedMutants using: #includes.
 
 	^ includedMutants
+]
+
+{ #category : 'initialization' }
+MTMatrix >> initializeHeatmap [
+
+	| heatmap |
+	heatmap := RSHeatmap new.
+	heatmap colorPalette: (NSScale linear range: {
+				 Color red.
+				 Color red muchLighter }).
+	heatmap labelShapeCell labelShape bold.
+	heatmap shape extent: 50 @ 20.
+	^ heatmap
 ]
 
 { #category : 'comparing' }
