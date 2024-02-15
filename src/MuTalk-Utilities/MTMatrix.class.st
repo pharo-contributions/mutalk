@@ -120,6 +120,36 @@ MTMatrix >> classesToMutate: aClass [
 	classesToMutate := aClass
 ]
 
+{ #category : 'computing' }
+MTMatrix >> dataForTests: testCollection andMutations: mutationCollection [
+
+	| totalNumberOfTestsExecuted numberOfFailuresCollection totalNumberOfFailures |
+	totalNumberOfTestsExecuted := testCollection size
+	                              * mutationCollection size.
+	numberOfFailuresCollection := mutationCollection collect: [ :mutation |
+		                              | testClass |
+		                              "We know that all tests from testCollection are from the same class"
+		                              testClass := testCollection atRandom
+			                                           testCaseClass.
+		                              (self
+			                               failuresFor: mutation
+			                               andTestClass: testClass) size ].
+	totalNumberOfFailures := numberOfFailuresCollection fold: [ :num1 :num2 |
+		                         num1 + num2 ].
+	^ (totalNumberOfFailures / totalNumberOfTestsExecuted * 100)
+		  asInteger
+]
+
+{ #category : 'computing' }
+MTMatrix >> dataMatrixForTests: testDictionary andMutations: mutationDictionary [
+
+	^ mutationDictionary values collect: [ :mutationCollection |
+		  testDictionary values collect: [ :testCollection |
+			  self
+				  dataForTests: testCollection
+				  andMutations: mutationCollection ] ]
+]
+
 { #category : 'accessing' }
 MTMatrix >> equivalentMutants [
 
@@ -158,6 +188,32 @@ MTMatrix >> failuresFor: aMutant [
 		  MTTestCaseReference for: each selector in: each class ]
 ]
 
+{ #category : 'computing' }
+MTMatrix >> failuresFor: aMutation andTestClass: aTestClass [
+
+	^ (self failuresFor: aMutation) select: [ :testCase |
+		  testCase testCaseClass = aTestClass ]
+]
+
+{ #category : 'rendering' }
+MTMatrix >> generateHeatmap [
+
+	| heatmap mutationDictionary testDictionary |
+	mutationDictionary := mutations groupedBy: [ :mutation |
+		                      mutation operator species ].
+	testDictionary := testCases groupedBy: #testCaseClass.
+
+	heatmap := self initializeHeatmap.
+
+	heatmap objectsX: testClasses.
+	heatmap objectsY: mutationDictionary keys.
+	heatmap dataMatrix: (self
+			 dataMatrixForTests: testDictionary
+			 andMutations: mutationDictionary).
+
+	heatmap open
+]
+
 { #category : 'rendering' }
 MTMatrix >> generateMatrix [
 
@@ -179,6 +235,19 @@ MTMatrix >> includedMutants [
 	self addMutantSetsIn: includedMutants using: #includes.
 
 	^ includedMutants
+]
+
+{ #category : 'initialization' }
+MTMatrix >> initializeHeatmap [
+
+	| heatmap |
+	heatmap := RSHeatmap new.
+	heatmap labelShapeCell labelShape bold.
+	heatmap shape extent: 50 @ 20.
+	heatmap colorPalette: (NSScale linear range: {
+				 Color yellow.
+				 Color red }).
+	^ heatmap
 ]
 
 { #category : 'comparing' }

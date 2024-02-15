@@ -52,6 +52,12 @@ MTTestCaseReference >> method [
 	^ class >> selector
 ]
 
+{ #category : 'printing' }
+MTTestCaseReference >> printOn: aStream [
+
+	aStream nextPutAll: (aStream print: self testCase)
+]
+
 { #category : 'evaluating' }
 MTTestCaseReference >> resources [
 	^self testCase resources
