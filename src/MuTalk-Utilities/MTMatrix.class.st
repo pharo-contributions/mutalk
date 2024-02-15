@@ -123,28 +123,31 @@ MTMatrix >> classesToMutate: aClass [
 { #category : 'computing' }
 MTMatrix >> dataForTests: testCollection andMutations: mutationCollection [
 
-	| totalNumberOfTests numberOfFailuresCollection killedCount |
-	totalNumberOfTests := testCollection size * mutationCollection size.
+	| totalNumberOfTestsExecuted numberOfFailuresCollection totalNumberOfFailures |
+	totalNumberOfTestsExecuted := testCollection size
+	                              * mutationCollection size.
 	numberOfFailuresCollection := mutationCollection collect: [ :mutation |
 		                              | testClass |
+		                              "We know that all tests from testCollection are from the same class"
 		                              testClass := testCollection atRandom
 			                                           testCaseClass.
 		                              (self
 			                               failuresFor: mutation
 			                               andTestClass: testClass) size ].
-	killedCount := numberOfFailuresCollection fold: [ :num1 :num2 |
-		               num1 + num2 ].
-	^ (killedCount / totalNumberOfTests * 100) asInteger
+	totalNumberOfFailures := numberOfFailuresCollection fold: [ :num1 :num2 |
+		                         num1 + num2 ].
+	^ (totalNumberOfFailures / totalNumberOfTestsExecuted * 100)
+		  asInteger
 ]
 
 { #category : 'computing' }
 MTMatrix >> dataMatrixForTests: testDictionary andMutations: mutationDictionary [
 
-	^ (mutationDictionary collect: [ :mutationCollection |
-		   (testDictionary collect: [ :testCollection |
-			    self
-				    dataForTests: testCollection
-				    andMutations: mutationCollection ]) asArray ]) asArray
+	^ mutationDictionary values collect: [ :mutationCollection |
+		  testDictionary values collect: [ :testCollection |
+			  self
+				  dataForTests: testCollection
+				  andMutations: mutationCollection ] ]
 ]
 
 { #category : 'accessing' }
