@@ -26,23 +26,24 @@ MTBlockTestFilterTest >> testAllTestsAreExcluded [
 ]
 
 { #category : 'tests' }
-MTBlockTestFilterTest >> testYTestsAreExcluded [
+MTBlockTestFilterTest >> testYTestIsExcluded [
 
+	| result |
 	self runAnalysisForBlockCondition: [ :testCase |
 		testCase selector beginsWith: 'testX' ].
+	result := analysis generalResult particularResults at: 1.
 
-	self
-		assert: (analysis generalResult particularResults at: 1) runCount
-		equals: 2
+	self assert: result runCount equals: 1.
+	self assert: (result mutantResults at: 1) selector equals: #testX
 ]
 
 { #category : 'tests' }
-MTBlockTestFilterTest >> testYTestsAreNotExcluded [
+MTBlockTestFilterTest >> testYTestIsNotExcluded [
 
 	self runAnalysisForBlockCondition: [ :testCase |
 		testCase selector beginsWith: 'test' ].
 
 	self
 		assert: (analysis generalResult particularResults at: 1) runCount
-		equals: 4
+		equals: 2
 ]

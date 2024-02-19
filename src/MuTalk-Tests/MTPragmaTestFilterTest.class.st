@@ -27,11 +27,14 @@ MTPragmaTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelector andArgu
 { #category : 'tests' }
 MTPragmaTestFilterTest >> testTestWithPragmaIsExcluded [
 
+	| result |
 	self runAnalysisForPragmaCondition: #aPragma.
+	result := analysis generalResult particularResults at: 1.
 
+	self assert: result runCount equals: 1.
 	self
-		assert: (analysis generalResult particularResults at: 1) runCount
-		equals: 1
+		assert: (result mutantResults at: 1) selector
+		equals: #testWithoutPragma
 ]
 
 { #category : 'tests' }

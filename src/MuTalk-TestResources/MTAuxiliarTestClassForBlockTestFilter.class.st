@@ -6,25 +6,13 @@ Class {
 }
 
 { #category : 'tests' }
-MTAuxiliarTestClassForBlockTestFilter >> testX1 [
+MTAuxiliarTestClassForBlockTestFilter >> testX [
 
 	self assert: true
 ]
 
 { #category : 'tests' }
-MTAuxiliarTestClassForBlockTestFilter >> testX2 [
-
-	self assert: true
-]
-
-{ #category : 'tests' }
-MTAuxiliarTestClassForBlockTestFilter >> testY1 [
-
-	self assert: true
-]
-
-{ #category : 'tests' }
-MTAuxiliarTestClassForBlockTestFilter >> testY2 [
+MTAuxiliarTestClassForBlockTestFilter >> testY [
 
 	self assert: true
 ]
