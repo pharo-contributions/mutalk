@@ -10,7 +10,7 @@ MTTimeTestFilterTest >> runAnalysisForTimeCondition: aDuration [
 
 	self
 		runAnalysisWithFilter: (MTTimeTestFilter for: aDuration)
-		on: { MTAuxiliarClassForTimeTestFilter }
+		on: { MTAuxiliarClassForTestFilter }
 		withTests: { MTAuxiliarClassForTimeTestFilterTest }
 ]
 

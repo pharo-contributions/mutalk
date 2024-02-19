@@ -1,12 +1,12 @@
 Class {
-	#name : 'MTAuxiliarClassForTimeTestFilter',
+	#name : 'MTAuxiliarClassForTestFilter',
 	#superclass : 'Object',
 	#category : 'MuTalk-TestResources',
 	#package : 'MuTalk-TestResources'
 }
 
 { #category : 'accessing' }
-MTAuxiliarClassForTimeTestFilter >> simpleMethod [
+MTAuxiliarClassForTestFilter >> simpleMethod [
 
 	^ 1 + 1
 ]
