@@ -1,8 +1,9 @@
 Class {
 	#name : 'MTCoverageTestSuiteSelector',
 	#superclass : 'Object',
-	#category : 'MuTalk-Model',
-	#package : 'MuTalk-Model'
+	#category : 'MuTalk-Model-Coverage',
+	#package : 'MuTalk-Model',
+	#tag : 'Coverage'
 }
 
 { #category : 'selecting' }
