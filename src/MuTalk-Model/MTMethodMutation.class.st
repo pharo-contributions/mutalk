@@ -172,14 +172,32 @@ MTMethodMutation >> printOn: aStream [
 ]
 
 { #category : 'running' }
-MTMethodMutation >> runMutantStoppingOnError: aBoolean [
+MTMethodMutation >> runMutantStoppingOnError: aBoolean in: anEvaluation [
 
-	| testResults |
+	| testResults brokenTests |
+	[
 	EpMonitor disableDuring: [
-		[ self install.
-		testResults :=  self runTestsStoppingOnError: aBoolean
-  		] ensure: [ self uninstall ] ].
-	^ testResults
+		testResults := [
+		               self install.
+		               self runTestsStoppingOnError: aBoolean ] ensure: [
+			               self uninstall ] ] ]
+		on: Error
+		do: [ :error |
+			^ MTMutantEvaluationResultTerminated
+				  newFor: self
+				  results: error freeze
+				  producedBy: anEvaluation ].
+
+	brokenTests := testResults errorsSize + testResults failuresSize.
+	brokenTests = 0 ifTrue: [
+		^ MTMutantEvaluationResultSurvived
+			  newFor: self
+			  results: testResults
+			  producedBy: anEvaluation ].
+	^ MTMutantEvaluationResultKilled
+		  newFor: self
+		  results: testResults
+		  producedBy: anEvaluation
 ]
 
 { #category : 'private' }

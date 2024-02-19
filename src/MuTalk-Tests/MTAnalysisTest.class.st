@@ -111,6 +111,7 @@ MTAnalysisTest >> testExecutingInfiniteRecursionAnalysis [
 		            operators:
 			            { MTReplaceIfTrueReceiverWithFalseOperator new }.
 
+1halt.
 	analysis run.
 
 	results := analysis mutantResults.
