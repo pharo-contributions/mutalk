@@ -5,8 +5,9 @@ Class {
 		'particularResults',
 		'elapsedTime'
 	],
-	#category : 'MuTalk-Model',
-	#package : 'MuTalk-Model'
+	#category : 'MuTalk-Model-Core',
+	#package : 'MuTalk-Model',
+	#tag : 'Core'
 }
 
 { #category : 'instance creation' }

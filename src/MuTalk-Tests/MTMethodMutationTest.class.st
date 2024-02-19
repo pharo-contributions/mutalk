@@ -71,7 +71,7 @@ MTMethodMutationTest >> testMutationInfiniteLoop [
 	| compiledMethod operator modifiedSource methodMutation res |
 	"This test will execute another test that will time out.
 	So this test will need a higher time limit"
-	self timeLimit: self defaultTimeLimit * 2.
+	self timeLimit: self defaultTimeLimit + (Duration milliSeconds: 10).
 
 	compiledMethod := MTFakeInfiniteLoopForTest >> #iterativeFactorial:.
 	operator := MTReplaceLessOrEqualWithTrueOperator new.
@@ -89,9 +89,9 @@ MTMethodMutationTest >> testMutationInfiniteLoop [
 			 for: #testIterativeFactorial
 			 in: MTFakeInfiniteLoopsTest) }.
 
-	res := methodMutation runMutantStoppingOnError: true.
+	res := methodMutation runMutantStoppingOnError: true in: nil.
 
-	self assert: res errors size equals: 1
+	self assert: res result errors size equals: 1
 ]
 
 { #category : 'tests' }
@@ -100,7 +100,7 @@ MTMethodMutationTest >> testMutationInfiniteRecursion [
 	| compiledMethod operator modifiedSource methodMutation res |
 	"This test will execute another test that will time out.
 	So this test will need a higher time limit"
-	self timeLimit: self defaultTimeLimit * 2.
+	self timeLimit: self defaultTimeLimit + (Duration milliSeconds: 10).
 
 	compiledMethod := MTFakeInfiniteLoopForTest >> #recursiveFactorial:.
 	operator := MTReplaceIfTrueReceiverWithFalseOperator new.
@@ -118,9 +118,87 @@ MTMethodMutationTest >> testMutationInfiniteRecursion [
 			 for: #testRecursiveFactorial
 			 in: MTFakeInfiniteLoopsTest) }.
 
-	res := methodMutation runMutantStoppingOnError: true.
+	res := methodMutation runMutantStoppingOnError: true in: nil.
 
-	self assert: res errors size equals: 1
+	self assert: res result errors size equals: 1
+]
+
+{ #category : 'tests' }
+MTMethodMutationTest >> testMutationNotInstalling [
+
+	| methodMutation res mutantEvaluation |
+	methodMutation := MTFailedInstallMethodMutation
+		                  for:
+		                  MTFakeInfiniteLoopForTest >> #iterativeFactorial:
+		                  using: MTReplaceLessOrEqualWithTrueOperator new
+		                  nodeNumber: 1
+		                  ofClass: MTFakeInfiniteLoopForTest.
+
+
+	mutantEvaluation := MTMutantEvaluation
+		                    for: methodMutation
+		                    using: { (MTTestCaseReference
+				                     for: #testRecursiveFactorial
+				                     in: MTFakeInfiniteLoopsTest) }
+		                    following:
+		                    MTAllTestsMethodsRunningTestSelectionStrategy
+			                    new
+		                    andConsidering: nil.
+	res := mutantEvaluation valueStoppingOnError: true.
+
+	self assert: res terminated
+]
+
+{ #category : 'tests' }
+MTMethodMutationTest >> testMutationNotRunning [
+
+	| methodMutation res mutantEvaluation |
+	methodMutation := MTFailedRunMethodMutation
+		                  for:
+		                  MTFakeInfiniteLoopForTest >> #iterativeFactorial:
+		                  using: MTReplaceLessOrEqualWithTrueOperator new
+		                  nodeNumber: 1
+		                  ofClass: MTFakeInfiniteLoopForTest.
+
+
+	mutantEvaluation := MTMutantEvaluation
+		                    for: methodMutation
+		                    using: { (MTTestCaseReference
+				                     for: #testRecursiveFactorial
+				                     in: MTFakeInfiniteLoopsTest) }
+		                    following:
+		                    MTAllTestsMethodsRunningTestSelectionStrategy
+			                    new
+		                    andConsidering: nil.
+	res := mutantEvaluation valueStoppingOnError: true.
+
+	self assert: res terminated
+]
+
+{ #category : 'tests' }
+MTMethodMutationTest >> testMutationNotUninstalling [
+
+	| methodMutation res mutantEvaluation |
+	methodMutation := MTFailedUninstallMethodMutation
+		                  for:
+		                  MTFakeInfiniteLoopForTest >> #iterativeFactorial:
+		                  using: MTReplaceLessOrEqualWithTrueOperator new
+		                  nodeNumber: 1
+		                  ofClass: MTFakeInfiniteLoopForTest.
+
+
+	mutantEvaluation := MTMutantEvaluation
+		                    for: methodMutation
+		                    using: { (MTTestCaseReference
+				                     for: #testRecursiveFactorial
+				                     in: MTFakeInfiniteLoopsTest) }
+		                    following:
+		                    MTAllTestsMethodsRunningTestSelectionStrategy
+			                    new
+		                    andConsidering: nil.
+	res := mutantEvaluation valueStoppingOnError: true.
+
+	self assert: res terminated
 ]
 
 { #category : 'tests' }
@@ -140,7 +218,7 @@ MTMethodMutationTest >> testMutationRun [
 		                  ofClass: MTAuxiliarClassForMTAnalysis.
 	methodMutation testCaseReferences:
 		{ (MTTestCaseReference for: #simpleTestCaseRessource in: self class) }.
-	res := methodMutation runMutantStoppingOnError: true.
+	res := methodMutation runMutantStoppingOnError: true in: nil.
 
 	self assert: res runCount equals: 1
 ]

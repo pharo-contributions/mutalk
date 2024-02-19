@@ -1,8 +1,9 @@
 Class {
 	#name : 'MTMutantKillingSuggestionGenerator',
 	#superclass : 'Object',
-	#category : 'MuTalk-Model',
-	#package : 'MuTalk-Model'
+	#category : 'MuTalk-Model-Reporting',
+	#package : 'MuTalk-Model',
+	#tag : 'Reporting'
 }
 
 { #category : 'evaluating' }

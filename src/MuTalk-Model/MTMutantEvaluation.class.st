@@ -7,8 +7,9 @@ Class {
 		'testCases',
 		'coverageAnalysisResult'
 	],
-	#category : 'MuTalk-Model',
-	#package : 'MuTalk-Model'
+	#category : 'MuTalk-Model-Core',
+	#package : 'MuTalk-Model',
+	#tag : 'Core'
 }
 
 { #category : 'instance creation' }
@@ -76,14 +77,9 @@ MTMutantEvaluation >> testResults [
 { #category : 'evaluation' }
 MTMutantEvaluation >> valueStoppingOnError: aBoolean [
 
-	| testResults |
 	self initializeCoverageResultIfNil.
 
 	mutation testCaseReferences:
 		(strategy testCasesToEvaluate: mutation for: self).
-	testResults := mutation runMutantStoppingOnError: aBoolean.
-	^ MTMutantEvaluationResult
-		  for: mutation
-		  results: testResults
-		  producedBy: self
+	^ mutation runMutantStoppingOnError: aBoolean in: self
 ]

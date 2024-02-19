@@ -16,8 +16,9 @@ Class {
 		'mutantSelectionStrategy',
 		'testFilter'
 	],
-	#category : 'MuTalk-Model',
-	#package : 'MuTalk-Model'
+	#category : 'MuTalk-Model-Core',
+	#package : 'MuTalk-Model',
+	#tag : 'Core'
 }
 
 { #category : 'defaults' }
@@ -655,7 +656,7 @@ MTAnalysis >> run [
 		  do: [ :ex |
 			  self inform:
 				  'Your tests have Errors or Failures. Please correct them.'.
-			  ex return: false ]
+			  false ]
 ]
 
 { #category : 'accessing' }
