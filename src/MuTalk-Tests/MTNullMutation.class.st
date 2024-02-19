@@ -9,15 +9,6 @@ Class {
 }
 
 { #category : 'running' }
-MTNullMutation >> runMutantStoppingOnError: aBoolean [
-	
-	"I am a null mutation that does not run any tests and does not install any code.
-	Return an empty test result"
-	1halt.
-	^ TestResult new
-]
-
-{ #category : 'running' }
 MTNullMutation >> runMutantStoppingOnError: aBoolean in: aMTMutantEvaluation [
 	"I am a null mutation that does not run any tests and does not install any code.
 	Return an empty test result"
