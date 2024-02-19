@@ -5,7 +5,7 @@ Class {
 	#package : 'MuTalk-Tests'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'running' }
 MTPragmaTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelector [
 
 	self
@@ -14,7 +14,7 @@ MTPragmaTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelector [
 		withTests: { MTAuxiliarClassForPragmaTestFilterTest }
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'running' }
 MTPragmaTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelector andArguments: pragmaArguments [
 
 	self
