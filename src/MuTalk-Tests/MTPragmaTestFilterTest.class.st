@@ -11,7 +11,7 @@ MTPragmaTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelector [
 	self
 		runAnalysisWithFilter: (MTPragmaTestFilter for: aPragmaSelector)
 		on: { MTAuxiliarClassForTestFilter }
-		withTests: { MTAuxiliarClassForPragmaTestFilterTest }
+		withTests: { MTAuxiliarTestClassForPragmaTestFilter }
 ]
 
 { #category : 'running' }
@@ -21,7 +21,7 @@ MTPragmaTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelector andArgu
 		runAnalysisWithFilter:
 		(MTPragmaTestFilter for: aPragmaSelector arguments: pragmaArguments)
 		on: { MTAuxiliarClassForTestFilter }
-		withTests: { MTAuxiliarClassForPragmaTestFilterTest }
+		withTests: { MTAuxiliarTestClassForPragmaTestFilter }
 ]
 
 { #category : 'tests' }
