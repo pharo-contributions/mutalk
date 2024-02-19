@@ -11,14 +11,15 @@ Class {
 { #category : 'as yet unclassified' }
 MTTestCasesSelectionStrategyTest >> allTestsFromPackage [
 
-	^ (OrderedCollection
-		   with: MTTestClassForTestingCoverage
-		   with: MTAuxiliarTestClassForTestingStrategies
-		   with: MTAuxiliarClassForMTAnalysisTest
-		   with: MTAuxiliarTestClassForMTBudget
-		   with:
-		   MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail
-		   with: MTAuxiliarClassForTimeTestFilterTest)
+	^ (OrderedCollection withAll: {
+			   MTTestClassForTestingCoverage.
+			   MTAuxiliarTestClassForTestingStrategies.
+			   MTAuxiliarClassForMTAnalysisTest.
+			   MTAuxiliarTestClassForMTBudget.
+			   MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail.
+			   MTAuxiliarClassForTimeTestFilterTest.
+			   MTAuxiliarTestClassForBlockTestFilter.
+			   MTAuxiliarTestClassForPragmaTestFilter })
 		  inject: OrderedCollection new
 		  into: [ :tests :testClass |
 			  tests addAll: testClass suite tests.
