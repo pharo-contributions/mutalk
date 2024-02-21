@@ -9,6 +9,21 @@ Class {
 	#tag : 'Test filters'
 }
 
+{ #category : 'instance creation' }
+MTPragmaTestFilter class >> for: aPragmaSelector [
+
+	^ self for: aPragmaSelector arguments: #(  )
+]
+
+{ #category : 'instance creation' }
+MTPragmaTestFilter class >> for: aPragmaSelector arguments: pragmaArguments [
+
+	^ self new
+		  condition: aPragmaSelector;
+		  pragmaArguments: pragmaArguments;
+		  yourself
+]
+
 { #category : 'testing' }
 MTPragmaTestFilter class >> isAbstract [
 
