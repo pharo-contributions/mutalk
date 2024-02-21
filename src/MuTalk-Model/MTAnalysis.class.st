@@ -14,7 +14,8 @@ Class {
 		'stopOnErrorOrFail',
 		'testSelectionStrategy',
 		'mutantSelectionStrategy',
-		'testFilter'
+		'testFilter',
+		'filteredTests'
 	],
 	#category : 'MuTalk-Model-Core',
 	#package : 'MuTalk-Model',
@@ -505,10 +506,25 @@ MTAnalysis >> doNotStopOnErrorOrFail [
 	stopOnErrorOrFail := false
 ]
 
+{ #category : 'accessing' }
+MTAnalysis >> filteredTests [
+
+	^ filteredTests
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> filteredTests: anObject [
+
+	filteredTests := anObject
+]
+
 { #category : 'results' }
 MTAnalysis >> generalResult [
 
-	^ MTGeneralResult for: mutantResults timed: elapsedTime
+	^ MTGeneralResult
+		  for: mutantResults
+		  timed: elapsedTime
+		  filteredTests: filteredTests
 ]
 
 { #category : 'running' }
@@ -536,6 +552,7 @@ MTAnalysis >> generateResults [
 	| tests |
 	mutantResults := OrderedCollection new.
 	tests := testFilter filterTests: testCases.
+	filteredTests := testCases copyWithoutAll: tests.
 
 	mutations do: [ :aMutation |
 		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)
