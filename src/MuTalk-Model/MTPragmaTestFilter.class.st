@@ -30,12 +30,16 @@ MTPragmaTestFilter class >> for: aPragmaSelector arguments: pragmaArguments [
 { #category : 'enumerating' }
 MTPragmaTestFilter >> filterTests: aTestCaseCollection [
 
-	^ aTestCaseCollection reject: [ :testCaseReference |
-		  | pragmas |
-		  pragmas := testCaseReference method pragmas.
-		  pragmas anySatisfy: [ :pragma |
-			  pragma selector = condition
-			  & (pragma arguments = pragmaArguments) ] ]
+	^ self subclassResponsibility
+]
+
+{ #category : 'testing' }
+MTPragmaTestFilter >> isPragmaValidFrom: aTestCaseReference [
+
+	| pragmas |
+	pragmas := aTestCaseReference method pragmas.
+	pragmas anySatisfy: [ :pragma |
+		pragma selector = condition & (pragma arguments = pragmaArguments) ]
 ]
 
 { #category : 'accessing' }
