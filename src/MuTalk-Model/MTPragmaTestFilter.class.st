@@ -9,22 +9,10 @@ Class {
 	#tag : 'Test filters'
 }
 
-{ #category : 'instance creation' }
-MTPragmaTestFilter class >> for: aPragmaSelector [
+{ #category : 'testing' }
+MTPragmaTestFilter class >> isAbstract [
 
-	^ self new
-		  condition: aPragmaSelector;
-		  pragmaArguments: #(  );
-		  yourself
-]
-
-{ #category : 'instance creation' }
-MTPragmaTestFilter class >> for: aPragmaSelector arguments: pragmaArguments [
-
-	^ self new
-		  condition: aPragmaSelector;
-		  pragmaArguments: pragmaArguments;
-		  yourself
+	^ true
 ]
 
 { #category : 'enumerating' }
@@ -38,8 +26,8 @@ MTPragmaTestFilter >> isPragmaValidFrom: aTestCaseReference [
 
 	| pragmas |
 	pragmas := aTestCaseReference method pragmas.
-	pragmas anySatisfy: [ :pragma |
-		pragma selector = condition & (pragma arguments = pragmaArguments) ]
+	^ pragmas anySatisfy: [ :pragma |
+		  pragma selector = condition & (pragma arguments = pragmaArguments) ]
 ]
 
 { #category : 'accessing' }
