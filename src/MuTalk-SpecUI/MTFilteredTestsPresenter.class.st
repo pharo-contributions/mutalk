@@ -41,5 +41,5 @@ MTFilteredTestsPresenter >> initializePresenters [
 				 title: 'Reason'
 				 evaluated: [ :each | each value ]).
 				
-	testCodePresenter := self newText.
+	testCodePresenter := self newCode.
 ]
