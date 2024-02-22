@@ -1,6 +1,9 @@
 Class {
 	#name : 'MTFilteredTestsPresenter',
 	#superclass : 'MTMutationResultsPresenter',
+	#instVars : [
+		'testCodePresenter'
+	],
 	#category : 'MuTalk-SpecUI',
 	#package : 'MuTalk-SpecUI'
 }
@@ -10,7 +13,8 @@ MTFilteredTestsPresenter >> connectPresenters [
 
 	tablePresenter whenSelectionChangedDo: [ :selection |
 		| selectedItem |
-		selectedItem := selection selectedItem ]
+		selectedItem := selection selectedItem.
+		testCodePresenter text: selectedItem key method sourceCode ]
 ]
 
 { #category : 'layout' }
@@ -18,6 +22,7 @@ MTFilteredTestsPresenter >> defaultLayout [
 
 	^ SpPanedLayout newTopToBottom
 		  add: tablePresenter;
+		  add: testCodePresenter;
 		  yourself
 ]
 
@@ -34,5 +39,7 @@ MTFilteredTestsPresenter >> initializePresenters [
 		addColumn:
 			(SpStringTableColumn
 				 title: 'Reason'
-				 evaluated: [ :each | each value ])
+				 evaluated: [ :each | each value ]).
+				
+	testCodePresenter := self newText.
 ]
