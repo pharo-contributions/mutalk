@@ -27,7 +27,7 @@ MTPragmaTestFilter class >> for: aPragmaSelector arguments: pragmaArguments [
 { #category : 'testing' }
 MTPragmaTestFilter class >> isAbstract [
 
-	^ true
+	^ self == MTPragmaTestFilter
 ]
 
 { #category : 'enumerating' }
