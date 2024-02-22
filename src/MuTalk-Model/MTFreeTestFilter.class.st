@@ -11,3 +11,9 @@ MTFreeTestFilter >> filterTests: aTestCaseCollection [
 
 	^ aTestCaseCollection
 ]
+
+{ #category : 'accessing' }
+MTFreeTestFilter >> filteredTestReason [
+
+	^ 'Not filtered'
+]

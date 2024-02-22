@@ -518,6 +518,17 @@ MTAnalysis >> filteredTests: anObject [
 	filteredTests := anObject
 ]
 
+{ #category : 'as yet unclassified' }
+MTAnalysis >> filteredTestsFrom: aTestCollection [
+
+	filteredTests := aTestCollection
+		                 inject: OrderedDictionary new
+		                 into: [ :accumulator :test |
+			                 accumulator add:
+				                 test -> testFilter filteredTestReason.
+			                 accumulator ]
+]
+
 { #category : 'results' }
 MTAnalysis >> generalResult [
 
@@ -552,7 +563,7 @@ MTAnalysis >> generateResults [
 	| tests |
 	mutantResults := OrderedCollection new.
 	tests := testFilter filterTests: testCases.
-	filteredTests := testCases copyWithoutAll: tests.
+	self filteredTestsFrom: (testCases copyWithoutAll: tests).
 
 	mutations do: [ :aMutation |
 		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)

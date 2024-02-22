@@ -12,3 +12,9 @@ MTTimeTestFilter >> filterTests: aTestCaseCollection [
 	^ aTestCaseCollection select: [ :testCaseReference |
 		  testCaseReference lastTimeToRun <= condition ]
 ]
+
+{ #category : 'accessing' }
+MTTimeTestFilter >> filteredTestReason [ 
+
+	^ 'Took longer than ', condition printString, ' to run'
+]

@@ -34,3 +34,9 @@ MTTestFilter >> filterTests: aTestCaseCollection [
 
 	^ self subclassResponsibility
 ]
+
+{ #category : 'accessing' }
+MTTestFilter >> filteredTestReason [
+
+	self subclassResponsibility
+]
