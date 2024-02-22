@@ -12,3 +12,9 @@ MTPragmaRejectionTestFilter >> filterTests: aTestCaseCollection [
 	^ aTestCaseCollection reject: [ :testCaseReference |
 		  self isPragmaValidFrom: testCaseReference ]
 ]
+
+{ #category : 'accessing' }
+MTPragmaRejectionTestFilter >> reasonString [
+
+	^ 'Contains the pragma <' , condition
+]

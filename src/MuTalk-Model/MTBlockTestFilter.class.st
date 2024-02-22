@@ -11,3 +11,9 @@ MTBlockTestFilter >> filterTests: aTestCaseCollection [
 
 	^ aTestCaseCollection select: condition
 ]
+
+{ #category : 'accessing' }
+MTBlockTestFilter >> filteredTestReason [ 
+
+	^ 'Took longer than ', condition printString, ' to run'
+]

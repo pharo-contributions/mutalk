@@ -36,6 +36,22 @@ MTPragmaTestFilter >> filterTests: aTestCaseCollection [
 	^ self subclassResponsibility
 ]
 
+{ #category : 'accessing' }
+MTPragmaTestFilter >> filteredTestReason [
+
+	| reasonString |
+	reasonString := self reasonString.
+
+	^ pragmaArguments isEmpty
+		  ifTrue: [ reasonString , '>' ]
+		  ifFalse: [
+			  | pragmaString |
+			  pragmaString := pragmaArguments reduce: [ :arg1 :arg2 |
+				                  arg1 , ' ' , arg2 ].
+
+			  reasonString , pragmaString , '>' ]
+]
+
 { #category : 'testing' }
 MTPragmaTestFilter >> isPragmaValidFrom: aTestCaseReference [
 
@@ -55,4 +71,10 @@ MTPragmaTestFilter >> pragmaArguments [
 MTPragmaTestFilter >> pragmaArguments: anObject [
 
 	pragmaArguments := anObject
+]
+
+{ #category : 'accessing' }
+MTPragmaTestFilter >> reasonString [
+
+	self subclassResponsibility
 ]
