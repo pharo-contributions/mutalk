@@ -10,26 +10,28 @@ MTTimeTestFilterTest >> runAnalysisForTimeCondition: aDuration [
 
 	self
 		runAnalysisWithFilter: (MTTimeTestFilter for: aDuration)
-		on: { MTAuxiliarClassForTimeTestFilter }
+		on: { MTAuxiliarClassForTestFilter }
 		withTests: { MTAuxiliarClassForTimeTestFilterTest }
 ]
 
-{ #category : 'running' }
+{ #category : 'tests' }
 MTTimeTestFilterTest >> testWith10MillisecondsCondition [
 
-	| testCaseReference |
+	| testCaseReference result |
 	testCaseReference := MTTestCaseReference
 		                     for: #test10Milliseconds
 		                     in: MTAuxiliarClassForTimeTestFilterTest.
 	self runAnalysisForTimeCondition:
 		(self timeToRunFor: testCaseReference) * 10.
+	result := analysis generalResult particularResults at: 1.
 
+	self assert: result runCount equals: 1.
 	self
-		assert: (analysis generalResult particularResults at: 1) runCount
-		equals: 1
+		assert: (result mutantResults at: 1) selector
+		equals: #test10Milliseconds
 ]
 
-{ #category : 'running' }
+{ #category : 'tests' }
 MTTimeTestFilterTest >> testWith1SecondCondition [
 
 	| testCaseReference |
@@ -44,7 +46,7 @@ MTTimeTestFilterTest >> testWith1SecondCondition [
 		equals: 2
 ]
 
-{ #category : 'running' }
+{ #category : 'accessing' }
 MTTimeTestFilterTest >> timeToRunFor: aTestCaseReference [
 
 	aTestCaseReference runUnchecked.
