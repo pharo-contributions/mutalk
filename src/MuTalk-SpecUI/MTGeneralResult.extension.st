@@ -4,7 +4,7 @@ Extension { #name : 'MTGeneralResult' }
 MTGeneralResult >> filteredTestsExtension [
 
 	<inspectorPresentationOrder: 3 title: 'Filtered Tests'>
-	^ MTFilteredTestsPresenter on: self filteredTests
+	^ MTFilteredTestsPresenter on: filteredTests
 ]
 
 { #category : '*MuTalk-SpecUI' }

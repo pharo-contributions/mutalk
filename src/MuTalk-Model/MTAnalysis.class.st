@@ -522,7 +522,7 @@ MTAnalysis >> filteredTests: anObject [
 MTAnalysis >> filteredTestsFrom: aTestCollection [
 
 	filteredTests := aTestCollection
-		                 inject: OrderedDictionary new
+		                 inject: OrderedCollection new
 		                 into: [ :accumulator :test |
 			                 accumulator add:
 				                 test -> testFilter filteredTestReason.
