@@ -39,7 +39,7 @@ MTPragmaSelectionTestFilterTest >> testAllTestsAreExcluded [
 { #category : 'tests' }
 MTPragmaSelectionTestFilterTest >> testAllTestsAreExcluded2 [
 
-	self runAnalysisForPragmaCondition: #aPragma: andArguments: 'arg'.
+	self runAnalysisForPragmaCondition: #aPragma: andArguments: { 'arg' }.
 
 	self
 		assert: (analysis generalResult particularResults at: 1) runCount
