@@ -14,7 +14,10 @@ MTFilteredTestsPresenter >> connectPresenters [
 	tablePresenter whenSelectionChangedDo: [ :selection |
 		| selectedItem |
 		selectedItem := selection selectedItem.
-		testCodePresenter text: selectedItem key method sourceCode ]
+		testCodePresenter
+			beForMethod: selectedItem key method;
+			text: selectedItem key method sourceCode;
+			beNotEditable ]
 ]
 
 { #category : 'layout' }
