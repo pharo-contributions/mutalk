@@ -224,6 +224,13 @@ MTAnalysis >> operators: anObject [
 	operators := anObject
 ]
 
+{ #category : 'accessing' }
+MTAnalysis >> packageToMutate: aCollectionOfPackages [
+
+	modelClasses := aCollectionOfPackages flatCollect: [ :packageName |
+		                packageName asPackage definedClasses ]
+]
+
 { #category : 'running' }
 MTAnalysis >> run [
 	"Obtain mutants applying the operators in the classes (or
@@ -305,6 +312,16 @@ MTAnalysis >> testFilter [
 MTAnalysis >> testFilter: anObject [
 
 	testFilter := anObject
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> testPackages: aCollectionOfPackages [
+
+	| testClasses |
+	testClasses := aCollectionOfPackages flatCollect: [ :packageName |
+		               packageName asPackage definedClasses select:
+			               #isTestCase ].
+	self testClasses: testClasses
 ]
 
 { #category : 'accessing' }
