@@ -1,17 +1,15 @@
 Class {
-	#name : 'MTReplaceIfFalseReceiverWithFalseOperator',
-	#superclass : 'MTReplaceIfFalseReceiverOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceIfFalseReceiverWithFalseOperator,
+	#superclass : #MTReplaceIfFalseReceiverOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceIfFalseReceiverWithFalseOperator >> newReceiverExpression [
 	^'false'
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTReplaceIfFalseReceiverWithFalseOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [
 	^aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceIfFalseReceiverWithFalseOperator: aMutation.
 ]

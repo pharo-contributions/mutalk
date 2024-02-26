@@ -1,6 +1,6 @@
 Class {
-	#name : 'MTAnalysis',
-	#superclass : 'Object',
+	#name : #MTAnalysis,
+	#superclass : #Object,
 	#instVars : [
 		'modelClasses',
 		'operators',
@@ -16,90 +16,88 @@ Class {
 		'mutantSelectionStrategy',
 		'testFilter'
 	],
-	#category : 'MuTalk-Model-Core',
-	#package : 'MuTalk-Model',
-	#tag : 'Core'
+	#category : 'MuTalk-Model-Core'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> budget [
 
 	^ budget
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> budget: anObject [
 
 	budget := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> classesToMutate: anObject [
 
 	modelClasses := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> coverageAnalysisResult [
 
 	^ coverageAnalysisResult
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> coverageAnalysisResult: anObject [
 
 	coverageAnalysisResult := anObject
 ]
 
-{ #category : 'accessing - defaults' }
+{ #category : #'accessing - defaults' }
 MTAnalysis >> defaultBudget [
 
 	^ MTFreeBudget new
 ]
 
-{ #category : 'defaults' }
+{ #category : #defaults }
 MTAnalysis >> defaultLogger [
 
 	^ MTNullAnalysisLogger new
 ]
 
-{ #category : 'accessing - defaults' }
+{ #category : #'accessing - defaults' }
 MTAnalysis >> defaultMutantSelectionStrategy [
 
 	^ MTAllMutantSelectionStrategy new
 ]
 
-{ #category : 'accessing - defaults' }
+{ #category : #'accessing - defaults' }
 MTAnalysis >> defaultOperators [
 
 	^ MTAbstractMutantOperator contents
 ]
 
-{ #category : 'accessing - defaults' }
+{ #category : #'accessing - defaults' }
 MTAnalysis >> defaultTestFilter [
 
 	^ MTFreeTestFilter new
 ]
 
-{ #category : 'accessing - defaults' }
+{ #category : #'accessing - defaults' }
 MTAnalysis >> defaultTestSelectionStrategy [
 
 	^ MTAllTestsMethodsRunningTestSelectionStrategy new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> doNotStopOnErrorOrFail [
 
 	stopOnErrorOrFail := false
 ]
 
-{ #category : 'results' }
+{ #category : #results }
 MTAnalysis >> generalResult [
 
 	^ MTGeneralResult for: mutantResults timed: elapsedTime
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTAnalysis >> generateCoverageAnalysis [
 
 	coverageAnalysisResult := (MTCoverageAnalysis
@@ -109,7 +107,7 @@ MTAnalysis >> generateCoverageAnalysis [
 		                          result
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTAnalysis >> generateMutations [
 
 	^ mutations ifNil: [
@@ -118,7 +116,7 @@ MTAnalysis >> generateMutations [
 			               loggingIn: logger ]
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTAnalysis >> generateResults [
 
 	| tests |
@@ -138,7 +136,7 @@ MTAnalysis >> generateResults [
 	^ mutantResults
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTAnalysis >> initialTestRun [
 	"Do an initial run of the tests to check that they are all green.
 	Only green tests count for the mutation testing analysis"
@@ -146,7 +144,7 @@ MTAnalysis >> initialTestRun [
 	testCases do: [ :aTestCase | aTestCase runChecked ]
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 MTAnalysis >> initialize [
 
 	super initialize.
@@ -161,19 +159,19 @@ MTAnalysis >> initialize [
 	stopOnErrorOrFail := true
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> logger [
 
 	^ logger
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> logger: anObject [
 
 	logger := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> modelClasses [
 	"Filter tests and testsResources"
 
@@ -182,56 +180,56 @@ MTAnalysis >> modelClasses [
 			  class includesBehavior: classToFilter ] ]
 ]
 
-{ #category : 'results' }
+{ #category : #results }
 MTAnalysis >> mutantResults [
 
 	^ mutantResults
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> mutantSelectionStrategy [
 
 	^ mutantSelectionStrategy
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> mutantSelectionStrategy: anObject [
 
 	mutantSelectionStrategy := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> mutations [
 
 	^ mutations
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> mutations: anObject [
 
 	mutations := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> operators [
 
 	^ operators
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> operators: anObject [
 
 	operators := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> packageToMutate: aCollectionOfPackages [
 
 	modelClasses := aCollectionOfPackages flatCollect: [ :packageName |
 		                packageName asPackage definedClasses ]
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTAnalysis >> run [
 	"Obtain mutants applying the operators in the classes (or
 	methods of
@@ -254,31 +252,31 @@ MTAnalysis >> run [
 			  false ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> stopOnErrorOrFail: aBoolean [
 
 	stopOnErrorOrFail := aBoolean
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> testBaseClasses [
 
 	^ OrderedCollection with: TestCase with: TestResource
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> testCases [
 
 	^ testCases
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> testCases: anObject [
 
 	testCases := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> testCasesFrom: aClassCollection [
 
 	^ aClassCollection
@@ -289,32 +287,32 @@ MTAnalysis >> testCasesFrom: aClassCollection [
 			  testCase ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTAnalysis >> testCasesReferencesFrom: testClass [
 
 	^ testClass allTestSelectors collect: [ :each |
 		  MTTestCaseReference for: each in: testClass ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> testClasses: aClassCollection [
 
 	testCases := self testCasesFrom: aClassCollection
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> testFilter [
 
 	^ testFilter
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> testFilter: anObject [
 
 	testFilter := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> testPackages: aCollectionOfPackages [
 
 	| testClasses |
@@ -324,13 +322,13 @@ MTAnalysis >> testPackages: aCollectionOfPackages [
 	self testClasses: testClasses
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> testSelectionStrategy [
 
 	^ testSelectionStrategy
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysis >> testSelectionStrategy: anObject [
 
 	testSelectionStrategy := anObject

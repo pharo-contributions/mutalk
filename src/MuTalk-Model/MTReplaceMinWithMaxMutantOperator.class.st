@@ -1,17 +1,15 @@
 Class {
-	#name : 'MTReplaceMinWithMaxMutantOperator',
-	#superclass : 'MTSelectorReplacementMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceMinWithMaxMutantOperator,
+	#superclass : #MTSelectorReplacementMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceMinWithMaxMutantOperator >> newSelector [
 	^#max:
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceMinWithMaxMutantOperator >> oldSelector [
 	^#min:
 ]

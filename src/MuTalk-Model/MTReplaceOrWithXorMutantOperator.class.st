@@ -1,22 +1,20 @@
 Class {
-	#name : 'MTReplaceOrWithXorMutantOperator',
-	#superclass : 'MTSelectorReplacementMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceOrWithXorMutantOperator,
+	#superclass : #MTSelectorReplacementMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceOrWithXorMutantOperator >> newSelector [
 	^#bXor:
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceOrWithXorMutantOperator >> oldSelector [
 	^#or:
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTReplaceOrWithXorMutantOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [ 
 	^ aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceOrWithXorMutantOperator: aMutation
 ]

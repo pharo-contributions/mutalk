@@ -1,27 +1,25 @@
 Class {
-	#name : 'MTReplaceLessOrEqualWithTrueOperator',
-	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceLessOrEqualWithTrueOperator,
+	#superclass : #MTParseRewriterMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTReplaceLessOrEqualWithTrueOperator >> description [
 	^'Replace #''<='' with true'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceLessOrEqualWithTrueOperator >> expressionToReplace [ 
 	^'``@object <= ``@aBlock'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceLessOrEqualWithTrueOperator >> newExpression [ 
 	^'true'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceLessOrEqualWithTrueOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [
 	^aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceLessOrEqualWithTrueOperator: aMutation.
 ]

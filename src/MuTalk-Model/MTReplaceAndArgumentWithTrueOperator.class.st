@@ -1,27 +1,25 @@
 Class {
-	#name : 'MTReplaceAndArgumentWithTrueOperator',
-	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceAndArgumentWithTrueOperator,
+	#superclass : #MTParseRewriterMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTReplaceAndArgumentWithTrueOperator >> description [
 	^'Replace #and: argument with [true]'.
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceAndArgumentWithTrueOperator >> expressionToReplace [ 
 	^'``@object and: ``@aBlock'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceAndArgumentWithTrueOperator >> newExpression [ 
 	^'``@object and: [true]'
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTReplaceAndArgumentWithTrueOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [
 	^aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceAndArgumentWithTrueOperator: aMutation.
 ]

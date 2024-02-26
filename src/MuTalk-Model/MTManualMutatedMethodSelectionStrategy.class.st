@@ -1,21 +1,19 @@
 Class {
-	#name : 'MTManualMutatedMethodSelectionStrategy',
-	#superclass : 'MTMutantSelectionStrategy',
+	#name : #MTManualMutatedMethodSelectionStrategy,
+	#superclass : #MTMutantSelectionStrategy,
 	#instVars : [
 		'targetMethods'
 	],
-	#category : 'MuTalk-Model-Mutant selection strategies',
-	#package : 'MuTalk-Model',
-	#tag : 'Mutant selection strategies'
+	#category : 'MuTalk-Model-Mutant selection strategies'
 }
 
-{ #category : 'generating' }
+{ #category : #generating }
 MTManualMutatedMethodSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
 
 	^ targetMethods 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTManualMutatedMethodSelectionStrategy >> targetMethods: anObject [
 
 	targetMethods := anObject

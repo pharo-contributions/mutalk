@@ -1,30 +1,28 @@
 Class {
-	#name : 'MTMessageSendArgumentsNullifierOperator',
-	#superclass : 'MTPredicateBasedMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTMessageSendArgumentsNullifierOperator,
+	#superclass : #MTPredicateBasedMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMessageSendArgumentsNullifierOperator class >> isAbstract [
 
 	^ self == MTMessageSendArgumentsNullifierOperator
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTMessageSendArgumentsNullifierOperator >> appliesToNode: aNode [
 
 	^ aNode isMessage and: [ aNode arguments size >= self whichArgument ]
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTMessageSendArgumentsNullifierOperator >> description [
 
 	^ 'Nullify the arguments of message sends'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTMessageSendArgumentsNullifierOperator >> newNodeFrom: anOldNode [
 
 	| nodeCopy whichToReplace |
@@ -34,7 +32,7 @@ MTMessageSendArgumentsNullifierOperator >> newNodeFrom: anOldNode [
 	^ nodeCopy
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTMessageSendArgumentsNullifierOperator >> whichArgument [
 	^ self subclassResponsibility 
 ]

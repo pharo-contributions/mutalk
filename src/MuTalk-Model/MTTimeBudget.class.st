@@ -1,15 +1,13 @@
 Class {
-	#name : 'MTTimeBudget',
-	#superclass : 'MTBudget',
+	#name : #MTTimeBudget,
+	#superclass : #MTBudget,
 	#instVars : [
 		'initialTime'
 	],
-	#category : 'MuTalk-Model-Budgets',
-	#package : 'MuTalk-Model',
-	#tag : 'Budgets'
+	#category : 'MuTalk-Model-Budgets'
 }
 
-{ #category : 'validation' }
+{ #category : #validation }
 MTTimeBudget >> exceedsBudgetOn: computedMutations fromTotalMutations: totalMutations [
 
 	| currentTime |
@@ -17,7 +15,7 @@ MTTimeBudget >> exceedsBudgetOn: computedMutations fromTotalMutations: totalMuta
 	^ currentTime - initialTime >= constraint asMilliSeconds
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTTimeBudget >> start [
 
 	initialTime := Time current asMilliSeconds

@@ -1,15 +1,13 @@
 Class {
-	#name : 'MTTestFilter',
-	#superclass : 'Object',
+	#name : #MTTestFilter,
+	#superclass : #Object,
 	#instVars : [
 		'condition'
 	],
-	#category : 'MuTalk-Model-Test filters',
-	#package : 'MuTalk-Model',
-	#tag : 'Test filters'
+	#category : 'MuTalk-Model-Test filters'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTTestFilter class >> for: aCondition [
 
 	^ self new
@@ -17,19 +15,19 @@ MTTestFilter class >> for: aCondition [
 		  yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTTestFilter >> condition [
 
 	^ condition
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTTestFilter >> condition: aCondition [
 
 	condition := aCondition
 ]
 
-{ #category : 'enumerating' }
+{ #category : #enumerating }
 MTTestFilter >> filterTests: aTestCaseCollection [
 
 	^ self subclassResponsibility

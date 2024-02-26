@@ -1,28 +1,26 @@
 Class {
-	#name : 'MTReplaceReceiverOperator',
-	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceReceiverOperator,
+	#superclass : #MTParseRewriterMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTReplaceReceiverOperator class >> isAbstract [
 
 	^ self == MTReplaceReceiverOperator
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTReplaceReceiverOperator >> description [
 	^'Replace ', self selector printString,' receiver with ', self newReceiverExpression.
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceReceiverOperator >> expressionToReplace [ 
 	^'``@receiver', ' ', self messageSendExpression.
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceReceiverOperator >> messageSendExpression [
 	| numberOfArgument |
 	numberOfArgument := 0.
@@ -33,17 +31,17 @@ MTReplaceReceiverOperator >> messageSendExpression [
 			expression , keyword , ' ``@arg' , numberOfArgument asString , ' ']
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceReceiverOperator >> newExpression [
 	^self newReceiverExpression, ' ', self messageSendExpression.
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceReceiverOperator >> newReceiverExpression [
 	self subclassResponsibility
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceReceiverOperator >> selector [
 	self subclassResponsibility
 ]

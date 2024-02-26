@@ -1,23 +1,21 @@
 Class {
-	#name : 'MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperator',
-	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperator,
+	#superclass : #MTParseRewriterMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperator >> description [
 	^'Replace ifNone: block with [] when #detect:ifNone:'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperator >> expressionToReplace [ 
 	^'``@object detect: ``@aBlock ifNone: ``@anotherBlock'
 
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperator >> newExpression [ 
 	^'``@object detect: ``@aBlock ifNone: []'
 ]

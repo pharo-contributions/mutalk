@@ -1,24 +1,22 @@
 Class {
-	#name : 'MTEmptyMethodOperator',
-	#superclass : 'MTPredicateBasedMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTEmptyMethodOperator,
+	#superclass : #MTPredicateBasedMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTEmptyMethodOperator >> appliesToNode: aNode [
 
 	^ aNode isSequence and: [ aNode parent isMethod ]
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTEmptyMethodOperator >> description [
 
 	^ 'Removing all lines in a method'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTEmptyMethodOperator >> newNodeFrom: anOldNode [
 
 	^ RBSequenceNode statements: #(  )

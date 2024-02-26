@@ -1,23 +1,21 @@
 Class {
-	#name : 'MTPredicateBasedMutantOperator',
-	#superclass : 'MTAbstractMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTPredicateBasedMutantOperator,
+	#superclass : #MTAbstractMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTPredicateBasedMutantOperator class >> isAbstract [
 
 	^ self == MTPredicateBasedMutantOperator
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTPredicateBasedMutantOperator class >> isOriginalOperator [
 	^ false
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTPredicateBasedMutantOperator >> affectedNodeFor: aParseTree at: nodeIndex [
 
 	| allNodes |
@@ -25,20 +23,20 @@ MTPredicateBasedMutantOperator >> affectedNodeFor: aParseTree at: nodeIndex [
 	^ allNodes at: nodeIndex
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTPredicateBasedMutantOperator >> affectedNodesFor: aParseTree [
 
 	^ aParseTree allChildren select: [ :aNode |
 		  self appliesToNode: aNode ]
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTPredicateBasedMutantOperator >> appliesToNode: aNode [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTPredicateBasedMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber newExpression: aNode [
 
 	| parseTreeCopy allNodes |
@@ -51,7 +49,7 @@ MTPredicateBasedMutantOperator >> modifiedSourceFor: aCompiledMethod with: aPars
 	^ parseTreeCopy formattedCode
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTPredicateBasedMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree number: nodeIndex storeIn: accumulator [
 
 	| affectedNode newNode |
@@ -67,13 +65,13 @@ MTPredicateBasedMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree
 	^ accumulator
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTPredicateBasedMutantOperator >> newNodeFrom: anOldNode [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTPredicateBasedMutantOperator >> timesToApplyIn: aCompiledMethod with: aParseTree [
 	"Evaluates how many times can the operator be applyied"
 

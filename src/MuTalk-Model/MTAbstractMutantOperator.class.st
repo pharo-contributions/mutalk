@@ -1,19 +1,17 @@
 Class {
-	#name : 'MTAbstractMutantOperator',
-	#superclass : 'Object',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTAbstractMutantOperator,
+	#superclass : #Object,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAbstractMutantOperator class >> allConcreteSubclasses [
 
 	^ self allSubclasses reject: [ :ea | 
 		  ea isAbstract | ea isOriginalOperator not ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAbstractMutantOperator class >> contents [
 	"This returns only the traditional operators "
 
@@ -22,7 +20,7 @@ MTAbstractMutantOperator class >> contents [
 		  elem1 description <= elem2 description ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAbstractMutantOperator class >> contentsAll [
 	"This returns all operators (block based and traditional) "
 
@@ -32,26 +30,26 @@ MTAbstractMutantOperator class >> contentsAll [
 		  elem1 description <= elem2 description ]
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAbstractMutantOperator class >> isAbstract [
 
 	^ self == MTAbstractMutantOperator
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAbstractMutantOperator class >> isOriginalOperator [
 
 	^ true
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTAbstractMutantOperator class >> recursionsDetectionStatement [
 
 	^ RBParser parseExpression:
 		  ('MuTalkInfiniteRecursionError onCount: {1}' format: { self recursionsDetectionThreshold } )
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTAbstractMutantOperator class >> recursionsDetectionThreshold [
 
 	"We need a big enough number"
@@ -59,17 +57,17 @@ MTAbstractMutantOperator class >> recursionsDetectionThreshold [
 	^ 1024
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTAbstractMutantOperator >> description [
 	self subclassResponsibility
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTAbstractMutantOperator >> is: originalRBMethodNode equalTo: nodeThatMatches [ 
 	^ nodeThatMatches formattedCode = originalRBMethodNode formattedCode
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTAbstractMutantOperator >> modifiedSourceFor: aCompiledMethod number: aNumber [
 
 	^ self
@@ -79,7 +77,7 @@ MTAbstractMutantOperator >> modifiedSourceFor: aCompiledMethod number: aNumber [
 		  newExpression: self newExpression
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTAbstractMutantOperator >> modifiedSourceFor: aCompiledMethod number: aNumber newExpression: anExpression [
 
 	^ self
@@ -89,13 +87,13 @@ MTAbstractMutantOperator >> modifiedSourceFor: aCompiledMethod number: aNumber n
 		  newExpression: anExpression
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTAbstractMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber newExpression: anExpression [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'mutant generation' }
+{ #category : #'mutant generation' }
 MTAbstractMutantOperator >> mutationsFor: aCompiledMethod [ 
 
 	(aCompiledMethod ignoredMutationOperators includes: self class) ifTrue: [ ^ Array new ].
@@ -104,7 +102,7 @@ MTAbstractMutantOperator >> mutationsFor: aCompiledMethod [
 	
 ]
 
-{ #category : 'mutant generation' }
+{ #category : #'mutant generation' }
 MTAbstractMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree [
 
 	| numberOfAffectedNodes |
@@ -125,24 +123,24 @@ MTAbstractMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree [
 				  storeIn: accumulator ]
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTAbstractMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree number: nodeIndex storeIn: accumulator [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTAbstractMutantOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [
 	^'No Suggestion'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTAbstractMutantOperator >> timesToApplyIn: aCompiledMethod [ 
 	^self timesToApplyIn: aCompiledMethod  with: aCompiledMethod parseTree.
 	
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTAbstractMutantOperator >> timesToApplyIn: aCompiledMethod with: aParseTree [
 
 	self subclassResponsibility

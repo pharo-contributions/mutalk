@@ -1,12 +1,10 @@
 Class {
-	#name : 'MTPercentageOfMutantsBudget',
-	#superclass : 'MTBudget',
-	#category : 'MuTalk-Model-Budgets',
-	#package : 'MuTalk-Model',
-	#tag : 'Budgets'
+	#name : #MTPercentageOfMutantsBudget,
+	#superclass : #MTBudget,
+	#category : 'MuTalk-Model-Budgets'
 }
 
-{ #category : 'validation' }
+{ #category : #validation }
 MTPercentageOfMutantsBudget >> exceedsBudgetOn: computedMutations fromTotalMutations: totalMutations [
 
 	^ computedMutations size

@@ -1,22 +1,20 @@
 Class {
-	#name : 'MTReplaceAndWithEqvMutantOperator',
-	#superclass : 'MTSelectorReplacementMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceAndWithEqvMutantOperator,
+	#superclass : #MTSelectorReplacementMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndWithEqvMutantOperator >> newSelector [
 	^#bEqv:
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndWithEqvMutantOperator >> oldSelector [
 	^#and:
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTReplaceAndWithEqvMutantOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [ 
 	^ aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceAndWithEqvMutantOperator: aMutation
 ]

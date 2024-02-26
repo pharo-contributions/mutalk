@@ -1,6 +1,6 @@
 Class {
-	#name : 'MTMethodMutation',
-	#superclass : 'Object',
+	#name : #MTMethodMutation,
+	#superclass : #Object,
 	#instVars : [
 		'nodeNumber',
 		'originalMethod',
@@ -10,12 +10,10 @@ Class {
 		'originalProtocol',
 		'data'
 	],
-	#category : 'MuTalk-Model-Core',
-	#package : 'MuTalk-Model',
-	#tag : 'Core'
+	#category : 'MuTalk-Model-Core'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTMethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
 
 	^ self new
@@ -26,7 +24,7 @@ MTMethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNod
 		  yourself
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTMethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass withData: anObject [
 
 	^ self new
@@ -38,7 +36,7 @@ MTMethodMutation class >> for: aMethod using: anOperatorApplied nodeNumber: aNod
 		  yourself
 ]
 
-{ #category : 'comparing' }
+{ #category : #comparing }
 MTMethodMutation >> = anObject [
 	"Two method mutations are equals if they have the same operator,if they mutate the same method from the same class, and if they have the same node number"
 
@@ -51,26 +49,26 @@ MTMethodMutation >> = anObject [
 	^ true
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMethodMutation >> data [
 
 	^ data
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMethodMutation >> data: anObject [
 
 	data := anObject
 ]
 
-{ #category : 'comparing' }
+{ #category : #comparing }
 MTMethodMutation >> hash [
 
 	^ self operator species hash + self originalMethod hash
 	  + self originalClass hash + self nodeNumber hash
 ]
 
-{ #category : 'initialize-release' }
+{ #category : #'initialize-release' }
 MTMethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass [
 
 	self
@@ -81,7 +79,7 @@ MTMethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: 
 		withData: anOperatorApplied newExpression
 ]
 
-{ #category : 'initialize-release' }
+{ #category : #'initialize-release' }
 MTMethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: aNodeNumber ofClass: aClass withData: anObject [
 
 	originalMethod := aMethod.
@@ -92,7 +90,7 @@ MTMethodMutation >> initializeFor: aMethod using: anOperatorApplied nodeNumber: 
 	data := anObject
 ]
 
-{ #category : 'installing' }
+{ #category : #installing }
 MTMethodMutation >> install [
 	"Install the mutant compiling the modified source into the class."
 
@@ -101,7 +99,7 @@ MTMethodMutation >> install [
 		in: originalClass
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMethodMutation >> modifiedSource [
 
 	^ operator
@@ -110,24 +108,24 @@ MTMethodMutation >> modifiedSource [
 		  newExpression: data
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMethodMutation >> mutatedNode [
 
 	^ operator applyTo: self nodeToMutate
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMethodMutation >> nodeNumber [
 
 	^ nodeNumber
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMethodMutation >> nodeNumber: anInteger [ 
 	nodeNumber := anInteger
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMethodMutation >> nodeToMutate [
 
 	| n searcher |
@@ -142,27 +140,27 @@ MTMethodMutation >> nodeToMutate [
 	self error: 'Not found'
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMethodMutation >> operator [
 	^operator
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMethodMutation >> originalClass [
 	^ originalClass
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMethodMutation >> originalMethod [
 	^originalMethod.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMethodMutation >> originalSource [
 	^ originalMethod sourceCode asString
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTMethodMutation >> printOn: aStream [ 
 	aStream nextPutAll: operator description;
 		 nextPutAll: ' in ';
@@ -171,7 +169,7 @@ MTMethodMutation >> printOn: aStream [
 		nextPutAll: originalMethod  selector printString.
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTMethodMutation >> runMutantStoppingOnError: aBoolean in: anEvaluation [
 
 	| testResults brokenTests |
@@ -200,7 +198,7 @@ MTMethodMutation >> runMutantStoppingOnError: aBoolean in: anEvaluation [
 		  producedBy: anEvaluation
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTMethodMutation >> runTestsStoppingOnError: aBoolean [
 
 	| testSuite |
@@ -211,17 +209,17 @@ MTMethodMutation >> runTestsStoppingOnError: aBoolean [
 		  ifFalse: [ testSuite run ]
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTMethodMutation >> testCaseReferences [
 	^ testCaseReferences
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTMethodMutation >> testCaseReferences: aCollectionOfTestCaseReferences [
 	testCaseReferences := aCollectionOfTestCaseReferences
 ]
 
-{ #category : 'installing' }
+{ #category : #installing }
 MTMethodMutation >> uninstall [
 	"UnInstall the mutant recompiling the original method into the class."
 

@@ -1,17 +1,15 @@
 Class {
-	#name : 'MTMutantKillingSuggestionGenerator',
-	#superclass : 'Object',
-	#category : 'MuTalk-Model-Reporting',
-	#package : 'MuTalk-Model',
-	#tag : 'Reporting'
+	#name : #MTMutantKillingSuggestionGenerator,
+	#superclass : #Object,
+	#category : 'MuTalk-Model-Reporting'
 }
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 MTMutantKillingSuggestionGenerator >> suggestionFor: aMutation [
 	^aMutation operator suggestionFor: aMutation using: self.
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByADoBlockWithEmptyBlockOperator: aMutation [ 
 		^ Text streamContents: 
 		[ :aStream | 
@@ -21,7 +19,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByADoBlockWit
 		aStream nextPutAll: aMutation nodeToMutate receiver formattedCode asText allBold.]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByARemoveCaretOperator: aMutation [ 
 	^ Text streamContents: 
 		[ :aStream | 
@@ -29,7 +27,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByARemoveCare
 		aStream nextPutAll: aMutation mutatedNode formattedCode asText allBold ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByARemoveExceptionHandlerOperator: aMutation [ 
 		^ Text streamContents: 
 		[ :aStream | 
@@ -39,7 +37,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByARemoveExce
 		aStream nextPutAll: aMutation nodeToMutate arguments second formattedCode asText allBold.]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceAndArgumentWithTrueOperator: aMutation [ 
 	^Text streamContents: 
 		[ :aStream | 
@@ -50,7 +48,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceAnd
 		aStream nextPutAll: ' is false' ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceAndReceiverWithTrueMutantOperator: aMutation [
 	^Text streamContents: 
 		[ :aStream | 
@@ -61,7 +59,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceAnd
 		aStream nextPutAll: ' is true' ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceAndWithEqvMutantOperator: aMutation [ 
 	^ Text streamContents: 
 		[ :aStream | 
@@ -72,7 +70,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceAnd
 		aStream nextPutAll: ' are false.' ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceAndWithFalseOperator: aMutation [ 
 	^ Text streamContents: 
 		[ :aStream | 
@@ -83,7 +81,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceAnd
 		aStream nextPutAll: ' are true.' ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceAndWithOrMutantOperator: aMutation [ 
 	^ Text streamContents: 
 		[ :aStream | 
@@ -94,7 +92,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceAnd
 		aStream nextPutAll: ' is True.' ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceGreaterOrEqualWithEqualMutantOperator: aMutation [ 
 	^ Text streamContents: 
 		[ :aStream | 
@@ -104,7 +102,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceGre
 		aStream nextPutAll: aMutation nodeToMutate arguments first formattedCode asText allBold. ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceGreaterOrEqualWithGreaterMutantOperator: aMutation [ 
 	^ Text streamContents: 
 		[ :aStream | 
@@ -114,7 +112,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceGre
 		aStream nextPutAll: aMutation nodeToMutate arguments first formattedCode asText allBold. ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceIfFalseReceiverWithFalseOperator: aMutation [ 
 		^ Text streamContents: 
 		[ :aStream | 
@@ -125,7 +123,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceIfF
 		aStream nextPutAll: ' is not evaluated'.]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceIfFalseReceiverWithTrueOperator: aMutation [ 
 		^ Text streamContents: 
 		[ :aStream | 
@@ -136,7 +134,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceIfF
 		aStream nextPutAll: ' is evaluated'.]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceIfTrueIfFalseReceiverWithFalseOperator: aMutation [ 
 		^ Text streamContents: 
 		[ :aStream | 
@@ -149,7 +147,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceIfT
 		aStream nextPutAll: ' is not']
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceIfTrueIfFalseReceiverWithTrueOperator: aMutation [ 
 		^ Text streamContents: 
 		[ :aStream | 
@@ -162,7 +160,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceIfT
 		aStream nextPutAll: ' is not']
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceIfTrueReceiverWithFalseOperator: aMutation [ 
 		^ Text streamContents: 
 		[ :aStream | 
@@ -173,7 +171,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceIfT
 		aStream nextPutAll: ' is evaluated'.]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceIfTrueReceiverWithTrueOperator: aMutation [ 
 		^ Text streamContents: 
 		[ :aStream | 
@@ -184,7 +182,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceIfT
 		aStream nextPutAll: ' is not evaluated'.]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceLessOrEqualWithEqualMutantOperator: aMutation [ 
 	^ Text streamContents: 
 		[ :aStream | 
@@ -194,7 +192,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceLes
 		aStream nextPutAll: aMutation nodeToMutate arguments first formattedCode asText allBold. ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceLessOrEqualWithLessMutantOperator: aMutation [ 
 	^ Text streamContents: 
 		[ :aStream | 
@@ -204,7 +202,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceLes
 		aStream nextPutAll: aMutation nodeToMutate arguments first formattedCode asText allBold. ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceLessOrEqualWithTrueOperator: aMutation [ 
 	^ Text streamContents: 
 		[ :aStream | 
@@ -214,7 +212,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceLes
 		aStream nextPutAll: aMutation nodeToMutate arguments first formattedCode asText allBold. ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceOrArgumentWithFalseOperator: aMutation [ 
 	^Text streamContents: 
 		[ :aStream | 
@@ -225,7 +223,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceOrA
 		aStream nextPutAll: ' is true' ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceOrReceiverWithFalseOperator: aMutation [ 
 	^Text streamContents: 
 		[ :aStream | 
@@ -236,7 +234,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceOrR
 		aStream nextPutAll: ' is false' ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceOrWithAndMutantOperator: aMutation [ 
 	^ Text streamContents: 
 		[ :aStream | 
@@ -247,7 +245,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceOrW
 		aStream nextPutAll: ' is True.' ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceOrWithTrueOperator: aMutation [ 
 		^ Text streamContents: 
 		[ :aStream | 
@@ -258,7 +256,7 @@ MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceOrW
 		aStream nextPutAll: ' are false.' ]
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTMutantKillingSuggestionGenerator >> suggestionForMutationProducedByAReplaceOrWithXorMutantOperator: aMutation [ 
 	^ Text streamContents: 
 		[ :aStream | 

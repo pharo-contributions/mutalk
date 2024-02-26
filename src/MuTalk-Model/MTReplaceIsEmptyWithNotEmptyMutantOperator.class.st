@@ -1,17 +1,15 @@
 Class {
-	#name : 'MTReplaceIsEmptyWithNotEmptyMutantOperator',
-	#superclass : 'MTSelectorReplacementMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceIsEmptyWithNotEmptyMutantOperator,
+	#superclass : #MTSelectorReplacementMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIsEmptyWithNotEmptyMutantOperator >> newSelector [
 	^#notEmpty
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIsEmptyWithNotEmptyMutantOperator >> oldSelector [
 	^#isEmpty
 ]

@@ -1,22 +1,20 @@
 Class {
-	#name : 'MTRemoveNotOperator',
-	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTRemoveNotOperator,
+	#superclass : #MTParseRewriterMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTRemoveNotOperator >> description [
 	^'Remove #not'.
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTRemoveNotOperator >> expressionToReplace [ 
 	^'``@aBoolean not'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTRemoveNotOperator >> newExpression [
 	^'``@aBoolean'
 ]

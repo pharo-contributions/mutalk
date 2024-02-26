@@ -1,12 +1,10 @@
 Class {
-	#name : 'MTFixedNumberOfMutantsBudget',
-	#superclass : 'MTBudget',
-	#category : 'MuTalk-Model-Budgets',
-	#package : 'MuTalk-Model',
-	#tag : 'Budgets'
+	#name : #MTFixedNumberOfMutantsBudget,
+	#superclass : #MTBudget,
+	#category : 'MuTalk-Model-Budgets'
 }
 
-{ #category : 'validation' }
+{ #category : #validation }
 MTFixedNumberOfMutantsBudget >> exceedsBudgetOn: computedMutations fromTotalMutations: totalMutations [
 
 	^ computedMutations size >= constraint

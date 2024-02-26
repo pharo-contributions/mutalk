@@ -1,17 +1,15 @@
 Class {
-	#name : 'MTReplaceLessOrEqualWithGreaterMutantOperator',
-	#superclass : 'MTSelectorReplacementMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceLessOrEqualWithGreaterMutantOperator,
+	#superclass : #MTSelectorReplacementMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceLessOrEqualWithGreaterMutantOperator >> newSelector [
 	^#>
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceLessOrEqualWithGreaterMutantOperator >> oldSelector [
 	^#<=
 ]

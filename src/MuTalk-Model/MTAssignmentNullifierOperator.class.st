@@ -1,24 +1,22 @@
 Class {
-	#name : 'MTAssignmentNullifierOperator',
-	#superclass : 'MTPredicateBasedMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTAssignmentNullifierOperator,
+	#superclass : #MTPredicateBasedMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTAssignmentNullifierOperator >> appliesToNode: aNode [
 
 	^ aNode isAssignment & aNode value isNotNil
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTAssignmentNullifierOperator >> description [
 	
 	^ 'Nullify the value assigned'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTAssignmentNullifierOperator >> newNodeFrom: anOldNode [
 
 	| nodeCopy |

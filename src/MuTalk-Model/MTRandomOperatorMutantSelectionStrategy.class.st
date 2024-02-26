@@ -1,12 +1,10 @@
 Class {
-	#name : 'MTRandomOperatorMutantSelectionStrategy',
-	#superclass : 'MTRandomMutantSelectionStrategy',
-	#category : 'MuTalk-Model-Mutant selection strategies',
-	#package : 'MuTalk-Model',
-	#tag : 'Mutant selection strategies'
+	#name : #MTRandomOperatorMutantSelectionStrategy,
+	#superclass : #MTRandomMutantSelectionStrategy,
+	#category : 'MuTalk-Model-Mutant selection strategies'
 }
 
-{ #category : 'generating' }
+{ #category : #generating }
 MTRandomOperatorMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
 	| mutations shuffledMutations mutationDict |

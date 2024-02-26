@@ -1,17 +1,15 @@
 Class {
-	#name : 'MTNoneTestCasesSelectionStrategy',
-	#superclass : 'MTTestCasesSelectionStrategy',
-	#category : 'MuTalk-Model-TestCases selection strategies',
-	#package : 'MuTalk-Model',
-	#tag : 'TestCases selection strategies'
+	#name : #MTNoneTestCasesSelectionStrategy,
+	#superclass : #MTTestCasesSelectionStrategy,
+	#category : 'MuTalk-Model-TestCases selection strategies'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTNoneTestCasesSelectionStrategy >> description [
 	^'Same Tests'
 ]
 
-{ #category : 'selecting' }
+{ #category : #selecting }
 MTNoneTestCasesSelectionStrategy >> testCasesFor: aTestCollection [ 
 	"It returns all same tests from a collection of tests received."
 	^aTestCollection

@@ -1,23 +1,21 @@
 Class {
-	#name : 'MTReplaceDetectIfNoneFirstBlockWithAlwaysTrueBlockOperator',
-	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceDetectIfNoneFirstBlockWithAlwaysTrueBlockOperator,
+	#superclass : #MTParseRewriterMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTReplaceDetectIfNoneFirstBlockWithAlwaysTrueBlockOperator >> description [
 	^'Replace detect: block with [:each | true] when #detect:ifNone: '
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceDetectIfNoneFirstBlockWithAlwaysTrueBlockOperator >> expressionToReplace [ 
 	^'``@object detect: ``@aBlock ifNone: ``@anotherBlock'
 
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceDetectIfNoneFirstBlockWithAlwaysTrueBlockOperator >> newExpression [ 
 	^'``@object detect: [:each | true] ifNone: ``@anotherBlock'
 

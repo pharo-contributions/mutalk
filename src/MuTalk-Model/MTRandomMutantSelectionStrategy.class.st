@@ -1,15 +1,13 @@
 Class {
-	#name : 'MTRandomMutantSelectionStrategy',
-	#superclass : 'Object',
+	#name : #MTRandomMutantSelectionStrategy,
+	#superclass : #Object,
 	#instVars : [
 		'mutationsGenerationStrategy'
 	],
-	#category : 'MuTalk-Model-Mutant selection strategies',
-	#package : 'MuTalk-Model',
-	#tag : 'Mutant selection strategies'
+	#category : 'MuTalk-Model-Mutant selection strategies'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTRandomMutantSelectionStrategy class >> using: aMutationsGenerationStrategy [
 
 	^ self new
@@ -17,38 +15,38 @@ MTRandomMutantSelectionStrategy class >> using: aMutationsGenerationStrategy [
 		  yourself
 ]
 
-{ #category : 'accessing-defaults' }
+{ #category : #'accessing-defaults' }
 MTRandomMutantSelectionStrategy >> defaultMutantSelectionStrategy [
 
 	^ MTAllMutantSelectionStrategy new
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 MTRandomMutantSelectionStrategy >> initialize [
 
 	super initialize.
 	mutationsGenerationStrategy := self defaultMutantSelectionStrategy
 ]
 
-{ #category : 'generating' }
+{ #category : #generating }
 MTRandomMutantSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
 
 	^ mutationsGenerationStrategy methodsToMutateFrom: aMutationTestingAnalysis
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRandomMutantSelectionStrategy >> mutantSelectionStrategy [
 
 	^ mutationsGenerationStrategy
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRandomMutantSelectionStrategy >> mutantSelectionStrategy: aMutationsGenerationStrategy [
 
 	mutationsGenerationStrategy := aMutationsGenerationStrategy
 ]
 
-{ #category : 'generating' }
+{ #category : #generating }
 MTRandomMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis [
 
 	^ self
@@ -56,7 +54,7 @@ MTRandomMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis [
 		  loggingIn: self nullLogger
 ]
 
-{ #category : 'generating' }
+{ #category : #generating }
 MTRandomMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
 	| mutations |
@@ -65,7 +63,7 @@ MTRandomMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggin
 	^ mutations shuffle
 ]
 
-{ #category : 'generating' }
+{ #category : #generating }
 MTRandomMutantSelectionStrategy >> mutationsFor: aMethod usingAll: aCollectionOfMutantOperators logginIn: aLogger [
 
 	^ mutationsGenerationStrategy
@@ -74,7 +72,7 @@ MTRandomMutantSelectionStrategy >> mutationsFor: aMethod usingAll: aCollectionOf
 		  logginIn: aLogger
 ]
 
-{ #category : 'logging' }
+{ #category : #logging }
 MTRandomMutantSelectionStrategy >> nullLogger [
 
 	^ mutationsGenerationStrategy nullLogger

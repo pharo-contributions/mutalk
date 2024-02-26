@@ -1,6 +1,6 @@
 Class {
-	#name : 'MTCoverageAnalysis',
-	#superclass : 'Object',
+	#name : #MTCoverageAnalysis,
+	#superclass : #Object,
 	#instVars : [
 		'classes',
 		'result',
@@ -9,17 +9,15 @@ Class {
 		'currentTest',
 		'testRunningElapsedTime'
 	],
-	#category : 'MuTalk-Model-Coverage',
-	#package : 'MuTalk-Model',
-	#tag : 'Coverage'
+	#category : 'MuTalk-Model-Coverage'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTCoverageAnalysis class >> for: aCollectionOfClasses running: aCollectionOfTestCases [
 	^self new initializeFor: aCollectionOfClasses running: aCollectionOfTestCases
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCoverageAnalysis >> addTestsFrom: aWrapper to: methodToTestDictionary [ 
 	aWrapper tests notEmpty
 		ifTrue: [(methodToTestDictionary
@@ -28,7 +26,7 @@ MTCoverageAnalysis >> addTestsFrom: aWrapper to: methodToTestDictionary [
 				addAll: aWrapper tests]
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCoverageAnalysis >> classesAndMetaclasses [
 	classesAndMetaclasses isNil ifTrue:[
 		classesAndMetaclasses := (classes collect:[:aClass | aClass class]) asOrderedCollection.
@@ -37,34 +35,34 @@ MTCoverageAnalysis >> classesAndMetaclasses [
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCoverageAnalysis >> currentTest [
 	^ currentTest 
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCoverageAnalysis >> currentTest: aTestCase [
 	currentTest := aTestCase.
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCoverageAnalysis >> flushMethodLookupCaches [
 	Behavior flushCache.
 	
 ]
 
-{ #category : 'initialize-release' }
+{ #category : #'initialize-release' }
 MTCoverageAnalysis >> initializeFor: aCollectionOfClasses running: aCollectionOfTestCases [ 
 	classes := aCollectionOfClasses. 
 	testCases := aCollectionOfTestCases
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCoverageAnalysis >> installAll: wrappers [ 
 	wrappers do: [ :each | each install ]
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCoverageAnalysis >> methodReferences [
 	^ self classesAndMetaclasses
 		inject: OrderedCollection new
@@ -75,7 +73,7 @@ MTCoverageAnalysis >> methodReferences [
 			methodReferences]
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCoverageAnalysis >> methodToTestDictionaryFrom: wrappers [ 
 	^ wrappers
 		inject: IdentityDictionary new
@@ -84,17 +82,17 @@ MTCoverageAnalysis >> methodToTestDictionaryFrom: wrappers [
 			methodToTestDictionary]
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCoverageAnalysis >> methodWrappersFor: methodReferences [ 
 	^ methodReferences collect: [ :each | MTMethodWrapperForCoverage on: each for: self ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCoverageAnalysis >> result [
 	^result
 ]
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 MTCoverageAnalysis >> run [
 
 	| wrappers methodReferences |
@@ -107,7 +105,7 @@ MTCoverageAnalysis >> run [
 	result methodReferences: (self classesAndMetaclasses flatCollect: [:cls | cls methods])
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCoverageAnalysis >> runTests [
 
 	testRunningElapsedTime := [
@@ -119,7 +117,7 @@ MTCoverageAnalysis >> runTests [
 	                          suite run ] timeToRun
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCoverageAnalysis >> runTestsInstalling: wrappers [ 
 	[self installAll: wrappers.
 	self flushMethodLookupCaches.
@@ -127,7 +125,7 @@ MTCoverageAnalysis >> runTestsInstalling: wrappers [
 		ensure: [self uninstallAll: wrappers]
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCoverageAnalysis >> uninstallAll: wrappers [ 
 	^ wrappers do: [ :each | each uninstall ]
 ]

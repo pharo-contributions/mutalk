@@ -1,27 +1,25 @@
 Class {
-	#name : 'MTTestCaseReference',
-	#superclass : 'Object',
+	#name : #MTTestCaseReference,
+	#superclass : #Object,
 	#instVars : [
 		'class',
 		'selector',
 		'lastTimeToRun'
 	],
-	#category : 'MuTalk-Model-Core',
-	#package : 'MuTalk-Model',
-	#tag : 'Core'
+	#category : 'MuTalk-Model-Core'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTTestCaseReference class >> for: aSelector in: aClass [ 
 	^self new initializeFor: aSelector in: aClass
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTTestCaseReference class >> forTestCase: aTestCase [ 
 	^self for: aTestCase selector in: aTestCase class
 ]
 
-{ #category : 'comparing' }
+{ #category : #comparing }
 MTTestCaseReference >> = anObject [
 
 	self == anObject ifTrue: [ ^ true ].
@@ -30,41 +28,41 @@ MTTestCaseReference >> = anObject [
 	^ self selector = anObject selector
 ]
 
-{ #category : 'comparing' }
+{ #category : #comparing }
 MTTestCaseReference >> hash [
 
 	^ selector hash + class hash
 ]
 
-{ #category : 'initialize' }
+{ #category : #initialize }
 MTTestCaseReference >> initializeFor: aSelector in: aClass [
 	class := aClass.
 	selector := aSelector.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTTestCaseReference >> lastTimeToRun [
 	^ lastTimeToRun
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTTestCaseReference >> method [
 	
 	^ class >> selector
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTTestCaseReference >> printOn: aStream [
 
 	aStream nextPutAll: (aStream print: self testCase)
 ]
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 MTTestCaseReference >> resources [
 	^self testCase resources
 ]
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 MTTestCaseReference >> run [
 	"kept for retrocompatibility"
 	
@@ -72,12 +70,12 @@ MTTestCaseReference >> run [
 	^ self runChecked
 ]
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 MTTestCaseReference >> run: aTestResult [
 	^self testCase run: aTestResult
 ]
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 MTTestCaseReference >> runChecked [
 	| result |	
 	result := self runUnchecked.
@@ -86,7 +84,7 @@ MTTestCaseReference >> runChecked [
 	^ result
 ]
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 MTTestCaseReference >> runUnchecked [
 
 	| result |
@@ -94,18 +92,18 @@ MTTestCaseReference >> runUnchecked [
 	^ result
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTTestCaseReference >> selector [
 
 	^ selector
 ]
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 MTTestCaseReference >> testCase [
 	^class selector: selector.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTTestCaseReference >> testCaseClass [
 
 	^ class

@@ -1,28 +1,26 @@
 Class {
-	#name : 'MTPackageTestCasesSelectionStrategy',
-	#superclass : 'MTTestCasesSelectionStrategy',
-	#category : 'MuTalk-Model-TestCases selection strategies',
-	#package : 'MuTalk-Model',
-	#tag : 'TestCases selection strategies'
+	#name : #MTPackageTestCasesSelectionStrategy,
+	#superclass : #MTTestCasesSelectionStrategy,
+	#category : 'MuTalk-Model-TestCases selection strategies'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTPackageTestCasesSelectionStrategy >> description [
 	^'All tests in same packages'
 ]
 
-{ #category : 'selecting' }
+{ #category : #selecting }
 MTPackageTestCasesSelectionStrategy >> isClassTest: aClass [ 
 	^ self testBaseClasses
 		anySatisfy: [:class | aClass includesBehavior: class]
 ]
 
-{ #category : 'selecting' }
+{ #category : #selecting }
 MTPackageTestCasesSelectionStrategy >> testBaseClasses [
 	^Array with: TestCase
 ]
 
-{ #category : 'selecting' }
+{ #category : #selecting }
 MTPackageTestCasesSelectionStrategy >> testCasesFor: aTestCollection [ 
 	| testsPackage |
 	testsPackage := self testPackageFrom: aTestCollection.
@@ -34,12 +32,12 @@ MTPackageTestCasesSelectionStrategy >> testCasesFor: aTestCollection [
 			resultTests ]
 ]
 
-{ #category : 'selecting' }
+{ #category : #selecting }
 MTPackageTestCasesSelectionStrategy >> testClassesFromPackage: aPackageName [ 
 	^ (aPackageName asPackage) classes select: [ :class | self isClassTest: class ]
 ]
 
-{ #category : 'selecting' }
+{ #category : #selecting }
 MTPackageTestCasesSelectionStrategy >> testPackageFrom: aTestCollection [
 
 	^(aTestCollection collect: [:testCase | testCase class package name]) asSet

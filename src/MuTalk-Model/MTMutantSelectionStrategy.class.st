@@ -1,24 +1,22 @@
 Class {
-	#name : 'MTMutantSelectionStrategy',
-	#superclass : 'Object',
-	#category : 'MuTalk-Model-Mutant selection strategies',
-	#package : 'MuTalk-Model',
-	#tag : 'Mutant selection strategies'
+	#name : #MTMutantSelectionStrategy,
+	#superclass : #Object,
+	#category : 'MuTalk-Model-Mutant selection strategies'
 }
 
-{ #category : 'generating' }
+{ #category : #generating }
 MTMutantSelectionStrategy >> methodsToMutateFrom:aMutationTestingAnalysis [
 	self subclassResponsibility.
 ]
 
-{ #category : 'generating' }
+{ #category : #generating }
 MTMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis [ 
 	^ self 
 		mutationsFor: aMutationTestingAnalysis
 		loggingIn: self nullLogger
 ]
 
-{ #category : 'generating' }
+{ #category : #generating }
 MTMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [ 
 	| mutations |
 	mutations := OrderedCollection new.
@@ -33,7 +31,7 @@ MTMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: a
 	^ mutations
 ]
 
-{ #category : 'generating' }
+{ #category : #generating }
 MTMutantSelectionStrategy >> mutationsFor: aMethod usingAll: aCollectionOfMutantOperators logginIn: aLogger [ 
 	| parseTree |
 	parseTree := aMethod parseTree.
@@ -46,7 +44,7 @@ MTMutantSelectionStrategy >> mutationsFor: aMethod usingAll: aCollectionOfMutant
 			mutations ]
 ]
 
-{ #category : 'logging' }
+{ #category : #logging }
 MTMutantSelectionStrategy >> nullLogger [
 
 	^ MTNullAnalysisLogger new.

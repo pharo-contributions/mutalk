@@ -1,18 +1,16 @@
 Class {
-	#name : 'MTReplaceWhileFalseWithWhileTrueMutantOperator',
-	#superclass : 'MTSelectorReplacementMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceWhileFalseWithWhileTrueMutantOperator,
+	#superclass : #MTSelectorReplacementMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceWhileFalseWithWhileTrueMutantOperator >> newSelector [
 
 	^ #whileTrue:
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceWhileFalseWithWhileTrueMutantOperator >> oldSelector [
 
 	^ #whileFalse:

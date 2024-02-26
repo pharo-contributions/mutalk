@@ -1,28 +1,26 @@
 Class {
-	#name : 'MTNullAnalysisLogger',
-	#superclass : 'MTAnalysisLogger',
+	#name : #MTNullAnalysisLogger,
+	#superclass : #MTAnalysisLogger,
 	#classInstVars : [
 		'instance'
 	],
-	#category : 'MuTalk-Model-Logging',
-	#package : 'MuTalk-Model',
-	#tag : 'Logging'
+	#category : 'MuTalk-Model-Logging'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTNullAnalysisLogger class >> new [
 	instance ifNil:[instance := super new.].
 	^instance.
 ]
 
-{ #category : 'logging' }
+{ #category : #logging }
 MTNullAnalysisLogger >> logAnalysisStartFor: aMutationTestingAnalysis [ 
 ]
 
-{ #category : 'logging' }
+{ #category : #logging }
 MTNullAnalysisLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
 ]
 
-{ #category : 'logging' }
+{ #category : #logging }
 MTNullAnalysisLogger >> logStartEvaluating: aMethodMutation [ 
 ]

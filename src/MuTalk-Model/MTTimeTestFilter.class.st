@@ -1,12 +1,10 @@
 Class {
-	#name : 'MTTimeTestFilter',
-	#superclass : 'MTTestFilter',
-	#category : 'MuTalk-Model-Test filters',
-	#package : 'MuTalk-Model',
-	#tag : 'Test filters'
+	#name : #MTTimeTestFilter,
+	#superclass : #MTTestFilter,
+	#category : 'MuTalk-Model-Test filters'
 }
 
-{ #category : 'enumerating' }
+{ #category : #enumerating }
 MTTimeTestFilter >> filterTests: aTestCaseCollection [
 
 	^ aTestCaseCollection select: [ :testCaseReference |

@@ -1,12 +1,10 @@
 Class {
-	#name : 'MTPragmaSelectionTestFilter',
-	#superclass : 'MTPragmaTestFilter',
-	#category : 'MuTalk-Model-Test filters',
-	#package : 'MuTalk-Model',
-	#tag : 'Test filters'
+	#name : #MTPragmaSelectionTestFilter,
+	#superclass : #MTPragmaTestFilter,
+	#category : 'MuTalk-Model-Test filters'
 }
 
-{ #category : 'enumerating' }
+{ #category : #enumerating }
 MTPragmaSelectionTestFilter >> filterTests: aTestCaseCollection [
 
 	^ aTestCaseCollection select: [ :testCaseReference |

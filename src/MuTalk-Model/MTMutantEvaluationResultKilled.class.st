@@ -1,22 +1,20 @@
 Class {
-	#name : 'MTMutantEvaluationResultKilled',
-	#superclass : 'MTMutantEvaluationResult',
+	#name : #MTMutantEvaluationResultKilled,
+	#superclass : #MTMutantEvaluationResult,
 	#instVars : [
 		'result'
 	],
-	#category : 'MuTalk-Model-Mutant evaluation results',
-	#package : 'MuTalk-Model',
-	#tag : 'Mutant evaluation results'
+	#category : 'MuTalk-Model-Mutant evaluation results'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTMutantEvaluationResultKilled class >> canHandle: aMutant withResults: aTestResult [
 
  	^aTestResult notNil and:[aTestResult errorsSize + aTestResult failuresSize > 0]
 	
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTMutantEvaluationResultKilled class >> newFor: aMutant results: aTestResult producedBy: aMutantEvaluation [ 
 	^ self new
 		initializeFor: aMutant
@@ -25,32 +23,32 @@ MTMutantEvaluationResultKilled class >> newFor: aMutant results: aTestResult pro
 		yourself
 ]
 
-{ #category : 'initialize-release' }
+{ #category : #'initialize-release' }
 MTMutantEvaluationResultKilled >> initializeFor: aMutant results: aTestResult producedBy: aMutantEvaluation [ 
 	mutant := aMutant.
 	result := aTestResult.
 	mutantEvaluation := aMutantEvaluation
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultKilled >> killed [
 	
 	^true
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMutantEvaluationResultKilled >> killingSuggestions [ 
 	
 	^'MUTANT KILLED'
 ]
 
-{ #category : 'browsing' }
+{ #category : #browsing }
 MTMutantEvaluationResultKilled >> mutantResults [
 	
 	^result tests
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTMutantEvaluationResultKilled >> printDetailedResultOn: aStream [ 
 
 		aStream cr; nextPutAll: 'PASSED'; cr.
@@ -65,36 +63,36 @@ MTMutantEvaluationResultKilled >> printDetailedResultOn: aStream [
 		aStream cr.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMutantEvaluationResultKilled >> result [
 	^result
 ]
 
-{ #category : 'browsing' }
+{ #category : #browsing }
 MTMutantEvaluationResultKilled >> resultClass [
 	
 	^result tests first class
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultKilled >> resultString [
 	
 	^result printString 
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultKilled >> runCount [
 
 	^result runCount
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultKilled >> survived [
 	
 	^false
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultKilled >> terminated [
 
 	^false

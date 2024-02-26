@@ -1,23 +1,21 @@
 Class {
-	#name : 'MTReplaceIdentityWithNegationOfIdentity',
-	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceIdentityWithNegationOfIdentity,
+	#superclass : #MTParseRewriterMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTReplaceIdentityWithNegationOfIdentity >> description [
 	^'Replace a == b with (a == b) not'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceIdentityWithNegationOfIdentity >> expressionToReplace [ 
 	^'``@a == ``@b'
 
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceIdentityWithNegationOfIdentity >> newExpression [ 
 	^'(``@a == ``@b) not'
 

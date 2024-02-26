@@ -1,32 +1,30 @@
 Class {
-	#name : 'MTAnalysisFileLogger',
-	#superclass : 'MTAnalysisLogger',
+	#name : #MTAnalysisFileLogger,
+	#superclass : #MTAnalysisLogger,
 	#instVars : [
 		'fileReference'
 	],
-	#category : 'MuTalk-Model-Logging',
-	#package : 'MuTalk-Model',
-	#tag : 'Logging'
+	#category : 'MuTalk-Model-Logging'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTAnalysisFileLogger class >> toFileNamed: aString [
 	^self new initializeToFileNamed: aString.
 ]
 
-{ #category : 'initialize-release' }
+{ #category : #'initialize-release' }
 MTAnalysisFileLogger >> initializeToFileNamed: aString [
 
 	fileReference := aString asFileReference
 ]
 
-{ #category : 'logging' }
+{ #category : #logging }
 MTAnalysisFileLogger >> logAnalysisStartFor: aMutationTestingAnalysis [
 
 	self writeLineToFile: 'The analysis is starting...'
 ]
 
-{ #category : 'logging' }
+{ #category : #logging }
 MTAnalysisFileLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
 
 	self writeLineToFile:
@@ -34,7 +32,7 @@ MTAnalysisFileLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aM
 		, '  With operator:' , aMutantOperator description
 ]
 
-{ #category : 'logging' }
+{ #category : #logging }
 MTAnalysisFileLogger >> logStartEvaluating: aMethodMutation [
 
 	| logStream |
@@ -48,14 +46,14 @@ MTAnalysisFileLogger >> logStartEvaluating: aMethodMutation [
 	self writeLineToFile: logStream contents
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTAnalysisFileLogger >> methodNameOf: aCompiledMethod [
 
 	^ aCompiledMethod methodClass name asString , '>>'
 	  , aCompiledMethod selector printString
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTAnalysisFileLogger >> writeLineToFile: aString [
 
 	fileReference writeStreamDo: [ :stream |

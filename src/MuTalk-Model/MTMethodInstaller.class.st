@@ -1,12 +1,10 @@
 Class {
-	#name : 'MTMethodInstaller',
-	#superclass : 'Object',
-	#category : 'MuTalk-Model-Core',
-	#package : 'MuTalk-Model',
-	#tag : 'Core'
+	#name : #MTMethodInstaller,
+	#superclass : #Object,
+	#category : 'MuTalk-Model-Core'
 }
 
-{ #category : 'installing' }
+{ #category : #installing }
 MTMethodInstaller >> install: aMethod for: selector in: aClass withProtocol: methodProtocol [
 
 	aClass
@@ -15,7 +13,7 @@ MTMethodInstaller >> install: aMethod for: selector in: aClass withProtocol: met
 		inProtocol: methodProtocol
 ]
 
-{ #category : 'installing' }
+{ #category : #installing }
 MTMethodInstaller >> installFromSource: aSourceCode in: aClass [
 	"Install a SourceCode in aClass. Raise exception in case de installation is
 	not posible."
@@ -25,7 +23,7 @@ MTMethodInstaller >> installFromSource: aSourceCode in: aClass [
 		do: [ :error | MTMethodInstallerException signal ]
 ]
 
-{ #category : 'installing' }
+{ #category : #installing }
 MTMethodInstaller >> installFromSourceSilently: aSourceCode in: aClass [
 	"Install a SourceCode in aClass. Raise exception in case de installation is
 	not posible."
@@ -35,7 +33,7 @@ MTMethodInstaller >> installFromSourceSilently: aSourceCode in: aClass [
 		do: [ :error | MTMethodInstallerException signal ]
 ]
 
-{ #category : 'installing' }
+{ #category : #installing }
 MTMethodInstaller >> uninstall: aSelector from: aClass [ 
 	"Uninstall a method referenced by aSelector in aClass. Raise exception in
 	case de uninstall is	not posible."

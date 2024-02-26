@@ -1,27 +1,25 @@
 Class {
-	#name : 'MTReplaceDoBlockWithEmptyBlockOperator',
-	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceDoBlockWithEmptyBlockOperator,
+	#superclass : #MTParseRewriterMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTReplaceDoBlockWithEmptyBlockOperator >> description [
 	^'Replace do block with [:each |]'.
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceDoBlockWithEmptyBlockOperator >> expressionToReplace [ 
 	^'``@collection do: ``@aBlock'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceDoBlockWithEmptyBlockOperator >> newExpression [
 	^'``@collection do: [:each | ]'
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTReplaceDoBlockWithEmptyBlockOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [
 	^aMutantKillingSuggestionGenerator suggestionForMutationProducedByADoBlockWithEmptyBlockOperator: aMutation.
 ]

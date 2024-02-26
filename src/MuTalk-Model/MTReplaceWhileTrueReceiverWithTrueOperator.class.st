@@ -1,12 +1,10 @@
 Class {
-	#name : 'MTReplaceWhileTrueReceiverWithTrueOperator',
-	#superclass : 'MTReplaceWhileTrueReceiverOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceWhileTrueReceiverWithTrueOperator,
+	#superclass : #MTReplaceWhileTrueReceiverOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceWhileTrueReceiverWithTrueOperator >> newReceiverExpression [
 
 	^ 'true'

@@ -1,12 +1,10 @@
 Class {
-	#name : 'MTBlockTestFilter',
-	#superclass : 'MTTestFilter',
-	#category : 'MuTalk-Model-Test filters',
-	#package : 'MuTalk-Model',
-	#tag : 'Test filters'
+	#name : #MTBlockTestFilter,
+	#superclass : #MTTestFilter,
+	#category : 'MuTalk-Model-Test filters'
 }
 
-{ #category : 'enumerating' }
+{ #category : #enumerating }
 MTBlockTestFilter >> filterTests: aTestCaseCollection [
 
 	^ aTestCaseCollection select: condition

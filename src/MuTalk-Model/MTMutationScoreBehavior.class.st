@@ -1,15 +1,13 @@
 Class {
-	#name : 'MTMutationScoreBehavior',
-	#superclass : 'Object',
+	#name : #MTMutationScoreBehavior,
+	#superclass : #Object,
 	#instVars : [
 		'generalResult'
 	],
-	#category : 'MuTalk-Model-Score',
-	#package : 'MuTalk-Model',
-	#tag : 'Score'
+	#category : 'MuTalk-Model-Score'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTMutationScoreBehavior class >> buildFor: aMutationGeneralResult [
 	|handler|
 	handler := self allSubclasses detect: [:class | class canHandle: aMutationGeneralResult] ifNone: [].
@@ -17,20 +15,20 @@ MTMutationScoreBehavior class >> buildFor: aMutationGeneralResult [
 	
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTMutationScoreBehavior class >> scoreFor: aMutationGeneralResult [
 
 	^(self new) initializeFor: aMutationGeneralResult; yourself
 	
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMutationScoreBehavior >> generalResult [
 
 	^ generalResult
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 MTMutationScoreBehavior >> initializeFor: aMutationGeneralResult [
 	generalResult := aMutationGeneralResult.
 ]

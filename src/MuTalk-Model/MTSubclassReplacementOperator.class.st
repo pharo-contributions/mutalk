@@ -1,12 +1,10 @@
 Class {
-	#name : 'MTSubclassReplacementOperator',
-	#superclass : 'MTPredicateBasedMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTSubclassReplacementOperator,
+	#superclass : #MTPredicateBasedMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTSubclassReplacementOperator >> appliesToNode: aNode [
 
 	^ aNode isVariable and: [
@@ -17,13 +15,13 @@ MTSubclassReplacementOperator >> appliesToNode: aNode [
 				  referencedClass subclasses notEmpty ] ] ]
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTSubclassReplacementOperator >> description [
 
 	^ 'Replace a class reference by a reference to one of its subclasses'
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTSubclassReplacementOperator >> mutationsFor: aCompiledMethod with: aParseTree number: nodeIndex storeIn: accumulator [
 
 	| subclasses affectedNode |
@@ -42,13 +40,13 @@ MTSubclassReplacementOperator >> mutationsFor: aCompiledMethod with: aParseTree 
 	^ accumulator
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTSubclassReplacementOperator >> newNodeFrom: anOldNode [
 
 	
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTSubclassReplacementOperator >> subclassesForNode: aNode [
 	"pre condition: aNode is a class reference node that exists"
 

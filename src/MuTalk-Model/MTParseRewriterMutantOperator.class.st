@@ -1,18 +1,16 @@
 Class {
-	#name : 'MTParseRewriterMutantOperator',
-	#superclass : 'MTAbstractMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTParseRewriterMutantOperator,
+	#superclass : #MTAbstractMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTParseRewriterMutantOperator class >> isAbstract [
 
 	^ self == MTParseRewriterMutantOperator
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTParseRewriterMutantOperator >> applyTo: anOldNode [
 
 	| rewriter |
@@ -26,12 +24,12 @@ MTParseRewriterMutantOperator >> applyTo: anOldNode [
 	^ rewriter tree
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTParseRewriterMutantOperator >> expressionToReplace [
 	self subclassResponsibility
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTParseRewriterMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber newExpression: anExpression [
 
 	| rewriter parser number nNode |
@@ -55,7 +53,7 @@ MTParseRewriterMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParse
 	^ parser formattedCode
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTParseRewriterMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree number: nodeIndex storeIn: accumulator [
 
 	accumulator add: (MTMethodMutation
@@ -66,12 +64,12 @@ MTParseRewriterMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree 
 	^ accumulator
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTParseRewriterMutantOperator >> newExpression [
 	self subclassResponsibility
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTParseRewriterMutantOperator >> timesToApplyIn: aCompiledMethod with: aParseTree [ 
 	"Evaluates how many times can the operator be applyied"	
 	|searcher timesToApply|

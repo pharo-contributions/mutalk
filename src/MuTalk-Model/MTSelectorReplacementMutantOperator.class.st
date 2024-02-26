@@ -1,23 +1,21 @@
 Class {
-	#name : 'MTSelectorReplacementMutantOperator',
-	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTSelectorReplacementMutantOperator,
+	#superclass : #MTParseRewriterMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTSelectorReplacementMutantOperator class >> isAbstract [
 
 	^ self == MTSelectorReplacementMutantOperator
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTSelectorReplacementMutantOperator >> description [
 	^ 'Replace ' , self oldSelector printString , ' with ' , self newSelector printString
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTSelectorReplacementMutantOperator >> expressionToReplace [ 
 	| oldString |
 	oldString := RBParseTreeSearcher buildSelectorString: self oldSelector.
@@ -25,7 +23,7 @@ MTSelectorReplacementMutantOperator >> expressionToReplace [
 	
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTSelectorReplacementMutantOperator >> newExpression [ 
 	| newString |
 	newString := RBParseTreeSearcher buildSelectorString: self newSelector.
@@ -33,12 +31,12 @@ MTSelectorReplacementMutantOperator >> newExpression [
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSelectorReplacementMutantOperator >> newSelector [
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSelectorReplacementMutantOperator >> oldSelector [
 	self subclassResponsibility
 ]

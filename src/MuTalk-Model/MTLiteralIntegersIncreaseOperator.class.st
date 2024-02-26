@@ -1,25 +1,23 @@
 Class {
-	#name : 'MTLiteralIntegersIncreaseOperator',
-	#superclass : 'MTPredicateBasedMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTLiteralIntegersIncreaseOperator,
+	#superclass : #MTPredicateBasedMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTLiteralIntegersIncreaseOperator >> appliesToNode: aNode [
 
 	^ aNode isLiteralNode & aNode isLiteralArray not and: [
 		  aNode value isInteger ]
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTLiteralIntegersIncreaseOperator >> description [
 
 	^ 'Increase a literal integer'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTLiteralIntegersIncreaseOperator >> newNodeFrom: anOldNode [
 
 	^ RBLiteralValueNode value: anOldNode value + 1

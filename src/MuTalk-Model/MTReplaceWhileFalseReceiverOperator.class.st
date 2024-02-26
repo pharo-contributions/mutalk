@@ -1,18 +1,16 @@
 Class {
-	#name : 'MTReplaceWhileFalseReceiverOperator',
-	#superclass : 'MTReplaceReceiverOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceWhileFalseReceiverOperator,
+	#superclass : #MTReplaceReceiverOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTReplaceWhileFalseReceiverOperator class >> isAbstract [
 
 	^ self == MTReplaceWhileFalseReceiverOperator
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceWhileFalseReceiverOperator >> selector [
 
 	^ #whileFalse:

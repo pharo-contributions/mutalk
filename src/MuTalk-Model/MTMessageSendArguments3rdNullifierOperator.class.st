@@ -1,12 +1,10 @@
 Class {
-	#name : 'MTMessageSendArguments3rdNullifierOperator',
-	#superclass : 'MTMessageSendArgumentsNullifierOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTMessageSendArguments3rdNullifierOperator,
+	#superclass : #MTMessageSendArgumentsNullifierOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTMessageSendArguments3rdNullifierOperator >> whichArgument [
 
 	^ 3

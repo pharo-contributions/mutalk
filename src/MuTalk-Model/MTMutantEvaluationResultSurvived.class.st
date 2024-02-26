@@ -1,21 +1,19 @@
 Class {
-	#name : 'MTMutantEvaluationResultSurvived',
-	#superclass : 'MTMutantEvaluationResult',
+	#name : #MTMutantEvaluationResultSurvived,
+	#superclass : #MTMutantEvaluationResult,
 	#instVars : [
 		'result'
 	],
-	#category : 'MuTalk-Model-Mutant evaluation results',
-	#package : 'MuTalk-Model',
-	#tag : 'Mutant evaluation results'
+	#category : 'MuTalk-Model-Mutant evaluation results'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTMutantEvaluationResultSurvived class >> canHandle: aMutant withResults: aTestResult [ 
 	^ aTestResult notNil
 		and: [aTestResult errorsSize + aTestResult failuresSize = 0]
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTMutantEvaluationResultSurvived class >> newFor: aMutant results: aTestResult producedBy: aMutantEvaluation [ 
 	^ self new
 		initializeFor: aMutant
@@ -24,30 +22,30 @@ MTMutantEvaluationResultSurvived class >> newFor: aMutant results: aTestResult p
 		yourself
 ]
 
-{ #category : 'initialize-release' }
+{ #category : #'initialize-release' }
 MTMutantEvaluationResultSurvived >> initializeFor: aMutant results: aTestResult producedBy: aMutantEvaluation [ 
 	mutant := aMutant.
 	result := aTestResult.
 	mutantEvaluation := aMutantEvaluation
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultSurvived >> killed [
 	^false
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMutantEvaluationResultSurvived >> killingSuggestions [
 
 	^ MTMutantKillingSuggestionGenerator new suggestionFor: mutant
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultSurvived >> mutantResults [
 	^result tests
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTMutantEvaluationResultSurvived >> printDetailedResultOn: aStream [ 
 
 		aStream cr; nextPutAll: 'PASSED'; cr.
@@ -62,12 +60,12 @@ MTMutantEvaluationResultSurvived >> printDetailedResultOn: aStream [
 		aStream cr.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMutantEvaluationResultSurvived >> result [
 	^result
 ]
 
-{ #category : 'browsing' }
+{ #category : #browsing }
 MTMutantEvaluationResultSurvived >> resultClass [
 	
 	^result tests isEmpty 
@@ -75,24 +73,24 @@ MTMutantEvaluationResultSurvived >> resultClass [
 		ifFalse: [result tests first class] 
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultSurvived >> resultString [
 	
 	^result printString
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultSurvived >> runCount [
 
 	^result runCount
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultSurvived >> survived [
 	^true
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultSurvived >> terminated [
 
 	^false

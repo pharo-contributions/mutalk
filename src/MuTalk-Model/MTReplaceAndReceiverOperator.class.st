@@ -1,18 +1,16 @@
 Class {
-	#name : 'MTReplaceAndReceiverOperator',
-	#superclass : 'MTReplaceReceiverOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceAndReceiverOperator,
+	#superclass : #MTReplaceReceiverOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTReplaceAndReceiverOperator class >> isAbstract [
 
 	^ self == MTReplaceAndReceiverOperator
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceAndReceiverOperator >> selector [
 	^#and:
 ]

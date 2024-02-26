@@ -1,22 +1,20 @@
 Class {
-	#name : 'MTReplaceGreaterOrEqualWithEqualMutantOperator',
-	#superclass : 'MTSelectorReplacementMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceGreaterOrEqualWithEqualMutantOperator,
+	#superclass : #MTSelectorReplacementMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceGreaterOrEqualWithEqualMutantOperator >> newSelector [
 	^#=
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceGreaterOrEqualWithEqualMutantOperator >> oldSelector [
 	^#>=
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTReplaceGreaterOrEqualWithEqualMutantOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [ 
 	^ aMutantKillingSuggestionGenerator suggestionForMutationProducedByAReplaceGreaterOrEqualWithEqualMutantOperator: aMutation
 ]

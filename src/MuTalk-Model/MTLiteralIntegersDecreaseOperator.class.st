@@ -1,25 +1,23 @@
 Class {
-	#name : 'MTLiteralIntegersDecreaseOperator',
-	#superclass : 'MTPredicateBasedMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTLiteralIntegersDecreaseOperator,
+	#superclass : #MTPredicateBasedMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTLiteralIntegersDecreaseOperator >> appliesToNode: aNode [
 
 	^ aNode isLiteralNode & aNode isLiteralArray not and: [
 		  aNode value isInteger ]
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTLiteralIntegersDecreaseOperator >> description [
 
 	^ 'Decrease a literal integer'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTLiteralIntegersDecreaseOperator >> newNodeFrom: anOldNode [
 
 	^ RBLiteralValueNode value: anOldNode value - 1

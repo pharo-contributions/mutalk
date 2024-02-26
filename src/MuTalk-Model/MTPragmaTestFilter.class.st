@@ -1,21 +1,19 @@
 Class {
-	#name : 'MTPragmaTestFilter',
-	#superclass : 'MTTestFilter',
+	#name : #MTPragmaTestFilter,
+	#superclass : #MTTestFilter,
 	#instVars : [
 		'pragmaArguments'
 	],
-	#category : 'MuTalk-Model-Test filters',
-	#package : 'MuTalk-Model',
-	#tag : 'Test filters'
+	#category : 'MuTalk-Model-Test filters'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTPragmaTestFilter class >> for: aPragmaSelector [
 
 	^ self for: aPragmaSelector arguments: #(  )
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTPragmaTestFilter class >> for: aPragmaSelector arguments: pragmaArguments [
 
 	^ self new
@@ -24,19 +22,19 @@ MTPragmaTestFilter class >> for: aPragmaSelector arguments: pragmaArguments [
 		  yourself
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTPragmaTestFilter class >> isAbstract [
 
 	^ self == MTPragmaTestFilter
 ]
 
-{ #category : 'enumerating' }
+{ #category : #enumerating }
 MTPragmaTestFilter >> filterTests: aTestCaseCollection [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTPragmaTestFilter >> isPragmaValidFrom: aTestCaseReference [
 
 	| pragmas |
@@ -45,13 +43,13 @@ MTPragmaTestFilter >> isPragmaValidFrom: aTestCaseReference [
 		  pragma selector = condition & (pragma arguments = pragmaArguments) ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTPragmaTestFilter >> pragmaArguments [
 
 	^ pragmaArguments
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTPragmaTestFilter >> pragmaArguments: anObject [
 
 	pragmaArguments := anObject

@@ -1,22 +1,20 @@
 Class {
-	#name : 'MTReplaceRejectBlockWithAlwaysTrueBlockOperator',
-	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceRejectBlockWithAlwaysTrueBlockOperator,
+	#superclass : #MTParseRewriterMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTReplaceRejectBlockWithAlwaysTrueBlockOperator >> description [
 	^'Replace Reject block with [:each | true]'.
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceRejectBlockWithAlwaysTrueBlockOperator >> expressionToReplace [ 
 	^'``@collection reject: ``@aBlock'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceRejectBlockWithAlwaysTrueBlockOperator >> newExpression [
 	^'``@collection reject: [:each | true]'
 ]

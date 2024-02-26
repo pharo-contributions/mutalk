@@ -1,34 +1,32 @@
 Class {
-	#name : 'MTRemoveCaretOperator',
-	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTRemoveCaretOperator,
+	#superclass : #MTParseRewriterMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTRemoveCaretOperator >> description [
 	^'Remove ^'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTRemoveCaretOperator >> expressionToReplace [ 
 	^'^``@object'
 
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTRemoveCaretOperator >> newExpression [ 
 	^'``@object'
 
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTRemoveCaretOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [
 	^aMutantKillingSuggestionGenerator suggestionForMutationProducedByARemoveCaretOperator: aMutation.
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTRemoveCaretOperator >> timesToApplyIn: aCompiledMethod with: aParseTree [ 
 
 	"ignore methods that contain only ^self"

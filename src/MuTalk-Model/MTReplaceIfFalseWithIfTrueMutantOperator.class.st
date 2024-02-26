@@ -1,17 +1,15 @@
 Class {
-	#name : 'MTReplaceIfFalseWithIfTrueMutantOperator',
-	#superclass : 'MTSelectorReplacementMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceIfFalseWithIfTrueMutantOperator,
+	#superclass : #MTSelectorReplacementMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfFalseWithIfTrueMutantOperator >> newSelector [
 	^#ifTrue:
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfFalseWithIfTrueMutantOperator >> oldSelector [
 	^#ifFalse:
 ]

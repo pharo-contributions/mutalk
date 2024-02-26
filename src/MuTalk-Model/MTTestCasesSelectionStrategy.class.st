@@ -1,22 +1,20 @@
 Class {
-	#name : 'MTTestCasesSelectionStrategy',
-	#superclass : 'Object',
-	#category : 'MuTalk-Model-TestCases selection strategies',
-	#package : 'MuTalk-Model',
-	#tag : 'TestCases selection strategies'
+	#name : #MTTestCasesSelectionStrategy,
+	#superclass : #Object,
+	#category : 'MuTalk-Model-TestCases selection strategies'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTTestCasesSelectionStrategy >> description [
 	self subclassResponsibility
 ]
 
-{ #category : 'selecting' }
+{ #category : #selecting }
 MTTestCasesSelectionStrategy >> testCasesFor: aTestCollection [ 
 	self subclassResponsibility
 ]
 
-{ #category : 'selecting' }
+{ #category : #selecting }
 MTTestCasesSelectionStrategy >> testCasesFromReferencies: aTestReferenceCollection [
 	"Applies the testCase Selection from a collection of TestCaseReferences and return a collection of TestCaseRefereces."
 

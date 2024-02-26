@@ -1,24 +1,22 @@
 Class {
-	#name : 'MTGeneralResultReporter',
-	#superclass : 'Object',
+	#name : #MTGeneralResultReporter,
+	#superclass : #Object,
 	#instVars : [
 		'mutationGeneralResult',
 		'fileReference',
 		'packagesNames'
 	],
-	#category : 'MuTalk-Model-Reporting',
-	#package : 'MuTalk-Model',
-	#tag : 'Reporting'
+	#category : 'MuTalk-Model-Reporting'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTGeneralResultReporter class >> for: aMutationGeneralResut in: aFileReference with: aPackagesNames [
 	^self new 
 		initializeFor: aMutationGeneralResut in: aFileReference asFileReference with: aPackagesNames;
 		yourself
 ]
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 MTGeneralResultReporter >> detailedInfo [
 	|stream|
 	stream := String streamContents: [:str|
@@ -32,7 +30,7 @@ MTGeneralResultReporter >> detailedInfo [
 	
 ]
 
-{ #category : 'initialize-release' }
+{ #category : #'initialize-release' }
 MTGeneralResultReporter >> initializeFor: aMutationGeneralResut in: aFileReference with: aPackagesNames [
 
 	mutationGeneralResult := aMutationGeneralResut.
@@ -40,7 +38,7 @@ MTGeneralResultReporter >> initializeFor: aMutationGeneralResut in: aFileReferen
 	packagesNames := aPackagesNames
 ]
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 MTGeneralResultReporter >> resumedInfo [
 	|stream|
 	stream := String streamContents: [:str|
@@ -58,7 +56,7 @@ MTGeneralResultReporter >> resumedInfo [
 	
 ]
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 MTGeneralResultReporter >> value [
 	|file|
 	

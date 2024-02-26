@@ -1,22 +1,20 @@
 Class {
-	#name : 'MTReplaceSelectBlockWithAlwaysFalseBlockOperator',
-	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTReplaceSelectBlockWithAlwaysFalseBlockOperator,
+	#superclass : #MTParseRewriterMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTReplaceSelectBlockWithAlwaysFalseBlockOperator >> description [
 	^'Replace Select block with [:each | false]'.
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceSelectBlockWithAlwaysFalseBlockOperator >> expressionToReplace [ 
 	^'``@collection select: ``@aBlock'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTReplaceSelectBlockWithAlwaysFalseBlockOperator >> newExpression [
 	^'``@collection select: [:each | false]'
 ]

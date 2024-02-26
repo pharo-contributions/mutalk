@@ -1,29 +1,27 @@
 Class {
-	#name : 'MTRemoveExceptionHandlerOperator',
-	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTRemoveExceptionHandlerOperator,
+	#superclass : #MTParseRewriterMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTRemoveExceptionHandlerOperator >> description [
 	^'Remove Exception Handler Operator'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTRemoveExceptionHandlerOperator >> expressionToReplace [ 
 	^'``@aBlock on: ``@anException do: ``@anotherBlock'
 
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTRemoveExceptionHandlerOperator >> newExpression [ 
 	^'``@aBlock value'
 
 ]
 
-{ #category : 'suggestions' }
+{ #category : #suggestions }
 MTRemoveExceptionHandlerOperator >> suggestionFor: aMutation using: aMutantKillingSuggestionGenerator [
 	^aMutantKillingSuggestionGenerator suggestionForMutationProducedByARemoveExceptionHandlerOperator: aMutation.
 ]

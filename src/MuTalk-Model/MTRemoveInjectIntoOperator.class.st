@@ -1,22 +1,20 @@
 Class {
-	#name : 'MTRemoveInjectIntoOperator',
-	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
-	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#name : #MTRemoveInjectIntoOperator,
+	#superclass : #MTParseRewriterMutantOperator,
+	#category : 'MuTalk-Model-Operators'
 }
 
-{ #category : 'printing' }
+{ #category : #printing }
 MTRemoveInjectIntoOperator >> description [
 	^'Replace inject:aValue into:aBlock with aValue'.
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTRemoveInjectIntoOperator >> expressionToReplace [ 
 	^'``@aCollection inject: ``@aValue into:``@aBlock'
 ]
 
-{ #category : 'applying' }
+{ #category : #applying }
 MTRemoveInjectIntoOperator >> newExpression [
 	^'``@aValue'
 ]

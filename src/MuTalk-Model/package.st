@@ -1,1 +1,1 @@
-Package { #name : 'MuTalk-Model' }
+Package { #name : #'MuTalk-Model' }
