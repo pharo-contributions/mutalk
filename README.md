@@ -11,10 +11,19 @@ Mutation Testing in Smalltalk
 This project was originally developed at the University of Buenos Aires (Argentina) by Nicolás Chillo, Gabriel Brunstein and others in times of Pharo 1.1.
 
 ## How to load
+
+* Latest release:
 ```smalltalk
 Metacello new
   baseline: 'MuTalk';
   repository: 'github://pharo-contributions/mutalk:v2.1.0/src';
+  load.
+```
+* Full version:
+```smalltalk
+Metacello new
+  baseline: 'MuTalk';
+  repository: 'github://pharo-contributions/mutalk/src';
   load.
 ```
 
