@@ -2,8 +2,7 @@ Class {
 	#name : 'MTTestCaseReference',
 	#superclass : 'Object',
 	#instVars : [
-		'class',
-		'selector',
+		'testCase',
 		'lastTimeToRun'
 	],
 	#category : 'MuTalk-Model-Core',
@@ -12,13 +11,9 @@ Class {
 }
 
 { #category : 'instance creation' }
-MTTestCaseReference class >> for: aSelector in: aClass [ 
-	^self new initializeFor: aSelector in: aClass
-]
+MTTestCaseReference class >> for: aTestCase [
 
-{ #category : 'instance creation' }
-MTTestCaseReference class >> forTestCase: aTestCase [ 
-	^self for: aTestCase selector in: aTestCase class
+	^ self new initializeFor: aTestCase
 ]
 
 { #category : 'comparing' }
@@ -26,42 +21,43 @@ MTTestCaseReference >> = anObject [
 
 	self == anObject ifTrue: [ ^ true ].
 	anObject species = self class ifFalse: [ ^ false ].
-	self testCaseClass = anObject testCaseClass ifFalse: [ ^ false ].
-	^ self selector = anObject selector
+	^ self testCase = anObject testCase
 ]
 
 { #category : 'comparing' }
 MTTestCaseReference >> hash [
 
-	^ selector hash + class hash
+	^ testCase selector hash + testCase class hash
 ]
 
 { #category : 'initialize' }
-MTTestCaseReference >> initializeFor: aSelector in: aClass [
-	class := aClass.
-	selector := aSelector.
+MTTestCaseReference >> initializeFor: aTestCase [
+
+	testCase := aTestCase
 ]
 
 { #category : 'accessing' }
 MTTestCaseReference >> lastTimeToRun [
+
 	^ lastTimeToRun
 ]
 
 { #category : 'accessing' }
 MTTestCaseReference >> method [
-	
-	^ class >> selector
+
+	^ testCase class >> testCase selector
 ]
 
 { #category : 'printing' }
 MTTestCaseReference >> printOn: aStream [
 
-	aStream nextPutAll: (aStream print: self testCase)
+	aStream nextPutAll: (aStream print: testCase)
 ]
 
 { #category : 'evaluating' }
 MTTestCaseReference >> resources [
-	^self testCase resources
+
+	^ testCase resources
 ]
 
 { #category : 'evaluating' }
@@ -74,15 +70,18 @@ MTTestCaseReference >> run [
 
 { #category : 'evaluating' }
 MTTestCaseReference >> run: aTestResult [
-	^self testCase run: aTestResult
+
+	^ testCase run: aTestResult
 ]
 
 { #category : 'evaluating' }
 MTTestCaseReference >> runChecked [
-	| result |	
+
+	| result |
 	result := self runUnchecked.
-	(result unexpectedFailureCount > 0 or: [ result unexpectedErrorCount > 0 ])
-		ifTrue: [ MTTestsWithErrorsException signal ].
+	(result unexpectedFailureCount > 0 or: [
+		 result unexpectedErrorCount > 0 ]) ifTrue: [
+		MTTestsWithErrorsException signal ].
 	^ result
 ]
 
@@ -90,23 +89,24 @@ MTTestCaseReference >> runChecked [
 MTTestCaseReference >> runUnchecked [
 
 	| result |
-	lastTimeToRun := [ result := self testCase run ] timeToRun.
+	lastTimeToRun := [ result := testCase run ] timeToRun.
 	^ result
 ]
 
 { #category : 'accessing' }
 MTTestCaseReference >> selector [
 
-	^ selector
+	^ testCase selector
 ]
 
 { #category : 'evaluating' }
 MTTestCaseReference >> testCase [
-	^class selector: selector.
+
+	^ testCase class selector: testCase selector
 ]
 
 { #category : 'accessing' }
 MTTestCaseReference >> testCaseClass [
 
-	^ class
+	^ testCase class
 ]

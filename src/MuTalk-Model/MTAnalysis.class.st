@@ -697,8 +697,8 @@ MTAnalysis >> testCasesFrom: aClassCollection [
 { #category : 'tests' }
 MTAnalysis >> testCasesReferencesFrom: testClass [
 
-	^ testClass allTestSelectors collect: [ :each |
-		  MTTestCaseReference for: each in: testClass ]
+	^ testClass buildSuite tests collect: [ :each |
+		  MTTestCaseReference for: each ]
 ]
 
 { #category : 'accessing' }
