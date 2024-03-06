@@ -21,7 +21,8 @@ MTTestCaseReference >> = anObject [
 
 	self == anObject ifTrue: [ ^ true ].
 	anObject species = self class ifFalse: [ ^ false ].
-	^ self testCase = anObject testCase
+	self testCaseClass = anObject testCaseClass ifFalse: [ ^ false ].
+	^ self selector = anObject selector
 ]
 
 { #category : 'comparing' }
