@@ -4,6 +4,14 @@ Class {
 	#category : #'MuTalk-Model-Operators-FamixRelations'
 }
 
+{ #category : #accessing }
+MTFamixRelationsOperator class >> contents [
+
+	^ ((self allConcreteSubclasses reject: #isDeprecated) collect: [
+		   :class | class new ]) asSortedCollection: [ :elem1 :elem2 |
+		  elem1 description <= elem2 description ]
+]
+
 { #category : #testing }
 MTFamixRelationsOperator class >> isAbstract [
 
