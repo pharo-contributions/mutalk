@@ -533,9 +533,7 @@ MTAnalysis >> generateMutations [
 { #category : 'running' }
 MTAnalysis >> generateResults [
 
-	| tests |
 	mutantResults := OrderedCollection new.
-	tests := testFilter filterTests: testCases.
 
 	mutations do: [ :aMutation |
 		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)
@@ -543,7 +541,7 @@ MTAnalysis >> generateResults [
 		logger logStartEvaluating: aMutation.
 		mutantResults add: ((MTMutantEvaluation
 				  for: aMutation
-				  using: tests
+				  using: testCases
 				  following: testSelectionStrategy
 				  andConsidering: self coverageAnalysisResult)
 				 valueStoppingOnError: stopOnErrorOrFail) ].
@@ -552,10 +550,19 @@ MTAnalysis >> generateResults [
 
 { #category : 'running' }
 MTAnalysis >> initialTestRun [
-	"Do an initial run of the tests to check that they are all green.
-	Only green tests count for the mutation testing analysis"
 
-	testCases do: [ :aTestCase | aTestCase run ]
+	| results |
+	results := testCases collect: [ :aTestCase | aTestCase run ].
+
+	testFilter species = MTRedTestFilter
+		ifTrue: [
+		testCases := testFilter filterTests: testCases withResults: results ]
+		ifFalse: [
+			(results anySatisfy: [ :result |
+				 result unexpectedFailureCount > 0 or: [
+					 result unexpectedErrorCount > 0 ] ])
+				ifTrue: [ ^ MTTestsWithErrorsException signal ]
+				ifFalse: [ testCases := testFilter filterTests: testCases ] ]
 ]
 
 { #category : 'initialization' }
