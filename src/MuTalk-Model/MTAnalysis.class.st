@@ -550,17 +550,17 @@ MTAnalysis >> generateResults [
 
 { #category : 'running' }
 MTAnalysis >> initialTestRun [
+	"Runs all tests once and filters them"
 
 	| results |
 	results := testCases collect: [ :aTestCase | aTestCase run ].
 
 	testFilter species = MTRedTestFilter
 		ifTrue: [
-		testCases := testFilter filterTests: testCases withResults: results ]
+			"If there are failing tests, they will be filtered anyway"
+			testCases := testFilter filterTests: testCases withResults: results ]
 		ifFalse: [
-			(results anySatisfy: [ :result |
-				 result unexpectedFailureCount > 0 or: [
-					 result unexpectedErrorCount > 0 ] ])
+			(self resultsContainUnexpectedFailuresOrErrorsFor: results)
 				ifTrue: [ ^ MTTestsWithErrorsException signal ]
 				ifFalse: [ testCases := testFilter filterTests: testCases ] ]
 ]
@@ -641,6 +641,14 @@ MTAnalysis >> operators [
 MTAnalysis >> operators: anObject [
 
 	operators := anObject
+]
+
+{ #category : 'as yet unclassified' }
+MTAnalysis >> resultsContainUnexpectedFailuresOrErrorsFor: results [
+
+	^ results anySatisfy: [ :result |
+		  result unexpectedFailureCount > 0 or: [
+			  result unexpectedErrorCount > 0 ] ]
 ]
 
 { #category : 'running' }
