@@ -66,10 +66,10 @@ MTTestCaseReference >> resources [
 
 { #category : 'evaluating' }
 MTTestCaseReference >> run [
-	"kept for retrocompatibility"
-	
-	self deprecated: 'Use #runChecked instead.' transformWith: '`@receiver run' -> '`@receiver runChecked'.
-	^ self runChecked
+
+	| result |
+	lastTimeToRun := [ result := self testCase run ] timeToRun.
+	^ result
 ]
 
 { #category : 'evaluating' }

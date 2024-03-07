@@ -175,7 +175,7 @@ MTCoveragePropagationPreparation >> runTestCase: testCaseReference [
 	| results |
 	counter := 1.
 	results := TestAsserter classForTestResult new.
-	results addAllResults: testCaseReference runUnchecked.
+	results addAllResults: testCaseReference run.
 	^ results
 ]
 

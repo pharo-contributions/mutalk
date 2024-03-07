@@ -49,6 +49,6 @@ MTTimeTestFilterTest >> testWith1SecondCondition [
 { #category : 'accessing' }
 MTTimeTestFilterTest >> timeToRunFor: aTestCaseReference [
 
-	aTestCaseReference runUnchecked.
+	aTestCaseReference run.
 	^ aTestCaseReference lastTimeToRun
 ]

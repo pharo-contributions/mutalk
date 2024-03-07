@@ -555,7 +555,7 @@ MTAnalysis >> initialTestRun [
 	"Do an initial run of the tests to check that they are all green.
 	Only green tests count for the mutation testing analysis"
 
-	testCases do: [ :aTestCase | aTestCase runChecked ]
+	testCases do: [ :aTestCase | aTestCase run ]
 ]
 
 { #category : 'initialization' }
