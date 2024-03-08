@@ -8,7 +8,7 @@ SmalltalkCISpec {
     ],
     #testing : {
         #exclude : {
-            #classes : [ #MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail ]
+            #classes : [ #MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail, #MTAuxiliarTestClassForRedTestFilter ]
         }
     }
 }
