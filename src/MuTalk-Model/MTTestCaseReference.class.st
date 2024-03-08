@@ -103,7 +103,7 @@ MTTestCaseReference >> selector [
 { #category : 'evaluating' }
 MTTestCaseReference >> testCase [
 
-	^ testCase class selector: testCase selector
+	^ testCase
 ]
 
 { #category : 'accessing' }
