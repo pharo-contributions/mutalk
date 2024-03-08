@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'class',
 		'selector',
-		'lastTimeToRun'
+		'lastTimeToRun',
+		'lastResult'
 	],
 	#category : 'MuTalk-Model-Core',
 	#package : 'MuTalk-Model',
@@ -43,6 +44,18 @@ MTTestCaseReference >> initializeFor: aSelector in: aClass [
 ]
 
 { #category : 'accessing' }
+MTTestCaseReference >> lastResult [
+
+	^ lastResult
+]
+
+{ #category : 'accessing' }
+MTTestCaseReference >> lastResult: anObject [
+
+	lastResult := anObject
+]
+
+{ #category : 'accessing' }
 MTTestCaseReference >> lastTimeToRun [
 	^ lastTimeToRun
 ]
@@ -67,9 +80,8 @@ MTTestCaseReference >> resources [
 { #category : 'evaluating' }
 MTTestCaseReference >> run [
 
-	| result |
-	lastTimeToRun := [ result := self testCase run ] timeToRun.
-	^ result
+	lastTimeToRun := [ lastResult := self testCase run ] timeToRun.
+	^ lastResult
 ]
 
 { #category : 'evaluating' }

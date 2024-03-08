@@ -555,14 +555,11 @@ MTAnalysis >> initialTestRun [
 	| results |
 	results := testCases collect: [ :aTestCase | aTestCase run ].
 
-	testFilter species = MTRedTestFilter
-		ifTrue: [
-			"If there are failing tests, they will be filtered anyway"
-			testCases := testFilter filterTests: testCases withResults: results ]
-		ifFalse: [
-			(self resultsContainUnexpectedFailuresOrErrorsFor: results)
-				ifTrue: [ ^ MTTestsWithErrorsException signal ]
-				ifFalse: [ testCases := testFilter filterTests: testCases ] ]
+	(testFilter species ~= MTRedTestFilter and: [
+		 self resultsContainUnexpectedFailuresOrErrorsFor: results ])
+		ifTrue: [ MTTestsWithErrorsException signal ].
+
+	testCases := testFilter filterTests: testCases
 ]
 
 { #category : 'initialization' }

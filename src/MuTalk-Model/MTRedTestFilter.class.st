@@ -7,15 +7,9 @@ Class {
 }
 
 { #category : 'enumerating' }
-MTRedTestFilter >> filterTests: aTestCaseCollection withResults: results [
+MTRedTestFilter >> filterTests: aTestCaseCollection [
 
-	| dictionary |
-	dictionary := Dictionary
-		              newFromKeys: aTestCaseCollection
-		              andValues: results.
-	^ dictionary keys select: [ :key |
-		  | result |
-		  result := dictionary at: key.
-		  result unexpectedFailureCount = 0 and: [
-			  result unexpectedErrorCount = 0 ] ]
+	^ aTestCaseCollection select: [ :testCase |
+		  testCase lastResult unexpectedFailureCount = 0 and: [
+			  testCase lastResult unexpectedErrorCount = 0 ] ]
 ]
