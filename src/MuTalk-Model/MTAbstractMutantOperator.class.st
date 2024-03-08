@@ -1,7 +1,7 @@
 Class {
 	#name : #MTAbstractMutantOperator,
 	#superclass : #Object,
-	#category : 'MuTalk-Model-Operators'
+	#category : #'MuTalk-Model-Operators'
 }
 
 { #category : #accessing }
@@ -26,6 +26,16 @@ MTAbstractMutantOperator class >> contentsAll [
 
 	^ ((self allSubclasses reject: [ :ea |
 		    ea isAbstract or: [ ea isDeprecated ] ]) collect: [ :class |
+		   class new ]) asSortedCollection: [ :elem1 :elem2 |
+		  elem1 description <= elem2 description ]
+]
+
+{ #category : #accessing }
+MTAbstractMutantOperator class >> contentsMoose [
+
+	^ ((('MuTalk-Model' asPackage classTagNamed: 'Operators-Moose')
+		    classes reject: [ :class |
+		    class isAbstract or: [ class isDeprecated ] ]) collect: [ :class |
 		   class new ]) asSortedCollection: [ :elem1 :elem2 |
 		  elem1 description <= elem2 description ]
 ]
