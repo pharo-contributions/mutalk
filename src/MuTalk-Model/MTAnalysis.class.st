@@ -469,7 +469,7 @@ MTAnalysis >> defaultBudget [
 	^ MTFreeBudget new
 ]
 
-{ #category : 'defaults' }
+{ #category : 'accessing - defaults' }
 MTAnalysis >> defaultLogger [
 
 	^ MTNullAnalysisLogger new
@@ -640,7 +640,7 @@ MTAnalysis >> operators: anObject [
 	operators := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 MTAnalysis >> resultsContainUnexpectedFailuresOrErrorsFor: results [
 
 	^ results anySatisfy: [ :result |
