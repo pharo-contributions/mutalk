@@ -554,11 +554,7 @@ MTAnalysis >> initialTestRun [
 
 	| results |
 	results := testCases collect: [ :aTestCase | aTestCase run ].
-
-	(testFilter species ~= MTRedTestFilter and: [
-		 self resultsContainUnexpectedFailuresOrErrorsFor: results ])
-		ifTrue: [ MTTestsWithErrorsException signal ].
-
+	testFilter validateFailuresIn: results.
 	testCases := testFilter filterTests: testCases
 ]
 
@@ -638,14 +634,6 @@ MTAnalysis >> operators [
 MTAnalysis >> operators: anObject [
 
 	operators := anObject
-]
-
-{ #category : 'testing' }
-MTAnalysis >> resultsContainUnexpectedFailuresOrErrorsFor: results [
-
-	^ results anySatisfy: [ :result |
-		  result unexpectedFailureCount > 0 or: [
-			  result unexpectedErrorCount > 0 ] ]
 ]
 
 { #category : 'running' }

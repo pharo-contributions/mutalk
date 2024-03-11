@@ -9,7 +9,12 @@ Class {
 { #category : 'enumerating' }
 MTRedTestFilter >> filterTests: aTestCaseCollection [
 
-	^ aTestCaseCollection select: [ :testCase |
-		  testCase lastResult failures isEmpty and: [
-			  testCase lastResult unexpectedErrorCount = 0 ] ]
+	^ aTestCaseCollection reject: [ :testCase |
+		  self failuresOrErrorsIn: testCase lastResult ]
+]
+
+{ #category : 'testing' }
+MTRedTestFilter >> resultsContainFailuresOrErrors: results [
+
+	^ false
 ]
