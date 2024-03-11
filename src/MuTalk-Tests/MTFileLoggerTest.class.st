@@ -1,12 +1,12 @@
 Class {
-	#name : 'MTAnalysisFileLoggerTest',
+	#name : 'MTFileLoggerTest',
 	#superclass : 'TestCase',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
 
 { #category : 'tests' }
-MTAnalysisFileLoggerTest >> testLogFileExists [
+MTFileLoggerTest >> testLogFileExists [
 
 	| analysis logFileName logFile |
 	logFileName := 'logFileForTest.txt'.
