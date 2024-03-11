@@ -15,6 +15,18 @@ MTFileLogger class >> toFileNamed: aString [
 	^ self basicNew initializeToFileNamed: aString
 ]
 
+{ #category : 'accessing' }
+MTFileLogger >> fileReference [
+
+	^ fileReference
+]
+
+{ #category : 'accessing' }
+MTFileLogger >> fileReference: anObject [
+
+	fileReference := anObject
+]
+
 { #category : 'initialization' }
 MTFileLogger >> initializeStream [
 

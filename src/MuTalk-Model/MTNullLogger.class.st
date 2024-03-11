@@ -20,6 +20,12 @@ MTNullLogger >> logAnalysisStartFor: aMutationTestingAnalysis [
 ]
 
 { #category : 'logging' }
+MTNullLogger >> logEnd [
+
+	
+]
+
+{ #category : 'logging' }
 MTNullLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
 ]
 

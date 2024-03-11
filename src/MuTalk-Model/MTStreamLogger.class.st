@@ -40,7 +40,6 @@ MTStreamLogger >> logEnd [
 MTStreamLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
 
 	stream
-		setToEnd;
 		nextPutAll: 'Generating mutations for ';
 		nextPutAll: (self methodNameOf: aCompiledMethod);
 		nextPutAll: '  with operator:';
@@ -52,7 +51,6 @@ MTStreamLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantO
 MTStreamLogger >> logStartEvaluating: aMethodMutation [
 
 	stream
-		setToEnd;
 		nextPutAll: 'Evaluating mutant of method ';
 		nextPutAll: (self methodNameOf: aMethodMutation originalMethod);
 		nextPutAll: '  with source:';
@@ -66,4 +64,16 @@ MTStreamLogger >> methodNameOf: aCompiledMethod [
 
 	^ aCompiledMethod methodClass name asString , '>>'
 	  , aCompiledMethod selector printString
+]
+
+{ #category : 'accessing' }
+MTStreamLogger >> stream [
+
+	^ stream
+]
+
+{ #category : 'accessing' }
+MTStreamLogger >> stream: anObject [
+
+	stream := anObject
 ]
