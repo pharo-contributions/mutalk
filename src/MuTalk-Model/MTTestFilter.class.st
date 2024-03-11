@@ -42,7 +42,8 @@ MTTestFilter >> filterTests: aTestCaseCollection [
 ]
 
 { #category : 'testing' }
-MTTestFilter >> resultsContainFailuresOrErrors: results [
+MTTestFilter >> unwantedFailuresOrErrorsIn: results [
+	"Checks if the results contain failures or errors while they shouldn't"
 
 	^ results anySatisfy: [ :result | self failuresOrErrorsIn: result ]
 ]
@@ -50,6 +51,6 @@ MTTestFilter >> resultsContainFailuresOrErrors: results [
 { #category : 'checking' }
 MTTestFilter >> validateFailuresIn: results [
 
-	(self resultsContainFailuresOrErrors: results) ifTrue: [
+	(self unwantedFailuresOrErrorsIn: results) ifTrue: [
 		MTTestsWithErrorsException signal ]
 ]

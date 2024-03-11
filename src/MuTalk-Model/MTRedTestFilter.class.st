@@ -14,7 +14,8 @@ MTRedTestFilter >> filterTests: aTestCaseCollection [
 ]
 
 { #category : 'testing' }
-MTRedTestFilter >> resultsContainFailuresOrErrors: results [
+MTRedTestFilter >> unwantedFailuresOrErrorsIn: results [
+	"It is not a problem if there are unwanted failures or errors because they will be filtered out anyway"
 
 	^ false
 ]
