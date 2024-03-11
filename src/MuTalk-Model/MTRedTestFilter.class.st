@@ -10,6 +10,6 @@ Class {
 MTRedTestFilter >> filterTests: aTestCaseCollection [
 
 	^ aTestCaseCollection select: [ :testCase |
-		  testCase lastResult unexpectedFailureCount = 0 and: [
+		  testCase lastResult failures isEmpty and: [
 			  testCase lastResult unexpectedErrorCount = 0 ] ]
 ]
