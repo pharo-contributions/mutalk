@@ -27,7 +27,7 @@ MTAnalysis class >> defaultLogger [
 	self deprecated:
 		'This method will be removed in the next version of MuTalk.
 		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ MTNullAnalysisLogger new
+	^ MTNullLogger new
 ]
 
 { #category : 'defaults' }
@@ -472,7 +472,7 @@ MTAnalysis >> defaultBudget [
 { #category : 'defaults' }
 MTAnalysis >> defaultLogger [
 
-	^ MTNullAnalysisLogger new
+	^ MTNullLogger new
 ]
 
 { #category : 'accessing - defaults' }
@@ -547,6 +547,7 @@ MTAnalysis >> generateResults [
 				  following: testSelectionStrategy
 				  andConsidering: self coverageAnalysisResult)
 				 valueStoppingOnError: stopOnErrorOrFail) ].
+	logger logEnd.
 	^ mutantResults
 ]
 

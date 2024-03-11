@@ -14,7 +14,7 @@ MTAnalysisFileLoggerTest >> testLogFileExists [
 	analysis := MTAnalysis new
 		            classesToMutate: { MTAuxiliarClassForMTAnalysis };
 		            testClasses: { MTAuxiliarClassForMTAnalysisTest };
-		            logger: (MTAnalysisFileLogger toFileNamed: logFileName).
+		            logger: (MTFileLogger toFileNamed: logFileName).
 
 	analysis run.
 

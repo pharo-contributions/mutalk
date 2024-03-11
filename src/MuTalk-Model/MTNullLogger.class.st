@@ -1,5 +1,5 @@
 Class {
-	#name : 'MTNullAnalysisLogger',
+	#name : 'MTNullLogger',
 	#superclass : 'MTAnalysisLogger',
 	#classInstVars : [
 		'instance'
@@ -10,19 +10,19 @@ Class {
 }
 
 { #category : 'instance creation' }
-MTNullAnalysisLogger class >> new [
+MTNullLogger class >> new [
 	instance ifNil:[instance := super new.].
 	^instance.
 ]
 
 { #category : 'logging' }
-MTNullAnalysisLogger >> logAnalysisStartFor: aMutationTestingAnalysis [ 
+MTNullLogger >> logAnalysisStartFor: aMutationTestingAnalysis [ 
 ]
 
 { #category : 'logging' }
-MTNullAnalysisLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
+MTNullLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
 ]
 
 { #category : 'logging' }
-MTNullAnalysisLogger >> logStartEvaluating: aMethodMutation [ 
+MTNullLogger >> logStartEvaluating: aMethodMutation [ 
 ]

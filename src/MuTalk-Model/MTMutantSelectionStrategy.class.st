@@ -49,5 +49,5 @@ MTMutantSelectionStrategy >> mutationsFor: aMethod usingAll: aCollectionOfMutant
 { #category : 'logging' }
 MTMutantSelectionStrategy >> nullLogger [
 
-	^ MTNullAnalysisLogger new.
+	^ MTNullLogger new.
 ]
