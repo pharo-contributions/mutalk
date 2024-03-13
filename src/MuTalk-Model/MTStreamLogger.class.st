@@ -33,7 +33,20 @@ MTStreamLogger >> logAnalysisStartFor: aMutationTestingAnalysis [
 { #category : 'logging' }
 MTStreamLogger >> logEnd [
 
-	stream close
+	stream
+		nextPutAll: 'The analysis is finished';
+		close
+]
+
+{ #category : 'logging' }
+MTStreamLogger >> logNumberOfGeneratedMutations: aNumber [
+
+	stream
+		nextPutAll: aNumber asString;
+		nextPutAll: (aNumber < 2
+				 ifTrue: [ ' mutation generated' ]
+				 ifFalse: [ ' mutations generated' ]);
+		cr
 ]
 
 { #category : 'logging' }
@@ -65,6 +78,15 @@ MTStreamLogger >> logStartEvaluating: aMethodMutation [
 		nextPutAll: '  with source:';
 		cr;
 		nextPutAll: aMethodMutation modifiedSource;
+		cr
+]
+
+{ #category : 'logging' }
+MTStreamLogger >> logTotalNumberOfMutations: aNumber [
+
+	stream
+		nextPutAll: aNumber asString;
+		nextPutAll: ' total mutations generated';
 		cr
 ]
 

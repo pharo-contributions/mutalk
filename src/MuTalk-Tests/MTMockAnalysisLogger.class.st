@@ -29,6 +29,12 @@ MTMockAnalysisLogger >> logEnd [
 ]
 
 { #category : 'logging' }
+MTMockAnalysisLogger >> logNumberOfGeneratedMutations: aNumber [
+
+	
+]
+
+{ #category : 'logging' }
 MTMockAnalysisLogger >> logRunningTest: aTestCaseReference [
 
 	
@@ -44,6 +50,12 @@ MTMockAnalysisLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aM
 { #category : 'logging' }
 MTMockAnalysisLogger >> logStartEvaluating: aMethodMutation [ 
 	loggedEvaluationMutations add: aMethodMutation.
+]
+
+{ #category : 'logging' }
+MTMockAnalysisLogger >> logTotalNumberOfMutations: aNumber [
+
+	
 ]
 
 { #category : 'testing' }

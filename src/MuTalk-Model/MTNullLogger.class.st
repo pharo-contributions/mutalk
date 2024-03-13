@@ -26,6 +26,12 @@ MTNullLogger >> logEnd [
 ]
 
 { #category : 'logging' }
+MTNullLogger >> logNumberOfGeneratedMutations: aNumber [
+
+	
+]
+
+{ #category : 'logging' }
 MTNullLogger >> logRunningTest: aTestCaseReference [
 
 	
@@ -37,4 +43,10 @@ MTNullLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOpe
 
 { #category : 'logging' }
 MTNullLogger >> logStartEvaluating: aMethodMutation [ 
+]
+
+{ #category : 'logging' }
+MTNullLogger >> logTotalNumberOfMutations: aNumber [
+
+	
 ]

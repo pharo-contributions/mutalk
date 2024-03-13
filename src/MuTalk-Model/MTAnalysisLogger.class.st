@@ -18,6 +18,12 @@ MTAnalysisLogger >> logEnd [
 ]
 
 { #category : 'logging' }
+MTAnalysisLogger >> logNumberOfGeneratedMutations: aNumber [
+
+	^ self subclassResponsibility
+]
+
+{ #category : 'logging' }
 MTAnalysisLogger >> logRunningTest: aTestCaseReference [
 
 	self subclassResponsibility
@@ -31,4 +37,10 @@ MTAnalysisLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutan
 { #category : 'logging' }
 MTAnalysisLogger >> logStartEvaluating: aMethodMutation [ 
 	self subclassResponsibility
+]
+
+{ #category : 'logging' }
+MTAnalysisLogger >> logTotalNumberOfMutations: aNumber [
+
+	^ self subclassResponsibility
 ]

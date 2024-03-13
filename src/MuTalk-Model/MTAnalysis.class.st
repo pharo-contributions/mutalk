@@ -527,7 +527,8 @@ MTAnalysis >> generateMutations [
 	^ mutations ifNil: [
 		  mutations := mutantSelectionStrategy
 			               mutationsFor: self
-			               loggingIn: logger ]
+			               loggingIn: logger.
+		  logger logTotalNumberOfMutations: mutations size ]
 ]
 
 { #category : 'running' }
