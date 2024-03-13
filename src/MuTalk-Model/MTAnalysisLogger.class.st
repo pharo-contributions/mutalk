@@ -18,6 +18,12 @@ MTAnalysisLogger >> logEnd [
 ]
 
 { #category : 'logging' }
+MTAnalysisLogger >> logRunningTest: aTestCaseReference [
+
+	self subclassResponsibility
+]
+
+{ #category : 'logging' }
 MTAnalysisLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
 	self subclassResponsibility 
 ]

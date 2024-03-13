@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'class',
 		'selector',
-		'lastTimeToRun'
+		'lastTimeToRun',
+		'logger'
 	],
 	#category : 'MuTalk-Model-Core',
 	#package : 'MuTalk-Model',
@@ -14,6 +15,12 @@ Class {
 { #category : 'instance creation' }
 MTTestCaseReference class >> for: aSelector in: aClass [ 
 	^self new initializeFor: aSelector in: aClass
+]
+
+{ #category : 'instance creation' }
+MTTestCaseReference class >> for: aSelector in: aClass logger: aLogger [
+
+	^ self new initializeFor: aSelector in: aClass logger: aLogger
 ]
 
 { #category : 'instance creation' }
@@ -42,9 +49,29 @@ MTTestCaseReference >> initializeFor: aSelector in: aClass [
 	selector := aSelector.
 ]
 
+{ #category : 'initialize' }
+MTTestCaseReference >> initializeFor: aSelector in: aClass logger: aLogger [
+
+	class := aClass.
+	selector := aSelector.
+	logger := aLogger
+]
+
 { #category : 'accessing' }
 MTTestCaseReference >> lastTimeToRun [
 	^ lastTimeToRun
+]
+
+{ #category : 'accessing' }
+MTTestCaseReference >> logger [
+
+	^ logger
+]
+
+{ #category : 'accessing' }
+MTTestCaseReference >> logger: anObject [
+
+	logger := anObject
 ]
 
 { #category : 'accessing' }
@@ -74,7 +101,9 @@ MTTestCaseReference >> run [
 
 { #category : 'evaluating' }
 MTTestCaseReference >> run: aTestResult [
-	^self testCase run: aTestResult
+
+	logger logRunningTest: self.
+	^ self testCase run: aTestResult
 ]
 
 { #category : 'evaluating' }

@@ -29,6 +29,12 @@ MTMockAnalysisLogger >> logEnd [
 ]
 
 { #category : 'logging' }
+MTMockAnalysisLogger >> logRunningTest: aTestCaseReference [
+
+	
+]
+
+{ #category : 'logging' }
 MTMockAnalysisLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
 	loggedStartBuildingMutations add:(Array with:aCompiledMethod with: aMutantOperator ). 
 

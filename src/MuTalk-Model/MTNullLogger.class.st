@@ -26,6 +26,12 @@ MTNullLogger >> logEnd [
 ]
 
 { #category : 'logging' }
+MTNullLogger >> logRunningTest: aTestCaseReference [
+
+	
+]
+
+{ #category : 'logging' }
 MTNullLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
 ]
 

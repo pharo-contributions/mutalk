@@ -583,6 +583,8 @@ MTAnalysis >> logger [
 { #category : 'accessing' }
 MTAnalysis >> logger: anObject [
 
+	testCases do: [ :testCaseReference |
+		testCaseReference logger: anObject ].
 	logger := anObject
 ]
 
@@ -699,7 +701,7 @@ MTAnalysis >> testCasesFrom: aClassCollection [
 MTAnalysis >> testCasesReferencesFrom: testClass [
 
 	^ testClass allTestSelectors collect: [ :each |
-		  MTTestCaseReference for: each in: testClass ]
+		  MTTestCaseReference for: each in: testClass logger: logger ]
 ]
 
 { #category : 'accessing' }

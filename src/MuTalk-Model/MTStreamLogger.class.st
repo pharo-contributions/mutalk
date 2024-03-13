@@ -37,6 +37,15 @@ MTStreamLogger >> logEnd [
 ]
 
 { #category : 'logging' }
+MTStreamLogger >> logRunningTest: aTestCaseReference [
+
+	stream
+		nextPutAll: 'Running test: ';
+		nextPutAll: aTestCaseReference testCase printString;
+		cr
+]
+
+{ #category : 'logging' }
 MTStreamLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
 
 	stream
