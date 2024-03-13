@@ -42,7 +42,25 @@ MTNullLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOpe
 ]
 
 { #category : 'logging' }
+MTNullLogger >> logStartCoverageAnalysis [
+
+	
+]
+
+{ #category : 'logging' }
 MTNullLogger >> logStartEvaluating: aMethodMutation [ 
+]
+
+{ #category : 'logging' }
+MTNullLogger >> logStartMutationEvaluation [
+
+	
+]
+
+{ #category : 'logging' }
+MTNullLogger >> logStartMutationGeneration [
+
+	
 ]
 
 { #category : 'logging' }

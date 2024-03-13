@@ -514,16 +514,19 @@ MTAnalysis >> generalResult [
 { #category : 'running' }
 MTAnalysis >> generateCoverageAnalysis [
 
-	coverageAnalysisResult := (MTCoverageAnalysis
-		                           for: self modelClasses
-		                           running: testCases)
-		                          run;
-		                          result
+	coverageAnalysisResult := MTCoverageAnalysis
+		                          for: self modelClasses
+		                          running: testCases.
+	logger logStartCoverageAnalysis.
+	coverageAnalysisResult
+		run;
+		result
 ]
 
 { #category : 'running' }
 MTAnalysis >> generateMutations [
 
+	logger logStartMutationGeneration.
 	^ mutations ifNil: [
 		  mutations := mutantSelectionStrategy
 			               mutationsFor: self
@@ -537,6 +540,7 @@ MTAnalysis >> generateResults [
 	| tests |
 	mutantResults := OrderedCollection new.
 	tests := testFilter filterTests: testCases.
+	logger logStartMutationEvaluation. 
 
 	mutations do: [ :aMutation |
 		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)

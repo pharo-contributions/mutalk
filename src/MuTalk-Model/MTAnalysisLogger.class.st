@@ -35,8 +35,26 @@ MTAnalysisLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutan
 ]
 
 { #category : 'logging' }
+MTAnalysisLogger >> logStartCoverageAnalysis [
+
+	^ self subclassResponsibility
+]
+
+{ #category : 'logging' }
 MTAnalysisLogger >> logStartEvaluating: aMethodMutation [ 
 	self subclassResponsibility
+]
+
+{ #category : 'logging' }
+MTAnalysisLogger >> logStartMutationEvaluation [
+
+	^ self subclassResponsibility
+]
+
+{ #category : 'logging' }
+MTAnalysisLogger >> logStartMutationGeneration [
+
+	^ self subclassResponsibility
 ]
 
 { #category : 'logging' }

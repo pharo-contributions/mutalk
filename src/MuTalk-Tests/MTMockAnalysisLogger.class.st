@@ -48,8 +48,26 @@ MTMockAnalysisLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aM
 ]
 
 { #category : 'logging' }
+MTMockAnalysisLogger >> logStartCoverageAnalysis [
+
+	
+]
+
+{ #category : 'logging' }
 MTMockAnalysisLogger >> logStartEvaluating: aMethodMutation [ 
 	loggedEvaluationMutations add: aMethodMutation.
+]
+
+{ #category : 'logging' }
+MTMockAnalysisLogger >> logStartMutationEvaluation [
+
+	
+]
+
+{ #category : 'logging' }
+MTMockAnalysisLogger >> logStartMutationGeneration [
+
+	
 ]
 
 { #category : 'logging' }

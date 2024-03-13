@@ -70,6 +70,14 @@ MTStreamLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantO
 ]
 
 { #category : 'logging' }
+MTStreamLogger >> logStartCoverageAnalysis [
+
+	stream
+		nextPutAll: 'Starting coverage analysis';
+		cr
+]
+
+{ #category : 'logging' }
 MTStreamLogger >> logStartEvaluating: aMethodMutation [
 
 	stream
@@ -78,6 +86,22 @@ MTStreamLogger >> logStartEvaluating: aMethodMutation [
 		nextPutAll: '  with source:';
 		cr;
 		nextPutAll: aMethodMutation modifiedSource;
+		cr
+]
+
+{ #category : 'logging' }
+MTStreamLogger >> logStartMutationEvaluation [
+
+	stream
+		nextPutAll: 'Starting mutation evaluation';
+		cr
+]
+
+{ #category : 'logging' }
+MTStreamLogger >> logStartMutationGeneration [
+
+	stream
+		nextPutAll: 'Starting mutation generation';
 		cr
 ]
 
