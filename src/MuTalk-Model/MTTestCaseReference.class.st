@@ -37,6 +37,12 @@ MTTestCaseReference >> = anObject [
 	^ self selector = anObject selector
 ]
 
+{ #category : 'defaults' }
+MTTestCaseReference >> defaultLogger [
+
+	^ MTNullLogger new
+]
+
 { #category : 'comparing' }
 MTTestCaseReference >> hash [
 
@@ -45,8 +51,10 @@ MTTestCaseReference >> hash [
 
 { #category : 'initialize' }
 MTTestCaseReference >> initializeFor: aSelector in: aClass [
+
 	class := aClass.
 	selector := aSelector.
+	logger := self defaultLogger
 ]
 
 { #category : 'initialize' }

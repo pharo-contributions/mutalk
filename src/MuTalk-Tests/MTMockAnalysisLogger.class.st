@@ -71,7 +71,7 @@ MTMockAnalysisLogger >> logStartMutationGeneration [
 ]
 
 { #category : 'logging' }
-MTMockAnalysisLogger >> logTotalNumberOfMutations: aNumber [
+MTMockAnalysisLogger >> logTotalNumberOfMutations: mutations [
 
 	
 ]

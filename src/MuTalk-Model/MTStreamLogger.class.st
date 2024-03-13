@@ -106,10 +106,10 @@ MTStreamLogger >> logStartMutationGeneration [
 ]
 
 { #category : 'logging' }
-MTStreamLogger >> logTotalNumberOfMutations: aNumber [
+MTStreamLogger >> logTotalNumberOfMutations: mutations [
 
 	stream
-		nextPutAll: aNumber asString;
+		nextPutAll: mutations size asString;
 		nextPutAll: ' total mutations generated';
 		cr
 ]

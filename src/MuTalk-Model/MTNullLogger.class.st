@@ -64,7 +64,7 @@ MTNullLogger >> logStartMutationGeneration [
 ]
 
 { #category : 'logging' }
-MTNullLogger >> logTotalNumberOfMutations: aNumber [
+MTNullLogger >> logTotalNumberOfMutations: mutations [
 
 	
 ]

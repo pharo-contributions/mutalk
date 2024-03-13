@@ -58,7 +58,7 @@ MTAnalysisLogger >> logStartMutationGeneration [
 ]
 
 { #category : 'logging' }
-MTAnalysisLogger >> logTotalNumberOfMutations: aNumber [
+MTAnalysisLogger >> logTotalNumberOfMutations: mutations [
 
 	^ self subclassResponsibility
 ]
