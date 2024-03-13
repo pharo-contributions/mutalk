@@ -514,13 +514,12 @@ MTAnalysis >> generalResult [
 { #category : 'running' }
 MTAnalysis >> generateCoverageAnalysis [
 
-	coverageAnalysisResult := MTCoverageAnalysis
-		                          for: self modelClasses
-		                          running: testCases.
 	logger logStartCoverageAnalysis.
-	coverageAnalysisResult
-		run;
-		result
+	coverageAnalysisResult := (MTCoverageAnalysis
+		                           for: self modelClasses
+		                           running: testCases)
+		                          run;
+		                          result
 ]
 
 { #category : 'running' }
