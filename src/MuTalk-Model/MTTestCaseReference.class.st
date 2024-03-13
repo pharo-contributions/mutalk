@@ -89,23 +89,6 @@ MTTestCaseReference >> run: aTestResult [
 	^self testCase run: aTestResult
 ]
 
-{ #category : 'evaluating' }
-MTTestCaseReference >> runChecked [
-	| result |	
-	result := self runUnchecked.
-	(result unexpectedFailureCount > 0 or: [ result unexpectedErrorCount > 0 ])
-		ifTrue: [ MTTestsWithErrorsException signal ].
-	^ result
-]
-
-{ #category : 'evaluating' }
-MTTestCaseReference >> runUnchecked [
-
-	| result |
-	lastTimeToRun := [ result := self testCase run ] timeToRun.
-	^ result
-]
-
 { #category : 'accessing' }
 MTTestCaseReference >> selector [
 
