@@ -20,7 +20,6 @@ MTRedTestFilterTest >> testRedTestIsExcluded [
 	self runAnalysis.
 
 	self assert: analysis testCases size equals: 1.
-	self assert:
-		(analysis testCases includes: (MTTestCaseReference forTestCase:
+	self assert: (analysis testCases includes: (MTTestCaseReference for:
 				  (MTAuxiliarTestClassForRedTestFilter selector: #testWithoutError)))
 ]
