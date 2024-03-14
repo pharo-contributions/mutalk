@@ -7,9 +7,9 @@ Class {
 }
 
 { #category : 'enumerating' }
-MTTimeTestFilter >> filterTests: aTestCaseCollection [
+MTTimeTestFilter >> excludedTestsFrom: aTestCaseCollection [
 
-	^ aTestCaseCollection select: [ :testCaseReference |
+	^ aTestCaseCollection reject: [ :testCaseReference |
 		  testCaseReference lastTimeToRun <= condition ]
 ]
 
@@ -17,4 +17,11 @@ MTTimeTestFilter >> filterTests: aTestCaseCollection [
 MTTimeTestFilter >> filteredTestReason [ 
 
 	^ 'Took longer than ', condition printString, ' to run'
+]
+
+{ #category : 'enumerating' }
+MTTimeTestFilter >> filteredTestsFrom: aTestCaseCollection [
+
+	^ aTestCaseCollection select: [ :testCaseReference |
+		  testCaseReference lastTimeToRun <= condition ]
 ]

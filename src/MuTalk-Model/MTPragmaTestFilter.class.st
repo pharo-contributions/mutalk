@@ -30,12 +30,6 @@ MTPragmaTestFilter class >> isAbstract [
 	^ self == MTPragmaTestFilter
 ]
 
-{ #category : 'enumerating' }
-MTPragmaTestFilter >> filterTests: aTestCaseCollection [
-
-	^ self subclassResponsibility
-]
-
 { #category : 'accessing' }
 MTPragmaTestFilter >> filteredTestReason [
 
@@ -77,4 +71,18 @@ MTPragmaTestFilter >> pragmaArguments: anObject [
 MTPragmaTestFilter >> reasonString [
 
 	self subclassResponsibility
+]
+
+{ #category : 'enumerating' }
+MTPragmaTestFilter >> rejectPragmaInTestCollection: aTestCaseCollection [
+
+	^ aTestCaseCollection reject: [ :testCaseReference |
+		  self isPragmaValidFrom: testCaseReference ]
+]
+
+{ #category : 'enumerating' }
+MTPragmaTestFilter >> selectPragmaInTestCollection: aTestCaseCollection [
+
+	^ aTestCaseCollection select: [ :testCaseReference |
+		  self isPragmaValidFrom: testCaseReference ]
 ]

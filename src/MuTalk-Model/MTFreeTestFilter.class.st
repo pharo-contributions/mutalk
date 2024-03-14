@@ -7,13 +7,19 @@ Class {
 }
 
 { #category : 'enumerating' }
-MTFreeTestFilter >> filterTests: aTestCaseCollection [
+MTFreeTestFilter >> excludedTestsFrom: aTestCaseCollection [
 
-	^ aTestCaseCollection
+	^ OrderedCollection empty
 ]
 
 { #category : 'accessing' }
 MTFreeTestFilter >> filteredTestReason [
 
 	^ 'Not filtered'
+]
+
+{ #category : 'enumerating' }
+MTFreeTestFilter >> filteredTestsFrom: aTestCaseCollection [
+
+	^ aTestCaseCollection
 ]
