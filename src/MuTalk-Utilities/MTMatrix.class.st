@@ -184,8 +184,8 @@ MTMatrix >> failingTestsFor: aMutation [
 { #category : 'computing' }
 MTMatrix >> failuresFor: aMutant [
 
-	^ (self evaluationResultFor: aMutant) defects asOrderedCollection collect: [ :each |
-		  MTTestCaseReference for: each selector in: each class ]
+	^ (self evaluationResultFor: aMutant) defects asOrderedCollection
+		  collect: [ :each | MTTestCaseReference for: each ]
 ]
 
 { #category : 'computing' }
