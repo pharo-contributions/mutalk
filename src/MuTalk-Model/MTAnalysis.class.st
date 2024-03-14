@@ -14,8 +14,7 @@ Class {
 		'stopOnErrorOrFail',
 		'testSelectionStrategy',
 		'mutantSelectionStrategy',
-		'testFilter',
-		'filteredTests'
+		'testFilter'
 	],
 	#category : 'MuTalk-Model-Core',
 	#package : 'MuTalk-Model',
@@ -506,36 +505,13 @@ MTAnalysis >> doNotStopOnErrorOrFail [
 	stopOnErrorOrFail := false
 ]
 
-{ #category : 'accessing' }
-MTAnalysis >> filteredTests [
-
-	^ filteredTests
-]
-
-{ #category : 'accessing' }
-MTAnalysis >> filteredTests: anObject [
-
-	filteredTests := anObject
-]
-
-{ #category : 'as yet unclassified' }
-MTAnalysis >> filteredTestsFrom: aTestCollection [
-
-	filteredTests := aTestCollection
-		                 inject: OrderedCollection new
-		                 into: [ :accumulator :test |
-			                 accumulator add:
-				                 test -> testFilter filteredTestReason.
-			                 accumulator ]
-]
-
 { #category : 'results' }
 MTAnalysis >> generalResult [
 
 	^ MTGeneralResult
 		  for: mutantResults
 		  timed: elapsedTime
-		  filteredTests: filteredTests
+		  excludedTests: testFilter excludedTests
 ]
 
 { #category : 'running' }
@@ -560,10 +536,9 @@ MTAnalysis >> generateMutations [
 { #category : 'running' }
 MTAnalysis >> generateResults [
 
-	| tests |
+	| filteredTests |
 	mutantResults := OrderedCollection new.
-	tests := testFilter filterTests: testCases.
-	self filteredTestsFrom: (testCases copyWithoutAll: tests).
+	filteredTests := testFilter filterTests: testCases.
 
 	mutations do: [ :aMutation |
 		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)
@@ -571,7 +546,7 @@ MTAnalysis >> generateResults [
 		logger logStartEvaluating: aMutation.
 		mutantResults add: ((MTMutantEvaluation
 				  for: aMutation
-				  using: tests
+				  using: filteredTests
 				  following: testSelectionStrategy
 				  andConsidering: self coverageAnalysisResult)
 				 valueStoppingOnError: stopOnErrorOrFail) ].

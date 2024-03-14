@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'particularResults',
 		'elapsedTime',
-		'filteredTests'
+		'excludedTests'
 	],
 	#category : 'MuTalk-Model-Core',
 	#package : 'MuTalk-Model',
@@ -22,7 +22,7 @@ MTGeneralResult class >> for: mutantsEvaluationsResults [
 	^ self
 		  for: mutantsEvaluationsResults
 		  timed: Duration new
-		  filteredTests: #(  )
+		  excludedTests: #(  )
 ]
 
 { #category : 'instance creation' }
@@ -31,16 +31,16 @@ MTGeneralResult class >> for: mutantsEvaluationsResults timed: anElapsedTime [
 	^ self
 		  for: mutantsEvaluationsResults
 		  timed: anElapsedTime
-		  filteredTests: #(  )
+		  excludedTests: #(  )
 ]
 
 { #category : 'instance creation' }
-MTGeneralResult class >> for: mutantsEvaluationsResults timed: anElapsedTime filteredTests: someTests [
+MTGeneralResult class >> for: mutantsEvaluationsResults timed: anElapsedTime excludedTests: someTests [
 
 	^ self new
 		  initializeFor: mutantsEvaluationsResults
 		  timed: anElapsedTime
-		  filteredTests: someTests;
+		  excludedTests: someTests;
 		  yourself
 ]
 
@@ -55,23 +55,23 @@ MTGeneralResult >> elapsedTime [
 ]
 
 { #category : 'accessing' }
-MTGeneralResult >> filteredTests [
+MTGeneralResult >> excludedTests [
 
-	^ filteredTests
+	^ excludedTests
 ]
 
 { #category : 'accessing' }
-MTGeneralResult >> filteredTests: anObject [
+MTGeneralResult >> excludedTests: anObject [
 
-	filteredTests := anObject
+	excludedTests := anObject
 ]
 
 { #category : 'initialize' }
-MTGeneralResult >> initializeFor: mutantsEvaluationsResults timed: anElapsedTime filteredTests: someTests [
+MTGeneralResult >> initializeFor: mutantsEvaluationsResults timed: anElapsedTime excludedTests: someTests [
 
 	particularResults := mutantsEvaluationsResults.
 	elapsedTime := anElapsedTime.
-	filteredTests := someTests
+	excludedTests := someTests
 ]
 
 { #category : 'testing' }

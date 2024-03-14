@@ -1,5 +1,5 @@
 Class {
-	#name : 'MTFilteredTestsPresenter',
+	#name : 'MTExcludedTestsPresenter',
 	#superclass : 'MTMutationResultsPresenter',
 	#instVars : [
 		'testCodePresenter'
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : 'initialization' }
-MTFilteredTestsPresenter >> connectPresenters [
+MTExcludedTestsPresenter >> connectPresenters [
 
 	tablePresenter whenSelectionChangedDo: [ :selection |
 		| selectedItem |
@@ -21,7 +21,7 @@ MTFilteredTestsPresenter >> connectPresenters [
 ]
 
 { #category : 'layout' }
-MTFilteredTestsPresenter >> defaultLayout [
+MTExcludedTestsPresenter >> defaultLayout [
 
 	^ SpPanedLayout newTopToBottom
 		  add: tablePresenter;
@@ -30,14 +30,14 @@ MTFilteredTestsPresenter >> defaultLayout [
 ]
 
 { #category : 'initialization' }
-MTFilteredTestsPresenter >> initializePresenters [
+MTExcludedTestsPresenter >> initializePresenters [
 
 	tablePresenter := self newTable.
 	tablePresenter
 		items: model;
 		activateOnSingleClick;
 		addColumn: (SpStringTableColumn
-				 title: 'FilteredTests'
+				 title: 'ExcludedTests'
 				 evaluated: [ :each | each key ]);
 		addColumn:
 			(SpStringTableColumn

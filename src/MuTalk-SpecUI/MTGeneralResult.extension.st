@@ -1,10 +1,10 @@
 Extension { #name : 'MTGeneralResult' }
 
 { #category : '*MuTalk-SpecUI' }
-MTGeneralResult >> filteredTestsExtension [
+MTGeneralResult >> excludedTestsExtension [
 
-	<inspectorPresentationOrder: 3 title: 'Filtered Tests'>
-	^ MTFilteredTestsPresenter on: filteredTests
+	<inspectorPresentationOrder: 3 title: 'Excluded Tests'>
+	^ MTExcludedTestsPresenter on: excludedTests
 ]
 
 { #category : '*MuTalk-SpecUI' }
