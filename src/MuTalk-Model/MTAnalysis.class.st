@@ -60,7 +60,7 @@ MTAnalysis >> defaultBudget [
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultLogger [
 
-	^ MTNullAnalysisLogger new
+	^ MTNullLogger new
 ]
 
 { #category : 'accessing - defaults' }
@@ -129,6 +129,7 @@ MTAnalysis >> generateMutations [
 MTAnalysis >> generateResults [
 
 	mutantResults := OrderedCollection new.
+	logger logStartMutationEvaluation.
 
 	mutations do: [ :aMutation |
 		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)
@@ -140,6 +141,7 @@ MTAnalysis >> generateResults [
 				  following: testSelectionStrategy
 				  andConsidering: self coverageAnalysisResult)
 				 valueStoppingOnError: stopOnErrorOrFail) ].
+	logger logEnd.
 	^ mutantResults
 ]
 
@@ -302,7 +304,7 @@ MTAnalysis >> testCasesFrom: aClassCollection [
 MTAnalysis >> testCasesReferencesFrom: testClass [
 
 	^ testClass buildSuite tests collect: [ :each |
-		  MTTestCaseReference for: each ]
+		  MTTestCaseReference for: each logger: logger ]
 ]
 
 { #category : 'accessing' }
