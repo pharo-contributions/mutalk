@@ -3,8 +3,7 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'testCase',
-		'lastTimeToRun',
-		'logger'
+		'lastTimeToRun'
 	],
 	#category : 'MuTalk-Model-Core',
 	#package : 'MuTalk-Model',
@@ -46,14 +45,6 @@ MTTestCaseReference >> defaultLogger [
 MTTestCaseReference >> hash [
 
 	^ selector hash + class hash
-]
-
-{ #category : 'initialize' }
-MTTestCaseReference >> initializeFor: aSelector in: aClass [
-
-	class := aClass.
-	selector := aSelector.
-	logger := self defaultLogger
 ]
 
 { #category : 'initialize' }
@@ -109,7 +100,7 @@ MTTestCaseReference >> run [
 { #category : 'evaluating' }
 MTTestCaseReference >> run: aTestResult [
 
-	^ self testCase run: aTestResult
+	^ testCase run: aTestResult
 ]
 
 { #category : 'evaluating' }
