@@ -2,8 +2,7 @@ Class {
 	#name : 'MTTestCaseReference',
 	#superclass : 'Object',
 	#instVars : [
-		'class',
-		'selector',
+		'testCase',
 		'lastTimeToRun',
 		'logger'
 	],
@@ -110,7 +109,6 @@ MTTestCaseReference >> run [
 { #category : 'evaluating' }
 MTTestCaseReference >> run: aTestResult [
 
-	logger logRunningTest: self.
 	^ self testCase run: aTestResult
 ]
 

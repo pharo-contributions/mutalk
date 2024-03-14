@@ -27,7 +27,7 @@ MTAnalysis class >> defaultLogger [
 	self deprecated:
 		'This method will be removed in the next version of MuTalk.
 		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ MTNullLogger new
+	^ MTAnalysisNullLogger new
 ]
 
 { #category : 'defaults' }
@@ -469,7 +469,7 @@ MTAnalysis >> defaultBudget [
 	^ MTFreeBudget new
 ]
 
-{ #category : 'defaults' }
+{ #category : 'accessing - defaults' }
 MTAnalysis >> defaultLogger [
 
 	^ MTNullLogger new
@@ -537,10 +537,7 @@ MTAnalysis >> generateMutations [
 { #category : 'running' }
 MTAnalysis >> generateResults [
 
-	| tests |
 	mutantResults := OrderedCollection new.
-	tests := testFilter filterTests: testCases.
-	logger logStartMutationEvaluation. 
 
 	mutations do: [ :aMutation |
 		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)
@@ -548,7 +545,7 @@ MTAnalysis >> generateResults [
 		logger logStartEvaluating: aMutation.
 		mutantResults add: ((MTMutantEvaluation
 				  for: aMutation
-				  using: tests
+				  using: testCases
 				  following: testSelectionStrategy
 				  andConsidering: self coverageAnalysisResult)
 				 valueStoppingOnError: stopOnErrorOrFail) ].
@@ -705,8 +702,8 @@ MTAnalysis >> testCasesFrom: aClassCollection [
 { #category : 'tests' }
 MTAnalysis >> testCasesReferencesFrom: testClass [
 
-	^ testClass allTestSelectors collect: [ :each |
-		  MTTestCaseReference for: each in: testClass logger: logger ]
+	^ testClass buildSuite tests collect: [ :each |
+		  MTTestCaseReference for: each ]
 ]
 
 { #category : 'accessing' }
