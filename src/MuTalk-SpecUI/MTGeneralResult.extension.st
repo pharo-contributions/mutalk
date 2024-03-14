@@ -1,6 +1,13 @@
 Extension { #name : 'MTGeneralResult' }
 
 { #category : '*MuTalk-SpecUI' }
+MTGeneralResult >> excludedTestsExtension [
+
+	<inspectorPresentationOrder: 3 title: 'Excluded Tests'>
+	^ MTExcludedTestsPresenter on: excludedTests
+]
+
+{ #category : '*MuTalk-SpecUI' }
 MTGeneralResult >> killedMutantsExtension [
 
 	<inspectorPresentationOrder: 1 title: 'Killed Mutants'>

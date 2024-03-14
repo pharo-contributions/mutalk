@@ -96,7 +96,10 @@ MTAnalysis >> doNotStopOnErrorOrFail [
 { #category : 'results' }
 MTAnalysis >> generalResult [
 
-	^ MTGeneralResult for: mutantResults timed: elapsedTime
+	^ MTGeneralResult
+		  for: mutantResults
+		  timed: elapsedTime
+		  excludedTests: testFilter excludedTests
 ]
 
 { #category : 'running' }
@@ -121,9 +124,9 @@ MTAnalysis >> generateMutations [
 { #category : 'running' }
 MTAnalysis >> generateResults [
 
-	| tests |
+	| filteredTests |
 	mutantResults := OrderedCollection new.
-	tests := testFilter filterTests: testCases.
+	filteredTests := testFilter filterTests: testCases.
 
 	mutations do: [ :aMutation |
 		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)
@@ -131,7 +134,7 @@ MTAnalysis >> generateResults [
 		logger logStartEvaluating: aMutation.
 		mutantResults add: ((MTMutantEvaluation
 				  for: aMutation
-				  using: tests
+				  using: filteredTests
 				  following: testSelectionStrategy
 				  andConsidering: self coverageAnalysisResult)
 				 valueStoppingOnError: stopOnErrorOrFail) ].
