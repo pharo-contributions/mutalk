@@ -1,12 +1,12 @@
 Class {
-	#name : 'MTAnalysisFileLoggerTest',
+	#name : 'MTFileLoggerTest',
 	#superclass : 'TestCase',
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
 
 { #category : 'tests' }
-MTAnalysisFileLoggerTest >> testLogFileExists [
+MTFileLoggerTest >> testLogFileExists [
 
 	| analysis logFileName logFile |
 	logFileName := 'logFileForTest.txt'.
@@ -14,7 +14,7 @@ MTAnalysisFileLoggerTest >> testLogFileExists [
 	analysis := MTAnalysis new
 		            classesToMutate: { MTAuxiliarClassForMTAnalysis };
 		            testClasses: { MTAuxiliarClassForMTAnalysisTest };
-		            logger: (MTAnalysisFileLogger toFileNamed: logFileName).
+		            logger: (MTFileLogger toFileNamed: logFileName).
 
 	analysis run.
 

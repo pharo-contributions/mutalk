@@ -60,7 +60,7 @@ MTAnalysis >> defaultBudget [
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultLogger [
 
-	^ MTNullAnalysisLogger new
+	^ MTNullLogger new
 ]
 
 { #category : 'accessing - defaults' }
@@ -105,6 +105,7 @@ MTAnalysis >> generalResult [
 { #category : 'running' }
 MTAnalysis >> generateCoverageAnalysis [
 
+	logger logStartCoverageAnalysis.
 	coverageAnalysisResult := (MTCoverageAnalysis
 		                           for: self modelClasses
 		                           running: testCases)
@@ -115,16 +116,20 @@ MTAnalysis >> generateCoverageAnalysis [
 { #category : 'running' }
 MTAnalysis >> generateMutations [
 
+	logger logStartMutationGeneration.
 	^ mutations ifNil: [
 		  mutations := mutantSelectionStrategy
 			               mutationsFor: self
-			               loggingIn: logger ]
+			               loggingIn: logger.
+		  logger logTotalNumberOfMutations: mutations.
+		  mutations ]
 ]
 
 { #category : 'running' }
 MTAnalysis >> generateResults [
 
 	mutantResults := OrderedCollection new.
+	logger logStartMutationEvaluation.
 
 	mutations do: [ :aMutation |
 		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)
@@ -136,6 +141,7 @@ MTAnalysis >> generateResults [
 				  following: testSelectionStrategy
 				  andConsidering: self coverageAnalysisResult)
 				 valueStoppingOnError: stopOnErrorOrFail) ].
+	logger logEnd.
 	^ mutantResults
 ]
 
@@ -173,6 +179,8 @@ MTAnalysis >> logger [
 { #category : 'accessing' }
 MTAnalysis >> logger: anObject [
 
+	testCases do: [ :testCaseReference |
+		testCaseReference logger: anObject ].
 	logger := anObject
 ]
 
@@ -296,7 +304,7 @@ MTAnalysis >> testCasesFrom: aClassCollection [
 MTAnalysis >> testCasesReferencesFrom: testClass [
 
 	^ testClass buildSuite tests collect: [ :each |
-		  MTTestCaseReference for: each ]
+		  MTTestCaseReference for: each logger: logger ]
 ]
 
 { #category : 'accessing' }

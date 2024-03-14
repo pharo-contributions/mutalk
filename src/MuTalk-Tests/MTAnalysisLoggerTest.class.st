@@ -9,7 +9,7 @@ Class {
 MTAnalysisLoggerTest >> testExecutingSimpleMutation [
 
 	| analysis logger operator |
-	logger := MTMockMTAnalysisLogger new.
+	logger := MTMockAnalysisLogger new.
 	operator := MTReplacePlusWithMinusMutantOperator new.
 	analysis := MTAnalysis new
 		            testClasses:
