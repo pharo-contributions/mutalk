@@ -49,6 +49,12 @@ MTTestFilter >> excludedTestsFrom: aTestCaseCollection [
 	^ self subclassResponsibility
 ]
 
+{ #category : 'testing' }
+MTTestFilter >> failuresOrErrorsIn: result [
+
+	^ result failures isNotEmpty or: [ result unexpectedErrorCount > 0 ]
+]
+
 { #category : 'enumerating' }
 MTTestFilter >> filterTests: aTestCaseCollection [
 
@@ -79,4 +85,18 @@ MTTestFilter >> filteredTests: anObject [
 MTTestFilter >> filteredTestsFrom: aTestCaseCollection [
 
 	^ self subclassResponsibility
+]
+
+{ #category : 'testing' }
+MTTestFilter >> unwantedFailuresOrErrorsIn: results [
+	"Checks if the results contain failures or errors while they shouldn't"
+
+	^ results anySatisfy: [ :result | self failuresOrErrorsIn: result ]
+]
+
+{ #category : 'checking' }
+MTTestFilter >> validateFailuresIn: results [
+
+	(self unwantedFailuresOrErrorsIn: results) ifTrue: [
+		MTTestsWithErrorsException signal ]
 ]

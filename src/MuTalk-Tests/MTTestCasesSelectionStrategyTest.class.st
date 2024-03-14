@@ -20,6 +20,7 @@ MTTestCasesSelectionStrategyTest >> allTestsFromPackage [
 			   MTAuxiliarClassForTimeTestFilterTest.
 			   MTAuxiliarTestClassForBlockTestFilter.
 			   MTAuxiliarTestClassForPragmaTestFilter.
+			   MTAuxiliarTestClassForRedTestFilter.
 			   MTAuxiliarParametrizedTestClass })
 		  inject: OrderedCollection new
 		  into: [ :tests :testClass |

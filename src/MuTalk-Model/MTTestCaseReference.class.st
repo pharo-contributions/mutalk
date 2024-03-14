@@ -3,7 +3,8 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'testCase',
-		'lastTimeToRun'
+		'lastTimeToRun',
+		'lastResult'
 	],
 	#category : 'MuTalk-Model-Core',
 	#package : 'MuTalk-Model',
@@ -38,6 +39,18 @@ MTTestCaseReference >> initializeFor: aTestCase [
 ]
 
 { #category : 'accessing' }
+MTTestCaseReference >> lastResult [
+
+	^ lastResult
+]
+
+{ #category : 'accessing' }
+MTTestCaseReference >> lastResult: anObject [
+
+	lastResult := anObject
+]
+
+{ #category : 'accessing' }
 MTTestCaseReference >> lastTimeToRun [
 
 	^ lastTimeToRun
@@ -63,35 +76,15 @@ MTTestCaseReference >> resources [
 
 { #category : 'evaluating' }
 MTTestCaseReference >> run [
-	"kept for retrocompatibility"
-	
-	self deprecated: 'Use #runChecked instead.' transformWith: '`@receiver run' -> '`@receiver runChecked'.
-	^ self runChecked
+
+	lastTimeToRun := [ lastResult := self testCase run ] timeToRun.
+	^ lastResult
 ]
 
 { #category : 'evaluating' }
 MTTestCaseReference >> run: aTestResult [
 
 	^ testCase run: aTestResult
-]
-
-{ #category : 'evaluating' }
-MTTestCaseReference >> runChecked [
-
-	| result |
-	result := self runUnchecked.
-	(result unexpectedFailureCount > 0 or: [
-		 result unexpectedErrorCount > 0 ]) ifTrue: [
-		MTTestsWithErrorsException signal ].
-	^ result
-]
-
-{ #category : 'evaluating' }
-MTTestCaseReference >> runUnchecked [
-
-	| result |
-	lastTimeToRun := [ result := testCase run ] timeToRun.
-	^ result
 ]
 
 { #category : 'accessing' }
