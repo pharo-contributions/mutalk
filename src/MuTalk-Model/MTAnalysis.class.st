@@ -96,7 +96,10 @@ MTAnalysis >> doNotStopOnErrorOrFail [
 { #category : 'results' }
 MTAnalysis >> generalResult [
 
-	^ MTGeneralResult for: mutantResults timed: elapsedTime
+	^ MTGeneralResult
+		  for: mutantResults
+		  timed: elapsedTime
+		  excludedTests: testFilter excludedTests
 ]
 
 { #category : 'running' }
