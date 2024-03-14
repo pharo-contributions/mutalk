@@ -21,418 +21,6 @@ Class {
 	#tag : 'Core'
 }
 
-{ #category : 'defaults' }
-MTAnalysis class >> defaultLogger [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ MTNullAnalysisLogger new
-]
-
-{ #category : 'defaults' }
-MTAnalysis class >> defaultMutantSelectionStrategy [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ MTAllMutantSelectionStrategy new
-]
-
-{ #category : 'defaults' }
-MTAnalysis class >> defaultMutationTestingBudget [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ MTFreeBudget new
-]
-
-{ #category : 'defaults' }
-MTAnalysis class >> defaultTestSelectionStrategy [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ MTAllTestsMethodsRunningTestSelectionStrategy new
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> for: testCases mutating: classes using: operatorCollection [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: testCases
-		  mutating: classes
-		  using: operatorCollection
-		  with: self defaultTestSelectionStrategy
-		  with: self defaultMutantSelectionStrategy
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> for: testCases mutating: classes using: operatorCollection budget: aBudget [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: testCases
-		  mutating: classes
-		  using: operatorCollection
-		  with: self defaultTestSelectionStrategy
-		  with: self defaultMutantSelectionStrategy
-		  budget: aBudget
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> for: testCases mutating: classes using: operatorCollection loggingIn: aLogger [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: testCases
-		  mutating: classes
-		  using: operatorCollection
-		  with: self defaultTestSelectionStrategy
-		  with: self defaultMutantSelectionStrategy
-		  loggingIn: aLogger
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> for: testCases mutating: classes using: operatorCollection loggingIn: aLogger budget: aBudget [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: testCases
-		  mutating: classes
-		  using: operatorCollection
-		  with: self defaultTestSelectionStrategy
-		  with: self defaultMutantSelectionStrategy
-		  loggingIn: aLogger
-		  budget: aBudget
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantEvaluationStrategy [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: testCases
-		  mutating: classes
-		  using: operatorCollection
-		  with: aMutantEvaluationStrategy
-		  with: self defaultMutantSelectionStrategy
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantEvaluationStrategy budget: aBudget [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: testCases
-		  mutating: classes
-		  using: operatorCollection
-		  with: aMutantEvaluationStrategy
-		  with: self defaultMutantSelectionStrategy
-		  budget: aBudget
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantEvaluationStrategy loggingIn: aLogger [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: testCases
-		  mutating: classes
-		  using: operatorCollection
-		  with: aMutantEvaluationStrategy
-		  with: self defaultMutantSelectionStrategy
-		  loggingIn: aLogger
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantEvaluationStrategy loggingIn: aLogger budget: aBudget [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: testCases
-		  mutating: classes
-		  using: operatorCollection
-		  with: aMutantEvaluationStrategy
-		  with: self defaultMutantSelectionStrategy
-		  loggingIn: aLogger
-		  budget: aBudget
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantsEvaluationStrategy with: aMutationsGenerationStrategy [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: testCases
-		  mutating: classes
-		  using: operatorCollection
-		  with: aMutantsEvaluationStrategy
-		  with: aMutationsGenerationStrategy
-		  loggingIn: self defaultLogger
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantsEvaluationStrategy with: aMutationsGenerationStrategy budget: aBudget [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: testCases
-		  mutating: classes
-		  using: operatorCollection
-		  with: aMutantsEvaluationStrategy
-		  with: aMutationsGenerationStrategy
-		  loggingIn: self defaultLogger
-		  budget: aBudget
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantsEvaluationStrategy with: aMutationsGenerationStrategy loggingIn: aLogger [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: testCases
-		  mutating: classes
-		  using: operatorCollection
-		  with: aMutantsEvaluationStrategy
-		  with: aMutationsGenerationStrategy
-		  loggingIn: aLogger
-		  budget: self defaultMutationTestingBudget
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> for: testCases mutating: classes using: operatorCollection with: aMutantsEvaluationStrategy with: aMutationsGenerationStrategy loggingIn: aLogger budget: aBudget [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self new
-		  testCases: testCases;
-		  classesToMutate: classes;
-		  operators: operatorCollection;
-		  testSelectionStrategy: aMutantsEvaluationStrategy;
-		  mutantSelectionStrategy: aMutationsGenerationStrategy;
-		  logger: aLogger;
-		  budget: aBudget;
-		  yourself
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> testCasesFrom: testClasses [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ testClasses
-		  inject: OrderedCollection new
-		  into: [ :testCases :testClass |
-			  testClass isAbstract ifFalse: [
-				  testCases addAll: (self testCasesReferencesFrom: testClass) ].
-			  testCases ]
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: (self testCasesFrom: testClasses)
-		  mutating: classes
-		  using: operatorCollection
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection budget: aBudget [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: (self testCasesFrom: testClasses)
-		  mutating: classes
-		  using: operatorCollection
-		  budget: aBudget
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection logginIn: aLogger [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: (self testCasesFrom: testClasses)
-		  mutating: classes
-		  using: operatorCollection
-		  loggingIn: aLogger
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection logginIn: aLogger budget: aBudget [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: (self testCasesFrom: testClasses)
-		  mutating: classes
-		  using: operatorCollection
-		  loggingIn: aLogger
-		  budget: aBudget
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection with: anEvaluationStrategy [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: (self testCasesFrom: testClasses)
-		  mutating: classes
-		  using: operatorCollection
-		  with: anEvaluationStrategy
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection with: anEvaluationStrategy budget: aBudget [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: (self testCasesFrom: testClasses)
-		  mutating: classes
-		  using: operatorCollection
-		  with: anEvaluationStrategy
-		  budget: aBudget
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection with: anEvaluationStrategy loggingIn: aLogger [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: (self testCasesFrom: testClasses)
-		  mutating: classes
-		  using: operatorCollection
-		  with: anEvaluationStrategy
-		  loggingIn: aLogger
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection with: anEvaluationStrategy loggingIn: aLogger budget: aBudget [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: (self testCasesFrom: testClasses)
-		  mutating: classes
-		  using: operatorCollection
-		  with: anEvaluationStrategy
-		  loggingIn: aLogger
-		  budget: aBudget
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection with: anEvaluationStrategy with: aGenerationStrategy [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: (self testCasesFrom: testClasses)
-		  mutating: classes
-		  using: operatorCollection
-		  with: anEvaluationStrategy
-		  with: aGenerationStrategy
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection with: anEvaluationStrategy with: aGenerationStrategy budget: aBudget [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: (self testCasesFrom: testClasses)
-		  mutating: classes
-		  using: operatorCollection
-		  with: anEvaluationStrategy
-		  with: aGenerationStrategy
-		  budget: aBudget
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection with: anEvaluationStrategy with: aGenerationStrategy loggingIn: aLogger [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: (self testCasesFrom: testClasses)
-		  mutating: classes
-		  using: operatorCollection
-		  with: anEvaluationStrategy
-		  with: aGenerationStrategy
-		  loggingIn: aLogger
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> testCasesFrom: testClasses mutating: classes using: operatorCollection with: anEvaluationStrategy with: aGenerationStrategy loggingIn: aLogger budget: aBudget [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ self
-		  for: (self testCasesFrom: testClasses)
-		  mutating: classes
-		  using: operatorCollection
-		  with: anEvaluationStrategy
-		  with: aGenerationStrategy
-		  loggingIn: aLogger
-		  budget: aBudget
-]
-
-{ #category : 'instance creation' }
-MTAnalysis class >> testCasesReferencesFrom: testClass [
-
-	self deprecated:
-		'This method will be removed in the next version of MuTalk.
-		To create an instance of `MutationTestingAnalysis`, please refer to `MutationTestingAnalysisBuilder` instead.'.
-	^ testClass allTestSelectors collect: [ :each |
-		  MTTestCaseReference for: each in: testClass ]
-]
-
 { #category : 'accessing' }
 MTAnalysis >> budget [
 
@@ -508,7 +96,10 @@ MTAnalysis >> doNotStopOnErrorOrFail [
 { #category : 'results' }
 MTAnalysis >> generalResult [
 
-	^ MTGeneralResult for: mutantResults timed: elapsedTime
+	^ MTGeneralResult
+		  for: mutantResults
+		  timed: elapsedTime
+		  excludedTests: testFilter excludedTests
 ]
 
 { #category : 'running' }
@@ -554,10 +145,12 @@ MTAnalysis >> generateResults [
 
 { #category : 'running' }
 MTAnalysis >> initialTestRun [
-	"Do an initial run of the tests to check that they are all green.
-	Only green tests count for the mutation testing analysis"
+	"Runs all tests once and filters them"
 
-	testCases do: [ :aTestCase | aTestCase runChecked ]
+	| results |
+	results := testCases collect: [ :aTestCase | aTestCase run ].
+	testFilter validateFailuresIn: results.
+	testCases := testFilter filterTests: testCases
 ]
 
 { #category : 'initialization' }
@@ -638,6 +231,13 @@ MTAnalysis >> operators [
 MTAnalysis >> operators: anObject [
 
 	operators := anObject
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> packageToMutate: aCollectionOfPackages [
+
+	modelClasses := aCollectionOfPackages flatCollect: [ :packageName |
+		                packageName asPackage definedClasses ]
 ]
 
 { #category : 'running' }
@@ -721,6 +321,16 @@ MTAnalysis >> testFilter [
 MTAnalysis >> testFilter: anObject [
 
 	testFilter := anObject
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> testPackages: aCollectionOfPackages [
+
+	| testClasses |
+	testClasses := aCollectionOfPackages flatCollect: [ :packageName |
+		               packageName asPackage definedClasses select:
+			               #isTestCase ].
+	self testClasses: testClasses
 ]
 
 { #category : 'accessing' }

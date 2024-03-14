@@ -12,19 +12,15 @@ Class {
 }
 
 { #category : 'instance creation' }
-MTTestCaseReference class >> for: aSelector in: aClass [ 
-	^self new initializeFor: aSelector in: aClass
+MTTestCaseReference class >> for: aTestCase [
+
+	^ self new initializeFor: aTestCase
 ]
 
 { #category : 'instance creation' }
 MTTestCaseReference class >> for: aSelector in: aClass logger: aLogger [
 
 	^ self new initializeFor: aSelector in: aClass logger: aLogger
-]
-
-{ #category : 'instance creation' }
-MTTestCaseReference class >> forTestCase: aTestCase [ 
-	^self for: aTestCase selector in: aTestCase class
 ]
 
 { #category : 'comparing' }
@@ -45,7 +41,13 @@ MTTestCaseReference >> defaultLogger [
 { #category : 'comparing' }
 MTTestCaseReference >> hash [
 
-	^ selector hash + class hash
+	^ testCase selector hash + testCase class hash
+]
+
+{ #category : 'initialize' }
+MTTestCaseReference >> initializeFor: aTestCase [
+
+	testCase := aTestCase
 ]
 
 { #category : 'initialize' }
@@ -57,7 +59,20 @@ MTTestCaseReference >> initializeFor: aSelector in: aClass logger: aLogger [
 ]
 
 { #category : 'accessing' }
+MTTestCaseReference >> lastResult [
+
+	^ lastResult
+]
+
+{ #category : 'accessing' }
+MTTestCaseReference >> lastResult: anObject [
+
+	lastResult := anObject
+]
+
+{ #category : 'accessing' }
 MTTestCaseReference >> lastTimeToRun [
+
 	^ lastTimeToRun
 ]
 
@@ -75,27 +90,27 @@ MTTestCaseReference >> logger: anObject [
 
 { #category : 'accessing' }
 MTTestCaseReference >> method [
-	
-	^ class >> selector
+
+	^ testCase class >> testCase selector
 ]
 
 { #category : 'printing' }
 MTTestCaseReference >> printOn: aStream [
 
-	aStream nextPutAll: (aStream print: self testCase)
+	aStream nextPutAll: (aStream print: testCase)
 ]
 
 { #category : 'evaluating' }
 MTTestCaseReference >> resources [
-	^self testCase resources
+
+	^ testCase resources
 ]
 
 { #category : 'evaluating' }
 MTTestCaseReference >> run [
-	"kept for retrocompatibility"
-	
-	self deprecated: 'Use #runChecked instead.' transformWith: '`@receiver run' -> '`@receiver runChecked'.
-	^ self runChecked
+
+	lastTimeToRun := [ lastResult := self testCase run ] timeToRun.
+	^ lastResult
 ]
 
 { #category : 'evaluating' }
@@ -104,36 +119,20 @@ MTTestCaseReference >> run: aTestResult [
 	^ testCase run: aTestResult
 ]
 
-{ #category : 'evaluating' }
-MTTestCaseReference >> runChecked [
-	| result |	
-	result := self runUnchecked.
-	(result unexpectedFailureCount > 0 or: [ result unexpectedErrorCount > 0 ])
-		ifTrue: [ MTTestsWithErrorsException signal ].
-	^ result
-]
-
-{ #category : 'evaluating' }
-MTTestCaseReference >> runUnchecked [
-
-	| result |
-	lastTimeToRun := [ result := self testCase run ] timeToRun.
-	^ result
-]
-
 { #category : 'accessing' }
 MTTestCaseReference >> selector [
 
-	^ selector
+	^ testCase selector
 ]
 
 { #category : 'evaluating' }
 MTTestCaseReference >> testCase [
-	^class selector: selector.
+
+	^ testCase
 ]
 
 { #category : 'accessing' }
 MTTestCaseReference >> testCaseClass [
 
-	^ class
+	^ testCase class
 ]

@@ -14,12 +14,12 @@ MTTestCaseReferenceTest >> test1 [
 MTTestCaseReferenceTest >> testATestReferenceResult [
 	| testReference |
 	testReference := self testReferenceForTest1.
-	self assert: testReference runUnchecked errors isEmpty.
+	self assert: testReference run errors isEmpty.
 	
 ]
 
 { #category : 'resources' }
 MTTestCaseReferenceTest >> testReferenceForTest1 [
 
-	^ MTTestCaseReference for: #test1 in: self class
+	^ MTTestCaseReference for: (self class selector: #test1)
 ]

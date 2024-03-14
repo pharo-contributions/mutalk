@@ -60,6 +60,17 @@ MTAnalysisTest >> selectForRejectReplacementMutation [
 ]
 
 { #category : 'tests' }
+MTAnalysisTest >> testCorrectNumberOfTestCasesWithParametrizedTestCase [
+
+	| analysis |
+	analysis := MTAnalysis new
+		            testClasses: { MTAuxiliarParametrizedTestClass };
+		            classesToMutate: {  }.
+
+	self assert: analysis testCases size equals: 3
+]
+
+{ #category : 'tests' }
 MTAnalysisTest >> testDefaultParameters [
 
 	| analysis |

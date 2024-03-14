@@ -25,5 +25,5 @@ MTTestCasesSelectionStrategy >> testCasesFromReferencies: aTestReferenceCollecti
 		             testReference testCase ].
 	selectedTestCases := self testCasesFor: testCases.
 	^ selectedTestCases collect: [ :testCase |
-		  MTTestCaseReference forTestCase: testCase ]
+		  MTTestCaseReference for: testCase ]
 ]
