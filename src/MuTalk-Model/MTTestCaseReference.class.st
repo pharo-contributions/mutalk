@@ -3,7 +3,8 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'testCase',
-		'lastTimeToRun'
+		'lastTimeToRun',
+		'lastResult'
 	],
 	#category : 'MuTalk-Model-Core',
 	#package : 'MuTalk-Model',
