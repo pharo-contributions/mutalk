@@ -17,10 +17,10 @@ MTTimeTestFilterTest >> runAnalysisForTimeCondition: aDuration [
 { #category : 'tests' }
 MTTimeTestFilterTest >> testWith10MillisecondsCondition [
 
-	| testCaseReference result |
-	testCaseReference := MTTestCaseReference
-		                     for: #test10Milliseconds
-		                     in: MTAuxiliarClassForTimeTestFilterTest.
+	| testCaseReference result testCase |
+	testCase := MTAuxiliarClassForTimeTestFilterTest selector:
+		            #test10Milliseconds.
+	testCaseReference := MTTestCaseReference for: testCase.
 	self runAnalysisForTimeCondition:
 		(self timeToRunFor: testCaseReference) * 10.
 	result := analysis generalResult particularResults at: 1.
@@ -34,10 +34,10 @@ MTTimeTestFilterTest >> testWith10MillisecondsCondition [
 { #category : 'tests' }
 MTTimeTestFilterTest >> testWith1SecondCondition [
 
-	| testCaseReference |
-	testCaseReference := MTTestCaseReference
-		                     for: #test1Second
-		                     in: MTAuxiliarClassForTimeTestFilterTest.
+	| testCaseReference testCase |
+	testCase := MTAuxiliarClassForTimeTestFilterTest selector:
+		            #test1Second.
+	testCaseReference := MTTestCaseReference for: testCase.
 	self runAnalysisForTimeCondition:
 		(self timeToRunFor: testCaseReference) * 10.
 

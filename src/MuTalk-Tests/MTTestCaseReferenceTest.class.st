@@ -21,5 +21,5 @@ MTTestCaseReferenceTest >> testATestReferenceResult [
 { #category : 'resources' }
 MTTestCaseReferenceTest >> testReferenceForTest1 [
 
-	^ MTTestCaseReference for: #test1 in: self class
+	^ MTTestCaseReference for: (self class selector: #test1)
 ]
