@@ -1,31 +1,30 @@
 Class {
-	#name : 'MTReplaceIfTrueIfFalseReceiverWithTrueOperatorTest',
-	#superclass : 'MTParseRewriterMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTReplaceIfTrueIfFalseReceiverWithTrueOperatorTest,
+	#superclass : #MTParseRewriterMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfTrueIfFalseReceiverWithTrueOperatorTest >> methodWithNoSenders [  
 	 1 + 2.
 	^ true ifTrue:[1].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfTrueIfFalseReceiverWithTrueOperatorTest >> methodWithOneSender [
 	1 = 2
 		ifTrue: [^ 1]
 		ifFalse: [^ 8]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfTrueIfFalseReceiverWithTrueOperatorTest >> methodWithOneSenderModified [
 	true
 		ifTrue: [^ 1]
 		ifFalse: [^ 8]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfTrueIfFalseReceiverWithTrueOperatorTest >> methodWithTwoSenders [
 	|a|
 	a := (1 = 1) ifTrue: [1] ifFalse:[8].
@@ -33,21 +32,21 @@ MTReplaceIfTrueIfFalseReceiverWithTrueOperatorTest >> methodWithTwoSenders [
 	
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfTrueIfFalseReceiverWithTrueOperatorTest >> methodWithTwoSendersModifiedFirst [
 	|a|
 	a := true ifTrue: [1] ifFalse:[8].
 	^(1 = 2) ifTrue: [a + 1] ifFalse: [a + 8].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfTrueIfFalseReceiverWithTrueOperatorTest >> methodWithTwoSendersModifiedSecond [
 	|a|
 	a := (1 = 1) ifTrue: [1] ifFalse:[8].
 	^true ifTrue: [a + 1] ifFalse: [a + 8].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfTrueIfFalseReceiverWithTrueOperatorTest >> operator [
 	^ MTReplaceIfTrueIfFalseReceiverWithTrueOperator new
 ]

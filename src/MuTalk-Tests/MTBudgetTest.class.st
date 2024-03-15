@@ -1,20 +1,19 @@
 Class {
-	#name : 'MTBudgetTest',
-	#superclass : 'TestCase',
+	#name : #MTBudgetTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'analysis'
 	],
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTBudgetTest class >> isAbstract [
 
 	^ self == MTBudgetTest
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTBudgetTest >> runAnalysisFor: aBudget [
 
 	^ self
@@ -23,7 +22,7 @@ MTBudgetTest >> runAnalysisFor: aBudget [
 		  withTests: { MTAuxiliarClassForMTAnalysisTest }
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests: testCases [
 
 	analysis := MTAnalysis new

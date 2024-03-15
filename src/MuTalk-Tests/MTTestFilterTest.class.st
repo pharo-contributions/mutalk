@@ -1,20 +1,19 @@
 Class {
-	#name : 'MTTestFilterTest',
-	#superclass : 'TestCase',
+	#name : #MTTestFilterTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'analysis'
 	],
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTTestFilterTest class >> isAbstract [
 
 	^ self == MTTestFilterTest
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTTestFilterTest >> runAnalysisWithFilter: aTestFilter on: classesToMutate withTests: testCases [
 
 	analysis := MTAnalysis new

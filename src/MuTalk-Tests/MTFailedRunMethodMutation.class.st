@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTFailedRunMethodMutation',
-	#superclass : 'MTMethodMutation',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTFailedRunMethodMutation,
+	#superclass : #MTMethodMutation,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'private' }
+{ #category : #private }
 MTFailedRunMethodMutation >> runTestsStoppingOnError: aBoolean [
 
 	self error

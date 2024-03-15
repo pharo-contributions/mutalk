@@ -5,8 +5,19 @@ Class {
 }
 
 { #category : #enumerating }
-MTPragmaRejectionTestFilter >> filterTests: aTestCaseCollection [
+MTPragmaRejectionTestFilter >> excludedTestsFrom: aTestCaseCollection [
 
-	^ aTestCaseCollection reject: [ :testCaseReference |
-		  self isPragmaValidFrom: testCaseReference ]
+	^ self selectPragmaInTestCollection: aTestCaseCollection
+]
+
+{ #category : #enumerating }
+MTPragmaRejectionTestFilter >> filteredTestsFrom: aTestCaseCollection [
+
+	^ self rejectPragmaInTestCollection: aTestCaseCollection
+]
+
+{ #category : #accessing }
+MTPragmaRejectionTestFilter >> reasonString [
+
+	^ 'Contains the pragma <' , condition
 ]

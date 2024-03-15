@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTTimeTestFilterTest',
-	#superclass : 'MTTestFilterTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTTimeTestFilterTest,
+	#superclass : #MTTestFilterTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'running' }
+{ #category : #running }
 MTTimeTestFilterTest >> runAnalysisForTimeCondition: aDuration [
 
 	self
@@ -14,13 +13,13 @@ MTTimeTestFilterTest >> runAnalysisForTimeCondition: aDuration [
 		withTests: { MTAuxiliarClassForTimeTestFilterTest }
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTTimeTestFilterTest >> testWith10MillisecondsCondition [
 
-	| testCaseReference result |
-	testCaseReference := MTTestCaseReference
-		                     for: #test10Milliseconds
-		                     in: MTAuxiliarClassForTimeTestFilterTest.
+	| testCaseReference result testCase |
+	testCase := MTAuxiliarClassForTimeTestFilterTest selector:
+		            #test10Milliseconds.
+	testCaseReference := MTTestCaseReference for: testCase.
 	self runAnalysisForTimeCondition:
 		(self timeToRunFor: testCaseReference) * 10.
 	result := analysis generalResult particularResults at: 1.
@@ -31,13 +30,13 @@ MTTimeTestFilterTest >> testWith10MillisecondsCondition [
 		equals: #test10Milliseconds
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTTimeTestFilterTest >> testWith1SecondCondition [
 
-	| testCaseReference |
-	testCaseReference := MTTestCaseReference
-		                     for: #test1Second
-		                     in: MTAuxiliarClassForTimeTestFilterTest.
+	| testCaseReference testCase |
+	testCase := MTAuxiliarClassForTimeTestFilterTest selector:
+		            #test1Second.
+	testCaseReference := MTTestCaseReference for: testCase.
 	self runAnalysisForTimeCondition:
 		(self timeToRunFor: testCaseReference) * 10.
 
@@ -46,9 +45,9 @@ MTTimeTestFilterTest >> testWith1SecondCondition [
 		equals: 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTTimeTestFilterTest >> timeToRunFor: aTestCaseReference [
 
-	aTestCaseReference runUnchecked.
+	aTestCaseReference run.
 	^ aTestCaseReference lastTimeToRun
 ]

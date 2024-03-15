@@ -1,29 +1,28 @@
 Class {
-	#name : 'MTMessageSendToYourselfOperatorTest',
-	#superclass : 'MTPredicateBasedMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTMessageSendToYourselfOperatorTest,
+	#superclass : #MTPredicateBasedMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendToYourselfOperatorTest >> methodWithNoSenders [
 
 	^ 1
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendToYourselfOperatorTest >> methodWithOneSender [
 
 	self operator
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendToYourselfOperatorTest >> methodWithOneSenderModified [
 
 	self yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendToYourselfOperatorTest >> methodWithTwoSenders [
 
 	| dict |
@@ -31,7 +30,7 @@ MTMessageSendToYourselfOperatorTest >> methodWithTwoSenders [
 	dict at: 1 put: 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendToYourselfOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	| dict |
@@ -39,7 +38,7 @@ MTMessageSendToYourselfOperatorTest >> methodWithTwoSendersModifiedFirst [
 	dict at: 1 put: 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendToYourselfOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	| dict |
@@ -47,7 +46,7 @@ MTMessageSendToYourselfOperatorTest >> methodWithTwoSendersModifiedSecond [
 	dict yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendToYourselfOperatorTest >> newNodeOneSender [
 
 	^ RBSequenceNode statements: { (RBMessageNode
@@ -55,7 +54,7 @@ MTMessageSendToYourselfOperatorTest >> newNodeOneSender [
 			   selector: #yourself) }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendToYourselfOperatorTest >> newNodeTwoSendersFirst [ 
 
 	^ RBSequenceNode statements: { (RBMessageNode
@@ -63,7 +62,7 @@ MTMessageSendToYourselfOperatorTest >> newNodeTwoSendersFirst [
 			   selector: #yourself) }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendToYourselfOperatorTest >> newNodeTwoSendersSecond [
 
 	^ RBSequenceNode statements: { (RBMessageNode
@@ -71,7 +70,7 @@ MTMessageSendToYourselfOperatorTest >> newNodeTwoSendersSecond [
 			   selector: #yourself) }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendToYourselfOperatorTest >> operator [
 
 	^ MTMessageSendToYourselfOperator new

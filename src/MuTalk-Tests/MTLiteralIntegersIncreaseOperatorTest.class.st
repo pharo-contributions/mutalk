@@ -2,67 +2,66 @@
 A LiteralIntegersIncreaseOperatorTest is a test class for testing the behavior of LiteralIntegersIncreaseOperator
 "
 Class {
-	#name : 'MTLiteralIntegersIncreaseOperatorTest',
-	#superclass : 'MTPredicateBasedMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTLiteralIntegersIncreaseOperatorTest,
+	#superclass : #MTPredicateBasedMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTLiteralIntegersIncreaseOperatorTest >> methodWithNoSenders [
 
 	^ Dictionary new at: #hello put: 'Hi'
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTLiteralIntegersIncreaseOperatorTest >> methodWithOneSender [
 
 	^ Dictionary new at: 1 ifAbsent: [ self error: 'hi' ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTLiteralIntegersIncreaseOperatorTest >> methodWithOneSenderModified [
 
 	^ Dictionary new at: 2 ifAbsent: [ self error: 'hi' ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTLiteralIntegersIncreaseOperatorTest >> methodWithTwoSenders [
 
 	^ 1 >= 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTLiteralIntegersIncreaseOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	^ 2 >= 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTLiteralIntegersIncreaseOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	^ 1 >= 3
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTLiteralIntegersIncreaseOperatorTest >> newNodeOneSender [
 
 	^ RBLiteralValueNode value: 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTLiteralIntegersIncreaseOperatorTest >> newNodeTwoSendersFirst [
 
 	^ RBLiteralValueNode value: 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTLiteralIntegersIncreaseOperatorTest >> newNodeTwoSendersSecond [
 
 	^ RBLiteralValueNode value: 3
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTLiteralIntegersIncreaseOperatorTest >> operator [
 
 	^ MTLiteralIntegersIncreaseOperator new

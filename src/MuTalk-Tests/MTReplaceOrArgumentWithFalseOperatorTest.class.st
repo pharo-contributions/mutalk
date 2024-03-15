@@ -1,41 +1,40 @@
 Class {
-	#name : 'MTReplaceOrArgumentWithFalseOperatorTest',
-	#superclass : 'MTParseRewriterMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTReplaceOrArgumentWithFalseOperatorTest,
+	#superclass : #MTParseRewriterMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceOrArgumentWithFalseOperatorTest >> methodWithNoSenders [  
 	^ true and: [false]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceOrArgumentWithFalseOperatorTest >> methodWithOneSender [  
 	^ true or: [true]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceOrArgumentWithFalseOperatorTest >> methodWithOneSenderModified [
 	^ true or: [false]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceOrArgumentWithFalseOperatorTest >> methodWithTwoSenders [  
 	^ true or: [true or: [true]]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceOrArgumentWithFalseOperatorTest >> methodWithTwoSendersModifiedFirst [
 	^ true or: [false]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceOrArgumentWithFalseOperatorTest >> methodWithTwoSendersModifiedSecond [
 	^ true or: [true or: [false]]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceOrArgumentWithFalseOperatorTest >> operator [
 	^ MTReplaceOrArgumentWithFalseOperator new
 ]

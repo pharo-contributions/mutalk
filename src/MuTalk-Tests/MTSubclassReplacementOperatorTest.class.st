@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTSubclassReplacementOperatorTest',
-	#superclass : 'MTPredicateBasedMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTSubclassReplacementOperatorTest,
+	#superclass : #MTPredicateBasedMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'asserts' }
+{ #category : #asserts }
 MTSubclassReplacementOperatorTest >> assertApplyingMutantWithFirstSubclassInClassWithManySubclassesMethod [
 
 	^ self
@@ -19,7 +18,7 @@ MTSubclassReplacementOperatorTest >> assertApplyingMutantWithFirstSubclassInClas
 		  replacingSelector: #methodUsingClassWithManySubclasses
 ]
 
-{ #category : 'asserts' }
+{ #category : #asserts }
 MTSubclassReplacementOperatorTest >> assertApplyingMutantWithSecondSubclassInClassWithManySubclassesMethod [
 
 	^ self
@@ -33,7 +32,7 @@ MTSubclassReplacementOperatorTest >> assertApplyingMutantWithSecondSubclassInCla
 		  replacingSelector: #methodUsingClassWithManySubclasses
 ]
 
-{ #category : 'asserts' }
+{ #category : #asserts }
 MTSubclassReplacementOperatorTest >> assertApplyingMutantWithThirdSubclassInClassWithManySubclassesMethod [
 
 	^ self
@@ -47,55 +46,55 @@ MTSubclassReplacementOperatorTest >> assertApplyingMutantWithThirdSubclassInClas
 		  replacingSelector: #methodUsingClassWithManySubclasses
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSubclassReplacementOperatorTest >> methodUsingClassWithManySubclasses [
 
 	| object |
 	object := MTAuxiliarClassForSubclassReplacementWithManySubclasses new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSubclassReplacementOperatorTest >> methodUsingClassWithManySubclassesModifiedFirst [
 
 	| object |
 	object := MTAuxiliarSubclass1ForSubclassReplacementWithManySubclasses new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSubclassReplacementOperatorTest >> methodUsingClassWithManySubclassesModifiedSecond [
 
 	| object |
 	object := MTAuxiliarSubclass2ForSubclassReplacementWithManySubclasses new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSubclassReplacementOperatorTest >> methodUsingClassWithManySubclassesModifiedThird [
 
 	| object |
 	object := MTAuxiliarSubclass3ForSubclassReplacementWithManySubclasses new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSubclassReplacementOperatorTest >> methodWithNoSenders [
 
 	^ 1 + 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSubclassReplacementOperatorTest >> methodWithOneSender [
 
 	| object |
 	object := MTAuxiliarClassForSubclassReplacementOperator new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSubclassReplacementOperatorTest >> methodWithOneSenderModified [
 
 	| object |
 	object := MTAuxiliarSubclassForSubclassReplacementOperator new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSubclassReplacementOperatorTest >> methodWithTwoSenders [
 
 	| object |
@@ -103,7 +102,7 @@ MTSubclassReplacementOperatorTest >> methodWithTwoSenders [
 	object := MTAuxiliarClassForSubclassReplacementOperatorBis new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSubclassReplacementOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	| object |
@@ -111,7 +110,7 @@ MTSubclassReplacementOperatorTest >> methodWithTwoSendersModifiedFirst [
 	object := MTAuxiliarClassForSubclassReplacementOperatorBis new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSubclassReplacementOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	| object |
@@ -119,55 +118,55 @@ MTSubclassReplacementOperatorTest >> methodWithTwoSendersModifiedSecond [
 	object := MTAuxiliarSubclassForSubclassReplacementOperatorBis new
 ]
 
-{ #category : 'asserts' }
+{ #category : #asserts }
 MTSubclassReplacementOperatorTest >> newNodeFirstSubclass [
 
 	^ RBVariableNode named:
 		  MTAuxiliarSubclass1ForSubclassReplacementWithManySubclasses name
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSubclassReplacementOperatorTest >> newNodeOneSender [
 
 	^ RBVariableNode named:
 		  MTAuxiliarSubclassForSubclassReplacementOperator name
 ]
 
-{ #category : 'asserts' }
+{ #category : #asserts }
 MTSubclassReplacementOperatorTest >> newNodeSecondSubclass [
 
 	^ RBVariableNode named:
 		  MTAuxiliarSubclass2ForSubclassReplacementWithManySubclasses name
 ]
 
-{ #category : 'asserts' }
+{ #category : #asserts }
 MTSubclassReplacementOperatorTest >> newNodeThirdSubclass [
 
 	^ RBVariableNode named:
 		  MTAuxiliarSubclass3ForSubclassReplacementWithManySubclasses name
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSubclassReplacementOperatorTest >> newNodeTwoSendersFirst [
 
 	^ RBVariableNode named:
 		  MTAuxiliarSubclassForSubclassReplacementOperator name
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSubclassReplacementOperatorTest >> newNodeTwoSendersSecond [
 
 	^ RBVariableNode named:
 		  MTAuxiliarSubclassForSubclassReplacementOperatorBis name
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSubclassReplacementOperatorTest >> operator [
 
 	^ MTSubclassReplacementOperator new
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTSubclassReplacementOperatorTest >> testSubclassReplacementWithManySubclasses [
 
 	self assert: self

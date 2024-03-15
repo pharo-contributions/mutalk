@@ -1,17 +1,16 @@
 Class {
-	#name : 'MTRandomMutantSelectionStrategyTest',
-	#superclass : 'TestCase',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTRandomMutantSelectionStrategyTest,
+	#superclass : #TestCase,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRandomMutantSelectionStrategyTest >> classToTest [
 
 	^ MTRandomMutantSelectionStrategy
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTRandomMutantSelectionStrategyTest >> testAtLeastTwoDifferentMutantCollectionsAmongFive [
 	"This test is to ensure that RandomMutantSelectionStrategy doesn't always produce the same mutant collections.
 	If it can produce at least two different collections, we assume it correctly randomize the inital mutant collection.
@@ -33,7 +32,7 @@ MTRandomMutantSelectionStrategyTest >> testAtLeastTwoDifferentMutantCollectionsA
 	self assert: mutationsSet size >= 2
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTRandomMutantSelectionStrategyTest >> testDefaultMutantSelectionStrategyIsAllMutantSelectionStrategy [
 
 	self

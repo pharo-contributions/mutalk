@@ -1,50 +1,49 @@
 Class {
-	#name : 'MTReplaceWhileTrueWithWhileFalseMutantOperatorTest',
-	#superclass : 'MTParseRewriterMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTReplaceWhileTrueWithWhileFalseMutantOperatorTest,
+	#superclass : #MTParseRewriterMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceWhileTrueWithWhileFalseMutantOperatorTest >> methodWithNoSenders [
 
 	^ 1 + 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceWhileTrueWithWhileFalseMutantOperatorTest >> methodWithOneSender [
 
 	1 < 2 whileTrue: [  ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceWhileTrueWithWhileFalseMutantOperatorTest >> methodWithOneSenderModified [
 
 	1 < 2 whileFalse: [  ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceWhileTrueWithWhileFalseMutantOperatorTest >> methodWithTwoSenders [
 
 	1 < 2 whileTrue: [  ].
 	3 > 2 whileTrue: [  ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceWhileTrueWithWhileFalseMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	1 < 2 whileFalse: [  ].
 	3 > 2 whileTrue: [  ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceWhileTrueWithWhileFalseMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	1 < 2 whileTrue: [  ].
 	3 > 2 whileFalse: [  ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceWhileTrueWithWhileFalseMutantOperatorTest >> operator [
 
 	^ MTReplaceWhileTrueWithWhileFalseMutantOperator new

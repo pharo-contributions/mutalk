@@ -1,48 +1,47 @@
 Class {
-	#name : 'MTEmptyMethodOperatorTest',
-	#superclass : 'MTPredicateBasedMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTEmptyMethodOperatorTest,
+	#superclass : #MTPredicateBasedMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTEmptyMethodOperatorTest >> methodWithOneSender [
 
 	self operator.
 	self operatorDescription 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTEmptyMethodOperatorTest >> methodWithOneSenderModified [
 
 	
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTEmptyMethodOperatorTest >> newNodeOneSender [
 
 	^ RBSequenceNode statements: #(  )
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTEmptyMethodOperatorTest >> operator [
 
 	^ MTEmptyMethodOperator new
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTEmptyMethodOperatorTest >> testApplyMutantToMethod [
 
 	self assert: self assertApplyingMutantToFirstSenderInOneSenderMethod
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTEmptyMethodOperatorTest >> testNumberMutantsGenerated [
 
 	self assert: self assertNumberMutantsGeneratedForOneSenderMethod
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTEmptyMethodOperatorTest >> testTimesToApplyMutantToMethod [
 
 	self assert: self assertTimesToApplyOperatorToOneSenderMethod

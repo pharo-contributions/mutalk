@@ -1,14 +1,13 @@
 Class {
-	#name : 'MTMutantSelectionStrategyTest',
-	#superclass : 'TestCase',
+	#name : #MTMutantSelectionStrategyTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'resource'
 	],
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantSelectionStrategyTest >> testSelectingFromCoverageMutantSelectionShouldOnlyMutateCoveredMethods [
 
 	| classes mutationTestingAnalysis operator |

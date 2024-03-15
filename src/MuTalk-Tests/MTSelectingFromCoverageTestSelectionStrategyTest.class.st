@@ -1,31 +1,30 @@
 Class {
-	#name : 'MTSelectingFromCoverageTestSelectionStrategyTest',
-	#superclass : 'MTTestSelectionStrategyTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTSelectingFromCoverageTestSelectionStrategyTest,
+	#superclass : #MTTestSelectionStrategyTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTSelectingFromCoverageTestSelectionStrategyTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : 'asserting' }
+{ #category : #asserting }
 MTSelectingFromCoverageTestSelectionStrategyTest >> assertMutantInCoverageOfTestCase [
 	self assert: ((testCases collect: [ :each | each selector ]) includes: #testMethodThatCoverMethod1)
 ]
 
-{ #category : 'asserting' }
+{ #category : #asserting }
 MTSelectingFromCoverageTestSelectionStrategyTest >> assertMutantNotInCoverage [
 	self assert: testCases isEmpty
 ]
 
-{ #category : 'asserting' }
+{ #category : #asserting }
 MTSelectingFromCoverageTestSelectionStrategyTest >> assertMutantNotInCoverageOfTest [
 	self deny: ((testCases collect: [ :each | each selector ]) includes: #testMethodThatCoverMethod2)
 ]
 
-{ #category : 'configuring' }
+{ #category : #configuring }
 MTSelectingFromCoverageTestSelectionStrategyTest >> selectionStrategy [
 	^ MTSelectingFromCoverageTestSelectionStrategy
 ]

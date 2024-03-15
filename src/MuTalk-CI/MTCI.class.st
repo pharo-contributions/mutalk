@@ -1,15 +1,14 @@
 Class {
-	#name : 'MTCI',
-	#superclass : 'Object',
+	#name : #MTCI,
+	#superclass : #Object,
 	#instVars : [
 		'project',
 		'commit'
 	],
-	#category : 'MuTalk-CI',
-	#package : 'MuTalk-CI'
+	#category : 'MuTalk-CI'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCI >> allChangesForRepo [
 	| repo cmt diff leafs targets |
 	repo := self getRepo.
@@ -31,7 +30,7 @@ MTCI >> allChangesForRepo [
 	^ targets
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCI >> allClassesForRepo [
 
 	| repo |
@@ -41,24 +40,24 @@ MTCI >> allClassesForRepo [
 		  p package asPackage definedClasses asOrderedCollection ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCI >> commit [
 
 	^ commit
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCI >> commit: anObject [
 
 	commit := anObject
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCI >> exportFileName [
 	^ '__mutalk_export.json'
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCI >> exportResultJson: analysis [
 
 	| json file repo commitFrom commitTo timestamp |
@@ -80,7 +79,7 @@ MTCI >> exportResultJson: analysis [
 		close
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCI >> exportResultJson: analysis coverageInfo: coverageInfo [
 
 	| json file repo commitFrom commitTo timestamp |
@@ -103,7 +102,7 @@ MTCI >> exportResultJson: analysis coverageInfo: coverageInfo [
 		close
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCI >> getRepo [
 
 	IceRepository registry
@@ -132,7 +131,7 @@ MTCI >> getRepo [
 	self error: 'repo not installed. ' , project
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCI >> mutateAll [
 
 	| classes tests targets |
@@ -148,7 +147,7 @@ MTCI >> mutateAll [
 		MTSelectingFromCoverageMutantSelectionStrategy new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCI >> mutateDiff [
 
 	| targets targetMethods tests classes |
@@ -165,7 +164,7 @@ MTCI >> mutateDiff [
 		generationStrategy: MTSelectingFromAlivesMutantSelectionStrategy new
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCI >> prepareCoverageInfo: anAnalyse [
 
 	^ MTCoveragePropagationPreparation new
@@ -173,19 +172,19 @@ MTCI >> prepareCoverageInfo: anAnalyse [
 		prepare
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCI >> project [
 
 	^ project
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCI >> project: anObject [
 
 	project := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCI >> recentCommit [
 
 	commit := self getRepo head commit ancestors
@@ -193,7 +192,7 @@ MTCI >> recentCommit [
 		          ifEmpty: [ IceNoCommit new ]
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCI >> runMutalkTargets: targets tests: tests generationStrategy: generationStrategy [
 
 	| analysis coverageInfo |

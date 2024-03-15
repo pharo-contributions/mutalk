@@ -1,41 +1,40 @@
 Class {
-	#name : 'MTReplaceAndWithEqvMutantOperatorTest',
-	#superclass : 'MTParseRewriterMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTReplaceAndWithEqvMutantOperatorTest,
+	#superclass : #MTParseRewriterMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndWithEqvMutantOperatorTest >> methodWithNoSenders [  
 	^ true or: [false]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndWithEqvMutantOperatorTest >> methodWithOneSender [  
 	^ true and: [false]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndWithEqvMutantOperatorTest >> methodWithOneSenderModified [
 	^ true bEqv: [false]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndWithEqvMutantOperatorTest >> methodWithTwoSenders [  
 	^ true and: [true and: [false]]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndWithEqvMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 	^ true bEqv: [true and: [false]]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndWithEqvMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 	^ true and: [true bEqv: [false]]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndWithEqvMutantOperatorTest >> operator [
 	^ MTReplaceAndWithEqvMutantOperator new
 ]

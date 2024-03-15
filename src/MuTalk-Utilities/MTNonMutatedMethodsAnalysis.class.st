@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTNonMutatedMethodsAnalysis',
-	#superclass : 'MTUtilityAnalysis',
-	#category : 'MuTalk-Utilities',
-	#package : 'MuTalk-Utilities'
+	#name : #MTNonMutatedMethodsAnalysis,
+	#superclass : #MTUtilityAnalysis,
+	#category : 'MuTalk-Utilities'
 }
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTNonMutatedMethodsAnalysis >> allMethods [
 
 	^ classes inject: OrderedCollection new into: [ :coll :class |
@@ -13,7 +12,7 @@ MTNonMutatedMethodsAnalysis >> allMethods [
 		  coll ]
 ]
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTNonMutatedMethodsAnalysis >> methodsWithoutMutation [
 
 	| allMethods allMutatedMethods |
@@ -23,7 +22,7 @@ MTNonMutatedMethodsAnalysis >> methodsWithoutMutation [
 	^ allMethods reject: [ :method | allMutatedMethods includes: method ]
 ]
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTNonMutatedMethodsAnalysis >> mutatedMethods [
 
 	| analysis mutatedMethods |

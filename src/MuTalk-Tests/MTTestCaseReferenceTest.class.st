@@ -1,25 +1,24 @@
 Class {
-	#name : 'MTTestCaseReferenceTest',
-	#superclass : 'TestCase',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTTestCaseReferenceTest,
+	#superclass : #TestCase,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'resources' }
+{ #category : #resources }
 MTTestCaseReferenceTest >> test1 [
 	^self assert: true.
 ]
 
-{ #category : 'resources' }
+{ #category : #resources }
 MTTestCaseReferenceTest >> testATestReferenceResult [
 	| testReference |
 	testReference := self testReferenceForTest1.
-	self assert: testReference runUnchecked errors isEmpty.
+	self assert: testReference run errors isEmpty.
 	
 ]
 
-{ #category : 'resources' }
+{ #category : #resources }
 MTTestCaseReferenceTest >> testReferenceForTest1 [
 
-	^ MTTestCaseReference for: #test1 in: self class
+	^ MTTestCaseReference for: (self class selector: #test1)
 ]

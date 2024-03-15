@@ -1,48 +1,47 @@
 Class {
-	#name : 'MTRemoveCaretMutantOperatorTest',
-	#superclass : 'MTParseRewriterMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTRemoveCaretMutantOperatorTest,
+	#superclass : #MTParseRewriterMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRemoveCaretMutantOperatorTest >> methodWithNoSenders [  
 	"a string that has ^ inside"
 	OrderedCollection new do: [:elem | elem notNil]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRemoveCaretMutantOperatorTest >> methodWithOneSender [  
 	^1 + 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRemoveCaretMutantOperatorTest >> methodWithOneSenderModified [
 	1 + 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRemoveCaretMutantOperatorTest >> methodWithTwoSenders [
 	true 
 		ifTrue: [^1] 
 		ifFalse: [^2]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRemoveCaretMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 	true 
 		ifTrue: [1] 
 		ifFalse: [^2]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRemoveCaretMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 	true 
 		ifTrue: [^1] 
 		ifFalse: [2]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRemoveCaretMutantOperatorTest >> operator [
 	^ MTRemoveCaretOperator new
 ]

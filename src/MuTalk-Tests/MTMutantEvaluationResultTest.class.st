@@ -1,37 +1,36 @@
 Class {
-	#name : 'MTMutantEvaluationResultTest',
-	#superclass : 'TestCase',
+	#name : #MTMutantEvaluationResultTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'resource'
 	],
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMutantEvaluationResultTest class >> packageNamesUnderTest [
 	^ #('MutationTesting-Model')
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMutantEvaluationResultTest class >> resources [
 	^ {MTResource}
 ]
 
-{ #category : 'testing - printing' }
+{ #category : #'testing - printing' }
 MTMutantEvaluationResultTest >> mutantPrintString [
 	"printing the mutation used in this tests."
 	^ resource mutation printString
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTMutantEvaluationResultTest >> setUp [
 
 	super setUp.
 	resource := MTResource current
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultTest >> testMutationResultEmpty [
 	"Test the creation of a Mutant Result Empty."
 	| result |
@@ -42,7 +41,7 @@ MTMutantEvaluationResultTest >> testMutationResultEmpty [
 	self assert: result runCount = 0
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultTest >> testMutationResultKilledByError [
 	| result |
 	result := resource evaluationResultForKilledMutantByError.
@@ -52,7 +51,7 @@ MTMutantEvaluationResultTest >> testMutationResultKilledByError [
 	self assert: result runCount = 1
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultTest >> testMutationResultKilledByFailure [
 	| result |
 	result := resource evaluationResultForKilledMutantByFailure.
@@ -62,7 +61,7 @@ MTMutantEvaluationResultTest >> testMutationResultKilledByFailure [
 	self assert: result runCount = 1
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultTest >> testMutationResultSurvived [
 	"Test the creation of a Mutant Result that survived"
 	| result |
@@ -73,7 +72,7 @@ MTMutantEvaluationResultTest >> testMutationResultSurvived [
 	self assert: result runCount = 1
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutantEvaluationResultTest >> testMutationResultTerminated [
 	| result |
 	result := resource evaluationResultForTerminatedMutant.
@@ -83,7 +82,7 @@ MTMutantEvaluationResultTest >> testMutationResultTerminated [
 	self assert: result runCount = 0
 ]
 
-{ #category : 'testing - printing' }
+{ #category : #'testing - printing' }
 MTMutantEvaluationResultTest >> testPrintingMutationResultEmpty [
 	"printing a mutation result empty."
 	| result stream |
@@ -92,7 +91,7 @@ MTMutantEvaluationResultTest >> testPrintingMutationResultEmpty [
 	self assert: result printString = stream contents
 ]
 
-{ #category : 'testing - printing' }
+{ #category : #'testing - printing' }
 MTMutantEvaluationResultTest >> testPrintingMutationResultKilledByError [
 	"printing a mutation result killed by error."
 	| result stream |
@@ -101,7 +100,7 @@ MTMutantEvaluationResultTest >> testPrintingMutationResultKilledByError [
 	self assert: result printString = stream contents
 ]
 
-{ #category : 'testing - printing' }
+{ #category : #'testing - printing' }
 MTMutantEvaluationResultTest >> testPrintingMutationResultKilledByFailure [
 	"printing a mutation result killed by failure."
 	| result stream |
@@ -110,7 +109,7 @@ MTMutantEvaluationResultTest >> testPrintingMutationResultKilledByFailure [
 	self assert: result printString = stream contents
 ]
 
-{ #category : 'testing - printing' }
+{ #category : #'testing - printing' }
 MTMutantEvaluationResultTest >> testPrintingMutationResultSurvived [
 	"printing a mutation result alive."
 	| result stream |
@@ -119,7 +118,7 @@ MTMutantEvaluationResultTest >> testPrintingMutationResultSurvived [
 	self assert: result printString = stream contents
 ]
 
-{ #category : 'testing - printing' }
+{ #category : #'testing - printing' }
 MTMutantEvaluationResultTest >> testPrintingMutationResultTerminated [
 	"printing a mutation result terminated."
 	| result stream |

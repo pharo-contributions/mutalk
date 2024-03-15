@@ -1,31 +1,30 @@
 Class {
-	#name : 'MTAssignmentNullifierOperatorTest',
-	#superclass : 'MTPredicateBasedMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTAssignmentNullifierOperatorTest,
+	#superclass : #MTPredicateBasedMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAssignmentNullifierOperatorTest >> methodWithNoSenders [
 
 	^ 1 + 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAssignmentNullifierOperatorTest >> methodWithOneSender [
 
 	| i |
 	i := 1
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAssignmentNullifierOperatorTest >> methodWithOneSenderModified [
 
 	| i |
 	i := nil
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAssignmentNullifierOperatorTest >> methodWithTwoSenders [
 
 	| i j |
@@ -33,7 +32,7 @@ MTAssignmentNullifierOperatorTest >> methodWithTwoSenders [
 	j := 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAssignmentNullifierOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	| i j |
@@ -41,7 +40,7 @@ MTAssignmentNullifierOperatorTest >> methodWithTwoSendersModifiedFirst [
 	j := 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAssignmentNullifierOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	| i j |
@@ -49,7 +48,7 @@ MTAssignmentNullifierOperatorTest >> methodWithTwoSendersModifiedSecond [
 	j := nil
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAssignmentNullifierOperatorTest >> newNodeOneSender [
 
 	^ RBAssignmentNode
@@ -57,7 +56,7 @@ MTAssignmentNullifierOperatorTest >> newNodeOneSender [
 		  value: (RBLiteralValueNode value: nil)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAssignmentNullifierOperatorTest >> newNodeTwoSendersFirst [
 
 	^ RBAssignmentNode
@@ -65,7 +64,7 @@ MTAssignmentNullifierOperatorTest >> newNodeTwoSendersFirst [
 		  value: (RBLiteralValueNode value: nil)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAssignmentNullifierOperatorTest >> newNodeTwoSendersSecond [
 
 	^ RBAssignmentNode
@@ -73,7 +72,7 @@ MTAssignmentNullifierOperatorTest >> newNodeTwoSendersSecond [
 		  value: (RBLiteralValueNode value: nil)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAssignmentNullifierOperatorTest >> operator [
 
 	^ MTAssignmentNullifierOperator new

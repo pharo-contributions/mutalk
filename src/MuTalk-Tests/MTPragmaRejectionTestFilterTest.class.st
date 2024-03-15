@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTPragmaRejectionTestFilterTest',
-	#superclass : 'MTTestFilterTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTPragmaRejectionTestFilterTest,
+	#superclass : #MTTestFilterTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'running' }
+{ #category : #running }
 MTPragmaRejectionTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelector [
 
 	self
@@ -15,7 +14,7 @@ MTPragmaRejectionTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelecto
 		withTests: { MTAuxiliarTestClassForPragmaTestFilter }
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTPragmaRejectionTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelector andArguments: pragmaArguments [
 
 	self
@@ -26,7 +25,7 @@ MTPragmaRejectionTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelecto
 		withTests: { MTAuxiliarTestClassForPragmaTestFilter }
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTPragmaRejectionTestFilterTest >> testTestWithPragmaIsExcluded [
 
 	| result |
@@ -39,7 +38,7 @@ MTPragmaRejectionTestFilterTest >> testTestWithPragmaIsExcluded [
 		equals: #testWithoutPragma
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTPragmaRejectionTestFilterTest >> testTestWithPragmaIsNotExcluded [
 
 	self runAnalysisForPragmaCondition: #anotherPragma.
@@ -49,7 +48,7 @@ MTPragmaRejectionTestFilterTest >> testTestWithPragmaIsNotExcluded [
 		equals: 2
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTPragmaRejectionTestFilterTest >> testTestWithPragmaIsNotExcluded2 [
 
 	self runAnalysisForPragmaCondition: #aPragma: andArguments: 'arg'.

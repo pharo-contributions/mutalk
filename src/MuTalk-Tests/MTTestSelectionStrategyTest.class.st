@@ -1,6 +1,6 @@
 Class {
-	#name : 'MTTestSelectionStrategyTest',
-	#superclass : 'TestCase',
+	#name : #MTTestSelectionStrategyTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'resource',
 		'classes',
@@ -10,42 +10,41 @@ Class {
 		'testCases',
 		'testCasesUsed'
 	],
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTTestSelectionStrategyTest class >> isAbstract [
 	^ true
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTTestSelectionStrategyTest class >> packageNamesUnderTest [
 	^ #('MutationTesting-Model')
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTTestSelectionStrategyTest class >> resources [
 	^ {MTResource}
 ]
 
-{ #category : 'asserting' }
+{ #category : #asserting }
 MTTestSelectionStrategyTest >> assertMutantInCoverageOfTestCase [
 	self subclassResponsibility
 ]
 
-{ #category : 'asserting' }
+{ #category : #asserting }
 MTTestSelectionStrategyTest >> assertMutantNotInCoverage [
 	self subclassResponsibility
 ]
 
-{ #category : 'asserting' }
+{ #category : #asserting }
 MTTestSelectionStrategyTest >> assertMutantNotInCoverageOfTest [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTTestSelectionStrategyTest >> getTestsCasesToEvaluateForMutant: aMethodSelector [
 	| mutation |
 	mutation := (operator mutationsFor: MTAuxiliarClassForTestingStrategies >> aMethodSelector) asOrderedCollection first.
@@ -55,12 +54,12 @@ MTTestSelectionStrategyTest >> getTestsCasesToEvaluateForMutant: aMethodSelector
 
 ]
 
-{ #category : 'configuring' }
+{ #category : #configuring }
 MTTestSelectionStrategyTest >> selectionStrategy [
 	^ self subclassResponsibility
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTTestSelectionStrategyTest >> setUp [
 
 	super setUp.
@@ -78,21 +77,21 @@ MTTestSelectionStrategyTest >> setUp [
 	mutationTestingAnalysis generateCoverageAnalysis
 ]
 
-{ #category : 'test' }
+{ #category : #test }
 MTTestSelectionStrategyTest >> testMutantInCoverageOfTestCase [
 
 	testCases := self getTestsCasesToEvaluateForMutant: #method1.
 	^ self assertMutantInCoverageOfTestCase
 ]
 
-{ #category : 'test' }
+{ #category : #test }
 MTTestSelectionStrategyTest >> testMutantNotInCoverage [
 
 	testCases := self getTestsCasesToEvaluateForMutant: #aNotCoveredMethod.
 	^ self assertMutantNotInCoverage
 ]
 
-{ #category : 'test' }
+{ #category : #test }
 MTTestSelectionStrategyTest >> testMutantNotInCoverageOfTest [
 
 	testCases := self getTestsCasesToEvaluateForMutant: #method1.

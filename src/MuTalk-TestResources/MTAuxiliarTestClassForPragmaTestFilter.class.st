@@ -1,18 +1,17 @@
 Class {
-	#name : 'MTAuxiliarTestClassForPragmaTestFilter',
-	#superclass : 'TestCase',
-	#category : 'MuTalk-TestResources',
-	#package : 'MuTalk-TestResources'
+	#name : #MTAuxiliarTestClassForPragmaTestFilter,
+	#superclass : #TestCase,
+	#category : 'MuTalk-TestResources'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTAuxiliarTestClassForPragmaTestFilter >> testWithPragma [
 
 	<aPragma>
 	self assert: true
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTAuxiliarTestClassForPragmaTestFilter >> testWithoutPragma [
 
 	self assert: true

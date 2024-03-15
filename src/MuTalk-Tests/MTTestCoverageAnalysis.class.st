@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTTestCoverageAnalysis',
-	#superclass : 'TestCase',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTTestCoverageAnalysis,
+	#superclass : #TestCase,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTTestCoverageAnalysis >> testBugWhenHavingATestResourceSendingToOther [
 	"the problem was when sending from a resource a message to another object wich class is going to be considered for coverage"
 	| analysis testCases|
@@ -20,7 +19,7 @@ MTTestCoverageAnalysis >> testBugWhenHavingATestResourceSendingToOther [
 
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTTestCoverageAnalysis >> testCoveredMethods [
 
 	| analysis |
@@ -41,7 +40,7 @@ MTTestCoverageAnalysis >> testCoveredMethods [
 			 MTClassForTestingCoverage >> #anUncoveredMethodSubClassResponsibility)		
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTTestCoverageAnalysis >> testGettingTheTestCasesThatCoverAClassMethod [
 	| analysis testCases|
 	analysis := MTCoverageAnalysis
@@ -55,7 +54,7 @@ MTTestCoverageAnalysis >> testGettingTheTestCasesThatCoverAClassMethod [
 
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTTestCoverageAnalysis >> testGettingTheTestCasesThatCoverAMethod [
 	| analysis testCases|
 

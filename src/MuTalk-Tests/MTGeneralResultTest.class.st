@@ -1,31 +1,30 @@
 Class {
-	#name : 'MTGeneralResultTest',
-	#superclass : 'TestCase',
+	#name : #MTGeneralResultTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'resource'
 	],
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTGeneralResultTest class >> packageNamesUnderTest [
 	^ #('MutationTesting-Model')
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTGeneralResultTest class >> resources [
 	^ {MTResource}
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTGeneralResultTest >> mutationEngineGeneralEmptyResult [
 	"Returns an empty Mutant Engine General Result."
 
 	^ MTGeneralResult empty
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTGeneralResultTest >> mutationEngineGeneralResultWithOneAliveMutant [
 	"Returns a Mutant Engine General Result with only one mutant survived."
 
@@ -33,7 +32,7 @@ MTGeneralResultTest >> mutationEngineGeneralResultWithOneAliveMutant [
 		  (OrderedCollection with: resource evaluationResultForAliveMutant)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTGeneralResultTest >> mutationEngineGeneralResultWithOneKilledMutantByError [
 	"Returns a Mutant Engine General Result with only one mutant killed by
 	error. "
@@ -42,7 +41,7 @@ MTGeneralResultTest >> mutationEngineGeneralResultWithOneKilledMutantByError [
 			   resource evaluationResultForKilledMutantByError)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTGeneralResultTest >> mutationEngineGeneralResultWithOneKilledMutantByFailure [
 	"Returns a Mutant Engine General Result with only one mutant killed by
 	failure."
@@ -51,7 +50,7 @@ MTGeneralResultTest >> mutationEngineGeneralResultWithOneKilledMutantByFailure [
 			   resource evaluationResultForKilledMutantByFailure)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTGeneralResultTest >> mutationEngineGeneralResultWithOneTerminatedMutant [
 	"Returns a Mutant Engine General Result with only one terminated mutant."
 
@@ -60,14 +59,14 @@ MTGeneralResultTest >> mutationEngineGeneralResultWithOneTerminatedMutant [
 			   resource evaluationResultForTerminatedMutant)
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTGeneralResultTest >> setUp [
 
 	super setUp.
 	resource := MTResource current
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTGeneralResultTest >> testAccessorsOnEmptyResult [
 	"Test the accessors methods for an empty result set"
 	| emptyResult |
@@ -81,7 +80,7 @@ MTGeneralResultTest >> testAccessorsOnEmptyResult [
 	self deny: emptyResult isAcceptableScore
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTGeneralResultTest >> testAccessorsWithOnlyOneAliveMutant [
 	"Build a MutationEngineGeneralResult with only 1 alive mutant."
 	| mutantResult |
@@ -95,7 +94,7 @@ MTGeneralResultTest >> testAccessorsWithOnlyOneAliveMutant [
 	self deny: mutantResult isAcceptableScore
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTGeneralResultTest >> testAccessorsWithOnlyOneKilledMutantByError [
 	"Build a MutationEngineGeneralResult with only 1 killed mutant by error."
 	| mutantResult |
@@ -109,7 +108,7 @@ MTGeneralResultTest >> testAccessorsWithOnlyOneKilledMutantByError [
 	self assert: mutantResult isAcceptableScore
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTGeneralResultTest >> testAccessorsWithOnlyOneKilledMutantByFailure [
 	"Build a MutationEngineGeneralResult with only 1 killed mutant by failure."
 	| mutantResult |
@@ -123,7 +122,7 @@ MTGeneralResultTest >> testAccessorsWithOnlyOneKilledMutantByFailure [
 	self assert: mutantResult isAcceptableScore
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTGeneralResultTest >> testAccessorsWithOnlyOneTerminatedMutant [
 	"Build a MutationEngineGeneralResult with only 1 terminated mutant."
 	| mutantResult |
@@ -137,7 +136,7 @@ MTGeneralResultTest >> testAccessorsWithOnlyOneTerminatedMutant [
 	self deny: mutantResult isNonAcceptableScore
 ]
 
-{ #category : 'testing - printing' }
+{ #category : #'testing - printing' }
 MTGeneralResultTest >> testPrintingOnEmptyResult [
 	"Test printing an empty general result"
 	| emptyResult stream|
@@ -146,7 +145,7 @@ MTGeneralResultTest >> testPrintingOnEmptyResult [
 	self assert: emptyResult printString = stream contents.
 ]
 
-{ #category : 'testing - printing' }
+{ #category : #'testing - printing' }
 MTGeneralResultTest >> testPrintingWithOnlyOneAliveMutant [
 	"printing a mutation general result with only one alive mutant."
 	| oneKilledMutantResult stream|
@@ -155,7 +154,7 @@ MTGeneralResultTest >> testPrintingWithOnlyOneAliveMutant [
 	self assert: oneKilledMutantResult printString = stream contents.
 ]
 
-{ #category : 'testing - printing' }
+{ #category : #'testing - printing' }
 MTGeneralResultTest >> testPrintingWithOnlyOneKilledMutantByError [
 	"printing a mutation general result with one mutant killed by error."
 	| oneKilledMutantResult stream|
@@ -164,7 +163,7 @@ MTGeneralResultTest >> testPrintingWithOnlyOneKilledMutantByError [
 	self assert: oneKilledMutantResult printString = stream contents.
 ]
 
-{ #category : 'testing - printing' }
+{ #category : #'testing - printing' }
 MTGeneralResultTest >> testPrintingWithOnlyOneKilledMutantByFailure [
 	"printing a mutation general result with one mutant killed by failure."
 	| oneKilledMutantResult stream |
@@ -173,7 +172,7 @@ MTGeneralResultTest >> testPrintingWithOnlyOneKilledMutantByFailure [
 	self assert: oneKilledMutantResult printString = stream contents
 ]
 
-{ #category : 'testing - printing' }
+{ #category : #'testing - printing' }
 MTGeneralResultTest >> testPrintingWithOnlyOneTerminatedMutant [
 	"printing a mutation general result with one mutant terminated."
 	| oneKilledMutantResult stream |

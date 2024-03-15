@@ -1,23 +1,22 @@
 Class {
-	#name : 'MTTimeBudgetTest',
-	#superclass : 'MTBudgetTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTTimeBudgetTest,
+	#superclass : #MTBudgetTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'running' }
+{ #category : #running }
 MTTimeBudgetTest >> fixedAnalysisTime [
 
 	^ [ self runAnalysisFor: (MTTimeBudget for: 0 seconds) ] timeToRun
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTTimeBudgetTest >> runAnalysisForDuration: aDuration [
 
 	^ self runAnalysisFor: (MTTimeBudget for: aDuration)
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTTimeBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests: testCases [
 
 	analysis := MTAnalysis new
@@ -34,7 +33,7 @@ MTTimeBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests
 	^ analysis generalResult
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTTimeBudgetTest >> testWithNoTimeForMutantsRespectsDeadline [
 
 	| duration analysisTime error fixedAnalysisTime |
@@ -48,7 +47,7 @@ MTTimeBudgetTest >> testWithNoTimeForMutantsRespectsDeadline [
 	self assert: analysisTime - fixedAnalysisTime <= error
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTTimeBudgetTest >> testWithNoTimeForMutantsRunsNoMutants [
 
 	| duration analysisTime result |
@@ -61,7 +60,7 @@ MTTimeBudgetTest >> testWithNoTimeForMutantsRunsNoMutants [
 	self assert: result numberOfEvaluatedMutants equals: 0
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTTimeBudgetTest >> testWithTimeForMutantsRespectsDeadline [
 
 	| duration analysisTime error |
@@ -74,7 +73,7 @@ MTTimeBudgetTest >> testWithTimeForMutantsRespectsDeadline [
 	self assert: analysisTime - duration <= error
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTTimeBudgetTest >> testWithTimeForMutantsRunsManyMutants [
 
 	| duration analysisTime result |

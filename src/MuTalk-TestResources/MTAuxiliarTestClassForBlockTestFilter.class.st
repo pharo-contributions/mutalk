@@ -1,17 +1,16 @@
 Class {
-	#name : 'MTAuxiliarTestClassForBlockTestFilter',
-	#superclass : 'TestCase',
-	#category : 'MuTalk-TestResources',
-	#package : 'MuTalk-TestResources'
+	#name : #MTAuxiliarTestClassForBlockTestFilter,
+	#superclass : #TestCase,
+	#category : 'MuTalk-TestResources'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTAuxiliarTestClassForBlockTestFilter >> testX [
 
 	self assert: true
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTAuxiliarTestClassForBlockTestFilter >> testY [
 
 	self assert: true

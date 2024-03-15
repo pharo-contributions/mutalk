@@ -1,52 +1,51 @@
 Class {
-	#name : 'MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail',
-	#superclass : 'TestCase',
+	#name : #MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail,
+	#superclass : #TestCase,
 	#classInstVars : [
 		'counter'
 	],
-	#category : 'MuTalk-TestResources',
-	#package : 'MuTalk-TestResources'
+	#category : 'MuTalk-TestResources'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail class >> counter [
 
 	^ counter
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail class >> counter: anObject [
 
 	counter := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail class >> increment [
 
 	counter := counter + 1
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail class >> reset [
 
 	counter := 0
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail >> testA [
 
 	self class increment.
 	self assert: self class counter < 4
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail >> testB [
 
 	self class increment.
 	self assert: self class counter < 4
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail >> testC [
 
 	self class increment.

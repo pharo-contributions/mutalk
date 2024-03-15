@@ -1,31 +1,30 @@
 Class {
-	#name : 'MTMethodInstallerTest',
-	#superclass : 'TestCase',
+	#name : #MTMethodInstallerTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'anonymousClass',
 		'anonymousClassWithMethod'
 	],
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMethodInstallerTest class >> packageNamesUnderTest [
 	^ #('MutationTesting-Model')
 ]
 
-{ #category : 'testProtocol' }
+{ #category : #testProtocol }
 MTMethodInstallerTest >> methodInstalled [
 	"this method is used to test installation,"
 	^ 3 + 4
 
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTMethodInstallerTest >> methodToUninstall [ ^self
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMethodInstallerTest >> numberOfMethodVersionsOf: aSelector in: aClass [ 
 	
 	| aMethod |
@@ -38,7 +37,7 @@ MTMethodInstallerTest >> numberOfMethodVersionsOf: aSelector in: aClass [
 		isMeta: aMethod origin isClassSide) size
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTMethodInstallerTest >> tearDown [
 	"Unistall methods that should not be istalled and install method that should be installed."
 
@@ -51,7 +50,7 @@ MTMethodInstallerTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMethodInstallerTest >> testInstallMethodException [
 	"Try to install a method that produce an Exception."
 
@@ -67,7 +66,7 @@ MTMethodInstallerTest >> testInstallMethodException [
 		raise: MTMethodInstallerException
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMethodInstallerTest >> testInstallMethodOnEmptyClass [
 	"Install a method on Self"
 
@@ -81,7 +80,7 @@ MTMethodInstallerTest >> testInstallMethodOnEmptyClass [
 	self assert: (self class includesSelector: selector)
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMethodInstallerTest >> testInstallerShouldNotAddSourceVersions [
 	"Install a method that produce an Exception. For this. me use an
 	Anonimous Class."
@@ -108,7 +107,7 @@ MTMethodInstallerTest >> testInstallerShouldNotAddSourceVersions [
 		equals: previousNumberOfVersions
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMethodInstallerTest >> testUnInstallMethodOnClass [
 	"Uninstall a method from a class that has the method implemented."
 	|selector|

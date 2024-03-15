@@ -28,10 +28,20 @@ MTPragmaTestFilter class >> isAbstract [
 	^ self == MTPragmaTestFilter
 ]
 
-{ #category : #enumerating }
-MTPragmaTestFilter >> filterTests: aTestCaseCollection [
+{ #category : #accessing }
+MTPragmaTestFilter >> filteredTestReason [
 
-	^ self subclassResponsibility
+	| reasonString |
+	reasonString := self reasonString.
+
+	^ pragmaArguments isEmpty
+		  ifTrue: [ reasonString , '>' ]
+		  ifFalse: [
+			  | pragmaString |
+			  pragmaString := pragmaArguments reduce: [ :arg1 :arg2 |
+				                  arg1 , ' ' , arg2 ].
+
+			  reasonString , pragmaString , '>' ]
 ]
 
 { #category : #testing }
@@ -53,4 +63,24 @@ MTPragmaTestFilter >> pragmaArguments [
 MTPragmaTestFilter >> pragmaArguments: anObject [
 
 	pragmaArguments := anObject
+]
+
+{ #category : #accessing }
+MTPragmaTestFilter >> reasonString [
+
+	self subclassResponsibility
+]
+
+{ #category : #enumerating }
+MTPragmaTestFilter >> rejectPragmaInTestCollection: aTestCaseCollection [
+
+	^ aTestCaseCollection reject: [ :testCaseReference |
+		  self isPragmaValidFrom: testCaseReference ]
+]
+
+{ #category : #enumerating }
+MTPragmaTestFilter >> selectPragmaInTestCollection: aTestCaseCollection [
+
+	^ aTestCaseCollection select: [ :testCaseReference |
+		  self isPragmaValidFrom: testCaseReference ]
 ]

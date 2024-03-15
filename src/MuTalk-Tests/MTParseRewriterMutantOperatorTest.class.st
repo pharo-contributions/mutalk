@@ -1,17 +1,16 @@
 Class {
-	#name : 'MTParseRewriterMutantOperatorTest',
-	#superclass : 'MTAbstractMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTParseRewriterMutantOperatorTest,
+	#superclass : #MTAbstractMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTParseRewriterMutantOperatorTest class >> isAbstract [
 
 	^ self == MTParseRewriterMutantOperatorTest
 ]
 
-{ #category : 'asserts' }
+{ #category : #asserts }
 MTParseRewriterMutantOperatorTest >> assertApplyingMutantToFirstSenderInOneSenderMethod [
 
 	^ self
@@ -22,7 +21,7 @@ MTParseRewriterMutantOperatorTest >> assertApplyingMutantToFirstSenderInOneSende
 		  replacingSelector: #methodWithOneSender
 ]
 
-{ #category : 'asserts' }
+{ #category : #asserts }
 MTParseRewriterMutantOperatorTest >> assertApplyingMutantToFirstSenderInTwoSendersMethod [
 
 	^ self
@@ -34,7 +33,7 @@ MTParseRewriterMutantOperatorTest >> assertApplyingMutantToFirstSenderInTwoSende
 		  replacingSelector: #methodWithTwoSenders
 ]
 
-{ #category : 'asserts' }
+{ #category : #asserts }
 MTParseRewriterMutantOperatorTest >> assertApplyingMutantToNonSenderMethod [
 
 	^ self
@@ -45,7 +44,7 @@ MTParseRewriterMutantOperatorTest >> assertApplyingMutantToNonSenderMethod [
 		  replacingSelector: #methodWithNoSenders
 ]
 
-{ #category : 'asserts' }
+{ #category : #asserts }
 MTParseRewriterMutantOperatorTest >> assertApplyingMutantToSecondSenderInTwoSendersMethod [
 
 	^ self
@@ -57,43 +56,43 @@ MTParseRewriterMutantOperatorTest >> assertApplyingMutantToSecondSenderInTwoSend
 		  replacingSelector: #methodWithTwoSenders
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTParseRewriterMutantOperatorTest >> methodWithNoSenders [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTParseRewriterMutantOperatorTest >> methodWithOneSender [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTParseRewriterMutantOperatorTest >> methodWithOneSenderModified [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTParseRewriterMutantOperatorTest >> methodWithTwoSenders [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTParseRewriterMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTParseRewriterMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTParseRewriterMutantOperatorTest >> operator [
 
 	self subclassResponsibility

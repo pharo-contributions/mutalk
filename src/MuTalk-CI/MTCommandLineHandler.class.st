@@ -1,29 +1,28 @@
 Class {
-	#name : 'MTCommandLineHandler',
-	#superclass : 'CommandLineHandler',
+	#name : #MTCommandLineHandler,
+	#superclass : #CommandLineHandler,
 	#instVars : [
 		'result',
 		'project',
 		'commit',
 		'diff'
 	],
-	#category : 'MuTalk-CI',
-	#package : 'MuTalk-CI'
+	#category : 'MuTalk-CI'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCommandLineHandler class >> commandName [ 
 	^ 'mutalk'
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCommandLineHandler class >> description [
 
 	^ 'Runs mutation testing'
 ]
 
-{ #category : 'activation' }
+{ #category : #activation }
 MTCommandLineHandler >> activate [
 
 	| noquit saveit |
@@ -41,7 +40,7 @@ MTCommandLineHandler >> activate [
 	Smalltalk snapshot: saveit andQuit: noquit not
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 MTCommandLineHandler >> hasArgument: command [
 
 	| cmd |
@@ -52,7 +51,7 @@ MTCommandLineHandler >> hasArgument: command [
 		ifFound: [ :arg | ^ arg allButFirst: cmd size ]
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCommandLineHandler >> icebergProject [
 
 	MTCI new
@@ -60,7 +59,7 @@ MTCommandLineHandler >> icebergProject [
 		mutateAll
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCommandLineHandler >> icebergProjectCommit [
 
 	MTCI new
@@ -69,7 +68,7 @@ MTCommandLineHandler >> icebergProjectCommit [
 		mutateDiff
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 MTCommandLineHandler >> icebergProjectDiff [
 
 	MTCI new

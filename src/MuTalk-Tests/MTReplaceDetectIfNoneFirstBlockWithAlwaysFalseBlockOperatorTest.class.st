@@ -1,31 +1,30 @@
 Class {
-	#name : 'MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest',
-	#superclass : 'MTParseRewriterMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest,
+	#superclass : #MTParseRewriterMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithNoSenders [  
 	 1 + 2.
 	^#(1) detect:[:each | true]  
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithOneSender [  
 	^OrderedCollection new 
 		detect: [:each | each notNil] 
 		ifNone: [true]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithOneSenderModified [
 		^OrderedCollection new 
 		detect: [:each | false] 
 		ifNone: [true]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithTwoSenders [
 	|collection|
 	collection := OrderedCollection with: 1 with: 2.
@@ -39,7 +38,7 @@ MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithTwo
 		ifNone: [0]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithTwoSendersModifiedFirst [
 	|collection|
 	collection := OrderedCollection with: 1 with: 2.
@@ -48,7 +47,7 @@ MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithTwo
 		ifNone: [0]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithTwoSendersModifiedSecond [
 	|collection|
 	collection := OrderedCollection with: 1 with: 2.
@@ -62,7 +61,7 @@ MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> methodWithTwo
 		ifNone: [0]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperatorTest >> operator [
 	^ MTReplaceDetectIfNoneFirstBlockWithAlwaysFalseBlockOperator new
 ]

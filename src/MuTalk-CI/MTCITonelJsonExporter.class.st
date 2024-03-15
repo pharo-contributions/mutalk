@@ -1,6 +1,6 @@
 Class {
-	#name : 'MTCITonelJsonExporter',
-	#superclass : 'MTAbstractJsonExporter',
+	#name : #MTCITonelJsonExporter,
+	#superclass : #MTAbstractJsonExporter,
 	#instVars : [
 		'seqNum',
 		'pull_request_id',
@@ -9,11 +9,10 @@ Class {
 		'root',
 		'coverageInfo'
 	],
-	#category : 'MuTalk-CI',
-	#package : 'MuTalk-CI'
+	#category : 'MuTalk-CI'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCITonelJsonExporter class >> isInTonelFormatCodeLocatedAt: aDirectoryName [
 	"The whole file format decision can be better resolver if delegated to the loadSpec, but this is a class method without access to it."
 
@@ -28,50 +27,50 @@ MTCITonelJsonExporter class >> isInTonelFormatCodeLocatedAt: aDirectoryName [
 	^ false
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCITonelJsonExporter >> classMutations: class [
 	| mutations |
 	mutations:= mtResult mutantResults select: [ :mutationEval | 
 		mutationEval mutant originalClass = class ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCITonelJsonExporter >> cloneLocation [
 
 	^ cloneLocation
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCITonelJsonExporter >> cloneLocation: anObject [
 
 	cloneLocation := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCITonelJsonExporter >> commit [
 
 	^ commit
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCITonelJsonExporter >> commit: anObject [
 
 	commit := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCITonelJsonExporter >> coverageInfo [
 
 	^ coverageInfo
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCITonelJsonExporter >> coverageInfo: anObject [
 
 	coverageInfo := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCITonelJsonExporter >> export [
 
 	| source_files test_cases json obj |
@@ -88,7 +87,7 @@ MTCITonelJsonExporter >> export [
 	^ json
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCITonelJsonExporter >> exportClassMutations: class [
 
 	| mutations path hash file |
@@ -109,7 +108,7 @@ MTCITonelJsonExporter >> exportClassMutations: class [
 		  (#mutations -> mutations asArray) } asDictionary
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCITonelJsonExporter >> exportMutationEvaluation: mutationEvaluation filePath: filePath [
 
 	| sequence_number descrption start_line end_line mutated_source result modifiedSource originalSource mutatedNode nodeToMutate offset classToCover selector mutated_lines coveredBy dictionary mutationCoverage |
@@ -162,7 +161,7 @@ MTCITonelJsonExporter >> exportMutationEvaluation: mutationEvaluation filePath: 
 	^ dictionary
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCITonelJsonExporter >> exportTestCases [
 
 	^ mtResult testCases collect: [ :tcase | 
@@ -171,7 +170,7 @@ MTCITonelJsonExporter >> exportTestCases [
 		fileName , ':' , tcase testCase selector ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCITonelJsonExporter >> extractMutatedLine: mutatedNode nodeToMutate: nodeToMutate originalSource: originalSource modifiedSource: modifiedSource [
 
 	| mSource_1 mSource_2 mSource_3 mSource ending changedLines mSource_1_break start_of_changes |
@@ -202,7 +201,7 @@ MTCITonelJsonExporter >> extractMutatedLine: mutatedNode nodeToMutate: nodeToMut
 	^ changedLines
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCITonelJsonExporter >> generateCoveredByFor: coverageInfoItem mutationCoverage: mutationCoverage [
 
 	| class file result level testMethodName line path |
@@ -224,20 +223,20 @@ MTCITonelJsonExporter >> generateCoveredByFor: coverageInfoItem mutationCoverage
 	^ result
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCITonelJsonExporter >> getFileOfClass: class [
 
 	^ (cloneLocation , '/' , (self getPathOfClass: class)) asFileReference
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCITonelJsonExporter >> getHashOfFile: class [
 
 	^ (self getFileOfClass: class) readStreamDo: [ :stream | 
 		  (MD5 hashMessage: stream contents) hex ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTCITonelJsonExporter >> getPathOfClass: class [
 
 	"Based on code in SmalltalkCI project"
@@ -251,7 +250,7 @@ MTCITonelJsonExporter >> getPathOfClass: class [
 	^ fileName
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCITonelJsonExporter >> lineNumberOffsetClass: classToCover method: method in: filePath [
 
 	" From smalltalkCI "
@@ -272,37 +271,37 @@ MTCITonelJsonExporter >> lineNumberOffsetClass: classToCover method: method in: 
 	^ 0
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCITonelJsonExporter >> pull_request_id [
 
 	^ pull_request_id
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCITonelJsonExporter >> pull_request_id: anObject [
 
 	pull_request_id := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCITonelJsonExporter >> root [
 
 	^ root
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCITonelJsonExporter >> root: anObject [
 
 	root := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCITonelJsonExporter >> seqNum [
 
 	^ seqNum
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTCITonelJsonExporter >> seqNum: anObject [
 
 	seqNum := anObject

@@ -1,20 +1,19 @@
 Class {
-	#name : 'MTSelectingFromAlivesMutantSelectionStrategy',
-	#superclass : 'MTMutantSelectionStrategy',
+	#name : #MTSelectingFromAlivesMutantSelectionStrategy,
+	#superclass : #MTMutantSelectionStrategy,
 	#instVars : [
 		'analysis'
 	],
-	#category : 'MuTalk-CI',
-	#package : 'MuTalk-CI'
+	#category : 'MuTalk-CI'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTSelectingFromAlivesMutantSelectionStrategy >> analysis: anObject [
 
 	analysis := anObject
 ]
 
-{ #category : 'generating' }
+{ #category : #generating }
 MTSelectingFromAlivesMutantSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
 
 	^ (analysis generalResult aliveMutants collect: [ :alive | 

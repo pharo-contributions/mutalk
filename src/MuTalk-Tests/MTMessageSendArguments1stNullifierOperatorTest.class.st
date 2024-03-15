@@ -1,17 +1,16 @@
 Class {
-	#name : 'MTMessageSendArguments1stNullifierOperatorTest',
-	#superclass : 'MTPredicateBasedMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTMessageSendArguments1stNullifierOperatorTest,
+	#superclass : #MTPredicateBasedMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendArguments1stNullifierOperatorTest >> methodWithNoSenders [
 
 	^ self operatorDescription 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendArguments1stNullifierOperatorTest >> methodWithOneSender [
 
 	| o |
@@ -19,7 +18,7 @@ MTMessageSendArguments1stNullifierOperatorTest >> methodWithOneSender [
 	o at: 1 put: 2.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendArguments1stNullifierOperatorTest >> methodWithOneSenderModified [
 
 	| o |
@@ -27,7 +26,7 @@ MTMessageSendArguments1stNullifierOperatorTest >> methodWithOneSenderModified [
 	o at: nil put: 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendArguments1stNullifierOperatorTest >> methodWithTwoSenders [
 
 	| o |
@@ -36,7 +35,7 @@ MTMessageSendArguments1stNullifierOperatorTest >> methodWithTwoSenders [
 	o at: 1
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendArguments1stNullifierOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	| o |
@@ -45,7 +44,7 @@ MTMessageSendArguments1stNullifierOperatorTest >> methodWithTwoSendersModifiedFi
 	o at: 1
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendArguments1stNullifierOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	| o |
@@ -54,7 +53,7 @@ MTMessageSendArguments1stNullifierOperatorTest >> methodWithTwoSendersModifiedSe
 	o at: nil
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendArguments1stNullifierOperatorTest >> newNodeOneSender [
 
 	^ RBMessageNode
@@ -65,7 +64,7 @@ MTMessageSendArguments1stNullifierOperatorTest >> newNodeOneSender [
 				  (RBLiteralValueNode value: 2) }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendArguments1stNullifierOperatorTest >> newNodeTwoSendersFirst [
 
 	^ RBMessageNode
@@ -76,7 +75,7 @@ MTMessageSendArguments1stNullifierOperatorTest >> newNodeTwoSendersFirst [
 				  (RBLiteralValueNode value: 2) }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendArguments1stNullifierOperatorTest >> newNodeTwoSendersSecond [
 
 	^ RBMessageNode
@@ -85,7 +84,7 @@ MTMessageSendArguments1stNullifierOperatorTest >> newNodeTwoSendersSecond [
 		  arguments: { (RBLiteralValueNode value: nil) }
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMessageSendArguments1stNullifierOperatorTest >> operator [
 
 	^ MTMessageSendArguments1stNullifierOperator new

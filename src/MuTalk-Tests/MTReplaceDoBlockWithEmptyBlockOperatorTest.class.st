@@ -1,28 +1,27 @@
 Class {
-	#name : 'MTReplaceDoBlockWithEmptyBlockOperatorTest',
-	#superclass : 'MTParseRewriterMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTReplaceDoBlockWithEmptyBlockOperatorTest,
+	#superclass : #MTParseRewriterMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithNoSenders [  
 	^ 1 + 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithOneSender [  
 	^OrderedCollection new 
 		do: [:element | element notNil]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithOneSenderModified [
 	^OrderedCollection new 
 		do: [:each | ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithTwoSenders [
 	OrderedCollection new 
 		do: [:element | element notNil].
@@ -30,7 +29,7 @@ MTReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithTwoSenders [
 		do: [:element | element isNil]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithTwoSendersModifiedFirst [
 	OrderedCollection new 
 		do: [:each | ].
@@ -38,7 +37,7 @@ MTReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithTwoSendersModifiedFirst 
 		do: [:element | element isNil]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithTwoSendersModifiedSecond [
 	OrderedCollection new 
 		do: [:element | element notNil].
@@ -46,7 +45,7 @@ MTReplaceDoBlockWithEmptyBlockOperatorTest >> methodWithTwoSendersModifiedSecond
 		do: [:each | ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDoBlockWithEmptyBlockOperatorTest >> operator [
 	^ MTReplaceDoBlockWithEmptyBlockOperator new
 ]

@@ -1,17 +1,16 @@
 Class {
-	#name : 'MTPredicateBasedMutantOperatorTest',
-	#superclass : 'MTAbstractMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTPredicateBasedMutantOperatorTest,
+	#superclass : #MTAbstractMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTPredicateBasedMutantOperatorTest class >> isAbstract [
 
 	^ self == MTPredicateBasedMutantOperatorTest
 ]
 
-{ #category : 'asserts' }
+{ #category : #asserts }
 MTPredicateBasedMutantOperatorTest >> assertApplyingMutantToFirstSenderInOneSenderMethod [
 
 	^ self
@@ -23,7 +22,7 @@ MTPredicateBasedMutantOperatorTest >> assertApplyingMutantToFirstSenderInOneSend
 		  replacingSelector: #methodWithOneSender
 ]
 
-{ #category : 'asserts' }
+{ #category : #asserts }
 MTPredicateBasedMutantOperatorTest >> assertApplyingMutantToFirstSenderInTwoSendersMethod [
 
 	^ self
@@ -36,7 +35,7 @@ MTPredicateBasedMutantOperatorTest >> assertApplyingMutantToFirstSenderInTwoSend
 		  replacingSelector: #methodWithTwoSenders
 ]
 
-{ #category : 'asserts' }
+{ #category : #asserts }
 MTPredicateBasedMutantOperatorTest >> assertApplyingMutantToNonSenderMethod [
 
 	^ self
@@ -48,7 +47,7 @@ MTPredicateBasedMutantOperatorTest >> assertApplyingMutantToNonSenderMethod [
 		  replacingSelector: #methodWithNoSenders
 ]
 
-{ #category : 'asserts' }
+{ #category : #asserts }
 MTPredicateBasedMutantOperatorTest >> assertApplyingMutantToSecondSenderInTwoSendersMethod [
 
 	^ self
@@ -61,61 +60,61 @@ MTPredicateBasedMutantOperatorTest >> assertApplyingMutantToSecondSenderInTwoSen
 		  replacingSelector: #methodWithTwoSenders
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTPredicateBasedMutantOperatorTest >> methodWithNoSenders [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTPredicateBasedMutantOperatorTest >> methodWithOneSender [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTPredicateBasedMutantOperatorTest >> methodWithOneSenderModified [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTPredicateBasedMutantOperatorTest >> methodWithTwoSenders [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTPredicateBasedMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTPredicateBasedMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTPredicateBasedMutantOperatorTest >> newNodeOneSender [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTPredicateBasedMutantOperatorTest >> newNodeTwoSendersFirst [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTPredicateBasedMutantOperatorTest >> newNodeTwoSendersSecond [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTPredicateBasedMutantOperatorTest >> operator [
 
 	self subclassResponsibility

@@ -1,20 +1,19 @@
 Class {
-	#name : 'MTUtilityAnalysis',
-	#superclass : 'Object',
+	#name : #MTUtilityAnalysis,
+	#superclass : #Object,
 	#instVars : [
 		'classes'
 	],
-	#category : 'MuTalk-Utilities',
-	#package : 'MuTalk-Utilities'
+	#category : 'MuTalk-Utilities'
 }
 
-{ #category : 'environments' }
+{ #category : #environments }
 MTUtilityAnalysis class >> forClasses: aCollectionOfClasses [
 
 	^ self new classes: aCollectionOfClasses
 ]
 
-{ #category : 'environments' }
+{ #category : #environments }
 MTUtilityAnalysis class >> forPackages: aCollectionOfPackages [
 
 	| allClasses |
@@ -27,13 +26,13 @@ MTUtilityAnalysis class >> forPackages: aCollectionOfPackages [
 	^ self new classes: allClasses
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTUtilityAnalysis >> classes [
 
 	^ classes
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTUtilityAnalysis >> classes: anObject [
 
 	classes := anObject

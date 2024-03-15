@@ -1,6 +1,5 @@
 Class {
-	#name : 'MTAuxiliarSubclassForSubclassReplacementOperator',
-	#superclass : 'MTAuxiliarClassForSubclassReplacementOperator',
-	#category : 'MuTalk-TestResources',
-	#package : 'MuTalk-TestResources'
+	#name : #MTAuxiliarSubclassForSubclassReplacementOperator,
+	#superclass : #MTAuxiliarClassForSubclassReplacementOperator,
+	#category : 'MuTalk-TestResources'
 }

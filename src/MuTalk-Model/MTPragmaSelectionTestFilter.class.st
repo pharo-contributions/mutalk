@@ -5,8 +5,19 @@ Class {
 }
 
 { #category : #enumerating }
-MTPragmaSelectionTestFilter >> filterTests: aTestCaseCollection [
+MTPragmaSelectionTestFilter >> excludedTestsFrom: aTestCaseCollection [
 
-	^ aTestCaseCollection select: [ :testCaseReference |
-		  self isPragmaValidFrom: testCaseReference ]
+	^ self rejectPragmaInTestCollection: aTestCaseCollection
+]
+
+{ #category : #enumerating }
+MTPragmaSelectionTestFilter >> filteredTestsFrom: aTestCaseCollection [
+
+	^ self selectPragmaInTestCollection: aTestCaseCollection
+]
+
+{ #category : #accessing }
+MTPragmaSelectionTestFilter >> reasonString [
+
+	^ 'Does not contain the pragma <' , condition
 ]

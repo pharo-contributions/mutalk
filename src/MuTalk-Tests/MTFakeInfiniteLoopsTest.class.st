@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTFakeInfiniteLoopsTest',
-	#superclass : 'TestCase',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTFakeInfiniteLoopsTest,
+	#superclass : #TestCase,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTFakeInfiniteLoopsTest >> testIterativeFactorial [
 
 	| ins |
@@ -14,7 +13,7 @@ MTFakeInfiniteLoopsTest >> testIterativeFactorial [
 	self assert: (ins iterativeFactorial: 5) equals: 120
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTFakeInfiniteLoopsTest >> testRecursiveFactorial [
 
 	| ins |

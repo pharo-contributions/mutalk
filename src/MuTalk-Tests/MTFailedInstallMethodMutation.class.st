@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTFailedInstallMethodMutation',
-	#superclass : 'MTMethodMutation',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTFailedInstallMethodMutation,
+	#superclass : #MTMethodMutation,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'installing' }
+{ #category : #installing }
 MTFailedInstallMethodMutation >> install [
 
 	self error

@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTFailedUninstallMethodMutation',
-	#superclass : 'MTMethodMutation',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTFailedUninstallMethodMutation,
+	#superclass : #MTMethodMutation,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'installing' }
+{ #category : #installing }
 MTFailedUninstallMethodMutation >> uninstall [
 
 	self error

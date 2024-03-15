@@ -1,44 +1,43 @@
 Class {
-	#name : 'MTReplaceIsEmptyWithNotEmptyMutantOperatorTest',
-	#superclass : 'MTParseRewriterMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTReplaceIsEmptyWithNotEmptyMutantOperatorTest,
+	#superclass : #MTParseRewriterMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIsEmptyWithNotEmptyMutantOperatorTest >> methodWithNoSenders [  
 	^ 1 + 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIsEmptyWithNotEmptyMutantOperatorTest >> methodWithOneSender [  
 	^OrderedCollection new isEmpty
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIsEmptyWithNotEmptyMutantOperatorTest >> methodWithOneSenderModified [
 	^OrderedCollection new notEmpty
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIsEmptyWithNotEmptyMutantOperatorTest >> methodWithTwoSenders [
 	OrderedCollection new isEmpty.
 	OrderedCollection new isEmpty
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIsEmptyWithNotEmptyMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 	OrderedCollection new notEmpty.
 	OrderedCollection new isEmpty
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIsEmptyWithNotEmptyMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 	OrderedCollection new isEmpty.
 	OrderedCollection new notEmpty
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIsEmptyWithNotEmptyMutantOperatorTest >> operator [
 	^MTReplaceIsEmptyWithNotEmptyMutantOperator new
 ]

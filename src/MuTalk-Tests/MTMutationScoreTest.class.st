@@ -1,21 +1,20 @@
 Class {
-	#name : 'MTMutationScoreTest',
-	#superclass : 'TestCase',
+	#name : #MTMutationScoreTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'resource'
 	],
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMutationScoreTest >> mutationResultAcceptable [
 
 	^ MTGeneralResult for: (OrderedCollection with:
 			   resource evaluationResultForKilledMutantByError)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMutationScoreTest >> mutationResultAlmostAcceptable [
 
 	^ MTGeneralResult for: (OrderedCollection
@@ -23,21 +22,21 @@ MTMutationScoreTest >> mutationResultAlmostAcceptable [
 			   with: resource evaluationResultForAliveMutant)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMutationScoreTest >> mutationResultNonAcceptable [
 
 	^ MTGeneralResult for:
 		  (OrderedCollection with: resource evaluationResultForAliveMutant)
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTMutationScoreTest >> setUp [
 
 	super setUp.
 	resource := MTResource current
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutationScoreTest >> testMutationScoreAcceptable [
 	|score|
 	score := (MTMutationAcceptableScore scoreFor: self mutationResultAcceptable).
@@ -46,7 +45,7 @@ MTMutationScoreTest >> testMutationScoreAcceptable [
 	self deny: score isAlmostAcceptableScore.
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutationScoreTest >> testMutationScoreAlmostAcceptable [
 	|score|
 	score := (MTMutationAlmostAcceptableScore scoreFor: self mutationResultAlmostAcceptable).
@@ -55,7 +54,7 @@ MTMutationScoreTest >> testMutationScoreAlmostAcceptable [
 	self assert: score isAlmostAcceptableScore.
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutationScoreTest >> testMutationScoreColor [
 
 	| score |
@@ -72,7 +71,7 @@ MTMutationScoreTest >> testMutationScoreColor [
 	self assert: score color equals: Color yellow
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutationScoreTest >> testMutationScoreCreation [
 
 	| score |
@@ -87,7 +86,7 @@ MTMutationScoreTest >> testMutationScoreCreation [
 	self assert: score isNonAcceptableScore
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTMutationScoreTest >> testMutationScoreNonAcceptable [
 	|score|
 	score := (MTMutationNonAcceptableScore scoreFor: self mutationResultNonAcceptable).

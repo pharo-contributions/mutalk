@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTRandomOperatorMutantSelectionStrategyTest',
-	#superclass : 'MTRandomMutantSelectionStrategyTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTRandomOperatorMutantSelectionStrategyTest,
+	#superclass : #MTRandomMutantSelectionStrategyTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRandomOperatorMutantSelectionStrategyTest >> classToTest [
 
 	^ MTRandomOperatorMutantSelectionStrategy

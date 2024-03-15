@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTAuxiliarClassForMTAnalysisTest',
-	#superclass : 'TestCase',
-	#category : 'MuTalk-TestResources',
-	#package : 'MuTalk-TestResources'
+	#name : #MTAuxiliarClassForMTAnalysisTest,
+	#superclass : #TestCase,
+	#category : 'MuTalk-TestResources'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAuxiliarClassForMTAnalysisTest >> testAnotherMethodWithOneIfFalseSender [
 
 	self
@@ -14,14 +13,14 @@ MTAuxiliarClassForMTAnalysisTest >> testAnotherMethodWithOneIfFalseSender [
 		equals: 1
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAuxiliarClassForMTAnalysisTest >> testClassMethodThatSendsSelect [
 
 	self assert:
 		MTAuxiliarClassForMTAnalysis classMethodThatSendsSelect notEmpty
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAuxiliarClassForMTAnalysisTest >> testMethodWithOneIfFalseSender [
 
 	self
@@ -29,7 +28,7 @@ MTAuxiliarClassForMTAnalysisTest >> testMethodWithOneIfFalseSender [
 		equals: 2
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAuxiliarClassForMTAnalysisTest >> testMethodWithOneIfTrueSender [
 
 	self
@@ -37,7 +36,7 @@ MTAuxiliarClassForMTAnalysisTest >> testMethodWithOneIfTrueSender [
 		equals: 1
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAuxiliarClassForMTAnalysisTest >> testMethodWithOnePlusSender [
 
 	self
@@ -45,7 +44,7 @@ MTAuxiliarClassForMTAnalysisTest >> testMethodWithOnePlusSender [
 		equals: 3
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAuxiliarClassForMTAnalysisTest >> testMethodWithTwoMinusSenders [
 
 	self

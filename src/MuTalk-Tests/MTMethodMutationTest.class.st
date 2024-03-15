@@ -1,16 +1,15 @@
 Class {
-	#name : 'MTMethodMutationTest',
-	#superclass : 'TestCase',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTMethodMutationTest,
+	#superclass : #TestCase,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTMethodMutationTest >> simpleTestCaseRessource [
 	self assert: 1 + 1 equals: 2
 ]
 
-{ #category : 'testing accessing' }
+{ #category : #'testing accessing' }
 MTMethodMutationTest >> testAccessing [
 
 	| compiledMethod operator modifiedSource methodMutation |
@@ -34,7 +33,7 @@ MTMethodMutationTest >> testAccessing [
 	self assert: methodMutation modifiedSource equals: modifiedSource
 ]
 
-{ #category : 'testing accessing' }
+{ #category : #'testing accessing' }
 MTMethodMutationTest >> testAccessingToNodes [
 
 	| compiledMethod operator modifiedSource methodMutation |
@@ -55,7 +54,7 @@ MTMethodMutationTest >> testAccessingToNodes [
 	self assert: methodMutation mutatedNode formattedCode equals: '1 - 2'
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTMethodMutationTest >> testMutatedNodeBugFix [
 	| method m |
 	method := MTClassForTestingCoverage class>>#new:.
@@ -65,15 +64,16 @@ MTMethodMutationTest >> testMutatedNodeBugFix [
 	
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTMethodMutationTest >> testMutationInfiniteLoop [
 
-	| compiledMethod operator modifiedSource methodMutation res |
+	| compiledMethod operator modifiedSource methodMutation res testCase |
 	"This test will execute another test that will time out.
 	So this test will need a higher time limit"
 	self timeLimit: self defaultTimeLimit + (Duration milliSeconds: 10).
 
 	compiledMethod := MTFakeInfiniteLoopForTest >> #iterativeFactorial:.
+	testCase := MTFakeInfiniteLoopsTest selector: #testIterativeFactorial.
 	operator := MTReplaceLessOrEqualWithTrueOperator new.
 
 	modifiedSource := operator
@@ -85,24 +85,24 @@ MTMethodMutationTest >> testMutationInfiniteLoop [
 		                  nodeNumber: 1
 		                  ofClass: MTFakeInfiniteLoopForTest.
 
-	methodMutation testCaseReferences: { (MTTestCaseReference
-			 for: #testIterativeFactorial
-			 in: MTFakeInfiniteLoopsTest) }.
+	methodMutation testCaseReferences:
+		{ (MTTestCaseReference for: testCase) }.
 
 	res := methodMutation runMutantStoppingOnError: true in: nil.
 
 	self assert: res result errors size equals: 1
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTMethodMutationTest >> testMutationInfiniteRecursion [
 
-	| compiledMethod operator modifiedSource methodMutation res |
+	| compiledMethod operator modifiedSource methodMutation res testCase |
 	"This test will execute another test that will time out.
 	So this test will need a higher time limit"
 	self timeLimit: self defaultTimeLimit + (Duration milliSeconds: 10).
 
 	compiledMethod := MTFakeInfiniteLoopForTest >> #recursiveFactorial:.
+	testCase := MTFakeInfiniteLoopsTest selector: #testRecursiveFactorial.
 	operator := MTReplaceIfTrueReceiverWithFalseOperator new.
 
 	modifiedSource := operator
@@ -114,19 +114,19 @@ MTMethodMutationTest >> testMutationInfiniteRecursion [
 		                  nodeNumber: 1
 		                  ofClass: MTFakeInfiniteLoopForTest.
 
-	methodMutation testCaseReferences: { (MTTestCaseReference
-			 for: #testRecursiveFactorial
-			 in: MTFakeInfiniteLoopsTest) }.
+	methodMutation testCaseReferences:
+		{ (MTTestCaseReference for: testCase) }.
 
 	res := methodMutation runMutantStoppingOnError: true in: nil.
 
 	self assert: res result errors size equals: 1
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTMethodMutationTest >> testMutationNotInstalling [
 
-	| methodMutation res mutantEvaluation |
+	| methodMutation res mutantEvaluation testCase |
+	testCase := MTFakeInfiniteLoopsTest selector: #testRecursiveFactorial.
 	methodMutation := MTFailedInstallMethodMutation
 		                  for:
 		                  MTFakeInfiniteLoopForTest >> #iterativeFactorial:
@@ -137,9 +137,7 @@ MTMethodMutationTest >> testMutationNotInstalling [
 
 	mutantEvaluation := MTMutantEvaluation
 		                    for: methodMutation
-		                    using: { (MTTestCaseReference
-				                     for: #testRecursiveFactorial
-				                     in: MTFakeInfiniteLoopsTest) }
+		                    using: { (MTTestCaseReference for: testCase) }
 		                    following:
 		                    MTAllTestsMethodsRunningTestSelectionStrategy
 			                    new
@@ -149,10 +147,11 @@ MTMethodMutationTest >> testMutationNotInstalling [
 	self assert: res terminated
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTMethodMutationTest >> testMutationNotRunning [
 
-	| methodMutation res mutantEvaluation |
+	| methodMutation res mutantEvaluation testCase |
+	testCase := MTFakeInfiniteLoopsTest selector: #testRecursiveFactorial.
 	methodMutation := MTFailedRunMethodMutation
 		                  for:
 		                  MTFakeInfiniteLoopForTest >> #iterativeFactorial:
@@ -163,9 +162,7 @@ MTMethodMutationTest >> testMutationNotRunning [
 
 	mutantEvaluation := MTMutantEvaluation
 		                    for: methodMutation
-		                    using: { (MTTestCaseReference
-				                     for: #testRecursiveFactorial
-				                     in: MTFakeInfiniteLoopsTest) }
+		                    using: { (MTTestCaseReference for: testCase) }
 		                    following:
 		                    MTAllTestsMethodsRunningTestSelectionStrategy
 			                    new
@@ -175,10 +172,11 @@ MTMethodMutationTest >> testMutationNotRunning [
 	self assert: res terminated
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTMethodMutationTest >> testMutationNotUninstalling [
 
-	| methodMutation res mutantEvaluation |
+	| methodMutation res mutantEvaluation testCase |
+	testCase := MTFakeInfiniteLoopsTest selector: #testRecursiveFactorial.
 	methodMutation := MTFailedUninstallMethodMutation
 		                  for:
 		                  MTFakeInfiniteLoopForTest >> #iterativeFactorial:
@@ -189,9 +187,7 @@ MTMethodMutationTest >> testMutationNotUninstalling [
 
 	mutantEvaluation := MTMutantEvaluation
 		                    for: methodMutation
-		                    using: { (MTTestCaseReference
-				                     for: #testRecursiveFactorial
-				                     in: MTFakeInfiniteLoopsTest) }
+		                    using: { (MTTestCaseReference for: testCase) }
 		                    following:
 		                    MTAllTestsMethodsRunningTestSelectionStrategy
 			                    new
@@ -201,12 +197,13 @@ MTMethodMutationTest >> testMutationNotUninstalling [
 	self assert: res terminated
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTMethodMutationTest >> testMutationRun [
 
-	| compiledMethod operator modifiedSource methodMutation res |
+	| compiledMethod operator modifiedSource methodMutation res testCase |
 	compiledMethod := MTAuxiliarClassForMTAnalysis
 	                  >> #methodWithOnePlusSender.
+	testCase := self class selector: #simpleTestCaseRessource.
 	operator := MTReplacePlusWithMinusMutantOperator new.
 	modifiedSource := operator
 		                  modifiedSourceFor: compiledMethod
@@ -217,7 +214,7 @@ MTMethodMutationTest >> testMutationRun [
 		                  nodeNumber: 1
 		                  ofClass: MTAuxiliarClassForMTAnalysis.
 	methodMutation testCaseReferences:
-		{ (MTTestCaseReference for: #simpleTestCaseRessource in: self class) }.
+		{ (MTTestCaseReference for: testCase) }.
 	res := methodMutation runMutantStoppingOnError: true in: nil.
 
 	self assert: res runCount equals: 1

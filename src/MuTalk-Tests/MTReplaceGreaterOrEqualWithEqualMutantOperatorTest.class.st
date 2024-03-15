@@ -1,41 +1,40 @@
 Class {
-	#name : 'MTReplaceGreaterOrEqualWithEqualMutantOperatorTest',
-	#superclass : 'MTParseRewriterMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTReplaceGreaterOrEqualWithEqualMutantOperatorTest,
+	#superclass : #MTParseRewriterMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceGreaterOrEqualWithEqualMutantOperatorTest >> methodWithNoSenders [  
 	^ 1 - 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceGreaterOrEqualWithEqualMutantOperatorTest >> methodWithOneSender [  
 	^ 2 >= 1
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceGreaterOrEqualWithEqualMutantOperatorTest >> methodWithOneSenderModified [
 	^ 2 = 1
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceGreaterOrEqualWithEqualMutantOperatorTest >> methodWithTwoSenders [
 	^ 1 >= 2 or: [2 >= 3].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceGreaterOrEqualWithEqualMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 	^ 1 = 2 or: [2 >= 3].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceGreaterOrEqualWithEqualMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 	^ 1 >= 2 or: [2 = 3].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceGreaterOrEqualWithEqualMutantOperatorTest >> operator [
 	^ MTReplaceGreaterOrEqualWithEqualMutantOperator new
 ]

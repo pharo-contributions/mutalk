@@ -1,15 +1,14 @@
 Class {
-	#name : 'MTAnalysisLoggerTest',
-	#superclass : 'TestCase',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTAnalysisLoggerTest,
+	#superclass : #TestCase,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAnalysisLoggerTest >> testExecutingSimpleMutation [
 
 	| analysis logger operator |
-	logger := MTMockMTAnalysisLogger new.
+	logger := MTMockAnalysisLogger new.
 	operator := MTReplacePlusWithMinusMutantOperator new.
 	analysis := MTAnalysis new
 		            testClasses:

@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTAuxiliarTestClassForTestingStrategies',
-	#superclass : 'TestCase',
-	#category : 'MuTalk-TestResources',
-	#package : 'MuTalk-TestResources'
+	#name : #MTAuxiliarTestClassForTestingStrategies,
+	#superclass : #TestCase,
+	#category : 'MuTalk-TestResources'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTAuxiliarTestClassForTestingStrategies >> testMethodThatCoverMethod1 [
 
 	self
@@ -13,7 +12,7 @@ MTAuxiliarTestClassForTestingStrategies >> testMethodThatCoverMethod1 [
 		equals: 1
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTAuxiliarTestClassForTestingStrategies >> testMethodThatCoverMethod2 [
 
 	self

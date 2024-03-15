@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTPragmaSelectionTestFilterTest',
-	#superclass : 'MTTestFilterTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTPragmaSelectionTestFilterTest,
+	#superclass : #MTTestFilterTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'running' }
+{ #category : #running }
 MTPragmaSelectionTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelector [
 
 	self
@@ -15,7 +14,7 @@ MTPragmaSelectionTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelecto
 		withTests: { MTAuxiliarTestClassForPragmaTestFilter }
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTPragmaSelectionTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelector andArguments: pragmaArguments [
 
 	self
@@ -26,7 +25,7 @@ MTPragmaSelectionTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelecto
 		withTests: { MTAuxiliarTestClassForPragmaTestFilter }
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTPragmaSelectionTestFilterTest >> testAllTestsAreExcluded [
 
 	self runAnalysisForPragmaCondition: #anotherPragma.
@@ -36,17 +35,17 @@ MTPragmaSelectionTestFilterTest >> testAllTestsAreExcluded [
 		equals: 0
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTPragmaSelectionTestFilterTest >> testAllTestsAreExcluded2 [
 
-	self runAnalysisForPragmaCondition: #aPragma: andArguments: 'arg'.
+	self runAnalysisForPragmaCondition: #aPragma: andArguments: { 'arg' }.
 
 	self
 		assert: (analysis generalResult particularResults at: 1) runCount
 		equals: 0
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTPragmaSelectionTestFilterTest >> testTestWithoutPragmaIsExcluded [
 
 	| result |

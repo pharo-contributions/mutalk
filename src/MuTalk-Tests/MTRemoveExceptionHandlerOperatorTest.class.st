@@ -1,45 +1,44 @@
 Class {
-	#name : 'MTRemoveExceptionHandlerOperatorTest',
-	#superclass : 'MTParseRewriterMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTRemoveExceptionHandlerOperatorTest,
+	#superclass : #MTParseRewriterMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRemoveExceptionHandlerOperatorTest >> methodWithNoSenders [  
 	"[x y] on:E do:[:e| b] "
 	OrderedCollection new do: [:elem | elem notNil]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRemoveExceptionHandlerOperatorTest >> methodWithOneSender [  
 	^[1 /0] on:Exception do:[:ex | Transcript show: 'error'].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRemoveExceptionHandlerOperatorTest >> methodWithOneSenderModified [
 	^[1 /0] value 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRemoveExceptionHandlerOperatorTest >> methodWithTwoSenders [
 	[self error:'an error'] on:Exception do:[:ex | Transcript show: 'error'].
 	^[1 /0] on:Exception do:[:ex | Transcript show: 'error'].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRemoveExceptionHandlerOperatorTest >> methodWithTwoSendersModifiedFirst [
 	[self error:'an error'.] value.
 	^[1 /0] on:Exception do:[:ex | Transcript show: 'error'].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRemoveExceptionHandlerOperatorTest >> methodWithTwoSendersModifiedSecond [
 	[self error:'an error'] on:Exception do:[:ex | Transcript show: 'error'].
 	^[1 /0] value
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTRemoveExceptionHandlerOperatorTest >> operator [
 	^ MTRemoveExceptionHandlerOperator new
 ]

@@ -1,14 +1,13 @@
 Class {
-	#name : 'MTResource',
-	#superclass : 'TestResource',
+	#name : #MTResource,
+	#superclass : #TestResource,
 	#instVars : [
 		'testResource'
 	],
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'building' }
+{ #category : #building }
 MTResource >> evaluationResultEmpty [
 	"Build a MutationEvaluationResult empty"
 	| mutant testResultEmpty |
@@ -19,7 +18,7 @@ MTResource >> evaluationResultEmpty [
 		results: testResultEmpty
 ]
 
-{ #category : 'building' }
+{ #category : #building }
 MTResource >> evaluationResultForAliveMutant [
 	"Build a MutationEvaluationResult for aMutant with only one survived"
 	| mutation testResultWithoutErrors |
@@ -30,7 +29,7 @@ MTResource >> evaluationResultForAliveMutant [
 		results: testResultWithoutErrors
 ]
 
-{ #category : 'building' }
+{ #category : #building }
 MTResource >> evaluationResultForKilledMutantByError [
 	"Build a MutationEvaluationResult for aMutant with only one Error"
 	| mutation testResultWithOneError |
@@ -41,7 +40,7 @@ MTResource >> evaluationResultForKilledMutantByError [
 		results: testResultWithOneError
 ]
 
-{ #category : 'building' }
+{ #category : #building }
 MTResource >> evaluationResultForKilledMutantByFailure [
 	"Build a MutationEvaluationResult for aMutant with only one Failure"
 	| mutation testResultWithOneFailure |
@@ -52,7 +51,7 @@ MTResource >> evaluationResultForKilledMutantByFailure [
 		results: testResultWithOneFailure
 ]
 
-{ #category : 'building' }
+{ #category : #building }
 MTResource >> evaluationResultForTerminatedMutant [
 	"Build a MutationEvaluationResult for aMutant terminated"
 	| mutation |
@@ -62,12 +61,12 @@ MTResource >> evaluationResultForTerminatedMutant [
 		results: nil
 ]
 
-{ #category : 'building-private' }
+{ #category : #'building-private' }
 MTResource >> methodForBuildingMutant [
 	^1+2
 ]
 
-{ #category : 'building-private' }
+{ #category : #'building-private' }
 MTResource >> mutation [
 	"Build Mock Object that simulates a Mutant"
 
@@ -81,20 +80,20 @@ MTResource >> mutation [
 		  ofClass: self class
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTResource >> setUp [
 
 	super setUp.
 	testResource := MTMutationTestCaseResource new
 ]
 
-{ #category : 'building-private' }
+{ #category : #'building-private' }
 MTResource >> testResultEmpty [
 	"Build a TestResult empty"
 	^ TestResult new
 ]
 
-{ #category : 'building-private' }
+{ #category : #'building-private' }
 MTResource >> testResultWithError [
 	"Build a TestResult with error"
 	| case |
@@ -102,7 +101,7 @@ MTResource >> testResultWithError [
 	^ case run
 ]
 
-{ #category : 'building-private' }
+{ #category : #'building-private' }
 MTResource >> testResultWithFailure [
 	"Build a TestResult with failure"
 	| case |
@@ -110,7 +109,7 @@ MTResource >> testResultWithFailure [
 	^ case run
 ]
 
-{ #category : 'building-private' }
+{ #category : #'building-private' }
 MTResource >> testResultWithoutErrorOrFailure [
 	"Build a TestResult without errors or failures"
 	| case |

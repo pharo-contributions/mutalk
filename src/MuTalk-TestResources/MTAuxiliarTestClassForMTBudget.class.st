@@ -1,14 +1,13 @@
 Class {
-	#name : 'MTAuxiliarTestClassForMTBudget',
-	#superclass : 'TestCase',
+	#name : #MTAuxiliarTestClassForMTBudget,
+	#superclass : #TestCase,
 	#instVars : [
 		'object'
 	],
-	#category : 'MuTalk-TestResources',
-	#package : 'MuTalk-TestResources'
+	#category : 'MuTalk-TestResources'
 }
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTAuxiliarTestClassForMTBudget >> testNil [
 
 	

@@ -1,26 +1,25 @@
 Class {
-	#name : 'MTAbstractJsonExporter',
-	#superclass : 'Object',
+	#name : #MTAbstractJsonExporter,
+	#superclass : #Object,
 	#instVars : [
 		'mtResult'
 	],
-	#category : 'MuTalk-CI',
-	#package : 'MuTalk-CI'
+	#category : 'MuTalk-CI'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTAbstractJsonExporter >> export [
 
 	self subclassResponsibility 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAbstractJsonExporter >> mtResult [
 
 	^ mtResult
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAbstractJsonExporter >> mtResult: anObject [
 
 	mtResult := anObject

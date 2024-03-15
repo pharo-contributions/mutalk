@@ -1,6 +1,6 @@
 Class {
-	#name : 'MTMatrix',
-	#superclass : 'Dictionary',
+	#name : #MTMatrix,
+	#superclass : #Dictionary,
 	#instVars : [
 		'mutations',
 		'testCases',
@@ -8,11 +8,10 @@ Class {
 		'classesToMutate',
 		'testClasses'
 	],
-	#category : 'MuTalk-Utilities',
-	#package : 'MuTalk-Utilities'
+	#category : 'MuTalk-Utilities'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTMatrix class >> forClasses: aCollectionOfClasses [
 
 	^ self
@@ -22,7 +21,7 @@ MTMatrix class >> forClasses: aCollectionOfClasses [
 					   self class environment ])
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTMatrix class >> forClasses: aCollectionOfClasses andTests: aCollectionOfTests [
 
 	^ self new
@@ -30,7 +29,7 @@ MTMatrix class >> forClasses: aCollectionOfClasses andTests: aCollectionOfTests 
 		  testClasses: aCollectionOfTests
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTMatrix class >> forPackages: aCollectionOfPackages [
 
 	^ self
@@ -39,7 +38,7 @@ MTMatrix class >> forPackages: aCollectionOfPackages [
 		  (aCollectionOfPackages collect: [ :package | package , '-Tests' ])
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 MTMatrix class >> forPackages: aCollectionOfPackages andTestPackages: aCollectionOfTestPackages [
 
 	^ self new
@@ -55,7 +54,7 @@ MTMatrix class >> forPackages: aCollectionOfPackages andTestPackages: aCollectio
 							   (testPackage asPackage definedClasses select: #isTestCase) ])
 ]
 
-{ #category : 'adding' }
+{ #category : #adding }
 MTMatrix >> addMutantSetsIn: aCollection using: aSymbol [
 
 	mutations do: [ :mutant1 |
@@ -70,13 +69,13 @@ MTMatrix >> addMutantSetsIn: aCollection using: aSymbol [
 				ifFalse: [ aCollection add: mutantSet ] ] ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMatrix >> analysis [
 
 	^ analysis
 ]
 
-{ #category : 'comparing' }
+{ #category : #comparing }
 MTMatrix >> booleanCollection1: collection1 equalsBooleanCollection2: collection2 [
 
 	collection1 size = collection2 size ifFalse: [ ^ false ].
@@ -85,7 +84,7 @@ MTMatrix >> booleanCollection1: collection1 equalsBooleanCollection2: collection
 	^ true
 ]
 
-{ #category : 'comparing' }
+{ #category : #comparing }
 MTMatrix >> booleanCollection1: collection1 includesBooleanCollection2: collection2 [
 
 	collection1 size = collection2 size ifFalse: [ ^ false ].
@@ -96,7 +95,7 @@ MTMatrix >> booleanCollection1: collection1 includesBooleanCollection2: collecti
 	^ true
 ]
 
-{ #category : 'building' }
+{ #category : #building }
 MTMatrix >> build [
 
 	self runAnalysis.
@@ -108,19 +107,19 @@ MTMatrix >> build [
 				 (self failuresFor: mut) includes: test ]) ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMatrix >> classesToMutate [
 
 	^ classesToMutate
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMatrix >> classesToMutate: aClass [
 
 	classesToMutate := aClass
 ]
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTMatrix >> dataForTests: testCollection andMutations: mutationCollection [
 
 	| totalNumberOfTestsExecuted numberOfFailuresCollection totalNumberOfFailures |
@@ -140,7 +139,7 @@ MTMatrix >> dataForTests: testCollection andMutations: mutationCollection [
 		  asInteger
 ]
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTMatrix >> dataMatrixForTests: testDictionary andMutations: mutationDictionary [
 
 	^ mutationDictionary values collect: [ :mutationCollection |
@@ -150,7 +149,7 @@ MTMatrix >> dataMatrixForTests: testDictionary andMutations: mutationDictionary 
 				  andMutations: mutationCollection ] ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMatrix >> equivalentMutants [
 
 	| equivalentMutants |
@@ -161,14 +160,14 @@ MTMatrix >> equivalentMutants [
 	^ equivalentMutants
 ]
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTMatrix >> evaluationResultFor: aMutant [
 
 	^ (analysis mutantResults detect: [ :evaluationResult |
 		   evaluationResult mutant = aMutant ]) result
 ]
 
-{ #category : 'rendering' }
+{ #category : #rendering }
 MTMatrix >> failingTestsFor: aMutation [
 
 	| indicies testResults |
@@ -181,21 +180,21 @@ MTMatrix >> failingTestsFor: aMutation [
 		  indicies includes: (testCases indexOf: test) ]
 ]
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTMatrix >> failuresFor: aMutant [
 
-	^ (self evaluationResultFor: aMutant) defects asOrderedCollection collect: [ :each |
-		  MTTestCaseReference for: each selector in: each class ]
+	^ (self evaluationResultFor: aMutant) defects asOrderedCollection
+		  collect: [ :each | MTTestCaseReference for: each ]
 ]
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTMatrix >> failuresFor: aMutation andTestClass: aTestClass [
 
 	^ (self failuresFor: aMutation) select: [ :testCase |
 		  testCase testCaseClass = aTestClass ]
 ]
 
-{ #category : 'rendering' }
+{ #category : #rendering }
 MTMatrix >> generateHeatmap [
 
 	| heatmap mutationDictionary testDictionary |
@@ -214,7 +213,7 @@ MTMatrix >> generateHeatmap [
 	heatmap open
 ]
 
-{ #category : 'rendering' }
+{ #category : #rendering }
 MTMatrix >> generateMatrix [
 
 	| matrix |
@@ -226,7 +225,7 @@ MTMatrix >> generateMatrix [
 	matrix open
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMatrix >> includedMutants [
 
 	| includedMutants |
@@ -237,7 +236,7 @@ MTMatrix >> includedMutants [
 	^ includedMutants
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 MTMatrix >> initializeHeatmap [
 
 	| heatmap |
@@ -250,7 +249,7 @@ MTMatrix >> initializeHeatmap [
 	^ heatmap
 ]
 
-{ #category : 'comparing' }
+{ #category : #comparing }
 MTMatrix >> mutant1: mutant1 equalsMutant2: mutant2 [
 
 	^ self
@@ -258,7 +257,7 @@ MTMatrix >> mutant1: mutant1 equalsMutant2: mutant2 [
 		  equalsBooleanCollection2: (self at: mutant2)
 ]
 
-{ #category : 'comparing' }
+{ #category : #comparing }
 MTMatrix >> mutant1: mutant1 includesMutant2: mutant2 [
 
 	^ self
@@ -266,7 +265,7 @@ MTMatrix >> mutant1: mutant1 includesMutant2: mutant2 [
 		  includesBooleanCollection2: (self at: mutant2)
 ]
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTMatrix >> mutantOperation: aSymbol with: mutant1 and: mutant2 [
 
 	aSymbol = #equals ifTrue: [
@@ -275,19 +274,19 @@ MTMatrix >> mutantOperation: aSymbol with: mutant1 and: mutant2 [
 		^ self mutant1: mutant1 includesMutant2: mutant2 ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMatrix >> mutations [
 
 	^ mutations
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMatrix >> mutations: anObject [
 
 	mutations := anObject
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 MTMatrix >> runAnalysis [
 
 	analysis := MTAnalysis new
@@ -299,25 +298,25 @@ MTMatrix >> runAnalysis [
 	mutations := analysis mutations
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMatrix >> testCases [
 
 	^ testCases
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMatrix >> testClasses [
 
 	^ testClasses
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMatrix >> testClasses: aTestClass [
 
 	testClasses := aTestClass
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMatrix >> trivialMutants [
 
 	^ self keys select: [ :mutant |

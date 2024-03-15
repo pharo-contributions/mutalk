@@ -1,31 +1,30 @@
 Class {
-	#name : 'MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest',
-	#superclass : 'MTParseRewriterMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest,
+	#superclass : #MTParseRewriterMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithNoSenders [  
 	 1 + 2.
 	^#(1) detect:[:each | true]  
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithOneSender [  
 	^OrderedCollection new 
 		detect: [:each | each notNil] 
 		ifNone: [true]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithOneSenderModified [
 	^OrderedCollection new 
 		detect: [:each | each notNil] 
 		ifNone: []
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithTwoSenders [
 	|collection|
 	collection := OrderedCollection with: 1 with: 2.
@@ -39,7 +38,7 @@ MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithTwoSende
 		ifNone: [0]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithTwoSendersModifiedFirst [
 	|collection|
 	collection := OrderedCollection with: 1 with: 2.
@@ -53,7 +52,7 @@ MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithTwoSende
 		ifNone: []
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithTwoSendersModifiedSecond [
 	|collection|
 	collection := OrderedCollection with: 1 with: 2.
@@ -67,7 +66,7 @@ MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> methodWithTwoSende
 		ifNone: [0]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperatorTest >> operator [
 	^ MTReplaceDetectIfNoneSecondBlockWithEmptyBlockOperator new
 ]

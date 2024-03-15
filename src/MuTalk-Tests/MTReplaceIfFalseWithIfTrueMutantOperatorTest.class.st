@@ -1,49 +1,48 @@
 Class {
-	#name : 'MTReplaceIfFalseWithIfTrueMutantOperatorTest',
-	#superclass : 'MTParseRewriterMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTReplaceIfFalseWithIfTrueMutantOperatorTest,
+	#superclass : #MTParseRewriterMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfFalseWithIfTrueMutantOperatorTest >> methodWithNoSenders [  
 	^ 1 + 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfFalseWithIfTrueMutantOperatorTest >> methodWithOneSender [  
 	false ifFalse: [^true]. 
  	^false
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfFalseWithIfTrueMutantOperatorTest >> methodWithOneSenderModified [  
 	false ifTrue: [^true]. 
  	^false
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfFalseWithIfTrueMutantOperatorTest >> methodWithTwoSenders [
 	false ifFalse: [^true].
 	true ifFalse: [^true].
 	^false
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfFalseWithIfTrueMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 	false ifTrue: [^true].
 	true ifFalse: [^true].
 	^false
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfFalseWithIfTrueMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 	false ifFalse: [^true].
 	true ifTrue: [^true].
 	^false
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceIfFalseWithIfTrueMutantOperatorTest >> operator [
 	^ MTReplaceIfFalseWithIfTrueMutantOperator new
 ]

@@ -1,28 +1,27 @@
 Class {
-	#name : 'MTReplaceRejectWithSelectMutantOperatorTest',
-	#superclass : 'MTParseRewriterMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTReplaceRejectWithSelectMutantOperatorTest,
+	#superclass : #MTParseRewriterMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceRejectWithSelectMutantOperatorTest >> methodWithNoSenders [  
 	^ 1 + 2
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceRejectWithSelectMutantOperatorTest >> methodWithOneSender [  
 	^OrderedCollection new 
 		reject: [:element | element notNil]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceRejectWithSelectMutantOperatorTest >> methodWithOneSenderModified [
 	^OrderedCollection new 
 		select: [:element | element notNil]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceRejectWithSelectMutantOperatorTest >> methodWithTwoSenders [
 	OrderedCollection new 
 		reject: [:element | element notNil].
@@ -30,7 +29,7 @@ MTReplaceRejectWithSelectMutantOperatorTest >> methodWithTwoSenders [
 		reject: [:element | element isNil]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceRejectWithSelectMutantOperatorTest >> methodWithTwoSendersModifiedFirst [
 	OrderedCollection new 
 		select: [:element | element notNil].
@@ -38,7 +37,7 @@ MTReplaceRejectWithSelectMutantOperatorTest >> methodWithTwoSendersModifiedFirst
 		reject: [:element | element isNil]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceRejectWithSelectMutantOperatorTest >> methodWithTwoSendersModifiedSecond [
 	OrderedCollection new 
 		reject: [:element | element notNil].
@@ -46,7 +45,7 @@ MTReplaceRejectWithSelectMutantOperatorTest >> methodWithTwoSendersModifiedSecon
 		select: [:element | element isNil]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceRejectWithSelectMutantOperatorTest >> operator [
 	^ MTReplaceRejectWithSelectMutantOperator new
 ]

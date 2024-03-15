@@ -55,10 +55,10 @@ MTAnalysis >> defaultBudget [
 	^ MTFreeBudget new
 ]
 
-{ #category : #defaults }
+{ #category : #'accessing - defaults' }
 MTAnalysis >> defaultLogger [
 
-	^ MTNullAnalysisLogger new
+	^ MTNullLogger new
 ]
 
 { #category : #'accessing - defaults' }
@@ -94,12 +94,16 @@ MTAnalysis >> doNotStopOnErrorOrFail [
 { #category : #results }
 MTAnalysis >> generalResult [
 
-	^ MTGeneralResult for: mutantResults timed: elapsedTime
+	^ MTGeneralResult
+		  for: mutantResults
+		  timed: elapsedTime
+		  excludedTests: testFilter excludedTests
 ]
 
 { #category : #running }
 MTAnalysis >> generateCoverageAnalysis [
 
+	logger logStartCoverageAnalysis.
 	coverageAnalysisResult := (MTCoverageAnalysis
 		                           for: self modelClasses
 		                           running: testCases)
@@ -110,18 +114,20 @@ MTAnalysis >> generateCoverageAnalysis [
 { #category : #running }
 MTAnalysis >> generateMutations [
 
+	logger logStartMutationGeneration.
 	^ mutations ifNil: [
 		  mutations := mutantSelectionStrategy
 			               mutationsFor: self
-			               loggingIn: logger ]
+			               loggingIn: logger.
+		  logger logTotalNumberOfMutations: mutations.
+		  mutations ]
 ]
 
 { #category : #running }
 MTAnalysis >> generateResults [
 
-	| tests |
 	mutantResults := OrderedCollection new.
-	tests := testFilter filterTests: testCases.
+	logger logStartMutationEvaluation.
 
 	mutations do: [ :aMutation |
 		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)
@@ -129,19 +135,22 @@ MTAnalysis >> generateResults [
 		logger logStartEvaluating: aMutation.
 		mutantResults add: ((MTMutantEvaluation
 				  for: aMutation
-				  using: tests
+				  using: testCases
 				  following: testSelectionStrategy
 				  andConsidering: self coverageAnalysisResult)
 				 valueStoppingOnError: stopOnErrorOrFail) ].
+	logger logEnd.
 	^ mutantResults
 ]
 
 { #category : #running }
 MTAnalysis >> initialTestRun [
-	"Do an initial run of the tests to check that they are all green.
-	Only green tests count for the mutation testing analysis"
+	"Runs all tests once and filters them"
 
-	testCases do: [ :aTestCase | aTestCase runChecked ]
+	| results |
+	results := testCases collect: [ :aTestCase | aTestCase run ].
+	testFilter validateFailuresIn: results.
+	testCases := testFilter filterTests: testCases
 ]
 
 { #category : #initialization }
@@ -168,6 +177,8 @@ MTAnalysis >> logger [
 { #category : #accessing }
 MTAnalysis >> logger: anObject [
 
+	testCases do: [ :testCaseReference |
+		testCaseReference logger: anObject ].
 	logger := anObject
 ]
 
@@ -290,8 +301,8 @@ MTAnalysis >> testCasesFrom: aClassCollection [
 { #category : #tests }
 MTAnalysis >> testCasesReferencesFrom: testClass [
 
-	^ testClass allTestSelectors collect: [ :each |
-		  MTTestCaseReference for: each in: testClass ]
+	^ testClass buildSuite tests collect: [ :each |
+		  MTTestCaseReference for: each logger: logger ]
 ]
 
 { #category : #accessing }

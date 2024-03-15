@@ -1,21 +1,20 @@
 Class {
-	#name : 'MTAnalysisTest',
-	#superclass : 'TestCase',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTAnalysisTest,
+	#superclass : #TestCase,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysisTest class >> classNamesNotUnderTest [
 	^ #('MutationBrowser' 'MutationTestRunner' )
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysisTest class >> packageNamesUnderTest [
 	^ #('MutationTesting-Model')
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysisTest >> ifFalseForIfTrueReplacementMutation [
 	"Return a Collection with a Mutation Operation to be applied to the AuxiliarClass. 
 	In this case, the operation will be a boolean Replacement (ifFalse for ifTrue)."
@@ -24,7 +23,7 @@ MTAnalysisTest >> ifFalseForIfTrueReplacementMutation [
 	^ OrderedCollection with: operator
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysisTest >> ifTrueForIfFalseReplacementMutation [
 	"Return a Collection with a Mutation Operation to be applied to the
 	DummyClass. In this case, the operation will be a boolean Replacement (ifTrue for ifFalse)."
@@ -33,7 +32,7 @@ MTAnalysisTest >> ifTrueForIfFalseReplacementMutation [
 	^ OrderedCollection with: operator
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysisTest >> minusForPlusReplacementMutation [
 	"Return a Collection with a Mutation Operation to be applied to the method in MutationTestingAuxiliarClass. 
 	In this case, the operation will be an Arithmetic Replacement (Minus for Plus)."
@@ -42,7 +41,7 @@ MTAnalysisTest >> minusForPlusReplacementMutation [
 	^ OrderedCollection with: operator
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysisTest >> plusForMinusReplacementMutation [
 	"Return a Collection with a Mutation Operation to be applied to the
 	DummyClass. In this case, the operation will be an Arithmetic
@@ -52,14 +51,25 @@ MTAnalysisTest >> plusForMinusReplacementMutation [
 	^ OrderedCollection with: operator
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTAnalysisTest >> selectForRejectReplacementMutation [
 	| operator |
 	operator := MTReplaceSelectWithRejectMutantOperator new.
 	^ OrderedCollection with: operator
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
+MTAnalysisTest >> testCorrectNumberOfTestCasesWithParametrizedTestCase [
+
+	| analysis |
+	analysis := MTAnalysis new
+		            testClasses: { MTAuxiliarParametrizedTestClass };
+		            classesToMutate: {  }.
+
+	self assert: analysis testCases size equals: 3
+]
+
+{ #category : #tests }
 MTAnalysisTest >> testDefaultParameters [
 
 	| analysis |
@@ -76,7 +86,7 @@ MTAnalysisTest >> testDefaultParameters [
 	self assert: analysis budget species equals: MTFreeBudget
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAnalysisTest >> testExecutingInfiniteLoopAnalysis [
 
 	| analysis results mutationResult |
@@ -97,7 +107,7 @@ MTAnalysisTest >> testExecutingInfiniteLoopAnalysis [
 	self assert: mutationResult killed
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAnalysisTest >> testExecutingInfiniteRecursionAnalysis [
 
 	| analysis results mutationResult |
@@ -119,7 +129,7 @@ MTAnalysisTest >> testExecutingInfiniteRecursionAnalysis [
 	self assert: mutationResult killed
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAnalysisTest >> testExecutingSimpleMutation [
 
 	| analysis results generalResult mutationResult |
@@ -139,7 +149,7 @@ MTAnalysisTest >> testExecutingSimpleMutation [
 	self assert: generalResult numberOfKilledMutants equals: 1
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAnalysisTest >> testExecutingSimpleMutationForClassMethods [
 
 	| analysis results generalResult mutationResult |
@@ -159,7 +169,7 @@ MTAnalysisTest >> testExecutingSimpleMutationForClassMethods [
 	self assert: generalResult numberOfKilledMutants equals: 1
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAnalysisTest >> testExecutingSimpleMutationWhenNotRunnedAnalysis [
 
 	| analysis results generalResult |
@@ -177,7 +187,7 @@ MTAnalysisTest >> testExecutingSimpleMutationWhenNotRunnedAnalysis [
 	self assert: generalResult numberOfEvaluatedMutants equals: 0
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAnalysisTest >> testExecutingTwoMutantsFromDiferentMethods [
 	"Obtain 2 mutants using ifFalse-->ifTrue replacement in two diferent methods."
 
@@ -195,7 +205,7 @@ MTAnalysisTest >> testExecutingTwoMutantsFromDiferentMethods [
 	results do: [ :mutationResult | self deny: mutationResult killed ]
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAnalysisTest >> testExecutingTwoMutantsFromSameMethod [
 	"Obtain 2 mutants using --->+ replacement in only one method."
 
@@ -213,7 +223,7 @@ MTAnalysisTest >> testExecutingTwoMutantsFromSameMethod [
 	results do: [ :mutationResult | self deny: mutationResult killed ]
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MTAnalysisTest >> testExecutingTwoMutations [
 	"Execute 2 diferent mutations #ifTrue-->#ifFalse: and
 	#+-->#-"
@@ -237,7 +247,7 @@ MTAnalysisTest >> testExecutingTwoMutations [
 	self assert: generalResult numberOfKilledMutants equals: 2
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTAnalysisTest >> testRunningAllTests [
 	"This test verify that the test evaluation keeps running even after the first error, if specified"
 

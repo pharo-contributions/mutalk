@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTBlockTestFilterTest',
-	#superclass : 'MTTestFilterTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTBlockTestFilterTest,
+	#superclass : #MTTestFilterTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'running' }
+{ #category : #running }
 MTBlockTestFilterTest >> runAnalysisForBlockCondition: aBlock [
 
 	self
@@ -14,7 +13,7 @@ MTBlockTestFilterTest >> runAnalysisForBlockCondition: aBlock [
 		withTests: { MTAuxiliarTestClassForBlockTestFilter }
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTBlockTestFilterTest >> testAllTestsAreExcluded [
 
 	self runAnalysisForBlockCondition: [ :testCase |
@@ -25,7 +24,7 @@ MTBlockTestFilterTest >> testAllTestsAreExcluded [
 		equals: 0
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTBlockTestFilterTest >> testYTestIsExcluded [
 
 	| result |
@@ -37,7 +36,7 @@ MTBlockTestFilterTest >> testYTestIsExcluded [
 	self assert: (result mutantResults at: 1) selector equals: #testX
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 MTBlockTestFilterTest >> testYTestIsNotExcluded [
 
 	self runAnalysisForBlockCondition: [ :testCase |

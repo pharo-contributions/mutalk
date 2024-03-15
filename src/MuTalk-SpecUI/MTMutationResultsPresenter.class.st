@@ -2,31 +2,30 @@
 I am a presenter that show the results of the mutation testing
 "
 Class {
-	#name : 'MTMutationResultsPresenter',
-	#superclass : 'SpPresenter',
+	#name : #MTMutationResultsPresenter,
+	#superclass : #SpPresenter,
 	#traits : 'SpTModel',
 	#classTraits : 'SpTModel classTrait',
 	#instVars : [
 		'diffPresenter',
 		'tablePresenter'
 	],
-	#category : 'MuTalk-SpecUI',
-	#package : 'MuTalk-SpecUI'
+	#category : 'MuTalk-SpecUI'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTMutationResultsPresenter class >> initialExtent [
 
 	^ 800 @ 600
 ]
 
-{ #category : 'specs' }
+{ #category : #specs }
 MTMutationResultsPresenter class >> title [
 
 	^ 'Mutation Results'
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 MTMutationResultsPresenter >> connectPresenters [
 
 	tablePresenter whenSelectionChangedDo: [ :selection | 
@@ -38,7 +37,7 @@ MTMutationResultsPresenter >> connectPresenters [
 			contextClass: selectedItem mutant originalClass ]
 ]
 
-{ #category : 'layout' }
+{ #category : #layout }
 MTMutationResultsPresenter >> defaultLayout [
 
 	^ SpPanedLayout newTopToBottom
@@ -47,7 +46,7 @@ MTMutationResultsPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 MTMutationResultsPresenter >> initializePresenters [
 
 	tablePresenter := self newTable.
@@ -66,7 +65,7 @@ MTMutationResultsPresenter >> initializePresenters [
 	diffPresenter showOptions: false
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 MTMutationResultsPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter

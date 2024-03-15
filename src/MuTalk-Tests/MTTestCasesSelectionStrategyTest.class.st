@@ -1,14 +1,13 @@
 Class {
-	#name : 'MTTestCasesSelectionStrategyTest',
-	#superclass : 'TestCase',
+	#name : #MTTestCasesSelectionStrategyTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'resource'
 	],
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTTestCasesSelectionStrategyTest >> allTestsFromPackage [
 
 	^ (OrderedCollection withAll: {
@@ -19,14 +18,16 @@ MTTestCasesSelectionStrategyTest >> allTestsFromPackage [
 			   MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail.
 			   MTAuxiliarClassForTimeTestFilterTest.
 			   MTAuxiliarTestClassForBlockTestFilter.
-			   MTAuxiliarTestClassForPragmaTestFilter })
+			   MTAuxiliarTestClassForPragmaTestFilter.
+			   MTAuxiliarTestClassForRedTestFilter.
+			   MTAuxiliarParametrizedTestClass })
 		  inject: OrderedCollection new
 		  into: [ :tests :testClass |
 			  tests addAll: testClass suite tests.
 			  tests ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTTestCasesSelectionStrategyTest >> allTestsIn: aCollection areIncludedIn: anotherCollection [
 
 	^ ((aCollection collect: [ :testCase | testCase selector ]) 
@@ -38,7 +39,7 @@ MTTestCasesSelectionStrategyTest >> allTestsIn: aCollection areIncludedIn: anoth
 				  (aCollection collect: [ :testCase | testCase selector ]) ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTTestCasesSelectionStrategyTest >> testClassTestCaseSelectionStrategy [
 	| testCase |
 	testCase := MTTestClassForTestingCoverage selector: #testCase1.
@@ -49,13 +50,13 @@ MTTestCasesSelectionStrategyTest >> testClassTestCaseSelectionStrategy [
 				areIncludedIn: MTTestClassForTestingCoverage suite tests)
 ]
 
-{ #category : 'testing-class' }
+{ #category : #'testing-class' }
 MTTestCasesSelectionStrategyTest >> testClassTestCaseSelectionStrategyForEmptyTestSet [
 
 	self assert: (MTClassTestCasesSelectionStrategy new testCasesFor: OrderedCollection new) isEmpty
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTTestCasesSelectionStrategyTest >> testNoneTestCaseSelectionStrategy [
 
 	| testCase |
@@ -66,14 +67,14 @@ MTTestCasesSelectionStrategyTest >> testNoneTestCaseSelectionStrategy [
 		equals: (OrderedCollection with: testCase)
 ]
 
-{ #category : 'testing-none' }
+{ #category : #'testing-none' }
 MTTestCasesSelectionStrategyTest >> testNoneTestCaseSelectionStrategyForEmptyTestSet [
 
 	self assert: (MTNoneTestCasesSelectionStrategy new testCasesFor:
 			 OrderedCollection new) isEmpty
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 MTTestCasesSelectionStrategyTest >> testPackageTestCaseSelectionStrategy [
 
 	| testCase |
@@ -85,7 +86,7 @@ MTTestCasesSelectionStrategyTest >> testPackageTestCaseSelectionStrategy [
 			 areIncludedIn: self allTestsFromPackage)
 ]
 
-{ #category : 'testing-package' }
+{ #category : #'testing-package' }
 MTTestCasesSelectionStrategyTest >> testPackageTestCaseSelectionStrategyForEmptyTestSet [
 
 	self assert: (MTPackageTestCasesSelectionStrategy new testCasesFor:

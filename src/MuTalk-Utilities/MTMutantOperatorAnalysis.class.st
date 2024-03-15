@@ -1,11 +1,10 @@
 Class {
-	#name : 'MTMutantOperatorAnalysis',
-	#superclass : 'MTUtilityAnalysis',
-	#category : 'MuTalk-Utilities',
-	#package : 'MuTalk-Utilities'
+	#name : #MTMutantOperatorAnalysis,
+	#superclass : #MTUtilityAnalysis,
+	#category : 'MuTalk-Utilities'
 }
 
-{ #category : 'adding' }
+{ #category : #adding }
 MTMutantOperatorAnalysis >> addAllAssociationsFrom: sourceDictionary to: destinationDictionary [
 
 	sourceDictionary associationsDo: [ :assoc |
@@ -21,7 +20,7 @@ MTMutantOperatorAnalysis >> addAllAssociationsFrom: sourceDictionary to: destina
 	^ destinationDictionary
 ]
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTMutantOperatorAnalysis >> operatorDictionary [
 	"Returns the dictionary with mutant operators as keys, and for each operator the number of mutants it produce"
 
@@ -38,7 +37,7 @@ MTMutantOperatorAnalysis >> operatorDictionary [
 	^ operatorDictionary
 ]
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTMutantOperatorAnalysis >> operatorDictionaryFromAnalysis [
 
 	| analysis dic |
@@ -53,25 +52,25 @@ MTMutantOperatorAnalysis >> operatorDictionaryFromAnalysis [
 		         collect: [ :coll | coll size ]
 ]
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTMutantOperatorAnalysis >> operatorsProducingAtLeast: aNumber [
 
 	^ self operatorsSelectedWith: [ :value | value >= aNumber ]
 ]
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTMutantOperatorAnalysis >> operatorsProducingAtMost: aNumber [
 
 	^ self operatorsSelectedWith: [ :value | value <= aNumber ]
 ]
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTMutantOperatorAnalysis >> operatorsSelectedWith: aBlock [
 
 	^ (self operatorDictionary select: aBlock) keys asSet
 ]
 
-{ #category : 'computing' }
+{ #category : #computing }
 MTMutantOperatorAnalysis >> operatorsWithoutMutantsFor: aDictionary [
 
 	| operatorsWithoutMutants |

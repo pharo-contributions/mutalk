@@ -1,48 +1,47 @@
 Class {
-	#name : 'MTReplaceAndReceiverWithTrueOperatorTest',
-	#superclass : 'MTParseRewriterMutantOperatorTest',
-	#category : 'MuTalk-Tests',
-	#package : 'MuTalk-Tests'
+	#name : #MTReplaceAndReceiverWithTrueOperatorTest,
+	#superclass : #MTParseRewriterMutantOperatorTest,
+	#category : 'MuTalk-Tests'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndReceiverWithTrueOperatorTest >> methodWithNoSenders [  
 	 1 + 2.
 	^ true ifTrue:[1].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndReceiverWithTrueOperatorTest >> methodWithOneSender [
 	^1 = 2
 		and: [2 = 2]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndReceiverWithTrueOperatorTest >> methodWithOneSenderModified [
 	^true
 		and: [2 = 2]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndReceiverWithTrueOperatorTest >> methodWithTwoSenders [
 	^1 = 2
 		and: [2 = 2 and: [3 = 3]]
 	
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndReceiverWithTrueOperatorTest >> methodWithTwoSendersModifiedFirst [
 	^true
 		and: [2 = 2 and: [3 = 3]]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndReceiverWithTrueOperatorTest >> methodWithTwoSendersModifiedSecond [
 	^1 = 2
 		and: [true and: [3 = 3]]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MTReplaceAndReceiverWithTrueOperatorTest >> operator [
 	^ MTReplaceAndReceiverWithTrueOperator new
 ]

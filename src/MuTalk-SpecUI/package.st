@@ -1,1 +1,1 @@
-Package { #name : 'MuTalk-SpecUI' }
+Package { #name : #'MuTalk-SpecUI' }
