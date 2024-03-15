@@ -1,7 +1,7 @@
 Class {
 	#name : #MTFamixRightToLeftGeneralizationOperator,
 	#superclass : #MTSelectorReplacementMutantOperator,
-	#category : #'MuTalk-Model-Operators-Moose'
+	#category : #'MuTalk-Model-Operators-Famix'
 }
 
 { #category : #accessing }

@@ -31,9 +31,9 @@ MTAbstractMutantOperator class >> contentsAll [
 ]
 
 { #category : #accessing }
-MTAbstractMutantOperator class >> contentsMoose [
+MTAbstractMutantOperator class >> contentsFamix [
 
-	^ ((('MuTalk-Model' asPackage classTagNamed: 'Operators-Moose')
+	^ ((('MuTalk-Model' asPackage classTagNamed: 'Operators-Famix')
 		    classes reject: [ :class |
 		    class isAbstract or: [ class isDeprecated ] ]) collect: [ :class |
 		   class new ]) asSortedCollection: [ :elem1 :elem2 |
