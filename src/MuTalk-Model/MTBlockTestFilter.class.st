@@ -1,25 +1,47 @@
 Class {
 	#name : 'MTBlockTestFilter',
 	#superclass : 'MTTestFilter',
+	#instVars : [
+		'conditionBlock'
+	],
 	#category : 'MuTalk-Model-Test filters',
 	#package : 'MuTalk-Model',
 	#tag : 'Test filters'
 }
 
-{ #category : 'enumerating' }
-MTBlockTestFilter >> excludedTestsFrom: aTestCaseCollection [
+{ #category : 'accessing' }
+MTBlockTestFilter >> condition: aConditionBlock [
 
-	^ aTestCaseCollection reject: condition
+	self conditionBlock: aConditionBlock
 ]
 
 { #category : 'accessing' }
-MTBlockTestFilter >> filteredTestReason [ 
+MTBlockTestFilter >> conditionBlock [
 
-	^ 'Took longer than ', condition printString, ' to run'
+	^ conditionBlock
+]
+
+{ #category : 'accessing' }
+MTBlockTestFilter >> conditionBlock: anObject [
+
+	conditionBlock := anObject
+]
+
+{ #category : 'enumerating' }
+MTBlockTestFilter >> excludedTestsFrom: aTestCaseCollection [
+
+	^ aTestCaseCollection reject: conditionBlock
+]
+
+{ #category : 'accessing' }
+MTBlockTestFilter >> filteredTestReason [
+
+	^ 'Did not respect the block condition: '
+	  , conditionBlock printString
 ]
 
 { #category : 'enumerating' }
 MTBlockTestFilter >> filteredTestsFrom: aTestCaseCollection [
 
-	^ aTestCaseCollection select: condition
+	^ aTestCaseCollection select: conditionBlock
 ]
