@@ -1,5 +1,5 @@
 Class {
-	#name : 'MTRandomOperatorMutantSelectionStrategy',
+	#name : 'MTRandomClassMutantSelectionStrategy',
 	#superclass : 'MTRandomGroupedMutantSelectionStrategy',
 	#category : 'MuTalk-Model-Mutant selection strategies',
 	#package : 'MuTalk-Model',
@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'enumerating' }
-MTRandomOperatorMutantSelectionStrategy >> groupCondition [
+MTRandomClassMutantSelectionStrategy >> groupCondition [
 
-	^ #operator
+	^ #originalClass
 ]
