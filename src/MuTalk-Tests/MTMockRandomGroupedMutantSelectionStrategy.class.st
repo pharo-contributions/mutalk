@@ -36,7 +36,7 @@ MTMockRandomGroupedMutantSelectionStrategy >> mutationsFor: aMutationTestingAnal
 	If they were to be empty, we remove the entry from the dictionary."
 	mutationDict := mutations groupedBy: self groupCondition.
 	mutationDict := mutationDict collect: [ :mutationList |
-		                (mutationList shuffledBy: random) readStream ].
+		                (mutationList shuffleBy: random) readStream ].
 
 	shuffledMutations := OrderedCollection new.
 	1 to: mutations size do: [ :i |
