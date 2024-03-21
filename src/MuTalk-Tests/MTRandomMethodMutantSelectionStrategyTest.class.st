@@ -14,8 +14,9 @@ MTRandomMethodMutantSelectionStrategyTest >> classToTest [
 { #category : 'tests' }
 MTRandomMethodMutantSelectionStrategyTest >> testAround25PercentOfMutantsForEachMethod [
 
-	| analysis mutations seed mutationsDic |
-	seed := 854125793.
+	| analysis mutations seed mutationsDic expected |
+	expected := #( 24 23 29 24 ).
+	seed := 864127593.
 	analysis := MTAnalysis new
 		            classesToMutate:
 			            { MTAuxiliarClassForRandomMethodMutantSelectionStrategy };
@@ -24,6 +25,6 @@ MTRandomMethodMutantSelectionStrategyTest >> testAround25PercentOfMutantsForEach
 		            mutantSelectionStrategy:
 			            (MTMockRandomMethodMutantSelectionStrategy for: seed).
 	mutations := analysis generateMutations truncateTo: 100.
-	mutationsDic := (mutations groupedBy: #originalMethod) collect:#size.
-	self assert: (mutationsDic values at:1) equals: 25
+	mutationsDic := (mutations groupedBy: #originalMethod) collect: #size.
+	self assert: mutationsDic values equals: expected
 ]

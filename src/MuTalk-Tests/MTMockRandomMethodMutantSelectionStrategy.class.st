@@ -31,7 +31,7 @@ MTMockRandomMethodMutantSelectionStrategy >> mutationsFor: aMutationTestingAnaly
 	shuffledMutations := OrderedCollection new.
 	1 to: mutations size do: [ :i |
 		| key streamValue |
-		key := mutationDict keys atRandom.
+		key := mutationDict keys atRandom: random.
 		streamValue := mutationDict at: key.
 		shuffledMutations add: streamValue next.
 		streamValue atEnd ifTrue: [ mutationDict removeKey: key ] ].
