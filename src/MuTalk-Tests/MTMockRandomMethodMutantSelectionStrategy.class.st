@@ -1,25 +1,21 @@
 Class {
-	#name : 'MTRandomGroupedMutantSelectionStrategy',
-	#superclass : 'MTRandomMutantSelectionStrategy',
-	#category : 'MuTalk-Model-Mutant selection strategies',
-	#package : 'MuTalk-Model',
-	#tag : 'Mutant selection strategies'
+	#name : 'MTMockRandomMethodMutantSelectionStrategy',
+	#superclass : 'MTRandomMethodMutantSelectionStrategy',
+	#instVars : [
+		'random'
+	],
+	#category : 'MuTalk-Tests',
+	#package : 'MuTalk-Tests'
 }
 
-{ #category : 'testing' }
-MTRandomGroupedMutantSelectionStrategy class >> isAbstract [
+{ #category : 'instance creation' }
+MTMockRandomMethodMutantSelectionStrategy class >> for: aSeed [
 
-	^ self == MTRandomGroupedMutantSelectionStrategy
-]
-
-{ #category : 'enumerating' }
-MTRandomGroupedMutantSelectionStrategy >> groupCondition [
-
-	^ self subclassResponsibility
+	^ self new random: (Random seed: aSeed)
 ]
 
 { #category : 'generating' }
-MTRandomGroupedMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
+MTMockRandomMethodMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
 	| mutations shuffledMutations mutationDict |
 	mutations := mutationsGenerationStrategy
@@ -30,7 +26,7 @@ MTRandomGroupedMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis
 	If they were to be empty, we remove the entry from the dictionary."
 	mutationDict := mutations groupedBy: self groupCondition.
 	mutationDict := mutationDict collect: [ :mutationList |
-		                mutationList shuffled readStream ].
+		                (mutationList shuffledBy: random) readStream ].
 
 	shuffledMutations := OrderedCollection new.
 	1 to: mutations size do: [ :i |
@@ -41,4 +37,16 @@ MTRandomGroupedMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis
 		streamValue atEnd ifTrue: [ mutationDict removeKey: key ] ].
 
 	^ shuffledMutations
+]
+
+{ #category : 'accessing' }
+MTMockRandomMethodMutantSelectionStrategy >> random [
+
+	^ random
+]
+
+{ #category : 'accessing' }
+MTMockRandomMethodMutantSelectionStrategy >> random: anObject [
+
+	random := anObject
 ]
