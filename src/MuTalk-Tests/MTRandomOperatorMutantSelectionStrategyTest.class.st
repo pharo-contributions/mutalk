@@ -29,12 +29,11 @@ MTRandomOperatorMutantSelectionStrategyTest >> testAroundOneSeventhPercentOfMuta
 				             for: MTRandomOperatorMutantSelectionStrategy new
 				             andSeed: seed).
 
-	mutations := analysis generateMutations truncateTo: 210.
+	mutations := analysis generateMutations truncateTo: maximum.
 	mutationsDic := (mutations groupedBy: #operator) collect: [
 		                :mutationList | "Here we divide the number of mutants for each operator by the total of mutants to obtain a percentage, and we check if it's close to the theoretical 1/7 with a precision of 0.1, because the small number of mutants can induce a quite large gap"
-		                mutationList size / maximum asFloat
-			                closeTo: 1 / 7 asFloat
-			                precision: 0.1 ].
+		                (mutationList size / maximum asFloat
+		                 - (1 / 7 asFloat)) abs <= 0.1 ].
 
 	self assert:
 		(mutationsDic values fold: [ :bool1 :bool2 | bool1 and: bool2 ])

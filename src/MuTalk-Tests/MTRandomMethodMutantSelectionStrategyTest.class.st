@@ -30,9 +30,8 @@ MTRandomMethodMutantSelectionStrategyTest >> testAround25PercentOfMutantsForEach
 	mutations := analysis generateMutations truncateTo: maximum.
 	mutationsDic := (mutations groupedBy: #originalMethod) collect: [
 		                :mutationList | "Here we divide the number of mutants for each method by the total of mutants to obtain a percentage, and we check if it's close to the theoretical 1/4 with a precision of 0.1, because the small number of mutants can induce a quite large gap"
-		                mutationList size / maximum asFloat
-			                closeTo: 0.25
-			                precision: 0.1 ].
+		                (mutationList size / maximum asFloat - 0.25) abs
+		                <= 0.1 ].
 
 	self assert:
 		(mutationsDic values fold: [ :bool1 :bool2 | bool1 and: bool2 ])
