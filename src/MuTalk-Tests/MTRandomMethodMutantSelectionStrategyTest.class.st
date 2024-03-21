@@ -14,8 +14,8 @@ MTRandomMethodMutantSelectionStrategyTest >> classToTest [
 { #category : 'tests' }
 MTRandomMethodMutantSelectionStrategyTest >> testAround25PercentOfMutantsForEachMethod [
 
-	| analysis mutations seed mutationsDic expected |
-	expected := #( 24 23 29 24 ).
+	| analysis mutations seed mutationsDic maximum |
+	maximum := 100.
 	seed := 864127593.
 	analysis := MTAnalysis new
 		            classesToMutate:
@@ -26,7 +26,14 @@ MTRandomMethodMutantSelectionStrategyTest >> testAround25PercentOfMutantsForEach
 			            (MTMockRandomGroupedMutantSelectionStrategy
 				             for: MTRandomMethodMutantSelectionStrategy new
 				             andSeed: seed).
-	mutations := analysis generateMutations truncateTo: 100.
-	mutationsDic := (mutations groupedBy: #originalMethod) collect: #size.
-	self assert: mutationsDic values equals: expected
+
+	mutations := analysis generateMutations truncateTo: maximum.
+	mutationsDic := (mutations groupedBy: #originalMethod) collect: [
+		                :mutationList | "Here we divide the number of mutants for each method by the total of mutants to obtain a percentage, and we check if it's close to the theoretical 1/4 with a precision of 0.1, because the small number of mutants can induce a quite large gap"
+		                mutationList size / maximum asFloat
+			                closeTo: 0.25
+			                precision: 0.1 ].
+
+	self assert:
+		(mutationsDic values fold: [ :bool1 :bool2 | bool1 and: bool2 ])
 ]
