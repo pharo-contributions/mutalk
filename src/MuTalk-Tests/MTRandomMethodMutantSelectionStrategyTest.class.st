@@ -14,10 +14,11 @@ MTRandomMethodMutantSelectionStrategyTest >> classToTest [
 { #category : 'tests' }
 MTRandomMethodMutantSelectionStrategyTest >> testAround25PercentOfMutantsForEachMethod [
 
-	| analysis mutations seed mutationsDic expected |
-	expected := SystemVersion current major >= 12
-		            ifTrue: [ #( 24 23 29 24 ) ]
-		            ifFalse: [ #( 19 29 26 26 ) ].
+	| analysis mutations seed mutationsDic expected sysVersion |
+	sysVersion := SystemVersion current major.
+	sysVersion >= 12 ifTrue: [ expected := #( 24 23 29 24 ) ].
+	sysVersion = 11 ifTrue: [ expected := #( 19 29 26 26 ) ].
+	sysVersion <= 10 ifTrue: [ expected := #( 21 27 26 26 ) ].
 	seed := 864127593.
 	analysis := MTAnalysis new
 		            classesToMutate:
