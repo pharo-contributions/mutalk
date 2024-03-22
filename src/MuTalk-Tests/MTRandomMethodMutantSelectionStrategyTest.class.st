@@ -18,7 +18,8 @@ MTRandomMethodMutantSelectionStrategyTest >> testAround25PercentOfMutantsForEach
 	sysVersion := SystemVersion current major.
 	sysVersion >= 12 ifTrue: [ expected := #( 24 23 29 24 ) ].
 	sysVersion = 11 ifTrue: [ expected := #( 19 29 26 26 ) ].
-	sysVersion <= 10 ifTrue: [ expected := #( 21 27 26 26 ) ].
+	sysVersion = 10 ifTrue: [ expected := #( 21 27 26 26 ) ].
+	sysVersion <= 9 ifTrue: [ expected := #( 26 26 26 22 ) ].
 	seed := 864127593.
 	analysis := MTAnalysis new
 		            classesToMutate:
