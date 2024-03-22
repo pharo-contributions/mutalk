@@ -1,7 +1,7 @@
 Class {
 	#name : #MTFamixPropertiesDefaultValueReplacementOperator,
 	#superclass : #MTPredicateBasedMutantOperator,
-	#category : #'MuTalk-Model-Operators-Famix'
+	#category : #'MuTalk-Moose-Operators-Famix'
 }
 
 { #category : #'instance creation' }

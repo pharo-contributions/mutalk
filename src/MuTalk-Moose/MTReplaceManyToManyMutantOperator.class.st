@@ -1,7 +1,7 @@
 Class {
 	#name : #MTReplaceManyToManyMutantOperator,
 	#superclass : #MTFamixRelationsOperator,
-	#category : #'MuTalk-Model-Operators-Famix'
+	#category : #'MuTalk-Moose-Operators-Famix'
 }
 
 { #category : #accessing }

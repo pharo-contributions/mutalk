@@ -1,7 +1,7 @@
 Class {
 	#name : #MTFamixRelationsOperator,
 	#superclass : #MTSelectorReplacementMutantOperator,
-	#category : #'MuTalk-Model-Operators-Famix'
+	#category : #'MuTalk-Moose-Operators-Famix'
 }
 
 { #category : #testing }
