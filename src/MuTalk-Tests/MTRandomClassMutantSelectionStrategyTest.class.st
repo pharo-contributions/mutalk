@@ -14,8 +14,10 @@ MTRandomClassMutantSelectionStrategyTest >> classToTest [
 { #category : 'tests' }
 MTRandomClassMutantSelectionStrategyTest >> testAround33PercentOfMutantsForEachClass [
 
-	| seed analysis mutations mutationsDic maximum |
-	maximum := 100.
+	| expected seed analysis mutations mutationsDic |
+	expected := SystemVersion current major >= 12
+		            ifTrue: [ #( 30 39 31 ) ]
+		            ifFalse: [ #( 33 32 35 ) ].
 	seed := 864127593.
 	analysis := MTAnalysis new
 		            classesToMutate: {
@@ -29,12 +31,8 @@ MTRandomClassMutantSelectionStrategyTest >> testAround33PercentOfMutantsForEachC
 				             for: MTRandomClassMutantSelectionStrategy new
 				             andSeed: seed).
 
-	mutations := analysis generateMutations truncateTo: maximum.
-	mutationsDic := (mutations groupedBy: #originalClass) collect: [
-		                :mutationList | "Here we divide the number of mutants for each class by the total of mutants to obtain a percentage, and we check if it's close to the theoretical 1/3 with a precision of 0.1, because the small number of mutants can induce a quite large gap"
-		                (mutationList size / maximum asFloat
-		                 - (1 / 3 asFloat)) abs <= 0.1 ].
+	mutations := analysis generateMutations first: 100.
+	mutationsDic := (mutations groupedBy: #originalClass) collect: #size.
 
-	self assert:
-		(mutationsDic values fold: [ :bool1 :bool2 | bool1 and: bool2 ])
+	self assert: mutationsDic values equals: expected
 ]
