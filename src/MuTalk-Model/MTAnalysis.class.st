@@ -236,7 +236,7 @@ MTAnalysis >> operators: anObject [
 ]
 
 { #category : 'accessing' }
-MTAnalysis >> packageToMutate: aCollectionOfPackages [
+MTAnalysis >> packagesToMutate: aCollectionOfPackages [
 
 	modelClasses := aCollectionOfPackages flatCollect: [ :packageName |
 		                packageName asPackage definedClasses ]
