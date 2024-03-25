@@ -28,9 +28,7 @@ MTRandomClassMutantSelectionStrategyTest >> testAround33PercentOfMutantsForEachC
 		            testClasses: {  };
 		            operators: MTAbstractMutantOperator contentsAll;
 		            mutantSelectionStrategy:
-			            (MTMockRandomGroupedMutantSelectionStrategy
-				             for: MTRandomClassMutantSelectionStrategy new
-				             andSeed: seed).
+			            (MTRandomClassMutantSelectionStrategy withSeed: seed).
 
 	mutations := analysis generateMutations first: 100.
 	mutationsDic := (mutations groupedBy: #originalClass) collect: #size.
