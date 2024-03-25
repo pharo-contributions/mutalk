@@ -48,7 +48,7 @@ MTRandomGroupedMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis
 	If they were to be empty, we remove the entry from the dictionary."
 	mutationDict := mutations groupedBy: self groupCondition.
 	mutationDict := mutationDict collect: [ :mutationList |
-		                (mutationList shuffledBy: randomGenerator)
+		                (mutationList shuffleBy: randomGenerator)
 			                readStream ].
 
 	shuffledMutations := OrderedCollection new.
