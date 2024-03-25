@@ -1,7 +1,7 @@
 Class {
 	#name : #MTFamixPropertiesTypeReplacementOperator,
 	#superclass : #MTPredicateBasedMutantOperator,
-	#category : #'MuTalk-Moose-Operators-Famix'
+	#category : #'MuTalk-Moose-Operators'
 }
 
 { #category : #accessing }
@@ -54,7 +54,7 @@ MTFamixPropertiesTypeReplacementOperator >> newNodeFrom: anOldNode with: anExpre
 	^ newNode
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 MTFamixPropertiesTypeReplacementOperator >> propertiesForNode: aNode [
 
 	| nodeProperty |

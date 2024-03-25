@@ -1,7 +1,7 @@
 Class {
 	#name : #MTFamixRelationsOperator,
 	#superclass : #MTSelectorReplacementMutantOperator,
-	#category : #'MuTalk-Moose-Operators-Famix'
+	#category : #'MuTalk-Moose-Operators'
 }
 
 { #category : #testing }
@@ -36,7 +36,7 @@ MTFamixRelationsOperator >> mutationsFor: aCompiledMethod with: aParseTree numbe
 			 | newString newExpression |
 			 newString := RBParseTreeSearcher buildSelectorString: relation.
 			 newExpression := '``@object ' , newString.
-			 MTMethodMutation
+			 MTMetamodelMethodMutation
 				 for: aCompiledMethod
 				 using: self
 				 nodeNumber: nodeIndex
