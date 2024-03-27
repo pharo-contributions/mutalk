@@ -2,7 +2,6 @@ Class {
 	#name : #MTTestFilter,
 	#superclass : #Object,
 	#instVars : [
-		'condition',
 		'excludedTests',
 		'filteredTests'
 	],
@@ -15,18 +14,6 @@ MTTestFilter class >> for: aCondition [
 	^ self new
 		  condition: aCondition;
 		  yourself
-]
-
-{ #category : #accessing }
-MTTestFilter >> condition [
-
-	^ condition
-]
-
-{ #category : #accessing }
-MTTestFilter >> condition: aCondition [
-
-	condition := aCondition
 ]
 
 { #category : #accessing }

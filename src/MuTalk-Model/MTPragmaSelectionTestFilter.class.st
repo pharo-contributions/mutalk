@@ -19,5 +19,5 @@ MTPragmaSelectionTestFilter >> filteredTestsFrom: aTestCaseCollection [
 { #category : #accessing }
 MTPragmaSelectionTestFilter >> reasonString [
 
-	^ 'Does not contain the pragma <' , condition
+	^ 'Does not contain the pragma'
 ]

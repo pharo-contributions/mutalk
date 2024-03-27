@@ -16,7 +16,7 @@ This project was originally developed at the University of Buenos Aires (Argenti
 ```smalltalk
 Metacello new
   baseline: 'MuTalk';
-  repository: 'github://pharo-contributions/mutalk:v2.1.0/src';
+  repository: 'github://pharo-contributions/mutalk:v2.2.1/src';
   load.
 ```
 * Full version:

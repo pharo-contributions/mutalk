@@ -2,7 +2,8 @@ Class {
 	#name : #MTPragmaTestFilter,
 	#superclass : #MTTestFilter,
 	#instVars : [
-		'pragmaArguments'
+		'pragmaArguments',
+		'pragmaSelector'
 	],
 	#category : 'MuTalk-Model-Test filters'
 }
@@ -29,10 +30,16 @@ MTPragmaTestFilter class >> isAbstract [
 ]
 
 { #category : #accessing }
+MTPragmaTestFilter >> condition: aPragmaSelector [
+
+	self pragmaSelector: aPragmaSelector
+]
+
+{ #category : #accessing }
 MTPragmaTestFilter >> filteredTestReason [
 
 	| reasonString |
-	reasonString := self reasonString.
+	reasonString := self reasonString , ' <' , pragmaSelector.
 
 	^ pragmaArguments isEmpty
 		  ifTrue: [ reasonString , '>' ]
@@ -50,7 +57,7 @@ MTPragmaTestFilter >> isPragmaValidFrom: aTestCaseReference [
 	| pragmas |
 	pragmas := aTestCaseReference method pragmas.
 	^ pragmas anySatisfy: [ :pragma |
-		  pragma selector = condition & (pragma arguments = pragmaArguments) ]
+		  pragma selector = pragmaSelector & (pragma arguments = pragmaArguments) ]
 ]
 
 { #category : #accessing }
@@ -63,6 +70,18 @@ MTPragmaTestFilter >> pragmaArguments [
 MTPragmaTestFilter >> pragmaArguments: anObject [
 
 	pragmaArguments := anObject
+]
+
+{ #category : #accessing }
+MTPragmaTestFilter >> pragmaSelector [
+
+	^ pragmaSelector
+]
+
+{ #category : #accessing }
+MTPragmaTestFilter >> pragmaSelector: anObject [
+
+	pragmaSelector := anObject
 ]
 
 { #category : #accessing }

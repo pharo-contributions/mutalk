@@ -19,5 +19,5 @@ MTPragmaRejectionTestFilter >> filteredTestsFrom: aTestCaseCollection [
 { #category : #accessing }
 MTPragmaRejectionTestFilter >> reasonString [
 
-	^ 'Contains the pragma <' , condition
+	^ 'Contains the pragma'
 ]

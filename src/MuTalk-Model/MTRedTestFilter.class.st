@@ -5,7 +5,20 @@ Class {
 }
 
 { #category : #enumerating }
-MTRedTestFilter >> filterTests: aTestCaseCollection [
+MTRedTestFilter >> excludedTestsFrom: aTestCaseCollection [
+
+	^ aTestCaseCollection select: [ :testCase |
+		  self failuresOrErrorsIn: testCase lastResult ]
+]
+
+{ #category : #accessing }
+MTRedTestFilter >> filteredTestReason [
+
+	^ 'Was initially failing, even without any mutant applied'
+]
+
+{ #category : #enumerating }
+MTRedTestFilter >> filteredTestsFrom: aTestCaseCollection [
 
 	^ aTestCaseCollection reject: [ :testCase |
 		  self failuresOrErrorsIn: testCase lastResult ]
