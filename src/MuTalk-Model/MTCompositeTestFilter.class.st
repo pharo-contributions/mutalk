@@ -12,7 +12,9 @@ Class {
 { #category : 'instance creation' }
 MTCompositeTestFilter class >> for: aTestFilterCollection [
 
-	^ self new filters: aTestFilterCollection
+	^ self new
+		  filters: aTestFilterCollection;
+		  yourself
 ]
 
 { #category : 'enumerating' }
@@ -32,12 +34,6 @@ MTCompositeTestFilter >> filterTests: aTestCaseCollection [
 
 	excludedTests := self excludedTestsFrom: aTestCaseCollection.
 	^ filteredTests := self filteredTestsFrom: aTestCaseCollection
-]
-
-{ #category : 'accessing' }
-MTCompositeTestFilter >> filteredTestReason [
-
-	^ 'Is rejected by one of the filters'
 ]
 
 { #category : 'enumerating' }
