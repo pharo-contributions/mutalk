@@ -1,18 +1,18 @@
 Class {
-	#name : 'MTAuxiliarClassForTimeTestFilterTest',
+	#name : 'MTAuxiliarTestClassForTimeTestFilter',
 	#superclass : 'TestCase',
 	#category : 'MuTalk-TestResources',
 	#package : 'MuTalk-TestResources'
 }
 
 { #category : 'tests' }
-MTAuxiliarClassForTimeTestFilterTest >> test10Milliseconds [
+MTAuxiliarTestClassForTimeTestFilter >> test10Milliseconds [
 
 	10 milliSeconds wait
 ]
 
 { #category : 'tests' }
-MTAuxiliarClassForTimeTestFilterTest >> test1Second [
+MTAuxiliarTestClassForTimeTestFilter >> test1Second [
 
 	1 second wait
 ]
