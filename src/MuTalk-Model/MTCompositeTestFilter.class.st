@@ -19,7 +19,7 @@ MTCompositeTestFilter class >> for: aTestFilterCollection [
 MTCompositeTestFilter >> excludedTestsFrom: aTestCaseCollection [
 
 	| excludedTestsCollection |
-	excludedTestsCollection := Set new.
+	excludedTestsCollection := Dictionary new.
 	filters do: [ :filter |
 		excludedTestsCollection addAll:
 			((filter excludedTestsFrom: aTestCaseCollection) collect: [ :test |
