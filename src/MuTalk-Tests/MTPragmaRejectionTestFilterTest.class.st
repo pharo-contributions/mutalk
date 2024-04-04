@@ -11,7 +11,7 @@ MTPragmaRejectionTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelecto
 	self
 		runAnalysisWithFilter:
 		(MTPragmaRejectionTestFilter for: aPragmaSelector)
-		on: { MTAuxiliarClassForTestFilter }
+		on: {  }
 		withTests: { MTAuxiliarTestClassForPragmaTestFilter }
 ]
 
@@ -22,20 +22,19 @@ MTPragmaRejectionTestFilterTest >> runAnalysisForPragmaCondition: aPragmaSelecto
 		runAnalysisWithFilter: (MTPragmaRejectionTestFilter
 				 for: aPragmaSelector
 				 arguments: pragmaArguments)
-		on: { MTAuxiliarClassForTestFilter }
+		on: {  }
 		withTests: { MTAuxiliarTestClassForPragmaTestFilter }
 ]
 
 { #category : 'tests' }
 MTPragmaRejectionTestFilterTest >> testTestWithPragmaIsExcluded [
 
-	| result |
 	self runAnalysisForPragmaCondition: #aPragma.
-	result := analysis generalResult particularResults at: 1.
 
-	self assert: result runCount equals: 1.
+
+	self assert: analysis testCases size equals: 1.
 	self
-		assert: (result mutantResults at: 1) selector
+		assert: (analysis testCases at: 1) selector
 		equals: #testWithoutPragma
 ]
 
@@ -44,9 +43,7 @@ MTPragmaRejectionTestFilterTest >> testTestWithPragmaIsNotExcluded [
 
 	self runAnalysisForPragmaCondition: #anotherPragma.
 
-	self
-		assert: (analysis generalResult particularResults at: 1) runCount
-		equals: 2
+	self assert: analysis testCases size equals: 2
 ]
 
 { #category : 'tests' }
@@ -54,7 +51,5 @@ MTPragmaRejectionTestFilterTest >> testTestWithPragmaIsNotExcluded2 [
 
 	self runAnalysisForPragmaCondition: #aPragma: andArguments: 'arg'.
 
-	self
-		assert: (analysis generalResult particularResults at: 1) runCount
-		equals: 2
+	self assert: analysis testCases size equals: 2
 ]

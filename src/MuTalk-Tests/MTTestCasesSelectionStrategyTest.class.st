@@ -17,11 +17,12 @@ MTTestCasesSelectionStrategyTest >> allTestsFromPackage [
 			   MTAuxiliarClassForMTAnalysisTest.
 			   MTAuxiliarTestClassForMTBudget.
 			   MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail.
-			   MTAuxiliarClassForTimeTestFilterTest.
+			   MTAuxiliarTestClassForTimeTestFilter.
 			   MTAuxiliarTestClassForBlockTestFilter.
 			   MTAuxiliarTestClassForPragmaTestFilter.
 			   MTAuxiliarTestClassForRedTestFilter.
-			   MTAuxiliarParametrizedTestClass })
+			   MTAuxiliarParametrizedTestClass.
+			   MTAuxiliarTestClassForCompositeTestFilter })
 		  inject: OrderedCollection new
 		  into: [ :tests :testClass |
 			  tests addAll: testClass suite tests.

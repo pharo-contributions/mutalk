@@ -23,7 +23,6 @@ MTCompositeTestFilterTest >> testWithCombinedTestFilters [
 				 testCase selector beginsWith: 'testX' ]).
 			(MTPragmaSelectionTestFilter for: #pragma).
 			(MTTimeTestFilter for: 10 milliSeconds) }.
-	analysis run.
 
 	self assert: analysis testCases size equals: 1.
 	self assert: (analysis testCases at: 1) selector equals: #testX1

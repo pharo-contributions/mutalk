@@ -10,24 +10,23 @@ MTTimeTestFilterTest >> runAnalysisForTimeCondition: aDuration [
 
 	self
 		runAnalysisWithFilter: (MTTimeTestFilter for: aDuration)
-		on: { MTAuxiliarClassForTestFilter }
-		withTests: { MTAuxiliarClassForTimeTestFilterTest }
+		on: {  }
+		withTests: { MTAuxiliarTestClassForTimeTestFilter }
 ]
 
 { #category : 'tests' }
 MTTimeTestFilterTest >> testWith10MillisecondsCondition [
 
-	| testCaseReference result testCase |
-	testCase := MTAuxiliarClassForTimeTestFilterTest selector:
+	| testCaseReference testCase |
+	testCase := MTAuxiliarTestClassForTimeTestFilter selector:
 		            #test10Milliseconds.
 	testCaseReference := MTTestCaseReference for: testCase.
 	self runAnalysisForTimeCondition:
 		(self timeToRunFor: testCaseReference) * 10.
-	result := analysis generalResult particularResults at: 1.
 
-	self assert: result runCount equals: 1.
+	self assert: analysis testCases size equals: 1.
 	self
-		assert: (result mutantResults at: 1) selector
+		assert: (analysis testCases at: 1) selector
 		equals: #test10Milliseconds
 ]
 
@@ -35,15 +34,13 @@ MTTimeTestFilterTest >> testWith10MillisecondsCondition [
 MTTimeTestFilterTest >> testWith1SecondCondition [
 
 	| testCaseReference testCase |
-	testCase := MTAuxiliarClassForTimeTestFilterTest selector:
+	testCase := MTAuxiliarTestClassForTimeTestFilter selector:
 		            #test1Second.
 	testCaseReference := MTTestCaseReference for: testCase.
 	self runAnalysisForTimeCondition:
 		(self timeToRunFor: testCaseReference) * 10.
 
-	self
-		assert: (analysis generalResult particularResults at: 1) runCount
-		equals: 2
+	self assert: analysis testCases size equals: 2
 ]
 
 { #category : 'accessing' }
