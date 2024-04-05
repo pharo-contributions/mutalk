@@ -13,8 +13,8 @@ Class {
 		'mutantResults',
 		'stopOnErrorOrFail',
 		'testSelectionStrategy',
-		'mutantSelectionStrategy',
-		'testFilter'
+		'testFilter',
+		'mutantGenerationStrategy'
 	],
 	#category : 'MuTalk-Model-Core',
 	#package : 'MuTalk-Model',
@@ -64,9 +64,9 @@ MTAnalysis >> defaultLogger [
 ]
 
 { #category : 'accessing - defaults' }
-MTAnalysis >> defaultMutantSelectionStrategy [
+MTAnalysis >> defaultMutantGenerationStrategy [
 
-	^ MTAllMutantSelectionStrategy new
+	^ MTAllMutantGenerationStrategy new
 ]
 
 { #category : 'accessing - defaults' }
@@ -118,7 +118,7 @@ MTAnalysis >> generateMutations [
 
 	logger logStartMutationGeneration.
 	^ mutations ifNil: [
-		  mutations := mutantSelectionStrategy
+		  mutations := mutantGenerationStrategy
 			               mutationsFor: self
 			               loggingIn: logger.
 		  logger logTotalNumberOfMutations: mutations.
@@ -160,7 +160,7 @@ MTAnalysis >> initialize [
 
 	super initialize.
 	operators := self defaultOperators.
-	mutantSelectionStrategy := self defaultMutantSelectionStrategy.
+	mutantGenerationStrategy := self defaultMutantGenerationStrategy.
 	testSelectionStrategy := self defaultTestSelectionStrategy.
 	mutantResults := OrderedCollection new.
 	elapsedTime := 0.
@@ -193,22 +193,22 @@ MTAnalysis >> modelClasses [
 			  class includesBehavior: classToFilter ] ]
 ]
 
+{ #category : 'accessing' }
+MTAnalysis >> mutantGenerationStrategy [
+
+	^ mutantGenerationStrategy
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> mutantGenerationStrategy: anObject [
+
+	mutantGenerationStrategy := anObject
+]
+
 { #category : 'results' }
 MTAnalysis >> mutantResults [
 
 	^ mutantResults
-]
-
-{ #category : 'accessing' }
-MTAnalysis >> mutantSelectionStrategy [
-
-	^ mutantSelectionStrategy
-]
-
-{ #category : 'accessing' }
-MTAnalysis >> mutantSelectionStrategy: anObject [
-
-	mutantSelectionStrategy := anObject
 ]
 
 { #category : 'accessing' }

@@ -1,13 +1,13 @@
 Class {
-	#name : 'MTStubbornOnlyMutantSelectionStrategy',
-	#superclass : 'MTSelectingFromCoverageMutantSelectionStrategy',
-	#category : 'MuTalk-Model-Mutant selection strategies',
+	#name : 'MTStubbornOnlyMutantGenerationStrategy',
+	#superclass : 'MTSelectingFromCoverageMutantGenerationStrategy',
+	#category : 'MuTalk-Model-Mutant generation strategies',
 	#package : 'MuTalk-Model',
-	#tag : 'Mutant selection strategies'
+	#tag : 'Mutant generation strategies'
 }
 
 { #category : 'generating' }
-MTStubbornOnlyMutantSelectionStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
+MTStubbornOnlyMutantGenerationStrategy >> mutationsFor: aMutationTestingAnalysis loggingIn: aLogger [
 
 	| mutations subSuite trivialAnalysis |
 	mutations := super mutationsFor: aMutationTestingAnalysis loggingIn: aLogger.

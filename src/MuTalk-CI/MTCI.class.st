@@ -145,7 +145,7 @@ MTCI >> mutateAll [
 		runMutalkTargets: targets
 		tests: tests
 		generationStrategy:
-		MTSelectingFromCoverageMutantSelectionStrategy new
+		MTSelectingFromCoverageMutantGenerationStrategy new
 ]
 
 { #category : 'as yet unclassified' }
@@ -162,7 +162,7 @@ MTCI >> mutateDiff [
 	self
 		runMutalkTargets: targets
 		tests: tests
-		generationStrategy: MTSelectingFromAlivesMutantSelectionStrategy new
+		generationStrategy: MTSelectingFromAlivesMutantGenerationStrategy new
 ]
 
 { #category : 'as yet unclassified' }
@@ -202,7 +202,7 @@ MTCI >> runMutalkTargets: targets tests: tests generationStrategy: generationStr
 		            classesToMutate: targets;
 		            testSelectionStrategy:
 			            MTSelectingFromCoverageTestSelectionStrategy new;
-		            mutantSelectionStrategy: generationStrategy.
+		            mutantGenerationStrategy: generationStrategy.
 	analysis run.
 	coverageInfo := self prepareCoverageInfo: analysis.
 	self exportResultJson: analysis coverageInfo: coverageInfo

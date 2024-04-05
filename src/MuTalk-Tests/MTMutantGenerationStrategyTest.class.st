@@ -1,15 +1,12 @@
 Class {
-	#name : 'MTMutantSelectionStrategyTest',
+	#name : 'MTMutantGenerationStrategyTest',
 	#superclass : 'TestCase',
-	#instVars : [
-		'resource'
-	],
 	#category : 'MuTalk-Tests',
 	#package : 'MuTalk-Tests'
 }
 
 { #category : 'testing' }
-MTMutantSelectionStrategyTest >> testSelectingFromCoverageMutantSelectionShouldOnlyMutateCoveredMethods [
+MTMutantGenerationStrategyTest >> testSelectingFromCoverageMutantGenerationShouldOnlyMutateCoveredMethods [
 
 	| classes mutationTestingAnalysis operator |
 	classes := OrderedCollection with: MTAuxiliarClassForTestingStrategies.
@@ -19,8 +16,8 @@ MTMutantSelectionStrategyTest >> testSelectingFromCoverageMutantSelectionShouldO
 			                           { MTAuxiliarTestClassForTestingStrategies };
 		                           classesToMutate: classes;
 		                           operators: (Set with: operator);
-		                           mutantSelectionStrategy:
-			                           MTSelectingFromCoverageMutantSelectionStrategy
+		                           mutantGenerationStrategy:
+			                           MTSelectingFromCoverageMutantGenerationStrategy
 				                           new.
 	mutationTestingAnalysis run.
 	self assert: ((mutationTestingAnalysis mutations collect: [ :each |

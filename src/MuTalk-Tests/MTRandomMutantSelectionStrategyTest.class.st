@@ -26,17 +26,9 @@ MTRandomMutantSelectionStrategyTest >> testAtLeastTwoDifferentMutantCollectionsA
 				            { MTAuxiliarClassForMTAnalysisTest };
 			            classesToMutate:
 				            { MTAuxiliarClassForMTAnalysis };
-			            mutantSelectionStrategy: self classToTest new.
+			            mutantGenerationStrategy: self classToTest new.
 		mutationsSet add: analysis generateMutations ].
 
 	"If the size of the set is at least 2, there is at least 2 different mutant collections, so at least 2 different orders of mutants."
 	self assert: mutationsSet size >= 2
-]
-
-{ #category : 'tests' }
-MTRandomMutantSelectionStrategyTest >> testDefaultMutantSelectionStrategyIsAllMutantSelectionStrategy [
-
-	self
-		assert: self classToTest new mutantSelectionStrategy species
-		equals: MTAllMutantSelectionStrategy new species
 ]
