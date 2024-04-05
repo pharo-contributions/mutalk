@@ -22,11 +22,10 @@ MTRandomMutantSelectionStrategyTest >> testAtLeastTwoDifferentMutantCollectionsA
 	mutationsSet := Set new.
 	1 to: 5 do: [ :i |
 		analysis := MTAnalysis new
-			            testClasses:
-				            { MTAuxiliarClassForMTAnalysisTest };
-			            classesToMutate:
-				            { MTAuxiliarClassForMTAnalysis };
-			            mutantGenerationStrategy: self classToTest new.
+			            testClasses: { MTAuxiliarClassForMTAnalysisTest };
+			            classesToMutate: { MTAuxiliarClassForMTAnalysis }.
+		analysis mutantGenerationStrategy mutantSelectionStrategy:
+			self classToTest new.
 		mutationsSet add: analysis generateMutations ].
 
 	"If the size of the set is at least 2, there is at least 2 different mutant collections, so at least 2 different orders of mutants."

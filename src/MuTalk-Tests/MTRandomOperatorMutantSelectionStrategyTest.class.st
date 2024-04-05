@@ -23,9 +23,9 @@ MTRandomOperatorMutantSelectionStrategyTest >> testAroundOneSeventhPercentOfMuta
 		            classesToMutate:
 			            { MTAuxiliarClassForRandomOperatorMutantSelectionStrategy };
 		            testClasses: {  };
-		            operators: MTAbstractMutantOperator contentsAll;
-		            mutantGenerationStrategy:
-			            (MTRandomOperatorMutantSelectionStrategy withSeed: seed).
+		            operators: MTAbstractMutantOperator contentsAll.
+	analysis mutantGenerationStrategy mutantSelectionStrategy:
+		(MTRandomOperatorMutantSelectionStrategy withSeed: seed).
 
 	mutations := analysis generateMutations first: 210.
 	mutationsDic := (mutations groupedBy: #operator) collect: #size.
