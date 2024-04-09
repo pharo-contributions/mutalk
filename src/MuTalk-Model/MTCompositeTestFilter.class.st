@@ -1,3 +1,7 @@
+"
+This test filter is a composition of multiple test filters.
+It works as if the test collection passes through each test filter one by one. So a test is blocked by the composite test filter if any of its filters blocks the said test. In the same way, a test passes through the composite test filter if it passes through every of its filters.
+"
 Class {
 	#name : 'MTCompositeTestFilter',
 	#superclass : 'MTTestFilter',
