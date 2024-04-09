@@ -1,6 +1,6 @@
 Class {
-	#name : 'MTSelectingFromAlivesMutantSelectionStrategy',
-	#superclass : 'MTMutantSelectionStrategy',
+	#name : 'MTSelectingFromAlivesMutantGenerationStrategy',
+	#superclass : 'MTMutantGenerationStrategy',
 	#instVars : [
 		'analysis'
 	],
@@ -9,13 +9,13 @@ Class {
 }
 
 { #category : 'accessing' }
-MTSelectingFromAlivesMutantSelectionStrategy >> analysis: anObject [
+MTSelectingFromAlivesMutantGenerationStrategy >> analysis: anObject [
 
 	analysis := anObject
 ]
 
 { #category : 'generating' }
-MTSelectingFromAlivesMutantSelectionStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
+MTSelectingFromAlivesMutantGenerationStrategy >> methodsToMutateFrom: aMutationTestingAnalysis [
 
 	^ (analysis generalResult aliveMutants collect: [ :alive | 
 		   alive mutant originalMethod ]) asSet 
