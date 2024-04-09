@@ -54,7 +54,7 @@ MTAnalysis >> coverageAnalysisResult: anObject [
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultBudget [
 
-	^ MTFreeBudget new
+	^ MTTimeBudget for: 3 * self totalTestsTime
 ]
 
 { #category : 'accessing - defaults' }
@@ -165,7 +165,6 @@ MTAnalysis >> initialize [
 	mutantResults := OrderedCollection new.
 	elapsedTime := 0.
 	logger := self defaultLogger.
-	budget := self defaultBudget.
 	testFilter := self defaultTestFilter.
 	stopOnErrorOrFail := true
 ]
@@ -250,8 +249,8 @@ MTAnalysis >> run [
 	We obtain a result for each mutant generated"
 
 	^ [
-	  budget start.
 	  self initialTestRun.
+	  self startBudget.
 	  logger logAnalysisStartFor: self.
 	  elapsedTime := [
 	                 self generateCoverageAnalysis.
@@ -263,6 +262,13 @@ MTAnalysis >> run [
 			  self inform:
 				  'Your tests have Errors or Failures. Please correct them.'.
 			  false ]
+]
+
+{ #category : 'starting' }
+MTAnalysis >> startBudget [
+
+	budget ifNil: [ budget := self defaultBudget ].
+	budget start
 ]
 
 { #category : 'accessing' }
@@ -345,4 +351,12 @@ MTAnalysis >> testSelectionStrategy [
 MTAnalysis >> testSelectionStrategy: anObject [
 
 	testSelectionStrategy := anObject
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> totalTestsTime [
+
+	| times |
+	times := testCases collect: #lastTimeToRun.
+	^ times reduce: [ :t1 :t2 | t1 + t2 ]
 ]
