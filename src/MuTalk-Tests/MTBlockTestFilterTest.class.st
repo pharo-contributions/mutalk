@@ -10,7 +10,7 @@ MTBlockTestFilterTest >> runAnalysisForBlockCondition: aBlock [
 
 	self
 		runAnalysisWithFilter: (MTBlockTestFilter for: aBlock)
-		on: { MTAuxiliarClassForTestFilter }
+		on: {  }
 		withTests: { MTAuxiliarTestClassForBlockTestFilter }
 ]
 
@@ -20,21 +20,17 @@ MTBlockTestFilterTest >> testAllTestsAreExcluded [
 	self runAnalysisForBlockCondition: [ :testCase |
 		testCase selector beginsWith: 'testZ' ].
 
-	self
-		assert: (analysis generalResult particularResults at: 1) runCount
-		equals: 0
+	self assert: analysis testCases size equals: 0
 ]
 
 { #category : 'tests' }
 MTBlockTestFilterTest >> testYTestIsExcluded [
 
-	| result |
 	self runAnalysisForBlockCondition: [ :testCase |
 		testCase selector beginsWith: 'testX' ].
-	result := analysis generalResult particularResults at: 1.
 
-	self assert: result runCount equals: 1.
-	self assert: (result mutantResults at: 1) selector equals: #testX
+	self assert: analysis testCases size equals: 1.
+	self assert: (analysis testCases at: 1) selector equals: #testX
 ]
 
 { #category : 'tests' }
@@ -43,7 +39,5 @@ MTBlockTestFilterTest >> testYTestIsNotExcluded [
 	self runAnalysisForBlockCondition: [ :testCase |
 		testCase selector beginsWith: 'test' ].
 
-	self
-		assert: (analysis generalResult particularResults at: 1) runCount
-		equals: 2
+	self assert: analysis testCases size equals: 2
 ]
