@@ -9,8 +9,8 @@ Class {
 MTRedTestFilterTest >> runAnalysis [
 
 	self
-		runAnalysisWithFilter: (MTRedTestFilter new)
-		on: { MTAuxiliarClassForTestFilter }
+		runAnalysisWithFilter: MTRedTestFilter new
+		on: {  }
 		withTests: { MTAuxiliarTestClassForRedTestFilter }
 ]
 

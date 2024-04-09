@@ -8,7 +8,7 @@ Class {
 { #category : 'as yet unclassified' }
 MTTestResourceClassForTestingCoverage >> doSomething [
 
-	^ MTClassForTestingCoverage new anUncoveredMethod
+	^ true
 ]
 
 { #category : 'as yet unclassified' }
