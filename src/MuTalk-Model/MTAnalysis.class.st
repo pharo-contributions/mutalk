@@ -60,19 +60,19 @@ MTAnalysis >> defaultBudget [
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultLogger [
 
-	^ MTNullLogger new
+	^ MTTranscriptLogger new
 ]
 
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultMutantGenerationStrategy [
 
-	^ MTAllMutantGenerationStrategy new
+	^ MTAllMutantGenerationStrategy withRandomOperatorMutantSelection
 ]
 
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultOperators [
 
-	^ MTAbstractMutantOperator contents
+	^ MTAbstractMutantOperator contentsAll
 ]
 
 { #category : 'accessing - defaults' }
@@ -84,7 +84,7 @@ MTAnalysis >> defaultTestFilter [
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultTestSelectionStrategy [
 
-	^ MTAllTestsMethodsRunningTestSelectionStrategy new
+	^ MTSelectingFromCoverageTestSelectionStrategy new
 ]
 
 { #category : 'accessing' }
