@@ -74,7 +74,7 @@ MTAnalysisTest >> testCorrectNumberOfTestCasesWithParametrizedTestCase [
 MTAnalysisTest >> testDefaultParameters [
 
 	| analysis |
-	analysis := MTAnalysis new.
+	analysis := MTAnalysis new testClasses: {  }.
 	self
 		assert: (analysis operators collect: [ :op | op species ])
 		equals:
@@ -85,7 +85,7 @@ MTAnalysisTest >> testDefaultParameters [
 	self
 		assert: analysis testSelectionStrategy species
 		equals: MTSelectingFromCoverageTestSelectionStrategy.
-	self assert: analysis budget species equals: MTFreeBudget
+	self assert: analysis defaultBudget species equals: MTTimeBudget
 ]
 
 { #category : 'testing' }
@@ -99,7 +99,8 @@ MTAnalysisTest >> testExecutingInfiniteLoopAnalysis [
 	analysis := MTAnalysis new
 		            testClasses: { MTFakeInfiniteLoopsTest };
 		            classesToMutate: { MTFakeInfiniteLoopForTest };
-		            operators: { MTReplaceLessOrEqualWithTrueOperator new }.
+		            operators: { MTReplaceLessOrEqualWithTrueOperator new };
+		            budget: MTFreeBudget new.
 
 	analysis run.
 
@@ -121,7 +122,8 @@ MTAnalysisTest >> testExecutingInfiniteRecursionAnalysis [
 		            testClasses: { MTFakeInfiniteLoopsTest };
 		            classesToMutate: { MTFakeInfiniteLoopForTest };
 		            operators:
-			            { MTReplaceIfTrueReceiverWithFalseOperator new }.
+			            { MTReplaceIfTrueReceiverWithFalseOperator new };
+		            budget: MTFreeBudget new.
 
 	analysis run.
 
@@ -137,11 +139,11 @@ MTAnalysisTest >> testExecutingSimpleMutation [
 	| analysis results generalResult mutationResult |
 	analysis := MTAnalysis new
 		            testClasses:
-			            (Array with:
-					             MTAuxiliarClassForMTAnalysisTest);
+			            (Array with: MTAuxiliarClassForMTAnalysisTest);
 		            classesToMutate:
 			            (Array with: MTAuxiliarClassForMTAnalysis);
-		            operators: self plusForMinusReplacementMutation.
+		            operators: self plusForMinusReplacementMutation;
+		            budget: MTFreeBudget new.
 	analysis run.
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
@@ -157,11 +159,11 @@ MTAnalysisTest >> testExecutingSimpleMutationForClassMethods [
 	| analysis results generalResult mutationResult |
 	analysis := MTAnalysis new
 		            testClasses:
-			            (Array with:
-					             MTAuxiliarClassForMTAnalysisTest);
+			            (Array with: MTAuxiliarClassForMTAnalysisTest);
 		            classesToMutate:
 			            (Array with: MTAuxiliarClassForMTAnalysis);
-		            operators: self selectForRejectReplacementMutation.
+		            operators: self selectForRejectReplacementMutation;
+		            budget: MTFreeBudget new.
 	analysis run.
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
@@ -177,11 +179,11 @@ MTAnalysisTest >> testExecutingSimpleMutationWhenNotRunnedAnalysis [
 	| analysis results generalResult |
 	analysis := MTAnalysis new
 		            testClasses:
-			            (Array with:
-					             MTAuxiliarClassForMTAnalysisTest);
+			            (Array with: MTAuxiliarClassForMTAnalysisTest);
 		            classesToMutate:
 			            (Array with: MTAuxiliarClassForMTAnalysis);
-		            operators: self plusForMinusReplacementMutation.
+		            operators: self plusForMinusReplacementMutation;
+		            testFilter: MTFreeTestFilter new.
 	"analysis run."
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
@@ -200,7 +202,8 @@ MTAnalysisTest >> testExecutingTwoMutantsFromDiferentMethods [
 		            testClasses: Array new;
 		            classesToMutate:
 			            (Array with: MTAuxiliarClassForMTAnalysis);
-		            operators: operatorSelection.
+		            operators: operatorSelection;
+		            budget: MTFreeBudget new.
 	analysis run.
 	results := analysis mutantResults.
 	self assert: results size equals: 2.
@@ -218,7 +221,8 @@ MTAnalysisTest >> testExecutingTwoMutantsFromSameMethod [
 		            testClasses: Array new;
 		            classesToMutate:
 			            (Array with: MTAuxiliarClassForMTAnalysis);
-		            operators: operatorSelection.
+		            operators: operatorSelection;
+		            budget: MTFreeBudget new.
 	analysis run.
 	results := analysis mutantResults.
 	self assert: results size equals: 2.
@@ -236,11 +240,11 @@ MTAnalysisTest >> testExecutingTwoMutations [
 	operatorSelection addAll: self ifTrueForIfFalseReplacementMutation.
 	analysis := MTAnalysis new
 		            testClasses:
-			            (Array with:
-					             MTAuxiliarClassForMTAnalysisTest);
+			            (Array with: MTAuxiliarClassForMTAnalysisTest);
 		            classesToMutate:
 			            (Array with: MTAuxiliarClassForMTAnalysis);
-		            operators: operatorSelection.
+		            operators: operatorSelection;
+		            budget: MTFreeBudget new.
 	analysis run.
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
@@ -260,7 +264,8 @@ MTAnalysisTest >> testRunningAllTests [
 		            classesToMutate: { MTAuxiliarClassForMTAnalysis };
 		            testSelectionStrategy:
 			            MTAllTestsMethodsRunningTestSelectionStrategy new;
-		            doNotStopOnErrorOrFail.
+		            doNotStopOnErrorOrFail;
+		            budget: MTFreeBudget new.
 
 	"In this class, tests fail after a certain of executions"
 	MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail reset.

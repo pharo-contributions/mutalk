@@ -17,7 +17,8 @@ MTAnalysisLoggerTest >> testExecutingSimpleMutation [
 		            classesToMutate:
 			            (Array with: MTAuxiliarClassForMTAnalysis);
 		            operators: (Array with: operator);
-		            logger: logger.
+		            logger: logger;
+		            budget: MTFreeBudget new.
 	analysis run.
 	self assert: logger loggedStartAnalysis.
 	self assert: (logger

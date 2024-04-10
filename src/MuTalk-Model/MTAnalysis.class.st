@@ -54,7 +54,7 @@ MTAnalysis >> coverageAnalysisResult: anObject [
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultBudget [
 
-	^ MTTimeBudget for: 3 * self totalTestsTime
+	^  MTTimeBudget for: self totalTestsTime * 30
 ]
 
 { #category : 'accessing - defaults' }
@@ -78,7 +78,12 @@ MTAnalysis >> defaultOperators [
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultTestFilter [
 
-	^ MTFreeTestFilter new
+	^ MTCompositeTestFilter for: {
+			  MTRedTestFilter new.
+			  (MTTimeTestFilter for:
+				   (self
+					    percentile: 90
+					    for: (testCases collect: #lastTimeToRun) sorted)) }
 ]
 
 { #category : 'accessing - defaults' }
@@ -151,6 +156,7 @@ MTAnalysis >> initialTestRun [
 
 	| results |
 	results := testCases collect: [ :aTestCase | aTestCase run ].
+	testFilter ifNil: [ testFilter := self defaultTestFilter ].
 	testFilter validateFailuresIn: results.
 	testCases := testFilter filterTests: testCases
 ]
@@ -165,7 +171,6 @@ MTAnalysis >> initialize [
 	mutantResults := OrderedCollection new.
 	elapsedTime := 0.
 	logger := self defaultLogger.
-	testFilter := self defaultTestFilter.
 	stopOnErrorOrFail := true
 ]
 
@@ -239,6 +244,16 @@ MTAnalysis >> packagesToMutate: aCollectionOfPackages [
 
 	modelClasses := aCollectionOfPackages flatCollect: [ :packageName |
 		                packageName asPackage definedClasses ]
+]
+
+{ #category : 'computing' }
+MTAnalysis >> percentile: aPercentage for: aCollection [
+
+	| size index |
+	aCollection isEmpty ifTrue: [ ^ nil ].
+	size := aCollection size.
+	index := (aPercentage percent * size) rounded.
+	^ aCollection at: index
 ]
 
 { #category : 'running' }
@@ -357,6 +372,7 @@ MTAnalysis >> testSelectionStrategy: anObject [
 MTAnalysis >> totalTestsTime [
 
 	| times |
+	testCases isEmpty ifTrue: [ ^ 0 milliSecond ].
 	times := testCases collect: #lastTimeToRun.
 	^ times reduce: [ :t1 :t2 | t1 + t2 ]
 ]
