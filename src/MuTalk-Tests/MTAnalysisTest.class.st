@@ -77,13 +77,14 @@ MTAnalysisTest >> testDefaultParameters [
 	analysis := MTAnalysis new.
 	self
 		assert: (analysis operators collect: [ :op | op species ])
-		equals: (MTAbstractMutantOperator contents collect: [ :op | op species ]).
+		equals:
+		(MTAbstractMutantOperator contentsAll collect: [ :op | op species ]).
 	self
 		assert: analysis mutantGenerationStrategy species
 		equals: MTAllMutantGenerationStrategy.
 	self
 		assert: analysis testSelectionStrategy species
-		equals: MTAllTestsMethodsRunningTestSelectionStrategy.
+		equals: MTSelectingFromCoverageTestSelectionStrategy.
 	self assert: analysis budget species equals: MTFreeBudget
 ]
 
@@ -257,6 +258,8 @@ MTAnalysisTest >> testRunningAllTests [
 		            testClasses:
 			            { MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail };
 		            classesToMutate: { MTAuxiliarClassForMTAnalysis };
+		            testSelectionStrategy:
+			            MTAllTestsMethodsRunningTestSelectionStrategy new;
 		            doNotStopOnErrorOrFail.
 
 	"In this class, tests fail after a certain of executions"
