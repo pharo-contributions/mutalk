@@ -53,8 +53,9 @@ MTAnalysis >> coverageAnalysisResult: anObject [
 
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultBudget [
+	"Since tests often take little time to run, we multiply it by 30"
 
-	^  MTTimeBudget for: self totalTestsTime * 30
+	^ MTTimeBudget for: self totalTestsTime * 30
 ]
 
 { #category : 'accessing - defaults' }
