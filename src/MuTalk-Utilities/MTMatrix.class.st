@@ -290,13 +290,19 @@ MTMatrix >> mutations: anObject [
 { #category : 'running' }
 MTMatrix >> runAnalysis [
 
-	analysis := MTAnalysis new
-		            classesToMutate: classesToMutate;
-		            testClasses: testClasses;
-		            doNotStopOnErrorOrFail.
+	analysis ifNil: [ self setUpAnalysis ].
 	analysis run.
 	testCases := analysis testCases.
 	mutations := analysis mutations
+]
+
+{ #category : 'initialization' }
+MTMatrix >> setUpAnalysis [
+
+	analysis := MTAnalysis new
+		            classesToMutate: classesToMutate;
+		            testClasses: testClasses;
+		            doNotStopOnErrorOrFail
 ]
 
 { #category : 'accessing' }
