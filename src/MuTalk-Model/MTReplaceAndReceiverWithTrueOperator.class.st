@@ -1,9 +1,9 @@
 Class {
 	#name : 'MTReplaceAndReceiverWithTrueOperator',
 	#superclass : 'MTReplaceAndReceiverOperator',
-	#category : 'MuTalk-Model-Operators',
+	#category : 'MuTalk-Model-Operators - Logical boolean operation',
 	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#tag : 'Operators - Logical boolean operation'
 }
 
 { #category : 'applying' }

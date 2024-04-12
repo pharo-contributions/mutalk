@@ -1,9 +1,9 @@
 Class {
 	#name : 'MTReplaceGreaterWithLessMutantOperator',
 	#superclass : 'MTSelectorReplacementMutantOperator',
-	#category : 'MuTalk-Model-Operators',
+	#category : 'MuTalk-Model-Operators - Relational operation',
 	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#tag : 'Operators - Relational operation'
 }
 
 { #category : 'accessing' }

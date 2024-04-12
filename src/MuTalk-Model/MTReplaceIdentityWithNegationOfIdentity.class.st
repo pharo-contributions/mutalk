@@ -1,9 +1,9 @@
 Class {
 	#name : 'MTReplaceIdentityWithNegationOfIdentity',
 	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
+	#category : 'MuTalk-Model-Operators - Relational operation',
 	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#tag : 'Operators - Relational operation'
 }
 
 { #category : 'printing' }

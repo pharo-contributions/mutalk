@@ -1,9 +1,9 @@
 Class {
 	#name : 'MTLiteralIntegersToZeroOperator',
 	#superclass : 'MTPredicateBasedMutantOperator',
-	#category : 'MuTalk-Model-Operators',
+	#category : 'MuTalk-Model-Operators - Literal manipulation',
 	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#tag : 'Operators - Literal manipulation'
 }
 
 { #category : 'applying' }
