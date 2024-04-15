@@ -18,7 +18,9 @@ MTMatrixTest >> setUp [
 	matrix := MTMatrix forClasses: { MTAuxiliarClassForMatrix }.
 	matrix setUpAnalysis.
 	matrix analysis
-		operators: MTAbstractMutantOperator contents;
+		operators:
+			(MTParseRewriterMutantOperator allConcreteSubclasses collect: [
+					 :operator | operator new ]);
 		budget: MTFreeBudget new.
 	matrix build.
 	self setUpVariablesForTest
