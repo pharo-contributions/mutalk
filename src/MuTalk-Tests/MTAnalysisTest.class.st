@@ -74,7 +74,9 @@ MTAnalysisTest >> testCorrectNumberOfTestCasesWithParametrizedTestCase [
 MTAnalysisTest >> testDefaultParameters [
 
 	| analysis |
-	analysis := MTAnalysis new testClasses: {  }.
+	analysis := MTAnalysis new testClasses:
+		            { MTAuxiliarClassForMTAnalysisTest }.
+	analysis initialTestRun.
 	self
 		assert: (analysis operators collect: [ :op | op species ])
 		equals:
@@ -100,7 +102,7 @@ MTAnalysisTest >> testExecutingInfiniteLoopAnalysis [
 		            testClasses: { MTFakeInfiniteLoopsTest };
 		            classesToMutate: { MTFakeInfiniteLoopForTest };
 		            operators: { MTReplaceLessOrEqualWithTrueOperator new };
-		            budget: MTFreeBudget new.
+		            noLimitations.
 
 	analysis run.
 
@@ -123,7 +125,7 @@ MTAnalysisTest >> testExecutingInfiniteRecursionAnalysis [
 		            classesToMutate: { MTFakeInfiniteLoopForTest };
 		            operators:
 			            { MTReplaceIfTrueReceiverWithFalseOperator new };
-		            budget: MTFreeBudget new.
+		            noLimitations.
 
 	analysis run.
 
@@ -143,7 +145,7 @@ MTAnalysisTest >> testExecutingSimpleMutation [
 		            classesToMutate:
 			            (Array with: MTAuxiliarClassForMTAnalysis);
 		            operators: self plusForMinusReplacementMutation;
-		            budget: MTFreeBudget new.
+		            noLimitations.
 	analysis run.
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
@@ -163,7 +165,7 @@ MTAnalysisTest >> testExecutingSimpleMutationForClassMethods [
 		            classesToMutate:
 			            (Array with: MTAuxiliarClassForMTAnalysis);
 		            operators: self selectForRejectReplacementMutation;
-		            budget: MTFreeBudget new.
+		            noLimitations.
 	analysis run.
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
@@ -183,7 +185,7 @@ MTAnalysisTest >> testExecutingSimpleMutationWhenNotRunnedAnalysis [
 		            classesToMutate:
 			            (Array with: MTAuxiliarClassForMTAnalysis);
 		            operators: self plusForMinusReplacementMutation;
-		            testFilter: MTFreeTestFilter new.
+		            noLimitations.
 	"analysis run."
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
@@ -199,11 +201,11 @@ MTAnalysisTest >> testExecutingTwoMutantsFromDiferentMethods [
 	operatorSelection := OrderedCollection new.
 	operatorSelection addAll: self ifFalseForIfTrueReplacementMutation.
 	analysis := MTAnalysis new
-		            testClasses: Array new;
+		            testClasses: { MTAuxiliarTestClassForTestingStrategies };
 		            classesToMutate:
 			            (Array with: MTAuxiliarClassForMTAnalysis);
 		            operators: operatorSelection;
-		            budget: MTFreeBudget new.
+		            noLimitations.
 	analysis run.
 	results := analysis mutantResults.
 	self assert: results size equals: 2.
@@ -218,11 +220,11 @@ MTAnalysisTest >> testExecutingTwoMutantsFromSameMethod [
 	operatorSelection := OrderedCollection new.
 	operatorSelection addAll: self minusForPlusReplacementMutation.
 	analysis := MTAnalysis new
-		            testClasses: Array new;
+		            testClasses: { MTAuxiliarTestClassForTestingStrategies };
 		            classesToMutate:
 			            (Array with: MTAuxiliarClassForMTAnalysis);
 		            operators: operatorSelection;
-		            budget: MTFreeBudget new.
+		            noLimitations.
 	analysis run.
 	results := analysis mutantResults.
 	self assert: results size equals: 2.
@@ -244,7 +246,7 @@ MTAnalysisTest >> testExecutingTwoMutations [
 		            classesToMutate:
 			            (Array with: MTAuxiliarClassForMTAnalysis);
 		            operators: operatorSelection;
-		            budget: MTFreeBudget new.
+		            noLimitations.
 	analysis run.
 	generalResult := analysis generalResult.
 	results := analysis mutantResults.
@@ -265,7 +267,7 @@ MTAnalysisTest >> testRunningAllTests [
 		            testSelectionStrategy:
 			            MTAllTestsMethodsRunningTestSelectionStrategy new;
 		            doNotStopOnErrorOrFail;
-		            budget: MTFreeBudget new.
+		            noLimitations.
 
 	"In this class, tests fail after a certain of executions"
 	MTAuxiliarTestClassForContinuingTestsExecutionAfterFirstFail reset.

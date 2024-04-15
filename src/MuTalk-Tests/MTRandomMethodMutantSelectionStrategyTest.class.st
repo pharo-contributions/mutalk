@@ -24,7 +24,7 @@ MTRandomMethodMutantSelectionStrategyTest >> testAround25PercentOfMutantsForEach
 	analysis := MTAnalysis new
 		            classesToMutate:
 			            { MTAuxiliarClassForRandomMethodMutantSelectionStrategy };
-		            testClasses: {  }.
+		            testClasses: { MTAuxiliarClassForMTAnalysisTest }.
 	analysis mutantGenerationStrategy mutantSelectionStrategy:
 		(MTRandomMethodMutantSelectionStrategy withSeed: seed).
 

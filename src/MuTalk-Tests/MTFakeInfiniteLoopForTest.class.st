@@ -5,17 +5,17 @@ Class {
 	#package : 'MuTalk-Tests'
 }
 
-{ #category : 'factorials' }
+{ #category : 'not defined protocol' }
 MTFakeInfiniteLoopForTest >> iterativeFactorial: anInt [
 
 	| factorial i |
 	^ anInt = 1
 		  ifTrue: [ 1 ]
-		  ifFalse: [ 
+		  ifFalse: [
 			  factorial := 1.
 			  i := 2.
 			  "Use a whileTrue: so a mutation can introduce an infinite loop here"
-			  [ i <= anInt ] whileTrue: [ 
+			  [ true ] whileTrue: [
 				  factorial := factorial * i.
 				  i := i + 1 ].
 			  factorial ]

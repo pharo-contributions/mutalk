@@ -25,7 +25,7 @@ MTRandomClassMutantSelectionStrategyTest >> testAround33PercentOfMutantsForEachC
 				            MTAuxiliarClassForRandomClassMutantSelectionStrategy1.
 				            MTAuxiliarClassForRandomClassMutantSelectionStrategy2.
 				            MTAuxiliarClassForRandomClassMutantSelectionStrategy3 };
-		            testClasses: {  }.
+		            testClasses: { MTAuxiliarClassForMTAnalysisTest }.
 	analysis mutantGenerationStrategy mutantSelectionStrategy:
 		(MTRandomClassMutantSelectionStrategy withSeed: seed).
 
