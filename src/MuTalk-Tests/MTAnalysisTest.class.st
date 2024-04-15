@@ -78,7 +78,7 @@ MTAnalysisTest >> testDefaultParameters [
 	self
 		assert: (analysis operators collect: [ :op | op species ])
 		equals:
-		(MTAbstractMutantOperator contentsAll collect: [ :op | op species ]).
+		(MTAbstractMutantOperator contents collect: [ :op | op species ]).
 	self
 		assert: analysis mutantGenerationStrategy species
 		equals: MTAllMutantGenerationStrategy.
