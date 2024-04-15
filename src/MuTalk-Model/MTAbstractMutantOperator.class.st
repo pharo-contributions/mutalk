@@ -1,9 +1,9 @@
 Class {
 	#name : 'MTAbstractMutantOperator',
 	#superclass : 'Object',
-	#category : 'MuTalk-Model-Operators',
+	#category : 'MuTalk-Model-Operators - Abstract',
 	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#tag : 'Operators - Abstract'
 }
 
 { #category : 'accessing' }

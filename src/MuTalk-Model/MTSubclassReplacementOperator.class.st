@@ -1,9 +1,9 @@
 Class {
 	#name : 'MTSubclassReplacementOperator',
 	#superclass : 'MTPredicateBasedMutantOperator',
-	#category : 'MuTalk-Model-Operators',
+	#category : 'MuTalk-Model-Operators - Other',
 	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#tag : 'Operators - Other'
 }
 
 { #category : 'applying' }

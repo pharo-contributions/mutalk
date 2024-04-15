@@ -1,9 +1,9 @@
 Class {
 	#name : 'MTReplaceMultiplicationWithDivisionMutantOperator',
 	#superclass : 'MTSelectorReplacementMutantOperator',
-	#category : 'MuTalk-Model-Operators',
+	#category : 'MuTalk-Model-Operators - Arithmetic replacement',
 	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#tag : 'Operators - Arithmetic replacement'
 }
 
 { #category : 'accessing' }

@@ -1,9 +1,9 @@
 Class {
 	#name : 'MTEmptyMethodOperator',
 	#superclass : 'MTPredicateBasedMutantOperator',
-	#category : 'MuTalk-Model-Operators',
+	#category : 'MuTalk-Model-Operators - Deletion',
 	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#tag : 'Operators - Deletion'
 }
 
 { #category : 'applying' }

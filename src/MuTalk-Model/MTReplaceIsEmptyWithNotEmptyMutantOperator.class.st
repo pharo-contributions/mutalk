@@ -1,9 +1,9 @@
 Class {
 	#name : 'MTReplaceIsEmptyWithNotEmptyMutantOperator',
 	#superclass : 'MTSelectorReplacementMutantOperator',
-	#category : 'MuTalk-Model-Operators',
+	#category : 'MuTalk-Model-Operators - Collection operation',
 	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#tag : 'Operators - Collection operation'
 }
 
 { #category : 'accessing' }

@@ -1,9 +1,9 @@
 Class {
 	#name : 'MTMessageSendToYourselfOperator',
 	#superclass : 'MTPredicateBasedMutantOperator',
-	#category : 'MuTalk-Model-Operators',
+	#category : 'MuTalk-Model-Operators - Message sender',
 	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#tag : 'Operators - Message sender'
 }
 
 { #category : 'applying' }

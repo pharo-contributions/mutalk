@@ -1,9 +1,9 @@
 Class {
 	#name : 'MTRemoveAtIfAbsentOperator',
 	#superclass : 'MTParseRewriterMutantOperator',
-	#category : 'MuTalk-Model-Operators',
+	#category : 'MuTalk-Model-Operators - Collection operation',
 	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#tag : 'Operators - Collection operation'
 }
 
 { #category : 'printing' }

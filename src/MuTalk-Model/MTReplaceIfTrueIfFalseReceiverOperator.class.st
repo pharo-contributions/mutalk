@@ -1,9 +1,9 @@
 Class {
 	#name : 'MTReplaceIfTrueIfFalseReceiverOperator',
 	#superclass : 'MTReplaceReceiverOperator',
-	#category : 'MuTalk-Model-Operators',
+	#category : 'MuTalk-Model-Operators - Conditional boolean operation',
 	#package : 'MuTalk-Model',
-	#tag : 'Operators'
+	#tag : 'Operators - Conditional boolean operation'
 }
 
 { #category : 'testing' }
