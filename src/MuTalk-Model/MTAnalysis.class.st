@@ -268,7 +268,8 @@ MTAnalysis >> packagesToMutate: aCollectionOfPackages [
 MTAnalysis >> percentile: aPercentage for: aCollection [
 
 	| size index |
-	aCollection isEmpty ifTrue: [ ^ nil ].
+	aCollection isEmpty ifTrue: [
+		^ CollectionIsEmpty signalWith: aCollection ].
 	size := aCollection size.
 	index := (aPercentage percent * size) rounded.
 	^ aCollection at: index
@@ -283,6 +284,7 @@ MTAnalysis >> run [
 
 	^ [
 	  self initialTestRun.
+	  "The budget is started after the initial test run because the default one needs the run time of tests"
 	  self startBudget.
 	  logger logAnalysisStartFor: self.
 	  elapsedTime := [

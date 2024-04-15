@@ -90,6 +90,39 @@ MTAnalysisTest >> testDefaultParameters [
 	self assert: analysis defaultBudget species equals: MTTimeBudget
 ]
 
+{ #category : 'tests' }
+MTAnalysisTest >> testErrorWhenInitializingDefaultTestFilterBeforeInitialTestRun [
+
+	| analysis |
+	analysis := MTAnalysis new
+		            classesToMutate: { MTAuxiliarClassForMTAnalysis };
+		            testClasses: { MTAuxiliarClassForMTAnalysisTest }.
+
+	self should: [ analysis initializeTestFilter ] raise: Error
+]
+
+{ #category : 'tests' }
+MTAnalysisTest >> testErrorWhenStartingDefaultBudgetBeforeInitialTestRun [
+
+	| analysis |
+	analysis := MTAnalysis new
+		            classesToMutate: { MTAuxiliarClassForMTAnalysis };
+		            testClasses: { MTAuxiliarClassForMTAnalysisTest }.
+
+	self should: [ analysis startBudget ] raise: Error
+]
+
+{ #category : 'tests' }
+MTAnalysisTest >> testErrorWhenTryingToGetPercentileOfEmptyCollection [
+
+	| analysis |
+	analysis := MTAnalysis new.
+
+	self
+		should: [ analysis percentile: 1 for: {  } ]
+		raise: Error
+]
+
 { #category : 'testing' }
 MTAnalysisTest >> testExecutingInfiniteLoopAnalysis [
 
