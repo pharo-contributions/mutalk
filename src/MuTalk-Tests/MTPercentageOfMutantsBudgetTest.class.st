@@ -45,8 +45,8 @@ MTPercentageOfMutantsBudgetTest >> testEvaluateZeroPercentOfMutantsWithZeroPerce
 { #category : 'tests' }
 MTPercentageOfMutantsBudgetTest >> testExactPercentageOfMutants [
 
-	self runAnalysisForPercentageOfMutants: 25.
-	self assert: self percentageOfEvaluatedMutants equals: 25
+	self runAnalysisForPercentageOfMutants: 20.
+	self assert: self percentageOfEvaluatedMutants equals: 20
 ]
 
 { #category : 'tests' }
@@ -56,5 +56,5 @@ MTPercentageOfMutantsBudgetTest >> testNonExactPercentageOfMutants [
 	self assert: self percentageOfEvaluatedMutants >= 21.
 	self
 		assert: analysis generalResult numberOfEvaluatedMutants
-		equals: 21
+		equals: 6
 ]
