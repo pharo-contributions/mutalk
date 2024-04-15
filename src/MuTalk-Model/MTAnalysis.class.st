@@ -73,7 +73,7 @@ MTAnalysis >> defaultMutantGenerationStrategy [
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultOperators [
 
-	^ MTAbstractMutantOperator contentsAll
+	^ MTAbstractMutantOperator contents
 ]
 
 { #category : 'accessing - defaults' }

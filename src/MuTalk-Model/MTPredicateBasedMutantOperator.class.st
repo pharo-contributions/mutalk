@@ -12,11 +12,6 @@ MTPredicateBasedMutantOperator class >> isAbstract [
 	^ self == MTPredicateBasedMutantOperator
 ]
 
-{ #category : 'testing' }
-MTPredicateBasedMutantOperator class >> isOriginalOperator [
-	^ false
-]
-
 { #category : 'private' }
 MTPredicateBasedMutantOperator >> affectedNodeFor: aParseTree at: nodeIndex [
 
