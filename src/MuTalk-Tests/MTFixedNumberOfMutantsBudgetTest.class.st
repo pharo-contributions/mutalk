@@ -14,10 +14,10 @@ MTFixedNumberOfMutantsBudgetTest >> runAnalysisForFixedNumberOfMutants: aNumber 
 { #category : 'tests' }
 MTFixedNumberOfMutantsBudgetTest >> testEvaluateAllMutantsWithConstraintGreaterThanActualNumberOfMutations [
 
-	self runAnalysisForFixedNumberOfMutants: 50.
+	self runAnalysisForFixedNumberOfMutants: 100.
 	self
 		assert: analysis generalResult numberOfEvaluatedMutants
-		equals: 25
+		equals: 96
 ]
 
 { #category : 'tests' }
