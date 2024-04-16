@@ -160,9 +160,8 @@ MTAnalysis >> initialTestRun [
 	| results |
 	results := testCases collect: [ :aTestCase | aTestCase run ].
 	
-	"The test filter is initialized here because the default one needs the run time of tests, so the initial test run must be executed first"
-	self initializeTestFilter.
-	testFilter validateFailuresIn: results.
+	"The test filter is initialized lazily here because the default one needs the run time of tests, so the initial test run must be executed first"
+	self testFilter validateFailuresIn: results.
 	testCases := testFilter filterTests: testCases
 ]
 
@@ -177,12 +176,6 @@ MTAnalysis >> initialize [
 	elapsedTime := 0.
 	logger := self defaultLogger.
 	stopOnErrorOrFail := true
-]
-
-{ #category : 'initialization' }
-MTAnalysis >> initializeTestFilter [
-
-	testFilter ifNil: [ testFilter := self defaultTestFilter ]
 ]
 
 { #category : 'accessing' }
@@ -363,7 +356,7 @@ MTAnalysis >> testClasses: aClassCollection [
 { #category : 'accessing' }
 MTAnalysis >> testFilter [
 
-	^ testFilter
+	^ testFilter ifNil: [ testFilter := self defaultTestFilter ]
 ]
 
 { #category : 'accessing' }
