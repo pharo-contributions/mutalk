@@ -29,7 +29,10 @@ MTBudgetTest >> runAnalysisWithBudget: aBudget on: classesToMutate withTests: te
 	analysis := MTAnalysis new
 		            testClasses: testCases;
 		            classesToMutate: classesToMutate;
-		            budget: aBudget.
+		            budget: aBudget;
+		            operators:
+			            (MTParseRewriterMutantOperator allConcreteSubclasses
+				             collect: [ :operator | operator new ]).
 
 	analysis run.
 	^ analysis generalResult

@@ -20,7 +20,8 @@ MTTestFilterTest >> runAnalysisWithFilter: aTestFilter on: classesToMutate withT
 	analysis := MTAnalysis new
 		            testClasses: testCases;
 		            classesToMutate: classesToMutate;
-		            testFilter: aTestFilter.
+		            testFilter: aTestFilter;
+		            budget: MTFreeBudget new.
 
 	analysis run
 ]

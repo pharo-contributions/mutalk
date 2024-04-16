@@ -29,8 +29,7 @@ MTNonMutatedMethodsAnalysis >> mutatedMethods [
 	| analysis mutatedMethods |
 	analysis := MTAnalysis new
 		            classesToMutate: classes;
-		            testClasses: {  };
-		            operators: MTAbstractMutantOperator contentsAll.
+		            testClasses: {  }.
 
 	mutatedMethods := Set withAll:
 		                  (analysis generateMutations collect:

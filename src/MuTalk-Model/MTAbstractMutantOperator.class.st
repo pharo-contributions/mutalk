@@ -9,8 +9,7 @@ Class {
 { #category : 'accessing' }
 MTAbstractMutantOperator class >> allConcreteSubclasses [
 
-	^ self allSubclasses reject: [ :ea | 
-		  ea isAbstract | ea isOriginalOperator not ]
+	^ self allSubclasses reject: #isAbstract
 ]
 
 { #category : 'accessing' }
@@ -22,26 +21,10 @@ MTAbstractMutantOperator class >> contents [
 		  elem1 description <= elem2 description ]
 ]
 
-{ #category : 'accessing' }
-MTAbstractMutantOperator class >> contentsAll [
-	"This returns all operators (block based and traditional) "
-
-	^ ((self allSubclasses reject: [ :ea |
-		    ea isAbstract or: [ ea isDeprecated ] ]) collect: [ :class |
-		   class new ]) asSortedCollection: [ :elem1 :elem2 |
-		  elem1 description <= elem2 description ]
-]
-
 { #category : 'testing' }
 MTAbstractMutantOperator class >> isAbstract [
 
 	^ self == MTAbstractMutantOperator
-]
-
-{ #category : 'testing' }
-MTAbstractMutantOperator class >> isOriginalOperator [
-
-	^ true
 ]
 
 { #category : 'as yet unclassified' }

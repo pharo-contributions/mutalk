@@ -53,20 +53,21 @@ MTAnalysis >> coverageAnalysisResult: anObject [
 
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultBudget [
+	"Since tests often take little time to run, we multiply it by 30"
 
-	^ MTFreeBudget new
+	^ MTTimeBudget for: self totalTestsTime * 30
 ]
 
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultLogger [
 
-	^ MTNullLogger new
+	^ MTTranscriptLogger new
 ]
 
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultMutantGenerationStrategy [
 
-	^ MTAllMutantGenerationStrategy new
+	^ MTAllMutantGenerationStrategy withRandomOperatorMutantSelection
 ]
 
 { #category : 'accessing - defaults' }
@@ -78,13 +79,20 @@ MTAnalysis >> defaultOperators [
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultTestFilter [
 
-	^ MTFreeTestFilter new
+	| times |
+	times := testCases collect: #lastTimeToRun.
+	(times anySatisfy: #isNil) ifTrue: [
+		^ Error signal:
+			  'Either there is no test cases, or the initial test run has not been executed yet' ].
+	^ MTCompositeTestFilter for: {
+			  MTRedTestFilter new.
+			  (MTTimeTestFilter for: (self percentile: 90 for: times sorted)) }
 ]
 
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultTestSelectionStrategy [
 
-	^ MTAllTestsMethodsRunningTestSelectionStrategy new
+	^ MTSelectingFromCoverageTestSelectionStrategy new
 ]
 
 { #category : 'accessing' }
@@ -151,7 +159,9 @@ MTAnalysis >> initialTestRun [
 
 	| results |
 	results := testCases collect: [ :aTestCase | aTestCase run ].
-	testFilter validateFailuresIn: results.
+	
+	"The test filter is initialized lazily here because the default one needs the run time of tests, so the initial test run must be executed first"
+	self testFilter validateFailuresIn: results.
 	testCases := testFilter filterTests: testCases
 ]
 
@@ -165,8 +175,6 @@ MTAnalysis >> initialize [
 	mutantResults := OrderedCollection new.
 	elapsedTime := 0.
 	logger := self defaultLogger.
-	budget := self defaultBudget.
-	testFilter := self defaultTestFilter.
 	stopOnErrorOrFail := true
 ]
 
@@ -223,6 +231,13 @@ MTAnalysis >> mutations: anObject [
 	mutations := anObject
 ]
 
+{ #category : 'initialization' }
+MTAnalysis >> noLimitations [
+
+	budget := MTFreeBudget new.
+	testFilter := MTFreeTestFilter new
+]
+
 { #category : 'accessing' }
 MTAnalysis >> operators [
 
@@ -242,6 +257,17 @@ MTAnalysis >> packagesToMutate: aCollectionOfPackages [
 		                packageName asPackage definedClasses ]
 ]
 
+{ #category : 'computing' }
+MTAnalysis >> percentile: aPercentage for: aCollection [
+
+	| size index |
+	aCollection isEmpty ifTrue: [
+		^ CollectionIsEmpty signalWith: aCollection ].
+	size := aCollection size.
+	index := (aPercentage percent * size) rounded.
+	^ aCollection at: index
+]
+
 { #category : 'running' }
 MTAnalysis >> run [
 	"Obtain mutants applying the operators in the classes (or
@@ -250,8 +276,9 @@ MTAnalysis >> run [
 	We obtain a result for each mutant generated"
 
 	^ [
-	  budget start.
 	  self initialTestRun.
+	  "The budget is started after the initial test run because the default one needs the run time of tests"
+	  self startBudget.
 	  logger logAnalysisStartFor: self.
 	  elapsedTime := [
 	                 self generateCoverageAnalysis.
@@ -263,6 +290,14 @@ MTAnalysis >> run [
 			  self inform:
 				  'Your tests have Errors or Failures. Please correct them.'.
 			  false ]
+]
+
+{ #category : 'starting' }
+MTAnalysis >> startBudget [
+	"The budget is initialized here because the default one needs the run time of tests, so the initial test run must be executed first"
+
+	budget ifNil: [ budget := self defaultBudget ].
+	budget start
 ]
 
 { #category : 'accessing' }
@@ -292,12 +327,17 @@ MTAnalysis >> testCases: anObject [
 { #category : 'accessing' }
 MTAnalysis >> testCasesFrom: aClassCollection [
 
-	^ aClassCollection
-		  inject: OrderedCollection new
-		  into: [ :testCase :testClass |
-			  testClass isAbstract ifFalse: [
-				  testCase addAll: (self testCasesReferencesFrom: testClass) ].
-			  testCase ]
+	| tests |
+	tests := aClassCollection
+		         inject: OrderedCollection new
+		         into: [ :testCase :testClass |
+			         testClass isAbstract ifFalse: [
+				         testCase addAll:
+					         (self testCasesReferencesFrom: testClass) ].
+			         testCase ].
+	tests isEmpty ifTrue: [
+		Warning signal: 'There is currently no tests' ].
+	^ tests
 ]
 
 { #category : 'tests' }
@@ -316,7 +356,7 @@ MTAnalysis >> testClasses: aClassCollection [
 { #category : 'accessing' }
 MTAnalysis >> testFilter [
 
-	^ testFilter
+	^ testFilter ifNil: [ testFilter := self defaultTestFilter ]
 ]
 
 { #category : 'accessing' }
@@ -345,4 +385,14 @@ MTAnalysis >> testSelectionStrategy [
 MTAnalysis >> testSelectionStrategy: anObject [
 
 	testSelectionStrategy := anObject
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> totalTestsTime [
+
+	| times |
+	times := testCases collect: #lastTimeToRun.
+	(times anySatisfy: #isNil) ifTrue: [
+		^ Error signal: 'The initial test run has not been executed yet' ].
+	^ times reduce: [ :t1 :t2 | t1 + t2 ]
 ]
