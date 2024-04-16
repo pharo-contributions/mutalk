@@ -102,17 +102,6 @@ MTAnalysisTest >> testErrorWhenInitializingDefaultTestFilterBeforeInitialTestRun
 ]
 
 { #category : 'tests' }
-MTAnalysisTest >> testErrorWhenStartingDefaultBudgetBeforeInitialTestRun [
-
-	| analysis |
-	analysis := MTAnalysis new
-		            classesToMutate: { MTAuxiliarClassForMTAnalysis };
-		            testClasses: { MTAuxiliarClassForMTAnalysisTest }.
-
-	self should: [ analysis startBudget ] raise: Error
-]
-
-{ #category : 'tests' }
 MTAnalysisTest >> testErrorWhenTryingToGetPercentileOfEmptyCollection [
 
 	| analysis |

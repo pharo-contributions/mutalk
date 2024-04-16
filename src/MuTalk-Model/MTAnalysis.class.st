@@ -53,9 +53,8 @@ MTAnalysis >> coverageAnalysisResult: anObject [
 
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultBudget [
-	"Since tests often take little time to run, we multiply it by 30"
 
-	^ MTTimeBudget for: self totalTestsTime * 30
+	^ MTTimeBudget for: 5 minutes
 ]
 
 { #category : 'accessing - defaults' }
@@ -175,7 +174,8 @@ MTAnalysis >> initialize [
 	mutantResults := OrderedCollection new.
 	elapsedTime := 0.
 	logger := self defaultLogger.
-	stopOnErrorOrFail := true
+	stopOnErrorOrFail := true.
+	budget := self defaultBudget
 ]
 
 { #category : 'accessing' }
@@ -277,8 +277,7 @@ MTAnalysis >> run [
 
 	^ [
 	  self initialTestRun.
-	  "The budget is started after the initial test run because the default one needs the run time of tests"
-	  self startBudget.
+	  budget start.
 	  logger logAnalysisStartFor: self.
 	  elapsedTime := [
 	                 self generateCoverageAnalysis.
@@ -290,14 +289,6 @@ MTAnalysis >> run [
 			  self inform:
 				  'Your tests have Errors or Failures. Please correct them.'.
 			  false ]
-]
-
-{ #category : 'starting' }
-MTAnalysis >> startBudget [
-	"The budget is initialized here because the default one needs the run time of tests, so the initial test run must be executed first"
-
-	budget ifNil: [ budget := self defaultBudget ].
-	budget start
 ]
 
 { #category : 'accessing' }
