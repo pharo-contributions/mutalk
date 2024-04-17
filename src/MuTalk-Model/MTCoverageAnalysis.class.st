@@ -21,6 +21,21 @@ MTCoverageAnalysis class >> for: aCollectionOfMethods running: aCollectionOfTest
 		  running: aCollectionOfTestCases
 ]
 
+{ #category : 'instance creation' }
+MTCoverageAnalysis class >> forClasses: aCollectionOfClasses running: aCollectionOfTestCases [
+
+	| methodCollection |
+	methodCollection := aCollectionOfClasses flatCollect: [ :class |
+		                    | methods |
+		                    methods := class package methodsForClass: class.
+		                    methods addAll:
+			                    (class package methodsForClass: class class).
+		                    methods ].
+	^ self new
+		  initializeFor: methodCollection
+		  running: aCollectionOfTestCases
+]
+
 { #category : 'private' }
 MTCoverageAnalysis >> addTestsFrom: aWrapper to: methodToTestDictionary [ 
 	aWrapper tests notEmpty
