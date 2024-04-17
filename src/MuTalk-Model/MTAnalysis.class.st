@@ -3,6 +3,7 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'modelClasses',
+		'methodsToMutate',
 		'operators',
 		'elapsedTime',
 		'mutations',
@@ -34,9 +35,10 @@ MTAnalysis >> budget: anObject [
 ]
 
 { #category : 'accessing' }
-MTAnalysis >> classesToMutate: anObject [
+MTAnalysis >> classesToMutate: aClassCollection [
 
-	modelClasses := anObject
+	methodsToMutate := aClassCollection flatCollect: [ :class |
+		                   class package methodsForClass: class ]
 ]
 
 { #category : 'accessing' }
@@ -115,7 +117,7 @@ MTAnalysis >> generateCoverageAnalysis [
 
 	logger logStartCoverageAnalysis.
 	coverageAnalysisResult := (MTCoverageAnalysis
-		                           for: self modelClasses
+		                           for: methodsToMutate
 		                           running: testCases)
 		                          run;
 		                          result
@@ -193,6 +195,18 @@ MTAnalysis >> logger: anObject [
 ]
 
 { #category : 'accessing' }
+MTAnalysis >> methodsToMutate [
+
+	^ methodsToMutate
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> methodsToMutate: anObject [
+
+	methodsToMutate := anObject
+]
+
+{ #category : 'accessing' }
 MTAnalysis >> modelClasses [
 	"Filter tests and testsResources"
 
@@ -253,8 +267,8 @@ MTAnalysis >> operators: anObject [
 { #category : 'accessing' }
 MTAnalysis >> packagesToMutate: aCollectionOfPackages [
 
-	modelClasses := aCollectionOfPackages flatCollect: [ :packageName |
-		                packageName asPackage definedClasses ]
+	methodsToMutate := aCollectionOfPackages flatCollect: [ :packageName |
+		                   packageName asPackage methods ]
 ]
 
 { #category : 'computing' }

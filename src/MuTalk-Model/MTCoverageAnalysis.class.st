@@ -2,12 +2,12 @@ Class {
 	#name : 'MTCoverageAnalysis',
 	#superclass : 'Object',
 	#instVars : [
-		'classes',
 		'result',
 		'classesAndMetaclasses',
 		'testCases',
 		'currentTest',
-		'testRunningElapsedTime'
+		'testRunningElapsedTime',
+		'methods'
 	],
 	#category : 'MuTalk-Model-Coverage',
 	#package : 'MuTalk-Model',
@@ -15,8 +15,11 @@ Class {
 }
 
 { #category : 'instance creation' }
-MTCoverageAnalysis class >> for: aCollectionOfClasses running: aCollectionOfTestCases [
-	^self new initializeFor: aCollectionOfClasses running: aCollectionOfTestCases
+MTCoverageAnalysis class >> for: aCollectionOfMethods running: aCollectionOfTestCases [
+
+	^ self new
+		  initializeFor: aCollectionOfMethods
+		  running: aCollectionOfTestCases
 ]
 
 { #category : 'private' }
@@ -54,8 +57,9 @@ MTCoverageAnalysis >> flushMethodLookupCaches [
 ]
 
 { #category : 'initialize-release' }
-MTCoverageAnalysis >> initializeFor: aCollectionOfClasses running: aCollectionOfTestCases [ 
-	classes := aCollectionOfClasses. 
+MTCoverageAnalysis >> initializeFor: aCollectionOfMethods running: aCollectionOfTestCases [
+
+	methods := aCollectionOfMethods.
 	testCases := aCollectionOfTestCases
 ]
 
