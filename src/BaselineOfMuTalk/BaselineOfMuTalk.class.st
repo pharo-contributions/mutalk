@@ -17,7 +17,7 @@ BaselineOfMuTalk >> baseline: spec [
 			package: 'MuTalk-TestResourcesForExtensionMethods' with: [ spec requires: #( 'MuTalk-Model' 'MuTalk-TestResources' ) ];
 			package: 'MuTalk-CI' with: [ spec requires: #( 'MuTalk-Model' ) ];
 			package: 'MuTalk-CI-Tests' with: [ spec requires: #( 'MuTalk-Model' 'MuTalk-CI' ) ];
-			package: 'MuTalk-Tests' with: [ spec requires: #( 'MuTalk-Model' 'MuTalk-TestResources' 'MuTalk-TestResourcesForExtensionMethods ') ];
+			package: 'MuTalk-Tests' with: [ spec requires: #( 'MuTalk-Model' 'MuTalk-TestResources' 'MuTalk-TestResourcesForExtensionMethods') ];
 			package: 'MuTalk-SpecUI' with: [ spec requires: #('MuTalk-Model') ];
 			package: 'MuTalk-Utilities' with: [ spec requires: #( 'MuTalk-Model' ) ];
 			package: 'MuTalk-Utilities-Tests' with: [ spec requires: #( 'MuTalk-Model' 'MuTalk-Utilities' ) ].
