@@ -38,7 +38,11 @@ MTAnalysis >> budget: anObject [
 MTAnalysis >> classesToMutate: aClassCollection [
 
 	methodsToMutate := aClassCollection flatCollect: [ :class |
-		                   class package methodsForClass: class ]
+		                   | methods |
+		                   methods := class package methodsForClass: class.
+		                   methods addAll:
+			                   (class package methodsForClass: class class).
+		                   methods ]
 ]
 
 { #category : 'accessing' }

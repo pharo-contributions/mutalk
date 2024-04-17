@@ -3,7 +3,6 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'result',
-		'classesAndMetaclasses',
 		'testCases',
 		'currentTest',
 		'testRunningElapsedTime',
@@ -29,15 +28,6 @@ MTCoverageAnalysis >> addTestsFrom: aWrapper to: methodToTestDictionary [
 				at: aWrapper reference compiledMethod
 				ifAbsentPut: [IdentitySet new])
 				addAll: aWrapper tests]
-]
-
-{ #category : 'private' }
-MTCoverageAnalysis >> classesAndMetaclasses [
-	classesAndMetaclasses isNil ifTrue:[
-		classesAndMetaclasses := (classes collect:[:aClass | aClass class]) asOrderedCollection.
-		classesAndMetaclasses addAll: classes.].
-	^classesAndMetaclasses.
-
 ]
 
 { #category : 'accessing' }
@@ -70,13 +60,11 @@ MTCoverageAnalysis >> installAll: wrappers [
 
 { #category : 'private' }
 MTCoverageAnalysis >> methodReferences [
-	^ self classesAndMetaclasses
-		inject: OrderedCollection new
-		into: [:methodReferences :aClass | 
-			methodReferences
-				addAll: (aClass selectors
-						collect: [:aSelector | RGMethodDefinition class: aClass selector: aSelector]).
-			methodReferences]
+
+	^ methods collect: [ :aMethod |
+		  RGMethodDefinition
+			  class: aMethod methodClass
+			  selector: aMethod selector ]
 ]
 
 { #category : 'private' }
@@ -108,7 +96,7 @@ MTCoverageAnalysis >> run [
 	result := MTCoverageAnalysisResult
 		          from: (self methodToTestDictionaryFrom: wrappers)
 		          elapsedTime: testRunningElapsedTime.
-	result methodReferences: (self classesAndMetaclasses flatCollect: [:cls | cls methods])
+	result methodReferences: methods
 ]
 
 { #category : 'private' }
