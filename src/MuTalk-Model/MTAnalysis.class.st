@@ -2,7 +2,6 @@ Class {
 	#name : 'MTAnalysis',
 	#superclass : 'Object',
 	#instVars : [
-		'modelClasses',
 		'methodsToMutate',
 		'operators',
 		'elapsedTime',
@@ -212,11 +211,10 @@ MTAnalysis >> methodsToMutate: anObject [
 
 { #category : 'accessing' }
 MTAnalysis >> modelClasses [
-	"Filter tests and testsResources"
 
-	^ modelClasses reject: [ :class |
-		  self testBaseClasses anySatisfy: [ :classToFilter |
-			  class includesBehavior: classToFilter ] ]
+	| classes |
+	classes := methodsToMutate collect: #methodClass.
+	^ classes copyWithoutDuplicates
 ]
 
 { #category : 'accessing' }
