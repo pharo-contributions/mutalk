@@ -62,3 +62,10 @@ MTAnalysisLogger >> logTotalNumberOfMutations: mutations [
 
 	^ self subclassResponsibility
 ]
+
+{ #category : 'private' }
+MTAnalysisLogger >> methodNameOf: aCompiledMethod [
+
+	^ aCompiledMethod methodClass name asString , '>>'
+	  , aCompiledMethod selector printString
+]

@@ -114,13 +114,6 @@ MTStreamLogger >> logTotalNumberOfMutations: mutations [
 		cr
 ]
 
-{ #category : 'private' }
-MTStreamLogger >> methodNameOf: aCompiledMethod [
-
-	^ aCompiledMethod methodClass name asString , '>>'
-	  , aCompiledMethod selector printString
-]
-
 { #category : 'accessing' }
 MTStreamLogger >> stream [
 
