@@ -14,9 +14,9 @@ MTNonMutatedMethodsAnalysisTest >> testNonMutatedMethods [
 	analysis mtAnalysis operators: {
 			MTReplacePlusWithMinusMutantOperator new.
 			MTReplaceMinusWithPlusMutantOperator new }.
-	results := analysis methodsWithoutMutation.
+	results := analysis methodsWithoutMutation asSet.
 
 	self assert: results equals: {
 			(MTAuxiliarClassForMatrix >> #initialize).
-			(MTAuxiliarClassForMatrix >> #reset) } asOrderedCollection
+			(MTAuxiliarClassForMatrix >> #reset) } asSet
 ]
