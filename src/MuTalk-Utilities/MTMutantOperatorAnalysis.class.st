@@ -41,14 +41,12 @@ MTMutantOperatorAnalysis >> operatorDictionary [
 { #category : 'computing' }
 MTMutantOperatorAnalysis >> operatorDictionaryFromAnalysis [
 
-	| analysis dic |
-	analysis := MTAnalysis new
-		            classesToMutate: classes;
-		            testClasses: {  }.
+	|  dic |
+	self initializeMtAnalysis.
 
-	analysis generateMutations.
+	mtAnalysis generateMutations.
 
-	^ dic := (analysis mutations groupedBy: [ :e | e operator species ])
+	^ dic := (mtAnalysis mutations groupedBy: [ :e | e operator species ])
 		         collect: [ :coll | coll size ]
 ]
 

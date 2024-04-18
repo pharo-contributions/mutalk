@@ -2,7 +2,8 @@ Class {
 	#name : 'MTUtilityAnalysis',
 	#superclass : 'Object',
 	#instVars : [
-		'classes'
+		'classes',
+		'mtAnalysis'
 	],
 	#category : 'MuTalk-Utilities',
 	#package : 'MuTalk-Utilities'
@@ -37,4 +38,19 @@ MTUtilityAnalysis >> classes [
 MTUtilityAnalysis >> classes: anObject [
 
 	classes := anObject
+]
+
+{ #category : 'initialization' }
+MTUtilityAnalysis >> initializeMtAnalysis [
+
+	mtAnalysis ifNil: [
+		mtAnalysis := MTAnalysis new
+			              classesToMutate: classes;
+			              testClasses: {  } ]
+]
+
+{ #category : 'accessing' }
+MTUtilityAnalysis >> mtAnalysis [
+
+	^ mtAnalysis
 ]
