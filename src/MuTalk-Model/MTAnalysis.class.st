@@ -139,16 +139,21 @@ MTAnalysis >> generateResults [
 	mutantResults := OrderedCollection new.
 	logger logStartMutationEvaluation.
 
-	mutations do: [ :aMutation |
-		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)
-			ifTrue: [ ^ mutantResults ].
-		logger logStartEvaluating: aMutation.
-		mutantResults add: ((MTMutantEvaluation
-				  for: aMutation
-				  using: testCases
-				  following: testSelectionStrategy
-				  andConsidering: self coverageAnalysisResult)
-				 valueStoppingOnError: stopOnErrorOrFail) ].
+	mutations
+		do: [ :aMutation |
+			(budget
+				 exceedsBudgetOn: mutantResults
+				 fromTotalMutations: mutations) ifTrue: [ ^ mutantResults ].
+			logger logStartEvaluating: aMutation.
+
+			mutantResults add: ((MTMutantEvaluation
+					  for: aMutation
+					  using: testCases
+					  following: testSelectionStrategy
+					  andConsidering: self coverageAnalysisResult)
+					 valueStoppingOnError: stopOnErrorOrFail) ]
+		displayingProgress: 'Generating results'.
+
 	logger logEnd.
 	^ mutantResults
 ]
