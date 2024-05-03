@@ -23,7 +23,7 @@ MTStreamLogger >> initializeStream [
 ]
 
 { #category : 'logging' }
-MTStreamLogger >> logAnalysisStartFor: aMutationTestingAnalysis [
+MTStreamLogger >> logAnalysisStart [
 
 	stream
 		nextPutAll: 'The analysis is starting...';

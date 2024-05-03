@@ -175,6 +175,7 @@ MTMethodMutation >> printOn: aStream [
 MTMethodMutation >> runMutantStoppingOnError: aBoolean in: anEvaluation [
 
 	| testResults brokenTests |
+	"1halt."
 	[
 	EpMonitor disableDuring: [
 		testResults := [

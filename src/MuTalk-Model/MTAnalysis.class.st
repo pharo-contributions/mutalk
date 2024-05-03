@@ -113,23 +113,26 @@ MTAnalysis >> generalResult [
 { #category : 'running' }
 MTAnalysis >> generateCoverageAnalysis [
 
-	logger logStartCoverageAnalysis.
+	logger logStartCoverageAnalysis: testCases size.
 	coverageAnalysisResult := (MTCoverageAnalysis
 		                           for: self modelClasses
 		                           running: testCases)
 		                          run;
-		                          result
+		                          result.
+	logger logEndCoverageAnalysis
 ]
 
 { #category : 'running' }
 MTAnalysis >> generateMutations [
 
-	logger logStartMutationGeneration.
+	logger logStartMutationGeneration: self methodSize.
 	^ mutations ifNil: [
 		  mutations := mutantGenerationStrategy
 			               mutationsFor: self
 			               loggingIn: logger.
-		  logger logTotalNumberOfMutations: mutations.
+		  logger
+			  logTotalNumberOfMutations: mutations;
+			  logEndMutationGeneration.
 		  mutations ]
 ]
 
@@ -137,23 +140,22 @@ MTAnalysis >> generateMutations [
 MTAnalysis >> generateResults [
 
 	mutantResults := OrderedCollection new.
-	logger logStartMutationEvaluation.
+	logger logStartMutationEvaluation: mutations size.
 
-	mutations
-		do: [ :aMutation |
-			(budget
-				 exceedsBudgetOn: mutantResults
-				 fromTotalMutations: mutations) ifTrue: [ ^ mutantResults ].
-			logger logStartEvaluating: aMutation.
+	mutations do: [ :aMutation |
+		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)
+			ifTrue: [ ^ mutantResults ].
+		logger logStartEvaluating: aMutation with: testCases size.
 
-			mutantResults add: ((MTMutantEvaluation
-					  for: aMutation
-					  using: testCases
-					  following: testSelectionStrategy
-					  andConsidering: self coverageAnalysisResult)
-					 valueStoppingOnError: stopOnErrorOrFail) ]
-		displayingProgress: 'Generating results'.
+		mutantResults add: ((MTMutantEvaluation
+				  for: aMutation
+				  using: testCases
+				  following: testSelectionStrategy
+				  andConsidering: self coverageAnalysisResult)
+				 valueStoppingOnError: stopOnErrorOrFail).
+		logger logEndEvaluating ].
 
+	logger logEndMutationEvaluation.
 	logger logEnd.
 	^ mutantResults
 ]
@@ -163,8 +165,10 @@ MTAnalysis >> initialTestRun [
 	"Runs all tests once and filters them"
 
 	| results |
+	logger logStartInitialTestRun: testCases size.
 	results := testCases collect: [ :aTestCase | aTestCase run ].
-	
+	logger logEndInitialTestRun.
+
 	"The test filter is initialized lazily here because the default one needs the run time of tests, so the initial test run must be executed first"
 	self testFilter validateFailuresIn: results.
 	testCases := testFilter filterTests: testCases
@@ -195,6 +199,12 @@ MTAnalysis >> logger: anObject [
 	testCases do: [ :testCaseReference |
 		testCaseReference logger: anObject ].
 	logger := anObject
+]
+
+{ #category : 'as yet unclassified' }
+MTAnalysis >> methodSize [
+
+	^ (modelClasses flatCollect: #methods) size
 ]
 
 { #category : 'accessing' }
@@ -281,10 +291,10 @@ MTAnalysis >> run [
 	We obtain a result for each mutant generated"
 
 	^ [
+	  logger logAnalysisStart.
 	  self initialTestRun.
 	  "The budget is started after the initial test run because the default one needs the run time of tests"
 	  self startBudget.
-	  logger logAnalysisStartFor: self.
 	  elapsedTime := [
 	                 self generateCoverageAnalysis.
 	                 self generateMutations.

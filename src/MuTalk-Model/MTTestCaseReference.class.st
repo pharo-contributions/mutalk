@@ -110,6 +110,7 @@ MTTestCaseReference >> resources [
 { #category : 'evaluating' }
 MTTestCaseReference >> run [
 
+	logger logRunningTest: self.
 	lastTimeToRun := [ lastResult := self testCase run ] timeToRun.
 	^ lastResult
 ]

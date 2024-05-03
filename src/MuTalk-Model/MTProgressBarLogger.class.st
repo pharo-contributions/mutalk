@@ -1,80 +1,194 @@
 Class {
 	#name : 'MTProgressBarLogger',
 	#superclass : 'MTAnalysisLogger',
+	#instVars : [
+		'mainJob',
+		'testJob',
+		'mutantJob',
+		'methodJob'
+	],
 	#category : 'MuTalk-Model-Logging',
 	#package : 'MuTalk-Model',
 	#tag : 'Logging'
 }
 
-{ #category : 'logging' }
-MTProgressBarLogger >> logAnalysisStartFor: aMutationTestingAnalysis [
+{ #category : 'initialization' }
+MTProgressBarLogger >> initialize [
 
-	[ :job | job title: 'Starting analysis' ] asJob run
+	mainJob := Job new.
+	mainJob
+		min: 0;
+		max: 4.
+	mainJob title: 'Mutation Analysis: '
+]
+
+{ #category : 'initialization' }
+MTProgressBarLogger >> initializeMethodJob: size [
+
+	methodJob := Job new
+		             min: 0;
+		             max: size;
+		             prepareForRunning;
+		             yourself
+]
+
+{ #category : 'initialization' }
+MTProgressBarLogger >> initializeMutantJob: size [
+
+	mutantJob := Job new
+		             min: 0;
+		             max: size;
+		             prepareForRunning;
+		             yourself
+]
+
+{ #category : 'initialization' }
+MTProgressBarLogger >> initializeTestJob: size [
+
+	testJob := Job new
+		           min: 0;
+		           max: size;
+		           prepareForRunning;
+		           yourself
+]
+
+{ #category : 'logging' }
+MTProgressBarLogger >> logAnalysisStart [
+
+	mainJob prepareForRunning
 ]
 
 { #category : 'logging' }
 MTProgressBarLogger >> logEnd [
 
-	[ :job | job title: 'Analysis finished' ] asJob run
+	mainJob title: 'Mutation Testing: Finished'.
+	mainJob cleanupAfterRunning
+]
+
+{ #category : 'logging' }
+MTProgressBarLogger >> logEndCoverageAnalysis [
+
+	self testJob cleanupAfterRunning.
+	mainJob increment.
+	testJob := nil
+]
+
+{ #category : 'logging' }
+MTProgressBarLogger >> logEndEvaluating [
+
+	self testJob cleanupAfterRunning.
+	self mutantJob increment.
+	testJob := nil
+]
+
+{ #category : 'logging' }
+MTProgressBarLogger >> logEndInitialTestRun [
+
+	self testJob cleanupAfterRunning.
+	mainJob increment.
+	testJob := nil
+]
+
+{ #category : 'logging' }
+MTProgressBarLogger >> logEndMutationEvaluation [
+
+	self mutantJob cleanupAfterRunning.
+	mutantJob := nil.
+	mainJob increment
+]
+
+{ #category : 'logging' }
+MTProgressBarLogger >> logEndMutationGeneration [
+
+	self methodJob cleanupAfterRunning.
+	mutantJob := nil.
+	mainJob increment
 ]
 
 { #category : 'logging' }
 MTProgressBarLogger >> logNumberOfGeneratedMutations: aNumber [
 
-	[ :job |
+	"[ :job |
 	aNumber < 2
 		ifTrue: [ job title: aNumber asString , ' mutation generated' ]
 		ifFalse: [ job title: aNumber asString , ' mutations generated' ] ]
-		asJob run
+		asJob run"
 ]
 
 { #category : 'logging' }
 MTProgressBarLogger >> logRunningTest: aTestCaseReference [
 
-	[ :job |
-	job title: 'Running test: ' , aTestCaseReference testCase printString ]
-		asJob run
+	self testJob title:
+		'Running mutated test: ' , aTestCaseReference testCase printString.
+	self testJob increment
 ]
 
 { #category : 'logging' }
 MTProgressBarLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOperator [
 
-	[ :job |
-	job title:
+	self methodJob title:
 		'Generating mutations for ' , (self methodNameOf: aCompiledMethod)
-		, ' with operator: ' , aMutantOperator description ] asJob run
+		, ' with operator: ' , aMutantOperator description.
+	self methodJob increment
 ]
 
 { #category : 'logging' }
-MTProgressBarLogger >> logStartCoverageAnalysis [
+MTProgressBarLogger >> logStartCoverageAnalysis: testSize [
 
-	[ :job | job title: 'Starting coverage analysis' ] asJob run
+	mainJob title: 'Mutation Testing: Starting coverage analysis'.
+	self initializeTestJob: testSize
 ]
 
 { #category : 'logging' }
-MTProgressBarLogger >> logStartEvaluating: aMethodMutation [
+MTProgressBarLogger >> logStartEvaluating: aMethodMutation with: testSize [
 
-	[ :job |
-	job title: 'Evaluating mutant of method '
-		, (self methodNameOf: aMethodMutation originalMethod) ] asJob run
+	self mutantJob title: 'Evaluating ' , aMethodMutation printString.
+	self initializeTestJob: testSize
 ]
 
 { #category : 'logging' }
-MTProgressBarLogger >> logStartMutationEvaluation [
+MTProgressBarLogger >> logStartInitialTestRun: testSize [
 
-	[ :job | job title: 'Starting mutation evaluation' ] asJob run
+	mainJob title: 'Mutation Testing: Initial test run'.
+	self initializeTestJob: testSize
 ]
 
 { #category : 'logging' }
-MTProgressBarLogger >> logStartMutationGeneration [
+MTProgressBarLogger >> logStartMutationEvaluation: mutantSize [
 
-	[ :job | job title: 'Starting mutation generation' ] asJob run
+	mainJob title: 'Mutation Testing: Evaluating mutants'.
+	self initializeMutantJob: mutantSize
+]
+
+{ #category : 'logging' }
+MTProgressBarLogger >> logStartMutationGeneration: methodSize [
+
+	mainJob title: 'Mutation Testing: Generating mutants'.
+	self initializeMethodJob: methodSize
 ]
 
 { #category : 'logging' }
 MTProgressBarLogger >> logTotalNumberOfMutations: mutations [
 
-	[ :job |
+	"[ :job |
 	job title: mutations size asString , ' total mutations generated' ]
-		asJob run
+		asJob run"
+]
+
+{ #category : 'accessing' }
+MTProgressBarLogger >> methodJob [
+
+	^ methodJob
+]
+
+{ #category : 'accessing' }
+MTProgressBarLogger >> mutantJob [
+
+	^ mutantJob
+]
+
+{ #category : 'accessing' }
+MTProgressBarLogger >> testJob [
+
+	^ testJob
 ]

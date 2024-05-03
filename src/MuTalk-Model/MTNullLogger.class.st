@@ -16,11 +16,35 @@ MTNullLogger class >> new [
 ]
 
 { #category : 'logging' }
-MTNullLogger >> logAnalysisStartFor: aMutationTestingAnalysis [ 
+MTNullLogger >> logAnalysisStart [ 
 ]
 
 { #category : 'logging' }
 MTNullLogger >> logEnd [
+
+	
+]
+
+{ #category : 'logging' }
+MTNullLogger >> logEndCoverageAnalysis [
+
+	
+]
+
+{ #category : 'as yet unclassified' }
+MTNullLogger >> logEndInitialTestRun [
+
+	
+]
+
+{ #category : 'as yet unclassified' }
+MTNullLogger >> logEndMutationEvaluation [
+
+	
+]
+
+{ #category : 'as yet unclassified' }
+MTNullLogger >> logEndMutationGeneration [
 
 	
 ]
@@ -42,7 +66,7 @@ MTNullLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantOpe
 ]
 
 { #category : 'logging' }
-MTNullLogger >> logStartCoverageAnalysis [
+MTNullLogger >> logStartCoverageAnalysis: testSize [
 
 	
 ]
@@ -51,14 +75,26 @@ MTNullLogger >> logStartCoverageAnalysis [
 MTNullLogger >> logStartEvaluating: aMethodMutation [ 
 ]
 
+{ #category : 'as yet unclassified' }
+MTNullLogger >> logStartInitialTestRun: testSize [
+
+	
+]
+
 { #category : 'logging' }
-MTNullLogger >> logStartMutationEvaluation [
+MTNullLogger >> logStartMutationEvaluation: mutantSize [
 
 	
 ]
 
 { #category : 'logging' }
 MTNullLogger >> logStartMutationGeneration [
+
+	
+]
+
+{ #category : 'logging' }
+MTNullLogger >> logStartMutationGeneration: methodSize [
 
 	
 ]

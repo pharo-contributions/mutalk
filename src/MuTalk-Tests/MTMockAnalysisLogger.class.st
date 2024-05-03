@@ -18,7 +18,7 @@ MTMockAnalysisLogger >> initialize [
 ]
 
 { #category : 'logging' }
-MTMockAnalysisLogger >> logAnalysisStartFor: aMutationTestingAnalysis [ 
+MTMockAnalysisLogger >> logAnalysisStart [ 
 	loggedStartAnalysis := true.
 ]
 
