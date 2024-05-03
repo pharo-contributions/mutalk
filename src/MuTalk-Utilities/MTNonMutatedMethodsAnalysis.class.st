@@ -26,13 +26,11 @@ MTNonMutatedMethodsAnalysis >> methodsWithoutMutation [
 { #category : 'computing' }
 MTNonMutatedMethodsAnalysis >> mutatedMethods [
 
-	| analysis mutatedMethods |
-	analysis := MTAnalysis new
-		            classesToMutate: classes;
-		            testClasses: {  }.
+	| mutatedMethods |
+	self initializeMtAnalysis.
 
 	mutatedMethods := Set withAll:
-		                  (analysis generateMutations collect:
+		                  (mtAnalysis generateMutations collect:
 			                   #originalMethod).
 	^ mutatedMethods
 ]

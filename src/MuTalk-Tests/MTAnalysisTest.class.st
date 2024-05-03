@@ -289,6 +289,32 @@ MTAnalysisTest >> testExecutingTwoMutations [
 ]
 
 { #category : 'tests' }
+MTAnalysisTest >> testExtensionMethodsMutatedWhenUsingPackages [
+
+	| analysis mutations selectors |
+	analysis := MTAnalysis new packagesToMutate:
+		            { 'MuTalk-TestResourcesForExtensionMethods' }.
+	mutations := analysis generateMutations.
+	selectors := mutations collect: [ :mutant |
+		             mutant originalMethod selector ].
+
+	self assert: (selectors includes: #extensionMethod)
+]
+
+{ #category : 'tests' }
+MTAnalysisTest >> testExtensionMethodsNotMutatedWhenUsingClasses [
+
+	| analysis mutations selectors |
+	analysis := MTAnalysis new classesToMutate:
+		            { MTAuxiliarClassForAnalysisWithExtensionMethods }.
+	mutations := analysis generateMutations.
+	selectors := mutations collect: [ :mutant |
+		             mutant originalMethod selector ].
+
+	self deny: (selectors includes: #extensionMethod)
+]
+
+{ #category : 'tests' }
 MTAnalysisTest >> testRunningAllTests [
 	"This test verify that the test evaluation keeps running even after the first error, if specified"
 

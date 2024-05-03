@@ -37,11 +37,16 @@ MTMutantEvaluation >> coverageAnalysisResult [
 
 { #category : 'initialize-release' }
 MTMutantEvaluation >> initializeCoverageResultIfNil [
-	coverageAnalysisResult 
-		ifNil:[ |coverageAnalysis|
-				coverageAnalysis := MTCoverageAnalysis for: (OrderedCollection with: mutation originalClass)
-															 running: testCases. 
-				coverageAnalysisResult := coverageAnalysis run;result].
+
+	coverageAnalysisResult ifNil: [
+		| coverageAnalysis |
+		coverageAnalysis := MTCoverageAnalysis
+			                    forClasses:
+			                    (OrderedCollection with: mutation originalClass)
+			                    running: testCases.
+		coverageAnalysisResult := coverageAnalysis
+			                          run;
+			                          result ]
 ]
 
 { #category : 'initialize-release' }

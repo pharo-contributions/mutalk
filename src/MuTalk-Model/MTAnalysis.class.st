@@ -2,7 +2,7 @@ Class {
 	#name : 'MTAnalysis',
 	#superclass : 'Object',
 	#instVars : [
-		'modelClasses',
+		'methodsToMutate',
 		'operators',
 		'elapsedTime',
 		'mutations',
@@ -34,9 +34,14 @@ MTAnalysis >> budget: anObject [
 ]
 
 { #category : 'accessing' }
-MTAnalysis >> classesToMutate: anObject [
+MTAnalysis >> classesToMutate: aClassCollection [
 
-	modelClasses := anObject
+	methodsToMutate := aClassCollection flatCollect: [ :class |
+		                   | methods |
+		                   methods := class package methodsForClass: class.
+		                   methods addAll:
+			                   (class package methodsForClass: class class).
+		                   methods ]
 ]
 
 { #category : 'accessing' }
@@ -115,7 +120,7 @@ MTAnalysis >> generateCoverageAnalysis [
 
 	logger logStartCoverageAnalysis.
 	coverageAnalysisResult := (MTCoverageAnalysis
-		                           for: self modelClasses
+		                           for: methodsToMutate
 		                           running: testCases)
 		                          run;
 		                          result
@@ -194,12 +199,23 @@ MTAnalysis >> logger: anObject [
 ]
 
 { #category : 'accessing' }
-MTAnalysis >> modelClasses [
-	"Filter tests and testsResources"
+MTAnalysis >> methodsToMutate [
 
-	^ modelClasses reject: [ :class |
-		  self testBaseClasses anySatisfy: [ :classToFilter |
-			  class includesBehavior: classToFilter ] ]
+	^ methodsToMutate
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> methodsToMutate: anObject [
+
+	methodsToMutate := anObject
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> modelClasses [
+
+	| classes |
+	classes := methodsToMutate collect: #methodClass.
+	^ classes copyWithoutDuplicates
 ]
 
 { #category : 'accessing' }
@@ -254,8 +270,8 @@ MTAnalysis >> operators: anObject [
 { #category : 'accessing' }
 MTAnalysis >> packagesToMutate: aCollectionOfPackages [
 
-	modelClasses := aCollectionOfPackages flatCollect: [ :packageName |
-		                packageName asPackage definedClasses ]
+	methodsToMutate := aCollectionOfPackages flatCollect: [ :packageName |
+		                   packageName asPackage methods ]
 ]
 
 { #category : 'computing' }
