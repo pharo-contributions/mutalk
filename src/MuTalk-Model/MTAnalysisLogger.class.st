@@ -83,7 +83,7 @@ MTAnalysisLogger >> logStartInitialTestRun: testSize [
 ]
 
 { #category : 'logging' }
-MTAnalysisLogger >> logStartMutationEvaluation: mutantSize [
+MTAnalysisLogger >> logStartMutationEvaluation: mutants [
 
 	^ self subclassResponsibility
 ]

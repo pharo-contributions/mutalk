@@ -94,7 +94,7 @@ MTNullLogger >> logStartInitialTestRun: testSize [
 ]
 
 { #category : 'logging' }
-MTNullLogger >> logStartMutationEvaluation: mutantSize [
+MTNullLogger >> logStartMutationEvaluation: mutants [
 
 	
 ]

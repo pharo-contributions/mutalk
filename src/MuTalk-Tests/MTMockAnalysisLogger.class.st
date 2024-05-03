@@ -90,14 +90,9 @@ MTMockAnalysisLogger >> logStartCoverageAnalysis: testSize [
 ]
 
 { #category : 'logging' }
-MTMockAnalysisLogger >> logStartEvaluating: aMethodMutation [ 
-	loggedEvaluationMutations add: aMethodMutation.
-]
-
-{ #category : 'logging' }
 MTMockAnalysisLogger >> logStartEvaluating: aMethodMutation with: testSize [
 
-	
+	loggedEvaluationMutations add: aMethodMutation
 ]
 
 { #category : 'logging' }
@@ -113,7 +108,7 @@ MTMockAnalysisLogger >> logStartMutationEvaluation [
 ]
 
 { #category : 'logging' }
-MTMockAnalysisLogger >> logStartMutationEvaluation: mutantSize [
+MTMockAnalysisLogger >> logStartMutationEvaluation: mutants [
 
 	
 ]

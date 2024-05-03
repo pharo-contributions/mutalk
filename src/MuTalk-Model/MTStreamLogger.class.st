@@ -136,7 +136,7 @@ MTStreamLogger >> logStartInitialTestRun: testSize [
 ]
 
 { #category : 'logging' }
-MTStreamLogger >> logStartMutationEvaluation: mutantSize [
+MTStreamLogger >> logStartMutationEvaluation: mutants [
 
 	stream
 		nextPutAll: 'Starting mutation evaluation';

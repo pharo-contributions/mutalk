@@ -140,7 +140,7 @@ MTAnalysis >> generateMutations [
 MTAnalysis >> generateResults [
 
 	mutantResults := OrderedCollection new.
-	logger logStartMutationEvaluation: mutations size.
+	logger logStartMutationEvaluation: mutations.
 
 	mutations do: [ :aMutation |
 		(budget exceedsBudgetOn: mutantResults fromTotalMutations: mutations)

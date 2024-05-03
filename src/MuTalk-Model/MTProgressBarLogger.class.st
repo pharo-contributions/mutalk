@@ -154,10 +154,10 @@ MTProgressBarLogger >> logStartInitialTestRun: testSize [
 ]
 
 { #category : 'logging' }
-MTProgressBarLogger >> logStartMutationEvaluation: mutantSize [
+MTProgressBarLogger >> logStartMutationEvaluation: mutants [
 
 	mainJob title: 'Mutation Testing: Evaluating mutants'.
-	self initializeMutantJob: mutantSize
+	self initializeMutantJob: mutants size
 ]
 
 { #category : 'logging' }
