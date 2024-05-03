@@ -61,7 +61,7 @@ MTAnalysis >> defaultBudget [
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultLogger [
 
-	^ MTTranscriptLogger new
+	^ MTProgressBarLogger new
 ]
 
 { #category : 'accessing - defaults' }
