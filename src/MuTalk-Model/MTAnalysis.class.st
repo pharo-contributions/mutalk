@@ -156,12 +156,13 @@ MTAnalysis >> generateResults [
 MTAnalysis >> initialTestRun [
 	"Runs all tests once and filters them"
 
-	| results |
-	results := testCases collect: [ :aTestCase | aTestCase run ].
-	
+	testCases do: [ :aTestCase | aTestCase run ].
+
 	"The test filter is initialized lazily here because the default one needs the run time of tests, so the initial test run must be executed first"
-	self testFilter validateFailuresIn: results.
-	testCases := testFilter filterTests: testCases
+	testCases := self testFilter filterTests: testCases.
+	(testCases anySatisfy: [ :testCase |
+		 self testFilter failuresOrErrorsIn: testCase ]) ifTrue: [
+		MTTestsWithErrorsException signal ]
 ]
 
 { #category : 'initialization' }
@@ -275,20 +276,16 @@ MTAnalysis >> run [
 	those classes) and execute all mutants in the set of testClases.
 	We obtain a result for each mutant generated"
 
-	^ [
-	  self initialTestRun.
-	  budget start.
-	  logger logAnalysisStartFor: self.
-	  elapsedTime := [
-	                 self generateCoverageAnalysis.
-	                 self generateMutations.
-	                 self generateResults ] timeToRun.
-	  true ]
-		  on: MTTestsWithErrorsException
-		  do: [ :ex |
-			  self inform:
-				  'Your tests have Errors or Failures. Please correct them.'.
-			  false ]
+	self initialTestRun.
+	
+	"The budget is started after the initial test run because the default one needs the run time of tests"
+	budget start.
+	logger logAnalysisStartFor: self.
+	
+	elapsedTime := [
+		self generateCoverageAnalysis.
+		self generateMutations.
+		self generateResults ] timeToRun
 ]
 
 { #category : 'accessing' }
