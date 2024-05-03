@@ -31,19 +31,25 @@ MTNullLogger >> logEndCoverageAnalysis [
 	
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'logging' }
+MTNullLogger >> logEndEvaluating [
+
+	
+]
+
+{ #category : 'logging' }
 MTNullLogger >> logEndInitialTestRun [
 
 	
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'logging' }
 MTNullLogger >> logEndMutationEvaluation [
 
 	
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'logging' }
 MTNullLogger >> logEndMutationGeneration [
 
 	
@@ -75,7 +81,13 @@ MTNullLogger >> logStartCoverageAnalysis: testSize [
 MTNullLogger >> logStartEvaluating: aMethodMutation [ 
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'logging' }
+MTNullLogger >> logStartEvaluating: aMethodMutation with: testSize [
+
+	
+]
+
+{ #category : 'logging' }
 MTNullLogger >> logStartInitialTestRun: testSize [
 
 	
