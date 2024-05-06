@@ -44,11 +44,11 @@ MTProgressBarLogger >> initializeMethodJob: size [
 MTProgressBarLogger >> initializeMutantJob: size [
 
 	mutantJob := Job new
-		             owner: thisContext;
 		             min: 0;
 		             max: size;
 		             prepareForRunning;
 		             yourself.
+
 	SystemVersion current major <= 10 ifTrue: [
 		"Jobs need a block below P10 to have an owner?"
 		mutantJob block: [  ] ]
@@ -58,7 +58,6 @@ MTProgressBarLogger >> initializeMutantJob: size [
 MTProgressBarLogger >> initializeTestJob: size [
 
 	testJob := Job new
-		           owner: thisContext;
 		           min: 0;
 		           max: size;
 		           prepareForRunning;
