@@ -18,12 +18,42 @@ MTMockAnalysisLogger >> initialize [
 ]
 
 { #category : 'logging' }
-MTMockAnalysisLogger >> logAnalysisStartFor: aMutationTestingAnalysis [ 
+MTMockAnalysisLogger >> logAnalysisStart [ 
 	loggedStartAnalysis := true.
 ]
 
 { #category : 'logging' }
 MTMockAnalysisLogger >> logEnd [
+
+	
+]
+
+{ #category : 'logging' }
+MTMockAnalysisLogger >> logEndCoverageAnalysis [
+
+	
+]
+
+{ #category : 'logging' }
+MTMockAnalysisLogger >> logEndEvaluating [
+
+	
+]
+
+{ #category : 'logging' }
+MTMockAnalysisLogger >> logEndInitialTestRun [
+
+	
+]
+
+{ #category : 'logging' }
+MTMockAnalysisLogger >> logEndMutationEvaluation [
+
+	
+]
+
+{ #category : 'logging' }
+MTMockAnalysisLogger >> logEndMutationGeneration [
 
 	
 ]
@@ -54,8 +84,21 @@ MTMockAnalysisLogger >> logStartCoverageAnalysis [
 ]
 
 { #category : 'logging' }
-MTMockAnalysisLogger >> logStartEvaluating: aMethodMutation [ 
-	loggedEvaluationMutations add: aMethodMutation.
+MTMockAnalysisLogger >> logStartCoverageAnalysis: testSize [
+
+	
+]
+
+{ #category : 'logging' }
+MTMockAnalysisLogger >> logStartEvaluating: aMethodMutation with: testSize [
+
+	loggedEvaluationMutations add: aMethodMutation
+]
+
+{ #category : 'logging' }
+MTMockAnalysisLogger >> logStartInitialTestRun: testSize [
+
+	
 ]
 
 { #category : 'logging' }
@@ -65,7 +108,19 @@ MTMockAnalysisLogger >> logStartMutationEvaluation [
 ]
 
 { #category : 'logging' }
+MTMockAnalysisLogger >> logStartMutationEvaluation: mutants [
+
+	
+]
+
+{ #category : 'logging' }
 MTMockAnalysisLogger >> logStartMutationGeneration [
+
+	
+]
+
+{ #category : 'logging' }
+MTMockAnalysisLogger >> logStartMutationGeneration: methodSize [
 
 	
 ]

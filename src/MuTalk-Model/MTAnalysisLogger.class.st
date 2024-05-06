@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'logging' }
-MTAnalysisLogger >> logAnalysisStartFor: aMutationTestingAnalysis [ 
+MTAnalysisLogger >> logAnalysisStart [ 
 	self subclassResponsibility 
 ]
 
@@ -15,6 +15,36 @@ MTAnalysisLogger >> logAnalysisStartFor: aMutationTestingAnalysis [
 MTAnalysisLogger >> logEnd [
 
 	^ self subclassResponsibility
+]
+
+{ #category : 'logging' }
+MTAnalysisLogger >> logEndCoverageAnalysis [
+
+	^ self subclassResponsibility
+]
+
+{ #category : 'logging' }
+MTAnalysisLogger >> logEndEvaluating [
+
+	self subclassResponsibility
+]
+
+{ #category : 'logging' }
+MTAnalysisLogger >> logEndInitialTestRun [
+
+	self subclassResponsibility
+]
+
+{ #category : 'logging' }
+MTAnalysisLogger >> logEndMutationEvaluation [
+
+	self subclassResponsibility
+]
+
+{ #category : 'logging' }
+MTAnalysisLogger >> logEndMutationGeneration [
+
+	self subclassResponsibility
 ]
 
 { #category : 'logging' }
@@ -35,24 +65,31 @@ MTAnalysisLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutan
 ]
 
 { #category : 'logging' }
-MTAnalysisLogger >> logStartCoverageAnalysis [
+MTAnalysisLogger >> logStartCoverageAnalysis: testSize [
 
 	^ self subclassResponsibility
 ]
 
 { #category : 'logging' }
-MTAnalysisLogger >> logStartEvaluating: aMethodMutation [ 
+MTAnalysisLogger >> logStartEvaluating: aMethodMutation with: testSize [
+
 	self subclassResponsibility
 ]
 
 { #category : 'logging' }
-MTAnalysisLogger >> logStartMutationEvaluation [
+MTAnalysisLogger >> logStartInitialTestRun: testSize [
+
+	self subclassResponsibility
+]
+
+{ #category : 'logging' }
+MTAnalysisLogger >> logStartMutationEvaluation: mutants [
 
 	^ self subclassResponsibility
 ]
 
 { #category : 'logging' }
-MTAnalysisLogger >> logStartMutationGeneration [
+MTAnalysisLogger >> logStartMutationGeneration: methodSize [
 
 	^ self subclassResponsibility
 ]
@@ -61,4 +98,17 @@ MTAnalysisLogger >> logStartMutationGeneration [
 MTAnalysisLogger >> logTotalNumberOfMutations: mutations [
 
 	^ self subclassResponsibility
+]
+
+{ #category : 'private' }
+MTAnalysisLogger >> methodNameOf: aCompiledMethod [
+
+	^ aCompiledMethod methodClass name asString , '>>'
+	  , aCompiledMethod selector printString
+]
+
+{ #category : 'dependencies' }
+MTAnalysisLogger >> release [
+
+	"Hook for subclasses. Called after the analysis is done, either because of success of exception/unwind"
 ]

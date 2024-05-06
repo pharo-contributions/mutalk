@@ -15,7 +15,8 @@ MTCoveragePropagationPreparationTest >> testWorking [
 	analysis := MTAnalysis new
 		            testClasses: { MTCIHelperTest };
 		            classesToMutate: { MTCIHelper };
-		            budget: MTFreeBudget new.
+		            budget: MTFreeBudget new;
+		            logger: MTNullLogger new.
 	analysis run.
 
 	moreInfo := MTCoveragePropagationPreparation new

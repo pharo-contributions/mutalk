@@ -23,10 +23,10 @@ MTStreamLogger >> initializeStream [
 ]
 
 { #category : 'logging' }
-MTStreamLogger >> logAnalysisStartFor: aMutationTestingAnalysis [
+MTStreamLogger >> logAnalysisStart [
 
 	stream
-		nextPutAll: 'The analysis is starting...';
+		nextPutAll: 'The analysis is starting';
 		cr
 ]
 
@@ -36,6 +36,44 @@ MTStreamLogger >> logEnd [
 	stream
 		nextPutAll: 'The analysis is finished';
 		close
+]
+
+{ #category : 'logging' }
+MTStreamLogger >> logEndCoverageAnalysis [
+
+	stream
+		nextPutAll: 'Coverage analysis finished';
+		cr
+]
+
+{ #category : 'logging' }
+MTStreamLogger >> logEndEvaluating [
+
+	
+]
+
+{ #category : 'logging' }
+MTStreamLogger >> logEndInitialTestRun [
+
+	stream
+		nextPutAll: 'Initial test run finished';
+		cr
+]
+
+{ #category : 'logging' }
+MTStreamLogger >> logEndMutationEvaluation [
+
+	stream
+		nextPutAll: 'Mutant evaluation finished';
+		cr
+]
+
+{ #category : 'logging' }
+MTStreamLogger >> logEndMutationGeneration [
+
+	stream
+		nextPutAll: 'Mutant generation finished';
+		cr
 ]
 
 { #category : 'logging' }
@@ -64,13 +102,13 @@ MTStreamLogger >> logStartBuildingMutantionsFor: aCompiledMethod using: aMutantO
 	stream
 		nextPutAll: 'Generating mutations for ';
 		nextPutAll: (self methodNameOf: aCompiledMethod);
-		nextPutAll: '  with operator:';
+		nextPutAll: ' with operator:';
 		nextPutAll: aMutantOperator description;
 		cr
 ]
 
 { #category : 'logging' }
-MTStreamLogger >> logStartCoverageAnalysis [
+MTStreamLogger >> logStartCoverageAnalysis: testSize [
 
 	stream
 		nextPutAll: 'Starting coverage analysis';
@@ -78,19 +116,27 @@ MTStreamLogger >> logStartCoverageAnalysis [
 ]
 
 { #category : 'logging' }
-MTStreamLogger >> logStartEvaluating: aMethodMutation [
+MTStreamLogger >> logStartEvaluating: aMethodMutation with: testSize [
 
 	stream
-		nextPutAll: 'Evaluating mutant of method ';
-		nextPutAll: (self methodNameOf: aMethodMutation originalMethod);
-		nextPutAll: '  with source:';
+		nextPutAll: 'Evaluating ';
+		nextPutAll: aMethodMutation printString;
+		nextPutAll: ' with source:';
 		cr;
 		nextPutAll: aMethodMutation modifiedSource;
 		cr
 ]
 
 { #category : 'logging' }
-MTStreamLogger >> logStartMutationEvaluation [
+MTStreamLogger >> logStartInitialTestRun: testSize [
+
+	stream
+		nextPutAll: 'Starting initial test run';
+		cr
+]
+
+{ #category : 'logging' }
+MTStreamLogger >> logStartMutationEvaluation: mutants [
 
 	stream
 		nextPutAll: 'Starting mutation evaluation';
@@ -98,7 +144,7 @@ MTStreamLogger >> logStartMutationEvaluation [
 ]
 
 { #category : 'logging' }
-MTStreamLogger >> logStartMutationGeneration [
+MTStreamLogger >> logStartMutationGeneration: methodSize [
 
 	stream
 		nextPutAll: 'Starting mutation generation';
@@ -112,13 +158,6 @@ MTStreamLogger >> logTotalNumberOfMutations: mutations [
 		nextPutAll: mutations size asString;
 		nextPutAll: ' total mutations generated';
 		cr
-]
-
-{ #category : 'private' }
-MTStreamLogger >> methodNameOf: aCompiledMethod [
-
-	^ aCompiledMethod methodClass name asString , '>>'
-	  , aCompiledMethod selector printString
 ]
 
 { #category : 'accessing' }
