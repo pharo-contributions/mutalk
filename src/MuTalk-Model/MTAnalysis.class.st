@@ -211,7 +211,7 @@ MTAnalysis >> logger: anObject [
 { #category : 'as yet unclassified' }
 MTAnalysis >> methodSize [
 
-	^ (modelClasses flatCollect: #methods) size
+	^ (self modelClasses flatCollect: #methods) size
 ]
 
 { #category : 'accessing' }
@@ -308,14 +308,15 @@ MTAnalysis >> run [
 	those classes) and execute all mutants in the set of testClases.
 	We obtain a result for each mutant generated"
 
-	  logger logAnalysisStart.
-	  self initialTestRun.
-	  "The budget is started after the initial test run because the default one needs the run time of tests"
-	  self startBudget.
-	  elapsedTime := [
-	                 self generateCoverageAnalysis.
-	                 self generateMutations.
-	                 self generateResults ] timeToRun.
+	elapsedTime := [
+	               logger logAnalysisStart.
+	               self initialTestRun.
+	               self startBudget.
+	               [
+	               self generateCoverageAnalysis.
+	               self generateMutations.
+	               self generateResults ] timeToRun ] ensure: [
+		               logger release ]
 ]
 
 { #category : 'starting' }

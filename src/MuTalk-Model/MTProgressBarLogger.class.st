@@ -62,7 +62,8 @@ MTProgressBarLogger >> logAnalysisStart [
 MTProgressBarLogger >> logEnd [
 
 	mainJob title: 'Mutation Testing: Finished'.
-	mainJob cleanupAfterRunning
+	mainJob cleanupAfterRunning.
+	mainJob := nil
 ]
 
 { #category : 'logging' }
@@ -101,7 +102,7 @@ MTProgressBarLogger >> logEndMutationEvaluation [
 MTProgressBarLogger >> logEndMutationGeneration [
 
 	self methodJob cleanupAfterRunning.
-	mutantJob := nil.
+	methodJob := nil.
 	mainJob increment
 ]
 
@@ -185,6 +186,15 @@ MTProgressBarLogger >> methodJob [
 MTProgressBarLogger >> mutantJob [
 
 	^ mutantJob
+]
+
+{ #category : 'dependencies' }
+MTProgressBarLogger >> release [
+
+	methodJob ifNotNil: [ self methodJob cleanupAfterRunning ].
+	mutantJob ifNotNil: [ self mutantJob cleanupAfterRunning ].
+	testJob ifNotNil: [ self testJob cleanupAfterRunning ].
+	mainJob ifNotNil: [ mainJob cleanupAfterRunning ]
 ]
 
 { #category : 'accessing' }

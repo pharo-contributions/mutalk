@@ -106,3 +106,9 @@ MTAnalysisLogger >> methodNameOf: aCompiledMethod [
 	^ aCompiledMethod methodClass name asString , '>>'
 	  , aCompiledMethod selector printString
 ]
+
+{ #category : 'dependencies' }
+MTAnalysisLogger >> release [
+
+	"Hook for subclasses. Called after the analysis is done, either because of success of exception/unwind"
+]

@@ -39,3 +39,9 @@ MTFileLogger >> initializeToFileNamed: aString [
 	fileReference := aString asFileReference.
 	self initialize
 ]
+
+{ #category : 'dependencies' }
+MTFileLogger >> release [
+
+	stream close
+]
