@@ -16,7 +16,10 @@ Class {
 MTProgressBarLogger >> initialize [
 
 	mainJob := Job new.
-	mainJob owner: thisContext.
+	SystemVersion current major <= 10 ifTrue: [
+		"Jobs need a block below P10 to have an owner?"
+		mainJob block: [ ].
+	].
 	mainJob
 		min: 0;
 		max: 4.
@@ -27,11 +30,14 @@ MTProgressBarLogger >> initialize [
 MTProgressBarLogger >> initializeMethodJob: size [
 
 	methodJob := Job new
-		             owner: thisContext;
 		             min: 0;
 		             max: size;
 		             prepareForRunning;
-		             yourself
+		             yourself.
+
+	SystemVersion current major <= 10 ifTrue: [
+		"Jobs need a block below P10 to have an owner?"
+		methodJob block: [  ] ]
 ]
 
 { #category : 'initialization' }
@@ -42,7 +48,10 @@ MTProgressBarLogger >> initializeMutantJob: size [
 		             min: 0;
 		             max: size;
 		             prepareForRunning;
-		             yourself
+		             yourself.
+	SystemVersion current major <= 10 ifTrue: [
+		"Jobs need a block below P10 to have an owner?"
+		mutantJob block: [  ] ]
 ]
 
 { #category : 'initialization' }
@@ -53,7 +62,12 @@ MTProgressBarLogger >> initializeTestJob: size [
 		           min: 0;
 		           max: size;
 		           prepareForRunning;
-		           yourself
+		           yourself.
+
+	SystemVersion current major <= 10 ifTrue: [
+		"Jobs need a block below P10 to have an owner?"
+		testJob block: [ ].
+	].
 ]
 
 { #category : 'logging' }
