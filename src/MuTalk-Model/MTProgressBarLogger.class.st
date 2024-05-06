@@ -16,6 +16,7 @@ Class {
 MTProgressBarLogger >> initialize [
 
 	mainJob := Job new.
+	mainJob owner: thisContext.
 	mainJob
 		min: 0;
 		max: 4.
@@ -26,6 +27,7 @@ MTProgressBarLogger >> initialize [
 MTProgressBarLogger >> initializeMethodJob: size [
 
 	methodJob := Job new
+		             owner: thisContext;
 		             min: 0;
 		             max: size;
 		             prepareForRunning;
@@ -36,6 +38,7 @@ MTProgressBarLogger >> initializeMethodJob: size [
 MTProgressBarLogger >> initializeMutantJob: size [
 
 	mutantJob := Job new
+		             owner: thisContext;
 		             min: 0;
 		             max: size;
 		             prepareForRunning;
@@ -46,6 +49,7 @@ MTProgressBarLogger >> initializeMutantJob: size [
 MTProgressBarLogger >> initializeTestJob: size [
 
 	testJob := Job new
+		           owner: thisContext;
 		           min: 0;
 		           max: size;
 		           prepareForRunning;
