@@ -316,6 +316,7 @@ MTAnalysis >> run [
 	                 self generateCoverageAnalysis.
 	                 self generateMutations.
 	                 self generateResults ] timeToRun.
+]
 
 { #category : 'starting' }
 MTAnalysis >> startBudget [
