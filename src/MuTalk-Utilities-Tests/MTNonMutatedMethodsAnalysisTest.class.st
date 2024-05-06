@@ -8,13 +8,15 @@ Class {
 { #category : 'tests' }
 MTNonMutatedMethodsAnalysisTest >> testNonMutatedMethods [
 
-	| results |
-	results := (MTNonMutatedMethodsAnalysis forClasses: {
-			            MTAuxiliarClassForMatrix.
-			            MTAuxiliarClassForMatrixTest })
-		           methodsWithoutMutation asSet.
+	| analysis results |
+	analysis := (MTNonMutatedMethodsAnalysis forClasses:
+		             { MTAuxiliarClassForMatrix }) initializeMtAnalysis.
+	analysis mtAnalysis operators: {
+			MTReplacePlusWithMinusMutantOperator new.
+			MTReplaceMinusWithPlusMutantOperator new }.
+	results := analysis methodsWithoutMutation asSet.
 
-	self
-		assert: results
-		equals: MTAuxiliarClassForMatrixTest methods asSet
+	self assert: results equals: {
+			(MTAuxiliarClassForMatrix >> #initialize).
+			(MTAuxiliarClassForMatrix >> #reset) } asSet
 ]

@@ -8,16 +8,20 @@ Class {
 { #category : 'testing' }
 MTTestCoverageAnalysis >> testBugWhenHavingATestResourceSendingToOther [
 	"the problem was when sending from a resource a message to another object wich class is going to be considered for coverage"
-	| analysis testCases|
+
+	| analysis testCases |
 	analysis := MTCoverageAnalysis
-		for: (Array with: MTClassForTestingCoverage with:MTTestResourceClassForTestingCoverage)
-		running: MTTestClassForTestingCoverage suite tests.
+		            forClasses: (Array
+				             with: MTClassForTestingCoverage
+				             with: MTTestResourceClassForTestingCoverage)
+		            running: MTTestClassForTestingCoverage suite tests.
 	analysis run.
-	testCases := analysis result testCasesThatCovers: MTClassForTestingCoverage class >> #aClassCoveredMethod.
-	
-	self assert: ((testCases collect: [:each | each selector]) includes:#testCaseThatCoversAClassMethod).
+	testCases := analysis result testCasesThatCovers:
+		             MTClassForTestingCoverage class >> #aClassCoveredMethod.
 
-
+	self assert:
+		((testCases collect: [ :each | each selector ]) includes:
+			 #testCaseThatCoversAClassMethod)
 ]
 
 { #category : 'testing' }
@@ -25,7 +29,7 @@ MTTestCoverageAnalysis >> testCoveredMethods [
 
 	| analysis |
 	analysis := MTCoverageAnalysis
-		            for: (Array with: MTClassForTestingCoverage)
+		            forClasses: (Array with: MTClassForTestingCoverage)
 		            running: MTTestClassForTestingCoverage suite tests.
 	analysis run.
 
@@ -43,27 +47,32 @@ MTTestCoverageAnalysis >> testCoveredMethods [
 
 { #category : 'testing' }
 MTTestCoverageAnalysis >> testGettingTheTestCasesThatCoverAClassMethod [
-	| analysis testCases|
+
+	| analysis testCases |
 	analysis := MTCoverageAnalysis
-		for: (Array with: MTClassForTestingCoverage)
-		running: MTTestClassForTestingCoverage suite tests.
+		            forClasses: (Array with: MTClassForTestingCoverage)
+		            running: MTTestClassForTestingCoverage suite tests.
 	analysis run.
-	testCases := analysis result testCasesThatCovers: MTClassForTestingCoverage class >> #aClassCoveredMethod.
-	
-	self assert: ((testCases collect: [:each | each selector]) includes:#testCaseThatCoversAClassMethod).
+	testCases := analysis result testCasesThatCovers:
+		             MTClassForTestingCoverage class >> #aClassCoveredMethod.
 
-
+	self assert:
+		((testCases collect: [ :each | each selector ]) includes:
+			 #testCaseThatCoversAClassMethod)
 ]
 
 { #category : 'testing' }
 MTTestCoverageAnalysis >> testGettingTheTestCasesThatCoverAMethod [
-	| analysis testCases|
 
-	analysis := MTCoverageAnalysis 
-		for: (Array with: MTClassForTestingCoverage)
-		running: MTTestClassForTestingCoverage suite tests.
+	| analysis testCases |
+	analysis := MTCoverageAnalysis
+		            forClasses: (Array with: MTClassForTestingCoverage)
+		            running: MTTestClassForTestingCoverage suite tests.
 	analysis run.
-	testCases := analysis result testCasesThatCovers: MTClassForTestingCoverage >> #aCoveredMethod.
-	self assert: ((testCases collect: [:each | each selector]) includes:#testCase1).
-	self deny: ((testCases collect: [:each | each selector]) includes:#testCase3).
+	testCases := analysis result testCasesThatCovers:
+		             MTClassForTestingCoverage >> #aCoveredMethod.
+	self assert:
+		((testCases collect: [ :each | each selector ]) includes: #testCase1).
+	self deny:
+		((testCases collect: [ :each | each selector ]) includes: #testCase3)
 ]

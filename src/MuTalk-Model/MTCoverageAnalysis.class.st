@@ -2,12 +2,11 @@ Class {
 	#name : 'MTCoverageAnalysis',
 	#superclass : 'Object',
 	#instVars : [
-		'classes',
 		'result',
-		'classesAndMetaclasses',
 		'testCases',
 		'currentTest',
-		'testRunningElapsedTime'
+		'testRunningElapsedTime',
+		'methods'
 	],
 	#category : 'MuTalk-Model-Coverage',
 	#package : 'MuTalk-Model',
@@ -15,8 +14,26 @@ Class {
 }
 
 { #category : 'instance creation' }
-MTCoverageAnalysis class >> for: aCollectionOfClasses running: aCollectionOfTestCases [
-	^self new initializeFor: aCollectionOfClasses running: aCollectionOfTestCases
+MTCoverageAnalysis class >> for: aCollectionOfMethods running: aCollectionOfTestCases [
+
+	^ self new
+		  initializeFor: aCollectionOfMethods
+		  running: aCollectionOfTestCases
+]
+
+{ #category : 'instance creation' }
+MTCoverageAnalysis class >> forClasses: aCollectionOfClasses running: aCollectionOfTestCases [
+
+	| methodCollection |
+	methodCollection := aCollectionOfClasses flatCollect: [ :class |
+		                    | methods |
+		                    methods := class package methodsForClass: class.
+		                    methods addAll:
+			                    (class package methodsForClass: class class).
+		                    methods ].
+	^ self new
+		  initializeFor: methodCollection
+		  running: aCollectionOfTestCases
 ]
 
 { #category : 'private' }
@@ -26,15 +43,6 @@ MTCoverageAnalysis >> addTestsFrom: aWrapper to: methodToTestDictionary [
 				at: aWrapper reference compiledMethod
 				ifAbsentPut: [IdentitySet new])
 				addAll: aWrapper tests]
-]
-
-{ #category : 'private' }
-MTCoverageAnalysis >> classesAndMetaclasses [
-	classesAndMetaclasses isNil ifTrue:[
-		classesAndMetaclasses := (classes collect:[:aClass | aClass class]) asOrderedCollection.
-		classesAndMetaclasses addAll: classes.].
-	^classesAndMetaclasses.
-
 ]
 
 { #category : 'accessing' }
@@ -54,8 +62,9 @@ MTCoverageAnalysis >> flushMethodLookupCaches [
 ]
 
 { #category : 'initialize-release' }
-MTCoverageAnalysis >> initializeFor: aCollectionOfClasses running: aCollectionOfTestCases [ 
-	classes := aCollectionOfClasses. 
+MTCoverageAnalysis >> initializeFor: aCollectionOfMethods running: aCollectionOfTestCases [
+
+	methods := aCollectionOfMethods.
 	testCases := aCollectionOfTestCases
 ]
 
@@ -66,13 +75,11 @@ MTCoverageAnalysis >> installAll: wrappers [
 
 { #category : 'private' }
 MTCoverageAnalysis >> methodReferences [
-	^ self classesAndMetaclasses
-		inject: OrderedCollection new
-		into: [:methodReferences :aClass | 
-			methodReferences
-				addAll: (aClass selectors
-						collect: [:aSelector | RGMethodDefinition class: aClass selector: aSelector]).
-			methodReferences]
+
+	^ methods collect: [ :aMethod |
+		  RGMethodDefinition
+			  class: aMethod methodClass
+			  selector: aMethod selector ]
 ]
 
 { #category : 'private' }
@@ -104,7 +111,7 @@ MTCoverageAnalysis >> run [
 	result := MTCoverageAnalysisResult
 		          from: (self methodToTestDictionaryFrom: wrappers)
 		          elapsedTime: testRunningElapsedTime.
-	result methodReferences: (self classesAndMetaclasses flatCollect: [:cls | cls methods])
+	result methodReferences: methods
 ]
 
 { #category : 'private' }

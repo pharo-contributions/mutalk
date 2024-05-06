@@ -2,7 +2,7 @@ Class {
 	#name : 'MTAnalysis',
 	#superclass : 'Object',
 	#instVars : [
-		'modelClasses',
+		'methodsToMutate',
 		'operators',
 		'elapsedTime',
 		'mutations',
@@ -34,9 +34,14 @@ MTAnalysis >> budget: anObject [
 ]
 
 { #category : 'accessing' }
-MTAnalysis >> classesToMutate: anObject [
+MTAnalysis >> classesToMutate: aClassCollection [
 
-	modelClasses := anObject
+	methodsToMutate := aClassCollection flatCollect: [ :class |
+		                   | methods |
+		                   methods := class package methodsForClass: class.
+		                   methods addAll:
+			                   (class package methodsForClass: class class).
+		                   methods ]
 ]
 
 { #category : 'accessing' }
@@ -53,9 +58,8 @@ MTAnalysis >> coverageAnalysisResult: anObject [
 
 { #category : 'accessing - defaults' }
 MTAnalysis >> defaultBudget [
-	"Since tests often take little time to run, we multiply it by 30"
 
-	^ MTTimeBudget for: self totalTestsTime * 30
+	^ MTTimeBudget for: 5 minutes
 ]
 
 { #category : 'accessing - defaults' }
@@ -115,7 +119,7 @@ MTAnalysis >> generateCoverageAnalysis [
 
 	logger logStartCoverageAnalysis: testCases size.
 	coverageAnalysisResult := (MTCoverageAnalysis
-		                           for: self modelClasses
+		                           for: methodsToMutate
 		                           running: testCases)
 		                          run;
 		                          result.
@@ -170,8 +174,10 @@ MTAnalysis >> initialTestRun [
 	logger logEndInitialTestRun.
 
 	"The test filter is initialized lazily here because the default one needs the run time of tests, so the initial test run must be executed first"
-	self testFilter validateFailuresIn: results.
-	testCases := testFilter filterTests: testCases
+	testCases := self testFilter filterTests: testCases.
+	(testCases anySatisfy: [ :testCase |
+		 self testFilter failuresOrErrorsIn: testCase ]) ifTrue: [
+		MTTestsWithErrorsException signal ]
 ]
 
 { #category : 'initialization' }
@@ -184,7 +190,8 @@ MTAnalysis >> initialize [
 	mutantResults := OrderedCollection new.
 	elapsedTime := 0.
 	logger := self defaultLogger.
-	stopOnErrorOrFail := true
+	stopOnErrorOrFail := true.
+	budget := self defaultBudget
 ]
 
 { #category : 'accessing' }
@@ -208,12 +215,23 @@ MTAnalysis >> methodSize [
 ]
 
 { #category : 'accessing' }
-MTAnalysis >> modelClasses [
-	"Filter tests and testsResources"
+MTAnalysis >> methodsToMutate [
 
-	^ modelClasses reject: [ :class |
-		  self testBaseClasses anySatisfy: [ :classToFilter |
-			  class includesBehavior: classToFilter ] ]
+	^ methodsToMutate
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> methodsToMutate: anObject [
+
+	methodsToMutate := anObject
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> modelClasses [
+
+	| classes |
+	classes := methodsToMutate collect: #methodClass.
+	^ classes copyWithoutDuplicates
 ]
 
 { #category : 'accessing' }
@@ -268,8 +286,8 @@ MTAnalysis >> operators: anObject [
 { #category : 'accessing' }
 MTAnalysis >> packagesToMutate: aCollectionOfPackages [
 
-	modelClasses := aCollectionOfPackages flatCollect: [ :packageName |
-		                packageName asPackage definedClasses ]
+	methodsToMutate := aCollectionOfPackages flatCollect: [ :packageName |
+		                   packageName asPackage methods ]
 ]
 
 { #category : 'computing' }
@@ -290,7 +308,6 @@ MTAnalysis >> run [
 	those classes) and execute all mutants in the set of testClases.
 	We obtain a result for each mutant generated"
 
-	^ [
 	  logger logAnalysisStart.
 	  self initialTestRun.
 	  "The budget is started after the initial test run because the default one needs the run time of tests"
@@ -299,13 +316,6 @@ MTAnalysis >> run [
 	                 self generateCoverageAnalysis.
 	                 self generateMutations.
 	                 self generateResults ] timeToRun.
-	  true ]
-		  on: MTTestsWithErrorsException
-		  do: [ :ex |
-			  self inform:
-				  'Your tests have Errors or Failures. Please correct them.'.
-			  false ]
-]
 
 { #category : 'starting' }
 MTAnalysis >> startBudget [

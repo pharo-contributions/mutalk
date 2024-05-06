@@ -102,17 +102,6 @@ MTAnalysisTest >> testErrorWhenInitializingDefaultTestFilterBeforeInitialTestRun
 ]
 
 { #category : 'tests' }
-MTAnalysisTest >> testErrorWhenStartingDefaultBudgetBeforeInitialTestRun [
-
-	| analysis |
-	analysis := MTAnalysis new
-		            classesToMutate: { MTAuxiliarClassForMTAnalysis };
-		            testClasses: { MTAuxiliarClassForMTAnalysisTest }.
-
-	self should: [ analysis startBudget ] raise: Error
-]
-
-{ #category : 'tests' }
 MTAnalysisTest >> testErrorWhenTryingToGetPercentileOfEmptyCollection [
 
 	| analysis |
@@ -286,6 +275,32 @@ MTAnalysisTest >> testExecutingTwoMutations [
 	self assert: results size equals: 2.
 	results do: [ :mutationResult | self assert: mutationResult killed ].
 	self assert: generalResult numberOfKilledMutants equals: 2
+]
+
+{ #category : 'tests' }
+MTAnalysisTest >> testExtensionMethodsMutatedWhenUsingPackages [
+
+	| analysis mutations selectors |
+	analysis := MTAnalysis new packagesToMutate:
+		            { 'MuTalk-TestResourcesForExtensionMethods' }.
+	mutations := analysis generateMutations.
+	selectors := mutations collect: [ :mutant |
+		             mutant originalMethod selector ].
+
+	self assert: (selectors includes: #extensionMethod)
+]
+
+{ #category : 'tests' }
+MTAnalysisTest >> testExtensionMethodsNotMutatedWhenUsingClasses [
+
+	| analysis mutations selectors |
+	analysis := MTAnalysis new classesToMutate:
+		            { MTAuxiliarClassForAnalysisWithExtensionMethods }.
+	mutations := analysis generateMutations.
+	selectors := mutations collect: [ :mutant |
+		             mutant originalMethod selector ].
+
+	self deny: (selectors includes: #extensionMethod)
 ]
 
 { #category : 'tests' }
