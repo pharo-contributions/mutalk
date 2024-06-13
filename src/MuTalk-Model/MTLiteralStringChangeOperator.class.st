@@ -19,6 +19,18 @@ MTLiteralStringChangeOperator >> description [
 	^ 'Convert a literal string to a predefined string'
 ]
 
+{ #category : 'printing' }
+MTLiteralStringChangeOperator >> expressionToReplace [
+
+	^'``@aString'
+]
+
+{ #category : 'printing' }
+MTLiteralStringChangeOperator >> newExpression [
+
+	^ self stringReplaced
+]
+
 { #category : 'applying' }
 MTLiteralStringChangeOperator >> newNodeFrom: anOldNode [
 

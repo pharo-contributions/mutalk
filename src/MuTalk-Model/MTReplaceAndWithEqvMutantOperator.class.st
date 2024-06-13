@@ -6,6 +6,11 @@ Class {
 	#tag : 'Operators - Logical boolean operation'
 }
 
+{ #category : 'applying' }
+MTReplaceAndWithEqvMutantOperator >> expressionToReplace [
+	^'``@object and: ``@aBlock'
+]
+
 { #category : 'accessing' }
 MTReplaceAndWithEqvMutantOperator >> newSelector [
 	^#bEqv:

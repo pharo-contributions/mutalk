@@ -6,6 +6,16 @@ Class {
 	#tag : 'Operators - Relational operation'
 }
 
+{ #category : 'applying' }
+MTReplaceMaxWithMinMutantOperator >> expressionToReplace [
+	^ '``@a max: ``@b'
+]
+
+{ #category : 'applying' }
+MTReplaceMaxWithMinMutantOperator >> newExpression [
+	^ '``@a min: ``@b'
+]
+
 { #category : 'accessing' }
 MTReplaceMaxWithMinMutantOperator >> newSelector [
 	^#min:

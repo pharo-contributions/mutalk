@@ -26,7 +26,7 @@ MTCITonelJsonExporterTest >> testWorking [
 		        mtResult: analysis;
 		        coverageInfo: moreInfo;
 		        cloneLocation: FileLocator localDirectory fullName
-			        , '/iceberg/mabdi/smalltalk-smallbank';
+			        , '/iceberg/mabdi/smalltalk-SmallBank';
 		        root: 'src';
 		        export.
 	self assert: json class equals: '' class

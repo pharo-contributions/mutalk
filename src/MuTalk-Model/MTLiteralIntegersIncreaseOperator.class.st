@@ -19,6 +19,18 @@ MTLiteralIntegersIncreaseOperator >> description [
 	^ 'Increase a literal integer'
 ]
 
+{ #category : 'printing' }
+MTLiteralIntegersIncreaseOperator >> expressionToReplace [
+
+	^'``@anInteger'
+]
+
+{ #category : 'printing' }
+MTLiteralIntegersIncreaseOperator >> newExpression [
+
+	^'``@anInteger + 1'
+]
+
 { #category : 'applying' }
 MTLiteralIntegersIncreaseOperator >> newNodeFrom: anOldNode [
 

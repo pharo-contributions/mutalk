@@ -19,6 +19,18 @@ MTLiteralStringToEmptyOperator >> description [
 	^ 'Convert a literal string to empty string'
 ]
 
+{ #category : 'printing' }
+MTLiteralStringToEmptyOperator >> expressionToReplace [
+
+	^'``@aString'
+]
+
+{ #category : 'printing' }
+MTLiteralStringToEmptyOperator >> newExpression [
+
+	^''
+]
+
 { #category : 'applying' }
 MTLiteralStringToEmptyOperator >> newNodeFrom: anOldNode [
 

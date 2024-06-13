@@ -43,8 +43,28 @@ MTAbstractMutantOperator class >> recursionsDetectionThreshold [
 ]
 
 { #category : 'printing' }
+MTAbstractMutantOperator >> applyTo: anOldNode [
+
+	| rewriter |
+	rewriter := RBParseTreeRewriter new.
+	rewriter
+		replace: self expressionToReplace
+		withValueFrom: [ :oNode | | aNewNode |
+			aNewNode := RBParser parseRewriteExpression: self newExpression.
+			aNewNode copyInContext: rewriter context ].
+	rewriter executeTree: anOldNode copy.
+	^ rewriter tree
+]
+
+{ #category : 'printing' }
 MTAbstractMutantOperator >> description [
 	self subclassResponsibility
+]
+
+{ #category : 'printing' }
+MTAbstractMutantOperator >> expressionToReplace [
+
+	^ self subclassResponsibility
 ]
 
 { #category : 'private' }
@@ -111,6 +131,11 @@ MTAbstractMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree [
 { #category : 'private' }
 MTAbstractMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree number: nodeIndex storeIn: accumulator [
 
+	self subclassResponsibility
+]
+
+{ #category : 'printing' }
+MTAbstractMutantOperator >> newExpression [
 	self subclassResponsibility
 ]
 

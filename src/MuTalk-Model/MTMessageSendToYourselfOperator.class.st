@@ -18,6 +18,18 @@ MTMessageSendToYourselfOperator >> description [
 	^ 'Change a message send with #yourself'
 ]
 
+{ #category : 'printing' }
+MTMessageSendToYourselfOperator >> expressionToReplace [
+
+	^'`@a `@messages'
+]
+
+{ #category : 'printing' }
+MTMessageSendToYourselfOperator >> newExpression [
+
+	^'`@a yourself'
+]
+
 { #category : 'applying' }
 MTMessageSendToYourselfOperator >> newNodeFrom: anOldNode [
 

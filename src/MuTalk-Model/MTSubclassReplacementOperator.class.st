@@ -23,6 +23,11 @@ MTSubclassReplacementOperator >> description [
 	^ 'Replace a class reference by a reference to one of its subclasses'
 ]
 
+{ #category : 'printing' }
+MTSubclassReplacementOperator >> expressionToReplace [
+	^ '`@class'
+]
+
 { #category : 'private' }
 MTSubclassReplacementOperator >> mutationsFor: aCompiledMethod with: aParseTree number: nodeIndex storeIn: accumulator [
 
@@ -40,6 +45,11 @@ MTSubclassReplacementOperator >> mutationsFor: aCompiledMethod with: aParseTree 
 				 ofClass: aCompiledMethod methodClass
 				 withData: newExpression ]).
 	^ accumulator
+]
+
+{ #category : 'printing' }
+MTSubclassReplacementOperator >> newExpression [
+	^ '`@subclass'
 ]
 
 { #category : 'instance creation' }

@@ -6,6 +6,18 @@ Class {
 	#tag : 'Operators - Message sender'
 }
 
+{ #category : 'printing' }
+MTMessageSendArguments1stNullifierOperator >> expressionToReplace [
+
+	^'`@a `@message'
+]
+
+{ #category : 'printing' }
+MTMessageSendArguments1stNullifierOperator >> newExpression [
+
+	^'nil `@message'
+]
+
 { #category : 'applying' }
 MTMessageSendArguments1stNullifierOperator >> whichArgument [
 

@@ -19,6 +19,18 @@ MTLiteralIntegersToZeroOperator >> description [
 	^ 'Convert a literal integer to zero'
 ]
 
+{ #category : 'printing' }
+MTLiteralIntegersToZeroOperator >> expressionToReplace [
+
+	^'``@anInteger'
+]
+
+{ #category : 'printing' }
+MTLiteralIntegersToZeroOperator >> newExpression [
+
+	^'0'
+]
+
 { #category : 'applying' }
 MTLiteralIntegersToZeroOperator >> newNodeFrom: anOldNode [
 

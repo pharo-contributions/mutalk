@@ -19,6 +19,18 @@ MTLiteralIntegersDecreaseOperator >> description [
 	^ 'Decrease a literal integer'
 ]
 
+{ #category : 'printing' }
+MTLiteralIntegersDecreaseOperator >> expressionToReplace [
+
+	^'``@anInteger'
+]
+
+{ #category : 'printing' }
+MTLiteralIntegersDecreaseOperator >> newExpression [
+
+	^'``@anInteger - 1'
+]
+
 { #category : 'applying' }
 MTLiteralIntegersDecreaseOperator >> newNodeFrom: anOldNode [
 

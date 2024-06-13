@@ -178,27 +178,30 @@ MTCITonelJsonExporter >> extractMutatedLine: mutatedNode nodeToMutate: nodeToMut
 	ending := Character lf.
 
 	mSource_1 := nodeToMutate start > 1
-		             ifTrue: [ 
+		             ifTrue: [
 		             originalSource copyFrom: 1 to: nodeToMutate start - 1 ]
 		             ifFalse: [ '' ].
-	mSource_1_break := mSource_1 endsWithAnyOf: { 
+	mSource_1_break := mSource_1 endsWithAnyOf: {
 			                   String lf.
 			                   String cr }.
 	mSource_2 := mutatedNode formattedCode.
 	mSource_3 := nodeToMutate stop = originalSource size
 		             ifTrue: [ '' ]
-		             ifFalse: [ 
-		             originalSource
-			             copyFrom: nodeToMutate stop + 1
-			             to: originalSource size ].
+		             ifFalse: [
+			             originalSource
+				             copyFrom: nodeToMutate stop + 1
+				             to: originalSource size ].
 	mSource := mSource_1 , mSource_2 , mSource_3.
 	start_of_changes := mSource_1 lines size + (mSource_1_break
 		                     ifTrue: [ 1 ]
 		                     ifFalse: [ 0 ]).
-	changedLines := ending join: (mSource lines
-			                 copyFrom: start_of_changes
-			                 to: start_of_changes + mSource_2 lines size - 1).
-	
+	changedLines := mSource_2 lines size > 1
+		                ifTrue: [
+			                ending join: (mSource lines
+					                 copyFrom: start_of_changes
+					                 to: start_of_changes + mSource_2 lines size - 1) ]
+		                ifFalse: [ ending ].
+
 	^ changedLines
 ]
 
