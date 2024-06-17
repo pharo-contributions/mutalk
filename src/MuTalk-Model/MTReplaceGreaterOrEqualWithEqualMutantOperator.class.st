@@ -8,12 +8,12 @@ Class {
 
 { #category : 'applying' }
 MTReplaceGreaterOrEqualWithEqualMutantOperator >> expressionToReplace [
-	^ '``@a >= ``@b'
+	^ '`@a >= `@b'
 ]
 
 { #category : 'applying' }
 MTReplaceGreaterOrEqualWithEqualMutantOperator >> newExpression [
-	^ '``@a = ``@b'
+	^ '`@a = `@b'
 ]
 
 { #category : 'accessing' }

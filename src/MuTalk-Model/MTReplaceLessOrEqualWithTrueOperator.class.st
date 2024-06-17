@@ -13,7 +13,7 @@ MTReplaceLessOrEqualWithTrueOperator >> description [
 
 { #category : 'applying' }
 MTReplaceLessOrEqualWithTrueOperator >> expressionToReplace [ 
-	^'``@object <= ``@aBlock'
+	^'`@a <= `@b'
 ]
 
 { #category : 'applying' }

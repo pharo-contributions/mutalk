@@ -22,13 +22,13 @@ MTLiteralBooleanNegateOperator >> description [
 { #category : 'printing' }
 MTLiteralBooleanNegateOperator >> expressionToReplace [
 
-	^'``@aBoolean'
+	^'`aBoolean'
 ]
 
 { #category : 'printing' }
 MTLiteralBooleanNegateOperator >> newExpression [
 
-	^'``@aBoolean not'
+	^'`aBoolean not'
 ]
 
 { #category : 'applying' }

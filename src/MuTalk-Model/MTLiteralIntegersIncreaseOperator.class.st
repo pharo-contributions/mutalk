@@ -22,13 +22,13 @@ MTLiteralIntegersIncreaseOperator >> description [
 { #category : 'printing' }
 MTLiteralIntegersIncreaseOperator >> expressionToReplace [
 
-	^'``@anInteger'
+	^'`#anInteger'
 ]
 
 { #category : 'printing' }
 MTLiteralIntegersIncreaseOperator >> newExpression [
 
-	^'``@anInteger + 1'
+	^'`#anInteger + 1'
 ]
 
 { #category : 'applying' }

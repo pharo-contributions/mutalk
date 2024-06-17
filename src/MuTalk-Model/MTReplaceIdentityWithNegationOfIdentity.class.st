@@ -13,12 +13,12 @@ MTReplaceIdentityWithNegationOfIdentity >> description [
 
 { #category : 'applying' }
 MTReplaceIdentityWithNegationOfIdentity >> expressionToReplace [ 
-	^'``@a == ``@b'
+	^'`@a == `@b'
 
 ]
 
 { #category : 'applying' }
 MTReplaceIdentityWithNegationOfIdentity >> newExpression [ 
-	^'(``@a == ``@b) not'
+	^'(`@a == `@b) not'
 
 ]

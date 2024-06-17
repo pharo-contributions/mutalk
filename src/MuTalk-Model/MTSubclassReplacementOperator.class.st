@@ -25,7 +25,7 @@ MTSubclassReplacementOperator >> description [
 
 { #category : 'printing' }
 MTSubclassReplacementOperator >> expressionToReplace [
-	^ '`@class'
+	^ '`@a class'
 ]
 
 { #category : 'private' }
@@ -49,7 +49,7 @@ MTSubclassReplacementOperator >> mutationsFor: aCompiledMethod with: aParseTree 
 
 { #category : 'printing' }
 MTSubclassReplacementOperator >> newExpression [
-	^ '`@subclass'
+	^ '`@a subclass'
 ]
 
 { #category : 'instance creation' }

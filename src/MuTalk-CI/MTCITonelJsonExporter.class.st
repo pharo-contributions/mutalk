@@ -175,7 +175,7 @@ MTCITonelJsonExporter >> exportTestCases [
 MTCITonelJsonExporter >> extractMutatedLine: mutatedNode nodeToMutate: nodeToMutate originalSource: originalSource modifiedSource: modifiedSource [
 
 	| mSource_1 mSource_2 mSource_3 mSource ending changedLines mSource_1_break start_of_changes |
-	ending := Character lf.
+	ending := Character lf asString.
 
 	mSource_1 := nodeToMutate start > 1
 		             ifTrue: [
@@ -242,15 +242,14 @@ MTCITonelJsonExporter >> getHashOfFile: class [
 
 { #category : 'as yet unclassified' }
 MTCITonelJsonExporter >> getPathOfClass: class [
-
 	"Based on code in SmalltalkCI project"
 
 	| pkg nonMetaClass fileName |
-	pkg := (RPackageOrganizer default packageOf: class) packageName.
+	pkg := (RPackageOrganizer default packageOf: class) name.
 	nonMetaClass := (class respondsTo: #instanceSide)
 		                ifTrue: [ class instanceSide ]
 		                ifFalse: [ class theNonMetaClass ].
-	fileName := root, '/', pkg , '/' , nonMetaClass name , '.class.st'.
+	fileName := root , '/' , pkg , '/' , nonMetaClass name , '.class.st'.
 	^ fileName
 ]
 

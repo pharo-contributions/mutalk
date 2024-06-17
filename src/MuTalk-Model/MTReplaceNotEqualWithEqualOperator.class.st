@@ -8,12 +8,12 @@ Class {
 
 { #category : 'applying' }
 MTReplaceNotEqualWithEqualOperator >> expressionToReplace [
-	^ '``@a ~= ``@b'
+	^ '`@a ~= `@b'
 ]
 
 { #category : 'applying' }
 MTReplaceNotEqualWithEqualOperator >> newExpression [
-	^ '``@a = ``@b'
+	^ '`@a = `@b'
 ]
 
 { #category : 'accessing' }

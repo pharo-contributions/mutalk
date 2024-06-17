@@ -22,7 +22,7 @@ MTLiteralStringToEmptyOperator >> description [
 { #category : 'printing' }
 MTLiteralStringToEmptyOperator >> expressionToReplace [
 
-	^'``@aString'
+	^'`aString'
 ]
 
 { #category : 'printing' }

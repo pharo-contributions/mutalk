@@ -68,6 +68,14 @@ MTPredicateBasedMutantOperator >> newNodeFrom: anOldNode [
 	self subclassResponsibility
 ]
 
+{ #category : 'source' }
+MTPredicateBasedMutantOperator >> nodeToMutateWith: aMTMethodMutation [
+
+	^ self
+		  affectedNodeFor: aMTMethodMutation originalMethod parseTree
+		  at: aMTMethodMutation nodeNumber
+]
+
 { #category : 'private' }
 MTPredicateBasedMutantOperator >> timesToApplyIn: aCompiledMethod with: aParseTree [
 	"Evaluates how many times can the operator be applyied"

@@ -20,12 +20,12 @@ MTAssignmentNullifierOperator >> description [
 
 { #category : 'printing' }
 MTAssignmentNullifierOperator >> expressionToReplace [
-	^ '`@value'
+	^ '`@a := `@value'
 ]
 
 { #category : 'printing' }
 MTAssignmentNullifierOperator >> newExpression [
-	^ 'nil'
+	^ '`@a := nil'
 ]
 
 { #category : 'applying' }

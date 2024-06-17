@@ -22,7 +22,7 @@ MTLiteralStringChangeOperator >> description [
 { #category : 'printing' }
 MTLiteralStringChangeOperator >> expressionToReplace [
 
-	^'``@aString'
+	^'`aString'
 ]
 
 { #category : 'printing' }

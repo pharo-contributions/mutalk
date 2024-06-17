@@ -22,7 +22,7 @@ MTLiteralIntegersToZeroOperator >> description [
 { #category : 'printing' }
 MTLiteralIntegersToZeroOperator >> expressionToReplace [
 
-	^'``@anInteger'
+	^'`#anInteger'
 ]
 
 { #category : 'printing' }

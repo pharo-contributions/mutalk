@@ -21,7 +21,7 @@ MTMessageSendToYourselfOperator >> description [
 { #category : 'printing' }
 MTMessageSendToYourselfOperator >> expressionToReplace [
 
-	^'`@a `@messages'
+	^'`@a `@messages: `@b'
 ]
 
 { #category : 'printing' }

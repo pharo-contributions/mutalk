@@ -57,6 +57,22 @@ MTParseRewriterMutantOperator >> newExpression [
 	self subclassResponsibility
 ]
 
+{ #category : 'source' }
+MTParseRewriterMutantOperator >> nodeToMutateWith: aMTMethodMutation [ 
+	
+	| n searcher |
+	n := 1.
+	
+	searcher := RBParseTreeSearcher new
+		            matches: self expressionToReplace
+		            do: [ :node :answer | 
+			            n = aMTMethodMutation nodeNumber ifTrue: [ ^ node ].
+			            n := n + 1 ];
+		            yourself.
+	searcher executeTree: aMTMethodMutation originalMethod ast.
+	self error: 'Not found'
+]
+
 { #category : 'applying' }
 MTParseRewriterMutantOperator >> timesToApplyIn: aCompiledMethod with: aParseTree [ 
 	"Evaluates how many times can the operator be applyied"	

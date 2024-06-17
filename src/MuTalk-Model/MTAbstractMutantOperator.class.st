@@ -61,12 +61,6 @@ MTAbstractMutantOperator >> description [
 	self subclassResponsibility
 ]
 
-{ #category : 'printing' }
-MTAbstractMutantOperator >> expressionToReplace [
-
-	^ self subclassResponsibility
-]
-
 { #category : 'private' }
 MTAbstractMutantOperator >> is: originalRBMethodNode equalTo: nodeThatMatches [ 
 	^ nodeThatMatches formattedCode = originalRBMethodNode formattedCode
@@ -131,11 +125,6 @@ MTAbstractMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree [
 { #category : 'private' }
 MTAbstractMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree number: nodeIndex storeIn: accumulator [
 
-	self subclassResponsibility
-]
-
-{ #category : 'printing' }
-MTAbstractMutantOperator >> newExpression [
 	self subclassResponsibility
 ]
 

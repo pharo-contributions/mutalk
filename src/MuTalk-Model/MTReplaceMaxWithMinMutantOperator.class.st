@@ -8,12 +8,12 @@ Class {
 
 { #category : 'applying' }
 MTReplaceMaxWithMinMutantOperator >> expressionToReplace [
-	^ '``@a max: ``@b'
+	^ '`@a max: `@b'
 ]
 
 { #category : 'applying' }
 MTReplaceMaxWithMinMutantOperator >> newExpression [
-	^ '``@a min: ``@b'
+	^ '`@a min: `@b'
 ]
 
 { #category : 'accessing' }

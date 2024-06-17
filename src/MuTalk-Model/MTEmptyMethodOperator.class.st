@@ -28,7 +28,7 @@ MTEmptyMethodOperator >> expressionToReplace [
 { #category : 'printing' }
 MTEmptyMethodOperator >> newExpression [
 
-	^'``'
+	^''
 ]
 
 { #category : 'applying' }

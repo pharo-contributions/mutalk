@@ -9,13 +9,13 @@ Class {
 { #category : 'printing' }
 MTMessageSendArguments2ndNullifierOperator >> expressionToReplace [
 
-	^'`@a `@message: `@b'
+	^'`@a `message: `@b'
 ]
 
 { #category : 'printing' }
 MTMessageSendArguments2ndNullifierOperator >> newExpression [
 
-	^'`@a `@message: nil'
+	^'`@a `message: nil'
 ]
 
 { #category : 'applying' }
