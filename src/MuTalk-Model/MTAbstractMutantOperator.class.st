@@ -51,7 +51,7 @@ MTAbstractMutantOperator >> applyTo: anOldNode [
 		replace: self expressionToReplace
 		withValueFrom: [ :oNode | | aNewNode |
 			aNewNode := RBParser parseRewriteExpression: self newExpression.
-			aNewNode copyInContext: rewriter context ].
+			"aNewNode copyInContext: rewriter context" ].
 	rewriter executeTree: anOldNode copy.
 	^ rewriter tree
 ]

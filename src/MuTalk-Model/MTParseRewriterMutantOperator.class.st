@@ -29,7 +29,7 @@ MTParseRewriterMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParse
 		withValueFrom: [ :oNode |
 			| oldNode newNode |
 			nNode := RBParser parseRewriteExpression: anExpression.
-			nNode := nNode copyInContext: rewriter context.
+			"nNode := nNode copyInContext: rewriter context."
 			oldNode := oNode.
 			newNode := nNode.
 			newNode ]
