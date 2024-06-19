@@ -18,19 +18,6 @@ MTEmptyMethodOperator >> description [
 	^ 'Removing all lines in a method'
 ]
 
-{ #category : 'printing' }
-MTEmptyMethodOperator >> expressionToReplace [
-
-	^ '| `@temps |
-``@.Statements'
-]
-
-{ #category : 'printing' }
-MTEmptyMethodOperator >> newExpression [
-
-	^''
-]
-
 { #category : 'applying' }
 MTEmptyMethodOperator >> newNodeFrom: anOldNode [
 

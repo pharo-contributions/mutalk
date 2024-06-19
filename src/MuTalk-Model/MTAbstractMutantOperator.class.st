@@ -45,15 +45,7 @@ MTAbstractMutantOperator class >> recursionsDetectionThreshold [
 { #category : 'printing' }
 MTAbstractMutantOperator >> applyTo: anOldNode [
 
-	| rewriter |
-	rewriter := RBParseTreeRewriter new.
-	rewriter
-		replace: self expressionToReplace
-		withValueFrom: [ :oNode | | aNewNode |
-			aNewNode := RBParser parseRewriteExpression: self newExpression.
-			"aNewNode copyInContext: rewriter context" ].
-	rewriter executeTree: anOldNode copy.
-	^ rewriter tree
+	self subclassResponsibility
 ]
 
 { #category : 'printing' }

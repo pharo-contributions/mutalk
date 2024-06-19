@@ -19,18 +19,6 @@ MTLiteralBooleanNegateOperator >> description [
 	^ 'Negate a literal boolean'
 ]
 
-{ #category : 'printing' }
-MTLiteralBooleanNegateOperator >> expressionToReplace [
-
-	^'`aBoolean'
-]
-
-{ #category : 'printing' }
-MTLiteralBooleanNegateOperator >> newExpression [
-
-	^'`aBoolean not'
-]
-
 { #category : 'applying' }
 MTLiteralBooleanNegateOperator >> newNodeFrom: anOldNode [
 

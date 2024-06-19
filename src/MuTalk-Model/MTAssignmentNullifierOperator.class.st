@@ -18,16 +18,6 @@ MTAssignmentNullifierOperator >> description [
 	^ 'Nullify the value assigned'
 ]
 
-{ #category : 'printing' }
-MTAssignmentNullifierOperator >> expressionToReplace [
-	^ '`@a := `@value'
-]
-
-{ #category : 'printing' }
-MTAssignmentNullifierOperator >> newExpression [
-	^ '`@a := nil'
-]
-
 { #category : 'applying' }
 MTAssignmentNullifierOperator >> newNodeFrom: anOldNode [
 

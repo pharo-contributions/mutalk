@@ -13,6 +13,20 @@ MTParseRewriterMutantOperator class >> isAbstract [
 ]
 
 { #category : 'applying' }
+MTParseRewriterMutantOperator >> applyTo: anOldNode [
+
+	| rewriter |
+	rewriter := RBParseTreeRewriter new.
+	rewriter
+		replace: self expressionToReplace
+		withValueFrom: [ :oNode | | aNewNode |
+			aNewNode := RBParser parseRewriteExpression: self newExpression.
+			"aNewNode copyInContext: rewriter context" ].
+	rewriter executeTree: anOldNode copy.
+	^ rewriter tree
+]
+
+{ #category : 'applying' }
 MTParseRewriterMutantOperator >> expressionToReplace [
 	self subclassResponsibility
 ]
