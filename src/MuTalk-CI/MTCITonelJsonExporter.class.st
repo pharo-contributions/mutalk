@@ -1,12 +1,8 @@
 Class {
 	#name : 'MTCITonelJsonExporter',
-	#superclass : 'MTAbstractJsonExporter',
+	#superclass : 'MTAbstractExporter',
 	#instVars : [
 		'seqNum',
-		'pull_request_id',
-		'commit',
-		'cloneLocation',
-		'root',
 		'coverageInfo'
 	],
 	#category : 'MuTalk-CI',
@@ -33,30 +29,6 @@ MTCITonelJsonExporter >> classMutations: class [
 	| mutations |
 	mutations:= mtResult mutantResults select: [ :mutationEval | 
 		mutationEval mutant originalClass = class ]
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> cloneLocation [
-
-	^ cloneLocation
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> cloneLocation: anObject [
-
-	cloneLocation := anObject
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> commit [
-
-	^ commit
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> commit: anObject [
-
-	commit := anObject
 ]
 
 { #category : 'accessing' }
@@ -272,30 +244,6 @@ MTCITonelJsonExporter >> lineNumberOffsetClass: classToCover method: method in: 
 						            ((line substrings: '>>') last copyWithout: $]).
 					selector = method ifTrue: [ ^ lineNumber ] ] ].
 	^ 0
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> pull_request_id [
-
-	^ pull_request_id
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> pull_request_id: anObject [
-
-	pull_request_id := anObject
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> root [
-
-	^ root
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> root: anObject [
-
-	root := anObject
 ]
 
 { #category : 'accessing' }
