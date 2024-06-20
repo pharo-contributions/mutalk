@@ -6,6 +6,11 @@ Class {
 }
 
 { #category : 'accessing' }
+MTCIMarkdownExporter >> brownIcon [
+   ^ (Character value: 128996) asString
+]
+
+{ #category : 'accessing' }
 MTCIMarkdownExporter >> cloneLocation [
 
 	^ cloneLocation
@@ -47,14 +52,24 @@ MTCIMarkdownExporter >> export [
 - Commit: ', commit asString, '
 - Pull Request: ', pull_request_id asString, '
 
-| Mutants            | Number Of Mutants |
-| ------------------ | ----------------- |
-| Mutants alive      | ', alive asString, spacesOfAlive, ' |
-| Mutants killed     | ', killed asString, spacesOfKilled, ' |
-| Mutants terminated | ', terminated asString, spacesOfTerminated, ' |
+| Mutants              | Number Of Mutants |
+| -------------------- | ----------------- |
+| ', self redIcon, ' Mutants alive      | ', alive asString, spacesOfAlive, ' |
+| ', self greenIcon, ' Mutants killed      | ', killed asString, spacesOfKilled, ' |
+| ', self brownIcon, ' Mutants terminated | ', terminated asString, spacesOfTerminated, ' |
 ### Mutation Score: ', results mutationScore asString, '%'.
 
 	^ contentMD
+]
+
+{ #category : 'accessing' }
+MTCIMarkdownExporter >> greenIcon [
+   ^ (Character value: 128994) asString
+]
+
+{ #category : 'accessing' }
+MTCIMarkdownExporter >> redIcon [
+   ^ (Character value: 128308) asString
 ]
 
 { #category : 'accessing' }
