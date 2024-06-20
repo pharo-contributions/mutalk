@@ -124,7 +124,7 @@ MTCI >> exportSummaryMarkdown: analysis [
 		        cloneLocation: repo location fullName;
 		        export.
 	
-	file := FileLocator imageDirectory / self exportFileName.
+	file := FileLocator imageDirectory / self exportMarkdownFileName.
 	file exists ifTrue: [ file delete ].
 	file writeStream
 		nextPutAll: markdown;
@@ -233,5 +233,6 @@ MTCI >> runMutalkTargets: targets tests: tests generationStrategy: generationStr
 		            mutantGenerationStrategy: generationStrategy.
 	analysis run.
 	coverageInfo := self prepareCoverageInfo: analysis.
-	self exportResultJson: analysis coverageInfo: coverageInfo
+	self exportResultJson: analysis coverageInfo: coverageInfo.
+	self exportSummaryMarkdown: analysis
 ]
