@@ -45,7 +45,16 @@ MTSubclassReplacementOperator >> mutationsFor: aCompiledMethod with: aParseTree 
 { #category : 'instance creation' }
 MTSubclassReplacementOperator >> newNodeFrom: anOldNode [
 
+	| newNode newClass aSubclass |
+	newClass := anOldNode name asClassInEnvironment:
+		            anOldNode class environment.
 	
+	aSubclass := newClass subclasses at:
+		            (1 to: newClass subclasses size) atRandom.
+	
+	newNode := RBLiteralValueNode value: aSubclass asString.
+
+	^ newNode
 ]
 
 { #category : 'applying' }
