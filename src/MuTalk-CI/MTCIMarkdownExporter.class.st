@@ -25,39 +25,49 @@ MTCIMarkdownExporter >> cloneLocation: anObject [
 { #category : 'accessing' }
 MTCIMarkdownExporter >> export [
 
-	| columnSpaces results alive numberOfSpacesOfAlive killed numberOfSpacesOfKilled terminated numberOfSpacesOfTerminated contentMD spacesOfAlive spacesOfKilled spacesOfTerminated |
-	columnSpaces := 17.
+	| results alive killed terminated builder contentMD |
 	results := mtResult generalResult.
 	alive := results numberOfAliveMutants.
 	killed := results numberOfKilledMutants.
 	terminated := results numberOfTerminatedMutants.
-	
-	numberOfSpacesOfAlive := columnSpaces - ( alive asString size ).
-	
-	numberOfSpacesOfKilled := columnSpaces - ( killed asString size ).
-	numberOfSpacesOfTerminated := columnSpaces - ( terminated asString size ).
-	
-	spacesOfAlive := String new: numberOfSpacesOfAlive.
-	1 to: numberOfSpacesOfAlive do: [:i | spacesOfAlive at: i put: Character space ].
-	
-	spacesOfKilled := String new: numberOfSpacesOfKilled.
-	1 to: numberOfSpacesOfKilled do: [:i | spacesOfKilled at: i put: Character space ].
-	
-	spacesOfTerminated := String new: numberOfSpacesOfTerminated.
-	1 to: numberOfSpacesOfTerminated do: [:i | spacesOfTerminated at: i put: Character space ].
-	
-	
-	contentMD := 
-'# Mutation Results
-- Commit: ', commit asString, '
-- Pull Request: ', pull_request_id asString, '
 
-| Mutants              | Number Of Mutants |
-| -------------------- | ----------------- |
-| ', self redIcon, ' Mutants alive      | ', alive asString, spacesOfAlive, ' |
-| ', self greenIcon, ' Mutants killed      | ', killed asString, spacesOfKilled, ' |
-| ', self brownIcon, ' Mutants terminated | ', terminated asString, spacesOfTerminated, ' |
-### Mutation Score: ', results mutationScore asString, '%'.
+	builder := Microdown builder.
+	contentMD := builder
+		           header: [ builder text: 'Mutation results' ]
+		           withLevel: 1;
+		           unorderedListDuring: [
+			           {
+				           ('Commit: ' , commit asString).
+				           ('Pull Request: ' , pull_request_id asString) } do: [
+					           :each | builder item: [ builder text: each ] ] ];
+		           text: Character lf asString;
+		           text: Character lf asString;
+		           cell: [ builder text: 'Mutants' ];
+		           cell: [ builder text: 'Number of Mutants' ];
+		           text: ' |';
+		           text: Character lf asString;
+		           headCell;
+		           headCell;
+		           text: ' |';
+		           text: Character lf asString;
+		           cell: [ builder text: self greenIcon , ' Alive' ];
+		           cell: [ builder text: alive asString ];
+		           text: ' |';
+		           text: Character lf asString;
+		           cell: [ builder text: self redIcon , ' Killed' ];
+		           cell: [ builder text: killed asString ];
+		           text: ' |';
+		           text: Character lf asString;
+		           cell: [ builder text: self brownIcon , ' Terminated' ];
+		           cell: [ builder text: terminated asString ];
+		           text: ' |';
+		           text: Character lf asString;
+		           header: [
+			           builder text:
+					           'Mutation score: ' , results mutationScore asString ]
+		           withLevel: 3;
+		           contents.
+
 
 	^ contentMD
 ]

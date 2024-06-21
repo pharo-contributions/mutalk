@@ -26,6 +26,6 @@ MTCIMarkdownExporterTest >> testMarkdownExporter [
 		      root: 'src';
 		      export.
 	
-	self assert: (Microdown asRichText: md) isText.
-	self assert: (Microdown asRichText: md) isNotEmpty.
+	self assert: md isString.
+	self assert: md isNotEmpty.
 ]
