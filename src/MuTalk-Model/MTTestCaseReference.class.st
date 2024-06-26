@@ -110,7 +110,6 @@ MTTestCaseReference >> resources [
 { #category : 'evaluating' }
 MTTestCaseReference >> run [
 
-	(logger class ~= MTNullLogger) ifTrue: [ logger initializeTestJob: (self resources size) ].
 	logger logRunningTest: self.
 	lastTimeToRun := [ lastResult := self testCase run ] timeToRun.
 	^ lastResult

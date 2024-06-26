@@ -175,6 +175,7 @@ MTCoveragePropagationPreparation >> runTestCase: testCaseReference [
 	| results |
 	counter := 1.
 	results := TestAsserter classForTestResult new.
+	testCaseReference logger initializeTestJob: (testCaseReference resources size).
 	results addAllResults: testCaseReference run.
 	^ results
 ]
@@ -205,7 +206,7 @@ MTCoveragePropagationPreparation >> testsWithSuccessfulPropagationFor: aMutation
 { #category : 'as yet unclassified' }
 MTCoveragePropagationPreparation >> uninstallMetalinks [
 
-	link uninstall 
+	link ifNotNil: [ link uninstall ]
 ]
 
 { #category : 'as yet unclassified' }
