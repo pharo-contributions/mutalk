@@ -8,7 +8,7 @@ Class {
 
 { #category : 'applying' }
 MTReplaceAndWithOrMutantOperator >> expressionToReplace [
-	^ '``@object and: ``@aBlock'
+	^ '``@object and: ``@arg1'
 ]
 
 { #category : 'accessing' }
