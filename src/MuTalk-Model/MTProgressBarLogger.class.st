@@ -139,9 +139,10 @@ MTProgressBarLogger >> logNumberOfGeneratedMutations: aNumber [
 { #category : 'logging' }
 MTProgressBarLogger >> logRunningTest: aTestCaseReference [
 
-	self testJob title:
+	self testJob ifNotNil: [ self testJob title:
 		'Running mutated test: ' , aTestCaseReference testCase printString.
-	self testJob increment
+		self testJob increment ].
+	
 ]
 
 { #category : 'logging' }

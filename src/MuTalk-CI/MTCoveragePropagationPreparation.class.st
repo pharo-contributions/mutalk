@@ -175,7 +175,6 @@ MTCoveragePropagationPreparation >> runTestCase: testCaseReference [
 	| results |
 	counter := 1.
 	results := TestAsserter classForTestResult new.
-	testCaseReference logger initializeTestJob: (testCaseReference resources size).
 	results addAllResults: testCaseReference run.
 	^ results
 ]
