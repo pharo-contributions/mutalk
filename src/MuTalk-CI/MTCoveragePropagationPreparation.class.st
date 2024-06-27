@@ -205,7 +205,7 @@ MTCoveragePropagationPreparation >> testsWithSuccessfulPropagationFor: aMutation
 { #category : 'as yet unclassified' }
 MTCoveragePropagationPreparation >> uninstallMetalinks [
 
-	link uninstall 
+	link ifNotNil: [ link uninstall ]
 ]
 
 { #category : 'as yet unclassified' }

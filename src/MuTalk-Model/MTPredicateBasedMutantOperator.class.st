@@ -34,6 +34,12 @@ MTPredicateBasedMutantOperator >> appliesToNode: aNode [
 ]
 
 { #category : 'private' }
+MTPredicateBasedMutantOperator >> applyTo: anOldNode [
+
+	^ self newNodeFrom: anOldNode
+]
+
+{ #category : 'private' }
 MTPredicateBasedMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber newExpression: aNode [
 
 	| parseTreeCopy allNodes |
@@ -66,6 +72,14 @@ MTPredicateBasedMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree
 MTPredicateBasedMutantOperator >> newNodeFrom: anOldNode [
 
 	self subclassResponsibility
+]
+
+{ #category : 'source' }
+MTPredicateBasedMutantOperator >> nodeToMutateWith: aMTMethodMutation [
+
+	^ self
+		  affectedNodeFor: aMTMethodMutation originalMethod parseTree
+		  at: aMTMethodMutation nodeNumber
 ]
 
 { #category : 'private' }

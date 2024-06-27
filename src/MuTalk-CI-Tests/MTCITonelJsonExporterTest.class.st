@@ -10,23 +10,24 @@ Class {
 
 { #category : 'tests' }
 MTCITonelJsonExporterTest >> testWorking [
-	"requires https://github.com/mabdi/smalltalk-SmallBank"
 
-	| analysis json moreInfo |
+	| analysis json moreInfo repo |
 	self skip.
-
 	analysis := MTAnalysis new
-		            testClasses: { SmallBankTest };
-		            classesToMutate: { SmallBank }.
+		            testClasses: { MTSmallBankTest };
+		            classesToMutate: { MTSmallBank }.
 	analysis run.
 	moreInfo := MTCoveragePropagationPreparation new
 		            mtResult: analysis;
 		            prepare.
+	repo := IceRepository repositories detect: [ :aRepo |
+		aRepo workingCopy packages anySatisfy: [ :package |
+			package name = MTSmallBank package name ] ].
+
 	json := MTCITonelJsonExporter new
 		        mtResult: analysis;
 		        coverageInfo: moreInfo;
-		        cloneLocation: FileLocator localDirectory fullName
-			        , '/iceberg/mabdi/smalltalk-smallbank';
+		        cloneLocation: repo location fullName;
 		        root: 'src';
 		        export.
 	self assert: json class equals: '' class

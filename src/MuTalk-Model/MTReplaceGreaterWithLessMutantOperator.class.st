@@ -6,6 +6,16 @@ Class {
 	#tag : 'Operators - Relational operation'
 }
 
+{ #category : 'applying' }
+MTReplaceGreaterWithLessMutantOperator >> expressionToReplace [
+	^ '`@a > `@b'
+]
+
+{ #category : 'applying' }
+MTReplaceGreaterWithLessMutantOperator >> newExpression [
+	^ '`@a < `@b'
+]
+
 { #category : 'accessing' }
 MTReplaceGreaterWithLessMutantOperator >> newSelector [
 	^#<

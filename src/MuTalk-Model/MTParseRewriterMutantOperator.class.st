@@ -34,6 +34,7 @@ MTParseRewriterMutantOperator >> expressionToReplace [
 { #category : 'private' }
 MTParseRewriterMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParseTree number: aNumber newExpression: anExpression [
 
+	
 	| rewriter parser number nNode |
 	rewriter := RBParseTreeRewriter new.
 	number := aNumber.
@@ -41,18 +42,17 @@ MTParseRewriterMutantOperator >> modifiedSourceFor: aCompiledMethod with: aParse
 	rewriter
 		replace: self expressionToReplace
 		withValueFrom: [ :oNode |
-			| oldNode newNode |
 			nNode := RBParser parseRewriteExpression: anExpression.
 			nNode := nNode copyInContext: rewriter context.
-			oldNode := oNode.
-			newNode := nNode.
-			newNode ]
+			nNode ]
 		when: [ :node |
 			number := number - 1.
 			number = 0 ].
 	rewriter executeTree: parser.
+	
 	parser := rewriter tree.
 	^ parser formattedCode
+	
 ]
 
 { #category : 'private' }
@@ -69,6 +69,22 @@ MTParseRewriterMutantOperator >> mutationsFor: aCompiledMethod with: aParseTree 
 { #category : 'applying' }
 MTParseRewriterMutantOperator >> newExpression [
 	self subclassResponsibility
+]
+
+{ #category : 'source' }
+MTParseRewriterMutantOperator >> nodeToMutateWith: aMTMethodMutation [ 
+	
+	| n searcher |
+	n := 1.
+	
+	searcher := RBParseTreeSearcher new
+		            matches: self expressionToReplace
+		            do: [ :node :answer | 
+			            n = aMTMethodMutation nodeNumber ifTrue: [ ^ node ].
+			            n := n + 1 ];
+		            yourself.
+	searcher executeTree: aMTMethodMutation originalMethod ast.
+	self error: 'Not found'
 ]
 
 { #category : 'applying' }

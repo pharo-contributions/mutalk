@@ -24,6 +24,16 @@ MTMessageSendArgumentsNullifierOperator >> description [
 	^ 'Nullify the arguments of message sends'
 ]
 
+{ #category : 'printing' }
+MTMessageSendArgumentsNullifierOperator >> expressionToReplace [
+	^ self subclassResponsibility 
+]
+
+{ #category : 'printing' }
+MTMessageSendArgumentsNullifierOperator >> newExpression [
+	^ self subclassResponsibility 
+]
+
 { #category : 'applying' }
 MTMessageSendArgumentsNullifierOperator >> newNodeFrom: anOldNode [
 

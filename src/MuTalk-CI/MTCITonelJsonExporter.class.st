@@ -1,12 +1,8 @@
 Class {
 	#name : 'MTCITonelJsonExporter',
-	#superclass : 'MTAbstractJsonExporter',
+	#superclass : 'MTAbstractExporter',
 	#instVars : [
 		'seqNum',
-		'pull_request_id',
-		'commit',
-		'cloneLocation',
-		'root',
 		'coverageInfo'
 	],
 	#category : 'MuTalk-CI',
@@ -33,30 +29,6 @@ MTCITonelJsonExporter >> classMutations: class [
 	| mutations |
 	mutations:= mtResult mutantResults select: [ :mutationEval | 
 		mutationEval mutant originalClass = class ]
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> cloneLocation [
-
-	^ cloneLocation
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> cloneLocation: anObject [
-
-	cloneLocation := anObject
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> commit [
-
-	^ commit
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> commit: anObject [
-
-	commit := anObject
 ]
 
 { #category : 'accessing' }
@@ -175,30 +147,33 @@ MTCITonelJsonExporter >> exportTestCases [
 MTCITonelJsonExporter >> extractMutatedLine: mutatedNode nodeToMutate: nodeToMutate originalSource: originalSource modifiedSource: modifiedSource [
 
 	| mSource_1 mSource_2 mSource_3 mSource ending changedLines mSource_1_break start_of_changes |
-	ending := Character lf.
+	ending := Character lf asString.
 
 	mSource_1 := nodeToMutate start > 1
-		             ifTrue: [ 
+		             ifTrue: [
 		             originalSource copyFrom: 1 to: nodeToMutate start - 1 ]
 		             ifFalse: [ '' ].
-	mSource_1_break := mSource_1 endsWithAnyOf: { 
+	mSource_1_break := mSource_1 endsWithAnyOf: {
 			                   String lf.
 			                   String cr }.
 	mSource_2 := mutatedNode formattedCode.
 	mSource_3 := nodeToMutate stop = originalSource size
 		             ifTrue: [ '' ]
-		             ifFalse: [ 
-		             originalSource
-			             copyFrom: nodeToMutate stop + 1
-			             to: originalSource size ].
+		             ifFalse: [
+			             originalSource
+				             copyFrom: nodeToMutate stop + 1
+				             to: originalSource size ].
 	mSource := mSource_1 , mSource_2 , mSource_3.
 	start_of_changes := mSource_1 lines size + (mSource_1_break
 		                     ifTrue: [ 1 ]
 		                     ifFalse: [ 0 ]).
-	changedLines := ending join: (mSource lines
-			                 copyFrom: start_of_changes
-			                 to: start_of_changes + mSource_2 lines size - 1).
-	
+	changedLines := mSource_2 lines size > 1
+		                ifTrue: [
+			                ending join: (mSource lines
+					                 copyFrom: start_of_changes
+					                 to: start_of_changes + mSource_2 lines size - 1) ]
+		                ifFalse: [ ending ].
+
 	^ changedLines
 ]
 
@@ -239,15 +214,14 @@ MTCITonelJsonExporter >> getHashOfFile: class [
 
 { #category : 'as yet unclassified' }
 MTCITonelJsonExporter >> getPathOfClass: class [
-
 	"Based on code in SmalltalkCI project"
 
 	| pkg nonMetaClass fileName |
-	pkg := (RPackageOrganizer default packageOf: class) packageName.
+	pkg := (RPackageOrganizer default packageOf: class) name.
 	nonMetaClass := (class respondsTo: #instanceSide)
 		                ifTrue: [ class instanceSide ]
 		                ifFalse: [ class theNonMetaClass ].
-	fileName := root, '/', pkg , '/' , nonMetaClass name , '.class.st'.
+	fileName := root , '/' , pkg , '/' , nonMetaClass name , '.class.st'.
 	^ fileName
 ]
 
@@ -270,30 +244,6 @@ MTCITonelJsonExporter >> lineNumberOffsetClass: classToCover method: method in: 
 						            ((line substrings: '>>') last copyWithout: $]).
 					selector = method ifTrue: [ ^ lineNumber ] ] ].
 	^ 0
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> pull_request_id [
-
-	^ pull_request_id
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> pull_request_id: anObject [
-
-	pull_request_id := anObject
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> root [
-
-	^ root
-]
-
-{ #category : 'accessing' }
-MTCITonelJsonExporter >> root: anObject [
-
-	root := anObject
 ]
 
 { #category : 'accessing' }

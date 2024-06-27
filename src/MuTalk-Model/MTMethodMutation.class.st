@@ -130,16 +130,8 @@ MTMethodMutation >> nodeNumber: anInteger [
 { #category : 'accessing' }
 MTMethodMutation >> nodeToMutate [
 
-	| n searcher |
-	n := 1.
-	searcher := RBParseTreeSearcher new
-		            matches: operator expressionToReplace
-		            do: [ :node :answer | 
-			            n = nodeNumber ifTrue: [ ^ node ].
-			            n := n + 1 ];
-		            yourself.
-	searcher executeTree: originalMethod ast.
-	self error: 'Not found'
+	
+	^ operator nodeToMutateWith: self
 ]
 
 { #category : 'accessing' }

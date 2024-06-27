@@ -43,6 +43,12 @@ MTAbstractMutantOperator class >> recursionsDetectionThreshold [
 ]
 
 { #category : 'printing' }
+MTAbstractMutantOperator >> applyTo: anOldNode [
+
+	self subclassResponsibility
+]
+
+{ #category : 'printing' }
 MTAbstractMutantOperator >> description [
 	self subclassResponsibility
 ]

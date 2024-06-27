@@ -6,6 +6,11 @@ Class {
 	#tag : 'Operators - Logical boolean operation'
 }
 
+{ #category : 'applying' }
+MTReplaceAndWithOrMutantOperator >> expressionToReplace [
+	^ '``@object and: ``@arg1'
+]
+
 { #category : 'accessing' }
 MTReplaceAndWithOrMutantOperator >> newSelector [
 	^#or:

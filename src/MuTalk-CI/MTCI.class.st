@@ -59,6 +59,11 @@ MTCI >> exportFileName [
 ]
 
 { #category : 'private' }
+MTCI >> exportMarkdownFileName [
+	^ '__mutalk_summary.md'
+]
+
+{ #category : 'private' }
 MTCI >> exportResultJson: analysis [
 
 	| json file repo commitFrom commitTo timestamp |
@@ -100,6 +105,29 @@ MTCI >> exportResultJson: analysis coverageInfo: coverageInfo [
 	file exists ifTrue: [ file delete ].
 	file writeStream
 		nextPutAll: json;
+		close
+]
+
+{ #category : 'private' }
+MTCI >> exportSummaryMarkdown: analysis [
+
+	| markdown file repo commitFrom commitTo timestamp |
+	repo := self getRepo.
+	commitFrom := commit.
+	commitTo := repo head commit id.
+	timestamp := DateAndTime now asUnixTime.
+
+	markdown := MTCIMarkdownExporter new
+		        mtResult: analysis;
+		        commit: commitTo;
+		        root: repo subdirectory;
+		        cloneLocation: repo location fullName;
+		        export.
+	
+	file := FileLocator imageDirectory / self exportMarkdownFileName.
+	file exists ifTrue: [ file delete ].
+	file writeStream
+		nextPutAll: markdown;
 		close
 ]
 
@@ -205,5 +233,6 @@ MTCI >> runMutalkTargets: targets tests: tests generationStrategy: generationStr
 		            mutantGenerationStrategy: generationStrategy.
 	analysis run.
 	coverageInfo := self prepareCoverageInfo: analysis.
-	self exportResultJson: analysis coverageInfo: coverageInfo
+	self exportResultJson: analysis coverageInfo: coverageInfo.
+	self exportSummaryMarkdown: analysis
 ]
