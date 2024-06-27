@@ -13,11 +13,9 @@ MTCITonelJsonExporterTest >> testWorking [
 	"requires https://github.com/mabdi/smalltalk-SmallBank"
 
 	| analysis json moreInfo |
-	self skip.
-
 	analysis := MTAnalysis new
-		            testClasses: { SmallBankTest };
-		            classesToMutate: { SmallBank }.
+		            testClasses: { MTSmallBankTest };
+		            classesToMutate: { MTSmallBank }.
 	analysis run.
 	moreInfo := MTCoveragePropagationPreparation new
 		            mtResult: analysis;
@@ -26,7 +24,7 @@ MTCITonelJsonExporterTest >> testWorking [
 		        mtResult: analysis;
 		        coverageInfo: moreInfo;
 		        cloneLocation: FileLocator localDirectory fullName
-			        , '/iceberg/mabdi/smalltalk-SmallBank';
+			        , '/iceberg/pharo-contributions/mutalk';
 		        root: 'src';
 		        export.
 	self assert: json class equals: '' class

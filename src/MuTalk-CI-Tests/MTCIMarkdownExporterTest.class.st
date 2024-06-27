@@ -10,8 +10,8 @@ MTCIMarkdownExporterTest >> testMarkdownExporter [
 
 	| analysis md moreInfo |
 	analysis := MTAnalysis new
-		            testClasses: { SmallBankTest };
-		            classesToMutate: { SmallBank }.
+		            testClasses: { MTSmallBankTest };
+		            classesToMutate: { MTSmallBank }.
 	analysis run.
 	analysis generalResult.
 	moreInfo := MTCoveragePropagationPreparation new
@@ -22,7 +22,7 @@ MTCIMarkdownExporterTest >> testMarkdownExporter [
 		      mtResult: analysis;
 		      cloneLocation:
 			      FileLocator localDirectory fullName
-			      , '/iceberg/mabdi/smalltalk-SmallBank';
+			      , '/iceberg/pharo-contributions/mutalk';
 		      root: 'src';
 		      export.
 	
