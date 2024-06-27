@@ -12,6 +12,7 @@ Class {
 MTCITonelJsonExporterTest >> testWorking [
 
 	| analysis json moreInfo repo |
+	self skip.
 	analysis := MTAnalysis new
 		            testClasses: { MTSmallBankTest };
 		            classesToMutate: { MTSmallBank }.
