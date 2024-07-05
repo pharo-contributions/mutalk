@@ -10,6 +10,7 @@ on:
           description: 'modes: full (run on all project), diff (run on the last commit diff)'
           required: true
           default: 'diff'
+          type: string
 
 jobs:
   mutation_testing:
