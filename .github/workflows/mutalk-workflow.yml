@@ -1,0 +1,55 @@
+name: MutalkCI
+
+# This reusable workflow defines a mutation testing CI to run on a ginven project
+# Specify the mode (full or diff) to run mutations
+
+on:
+  workflow_call:
+    inputs:
+        mode:
+          description: 'modes: full (run on all project), diff (run on the last commit diff)'
+          required: true
+          default: 'diff'
+
+jobs:
+  mutation_testing:
+    runs-on: ubuntu-latest
+    permissions:
+          pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: hpi-swa/setup-smalltalkCI@v1
+        id: smalltalkci
+        with:
+          smalltalk-image: Pharo64-stable
+
+      - run: smalltalkci -s ${{ steps.smalltalkci.outputs.smalltalk-image }}
+        shell: bash
+        timeout-minutes: 15
+
+      - run: ${{env.SMALLTALK_CI_VM}} ${{env.SMALLTALK_CI_IMAGE}} metacello install "github://pharo-contributions/mutalk/src" BaselineOfMuTalk
+        shell: bash
+
+      - name: full mutation testing
+        if: github.event.inputs.mode == 'full'
+        run: ${{env.SMALLTALK_CI_VM}} ${{env.SMALLTALK_CI_IMAGE}} mutalk --project=${{github.event.repository.name}} 
+
+      - name: diff mutation testing
+        if: github.event.inputs.mode == 'diff'
+        run: ${{env.SMALLTALK_CI_VM}} ${{env.SMALLTALK_CI_IMAGE}} mutalk --project=${{github.event.repository.name}}  --diff
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          comment_tag: mut_report
+          filePath: "${{env.SMALLTALK_CI_BUILD_BASE}}/__mutalk_summary.md"
+      
+      - run: cp ${{env.SMALLTALK_CI_BUILD_BASE}}/__mutalk_summary.md $GITHUB_STEP_SUMMARY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mutation-testing-output
+          path: ${{env.SMALLTALK_CI_BUILD_BASE}}/__mutalk_export.json
