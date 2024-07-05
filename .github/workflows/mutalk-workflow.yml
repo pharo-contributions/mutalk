@@ -8,7 +8,7 @@ on:
     inputs:
         mode:
           description: 'modes: full (run on all project), diff (run on the last commit diff)'
-          default: 'diff'
+          default: 'full'
           type: string
 
 jobs:
@@ -34,11 +34,11 @@ jobs:
         shell: bash
 
       - name: full mutation testing
-        if: github.event.inputs.mode == 'full'
+        if: inputs.mode == 'full'
         run: ${{env.SMALLTALK_CI_VM}} ${{env.SMALLTALK_CI_IMAGE}} mutalk --project=${{github.event.repository.name}} 
 
       - name: diff mutation testing
-        if: github.event.inputs.mode == 'diff'
+        if: inputs.mode == 'diff'
         run: ${{env.SMALLTALK_CI_VM}} ${{env.SMALLTALK_CI_IMAGE}} mutalk --project=${{github.event.repository.name}}  --diff
 
       - name: Comment PR
