@@ -1,3 +1,6 @@
+"
+This class serves only as an example in the MuTalk chapter.
+"
 Class {
 	#name : 'MyVehicle',
 	#superclass : 'Object',
