@@ -5,29 +5,34 @@ Class {
 	#name : 'MyVehicle',
 	#superclass : 'Object',
 	#instVars : [
-		'numberOfWheels',
-		'numberOfSeats'
+		'numberOfWheels'
 	],
 	#category : 'MuTalk-Examples',
 	#package : 'MuTalk-Examples'
 }
 
 { #category : 'instance creation' }
-MyVehicle class >> newSimpleCar [
+MyVehicle class >> newBike [
 
-	^ self new initializeWithNumberOfWheels: 4 andNumberOfSeats: 5
+	^ self new initializeWithNumberOfWheels: 2
 ]
 
 { #category : 'instance creation' }
-MyVehicle class >> newWithSeats: aNumber [
+MyVehicle class >> newSimpleCar [
 
-	^ self new initializeWithNumberOfWheels: 0 andNumberOfSeats: aNumber
+	^ self new initializeWithNumberOfWheels: 4
 ]
 
 { #category : 'instance creation' }
 MyVehicle class >> newWithWheels: aNumber [
 
-	^ self new initializeWithNumberOfWheels: aNumber andNumberOfSeats: 0
+	^ self new initializeWithNumberOfWheels: aNumber
+]
+
+{ #category : 'as yet unclassified' }
+MyVehicle >> emptyMethod [
+
+	
 ]
 
 { #category : 'testing' }
@@ -37,22 +42,9 @@ MyVehicle >> hasFourWheels [
 ]
 
 { #category : 'initialization' }
-MyVehicle >> initializeWithNumberOfWheels: aNumberOfWheels andNumberOfSeats: aNumberOfSeats [
+MyVehicle >> initializeWithNumberOfWheels: aNumberOfWheels [
 
-	self numberOfWheels: aNumberOfWheels.
-	self numberOfSeats: aNumberOfSeats
-]
-
-{ #category : 'accessing' }
-MyVehicle >> numberOfSeats [
-
-	^ numberOfSeats
-]
-
-{ #category : 'accessing' }
-MyVehicle >> numberOfSeats: aNumber [
-
-	numberOfSeats := aNumber
+	self numberOfWheels: aNumberOfWheels
 ]
 
 { #category : 'accessing' }

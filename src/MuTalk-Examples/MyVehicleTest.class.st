@@ -6,11 +6,11 @@ Class {
 }
 
 { #category : 'tests' }
-MyVehicleTest >> testHasFiveSeats [
+MyVehicleTest >> testBikeHasTwoWheels [
 
-	| aVehicle |
-	aVehicle := MyVehicle newWithSeats: 5.
-	self assert: aVehicle numberOfSeats equals: 5
+	| bike |
+	bike := MyVehicle newBike.
+	self assert: bike numberOfWheels equals: 2
 ]
 
 { #category : 'tests' }
@@ -22,10 +22,9 @@ MyVehicleTest >> testHasFourWheels [
 ]
 
 { #category : 'tests' }
-MyVehicleTest >> testSimpleCarHasFourWheelsAndFiveSeats [
+MyVehicleTest >> testSimpleCarHasFourWheels [
 
 	| car |
 	car := MyVehicle newSimpleCar.
-	self assert: car hasFourWheels.
-	self assert: car numberOfSeats equals: 5
+	self assert: car hasFourWheels
 ]
