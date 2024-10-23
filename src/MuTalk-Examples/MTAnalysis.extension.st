@@ -30,7 +30,8 @@ MTAnalysis class >> exampleAnalysisWithLessOperators [
 	mtAnalysis run.
 	mtAnalysis generalResult inspect.
 
-	"How to get non mutated methods:"
+	"Uncomment the following instructions to get non mutated methods"
+	
 	"nonMutatedAnalysis := MTNonMutatedMethodsAnalysis forClasses: { MyVehicle }.
 	nonMutatedAnalysis mtAnalysis: mtAnalysis.
 	nonMutatedAnalysis methodsWithoutMutation inspect"
