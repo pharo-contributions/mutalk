@@ -129,8 +129,8 @@ MTAnalysis >> generateCoverageAnalysis [
 { #category : 'running' }
 MTAnalysis >> generateMutations [
 
-	logger logStartMutationGeneration: self methodSize.
 	^ mutations ifNil: [
+		  logger logStartMutationGeneration: self methodSize.
 		  mutations := mutantGenerationStrategy
 			               mutationsFor: self
 			               loggingIn: logger.

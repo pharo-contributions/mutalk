@@ -210,6 +210,8 @@ MTMatrix >> generateHeatmap [
 	heatmap dataMatrix: (self
 			 dataMatrixForTests: testDictionary
 			 andMutations: mutationDictionary).
+	"the data change the color palette domain, but we want it to be from 0 to 100"
+	heatmap colorPalette domain: { 0. 50. 100 }.
 
 	heatmap open
 ]
@@ -245,8 +247,9 @@ MTMatrix >> initializeHeatmap [
 	heatmap labelShapeCell labelShape bold.
 	heatmap shape extent: 50 @ 20.
 	heatmap colorPalette: (NSScale linear range: {
+				 Color red.
 				 Color yellow.
-				 Color red }).
+				 Color green }).
 	^ heatmap
 ]
 

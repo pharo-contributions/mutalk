@@ -54,3 +54,9 @@ MTUtilityAnalysis >> mtAnalysis [
 
 	^ mtAnalysis
 ]
+
+{ #category : 'accessing' }
+MTUtilityAnalysis >> mtAnalysis: anAnalysis [
+
+	mtAnalysis := anAnalysis
+]
