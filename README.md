@@ -1,8 +1,10 @@
 # MuTalk (µ-talk)
 Mutation Testing in Smalltalk
+
 <a href="https://www.pharo.org">
     <img alt="Pharo" src="https://img.shields.io/static/v1?style=for-the-badge&message=Pharo&color=3297d4&logo=Harbor&logoColor=FFFFFF&label=" />
 </a>
+
 [![Build status](https://github.com/pavel-krivanek/mutalk/workflows/CI/badge.svg)](https://github.com/pavel-krivanek/mutalk/actions/workflows/test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/pavel-krivanek/mutalk/badge.svg?branch=master)](https://coveralls.io/github/pavel-krivanek/mutalk?branch=master)
 [![Pharo version](https://img.shields.io/badge/Pharo-9.0-%23aac9ff.svg)](https://pharo.org/download)
