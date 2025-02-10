@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : 'initialization' }
-MTProgressBarLogger >> initialize [
+MTProgressBarLogger >> initializeMainJob [
 
 	mainJob := Job new.
 	SystemVersion current major <= 10 ifTrue: [
@@ -75,6 +75,7 @@ MTProgressBarLogger >> initializeTestJob: size [
 { #category : 'logging' }
 MTProgressBarLogger >> logAnalysisStart [
 
+	self initializeMainJob.
 	mainJob prepareForRunning
 ]
 
