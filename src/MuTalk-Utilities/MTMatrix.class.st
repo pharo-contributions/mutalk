@@ -76,6 +76,15 @@ MTMatrix >> analysis [
 	^ analysis
 ]
 
+{ #category : 'accessing' }
+MTMatrix >> analysis: anAnalysis [
+
+	analysis := anAnalysis.
+	testCases := analysis testCases.
+	mutations := analysis mutations.
+	self fillMatrix
+]
+
 { #category : 'comparing' }
 MTMatrix >> booleanCollection1: collection1 equalsBooleanCollection2: collection2 [
 
@@ -100,12 +109,7 @@ MTMatrix >> booleanCollection1: collection1 includesBooleanCollection2: collecti
 MTMatrix >> build [
 
 	self runAnalysis.
-	mutations do: [ :mut |
-		self
-			at: mut
-			put:
-			(testCases collect: [ :test |
-				 (self failuresFor: mut) includes: test ]) ]
+	self fillMatrix
 ]
 
 { #category : 'accessing' }
@@ -193,6 +197,17 @@ MTMatrix >> failuresFor: aMutation andTestClass: aTestClass [
 
 	^ (self failuresFor: aMutation) select: [ :testCase |
 		  testCase testCaseClass = aTestClass ]
+]
+
+{ #category : 'building' }
+MTMatrix >> fillMatrix [
+
+	mutations do: [ :mut |
+		self
+			at: mut
+			put:
+			(testCases collect: [ :test |
+				 (self failuresFor: mut) includes: test ]) ]
 ]
 
 { #category : 'rendering' }
