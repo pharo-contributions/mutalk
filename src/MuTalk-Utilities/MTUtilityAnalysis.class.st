@@ -44,9 +44,14 @@ MTUtilityAnalysis >> classes: anObject [
 MTUtilityAnalysis >> initializeMtAnalysis [
 
 	mtAnalysis ifNil: [
-		mtAnalysis := MTAnalysis new
+		[ mtAnalysis := MTAnalysis new
 			              classesToMutate: classes;
 			              testClasses: {  } ]
+			on: Warning
+			do: [ :warning |
+				warning messageText = 'There is currently o tests'
+					ifTrue: [ warning resume ]
+					ifFalse: [ warning signal ] ] ]
 ]
 
 { #category : 'accessing' }
