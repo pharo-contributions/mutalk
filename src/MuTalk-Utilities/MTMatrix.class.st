@@ -80,6 +80,8 @@ MTMatrix >> analysis [
 MTMatrix >> analysis: anAnalysis [
 
 	analysis := anAnalysis.
+	testClasses := (anAnalysis testCases groupedBy: [ :testCase |
+		                testCase testCaseClass ]) keys.
 	testCases := analysis testCases.
 	mutations := analysis mutations.
 	self fillMatrix
