@@ -49,7 +49,7 @@ MTUtilityAnalysis >> initializeMtAnalysis [
 			              testClasses: {  } ]
 			on: Warning
 			do: [ :warning |
-				warning messageText = 'There is currently o tests'
+				warning messageText = 'There is currently no tests'
 					ifTrue: [ warning resume ]
 					ifFalse: [ warning signal ] ] ]
 ]
