@@ -14,7 +14,8 @@ Class {
 		'stopOnErrorOrFail',
 		'testSelectionStrategy',
 		'testFilter',
-		'mutantGenerationStrategy'
+		'mutantGenerationStrategy',
+		'warnAboutEmptyTests'
 	],
 	#category : 'MuTalk-Model-Core',
 	#package : 'MuTalk-Model',
@@ -105,6 +106,12 @@ MTAnalysis >> doNotStopOnErrorOrFail [
 	stopOnErrorOrFail := false
 ]
 
+{ #category : 'accessing' }
+MTAnalysis >> doNotWarnAboutEmptyTests [
+
+	warnAboutEmptyTests := false
+]
+
 { #category : 'results' }
 MTAnalysis >> generalResult [
 
@@ -191,7 +198,8 @@ MTAnalysis >> initialize [
 	elapsedTime := 0.
 	logger := self defaultLogger.
 	stopOnErrorOrFail := true.
-	budget := self defaultBudget
+	budget := self defaultBudget.
+	warnAboutEmptyTests := true
 ]
 
 { #category : 'accessing' }
@@ -362,7 +370,7 @@ MTAnalysis >> testCasesFrom: aClassCollection [
 				         testCase addAll:
 					         (self testCasesReferencesFrom: testClass) ].
 			         testCase ].
-	tests isEmpty ifTrue: [
+	tests isEmpty & warnAboutEmptyTests ifTrue: [
 		Warning signal: 'There is currently no tests' ].
 	^ tests
 ]
