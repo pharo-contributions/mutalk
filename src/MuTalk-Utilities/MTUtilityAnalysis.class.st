@@ -44,14 +44,10 @@ MTUtilityAnalysis >> classes: anObject [
 MTUtilityAnalysis >> initializeMtAnalysis [
 
 	mtAnalysis ifNil: [
-		[ mtAnalysis := MTAnalysis new
+		mtAnalysis := MTAnalysis new
 			              classesToMutate: classes;
+			              doNotWarnAboutEmptyTests;
 			              testClasses: {  } ]
-			on: Warning
-			do: [ :warning |
-				warning messageText = 'There is currently no tests'
-					ifTrue: [ warning resume ]
-					ifFalse: [ warning signal ] ] ]
 ]
 
 { #category : 'accessing' }
