@@ -13,6 +13,12 @@ Class {
 }
 
 { #category : 'initialization' }
+MTProgressBarLogger >> initialize [
+
+	self initializeMainJob
+]
+
+{ #category : 'initialization' }
 MTProgressBarLogger >> initializeMainJob [
 
 	mainJob := Job new.
@@ -75,7 +81,7 @@ MTProgressBarLogger >> initializeTestJob: size [
 { #category : 'logging' }
 MTProgressBarLogger >> logAnalysisStart [
 
-	self initializeMainJob.
+	mainJob ifNil: [ self initializeMainJob ].
 	mainJob prepareForRunning
 ]
 
