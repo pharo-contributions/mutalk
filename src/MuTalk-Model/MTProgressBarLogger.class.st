@@ -15,6 +15,12 @@ Class {
 { #category : 'initialization' }
 MTProgressBarLogger >> initialize [
 
+	self initializeMainJob
+]
+
+{ #category : 'initialization' }
+MTProgressBarLogger >> initializeMainJob [
+
 	mainJob := Job new.
 	SystemVersion current major <= 10 ifTrue: [
 		"Jobs need a block below P10 to have an owner?"
@@ -75,6 +81,7 @@ MTProgressBarLogger >> initializeTestJob: size [
 { #category : 'logging' }
 MTProgressBarLogger >> logAnalysisStart [
 
+	mainJob ifNil: [ self initializeMainJob ].
 	mainJob prepareForRunning
 ]
 
