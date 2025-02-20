@@ -253,6 +253,18 @@ MTAnalysis >> mutantResults [
 ]
 
 { #category : 'accessing' }
+MTAnalysis >> mutantSelectionStrategy [
+
+	^ mutantGenerationStrategy mutantSelectionStrategy
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> mutantSelectionStrategy: anObject [
+
+	mutantGenerationStrategy mutantSelectionStrategy: anObject
+]
+
+{ #category : 'accessing' }
 MTAnalysis >> mutations [
 
 	^ mutations
