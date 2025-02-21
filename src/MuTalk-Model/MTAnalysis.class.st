@@ -216,7 +216,7 @@ MTAnalysis >> logger: anObject [
 	logger := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'accessing' }
 MTAnalysis >> methodSize [
 
 	^ (self modelClasses flatCollect: #methods) size
