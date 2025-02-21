@@ -137,7 +137,7 @@ MTAnalysis >> generateCoverageAnalysis [
 MTAnalysis >> generateMutations [
 
 	^ mutations ifNil: [
-		  logger logStartMutationGeneration: self methodSize.
+		  logger logStartMutationGeneration: self methodsCount.
 		  mutations := mutantGenerationStrategy
 			               mutationsFor: self
 			               loggingIn: logger.
@@ -217,7 +217,7 @@ MTAnalysis >> logger: anObject [
 ]
 
 { #category : 'accessing' }
-MTAnalysis >> methodSize [
+MTAnalysis >> methodsCount [
 
 	^ (self modelClasses flatCollect: #methods) size
 ]
@@ -258,6 +258,18 @@ MTAnalysis >> mutantGenerationStrategy: anObject [
 MTAnalysis >> mutantResults [
 
 	^ mutantResults
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> mutantSelectionStrategy [
+
+	^ mutantGenerationStrategy mutantSelectionStrategy
+]
+
+{ #category : 'accessing' }
+MTAnalysis >> mutantSelectionStrategy: anObject [
+
+	mutantGenerationStrategy mutantSelectionStrategy: anObject
 ]
 
 { #category : 'accessing' }
