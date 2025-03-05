@@ -196,11 +196,10 @@ MTMatrix >> failuresFor: aMutation andTestClass: aTestClass [
 ]
 
 { #category : 'rendering' }
-MTMatrix >> generateHeatmap [
+MTMatrix >> generateHeatmapWithMutationsGroupedBy: aBlock [
 
 	| heatmap mutationDictionary testDictionary |
-	mutationDictionary := mutations groupedBy: [ :mutation |
-		                      mutation operator species ].
+	mutationDictionary := mutations groupedBy: aBlock.
 	testDictionary := testCases groupedBy: #testCaseClass.
 
 	heatmap := self initializeHeatmap.
@@ -214,6 +213,27 @@ MTMatrix >> generateHeatmap [
 	heatmap colorPalette domain: { 0. 50. 100 }.
 
 	heatmap open
+]
+
+{ #category : 'rendering' }
+MTMatrix >> generateHeatmapWithMutationsGroupedByClass [
+
+	self generateHeatmapWithMutationsGroupedBy: [ :mutation |
+		mutation originalClass ]
+]
+
+{ #category : 'rendering' }
+MTMatrix >> generateHeatmapWithMutationsGroupedByMethod [
+
+	self generateHeatmapWithMutationsGroupedBy: [ :mutation |
+		mutation originalMethod name ]
+]
+
+{ #category : 'rendering' }
+MTMatrix >> generateHeatmapWithMutationsGroupedByOperator [
+
+	self generateHeatmapWithMutationsGroupedBy: [ :mutation |
+		mutation operator species ]
 ]
 
 { #category : 'rendering' }
