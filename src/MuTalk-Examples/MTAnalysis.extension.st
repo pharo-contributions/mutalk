@@ -44,7 +44,7 @@ MTAnalysis class >> exampleWithHeatmap [
 	| matrix |
 	matrix := MTMatrix forClasses: { MyVehicle }.
 	matrix build.
-	matrix generateHeatmapWithMutationsGroupedByOperator
+	matrix generateHeatmapWithMutationsGroupedByMethod
 ]
 
 { #category : '*MuTalk-Examples' }
