@@ -46,6 +46,7 @@ MTUtilityAnalysis >> initializeMtAnalysis [
 	mtAnalysis ifNil: [
 		mtAnalysis := MTAnalysis new
 			              classesToMutate: classes;
+			              doNotWarnAboutEmptyTests;
 			              testClasses: {  } ]
 ]
 
