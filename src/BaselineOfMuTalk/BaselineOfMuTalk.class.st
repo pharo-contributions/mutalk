@@ -42,5 +42,6 @@ BaselineOfMuTalk >> baseline: spec [
 			with: #( 'TestCoverage' 'MuTalk-Model' 'MuTalk-TestResources'
 				   'MuTalk-TestResourcesForExtensionMethods'
 				   'MuTalk-Tests' 'MuTalk-CI' 'MuTalk-CI-Tests' 'MuTalk-SpecUI'
-				   'MuTalk-Utilities' 'MuTalk-Utilities-Tests' ) ]
+				   'MuTalk-Utilities' 'MuTalk-Utilities-Tests'
+				   'Examples' ) ]
 ]
