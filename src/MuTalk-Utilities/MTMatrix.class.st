@@ -213,6 +213,27 @@ MTMatrix >> fillMatrix [
 ]
 
 { #category : 'rendering' }
+MTMatrix >> generateHeatmapByClass [
+
+	self generateHeatmapWithMutationsGroupedBy: [ :mutation |
+		mutation originalClass ]
+]
+
+{ #category : 'rendering' }
+MTMatrix >> generateHeatmapByMethod [
+
+	self generateHeatmapWithMutationsGroupedBy: [ :mutation |
+		mutation originalMethod name ]
+]
+
+{ #category : 'rendering' }
+MTMatrix >> generateHeatmapByOperator [
+
+	self generateHeatmapWithMutationsGroupedBy: [ :mutation |
+		mutation operator species ]
+]
+
+{ #category : 'rendering' }
 MTMatrix >> generateHeatmapWithMutationsGroupedBy: aBlock [
 
 	| heatmap mutationDictionary testDictionary |
@@ -230,27 +251,6 @@ MTMatrix >> generateHeatmapWithMutationsGroupedBy: aBlock [
 	heatmap colorPalette domain: { 0. 50. 100 }.
 
 	heatmap open
-]
-
-{ #category : 'rendering' }
-MTMatrix >> generateHeatmapWithMutationsGroupedByClass [
-
-	self generateHeatmapWithMutationsGroupedBy: [ :mutation |
-		mutation originalClass ]
-]
-
-{ #category : 'rendering' }
-MTMatrix >> generateHeatmapWithMutationsGroupedByMethod [
-
-	self generateHeatmapWithMutationsGroupedBy: [ :mutation |
-		mutation originalMethod name ]
-]
-
-{ #category : 'rendering' }
-MTMatrix >> generateHeatmapWithMutationsGroupedByOperator [
-
-	self generateHeatmapWithMutationsGroupedBy: [ :mutation |
-		mutation operator species ]
 ]
 
 { #category : 'rendering' }
