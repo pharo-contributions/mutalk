@@ -1,8 +1,8 @@
 Class {
 	#name : 'MyVehicleTest',
 	#superclass : 'TestCase',
-	#category : 'MuTalk-Examples',
-	#package : 'MuTalk-Examples'
+	#category : 'MuTalk-Examples-Tests',
+	#package : 'MuTalk-Examples-Tests'
 }
 
 { #category : 'tests' }
