@@ -213,11 +213,31 @@ MTMatrix >> fillMatrix [
 ]
 
 { #category : 'rendering' }
-MTMatrix >> generateHeatmap [
+MTMatrix >> generateHeatmapByClass [
+
+	self generateHeatmapWithMutationsGroupedBy: [ :mutation |
+		mutation originalClass ]
+]
+
+{ #category : 'rendering' }
+MTMatrix >> generateHeatmapByMethod [
+
+	self generateHeatmapWithMutationsGroupedBy: [ :mutation |
+		mutation originalMethod name ]
+]
+
+{ #category : 'rendering' }
+MTMatrix >> generateHeatmapByOperator [
+
+	self generateHeatmapWithMutationsGroupedBy: [ :mutation |
+		mutation operator species ]
+]
+
+{ #category : 'rendering' }
+MTMatrix >> generateHeatmapWithMutationsGroupedBy: aBlock [
 
 	| heatmap mutationDictionary testDictionary |
-	mutationDictionary := mutations groupedBy: [ :mutation |
-		                      mutation operator species ].
+	mutationDictionary := mutations groupedBy: aBlock.
 	testDictionary := testCases groupedBy: #testCaseClass.
 
 	heatmap := self initializeHeatmap.

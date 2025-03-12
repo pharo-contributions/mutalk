@@ -1,11 +1,27 @@
 Extension { #name : 'MTAnalysis' }
 
 { #category : '*MuTalk-Utilities' }
-MTAnalysis >> generateHeatmap [
+MTAnalysis >> generateHeatmapByClass [
 
 	| matrix |
 	matrix := MTMatrix new analysis: self.
-	matrix generateHeatmap
+	matrix generateHeatmapByClass
+]
+
+{ #category : '*MuTalk-Utilities' }
+MTAnalysis >> generateHeatmapByMethod [
+
+	| matrix |
+	matrix := MTMatrix new analysis: self.
+	matrix generateHeatmapByMethod
+]
+
+{ #category : '*MuTalk-Utilities' }
+MTAnalysis >> generateHeatmapByOperator [
+
+	| matrix |
+	matrix := MTMatrix new analysis: self.
+	matrix generateHeatmapByOperator
 ]
 
 { #category : '*MuTalk-Utilities' }
