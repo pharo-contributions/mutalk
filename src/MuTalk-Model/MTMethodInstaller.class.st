@@ -20,8 +20,8 @@ MTMethodInstaller >> installFromSource: aSourceCode in: aClass [
 	"Install a SourceCode in aClass. Raise exception in case de installation is
 	not posible."
 
-	[ aClass compile: aSourceCode ]
-		on: Error , SyntaxErrorNotification
+	[ aClass compile: aSourceCode notifying: self ]
+		on: Error
 		do: [ :error | MTMethodInstallerException signal ]
 ]
 
@@ -30,9 +30,15 @@ MTMethodInstaller >> installFromSourceSilently: aSourceCode in: aClass [
 	"Install a SourceCode in aClass. Raise exception in case de installation is
 	not posible."
 
-	[ aClass compileSilently: aSourceCode ]
+	[ aClass compileSilently: aSourceCode  classified: 'test' notifying: self ]
 		on: Error
 		do: [ :error | MTMethodInstallerException signal ]
+]
+
+{ #category : 'installing' }
+MTMethodInstaller >> notify: aString at: anInteger in: code [
+
+	self error: aString , ' at: ' , anInteger asString , ' in: ' , code
 ]
 
 { #category : 'installing' }
