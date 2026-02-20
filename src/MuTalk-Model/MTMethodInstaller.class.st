@@ -31,7 +31,7 @@ MTMethodInstaller >> installFromSourceSilently: aSourceCode in: aClass [
 	not posible."
 
 	[ aClass compileSilently: aSourceCode ]
-		on: Error , SyntaxErrorNotification
+		on: Error
 		do: [ :error | MTMethodInstallerException signal ]
 ]
 
