@@ -12,6 +12,12 @@ Class {
 	#tag : 'Core'
 }
 
+{ #category : 'accessing' }
+MTTestCaseReference class >> announcer [
+
+	^ self testCase announcer
+]
+
 { #category : 'instance creation' }
 MTTestCaseReference class >> for: aTestCase [
 
@@ -31,6 +37,12 @@ MTTestCaseReference >> = anObject [
 	anObject species = self class ifFalse: [ ^ false ].
 	self testCaseClass = anObject testCaseClass ifFalse: [ ^ false ].
 	^ self selector = anObject selector
+]
+
+{ #category : 'private' }
+MTTestCaseReference >> cleanAfterRunOn: aTestSuite [
+
+	testCase cleanAfterRunOn: aTestSuite
 ]
 
 { #category : 'defaults' }
@@ -93,6 +105,12 @@ MTTestCaseReference >> logger: anObject [
 MTTestCaseReference >> method [
 
 	^ testCase class >> testCase selector
+]
+
+{ #category : 'private' }
+MTTestCaseReference >> prepareToRunOn: aTestSuite [
+
+	testCase prepareToRunOn: aTestSuite
 ]
 
 { #category : 'printing' }

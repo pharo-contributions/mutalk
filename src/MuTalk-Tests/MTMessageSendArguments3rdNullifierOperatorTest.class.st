@@ -69,7 +69,7 @@ MTMessageSendArguments3rdNullifierOperatorTest >> newNodeOneSender [
 
 	^ RBMessageNode
 	receiver: (RBVariableNode named: #o)
-	selector: #collect:from:to:
+	selector: (RBSelectorNode value: #collect:from:to:)
 	arguments: {
 			(RBBlockNode
 				 arguments: { (RBVariableNode named: #s) }
@@ -83,7 +83,7 @@ MTMessageSendArguments3rdNullifierOperatorTest >> newNodeTwoSendersFirst [
 
 	^ RBMessageNode
 		  receiver: (RBVariableNode named: #o)
-		  selector: #collect:from:to:
+		  selector: (RBSelectorNode value: #collect:from:to:)
 		  arguments: {
 				  (RBBlockNode
 					   arguments: { (RBVariableNode named: #s) }
@@ -98,7 +98,7 @@ MTMessageSendArguments3rdNullifierOperatorTest >> newNodeTwoSendersSecond [
 
 	^ RBMessageNode
 		  receiver: (RBVariableNode named: #o)
-		  selector: #collect:from:to:
+		  selector: (RBSelectorNode value: #collect:from:to:)
 		  arguments: {
 				  (RBBlockNode
 					   arguments: { (RBVariableNode named: #s) }

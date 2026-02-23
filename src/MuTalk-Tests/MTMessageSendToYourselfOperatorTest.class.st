@@ -52,7 +52,7 @@ MTMessageSendToYourselfOperatorTest >> newNodeOneSender [
 
 	^ RBSequenceNode statements: { (RBMessageNode
 			   receiver: (RBVariableNode named: #self)
-			   selector: #yourself) }
+			   selector: (RBSelectorNode value: #yourself)) }
 ]
 
 { #category : 'accessing' }
@@ -60,7 +60,7 @@ MTMessageSendToYourselfOperatorTest >> newNodeTwoSendersFirst [
 
 	^ RBSequenceNode statements: { (RBMessageNode
 			   receiver: (RBVariableNode named: #Dictionary)
-			   selector: #yourself) }
+			   selector: (RBSelectorNode value: #yourself)) }
 ]
 
 { #category : 'accessing' }
@@ -68,7 +68,7 @@ MTMessageSendToYourselfOperatorTest >> newNodeTwoSendersSecond [
 
 	^ RBSequenceNode statements: { (RBMessageNode
 			   receiver: (RBVariableNode named: #dict)
-			   selector: #yourself) }
+			   selector: (RBSelectorNode value: #yourself)) }
 ]
 
 { #category : 'accessing' }

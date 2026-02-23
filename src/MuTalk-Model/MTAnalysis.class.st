@@ -178,13 +178,10 @@ MTAnalysis >> initialTestRun [
 	| results |
 	logger logStartInitialTestRun: testCases size.
 	results := testCases collect: [ :aTestCase | aTestCase run ].
-	logger logEndInitialTestRun.
-
+	logger logEndInitialTestRun. 
+	
 	"The test filter is initialized lazily here because the default one needs the run time of tests, so the initial test run must be executed first"
-	testCases := self testFilter filterTests: testCases.
-	(testCases anySatisfy: [ :testCase |
-		 self testFilter failuresOrErrorsIn: testCase ]) ifTrue: [
-		MTTestsWithErrorsException signal ]
+	self initializeTestFilter
 ]
 
 { #category : 'initialization' }
@@ -200,6 +197,14 @@ MTAnalysis >> initialize [
 	stopOnErrorOrFail := true.
 	budget := self defaultBudget.
 	warnAboutEmptyTests := true
+]
+
+{ #category : 'initialization' }
+MTAnalysis >> initializeTestFilter [
+
+	testCases := self testFilter filterTests: testCases.
+	(testCases anySatisfy: [ :testCase | self testFilter failuresOrErrorsIn: testCase ]) ifTrue: [
+		MTTestsWithErrorsException signal ]
 ]
 
 { #category : 'accessing' }

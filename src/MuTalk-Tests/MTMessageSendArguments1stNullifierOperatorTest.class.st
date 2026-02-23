@@ -59,7 +59,7 @@ MTMessageSendArguments1stNullifierOperatorTest >> newNodeOneSender [
 
 	^ RBMessageNode
 		  receiver: (RBVariableNode named: #o)
-		  selector: #at:put:
+		  selector: (RBSelectorNode value: #at:put:)
 		  arguments: {
 				  (RBLiteralValueNode value: nil).
 				  (RBLiteralValueNode value: 2) }
@@ -70,7 +70,7 @@ MTMessageSendArguments1stNullifierOperatorTest >> newNodeTwoSendersFirst [
 
 	^ RBMessageNode
 		  receiver: (RBVariableNode named: #o)
-		  selector: #at:put:
+		  selector: (RBSelectorNode value: #at:put:)
 		  arguments: {
 				  (RBLiteralValueNode value: nil).
 				  (RBLiteralValueNode value: 2) }
@@ -81,7 +81,7 @@ MTMessageSendArguments1stNullifierOperatorTest >> newNodeTwoSendersSecond [
 
 	^ RBMessageNode
 		  receiver: (RBVariableNode named: #o)
-		  selector: #at:
+		  selector: (RBSelectorNode value: #at:)
 		  arguments: { (RBLiteralValueNode value: nil) }
 ]
 
