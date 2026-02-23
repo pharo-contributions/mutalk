@@ -9,6 +9,8 @@ Class {
 MTCIMarkdownExporterTest >> testMarkdownExporter [
 
 	| analysis md moreInfo |
+	(SystemVersion current version beginsWith: 'Pharo9') ifTrue: [ 
+		^ self skip ]. "Microdown is not available in Pharo 9"
 	analysis := MTAnalysis new
 		            testClasses: { MTSmallBankTest };
 		            classesToMutate: { MTSmallBank }.
