@@ -23,5 +23,5 @@ MTMessageSendToYourselfOperator >> newNodeFrom: anOldNode [
 
 	| nodeCopy |
 	nodeCopy := anOldNode copy.
-	^ RBMessageNode receiver: nodeCopy receiver selector: #yourself
+	^ RBMessageNode receiver: nodeCopy receiver selector: (RBSelectorNode value: #yourself)
 ]

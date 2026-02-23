@@ -1,6 +1,9 @@
 Class {
 	#name : 'MTMethodInstaller',
 	#superclass : 'Object',
+	#instVars : [
+		'text'
+	],
 	#category : 'MuTalk-Model-Core',
 	#package : 'MuTalk-Model',
 	#tag : 'Core'
@@ -20,8 +23,9 @@ MTMethodInstaller >> installFromSource: aSourceCode in: aClass [
 	"Install a SourceCode in aClass. Raise exception in case de installation is
 	not posible."
 
-	[ aClass compile: aSourceCode ]
-		on: Error , SyntaxErrorNotification
+	text := aSourceCode.
+	[ aClass compile: aSourceCode notifying: self ]
+		on: Error
 		do: [ :error | MTMethodInstallerException signal ]
 ]
 
@@ -30,9 +34,23 @@ MTMethodInstaller >> installFromSourceSilently: aSourceCode in: aClass [
 	"Install a SourceCode in aClass. Raise exception in case de installation is
 	not posible."
 
-	[ aClass compileSilently: aSourceCode ]
-		on: Error , SyntaxErrorNotification
+	text := aSourceCode.
+	[ aClass compileSilently: aSourceCode  classified: 'test' notifying: self ]
+		on: Error
 		do: [ :error | MTMethodInstallerException signal ]
+]
+
+{ #category : 'installing' }
+MTMethodInstaller >> notify: aString at: anInteger in: code [
+
+	self error: aString , ' at: ' , anInteger asString , ' in: ' , code
+]
+
+{ #category : 'accessing' }
+MTMethodInstaller >> text [
+	"This method is here only for compatibility with Pharo 9 without impacting Pharo 14+"
+
+	^ text
 ]
 
 { #category : 'installing' }
