@@ -12,10 +12,7 @@ Class {
 { #category : 'installing' }
 MTMethodInstaller >> install: aMethod for: selector in: aClass withProtocol: methodProtocol [
 
-	aClass
-		addAndClassifySelector: selector
-		withMethod: aMethod
-		inProtocol: methodProtocol
+	aClass compileSilently: aMethod classified: methodProtocol notifying: self
 ]
 
 { #category : 'installing' }
