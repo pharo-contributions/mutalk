@@ -18,7 +18,7 @@ MTMethodInstaller >> install: aMethod for: selector in: aClass withProtocol: met
 					protocol: methodProtocol;
 					logged: false;
 					install: aMethod into: aClass compiler: nil ]
-		ifFalse: [ aClass compileSilently: aMethod classified: methodProtocol notifying: self ]
+		ifFalse: [ aClass addAndClassifySelector: selector withMethod: aMethod inProtocol: methodProtocol ]
 ]
 
 { #category : 'installing' }
