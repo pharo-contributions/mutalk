@@ -64,10 +64,6 @@ MTMutationResultsPresenter >> initializePresenters [
 				 evaluated: [ :each | each mutant operator description ];
 				 beSortable);
 		addColumn: (SpStringTableColumn new
-				 title: 'Class';
-				 evaluated: [ :each | each mutant originalClass ];
-				 beSortable);
-		addColumn: (SpStringTableColumn new
 				 title: 'Method';
 				 evaluated: [ :each | each mutant originalMethod printString ];
 				 beSortable).
