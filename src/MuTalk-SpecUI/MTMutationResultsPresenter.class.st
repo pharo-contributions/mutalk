@@ -29,13 +29,14 @@ MTMutationResultsPresenter class >> title [
 { #category : 'initialization' }
 MTMutationResultsPresenter >> connectPresenters [
 
-	tablePresenter whenSelectionChangedDo: [ :selection | 
-		| selectedItem |
-		selectedItem := selection selectedItem.
-		diffPresenter
-			leftText: selectedItem mutant originalMethod ast formattedCode;
-			rightText: selectedItem mutant modifiedSource;
-			contextClass: selectedItem mutant originalClass ]
+	tablePresenter whenSelectionChangedDo: [ :selection |
+			| selectedItem |
+			selectedItem := selection selectedItem.
+			selectedItem ifNotNil: [
+					diffPresenter
+						leftText: selectedItem mutant originalMethod ast formattedCode;
+						rightText: selectedItem mutant modifiedSource;
+						contextClass: selectedItem mutant originalClass ] ]
 ]
 
 { #category : 'layout' }
@@ -55,13 +56,22 @@ MTMutationResultsPresenter >> initializePresenters [
 		items: model;
 		activateOnSingleClick;
 		addColumn: (SpIndexTableColumn new
-			title: '#';
-			beNotExpandable;
-			yourself);
-		addColumn: (SpStringTableColumn
-			title: 'Results'
-			evaluated: [ :each | each printString ]).
-	
+				 title: '#';
+				 beNotExpandable;
+				 yourself);
+		addColumn: (SpStringTableColumn new
+				 title: 'Mutant operator';
+				 evaluated: [ :each | each mutant operator description ];
+				 beSortable);
+		addColumn: (SpStringTableColumn new
+				 title: 'Class';
+				 evaluated: [ :each | each mutant originalClass ];
+				 beSortable);
+		addColumn: (SpStringTableColumn new
+				 title: 'Method';
+				 evaluated: [ :each | each mutant originalMethod printString ];
+				 beSortable).
+
 	diffPresenter := self newDiff.
 	diffPresenter showOptions: false
 ]
