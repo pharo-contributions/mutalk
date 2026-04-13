@@ -12,10 +12,13 @@ Class {
 { #category : 'installing' }
 MTMethodInstaller >> install: aMethod for: selector in: aClass withProtocol: methodProtocol [
 
-	aClass
-		addAndClassifySelector: selector
-		withMethod: aMethod
-		inProtocol: methodProtocol
+	SystemVersion current major >= 14
+		ifTrue: [
+				aClass methodInstaller
+					protocol: methodProtocol;
+					logged: false;
+					install: aMethod into: aClass compiler: nil ]
+		ifFalse: [ aClass addAndClassifySelector: selector withMethod: aMethod inProtocol: methodProtocol ]
 ]
 
 { #category : 'installing' }
