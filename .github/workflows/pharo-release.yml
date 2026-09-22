@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release (e.g. 2.7.0 or v2.7.0). The tag must exist.'
+        required: true
+        type: string
+      project-file:
+        description: 'Location of the Pharo project metadata file (.project).'
+        required: false
+        default: .project
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+      - uses: pharo-contributions/mutalk/.github/actions/pharo-release@master
+        with:
+          tag: ${{ inputs.tag }}
+          project-file: ${{ inputs.project-file }}
