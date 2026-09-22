@@ -32,23 +32,19 @@ from semver import compare, is_prerelease, parse  # noqa: E402
 def from_github_release(raw: dict) -> dict:
     tag = raw.get("tag_name", "")
     version = tag[1:] if tag.startswith("v") else tag
-    source = None
+    artifacts = []
     for asset in raw.get("assets", []) or []:
-        if asset.get("name") == "source.zip":
-            source = {
-                "url": asset.get("browser_download_url", ""),
-                "filename": "source.zip",
-                "size": asset.get("size"),
-            }
-            break
+        name = asset.get("name", "")
+        url = asset.get("browser_download_url", "")
+        if name and url and name != "source.zip":
+            artifacts.append({"name": name, "url": url, "size": asset.get("size")})
     record = {
         "version": version,
         "date": raw.get("published_at", ""),
         "prerelease": bool(raw.get("prerelease")),
         "changes": raw.get("body") or "",
     }
-    if source:
-        record["source"] = source
+    record["artifacts"] = artifacts
     return record
 
 
@@ -60,9 +56,7 @@ def main() -> int:
     parser.add_argument("--date", required=True, help="ISO date of this release")
     parser.add_argument("--project-name", required=True)
     parser.add_argument("--package", required=True)
-    parser.add_argument("--source-url", required=True)
-    parser.add_argument("--source-filename", default="source.zip")
-    parser.add_argument("--source-sha256", required=True)
+    parser.add_argument("--repository", required=True, help="owner/name for artifact URLs")
     parser.add_argument("--changes-file", required=True, help="changelog markdown")
     parser.add_argument("--previous-output", required=True, help="file receiving previous version")
     parser.add_argument("--output", required=True, help="path of generated release.json")
@@ -89,11 +83,11 @@ def main() -> int:
         "version": args.version,
         "date": args.date,
         "prerelease": is_prerelease(args.version),
-        "source": {
-            "url": args.source_url,
-            "filename": args.source_filename,
-            "sha256": args.source_sha256,
-        },
+        "artifacts": [{
+            "name": "index.html",
+            "url": f"https://github.com/{args.repository}/releases/download/"
+            f"{args.tag}/index.html",
+        }],
         "changes": changes,
     }
 

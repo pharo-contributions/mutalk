@@ -1,6 +1,6 @@
 # Pharo release automation
 
-A reusable [composite GitHub Action] that publishes a **source archive** and a
+A reusable [composite GitHub Action] that publishes a
 **machine-readable HTML release index** for Pharo packages, triggered by a
 Semantic Versioning tag.
 
@@ -16,16 +16,13 @@ Validate SemVer ──────────────► fail on invalid ta
 Read Pharo project metadata (package name + source repository)
   │
   ▼
-Create source.zip (from git, never contains index.html)
-  │
-  ▼
 Query the GitHub Releases REST API (existing releases)
   │
   ▼
-Generate index.html (release metadata + source URL + SHA-256 + changelog + README)
+Generate index.html (release metadata + artifact links + changelog + README)
   │
   ▼
-Create the GitHub Release with source.zip and index.html
+Create the GitHub Release with index.html
 ```
 
 ## Usage
@@ -110,8 +107,7 @@ relative to that file.
 `release.json` plus an optional `README.md` and emits a fully self-contained
 page (inline CSS, inline Pharo SVG logo, light/dark themes via
 `prefers-color-scheme` with `[data-theme]` overrides, no JavaScript). The source
-archive link inside the index is relative (`./source.zip`) so the page keeps
-working when the pair is hosted anywhere, not only on GitHub.
+Artifact links inside the index are absolute GitHub release URLs.
 
 ### release.json schema (input, format 1)
 
@@ -127,11 +123,12 @@ working when the pair is hosted anywhere, not only on GitHub.
       "version": "2.7.0",                    // SemVer, no leading "v"
       "date": "2026-09-22T10:00:00Z",        // ISO-8601 publish date
       "prerelease": false,
-      "source": {
-        "url": "./source.zip",               // download URL (host-relative is valid)
-        "filename": "source.zip",
-        "sha256": "<64 hex chars>"
-      },
+        "artifacts": [
+          {
+            "name": "index.html",
+            "url": "https://github.com/owner/repo/releases/download/v2.7.0/index.html"
+          }
+        ]
       "changes": "## Fixed\n- ..."           // Markdown release description/changelog
     }
   ]
@@ -153,14 +150,12 @@ relied upon by consumers:
 | ------------------------------------------------------------------ | ----------------------------------------- |
 | `<main class="pharo-index" data-project="MuTalk">`                 | root container (package name), `data-project` |
 | `<header class="index-header">` → `<h1 class="project-name" data-project-name>` | project title, `data-project-name` |
-| `<span class="project-package">`                                   | Pharo package name badge                  |
 | `<section class="project-readme" data-section="readme" id="readme">` | rendered README content (human section)  |
 | `<ol class="release-list">` → `<li>` → `<article class="release"`  | one `<article class="release">` per release |
 | `data-release-version="2.7.0"`, `data-release-index="0"`, `data-prerelease="true|false"` | machine-readable release identity |
 | `<h2 class="release-version">`                                     | version heading                          |
 | `<time class="release-date" datetime=…>`                           | release date                            |
-| `<a class="release-source" data-kind="source" href=… download=…>`  | source archive download link            |
-| `<code class="checksum" data-checksum-algorithm="SHA-256">`        | checksum (algorithm in attribute)      |
+| `<a class="release-artifact" href=…>`                              | absolute release artifact link            |
 | `<section class="release-notes">`                                  | rendered changelog/release description |
 | `<meta name="pharo-index-format" content="1">`                     | format version                         |
 

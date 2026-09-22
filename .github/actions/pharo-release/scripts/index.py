@@ -3,8 +3,7 @@
 
 This script is intentionally free of any GitHub-specific concept: it consumes a
 plain JSON metadata file plus an optional Markdown README and emits a
-self-contained HTML page. Hosting it next to the `source.zip` it references
-(i.e. the GitHub Release assets today) is the only requirement.
+self-contained HTML page with absolute artifact links.
 
 Usage:
     index.py --metadata release.json [--readme README.md] --output index.html
@@ -121,15 +120,10 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.pharo-logo .logo-segment { stroke: none; }
-.pharo-logo .logo-segment-ne { fill: #1f5f96; }
-.pharo-logo .logo-segment-se { fill: #3f87c2; }
-.pharo-logo .logo-segment-sw { fill: #63a3d4; }
-.pharo-logo .logo-segment-nw { fill: #8ec0e3; }
-
 .index-header .project-name {
     margin: 0;
-    font-size: 1.75rem;
+    font-size: 3rem;
+    line-height: 1;
 }
 
 .index-logo {
@@ -161,18 +155,6 @@ body {
     gap: 0.35rem 1.25rem;
     margin: 0;
     padding-left: 1.2rem;
-}
-
-.project-package {
-    display: inline-block;
-    margin-top: 0.2rem;
-    padding: 0.1rem 0.55rem;
-    border-radius: 999px;
-    background: var(--pr-code-bg);
-    border: 1px solid var(--pr-border);
-    color: var(--pr-text-muted);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 0.85rem;
 }
 
 .section-title {
@@ -263,6 +245,23 @@ body {
 .release-meta code {
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     word-break: break-all;
+}
+
+.release-artifacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin: 0.8rem 0;
+}
+
+.release-artifacts a {
+    overflow-wrap: anywhere;
+}
+
+.release-toc ul {
+    columns: 2;
+    margin: 0 0 1rem;
+    padding-left: 1.2rem;
 }
 
 .release-notes {
@@ -387,11 +386,7 @@ def logo_markup(logo: str | None) -> str:
 
 def project_section(project: dict, logo: str | None) -> str:
     name = html.escape(project.get("name", "Pharo package"))
-    package = html.escape(project.get("package", ""))
     description = html.escape(project.get("description", ""))
-    badge = (
-        f'<span class="project-package">{package}</span>' if package else ""
-    )
     subtitle = (
         f'<p class="project-description">{description}</p>'
         if description and description != package
@@ -402,7 +397,6 @@ def project_section(project: dict, logo: str | None) -> str:
             {logo_markup(logo)}
       <div>
         <h1 class="project-name" data-project-name>{name}</h1>
-        {badge}
         {subtitle}
       </div>
     </header>
@@ -415,15 +409,7 @@ def release_section(release: dict, index: int) -> str:
     prerelease = bool(release.get("prerelease"))
     changes = render_markdown(release.get("changes", ""))
 
-    source = release.get("source", {})
-    url = source.get("url", "")
-    filename = source.get("filename", url.rsplit("/", 1)[-1] if url else "")
-    filename = html.escape(str(filename))
-    sha256 = source.get("sha256", "")
-    size = source.get("size")
-    size_html = (
-        html.escape(f"{size} bytes") if isinstance(size, int) else ""
-    )
+    artifacts = release.get("artifacts", [])
 
     badge = '<span class="release-badge">prerelease</span>' if prerelease else ""
     time_html = (
@@ -433,23 +419,19 @@ def release_section(release: dict, index: int) -> str:
         else ""
     )
 
-    meta_rows = []
-    if url:
-        meta_rows.append(
-            f'<dt>Source archive</dt><dd><a class="release-source" '
-            f'data-kind="source" href="{html.escape(url)}" download="{filename}">'
-            f'{filename}</a>' + (f" ({size_html})" if size_html else "") + "</dd>"
-        )
-    if sha256:
-        meta_rows.append(
-            f"<dt>SHA-256</dt><dd><code class=\"checksum\" "
-            f"data-checksum-algorithm=\"SHA-256\">"
-            f"{html.escape(sha256)}</code></dd>"
-        )
-
-    meta = (
-        '<dl class="release-meta">' + "".join(meta_rows) + "</dl>"
-        if meta_rows
+    artifact_links = []
+    for artifact in artifacts:
+        name = html.escape(str(artifact.get("name", "artifact")))
+        url = html.escape(str(artifact.get("url", "")), quote=True)
+        if url.startswith(("https://", "http://")):
+            artifact_links.append(
+                f'<a class="release-artifact" href="{url}">{name}</a>'
+            )
+    artifact_html = (
+        '<div class="release-artifacts" aria-label="Release artifacts">'
+        + "".join(artifact_links)
+        + "</div>"
+        if artifact_links
         else ""
     )
 
@@ -471,7 +453,7 @@ def release_section(release: dict, index: int) -> str:
           <h2 class="release-version">{html.escape(version)}{badge}</h2>
           {time_html}
         </div>
-        {meta}
+        {artifact_html}
         {notes}
       </article>
     </li>
@@ -511,10 +493,22 @@ def table_of_contents(readme_path: Path | None) -> str:
         <nav class="table-of-contents" aria-label="Table of contents">
             <h2 class="section-title">Contents</h2>
             <ul>
-                <li><a href="#latest-release">Latest release</a></li>
                 <li><a href="#releases">All releases</a></li>
                 {readme_link}
             </ul>
+        </nav>
+        """.replace("\n    ", "\n")
+
+
+def releases_table_of_contents(releases: list[dict]) -> str:
+        links = "".join(
+                f'<li><a href="#release-{html.escape(str(release.get("version", index)))}">'
+                f'{html.escape(str(release.get("version", f"release-{index}")))}</a></li>'
+                for index, release in enumerate(releases)
+        )
+        return f"""
+        <nav class="release-toc" aria-label="Release table of contents">
+            <ul>{links}</ul>
         </nav>
         """.replace("\n    ", "\n")
 
@@ -575,6 +569,7 @@ def main() -> int:
     {readme_section(readme_path)}
         <section id="releases" aria-labelledby="releases-title">
             <h2 class="section-title" id="releases-title">Releases</h2>
+            {releases_table_of_contents(releases)}
             <ol class="release-list">
       {release_html}
             </ol>
