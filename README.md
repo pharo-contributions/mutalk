@@ -57,20 +57,19 @@ You can find a wiki [here](https://github.com/pharo-contributions/mutalk/wiki) w
 
 Releases are published automatically when a Semantic Versioning tag is pushed
 (`2.7.0`, `v2.7.0`, `2.7.0-beta.1`, ...). The composite action in
-`.github/actions/pharo-release` (wired up by `.github/workflows/pharo-release.yml`):
+[`guillep/pharo-release`](https://github.com/guillep/pharo-release) (wired up by `.github/workflows/pharo-release.yml`):
 
 * validates the tag and fails on non-SemVer tags;
 * reads the source repository location from `.project` (resolved relative to
   the project file, override with the `project-file` input);
-* creates a `source.zip` from the released sources;
 * queries the GitHub Releases API for existing releases;
-* generates an `index.html` with the release metadata, source URL, SHA-256,
+* generates an `index.html` with release metadata, absolute artifact URLs,
   changelog and the rendered `README.md`;
-* publishes the GitHub Release with both `source.zip` and `index.html`.
+* publishes the GitHub Release with `index.html`.
 
 The index format, the `release.json` schema and reuse instructions for other
 Pharo repositories are documented in
-[`.github/actions/pharo-release/README.md`](.github/actions/pharo-release/README.md).
+[the `guillep/pharo-release` repository](https://github.com/guillep/pharo-release).
 
 ---
 
