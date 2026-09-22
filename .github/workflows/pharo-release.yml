@@ -27,7 +27,7 @@ jobs:
         with:
           fetch-depth: 0
           fetch-tags: true
-      - uses: guillep/pharo-release@v1
+      - uses: guillep/pharo-release@v2
         with:
           tag: ${{ inputs.tag }}
           # Tag pushes have no workflow_dispatch inputs, so preserve the action default.
