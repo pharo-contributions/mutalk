@@ -19,6 +19,12 @@ inputs:
       relative to this file's directory.
     required: false
     default: .project
+  logo:
+    description: >-
+      Optional logo path or URL for the generated release index. Local image
+      files are embedded in the generated HTML.
+    required: false
+    default: ''
 
 outputs:
   version:
@@ -69,19 +75,26 @@ runs:
           "/repos/${GITHUB_REPOSITORY}/releases?per_page=100" \
           | jq -s 'add // []' > "${RUNNER_TEMP}/releases.json"
 
-    - name: Resolve the previous release and generate the changelog
+    - name: Resolve the previous release and generate GitHub release notes
       shell: bash
       env:
         VERSION_TAG: ${{ env.tag }}
-        PYTHONPATH: ${{ github.action_path }}/scripts
+        GH_TOKEN: ${{ github.token }}
       run: |
         set -euo pipefail
         previous="$(python3 "${GITHUB_ACTION_PATH}/scripts/previous_version.py" \
           --releases-file "${RUNNER_TEMP}/releases.json" --tag "${VERSION_TAG}")"
         echo "previous=${previous}" >> "${GITHUB_ENV}"
-        range="${previous:+${previous}..}${VERSION_TAG}"
-        python3 "${GITHUB_ACTION_PATH}/scripts/changelog.py" \
-          --range "${range}" --output "${RUNNER_TEMP}/CHANGELOG.md"
+        notes_args=(
+          --method POST
+          -f "tag_name=${VERSION_TAG}"
+          -f "target_commitish=${VERSION_TAG}"
+        )
+        if [ -n "${previous}" ]; then
+          notes_args+=( -f "previous_tag_name=${previous}" )
+        fi
+        gh api "repos/${GITHUB_REPOSITORY}/releases/generate-notes" \
+          "${notes_args[@]}" --jq .body > "${RUNNER_TEMP}/CHANGELOG.md"
 
     - name: Build the neutral release metadata
       shell: bash
@@ -128,15 +141,22 @@ runs:
 
     - name: Generate the release index (index.html)
       shell: bash
+      env:
+        LOGO: ${{ inputs.logo }}
       run: |
         set -euo pipefail
         readme_args=( )
+        logo_args=( )
         if [ -f "${GITHUB_WORKSPACE}/README.md" ]; then
           readme_args=( --readme "${GITHUB_WORKSPACE}/README.md" )
+        fi
+        if [ -n "${LOGO}" ]; then
+          logo_args=( --logo "${LOGO}" )
         fi
         python3 "${GITHUB_ACTION_PATH}/scripts/index.py" \
           --metadata "${RUNNER_TEMP}/release.json" \
           "${readme_args[@]}" \
+          "${logo_args[@]}" \
           --output "${RUNNER_TEMP}/release-assets/index.html"
 
     - name: Publish the GitHub release

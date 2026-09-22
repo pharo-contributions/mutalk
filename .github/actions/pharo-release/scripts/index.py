@@ -16,8 +16,10 @@ documented in .github/actions/pharo-release/README.md.
 """
 
 import argparse
+import base64
 import html
 import json
+import mimetypes
 import sys
 from pathlib import Path
 
@@ -32,12 +34,7 @@ except ImportError:  # pragma: no cover - dependency not installed
 
 INDEX_FORMAT = 1
 
-PHARO_LOGO_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="Pharo" class="pharo-logo">
-  <path class="logo-segment logo-segment-ne" d="M24 4 A20 20 0 0 1 44 24 L36 24 A12 12 0 0 0 24 12 Z" />
-  <path class="logo-segment logo-segment-se" d="M44 24 A20 20 0 0 1 24 44 L24 36 A12 12 0 0 0 36 24 Z" />
-  <path class="logo-segment logo-segment-sw" d="M24 44 A20 20 0 0 1 4 24 L12 24 A12 12 0 0 0 24 36 Z" />
-  <path class="logo-segment logo-segment-nw" d="M4 24 A20 20 0 0 1 24 4 L24 12 A12 12 0 0 0 12 24 Z" />
-</svg>"""
+DEFAULT_LOGO_PATH = Path(__file__).with_name("Pharo_Beacon_v3.0.svg")
 
 
 CSS = """
@@ -133,6 +130,37 @@ body {
 .index-header .project-name {
     margin: 0;
     font-size: 1.75rem;
+}
+
+.index-logo {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    object-fit: contain;
+}
+
+.latest-release {
+    background: var(--pr-code-bg);
+    border: 1px solid var(--pr-border);
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+}
+
+.latest-release h2 {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.latest-release p {
+    margin: 0.35rem 0 0;
+}
+
+.table-of-contents ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.25rem;
+    margin: 0;
+    padding-left: 1.2rem;
 }
 
 .project-package {
@@ -333,7 +361,31 @@ def render_markdown(source: str) -> str:
     )
 
 
-def project_section(project: dict) -> str:
+def logo_markup(logo: str | None) -> str:
+    if not logo:
+        logo = str(DEFAULT_LOGO_PATH)
+    if logo.startswith(("http://", "https://")):
+        return (
+            f'<img class="index-logo" src="{html.escape(logo, quote=True)}" '
+            'alt="Pharo logo">'
+        )
+
+    logo_path = Path(logo)
+    if not logo_path.is_file():
+        raise ValueError(f"logo file not found: {logo}")
+    content = logo_path.read_bytes()
+    mime_type = mimetypes.guess_type(logo_path.name)[0] or "application/octet-stream"
+    if mime_type == "image/svg+xml":
+        svg = content.decode("utf-8")
+        return svg.replace("<svg", '<svg class="index-logo"', 1)
+    encoded = base64.b64encode(content).decode("ascii")
+    return (
+        f'<img class="index-logo" src="data:{mime_type};base64,{encoded}" '
+        f'alt="{html.escape(logo_path.stem)} logo">'
+    )
+
+
+def project_section(project: dict, logo: str | None) -> str:
     name = html.escape(project.get("name", "Pharo package"))
     package = html.escape(project.get("package", ""))
     description = html.escape(project.get("description", ""))
@@ -347,7 +399,7 @@ def project_section(project: dict) -> str:
     )
     return f"""
     <header class="index-header">
-      {PHARO_LOGO_SVG}
+            {logo_markup(logo)}
       <div>
         <h1 class="project-name" data-project-name>{name}</h1>
         {badge}
@@ -411,6 +463,7 @@ def release_section(release: dict, index: int) -> str:
     return f"""
     <li>
       <article class="release"
+               id="release-{html.escape(version)}"
                data-release-version="{html.escape(version)}"
                data-release-index="{index}"
                data-prerelease="{"true" if prerelease else "false"}">
@@ -436,6 +489,36 @@ def readme_section(readme_path: Path | None) -> str:
     """.replace("\n    ", "\n")
 
 
+def latest_release_section(release: dict) -> str:
+        version = html.escape(str(release.get("version", "latest")))
+        date = str(release.get("date", ""))
+        date_html = f' ({html.escape(_human_date(date))})' if date else ""
+        return f"""
+        <section class="latest-release" id="latest-release" aria-labelledby="latest-release-title">
+            <h2 id="latest-release-title">Latest release</h2>
+            <p><a href="#release-{version}">{version}</a>{date_html}</p>
+        </section>
+        """.replace("\n    ", "\n")
+
+
+def table_of_contents(readme_path: Path | None) -> str:
+        readme_link = (
+                '<li><a href="#readme">README</a></li>'
+                if readme_path is not None and readme_path.is_file()
+                else ""
+        )
+        return f"""
+        <nav class="table-of-contents" aria-label="Table of contents">
+            <h2 class="section-title">Contents</h2>
+            <ul>
+                <li><a href="#latest-release">Latest release</a></li>
+                <li><a href="#releases">All releases</a></li>
+                {readme_link}
+            </ul>
+        </nav>
+        """.replace("\n    ", "\n")
+
+
 def _human_date(iso_date: str) -> str:
     try:
         import datetime
@@ -452,6 +535,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Generate the release index HTML.")
     parser.add_argument("--metadata", required=True, help="path to release.json")
     parser.add_argument("--readme", help="path to the project README (Markdown)")
+    parser.add_argument("--logo", help="path or URL for the project logo")
     parser.add_argument("--output", required=True, help="path of the generated index.html")
     args = parser.parse_args()
 
@@ -485,12 +569,16 @@ def main() -> int:
 </head>
 <body>
   <main class="pharo-index" data-project="{html.escape(project.get('package', project.get('name', '')))}">
-    {project_section(project)}
+        {project_section(project, args.logo)}
+        {latest_release_section(releases[0])}
+        {table_of_contents(readme_path)}
     {readme_section(readme_path)}
-    <h2 class="section-title">Releases</h2>
-    <ol class="release-list">
+        <section id="releases" aria-labelledby="releases-title">
+            <h2 class="section-title" id="releases-title">Releases</h2>
+            <ol class="release-list">
       {release_html}
-    </ol>
+            </ol>
+        </section>
     <footer class="index-footer">
       {footer_line}
     </footer>
